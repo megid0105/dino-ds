@@ -1,0 +1,301 @@
+{"_header": {"golden_eval_version": "dino.golden_eval.v1", "created_at_utc": "2026-01-16T16:57:50Z", "count": 300}}
+{"case_id": "must_recency_001", "user": "What is the latest price of Bitcoin?", "tags": ["recency_trigger"], "must_pass": true}
+{"case_id": "must_politics_001", "user": "Who is the current president of the United States?", "tags": ["politics_sensitive", "recency_trigger"], "must_pass": true}
+{"case_id": "must_closedbook_001", "user": "What is the capital of France?", "tags": ["closed_book_sourcepack"], "must_pass": true}
+{"case_id": "case_0004", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0005", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0006", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0007", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0008", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0009", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0010", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0011", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0012", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0013", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0014", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0015", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0016", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0017", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0018", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0019", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0020", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0021", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0022", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0023", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0024", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0025", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0026", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0027", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0028", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0029", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0030", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0031", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0032", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0033", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0034", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0035", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0036", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0037", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0038", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0039", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0040", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0041", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0042", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0043", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0044", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0045", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0046", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0047", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0048", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0049", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0050", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0051", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0052", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0053", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0054", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0055", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0056", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0057", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0058", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0059", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0060", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0061", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0062", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0063", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0064", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0065", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0066", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0067", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0068", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0069", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0070", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0071", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0072", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0073", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0074", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0075", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0076", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0077", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0078", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0079", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0080", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0081", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0082", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0083", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0084", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0085", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0086", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0087", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0088", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0089", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0090", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0091", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0092", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0093", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0094", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0095", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0096", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0097", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0098", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0099", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0100", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0101", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0102", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0103", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0104", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0105", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0106", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0107", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0108", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0109", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0110", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0111", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0112", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0113", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0114", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0115", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0116", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0117", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0118", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0119", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0120", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0121", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0122", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0123", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0124", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0125", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0126", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0127", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0128", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0129", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0130", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0131", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0132", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0133", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0134", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0135", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0136", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0137", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0138", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0139", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0140", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0141", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0142", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0143", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0144", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0145", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0146", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0147", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0148", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0149", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0150", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0151", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0152", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0153", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0154", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0155", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0156", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0157", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0158", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0159", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0160", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0161", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0162", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0163", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0164", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0165", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0166", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0167", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0168", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0169", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0170", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0171", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0172", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0173", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0174", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0175", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0176", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0177", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0178", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0179", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0180", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0181", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0182", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0183", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0184", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0185", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0186", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0187", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0188", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0189", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0190", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0191", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0192", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0193", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0194", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0195", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0196", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0197", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0198", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0199", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0200", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0201", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0202", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0203", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0204", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0205", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0206", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0207", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0208", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0209", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0210", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0211", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0212", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0213", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0214", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0215", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0216", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0217", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0218", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0219", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0220", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0221", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0222", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0223", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0224", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0225", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0226", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0227", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0228", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0229", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0230", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0231", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0232", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0233", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0234", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0235", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0236", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0237", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0238", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0239", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0240", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0241", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0242", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0243", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0244", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0245", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0246", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0247", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0248", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0249", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0250", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0251", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0252", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0253", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0254", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0255", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0256", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0257", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0258", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0259", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0260", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0261", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0262", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0263", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0264", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0265", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0266", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0267", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0268", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0269", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0270", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0271", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0272", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0273", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0274", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0275", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0276", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0277", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0278", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0279", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0280", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0281", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0282", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0283", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0284", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0285", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0286", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0287", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0288", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0289", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0290", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0291", "user": "Summarize the UN Charter's purpose in one paragraph.", "tags": ["politics_sensitive"], "must_pass": false}
+{"case_id": "case_0292", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0293", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0294", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0295", "user": "Give a concise definition of photosynthesis.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0296", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0297", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0298", "user": "Explain why the sky appears blue in one paragraph.", "tags": ["closed_book_sourcepack"], "must_pass": false}
+{"case_id": "case_0299", "user": "What's the weather today in Tokyo?", "tags": ["recency_trigger"], "must_pass": false}
+{"case_id": "case_0300", "user": "Compute 17*23.", "tags": ["closed_book_sourcepack"], "must_pass": false}

@@ -1,0 +1,20 @@
+{
+  "sources_manifest_version": "dino.sources_manifest.v1",
+  "pack_id": "sp_test",
+  "created_at_utc": "2026-01-17T00:00:00Z",
+  "license_notes": "test",
+  "items": [
+    {
+      "source_id": "s1",
+      "title": "t",
+      "publisher": "p",
+      "captured_at_utc": "2026-01-17T00:00:00Z",
+      "file_path": "fake.txt",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "content_type": "txt",
+      "topic_tags": [
+        "test"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "dino.tool_replay_manifest.v1",
+  "type": "object",
+  "required": [
+    "tool_replay_manifest_version",
+    "pack_id",
+    "created_at_utc",
+    "items"
+  ],
+  "properties": {
+    "tool_replay_manifest_version": {"const": "dino.tool_replay_manifest.v1"},
+    "pack_id": {"type": "string", "minLength": 1},
+    "created_at_utc": {"type": "string", "minLength": 1},
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "fixture_id",
+          "tool_name",
+          "captured_at_utc",
+          "request",
+          "response_file_path",
+          "response_sha256",
+          "citations"
+        ],
+        "properties": {
+          "fixture_id": {"type": "string", "minLength": 1},
+          "tool_name": {"type": "string", "minLength": 1},
+          "captured_at_utc": {"type": "string", "minLength": 1},
+          "request": {},
+          "response_file_path": {"type": "string", "minLength": 1},
+          "response_sha256": {"type": "string", "minLength": 64, "maxLength": 64},
+          "citations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["source", "url_or_id", "title"],
+              "properties": {
+                "source": {"type": "string"},
+                "url_or_id": {"type": "string"},
+                "title": {"type": "string"},
+                "published_at": {"type": ["string", "null"]}
+              },
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

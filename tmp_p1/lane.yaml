@@ -1,0 +1,13 @@
+lane_id: "wave0_lane_smoke"
+wave: "wave0"
+target_base: "qa"
+source_type: "local"
+sources:
+  - "sources/sample.jsonl"
+count_target: 3
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators: []
+transform_pipeline: []
+notes: "smoke"

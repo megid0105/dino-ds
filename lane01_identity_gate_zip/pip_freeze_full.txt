@@ -1,0 +1,8 @@
+attrs==25.4.0
+# Editable install with no version control (dino-ds==0.1.0)
+-e /Users/chanpakho/Desktop/Download/project/dino_ds
+jsonschema==4.26.0
+jsonschema-specifications==2025.9.1
+PyYAML==6.0.3
+referencing==0.37.0
+rpds-py==0.30.0

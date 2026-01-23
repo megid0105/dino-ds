@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "dino-ds lane config schema v1",
+  "type": "object",
+  "required": [
+    "lane_id",
+    "wave",
+    "target_base",
+    "source_type",
+    "sources",
+    "count_target",
+    "language_mix",
+    "synthetic_policy",
+    "required_tools",
+    "validators",
+    "transform_pipeline"
+  ],
+  "properties": {
+    "lane_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "wave": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_base": {
+      "type": "string",
+      "enum": [
+        "qa",
+        "chat",
+        "tool"
+      ],
+      "default": "qa"
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "local",
+        "gdrive",
+        "s3"
+      ],
+      "default": "local"
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "count_target": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "language_mix": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "synthetic_policy": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "required_tools": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "validators": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "transform_pipeline": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "notes": {
+      "type": "string"
+    },
+    "generation_mode": {
+      "type": "string",
+      "enum": [
+        "shuffle_cap",
+        "template_expand",
+        "teacher_import"
+      ],
+      "default": "shuffle_cap"
+    },
+    "similarity": {
+      "type": "object",
+      "properties": {
+        "max_token_overlap_ratio": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0
+        }
+      },
+      "additionalProperties": true
+    },
+    "template_expand": {
+      "type": "object",
+      "properties": {
+        "slot_banks": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "operators": {
+          "type": "array"
+        },
+        "count_target": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "seed": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": true
+    },
+    "teacher_import": {
+      "type": "object",
+      "properties": {
+        "input_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provenance_required": {
+          "type": "boolean"
+        },
+        "seed": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

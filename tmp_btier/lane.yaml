@@ -1,0 +1,13 @@
+lane_id: "btier_lane_smoke"
+wave: "btier"
+target_base: "qa"
+source_type: "local"
+sources:
+  - "inputs/a.jsonl"
+count_target: 10
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators: []
+transform_pipeline: []
+notes: "btier self test"

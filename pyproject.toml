@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dino-ds"
+version = "0.1.0"
+description = "DTA datasets + alignment tooling (Dino reboot) — CLI + schemas"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "PyYAML>=6.0.1",
+  "jsonschema>=4.21.1",
+]
+
+[project.scripts]
+dino-ds = "dino_ds.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+dino_ds = ["schemas/*.json"]

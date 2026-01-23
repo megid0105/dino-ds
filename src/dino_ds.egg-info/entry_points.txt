@@ -1,0 +1,2 @@
+[console_scripts]
+dino-ds = dino_ds.cli:main

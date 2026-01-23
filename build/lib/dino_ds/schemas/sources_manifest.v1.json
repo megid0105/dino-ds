@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "dino.sources_manifest.v1",
+  "type": "object",
+  "required": [
+    "sources_manifest_version",
+    "pack_id",
+    "created_at_utc",
+    "license_notes",
+    "items"
+  ],
+  "properties": {
+    "sources_manifest_version": {"const": "dino.sources_manifest.v1"},
+    "pack_id": {"type": "string", "minLength": 1},
+    "created_at_utc": {"type": "string", "minLength": 1},
+    "license_notes": {"type": "string"},
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "source_id",
+          "title",
+          "publisher",
+          "captured_at_utc",
+          "file_path",
+          "sha256",
+          "content_type",
+          "topic_tags"
+        ],
+        "properties": {
+          "source_id": {"type": "string", "minLength": 1},
+          "title": {"type": "string"},
+          "publisher": {"type": "string"},
+          "published_at": {"type": ["string", "null"]},
+          "captured_at_utc": {"type": "string"},
+          "file_path": {"type": "string"},
+          "sha256": {"type": "string", "minLength": 64, "maxLength": 64},
+          "content_type": {"enum": ["pdf", "html", "txt", "json"]},
+          "topic_tags": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

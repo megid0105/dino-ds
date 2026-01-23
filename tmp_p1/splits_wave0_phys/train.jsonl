@@ -1,0 +1,2 @@
+{"user": "name a color", "answer": "blue", "_lane": {"lane_id": "wave0_lane_smoke", "wave": "wave0", "target_base": "qa", "source_type": "local"}, "sample_id": "wave0_lane_smoke_00000000"}
+{"user": "2+2", "answer": "4", "_lane": {"lane_id": "wave0_lane_smoke", "wave": "wave0", "target_base": "qa", "source_type": "local"}, "sample_id": "wave0_lane_smoke_00000002"}

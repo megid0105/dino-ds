@@ -1,0 +1,18 @@
+{
+  "tool_replay_manifest_version": "dino.tool_replay_manifest.v1",
+  "pack_id": "fx_test",
+  "created_at_utc": "2026-01-17T00:00:00Z",
+  "items": [
+    {
+      "fixture_id": "f1",
+      "tool_name": "web.search",
+      "captured_at_utc": "2026-01-17T00:00:00Z",
+      "request": {"q": "test"},
+      "response_file_path": "resp.json",
+      "response_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "citations": [
+        {"source":"test","url_or_id":"x","title":"t","published_at":null}
+      ]
+    }
+  ]
+}

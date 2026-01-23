@@ -1,0 +1,4 @@
+{"user": "name a color", "answer": "blue", "_lane": {"lane_id": "btier_lane_smoke", "wave": "btier", "target_base": "qa", "source_type": "local"}, "sample_id": "btier_lane_smoke_00000000"}
+{"user": "hello", "answer": "world", "_lane": {"lane_id": "btier_lane_smoke", "wave": "btier", "target_base": "qa", "source_type": "local"}, "sample_id": "btier_lane_smoke_00000001"}
+{"user": "2+2", "answer": "4", "_lane": {"lane_id": "btier_lane_smoke", "wave": "btier", "target_base": "qa", "source_type": "local"}, "sample_id": "btier_lane_smoke_00000002"}
+{"user": "extra row", "answer": "ignored", "_lane": {"lane_id": "btier_lane_smoke", "wave": "btier", "target_base": "qa", "source_type": "local"}, "sample_id": "btier_lane_smoke_00000003"}

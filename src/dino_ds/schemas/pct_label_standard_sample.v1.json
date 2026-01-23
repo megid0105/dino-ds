@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PCT-perf DINO Global Label Standard — Sample Row v1",
+  "type": "object",
+  "required": [
+    "language","mode","tone",
+    "adult_gate","profanity_allowed",
+    "emote6",
+    "representation_choice","continuity_choice",
+    "intent_family","intent_subtype","flow_state",
+    "safety_tag",
+    "needs_search",
+    "needs_history_search","history_scope",
+    "user_message","assistant_response"
+  ],
+  "properties": {
+    "sample_id": {"type":"string","minLength":1},
+
+    "language": {"type":"string","enum":["en","zh-hk","zh-hant","zh-hans","pt-br","fr","de","it","hi","vi","ja","ko","es"]},
+    "mode": {"type":"string","enum":["quick","think","conversation"]},
+    "tone": {"type":"string","enum":["family","serious","professional","friendly","best_friend"]},
+
+    "adult_gate": {"type":"boolean"},
+    "profanity_allowed": {"type":"boolean"},
+
+    "emote6": {"type":"string","enum":["happy","sad","angry","fear","encourage","neutral"]},
+    "text_affect6": {"type":"string","enum":["calm","warm","energetic","serious","playful","empathetic"]},
+    "style6": {"type":"string","enum":["happy","sad","calm","neutral","encourage","urgent"]},
+
+    "representation_choice": {"type":"string","enum":["plain_text","bullet_list","comparison_table","chart_spec","document_spec","zip_spec"]},
+    "continuity_choice": {"type":"string","enum":["use_continuity","suppress_continuity"]},
+
+    "intent_family": {"type":"string","enum":["info_retrieval","decision_support","planning","transactional","navigation","communication","content_generation","tool_invocation","safety"]},
+    "intent_subtype": {"type":"string"},
+    "intent": {"type":"string"},
+    "flow_state": {"type":"string","enum":["none","awaiting_user_confirmation","awaiting_user_choice","awaiting_parameters","ready_for_action"]},
+
+    "safety_tag": {"type":"string","enum":["safe","politics_sensitive","history_sensitive","self_harm_sensitive","violence_sensitive","sexual_content","minor_related","location_sensitive","leakage_attempt"]},
+
+    "needs_search": {"type":"boolean"},
+    "tool_budget": {
+      "type":"object",
+      "properties":{
+        "searches":{"type":"integer","minimum":0,"maximum":1},
+        "reads":{"type":"integer","minimum":0,"maximum":3},
+        "seconds":{"type":"integer","minimum":0,"maximum":30}
+      },
+      "additionalProperties": true
+    },
+
+    "needs_history_search": {"type":"boolean"},
+    "history_scope": {"type":"string","enum":["thread_only","all_threads"]},
+
+    "image_context": {
+      "type": "object",
+      "properties": {
+        "mode": {"type": "string", "enum": ["photo_upload", "live_camera"]},
+        "summary": {"type": "string"},
+        "objects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label", "confidence", "bbox"],
+            "properties": {
+              "label": {"type": "string"},
+              "confidence": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+              "bbox": {
+                "type": "array",
+                "minItems": 4,
+                "maxItems": 4,
+                "items": {"type": "number"}
+              },
+              "text": {"type": "string"}
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "tool_call": {
+      "type": "object",
+      "required": ["name", "arguments"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "enum": [
+            "web_fetch",
+            "web_read",
+            "history_search",
+            "export_document",
+            "ingest",
+            "ingest_zip",
+            "zip_list",
+            "image_preview",
+            "connector_action",
+            "util.calc",
+            "util.timer"
+          ]
+        },
+        "arguments": {"type": "object", "additionalProperties": true}
+      },
+      "additionalProperties": true
+    },
+    "capabilities_manifest_id": {"type": "string"},
+
+    "status_event": {
+      "type": "object",
+      "properties": {
+        "phase": {"type": "string", "enum": ["parse", "plan", "retrieve", "compose", "finalize"]},
+        "note": {"type": "string"},
+        "route": {"type": "string", "enum": ["slm", "cloud"]},
+        "tokensSoFar": {"type": "number"},
+        "sourcesCount": {"type": "number"}
+      },
+      "additionalProperties": true
+    },
+
+    "user_message": {"type":"string","minLength":1},
+    "assistant_response": {"type":"string","minLength":1}
+  },
+
+  "allOf": [
+    {
+      "if": { "properties": { "profanity_allowed": { "const": true } }, "required": ["profanity_allowed"] },
+      "then": {
+        "properties": {
+          "adult_gate": { "const": true },
+          "tone": { "const": "best_friend" }
+        },
+        "required": ["adult_gate","tone"]
+      }
+    }
+  ],
+
+  "additionalProperties": true
+}

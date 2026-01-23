@@ -1,0 +1,2 @@
+BAD_LABEL_ROWS = 0
+Definition: any TEF row where labels contains answer_steps or legacy_id
