@@ -1207,15 +1207,8 @@ template_expand:
     needs_history_search: '{needs_history_search}'
     history_scope: '{history_scope}'
     safety_tag: '{safety_tag}'
-    user_message: '{user_message}'
-    assistant_response: '{assistant_response}'
-    tool_call:
-      name: connector_action
-      arguments:
-        connector: '{app_name}'
-        platform: '{platform}'
-        action: '{action_name}'
-        parameters:
-          detail: '{detail_template}'
+    user_message: '{detail_template}'
+    assistant_response: ''
+    connector_action: '{action_name}'
 
-notes: "Wave0 Lane11 — connector action mapping (multi-turn, tool_call required, no teacher)"
+notes: "Wave0 Lane11 — connector action mapping (label-only, no tool_call, no teacher)"
