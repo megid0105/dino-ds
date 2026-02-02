@@ -1,0 +1,4 @@
+GATE_SUMMARY v1
+lane_id=lane_10_connector_intent_detection
+first_row_keys=['sample_id', 'id', 'target_base', 'labels', 'messages']
+first_row_roles=['user', 'assistant']

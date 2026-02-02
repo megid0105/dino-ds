@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict
@@ -73,6 +74,9 @@ def _load_system_prompt_registry() -> Dict[str, str]:
       B) {"<id>": "<text>", ...}
 
     Search order:
+      - CWD/system_prompt_registry.json
+      - PyInstaller bundle (_MEIPASS)/system_prompt_registry.json
+      - PyInstaller binary dir/system_prompt_registry.json
       - repo_root/system_prompt_registry.json
       - src/dino_ds/system_prompt_registry.json
       - src/dino_ds/schemas/system_prompt_registry.json
@@ -80,10 +84,21 @@ def _load_system_prompt_registry() -> Dict[str, str]:
     here = Path(__file__).resolve()
     repo_root = here.parents[3]
     candidates = [
-        repo_root / "system_prompt_registry.json",
-        repo_root / "src" / "dino_ds" / "system_prompt_registry.json",
-        repo_root / "src" / "dino_ds" / "schemas" / "system_prompt_registry.json",
+        Path.cwd() / "system_prompt_registry.json",
     ]
+    meipass = getattr(sys, "_MEIPASS", None)
+    if isinstance(meipass, str) and meipass:
+        candidates.append(Path(meipass) / "system_prompt_registry.json")
+    exe_dir = Path(sys.executable).resolve().parent if hasattr(sys, "executable") else None
+    if exe_dir:
+        candidates.append(exe_dir / "system_prompt_registry.json")
+    candidates.extend(
+        [
+            repo_root / "system_prompt_registry.json",
+            repo_root / "src" / "dino_ds" / "system_prompt_registry.json",
+            repo_root / "src" / "dino_ds" / "schemas" / "system_prompt_registry.json",
+        ]
+    )
 
     for p in candidates:
         if not p.exists() or not p.is_file():

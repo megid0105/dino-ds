@@ -1,0 +1,4 @@
+Goal: Execute continuity behavior as labeled; keep context aligned and actionable.
+Target: 40000 lines; maximize variety and avoid repeated openings.
+Keep: preserve the draft's structure (labels/JSON/code/tables/tool_call) and meaning.
+Language/Tone: match the user language and requested tone; do not add new facts.

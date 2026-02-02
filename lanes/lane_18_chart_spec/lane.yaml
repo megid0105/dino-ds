@@ -1,0 +1,698 @@
+lane_id: "lane_18_chart_spec"
+wave: "wave0"
+target_base: "dino_qwen4b"
+source_type: "local"
+
+# template_expand lanes do not require source files
+sources: []
+
+# how many rows to build (can be overridden by --limit)
+count_target: 12000
+
+# REQUIRED PCT fields: keep these in the human-facing lane.yamls
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: "suppress_continuity"
+  flow_state: "none"
+  history_scope: "thread_only"
+  representation_choice: "chart_spec"
+  safety_tag: "safe"
+
+  system_prompt_id: "dino.system.v1"
+# forward-compat placeholders
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators: []
+transform_pipeline: []
+
+generation_mode: "template_expand"
+system_prompt_path: prompts/system/dino_system_prompt.txt
+
+
+output_dir: out_runs/colleague_test
+
+teacher_runtime:
+  sample_percent: 10
+  enabled: false
+  provider: ollama
+  ollama_host: "http://127.0.0.1:11434"
+  model: "dino-pro-7b"
+  policy: structure_only
+  on_missing_evidence: abstain
+  system_prompt_path: prompts/teacher/lane_18_teacher_system_prompt.txt
+
+
+
+
+  timeout_s: 150
+  keepalive: "5m"
+# similarity/dedupe controls (tune per-lane)
+similarity:
+  max_token_overlap_ratio: 0.3
+  ignore_stopwords: true
+  ignore_tokens:
+    - "dino"
+    - "ai"
+    - "assistant"
+    - "im"
+    - "i'm"
+    - "chart"
+    - "spec"
+    - "chart_spec"
+    - "axis"
+    - "axes"
+    - "series"
+    - "data"
+    - "values"
+    - "category"
+    - "categories"
+    - "x_axis"
+    - "y_axis"
+    - "next"
+    - "step"
+  ngram: 2
+
+template_expand:
+  seed: 0
+  count_target: 12000
+  max_attempts: 600000
+  attempts_per_row: 400
+
+  slot_banks:
+    # Core labels
+    language: ["en"]
+    mode: ["think", "quick", "conversation", "think", "quick", "think"]
+    tone: ["professional", "serious", "friendly", "family", "best_friend", "professional", "serious"]
+    continuity_choice: ["suppress_continuity"]
+    intent_family: ["content_generation", "decision_support", "content_generation", "decision_support"]
+    intent_subtype:
+      - "chart_creation"
+      - "trend_chart"
+      - "comparison_chart"
+      - "distribution_chart"
+      - "proportion_chart"
+      - "relationship_chart"
+      - "chart_design"
+
+    # Chart variety (non-bar weighted higher via repetition)
+    chart_type:
+      - "bar"
+      - "line"
+      - "line"
+      - "area"
+      - "stacked_bar"
+      - "stacked_area"
+      - "pie"
+      - "donut"
+      - "scatter"
+      - "histogram"
+      - "radar"
+      - "heatmap"
+      - "waterfall"
+      - "bubble"
+      - "box"
+
+    chart_subject:
+      - "a fictional product rollout"
+      - "a mock onboarding funnel"
+      - "a synthetic study plan"
+      - "a placeholder budget review"
+      - "a practice training schedule"
+      - "a demo support workflow"
+      - "a sample release checklist"
+      - "a toy project timeline"
+      - "a mock experiment summary"
+      - "a fictional performance review"
+      - "a synthetic quality dashboard"
+      - "a dummy pipeline snapshot"
+      - "a practice prioritization pass"
+      - "a mock staffing plan"
+      - "a fictional ops review"
+
+    chart_goal:
+      - "show the trend clearly"
+      - "make the tradeoffs visible"
+      - "highlight the biggest change"
+      - "compare options quickly"
+      - "surface the outliers"
+      - "explain the pattern fast"
+      - "support a decision"
+      - "tell a simple story"
+      - "make the distribution obvious"
+      - "summarize the shape of the data"
+
+    time_window:
+      - "the last 4 checkpoints"
+      - "the last 5 checkpoints"
+      - "the last 6 checkpoints"
+      - "the last 7 checkpoints"
+      - "the last 8 checkpoints"
+      - "a short 6-step timeline"
+      - "a compact 5-step view"
+      - "a simple 4-step snapshot"
+      - "a 7-step review window"
+      - "an 8-step review window"
+
+    audience:
+      - "a small project team"
+      - "a stakeholder update"
+      - "a weekly review"
+      - "a quick decision meeting"
+      - "a planning session"
+      - "a status check-in"
+      - "a retro"
+      - "a kickoff"
+      - "an ops sync"
+      - "a design review"
+
+    constraint_line:
+      - "Constraint: keep it compact and readable."
+      - "Constraint: avoid unnecessary detail."
+      - "Constraint: optimize for quick scanning."
+      - "Constraint: keep labels short."
+      - "Constraint: focus on the main signal."
+      - "Constraint: make it decision-ready."
+      - "Constraint: keep it simple to explain."
+
+    tone_request:
+      - "Keep the tone {tone} and practical."
+      - "Make it {tone} but concise."
+      - "Use a {tone} tone and stay clear."
+      - "Stay {tone} and low-noise."
+      - "Keep it {tone} and structured."
+
+    # Axis and labeling slots
+    chart_title:
+      - "Trend view for {chart_subject}"
+      - "Comparison view for {chart_subject}"
+      - "Distribution snapshot for {chart_subject}"
+      - "Signal overview for {chart_subject}"
+      - "Quick chart for {chart_subject}"
+      - "Decision chart for {chart_subject}"
+      - "Pattern view for {chart_subject}"
+      - "Shape of results for {chart_subject}"
+
+    chart_subtitle:
+      - "Goal: {chart_goal}"
+      - "Window: {time_window}"
+      - "Audience: {audience}"
+      - "Focus: {chart_goal}"
+      - "Use: {audience}"
+      - "Scope: {time_window}"
+
+    x_label:
+      - "Checkpoint"
+      - "Stage"
+      - "Phase"
+      - "Iteration"
+      - "Step"
+      - "Window"
+      - "Segment"
+      - "Bucket"
+      - "Category"
+      - "Slice"
+
+    y_label:
+      - "Score"
+      - "Count"
+      - "Load"
+      - "Effort"
+      - "Signal"
+      - "Index"
+      - "Volume"
+      - "Rate"
+      - "Level"
+      - "Value"
+
+    unit_label:
+      - "units"
+      - "points"
+      - "items"
+      - "%"
+      - "index"
+      - "score"
+      - "count"
+      - "level"
+      - "relative"
+      - "arbitrary"
+
+    legend_title:
+      - "Series"
+      - "Tracks"
+      - "Variants"
+      - "Options"
+      - "Scenarios"
+      - "Groups"
+
+    series_1:
+      - "Baseline"
+      - "Plan A"
+      - "Option A"
+      - "Track A"
+      - "Variant A"
+      - "Alpha"
+      - "Control"
+      - "Default"
+      - "Current"
+      - "Path A"
+    series_2:
+      - "Experiment"
+      - "Plan B"
+      - "Option B"
+      - "Track B"
+      - "Variant B"
+      - "Beta"
+      - "Candidate"
+      - "Proposed"
+      - "Target"
+      - "Path B"
+    series_3:
+      - "Stretch"
+      - "Plan C"
+      - "Option C"
+      - "Track C"
+      - "Variant C"
+      - "Gamma"
+      - "Upside"
+      - "Alternate"
+      - "Future"
+      - "Path C"
+
+    # Category labels (index-aligned to reduce nonsense shuffles)
+    category_1: ["Step 1", "Phase 1", "Week 1", "Month 1", "Segment 1", "Bucket 1", "Slice 1", "Checkpoint 1"]
+    category_2: ["Step 2", "Phase 2", "Week 2", "Month 2", "Segment 2", "Bucket 2", "Slice 2", "Checkpoint 2"]
+    category_3: ["Step 3", "Phase 3", "Week 3", "Month 3", "Segment 3", "Bucket 3", "Slice 3", "Checkpoint 3"]
+    category_4: ["Step 4", "Phase 4", "Week 4", "Month 4", "Segment 4", "Bucket 4", "Slice 4", "Checkpoint 4"]
+    category_5: ["Step 5", "Phase 5", "Week 5", "Month 5", "Segment 5", "Bucket 5", "Slice 5", "Checkpoint 5"]
+    category_6: ["Step 6", "Phase 6", "Week 6", "Month 6", "Segment 6", "Bucket 6", "Slice 6", "Checkpoint 6"]
+    category_7: ["Step 7", "Phase 7", "Week 7", "Month 7", "Segment 7", "Bucket 7", "Slice 7", "Checkpoint 7"]
+    category_8: ["Step 8", "Phase 8", "Week 8", "Month 8", "Segment 8", "Bucket 8", "Slice 8", "Checkpoint 8"]
+
+    # Numeric banks
+    n_units: [12, 18, 24, 31, 45, 52, 60, 73, 88, 95, 110, 130]
+    n_pct: [5, 9, 12, 18, 23, 27, 31, 36, 41, 47, 53, 61, 68, 72]
+    n_rate: [0.8, 1.1, 1.4, 1.7, 2.0, 2.3, 2.6, 2.9, 3.2, 3.6, 4.0]
+
+    # Chart styling and interpretation hints
+    chart_variant:
+      - "clean"
+      - "minimal"
+      - "presentation_ready"
+      - "annotated"
+      - "decision_focused"
+      - "ops_snapshot"
+
+    stacking_hint:
+      - "none"
+      - "stacked"
+      - "grouped"
+      - "overlay"
+
+    emphasis_hint:
+      - "highlight the largest change"
+      - "highlight the final point"
+      - "highlight the outlier"
+      - "highlight the lowest point"
+      - "highlight the most stable line"
+      - "highlight the biggest gap"
+
+    data_note:
+      - "Values are illustrative placeholders."
+      - "Numbers are synthetic; replace with real values."
+      - "Use the shape more than the absolute values."
+      - "Treat this as a template spec."
+      - "Adjust labels to your real domain."
+    value_s1_c1:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+    value_s1_c2:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+    value_s1_c3:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+    value_s1_c4:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+    value_s1_c5:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+    value_s1_c6:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+    value_s1_c7:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+    value_s1_c8:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+    value_s2_c1:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+    value_s2_c2:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+    value_s2_c3:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+    value_s2_c4:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+    value_s2_c5:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+    value_s2_c6:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+    value_s2_c7:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+    value_s2_c8:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+    value_s3_c1:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+    value_s3_c2:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+    value_s3_c3:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+    value_s3_c4:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+    value_s3_c5:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+    value_s3_c6:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+    value_s3_c7:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+    value_s3_c8:
+      - "{n_units}"
+      - "{n_pct}"
+      - "{n_rate}"
+
+    # User prompts (single-turn + multi-turn encoding like lanes 03/04/17)
+    user_single:
+      - "Create a {chart_type} chart spec for {chart_subject} over {time_window}. Goal: {chart_goal}. {tone_request}"
+      - "I need a chart spec (type: {chart_type}) that explains {chart_subject}. Use {time_window}. {constraint_line}"
+      - "Draft a {chart_type} chart spec for {chart_subject}. Audience: {audience}. Goal: {chart_goal}."
+      - "Build a chart spec for {chart_subject}. Prefer a {chart_type} chart. {constraint_line} {tone_request}"
+      - "Give me a chart_spec-style answer for {chart_subject}. Use a {chart_type} chart and keep it decision-ready."
+      - "Make a compact chart spec for {chart_subject}. Type: {chart_type}. Window: {time_window}."
+      - "I want a chart that highlights the pattern in {chart_subject}. Use {chart_type}. {constraint_line}"
+      - "Create a chart spec for {chart_subject} that is easy to explain in a meeting. Type: {chart_type}."
+      - "Produce a chart_spec for {chart_subject}. Use {chart_type} and optimize for quick scanning."
+      - "Draft a chart spec that makes the tradeoffs obvious for {chart_subject}. Chart type: {chart_type}."
+
+    assistant_probe:
+      - "Should this emphasize trend, comparison, or distribution?"
+      - "Do you want one series or multiple series?"
+      - "Should the chart prioritize speed of reading or completeness?"
+      - "Do you want the emphasis on the final point or the largest change?"
+      - "Should I keep the categories to 4–6 items, or go wider?"
+      - "Is this for a quick decision or a deeper review?"
+      - "Do you want the chart to highlight risk or opportunity?"
+      - "Should the chart be conservative or bold in emphasis?"
+
+    user_followup:
+      - "Keep it compact and emphasize the biggest change."
+      - "Use multiple series but keep it readable."
+      - "Bias toward quick scanning over completeness."
+      - "Highlight the final point and keep labels short."
+      - "Keep the categories to a manageable size."
+      - "Make it easy to explain to non-experts."
+      - "Make the tradeoffs obvious without extra text."
+      - "Keep the spec structured and decision-ready."
+
+    dialogue_context:
+      - "User: {user_single}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "Context so far:\nUser: {user_single}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "Conversation:\nUser: {user_single}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "Thread:\nUser: {user_single}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "U: {user_single}\nA: {assistant_probe}\nU: {user_followup}"
+
+    user_message:
+      - "{user_single}"
+      - "{dialogue_context}"
+
+    preamble_line:
+      - "Here is a chart spec you can implement:"
+      - "Here is a compact chart_spec:"
+      - "Here is a decision-ready chart spec:"
+      - "Chart spec:"
+      - "Below is the chart specification:"
+
+    follow_up_line:
+      - ""
+      - ""
+      - "Use the emphasis hint to guide annotations."
+      - "If you want, I can narrow this to fewer categories."
+      - "You can swap the chart type and keep the same data shape."
+      - "Keep the shape; replace labels and values with your real data."
+
+    next_step_line:
+      - "Next step: confirm the chart type and the hardest constraint."
+      - "Next step: pick the emphasis (final point vs biggest change)."
+      - "Next step: reduce categories if the chart feels crowded."
+      - "Next step: replace placeholder values with real numbers."
+      - "Next step: choose whether to group or stack the series."
+
+    # Chart spec templates with size and series variants
+    chart_spec_template:
+      - |
+        chart_spec:
+          type: {chart_type}
+          title: {chart_title}
+          subtitle: {chart_subtitle}
+          goal: {chart_goal}
+          x_axis:
+            label: {x_label}
+            categories: [{category_1}, {category_2}]
+          y_axis:
+            label: {y_label}
+            unit: {unit_label}
+          legend:
+            title: {legend_title}
+          series:
+            - name: {series_1}
+              values: [{value_s1_c1}, {value_s1_c2}]
+          style:
+            variant: {chart_variant}
+            stacking: {stacking_hint}
+            emphasis: {emphasis_hint}
+          notes: {data_note}
+      - |
+        chart_spec:
+          type: {chart_type}
+          title: {chart_title}
+          subtitle: {chart_subtitle}
+          goal: {chart_goal}
+          x_axis:
+            label: {x_label}
+            categories: [{category_1}, {category_2}, {category_3}]
+          y_axis:
+            label: {y_label}
+            unit: {unit_label}
+          legend:
+            title: {legend_title}
+          series:
+            - name: {series_1}
+              values: [{value_s1_c1}, {value_s1_c2}, {value_s1_c3}]
+          style:
+            variant: {chart_variant}
+            stacking: {stacking_hint}
+            emphasis: {emphasis_hint}
+          notes: {data_note}
+      - |
+        chart_spec:
+          type: {chart_type}
+          title: {chart_title}
+          subtitle: {chart_subtitle}
+          goal: {chart_goal}
+          x_axis:
+            label: {x_label}
+            categories: [{category_1}, {category_2}, {category_3}, {category_4}]
+          y_axis:
+            label: {y_label}
+            unit: {unit_label}
+          legend:
+            title: {legend_title}
+          series:
+            - name: {series_1}
+              values: [{value_s1_c1}, {value_s1_c2}, {value_s1_c3}, {value_s1_c4}]
+            - name: {series_2}
+              values: [{value_s2_c1}, {value_s2_c2}, {value_s2_c3}, {value_s2_c4}]
+          style:
+            variant: {chart_variant}
+            stacking: {stacking_hint}
+            emphasis: {emphasis_hint}
+          notes: {data_note}
+      - |
+        chart_spec:
+          type: {chart_type}
+          title: {chart_title}
+          subtitle: {chart_subtitle}
+          goal: {chart_goal}
+          x_axis:
+            label: {x_label}
+            categories: [{category_1}, {category_2}, {category_3}, {category_4}, {category_5}]
+          y_axis:
+            label: {y_label}
+            unit: {unit_label}
+          legend:
+            title: {legend_title}
+          series:
+            - name: {series_1}
+              values: [{value_s1_c1}, {value_s1_c2}, {value_s1_c3}, {value_s1_c4}, {value_s1_c5}]
+          style:
+            variant: {chart_variant}
+            stacking: {stacking_hint}
+            emphasis: {emphasis_hint}
+          notes: {data_note}
+      - |
+        chart_spec:
+          type: {chart_type}
+          title: {chart_title}
+          subtitle: {chart_subtitle}
+          goal: {chart_goal}
+          x_axis:
+            label: {x_label}
+            categories: [{category_1}, {category_2}, {category_3}, {category_4}, {category_5}]
+          y_axis:
+            label: {y_label}
+            unit: {unit_label}
+          legend:
+            title: {legend_title}
+          series:
+            - name: {series_1}
+              values: [{value_s1_c1}, {value_s1_c2}, {value_s1_c3}, {value_s1_c4}, {value_s1_c5}]
+            - name: {series_2}
+              values: [{value_s2_c1}, {value_s2_c2}, {value_s2_c3}, {value_s2_c4}, {value_s2_c5}]
+            - name: {series_3}
+              values: [{value_s3_c1}, {value_s3_c2}, {value_s3_c3}, {value_s3_c4}, {value_s3_c5}]
+          style:
+            variant: {chart_variant}
+            stacking: {stacking_hint}
+            emphasis: {emphasis_hint}
+          notes: {data_note}
+      - |
+        chart_spec:
+          type: {chart_type}
+          title: {chart_title}
+          subtitle: {chart_subtitle}
+          goal: {chart_goal}
+          x_axis:
+            label: {x_label}
+            categories: [{category_1}, {category_2}, {category_3}, {category_4}, {category_5}, {category_6}]
+          y_axis:
+            label: {y_label}
+            unit: {unit_label}
+          legend:
+            title: {legend_title}
+          series:
+            - name: {series_1}
+              values: [{value_s1_c1}, {value_s1_c2}, {value_s1_c3}, {value_s1_c4}, {value_s1_c5}, {value_s1_c6}]
+          style:
+            variant: {chart_variant}
+            stacking: {stacking_hint}
+            emphasis: {emphasis_hint}
+          notes: {data_note}
+      - |
+        chart_spec:
+          type: {chart_type}
+          title: {chart_title}
+          subtitle: {chart_subtitle}
+          goal: {chart_goal}
+          x_axis:
+            label: {x_label}
+            categories: [{category_1}, {category_2}, {category_3}, {category_4}, {category_5}, {category_6}, {category_7}]
+          y_axis:
+            label: {y_label}
+            unit: {unit_label}
+          legend:
+            title: {legend_title}
+          series:
+            - name: {series_1}
+              values: [{value_s1_c1}, {value_s1_c2}, {value_s1_c3}, {value_s1_c4}, {value_s1_c5}, {value_s1_c6}, {value_s1_c7}]
+            - name: {series_2}
+              values: [{value_s2_c1}, {value_s2_c2}, {value_s2_c3}, {value_s2_c4}, {value_s2_c5}, {value_s2_c6}, {value_s2_c7}]
+          style:
+            variant: {chart_variant}
+            stacking: {stacking_hint}
+            emphasis: {emphasis_hint}
+          notes: {data_note}
+      - |
+        chart_spec:
+          type: {chart_type}
+          title: {chart_title}
+          subtitle: {chart_subtitle}
+          goal: {chart_goal}
+          x_axis:
+            label: {x_label}
+            categories: [{category_1}, {category_2}, {category_3}, {category_4}, {category_5}, {category_6}, {category_7}, {category_8}]
+          y_axis:
+            label: {y_label}
+            unit: {unit_label}
+          legend:
+            title: {legend_title}
+          series:
+            - name: {series_1}
+              values: [{value_s1_c1}, {value_s1_c2}, {value_s1_c3}, {value_s1_c4}, {value_s1_c5}, {value_s1_c6}, {value_s1_c7}, {value_s1_c8}]
+            - name: {series_2}
+              values: [{value_s2_c1}, {value_s2_c2}, {value_s2_c3}, {value_s2_c4}, {value_s2_c5}, {value_s2_c6}, {value_s2_c7}, {value_s2_c8}]
+          style:
+            variant: {chart_variant}
+            stacking: {stacking_hint}
+            emphasis: {emphasis_hint}
+          notes: {data_note}
+
+    assistant_response:
+      - "{preamble_line}\n\n{chart_spec_template}\n\n{next_step_line}\n{follow_up_line}"
+      - "{preamble_line}\n\n{chart_spec_template}\n\n{next_step_line}"
+      - "{preamble_line}\n\n{chart_spec_template}"
+
+  row_template:
+    language: "{language}"
+    mode: "{mode}"
+    tone: "{tone}"
+    continuity_choice: "{continuity_choice}"
+    intent_family: "{intent_family}"
+    intent_subtype: "{intent_subtype}"
+    representation_choice: "chart_spec"
+    user_message: "{user_message}"
+    assistant_response: "{assistant_response}"
+
+notes: "Wave0 Lane18 - chart specs with diverse chart types, sizes, and single/multi-turn prompts"

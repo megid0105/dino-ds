@@ -48,15 +48,21 @@ def run(in_path: str, outdir: str, seed: int = 0, train: float = 0.9, val: float
         n_test = n - n_train - n_val
 
         # Optional floors: if a split ratio is > 0, enforce at least N rows (default N=0 => disabled)
+        # When floors are enabled, we adjust counts deterministically by taking from train first.
         m = int(min_per_nonzero_split)
         if m < 0:
             return ec.CONFIG_INVALID
+
         if m > 0:
-            if train > 0 and n_train < m:
-                return ec.CONFIG_INVALID
             if val > 0 and n_val < m:
-                return ec.CONFIG_INVALID
+                n_val = m
             if test > 0 and n_test < m:
+                n_test = m
+            # Recompute train as remainder (must stay non-negative).
+            n_train = n - n_val - n_test
+            if n_train < 0:
+                return ec.CONFIG_INVALID
+            if train > 0 and n_train < m:
                 return ec.CONFIG_INVALID
 
         train_rows = rows[:n_train]

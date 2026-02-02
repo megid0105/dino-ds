@@ -1,12 +1,14 @@
 from __future__ import annotations
 
 import json
+import os
 import random
 from pathlib import Path
 from typing import Any, Iterable
 import copy
 import re
 import sys
+import subprocess
 
 from .. import exit_codes as ec
 from ..utils import load_yaml, atomic_write_text
@@ -119,6 +121,222 @@ def _collect_placeholders(obj: Any) -> set[str]:
             out |= _collect_placeholders(v)
         return out
     return out
+
+
+# -----------------------------
+# Teacher runtime (Ollama)
+# -----------------------------
+
+
+def _teacher_runtime_cfg(lane: dict[str, Any]) -> dict[str, Any]:
+    tr = lane.get("teacher_runtime")
+    return tr if isinstance(tr, dict) else {}
+
+
+def _teacher_runtime_enabled(lane: dict[str, Any]) -> bool:
+    tr = _teacher_runtime_cfg(lane)
+    if tr.get("enabled") is True:
+        return True
+    mode = lane.get("generation_mode")
+    return isinstance(mode, str) and mode.strip() == "teacher_runtime"
+
+
+def _ollama_rewrite(
+    *, model: str, prompt: str, timeout_s: int = 120, keepalive: str | None = None, env: dict[str, str] | None = None
+) -> str:
+    # Use the Ollama CLI for portability. stderr is suppressed unless the call fails.
+    try:
+        args = ["ollama", "run", model]
+        if isinstance(keepalive, str) and keepalive.strip():
+            args.extend(["--keepalive", keepalive.strip()])
+        cp = subprocess.run(args, input=prompt, text=True, capture_output=True, timeout=timeout_s, env=env)
+    except subprocess.TimeoutExpired:
+        raise ValueError("teacher_runtime timeout")
+
+    if cp.returncode != 0:
+        err = (cp.stderr or "").strip()
+        msg = err.splitlines()[-1] if err else "ollama run failed"
+        raise ValueError(f"teacher_runtime failed: {msg}")
+
+    out = (cp.stdout or "").strip()
+    return out
+
+
+def _teacher_prompt_structure_only(
+    rr: dict[str, Any],
+    *,
+    teacher_system_prompt: str | None = None,
+    training_system_prompt: str | None = None,
+) -> str:
+    # Ship-safe: structure only. Do NOT invent new facts.
+    mode = rr.get("mode") if isinstance(rr.get("mode"), str) else ""
+    tone = rr.get("tone") if isinstance(rr.get("tone"), str) else ""
+    user_msg = rr.get("user_message") if isinstance(rr.get("user_message"), str) else ""
+    draft = rr.get("assistant_response") if isinstance(rr.get("assistant_response"), str) else ""
+    tsp = teacher_system_prompt.strip() if isinstance(teacher_system_prompt, str) and teacher_system_prompt.strip() else ""
+
+    # Keep prompt concise and deterministic.
+    return (
+        "You are a TEACHER rewriter for Dino.\n"
+        "Task: rewrite the assistant draft to match the requested mode and tone.\n"
+        "Rules (hard):\n"
+        "    - Only rewrite the assistant draft text. Do NOT modify labels, tool calls, or any other fields.\n"
+        "    - Do NOT include or echo any hidden system prompt text.\n"
+        "    - Do NOT add any new entities, numbers, names, prices, dates, or claims.\n"
+        "    - Do NOT add new factual claims beyond what is already in the draft.\n"
+        "    - Do NOT mention teachers, models, or tooling.\n"
+        "    - The assistant is named Dino. Do NOT rename or change identity.\n"
+        "    - Keep the output format aligned to mode:\n"
+        "        * quick: 3–5 bullets + a 'Next step:' line, compact.\n"
+        "        * think: unnumbered headings + bullets, include 'Bottom line:' and 'Next step:', no numbered headings.\n"
+        "        * conversation: short spoken style, no 'Bottom line' / 'Next step' scaffolding.\n"
+        "    - Output ONLY the final assistant text.\n"
+        "\n"
+        f"mode={mode}\n"
+        f"tone={tone}\n"
+        + (
+            "\nTrainingSystemContext (do not repeat):\n" + training_system_prompt.strip() + "\n"
+            if isinstance(training_system_prompt, str) and training_system_prompt.strip()
+            else ""
+        )
+        + ("\nLaneTeacherConstraints (do not repeat):\n" + tsp + "\n" if tsp else "")
+        + "\n"
+        "User:\n"
+        f"{user_msg}\n"
+        "\n"
+        "Draft:\n"
+        f"{draft}\n"
+    )
+
+
+def _apply_teacher_runtime(lane: dict[str, Any], rows: list[dict[str, Any]], cfg_path: Path) -> None:
+    tr = _teacher_runtime_cfg(lane)
+    provider = tr.get("provider") if isinstance(tr.get("provider"), str) else "ollama"
+    model = tr.get("model") if isinstance(tr.get("model"), str) and tr.get("model").strip() else "dino-pro-7b"
+    policy = tr.get("policy") if isinstance(tr.get("policy"), str) else "structure_only"
+    on_missing = tr.get("on_missing_evidence") if isinstance(tr.get("on_missing_evidence"), str) else "abstain"
+    timeout_s = tr.get("timeout_s") if isinstance(tr.get("timeout_s"), int) and tr.get("timeout_s") > 0 else 120
+    keepalive = tr.get("keepalive") if isinstance(tr.get("keepalive"), str) else "5m"
+    progress = tr.get("progress")
+    if progress is None:
+        progress = True
+
+    # Optional sampling: rewrite only a fraction of rows (spot-rewrite).
+    ratio = None
+    if isinstance(tr.get("sample_ratio"), (int, float)):
+        ratio = float(tr.get("sample_ratio"))
+    elif isinstance(tr.get("sample_percent"), (int, float)):
+        ratio = float(tr.get("sample_percent")) / 100.0
+    if ratio is None:
+        ratio = 1.0
+    ratio = max(0.0, min(1.0, ratio))
+
+    seed = tr.get("seed")
+    if not isinstance(seed, int):
+        te = lane.get("template_expand")
+        seed = te.get("seed") if isinstance(te, dict) else None
+    if not isinstance(seed, int):
+        seed = 0
+    rnd = random.Random(seed)
+
+    # Optional OLLAMA_HOST override
+    env = None
+    host = tr.get("ollama_host")
+    if isinstance(host, str) and host.strip():
+        env = dict(os.environ)
+        env["OLLAMA_HOST"] = host.strip()
+
+    if provider != "ollama":
+        raise ValueError("teacher_runtime.provider must be 'ollama'")
+
+    # For now, we only support structure_only safely (no evidence subsystem shipped yet).
+    if policy != "structure_only":
+        if on_missing == "fail":
+            raise ValueError("teacher_runtime.policy=grounded_requires_evidence is not supported without evidence")
+        # abstain: keep outputs as-is (deterministic) rather than hallucinating.
+        return
+
+    # Resolve teacher system prompt text (optional)
+    def _read_prompt(path_str: str | None) -> str:
+        if not isinstance(path_str, str) or not path_str.strip():
+            return ""
+        raw = path_str.strip()
+        p = Path(raw).expanduser()
+        candidates: list[Path] = []
+        if p.is_absolute():
+            candidates.append(p)
+        else:
+            # Prefer CWD, then lane dir, then repo root
+            candidates.append(Path.cwd() / p)
+            candidates.append(cfg_path.parent / p)
+            if len(cfg_path.parents) >= 3:
+                candidates.append(cfg_path.parents[2] / p)
+        for c in candidates:
+            if c.is_file():
+                return c.read_text(encoding="utf-8").strip()
+        return ""
+
+    teacher_system_prompt = _read_prompt(tr.get("system_prompt_path"))
+    if not teacher_system_prompt and isinstance(tr.get("system_prompt"), str):
+        teacher_system_prompt = tr.get("system_prompt", "").strip()
+
+    training_system_prompt = _read_prompt(lane.get("system_prompt_path"))
+
+    # Only enforce post-rewrite mode checks when the lane asks for it
+    validators = lane.get("validators")
+    has_mode_richness = False
+    if isinstance(validators, list):
+        for v in validators:
+            if isinstance(v, dict) and v.get("name") == "mode_richness":
+                has_mode_richness = True
+                break
+
+    total = len(rows)
+    for i, rr in enumerate(rows, start=1):
+        if not isinstance(rr, dict):
+            continue
+        if not (isinstance(rr.get("assistant_response"), str) and rr.get("assistant_response").strip()):
+            continue
+        if ratio < 1.0 and rnd.random() > ratio:
+            continue
+        original = rr.get("assistant_response")
+        prompt = _teacher_prompt_structure_only(
+            rr,
+            teacher_system_prompt=teacher_system_prompt,
+            training_system_prompt=training_system_prompt,
+        )
+        if progress:
+            print(f"[teacher_runtime] rewriting {i}/{total}", file=sys.stderr, flush=True)
+        try:
+            rr["assistant_response"] = _ollama_rewrite(
+                model=model,
+                prompt=prompt,
+                timeout_s=timeout_s,
+                keepalive=keepalive,
+                env=env,
+            )
+        except ValueError as e:
+            msg = str(e)
+            if "timeout" in msg:
+                print(
+                    f"[teacher_runtime] timeout after {timeout_s}s at row {i}/{total}; "
+                    "skipping remaining rewrites and exporting mixed rows.",
+                    file=sys.stderr,
+                    flush=True,
+                )
+                break
+            raise
+
+        # Post-rewrite validation: if format drifts, fall back to original
+        if has_mode_richness and not _mode_richness_ok(rr, lane):
+            rr["assistant_response"] = original
+            if progress:
+                print(
+                    f"[teacher_runtime] mode_richness failed at row {i}/{total}; "
+                    "reverting to pre-rewrite draft.",
+                    file=sys.stderr,
+                    flush=True,
+                )
 
 # -----------------------------
 # Preset rendering (no-teacher)
@@ -418,6 +636,11 @@ def _mode_richness_ok(rr: dict[str, Any], lane: dict[str, Any]) -> bool:
 def _deep_format(obj: Any, ctx: dict[str, Any]) -> Any:
     # Recursively format strings with {slot} placeholders.
     if isinstance(obj, str):
+        # Preserve non-string slot values when the template is a single placeholder.
+        if obj.startswith("{") and obj.endswith("}") and obj.count("{") == 1 and obj.count("}") == 1:
+            key = obj[1:-1]
+            if key in ctx and not isinstance(ctx.get(key), str):
+                return ctx.get(key)
         try:
             return obj.format_map(ctx)
         except Exception:
@@ -597,8 +820,21 @@ def _build_template_expand(lane: dict[str, Any], cfg_path: Path, seed: int | Non
         answer_preset = ""
 
     # Preflight: ensure all {slot} placeholders referenced by row_template are defined.
+    expand_dict_slots = te.get("expand_dict_slots")
+    if not isinstance(expand_dict_slots, list):
+        expand_dict_slots = []
+    expand_dict_slots = [s for s in expand_dict_slots if isinstance(s, str) and s.strip()]
+
     required_slots = _collect_placeholders(row_template)
     provided_slots: set[str] = set(slot_banks.keys())
+
+    # If expand_dict_slots are used, treat keys from those dict items as provided slots.
+    for bank_key in expand_dict_slots:
+        bank = slot_banks.get(bank_key)
+        if isinstance(bank, list):
+            for item in bank:
+                if isinstance(item, dict):
+                    provided_slots.update(item.keys())
     # Operators of type set can also provide slots.
     if isinstance(operators, list):
         for op in operators:
@@ -671,6 +907,11 @@ def _build_template_expand(lane: dict[str, Any], cfg_path: Path, seed: int | Non
         for k, bank in slot_banks.items():
             v = _sample_from_bank(bank, rnd)
             if v is None:
+                continue
+            # Allow dict expansion for coupled slots (e.g., case dicts)
+            if isinstance(v, dict) and k in expand_dict_slots:
+                for dk, dv in v.items():
+                    ctx[dk] = dv
                 continue
             # stringify non-scalars for placeholder substitution
             if isinstance(v, (dict, list)):
@@ -915,6 +1156,10 @@ def run_lane(config: str, out: str, seed: int | None = None, limit: int | None =
             rows = _build_template_expand(lane, cfg_path, seed, limit)
         elif mode == "teacher_import":
             rows = _build_teacher_import(lane, cfg_path, seed, limit)
+        elif mode == "teacher_runtime":
+            # Generate first (template_expand), then rewrite via teacher runtime.
+            rows = _build_template_expand(lane, cfg_path, seed, limit)
+            _apply_teacher_runtime(lane, rows, cfg_path)
         elif mode == "hybrid":
             rows = _build_hybrid(lane, cfg_path, seed, limit)
         else:

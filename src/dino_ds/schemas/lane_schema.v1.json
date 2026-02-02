@@ -29,7 +29,12 @@
       "enum": [
         "qa",
         "chat",
-        "tool"
+        "tool",
+        "dino_qwen4b",
+        "dinoPro_qwen7b",
+        "dino_4b",
+        "dinoPro-7b",
+        "dinoPro-qwen7b"
       ],
       "default": "qa"
     },
@@ -90,7 +95,8 @@
       "enum": [
         "shuffle_cap",
         "template_expand",
-        "teacher_import"
+        "teacher_import",
+        "teacher_runtime"
       ],
       "default": "shuffle_cap"
     },
@@ -137,6 +143,25 @@
         },
         "seed": {
           "type": "integer"
+        }
+      },
+      "additionalProperties": true
+    },
+    "teacher_runtime": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": false },
+        "provider": { "type": "string", "enum": ["ollama"], "default": "ollama" },
+        "model": { "type": "string", "default": "dino-pro-7b" },
+        "policy": {
+          "type": "string",
+          "enum": ["structure_only", "grounded_requires_evidence"],
+          "default": "structure_only"
+        },
+        "on_missing_evidence": {
+          "type": "string",
+          "enum": ["abstain", "fail"],
+          "default": "abstain"
         }
       },
       "additionalProperties": true

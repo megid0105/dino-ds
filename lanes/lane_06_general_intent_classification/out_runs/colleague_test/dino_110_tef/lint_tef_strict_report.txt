@@ -1,0 +1,5 @@
+OK
+TEF_STRICT_LINT v1
+train: rows=99
+val: rows=5
+test: rows=6

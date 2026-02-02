@@ -30,7 +30,7 @@
     "representation_choice": {"type":"string","enum":["plain_text","bullet_list","comparison_table","chart_spec","document_spec","zip_spec"]},
     "continuity_choice": {"type":"string","enum":["use_continuity","suppress_continuity"]},
 
-    "intent_family": {"type":"string","enum":["info_retrieval","decision_support","planning","transactional","navigation","communication","content_generation","tool_invocation","safety"]},
+    "intent_family": {"type":"string","enum":["info_retrieval","decision_support","planning","transactional","navigation","communication","content_generation","tool_invocation","safety","qa_general"]},
     "intent_subtype": {"type":"string"},
     "intent": {"type":"string"},
     "flow_state": {"type":"string","enum":["none","awaiting_user_confirmation","awaiting_user_choice","awaiting_parameters","ready_for_action"]},
