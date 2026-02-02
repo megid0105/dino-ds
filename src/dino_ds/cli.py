@@ -5,6 +5,7 @@ import sys
 import json
 import traceback
 from pathlib import Path
+import re
 
 import hashlib
 import subprocess
@@ -17,6 +18,17 @@ from . import exit_codes as ec
 
 from .commands import validate_cmd, lint_cmd, sources_cmd, fixtures_cmd
 from .commands import build_cmd, split_cmd, pack_cmd, golden_cmd, stubs
+from .contracts.v16_lane_contracts import ALLOWED_LABEL_KEYS
+
+
+_CONTEXT_RE = re.compile(r"\bcontext\b|conversation so far|conversation:", re.IGNORECASE)
+
+
+def _labels_allowlist_v16() -> list[str]:
+    allow = set(ALLOWED_LABEL_KEYS)
+    for k in ("messages", "user_message", "assistant_response", "system_prompt_id", "sample_id", "id", "target_base"):
+        allow.discard(k)
+    return sorted(allow)
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -251,27 +263,52 @@ def _export_qwen_tef_v1(
                 msgs.append({"role": "system", "content": system_text})
 
                 rec_messages = rec.get("messages")
+                system_extra = ""
+                user_text = rec.get("user_message")
+                if not (isinstance(user_text, str) and user_text.strip()):
+                    user_text = rec.get("user_prompt")
+                assistant_text = rec.get("assistant_response")
+
                 if isinstance(rec_messages, list) and rec_messages:
-                    for m in rec_messages:
-                        if not isinstance(m, dict):
-                            continue
-                        role = m.get("role")
-                        content = m.get("content")
-                        if isinstance(role, str) and isinstance(content, str) and role and content:
-                            msgs.append({"role": role, "content": content})
-                else:
-                    user_text = rec.get("user_message")
-                    if not (isinstance(user_text, str) and user_text.strip()):
-                        user_text = rec.get("user_prompt")
-                    assistant_text = rec.get("assistant_response")
-                    if not (isinstance(user_text, str) and user_text.strip()):
-                        print(f"ERROR: missing user_message/user_prompt at {in_path}:{line_no}", file=sys.stderr)
+                    if len(rec_messages) < 3:
+                        print(f"ERROR: messages must be [system,user,assistant] at {in_path}:{line_no}", file=sys.stderr)
                         return 2
+                    m0, m1, m2 = rec_messages[0], rec_messages[1], rec_messages[2]
+                    if not (
+                        isinstance(m0, dict)
+                        and isinstance(m1, dict)
+                        and isinstance(m2, dict)
+                        and m0.get("role") == "system"
+                        and m1.get("role") == "user"
+                        and m2.get("role") == "assistant"
+                    ):
+                        print(f"ERROR: messages must be [system,user,assistant] at {in_path}:{line_no}", file=sys.stderr)
+                        return 2
+                    sys_content = m0.get("content")
+                    if isinstance(sys_content, str) and sys_content.strip():
+                        system_extra = sys_content.strip()
+                    if not (isinstance(user_text, str) and user_text.strip()):
+                        ucontent = m1.get("content")
+                        if isinstance(ucontent, str) and ucontent.strip():
+                            user_text = ucontent
                     if not (isinstance(assistant_text, str) and assistant_text.strip()):
-                        print(f"ERROR: missing assistant_response at {in_path}:{line_no}", file=sys.stderr)
-                        return 2
-                    msgs.append({"role": "user", "content": user_text.strip()})
-                    msgs.append({"role": "assistant", "content": assistant_text.strip()})
+                        acontent = m2.get("content")
+                        if isinstance(acontent, str) and acontent.strip():
+                            assistant_text = acontent
+
+                if not (isinstance(user_text, str) and user_text.strip()):
+                    print(f"ERROR: missing user_message/user_prompt at {in_path}:{line_no}", file=sys.stderr)
+                    return 2
+                if not (isinstance(assistant_text, str) and (assistant_text.strip() or assistant_text == "")):
+                    print(f"ERROR: missing assistant_response at {in_path}:{line_no}", file=sys.stderr)
+                    return 2
+
+                user_content = user_text.strip()
+                if system_extra and _CONTEXT_RE.search(system_extra):
+                    user_content = system_extra + "\n\n" + user_content
+
+                msgs.append({"role": "user", "content": user_content})
+                msgs.append({"role": "assistant", "content": assistant_text.strip()})
 
                 # Enforce role order presence
                 roles = [m.get("role") for m in msgs if isinstance(m, dict)]
@@ -286,7 +323,11 @@ def _export_qwen_tef_v1(
                 labels: dict[str, object] = {}
                 src_labels = rec.get("labels")
                 if isinstance(src_labels, dict) and src_labels:
-                    labels = {k: v for k, v in src_labels.items() if k in labels_allowlist and isinstance(v, (str, int, float, bool))}
+                    labels = {
+                        k: v
+                        for k, v in src_labels.items()
+                        if k in labels_allowlist and k != "messages" and isinstance(v, (str, int, float, bool))
+                    }
                     # Normalize strings
                     for k, v in list(labels.items()):
                         if isinstance(v, str):
@@ -297,6 +338,8 @@ def _export_qwen_tef_v1(
                                 labels[k] = v2
                 else:
                     for k in labels_allowlist:
+                        if k == "messages":
+                            continue
                         v = rec.get(k)
                         if isinstance(v, (str, int, float, bool)):
                             if isinstance(v, str):
@@ -603,23 +646,7 @@ def gate_lane(*, config: str, limit: int | None, seed: int) -> int:
     tef_dir = out_root / f"dino_{limit_tag}_tef"
     tef_dir.mkdir(parents=True, exist_ok=True)
 
-    labels_allow = [
-        "mode",
-        "tone",
-        "language",
-        "adult_gate",
-        "profanity_allowed",
-        "safety_tag",
-        "intent_family",
-        "intent_subtype",
-        "flow_state",
-        "history_scope",
-        "continuity_choice",
-        "representation_choice",
-        "needs_search",
-        "needs_history_search",
-        "system_prompt_id",
-    ]
+    labels_allow = _labels_allowlist_v16()
 
     for split_name in ("train", "val", "test"):
         rc = _export_qwen_tef_v1(
@@ -791,23 +818,7 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"ERROR: {msg}", file=sys.stderr)
                 return ec.CONFIG_INVALID
 
-            labels_allow = [
-                "mode",
-                "tone",
-                "language",
-                "adult_gate",
-                "profanity_allowed",
-                "safety_tag",
-                "intent_family",
-                "intent_subtype",
-                "flow_state",
-                "history_scope",
-                "continuity_choice",
-                "representation_choice",
-                "needs_search",
-                "needs_history_search",
-                "system_prompt_id",
-            ]
+            labels_allow = _labels_allowlist_v16()
 
             return _export_qwen_tef_v1(
                 indir=indir,

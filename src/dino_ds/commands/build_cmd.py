@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import os
 import random
+from collections import Counter
 from pathlib import Path
 from typing import Any, Iterable
 import copy
@@ -12,6 +13,7 @@ import subprocess
 
 from .. import exit_codes as ec
 from ..utils import load_yaml, atomic_write_text
+from ..validators.row_validator_v16 import validate_row_v16
 from . import validate_cmd
 
 
@@ -121,6 +123,39 @@ def _collect_placeholders(obj: Any) -> set[str]:
             out |= _collect_placeholders(v)
         return out
     return out
+
+
+# Summarize top validator rejection reasons for error messages.
+def _format_validator_rejects(rejects: Counter[str]) -> str:
+    if not rejects:
+        return "no validator failures recorded"
+    parts = [f"{reason}={count}" for reason, count in rejects.most_common(10)]
+    return ", ".join(parts)
+
+
+_BOOL_FIELDS = {
+    "adult_gate",
+    "profanity_allowed",
+    "needs_search",
+    "needs_history_search",
+    "connector_needed",
+    "deeplink_needed",
+}
+
+
+def _coerce_bool_fields(row: dict[str, Any]) -> None:
+    for field in _BOOL_FIELDS:
+        if field not in row:
+            continue
+        val = row.get(field)
+        if isinstance(val, bool):
+            continue
+        if isinstance(val, str):
+            low = val.strip().lower()
+            if low == "true":
+                row[field] = True
+            elif low == "false":
+                row[field] = False
 
 
 # -----------------------------
@@ -238,6 +273,7 @@ def _apply_teacher_runtime(lane: dict[str, Any], rows: list[dict[str, Any]], cfg
     if not isinstance(seed, int):
         seed = 0
     rnd = random.Random(seed)
+    lane_id = lane.get("lane_id") if isinstance(lane.get("lane_id"), str) else ""
 
     # Optional OLLAMA_HOST override
     env = None
@@ -326,6 +362,20 @@ def _apply_teacher_runtime(lane: dict[str, Any], rows: list[dict[str, Any]], cfg
                 )
                 break
             raise
+
+        ok, reason = validate_row_v16(rr, lane_id)
+        if not ok:
+            rr["assistant_response"] = original
+            ok2, reason2 = validate_row_v16(rr, lane_id)
+            if not ok2:
+                raise ValueError(f"v16_row_validator_failed_after_rewrite:{reason2}")
+            if progress:
+                print(
+                    f"[teacher_runtime] v16 validator failed at row {i}/{total}; "
+                    "reverting to pre-rewrite draft.",
+                    file=sys.stderr,
+                    flush=True,
+                )
 
         # Post-rewrite validation: if format drifts, fall back to original
         if has_mode_richness and not _mode_richness_ok(rr, lane):
@@ -893,6 +943,25 @@ def _build_template_expand(lane: dict[str, Any], cfg_path: Path, seed: int | Non
         progress_every_attempts = 1
     last_print_attempts = 0
 
+    # V16 row validation gates
+    reject_reasons: Counter[str] = Counter()
+    reject_total = 0
+    lane_id = lane.get("lane_id") if isinstance(lane.get("lane_id"), str) else ""
+
+    max_reject_ratio = te.get("max_reject_ratio")
+    if not isinstance(max_reject_ratio, (int, float)):
+        max_reject_ratio = None
+    else:
+        max_reject_ratio = float(max_reject_ratio)
+        if max_reject_ratio <= 0.0 or max_reject_ratio >= 1.0:
+            max_reject_ratio = None
+
+    fail_if_underfilled = te.get("fail_if_underfilled")
+    if fail_if_underfilled is None:
+        fail_if_underfilled = True
+    else:
+        fail_if_underfilled = bool(fail_if_underfilled)
+
     while len(rows) < n and attempts < max_attempts:
         attempts += 1
         # Heartbeat progress so users can tell it's still running even if similarity is rejecting rows.
@@ -960,9 +1029,26 @@ def _build_template_expand(lane: dict[str, Any], cfg_path: Path, seed: int | Non
                     "For steps_v1, provide template_expand.row_template.answer_steps as a list of steps."
                 )
 
+        _coerce_bool_fields(rr)
+
         # Hard gate: do not allow unresolved {slot} placeholders to leak into outputs.
         # If a lane references a slot (e.g., {topic}) it must be provided via slot_banks/operators.
         if _has_unresolved_placeholders(rr) or _has_unresolved_placeholders(rr.get("assistant_response")):
+            continue
+
+        ok, reason = validate_row_v16(rr, lane_id)
+        if not ok:
+            reject_reasons[reason] += 1
+            reject_total += 1
+            if max_reject_ratio is not None and attempts >= 1000:
+                ratio = reject_total / attempts if attempts else 0.0
+                if ratio >= max_reject_ratio:
+                    summary = _format_validator_rejects(reject_reasons)
+                    raise ValueError(
+                        "v16 row validator rejection ratio exceeded "
+                        f"({ratio:.2%} at attempt {attempts}/{max_attempts}); "
+                        f"top reasons: {summary}"
+                    )
             continue
 
         # Optional validator: mode richness must match the shuffled mode label.
@@ -1005,11 +1091,17 @@ def _build_template_expand(lane: dict[str, Any], cfg_path: Path, seed: int | Non
             last_print_attempts = attempts
 
     if len(rows) < n:
-        raise ValueError(
-            f"template_expand could not satisfy similarity/constraints: generated {len(rows)}/{n} "
-            f"within max_attempts={max_attempts}. Increase slot_banks variety, relax similarity.max_token_overlap_ratio, "
-            f"or set template_expand.max_attempts / template_expand.attempts_per_row in the lane config."
+        summary = _format_validator_rejects(reject_reasons)
+        msg = (
+            f"template_expand underfilled: generated {len(rows)}/{n} within max_attempts={max_attempts}. "
+            f"v16 validator rejects: {reject_total}/{attempts} (top reasons: {summary}). "
+            "Increase slot_banks variety, relax similarity.max_token_overlap_ratio, "
+            "or adjust template_expand.max_attempts / template_expand.attempts_per_row."
         )
+        if fail_if_underfilled:
+            raise ValueError(msg)
+        print(msg, file=sys.stderr)
+        return rows
 
     return rows
 
@@ -1179,6 +1271,10 @@ def run_lane(config: str, out: str, seed: int | None = None, limit: int | None =
                     for k, v in base_row.items():
                         if k not in r:
                             r[k] = v
+
+        for r in rows:
+            if isinstance(r, dict):
+                _coerce_bool_fields(r)
 
         # attach lane metadata without clobbering user keys
         meta = {

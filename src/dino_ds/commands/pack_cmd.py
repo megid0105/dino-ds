@@ -2,12 +2,25 @@ from __future__ import annotations
 
 import json
 import sys
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict
 
 from .. import exit_codes as ec
 from ..utils import sha256_file, atomic_write_text
+
+
+_CONTEXT_RE = re.compile(r"\bcontext\b|conversation so far|conversation:", re.IGNORECASE)
+_BOOL_FIELDS = {
+    "adult_gate",
+    "profanity_allowed",
+    "needs_search",
+    "needs_history_search",
+    "connector_needed",
+    "deeplink_needed",
+}
+_MAPPING_TOOLCALLS = {"connector_action", "deeplink_action", "image_tool_action"}
 
 
 def _count_lines(path: Path) -> int:
@@ -192,8 +205,52 @@ def export_qwen(
 
                     user_msg = rec.get("user_message")
                     asst_msg = rec.get("assistant_response")
-                    if not isinstance(user_msg, str) or not isinstance(asst_msg, str):
+
+                    # Pack-time golden invariants: bools must be real bools (no "true"/"false" strings).
+                    for bf in _BOOL_FIELDS:
+                        if bf in rec:
+                            val = rec.get(bf)
+                            if isinstance(val, str) and val.strip().lower() in ("true", "false"):
+                                return ec.LINT_FAILED
+                            if not isinstance(val, bool):
+                                return ec.LINT_FAILED
+
+                    rec_messages = rec.get("messages")
+                    system_extra = ""
+                    if isinstance(rec_messages, list) and rec_messages:
+                        if len(rec_messages) < 3:
+                            return ec.LINT_FAILED
+                        m0, m1, m2 = rec_messages[0], rec_messages[1], rec_messages[2]
+                        if not (
+                            isinstance(m0, dict)
+                            and isinstance(m1, dict)
+                            and isinstance(m2, dict)
+                            and m0.get("role") == "system"
+                            and m1.get("role") == "user"
+                            and m2.get("role") == "assistant"
+                        ):
+                            return ec.LINT_FAILED
+                        sys_content = m0.get("content")
+                        if isinstance(sys_content, str) and sys_content.strip():
+                            system_extra = sys_content.strip()
+                        if not (isinstance(user_msg, str) and user_msg.strip()):
+                            ucontent = m1.get("content")
+                            if isinstance(ucontent, str) and ucontent.strip():
+                                user_msg = ucontent
+                        if not (isinstance(asst_msg, str) and (asst_msg.strip() or asst_msg == "")):
+                            acontent = m2.get("content")
+                            if isinstance(acontent, str) and (acontent.strip() or acontent == ""):
+                                asst_msg = acontent
+
+                    if not isinstance(user_msg, str) or not (user_msg.strip()):
                         return ec.LINT_FAILED
+                    if not isinstance(asst_msg, str):
+                        return ec.LINT_FAILED
+
+                    tool_call = rec.get("tool_call")
+                    if isinstance(tool_call, dict) and tool_call.get("name") in _MAPPING_TOOLCALLS:
+                        if asst_msg.strip() != "":
+                            return ec.LINT_FAILED
 
                     # Required TEF fields
                     sample_id_any = rec.get("sample_id")
@@ -218,16 +275,20 @@ def export_qwen(
                         # Missing or unknown system prompt id is a lint failure
                         return ec.LINT_FAILED
 
+                    user_content = user_msg.strip()
+                    if system_extra and _CONTEXT_RE.search(system_extra):
+                        user_content = system_extra + "\n\n" + user_content
+
                     messages = [
                         {"role": "system", "content": sys_text},
-                        {"role": "user", "content": user_msg},
-                        {"role": "assistant", "content": asst_msg},
+                        {"role": "user", "content": user_content},
+                        {"role": "assistant", "content": asst_msg.strip()},
                     ]
 
                     labels: Dict[str, Any] = {}
                     if keep_labels:
                         for k, v in rec.items():
-                            if k in ("user_message", "assistant_response"):
+                            if k in ("user_message", "assistant_response", "messages"):
                                 continue
                             if k in ("sample_id", "id", "target_base", "system_prompt_id"):
                                 continue

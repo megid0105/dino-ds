@@ -21,7 +21,11 @@ src/dino_ds/commands/sources_cmd.py
 src/dino_ds/commands/split_cmd.py
 src/dino_ds/commands/stubs.py
 src/dino_ds/commands/validate_cmd.py
+src/dino_ds/contracts/__init__.py
+src/dino_ds/contracts/v16_lane_contracts.py
 src/dino_ds/schemas/lane_schema.v1.json
 src/dino_ds/schemas/pct_label_standard_sample.v1.json
 src/dino_ds/schemas/sources_manifest.v1.json
 src/dino_ds/schemas/tool_replay_manifest.v1.json
+src/dino_ds/validators/__init__.py
+src/dino_ds/validators/row_validator_v16.py
