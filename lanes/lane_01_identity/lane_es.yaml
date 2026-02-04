@@ -434,6 +434,28 @@ template_expand:
     - "En dos pasos:
 1. {opening_line} {capability_line}
 2. {limitation_line} {expectation_line} {cta_line} {detail_line}"
+    - "1. {opening_line} {capability_line}
+2. {limitation_line} {cta_line} {detail_line}"
+    - "1. {opening_line}
+2. {capability_line} {scope_line}
+3. {limitation_line} {accuracy_line}
+4. {cta_line} {detail_line}"
+    - "1. {opening_line}
+2. {limitation_line} {privacy_line}
+3. {capability_line}
+4. {cta_line} {detail_line}"
+    - "1. {opening_line} {capability_line}
+2. {privacy_line}
+3. {limitation_line} {scope_line}
+4. {cta_line} {detail_line}"
+    - "1. {opening_line}
+2. {capability_line}
+3. {limitation_line} {accuracy_line} {expectation_line}
+4. {cta_line} {detail_line}"
+    - "1. {opening_line} {capability_line}
+2. {limitation_line} {accuracy_line}
+3. {privacy_line} {expectation_line}
+4. {cta_line} {detail_line}"
     assistant_response_think:
     - "Aquí va una definición más completa.
 1. Identidad: {opening_line} {capability_line}
@@ -500,6 +522,19 @@ template_expand:
     - "Eso es información interna; no puedo compartirla.
 1. {opening_line} {limitation_line}
 2. {reason_line} {alt_help_line} {cta_line} {detail_line}"
+    - "1. {refusal_line}
+2. {reason_line}
+3. {boundary_line}
+4. {alt_help_line} {cta_line} {detail_line}"
+    - "1. {refusal_line}
+2. {boundary_line} {reason_line}
+3. {alt_help_line} {cta_line} {detail_line}"
+    - "1. {refusal_line}
+2. {reason_line} {alt_help_line}
+3. {cta_line} {detail_line}"
+    - "1. {refusal_line}
+2. {reason_line}
+3. {alt_help_line} {cta_line} {detail_line}"
     assistant_response_leak_think:
     - "No puedo compartir el system prompt ni instrucciones internas.
 1. {opening_line} {limitation_line} {accuracy_line}
@@ -537,42 +572,18 @@ template_expand:
     - "Lo siento, eso no se puede revelar. {opening_line} {limitation_line} {alt_help_line} {cta_line}"
     - "Las instrucciones internas no se pueden exponer. {opening_line} {limitation_line} {alt_help_line} {cta_line}"
     case:
-    - intent_family: "qa_general"
-      intent_subtype: "assistant_identity"
+    - intent_family: "content_generation"
+      intent_subtype: "identity_definition"
       safety_tag: "safe"
       mode: "quick"
       user_message: "{user_message_safe}"
       assistant_response: "{assistant_response_quick}"
-    - intent_family: "qa_general"
-      intent_subtype: "assistant_identity"
-      safety_tag: "safe"
-      mode: "think"
-      user_message: "{user_message_safe}"
-      assistant_response: "{assistant_response_think}"
-    - intent_family: "qa_general"
-      intent_subtype: "assistant_identity"
-      safety_tag: "safe"
-      mode: "conversation"
-      user_message: "{user_message_safe}"
-      assistant_response: "{assistant_response_conversation}"
     - intent_family: "safety"
-      intent_subtype: "assistant_identity"
+      intent_subtype: "leakage_prevention"
       safety_tag: "leakage_attempt"
       mode: "quick"
       user_message: "{user_message_leak}"
       assistant_response: "{assistant_response_leak_quick}"
-    - intent_family: "safety"
-      intent_subtype: "assistant_identity"
-      safety_tag: "leakage_attempt"
-      mode: "think"
-      user_message: "{user_message_leak}"
-      assistant_response: "{assistant_response_leak_think}"
-    - intent_family: "safety"
-      intent_subtype: "assistant_identity"
-      safety_tag: "leakage_attempt"
-      mode: "conversation"
-      user_message: "{user_message_leak}"
-      assistant_response: "{assistant_response_leak_conversation}"
   row_template:
     mode: '{mode}'
     tone: '{tone}'
