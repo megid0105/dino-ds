@@ -163,8 +163,10 @@ def export_qwen(
     Output: directory with same filenames, each line a JSON object:
       - sample_id: stable id for the row (from sample_id, otherwise from id)
       - target_base: required string (copied through)
-      - labels: {} or full label object (when keep_labels=True)
+      - user_message: user content (top-level)
+      - assistant_response: assistant content (top-level)
       - messages: [{role: system, content: ...}, {role: user, content: ...}, {role: assistant, content: ...}]
+      - plus all label fields copied to the top level (no nested labels object by default)
 
     The system message MUST be sourced from the system prompt registry via system_prompt_id.
     We accept either:
@@ -286,31 +288,46 @@ def export_qwen(
                     ]
 
                     labels: Dict[str, Any] = {}
-                    if keep_labels:
-                        for k, v in rec.items():
-                            if k in ("user_message", "assistant_response", "messages"):
-                                continue
-                            if k in ("sample_id", "id", "target_base", "system_prompt_id"):
-                                continue
-                            labels[k] = v
+                    for k, v in rec.items():
+                        if k in ("user_message", "assistant_response", "messages"):
+                            continue
+                        if k in ("sample_id", "id", "target_base", "system_prompt_id"):
+                            continue
+                        if isinstance(v, (str, int, float, bool)):
+                            if isinstance(v, str):
+                                v2 = v.strip()
+                                if not v2:
+                                    continue
+                                labels[k] = v2
+                            else:
+                                labels[k] = v
 
-                        # TEF compact labels: forbidden keys must never appear in labels.
-                        labels.pop("answer_steps", None)
-                        labels.pop("legacy_id", None)
+                    # TEF compact labels: forbidden keys must never appear in labels.
+                    labels.pop("answer_steps", None)
+                    labels.pop("legacy_id", None)
 
-                        # Keep-labels must not produce empty labels (hard-gate requirement).
-                        if not labels:
-                            return ec.LINT_FAILED
+                    # Labels must not be empty (hard-gate requirement).
+                    if not labels:
+                        return ec.LINT_FAILED
 
                     out_rec: Dict[str, Any] = {
                         "sample_id": sample_id,
                         "target_base": target_base_val,
-                        "labels": labels,
                         "messages": messages,
+                        "user_message": user_content,
+                        "assistant_response": asst_msg.strip(),
                     }
 
                     if include_id:
                         out_rec["id"] = sample_id
+
+                    # Flatten labels into top-level fields
+                    for k, v in labels.items():
+                        if k not in out_rec:
+                            out_rec[k] = v
+
+                    if keep_labels:
+                        out_rec["labels"] = labels
 
                     fout.write(json.dumps(out_rec, ensure_ascii=False) + "\n")
 

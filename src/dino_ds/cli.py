@@ -197,7 +197,8 @@ def _export_qwen_tef_v1(
 ) -> int:
     """Export split JSONL -> dino-tef-v1 strict rows.
 
-    Output keys EXACTLY: sample_id, id, target_base, labels, messages
+    Output keys include: sample_id, id, target_base, messages, user_message, assistant_response,
+    and all allowlisted label fields copied to the top level (no nested labels object).
     Messages roles/order: system -> user -> assistant
     """
     in_path = indir / f"{split_name}.jsonl"
@@ -358,12 +359,19 @@ def _export_qwen_tef_v1(
                     "sample_id": sample_id,
                     "id": rec_id,
                     "target_base": target_base,
-                    "labels": labels,
                     "messages": msgs,
+                    "user_message": msgs[1]["content"],
+                    "assistant_response": msgs[2]["content"],
                 }
 
-                # Strict top-level keys only
-                if set(tef.keys()) != {"sample_id", "id", "target_base", "labels", "messages"}:
+                # Flatten labels into top-level fields
+                for k, v in labels.items():
+                    if k not in tef:
+                        tef[k] = v
+
+                # Required top-level keys must exist
+                required_keys = {"sample_id", "id", "target_base", "messages", "user_message", "assistant_response"}
+                if not required_keys.issubset(set(tef.keys())):
                     print(f"ERROR: internal TEF key set mismatch at {in_path}:{line_no}", file=sys.stderr)
                     return 2
 
@@ -456,6 +464,9 @@ def _write_tef_labels_compact_proof(tef_dir: Path, labels_allowlist: list[str]) 
             rec = json.loads(line)
             labels = rec.get("labels")
             if not isinstance(labels, dict) or not labels:
+                # Fall back to top-level label fields
+                labels = {k: rec.get(k) for k in labels_allowlist if k in rec}
+            if not isinstance(labels, dict) or not labels:
                 bad.append(f"line {line_no}: labels missing/empty")
             else:
                 for k in labels.keys():
@@ -498,7 +509,8 @@ def _write_tef_strict_lint_report(tef_dir: Path) -> Path:
                     ok = False
                     lines.append(f"{s}:{line_no}: bad json: {e}")
                     break
-                if set(rec.keys()) != {"sample_id", "id", "target_base", "labels", "messages"}:
+                required_keys = {"sample_id", "id", "target_base", "messages", "user_message", "assistant_response"}
+                if not required_keys.issubset(set(rec.keys())):
                     ok = False
                     lines.append(f"{s}:{line_no}: bad top-level keys")
                     break
