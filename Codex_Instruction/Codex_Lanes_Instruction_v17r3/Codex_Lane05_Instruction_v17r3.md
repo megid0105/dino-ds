@@ -1,0 +1,204 @@
+# Codex Lane Instruction — Lane 05 — Conversation Mode (v17)
+
+## Non‑negotiable inputs (read, then follow exactly)
+Use ONLY:
+1) `Full_Dataset_Spec_FULL_LATEST_v17.md` — lane #5 section + CT sample row logic
+2) `MASTER_GLOBAL_SCHEMA_LABELS_SUPERSEDED_v2.md` — canonical label keys/enums and lane‑scoped rules
+3) `Dino_vNext_Multi-Lane_Training_Volume_Master_Spec_02_03_2026.md` — §3.2 global language distribution + lane volumes
+4) `PCT-perf_Training_config_Spec_36_lanes__02_01_2026.md` — cross‑lane constraints
+
+Do NOT imitate any legacy lane.yaml “context format”. Produce configs that satisfy the **current** lane schema and the v17 lane logic.
+
+---
+
+## Deliverables (must produce 14 configs in this lane directory)
+Create these files:
+- `lane.yaml` (English)
+- `lane_zh-hk.yaml`
+- `lane_th.yaml`
+- `lane_zh-hant.yaml`
+- `lane_zh-hans.yaml`
+- `lane_pt-br.yaml`
+- `lane_es.yaml`
+- `lane_de.yaml`
+- `lane_fr.yaml`
+- `lane_it.yaml`
+- `lane_ja.yaml`
+- `lane_ko.yaml`
+- `lane_hi.yaml`
+- `lane_vi.yaml`
+
+Each file must pass:
+`DINO_DS_SKIP_OLLAMA=1 ./scripts/run.sh gate lane --config <LANE_DIR>/<file>.yaml --limit 5`
+
+---
+
+## Language drift prevention (HARD RULE)
+- Do NOT mark this lane as multilingual inside a single config.
+- Each language gets its own YAML.
+- For non‑English YAMLs: **REWRITE** prompts/responses natively in that language.  
+  **Do not translate** English template sentences.
+- Avoid 1‑to‑1 alignment across languages.
+
+---
+
+## Volumes — `count_target` per language (must match exactly)
+| lang | count_target | build_target_pre_filter (+20%) |
+|---|---:|---:|
+| en | 39216 | 47060 |
+| zh-hk | 7843 | 9412 |
+| th | 7843 | 9412 |
+| zh-hant | 3137 | 3765 |
+| zh-hans | 3137 | 3765 |
+| pt-br | 3921 | 4706 |
+| es | 3921 | 4706 |
+| de | 1568 | 1882 |
+| fr | 1569 | 1883 |
+| it | 1569 | 1883 |
+| ja | 1569 | 1883 |
+| ko | 1569 | 1883 |
+| hi | 1569 | 1883 |
+| vi | 1569 | 1883 |
+
+Allocation rule used here (must match your build):
+- §3.2 weights sum to 102; to preserve lane totals exactly, allocate by **normalized weights**, then **round to nearest (half‑up)**, then adjust ±1 to preserve total exactly.
+
+---
+
+## Lane mission
+Teach Dino **Conversation mode**: natural dialog, cooperative tone, and good turn‑taking.
+
+The assistant should:
+- feel like a real chat partner
+- respond directly and stay on-topic
+- optionally ask one helpful follow-up question when it genuinely improves help
+- avoid essay structure (Think lane) and avoid ultra-telegraphic answers (Quick lane)
+
+
+---
+
+
+
+---
+
+## Exact v17 contract snapshot (verbatim extract)
+
+**IMPORTANT (language distribution override):**
+- v17 lane sections may list `Multilingual: Yes` and/or a lane-specific `Language distribution:` block.
+- For this project, that is **superseded** by the Control Tower rule: **no multilingual rows inside one YAML**.
+- Always use the **14 per-language lane YAMLs** and the `count_target` table in this instruction.
+- Do NOT apply the lane-level `Language distribution:` block when generating lane YAMLs.
+
+### Header
+#5. CONVERSATION MODE
+===============================================================
+Type: SFT  
+Model: Dino 4B, Dino Pro 7B  
+Total dataset lines: 80,000  
+Build target lines (+20% buffer, pre-filter): 96,000  
+Steps: 24,000  
+Synthetic / Real: 60% synthetic / 40% real  
+Multilingual: Yes
+Language distribution:
+- en: 50%
+- zh-hk: 20%
+- zh-hant: 5%
+- zh-hans: 5%
+- ko: 7%
+
+### Required schema fields (verbatim from v17)
+Required schema fields:
+- language
+- mode            → "conversation"
+- tone            → all 5 tones, with more professional/family/best_friend
+- emote6                  → "neutral"
+- representation_choice → "plain_text"
+- continuity_choice       → "suppress_continuity"
+- intent_family   → "content_generation" | "safety"
+- intent_subtype  → "emotional_support" | "light_chat" | "check_in"
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response
+
+
+### Distribution (verbatim from v17)
+Language distribution:
+- en: 50%
+- zh-hk: 20%
+- zh-hant: 5%
+- zh-hans: 5%
+- ko: 7%
+- ja: 7%
+- pt-br: 3%
+- es: 3%
+
+---
+
+## Contract extraction (DO THIS FIRST, DO NOT GUESS)
+From `Full_Dataset_Spec_FULL_LATEST_v17.md` lane #5 section, extract and implement exactly:
+- required fixed `mode` / allowed modes
+- required fixed `representation_choice` / allowed values
+- required fixed `needs_search` / `needs_history_search`
+- any lane‑specific caps for optional fields
+- any lane‑specific duplication tolerance guidance
+- any lane‑specific forbidden patterns
+
+Then encode those as:
+- `base_row` invariants (anything fixed across rows)
+- slot banks + templates (anything that varies)
+- `similarity` gate settings (must not be looser than v17)
+
+Also obey MASTER label enums (do not invent new enum strings).
+
+---
+
+## Lane‑specific contract rules (implement exactly)
+Lane 5 is pure chat:
+- Do NOT include `tool_call`, `image_context`, citations blocks, or any tool markers.
+- User prompts must not mention internal systems (tools/connectors/deeplinks/system prompts).
+- Follow CT sample-row logic: natural conversation cadence, one turn, optional single follow-up question.
+- Keep adult_gate false and profanity_allowed false (per v17), unless v17 explicitly states otherwise (copy exactly).
+
+
+---
+
+## Generation strategy (must meet naturalness + richness + volume)
+Use `generation_mode: hybrid` (60% synthetic / 40% real):
+- `hybrid.primary: teacher_import` (real)
+- `hybrid.backfill: template_expand` (synthetic)
+- `hybrid.max_primary_ratio: 0.40`
+
+Real seeds (recommended, per language):
+- Create `seed_real_<lang>.jsonl` files in the lane folder (schema-valid rows).
+- If a seed file is absent, the lane must still fill via `template_expand` backfill (do not underfill).
+
+Naturalness + richness requirements:
+- Use phrase-level slot banks (clauses), not single-word substitution.
+- Use dict-slot `case` to couple: `{tone, intent_family, intent_subtype, safety_tag, topic, dialog_shape, followup_flag}`.
+- Build `user_message` as 1–3 short turns inside one string to simulate dialog.
+- Build `assistant_response` as one conversational reply; append **0 or 1** follow-up question based on followup_flag.
+- Target follow-up presence ~40–60% (encode via case weights).
+
+Bank sizing guidance (EN):
+- `case` ≥120
+- `user_message_tpl` ≥320
+- `assistant_reply_tpl` ≥260
+- `assistant_followup_q_tpl` ≥160
+- `assistant_empathy_line_tpl` ≥120
+
+Non‑EN files:
+- Rewrite all banks natively; include language-specific conversational forms (zh-hk particles, Japanese politeness, etc.).
+
+
+---
+
+## Acceptance checklist (must pass for ALL 14 files)
+1) `validate lane` passes schema
+2) `gate lane --limit 5` succeeds
+3) No unresolved `{slot}` placeholders leak
+4) All rows pass `row_validator_v16` for this lane_id
+5) Non‑EN files are native rewrites (not aligned translations)
+6) Richness: no repeated first-sentence spam; meaningful prompt variety
