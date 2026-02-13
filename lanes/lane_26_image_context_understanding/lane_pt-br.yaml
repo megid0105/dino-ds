@@ -1,0 +1,530 @@
+lane_id: "lane_26_image_context_understanding"
+wave: "wave0"
+target_base: "dino_qwen4b"
+source_type: "local"
+
+# template_expand lanes do not require source files
+sources: []
+
+# how many rows to build (can be overridden by --limit)
+count_target: 2941
+# REQUIRED PCT fields: keep these in the human-facing lane configs
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: "suppress_continuity"
+  flow_state: "none"
+  history_scope: "thread_only"
+  representation_choice: "plain_text"
+  safety_tag: "safe"
+
+  system_prompt_id: "dino.system.v1"
+# forward-compat placeholders
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators:
+  - name: "mode_richness"
+transform_pipeline: []
+
+generation_mode: "template_expand"
+system_prompt_path: prompts/system/dino_system_prompt.txt
+
+
+output_dir: out_runs/colleague_test
+
+teacher_runtime:
+  sample_percent: 10
+  enabled: false
+  provider: ollama
+  ollama_host: "http://127.0.0.1:11434"
+  model: "dino-pro-7b"
+  policy: structure_only
+  on_missing_evidence: abstain
+  system_prompt_path: prompts/teacher/lane_26_teacher_system_prompt.txt
+
+
+
+
+  timeout_s: 150
+  keepalive: "5m"
+# similarity/dedupe controls (tune per-lane)
+similarity:
+  max_token_overlap_ratio: 0.3
+  ignore_stopwords: true
+  ignore_tokens:
+    - "dino"
+    - "ai"
+    - "assistant"
+    - "image"
+    - "context"
+    - "photo"
+    - "picture"
+    - "objects"
+    - "object"
+    - "scene"
+    - "color"
+    - "brand"
+    - "please"
+    - "thanks"
+    - "thank"
+    - "describe"
+    - "description"
+  ngram: 2
+
+template_expand:
+  seed: 0
+  count_target: 2941
+  max_attempts: 900000
+  attempts_per_row: 400
+
+  slot_banks:
+    # Core labels — English only per operator guidance
+    language: ["pt-br"]
+    mode: ["conversation"]
+    tone:
+      - "professional"
+      - "serious"
+      - "friendly"
+      - "family"
+      - "best_friend"
+      - "professional"
+      - "serious"
+      - "friendly"
+    emote6: ["neutral"]
+    continuity_choice: ["suppress_continuity"]
+
+    # Operator-locked intent labels
+    intent_family: ["qa_general"]
+    intent_subtype: ["general"]
+
+    # Image context controls
+    image_mode:
+      - "photo_upload"
+      - "photo_upload"
+      - "photo_upload"
+      - "live_camera"
+
+    surface_type:
+      - "table"
+      - "desk"
+      - "countertop"
+      - "bench"
+      - "shelf"
+      - "work surface"
+      - "tabletop"
+      - "flat surface"
+      - "shared table"
+      - "prep surface"
+
+    setting:
+      - "home office"
+      - "study corner"
+      - "kitchen area"
+      - "meeting room"
+      - "workstation"
+      - "shared workspace"
+      - "studio desk"
+      - "prep area"
+      - "common area"
+      - "small workspace"
+
+    lighting:
+      - "soft"
+      - "bright"
+      - "even"
+      - "natural"
+      - "overhead"
+      - "diffuse"
+      - "indoor"
+      - "gentle"
+      - "flat"
+      - "clear"
+
+    scene_action:
+      - "organized"
+      - "mid-task"
+      - "ready for use"
+      - "set up for a short session"
+      - "prepared for work"
+      - "in a quick review state"
+      - "tidy but active"
+      - "casual and practical"
+      - "arranged for a small task"
+      - "kept minimal"
+
+    # Fictional brands (avoid real companies per synthetic locks)
+    brand_name:
+      - "Aurora"
+      - "Nimbus"
+      - "Cedar"
+      - "Harbor"
+      - "Summit"
+      - "Lumen"
+      - "Pioneer"
+      - "Willow"
+      - "Atlas"
+      - "Beacon"
+      - "Ridge"
+      - "Northstar"
+      - "Quartz"
+      - "Maple"
+      - "Drift"
+      - "Echo"
+      - "Pilot"
+      - "Bridge"
+      - "Horizon"
+      - "Vertex"
+
+    color_name:
+      - "black"
+      - "white"
+      - "silver"
+      - "gray"
+      - "blue"
+      - "red"
+      - "green"
+      - "yellow"
+      - "orange"
+      - "purple"
+      - "teal"
+      - "navy"
+      - "beige"
+      - "brown"
+      - "pink"
+      - "cyan"
+      - "amber"
+      - "olive"
+      - "maroon"
+      - "charcoal"
+
+    object_label:
+      - "phone"
+      - "notebook"
+      - "mug"
+      - "bottle"
+      - "headphones"
+      - "pen"
+      - "charger"
+      - "lamp"
+      - "keyboard"
+      - "tablet"
+      - "book"
+      - "backpack"
+      - "ticket"
+      - "card"
+      - "cable"
+      - "mouse"
+      - "watch"
+      - "camera"
+      - "glasses"
+      - "envelope"
+
+    location_hint:
+      - "top_left"
+      - "top_right"
+      - "upper_center"
+      - "center"
+      - "lower_center"
+      - "bottom_left"
+      - "bottom_right"
+      - "left_edge"
+      - "right_edge"
+      - "near_center"
+
+    relation_word:
+      - "next to"
+      - "beside"
+      - "near"
+      - "in front of"
+      - "behind"
+      - "to the left of"
+      - "to the right of"
+      - "close to"
+      - "grouped with"
+      - "set near"
+
+    # Three primary objects with heavy slotting
+    obj1_brand: ["{brand_name}"]
+    obj1_color: ["{color_name}"]
+    obj1_label: ["{object_label}"]
+    obj1_location: ["{location_hint}"]
+
+    obj2_brand: ["{brand_name}"]
+    obj2_color: ["{color_name}"]
+    obj2_label: ["{object_label}"]
+    obj2_location: ["{location_hint}"]
+
+    obj3_brand: ["{brand_name}"]
+    obj3_color: ["{color_name}"]
+    obj3_label: ["{object_label}"]
+    obj3_location: ["{location_hint}"]
+
+    relation_12: ["{relation_word}"]
+    relation_23: ["{relation_word}"]
+
+    obj1_phrase:
+      - "{obj1_brand} {obj1_color} {obj1_label}"
+      - "{obj1_color} {obj1_label} from {obj1_brand}"
+      - "{obj1_brand} {obj1_label} in {obj1_color}"
+      - "{obj1_color} {obj1_brand} {obj1_label}"
+
+    obj2_phrase:
+      - "{obj2_brand} {obj2_color} {obj2_label}"
+      - "{obj2_color} {obj2_label} from {obj2_brand}"
+      - "{obj2_brand} {obj2_label} in {obj2_color}"
+      - "{obj2_color} {obj2_brand} {obj2_label}"
+
+    obj3_phrase:
+      - "{obj3_brand} {obj3_color} {obj3_label}"
+      - "{obj3_color} {obj3_label} from {obj3_brand}"
+      - "{obj3_brand} {obj3_label} in {obj3_color}"
+      - "{obj3_color} {obj3_brand} {obj3_label}"
+
+    # Scene summary tied to the object slots
+    image_summary:
+      - "A {surface_type} in a {setting} with a {obj1_phrase}, a {obj2_phrase}, and a {obj3_phrase} under {lighting} light."
+      - "A {lighting}-lit {surface_type} scene in a {setting}, showing {obj1_phrase}, {obj2_phrase}, and {obj3_phrase}."
+      - "An indoor {setting} view of a {surface_type} that has {obj1_phrase}, {obj2_phrase}, and {obj3_phrase}."
+      - "A compact {surface_type} setup in a {setting} with {obj1_phrase}, {obj2_phrase}, and {obj3_phrase}."
+      - "A {scene_action} {surface_type} scene in a {setting}, featuring {obj1_phrase}, {obj2_phrase}, and {obj3_phrase}."
+      - "A practical {surface_type} layout in a {setting} under {lighting} light, with {obj1_phrase}, {obj2_phrase}, and {obj3_phrase}."
+      - "A simple {setting} scene: a {surface_type} holding {obj1_phrase}, {obj2_phrase}, and {obj3_phrase}."
+      - "A {surface_type} in a {setting} that appears {scene_action}, containing {obj1_phrase}, {obj2_phrase}, and {obj3_phrase}."
+      - "A {lighting} {surface_type} shot in a {setting} with three items: {obj1_phrase}, {obj2_phrase}, and {obj3_phrase}."
+      - "A {scene_action} {surface_type} in a {setting}, where {obj1_phrase}, {obj2_phrase}, and {obj3_phrase} are visible."
+
+    # Response shaping slots
+    audience:
+      - "a teammate"
+      - "a reviewer"
+      - "a late joiner"
+      - "a busy reader"
+      - "a non-technical friend"
+      - "a collaborator"
+      - "a partner"
+      - "a manager"
+      - "someone scanning quickly"
+      - "someone joining mid-stream"
+
+    format_hint:
+      - "in two sentences"
+      - "as three bullets"
+      - "as a short recap"
+      - "as a tiny checklist"
+      - "as a quick note"
+      - "as a short message"
+      - "in plain language"
+      - "in a crisp way"
+      - "in a compact format"
+      - "in a short form"
+
+    response_style:
+      - "short and direct"
+      - "brief but specific"
+      - "compact and clear"
+      - "plain and grounded"
+      - "concise with object details"
+      - "minimal and accurate"
+      - "simple and concrete"
+      - "tight and readable"
+      - "brief and structured"
+      - "clean and practical"
+
+    focus_object:
+      - "{obj1_phrase}"
+      - "{obj2_phrase}"
+      - "{obj3_phrase}"
+      - "{obj1_label}"
+      - "{obj2_label}"
+      - "{obj3_label}"
+
+    compare_object:
+      - "{obj1_phrase}"
+      - "{obj2_phrase}"
+      - "{obj3_phrase}"
+      - "{obj1_label}"
+      - "{obj2_label}"
+      - "{obj3_label}"
+
+    constraint_line:
+      - "Use only what is visible and do not guess beyond it."
+      - "Stay grounded in what is visible and avoid adding unseen details."
+      - "Do not invent anything beyond what is visible."
+      - "Keep the answer tied to what is shown."
+      - "Describe what can be seen, not assumptions."
+      - "Anchor the answer in what is visible and keep it accurate."
+      - "Use the image as the only source of truth here."
+      - "Keep it consistent with what is visible."
+      - "Call out specifics but do not add new objects."
+      - "Stay within what is shown and keep it factual."
+
+    # Rich user requests with heavy slotting and object references
+    user_intent_line:
+      - "Describe the {surface_type} scene in the {setting} and explicitly mention the {obj1_phrase}, {obj2_phrase}, and {obj3_phrase}."
+      - "In the photo, give me a {response_style} description that names brands, colors, and object locations."
+      - "Focus on the {focus_object} and how it sits {relation_12} the {obj2_label} on the {surface_type}. Keep it {response_style}."
+      - "List the key items and where they are: {obj1_phrase} at {obj1_location}, {obj2_phrase} at {obj2_location}, and {obj3_phrase} at {obj3_location}. Then give a short grounded read."
+      - "What stands out in the image for {audience}? Answer {format_hint} and mention at least two specific objects and their colors."
+      - "Describe the scene as shown. I want the brands and colors called out for {obj1_phrase}, {obj2_phrase}, and {obj3_phrase} on the {surface_type}."
+      - "Provide a {response_style} recap that highlights object details and relative placement."
+      - "Describe the arrangement on the {surface_type}: include {obj1_phrase}, {obj2_phrase}, and {obj3_phrase}, plus where they appear."
+      - "Compare the {focus_object} with the {compare_object} using only what is visible, and keep it {response_style} for {audience}."
+      - "I need a grounded description for {audience}. Mention {obj1_phrase}, {obj2_phrase}, and {obj3_phrase}. Provide it {format_hint}."
+      - "Explain what the image shows on the {surface_type} in the {setting}, referencing the {obj1_phrase}, {obj2_phrase}, and {obj3_phrase} and their positions."
+      - "Please interpret the scene without guessing beyond what is visible. Mention object specifics, including brands and colors."
+      - "Describe the objects and layout: {obj1_phrase} at {obj1_location}, {obj2_phrase} at {obj2_location}, {obj3_phrase} at {obj3_location}."
+      - "I want a short, accurate description grounded in what is visible. Call out the brands and colors of the objects you can see."
+      - "Produce a {response_style} recap that mentions object names, colors, and where they sit on the {surface_type}."
+      - "Keep this strictly to what is shown. Describe the {surface_type} setup in the {setting} and mention the {obj1_phrase}, {obj2_phrase}, and {obj3_phrase}."
+      - "Give me a grounded description that would help {audience}. Include object details and placements for {obj1_phrase}, {obj2_phrase}, and {obj3_phrase}."
+      - "Please summarize the scene {format_hint} and include specific objects, colors, and relative positions."
+      - "Describe the scene and highlight the {focus_object}, while still naming the other objects and where they appear."
+      - "Provide a grounded description of the image in a {response_style} way, referencing {obj1_phrase}, {obj2_phrase}, and {obj3_phrase} and their locations."
+
+    user_template:
+      - "{user_intent_line} {constraint_line}"
+      - "{user_intent_line} {constraint_line}"
+      - "{user_intent_line} {constraint_line}"
+      - "{user_intent_line} {constraint_line}"
+      - "{user_intent_line} {constraint_line}"
+      - "{user_intent_line} {constraint_line}"
+      - "{user_intent_line} {constraint_line}"
+      - "{user_intent_line} {constraint_line}"
+      - "{user_intent_line} {constraint_line}"
+      - "{user_intent_line} {constraint_line}"
+
+    # Multi-turn wrappers for diversity
+    assistant_probe:
+      - "Do you want a quick description, a list of objects, or a focus on one item?"
+      - "Should I keep it to two sentences or three bullets?"
+      - "Do you want object locations called out explicitly?"
+      - "Should I highlight the most visible items first?"
+      - "Do you want a focus on a single object or the full scene?"
+      - "Should I prioritize brands and colors, or layout and placement?"
+      - "Do you want this phrased for a late joiner or a quick internal note?"
+      - "Should I keep it minimal and grounded, or slightly more descriptive?"
+      - "Do you want relative positions described as well?"
+      - "Should I include a short caution about staying grounded in what is visible?"
+
+    user_followup:
+      - "Keep it {response_style} for {audience} and mention placements."
+      - "Focus on the {focus_object}, but still include the other objects."
+      - "Call out brands, colors, and where the objects appear."
+      - "Give the layout first, then object specifics."
+      - "Keep it short and grounded in what is visible."
+      - "Mention at least two objects and their relative positions."
+      - "Make it easy to paste into a quick update."
+      - "Keep it accurate and do not guess beyond what is visible."
+      - "List the objects with locations, then a one-line summary."
+      - "Prioritize clarity over extra detail."
+
+    dialogue_context:
+      - "User: {user_template}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "Context:\nUser: {user_template}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "Conversation so far:\nUser: {user_template}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "U: {user_template}\nA: {assistant_probe}\nU: {user_followup}"
+      - "Dialogue:\nU: {user_template}\nA: {assistant_probe}\nU: {user_followup}"
+      - "User message: {user_template}\nAssistant reply: {assistant_probe}\nUser follow-up: {user_followup}"
+
+    # Assistant response pieces — must align to image_context slots
+    assistant_open:
+      - "From the image,"
+      - "Based on the photo,"
+      - "Using what is visible,"
+      - "Sticking to what is shown,"
+      - "From the scene shown,"
+      - "Looking at the image,"
+      - "Grounded in what is visible,"
+      - "Based on the visible details,"
+      - "From what can be seen,"
+      - "Staying within what is shown,"
+
+    assistant_summary_line:
+      - "it looks like a {scene_action} {surface_type} scene in a {setting} with {lighting} light."
+      - "the scene appears to be a {surface_type} in a {setting} that feels {scene_action} under {lighting} light."
+      - "this reads as a {scene_action} setup on a {surface_type} in a {setting} with {lighting} lighting."
+      - "the image shows a {surface_type} in a {setting} that looks {scene_action} in {lighting} light."
+      - "it suggests a {scene_action} {surface_type} in a {setting} with {lighting} light."
+      - "it suggests a {scene_action} {surface_type} layout in a {setting} under {lighting} light."
+
+    assistant_objects_line:
+      - "Key items include a {obj1_phrase} at {obj1_location}, a {obj2_phrase} at {obj2_location}, and a {obj3_phrase} at {obj3_location}."
+      - "I see a {obj1_phrase} around {obj1_location}, a {obj2_phrase} around {obj2_location}, and a {obj3_phrase} around {obj3_location}."
+      - "The objects called out are {obj1_phrase} at {obj1_location}, {obj2_phrase} at {obj2_location}, and {obj3_phrase} at {obj3_location}."
+      - "The image shows a {obj1_phrase} near {obj1_location}, a {obj2_phrase} near {obj2_location}, and a {obj3_phrase} near {obj3_location}."
+      - "The visible items include {obj1_phrase} at {obj1_location}, {obj2_phrase} at {obj2_location}, and {obj3_phrase} at {obj3_location}."
+      - "The image includes {obj1_phrase} at {obj1_location}, {obj2_phrase} at {obj2_location}, and {obj3_phrase} at {obj3_location}."
+
+    assistant_relation_line:
+      - "The {obj1_label} is {relation_12} the {obj2_label}, and the {obj3_label} is {relation_23} the {obj2_label}."
+      - "Relative placement suggests the {obj1_label} sits {relation_12} the {obj2_label}, while the {obj3_label} is {relation_23} it."
+      - "Layout-wise, the {obj1_label} appears {relation_12} the {obj2_label}, and the {obj3_label} appears {relation_23} the {obj2_label}."
+      - "In the arrangement, the {obj1_label} is {relation_12} the {obj2_label}, and the {obj3_label} is {relation_23} the {obj2_label}."
+      - "The layout suggests the {obj1_label} sits {relation_12} the {obj2_label}, with the {obj3_label} {relation_23} the {obj2_label}."
+      - "Positionally, the {obj1_label} is {relation_12} the {obj2_label}, and the {obj3_label} is {relation_23} the {obj2_label}."
+
+    assistant_focus_line:
+      - "If the focus is {focus_object}, it is clearly represented in the object list."
+      - "For a focus on {focus_object}, the image gives enough detail to call it out directly."
+      - "Highlighting {focus_object} fits the provided object details."
+      - "A focus on {focus_object} is supported by what is visible."
+      - "The image supports centering the description on {focus_object}."
+      - "If you want emphasis, {focus_object} is a safe anchor in the image."
+
+    assistant_constraint_line:
+      - "I am describing only what is visible."
+      - "I am staying grounded in what is shown and not adding unseen details."
+      - "I am keeping this tied to what is visible rather than guessing."
+      - "I am using the image as the only source of truth here."
+      - "I am avoiding assumptions beyond what is visible."
+      - "I am keeping the description within what is shown."
+
+    assistant_close:
+      - "I can reformat this {format_hint} for {audience} if you want."
+      - "I can also present this {format_hint} for {audience}."
+      - "If helpful, I can turn this into a {format_hint} recap for {audience}."
+      - "I can keep the same details and format it {format_hint} for {audience}."
+      - "I can produce a paste-ready version {format_hint} for {audience}."
+      - "I can restate this more compactly {format_hint} for {audience}."
+
+    assistant_response:
+      - "{assistant_open} {assistant_summary_line} {assistant_objects_line} {assistant_relation_line} {assistant_focus_line} {assistant_constraint_line} {assistant_close}"
+      - "{assistant_open} {assistant_summary_line} {assistant_objects_line} {assistant_relation_line} {assistant_constraint_line} {assistant_close}"
+      - "{assistant_open} {assistant_summary_line} {assistant_objects_line} {assistant_focus_line} {assistant_constraint_line} {assistant_close}"
+      - "{assistant_open} {assistant_summary_line} {assistant_objects_line} {assistant_relation_line} {assistant_constraint_line} {assistant_close}"
+
+  row_template:
+    language: "{language}"
+    mode: "{mode}"
+    tone: "{tone}"
+    emote6: "{emote6}"
+    continuity_choice: "{continuity_choice}"
+    intent_family: "{intent_family}"
+    intent_subtype: "{intent_subtype}"
+    representation_choice: "plain_text"
+
+    image_context:
+      mode: "{image_mode}"
+      summary: "{image_summary}"
+      objects:
+        - label: "{obj1_phrase}"
+          confidence: 0.86
+          bbox: [0.08, 0.12, 0.36, 0.46]
+          location_hint: "{obj1_location}"
+        - label: "{obj2_phrase}"
+          confidence: 0.81
+          bbox: [0.44, 0.16, 0.78, 0.58]
+          location_hint: "{obj2_location}"
+        - label: "{obj3_phrase}"
+          confidence: 0.76
+          bbox: [0.22, 0.62, 0.64, 0.92]
+          location_hint: "{obj3_location}"
+
+    user_message: "{dialogue_context}"
+    assistant_response: "{assistant_response}"
+
+notes: "Wave0 Lane26 — image context understanding (image_context required, no teacher, no steps_v1)"

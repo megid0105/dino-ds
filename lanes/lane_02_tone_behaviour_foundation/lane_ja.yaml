@@ -1,0 +1,659 @@
+lane_id: lane_02_tone_behaviour_foundation
+wave: wave0
+target_base: dino_qwen4b
+source_type: local
+sources: []
+count_target: 784
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: suppress_continuity
+  flow_state: none
+  history_scope: thread_only
+  representation_choice: plain_text
+  safety_tag: safe
+  system_prompt_id: dino.system.v1
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators: []
+transform_pipeline: []
+generation_mode: template_expand
+system_prompt_path: prompts/system/dino_system_prompt.txt
+output_dir: out_runs/colleague_test
+teacher_runtime:
+  sample_percent: 5
+  enabled: false
+  provider: ollama
+  ollama_host: http://127.0.0.1:11434
+  model: dino-pro-7b
+  policy: structure_only
+  on_missing_evidence: abstain
+  system_prompt_path: prompts/teacher/lane_02_teacher_system_prompt.txt
+  timeout_s: 150
+  keepalive: 5m
+similarity:
+  max_token_overlap_ratio: 0.16
+  text_field: assistant
+  ignore_stopwords: false
+  ngram: 1
+template_expand:
+  seed: 5
+  count_target: 784
+  max_attempts: 3000000
+  attempts_per_row: 1200
+  expand_dict_slots:
+  - tone_case
+  slot_banks:
+    language:
+    - ja
+    mode:
+    - quick
+    - think
+    tone_case:
+    - tone: professional
+      tone_style: 明確で業務的な
+    - tone: best_friend
+      tone_style: 率直だけど支える
+    - tone: family
+      tone_style: やさしく思いやりのある
+    - tone: serious
+      tone_style: 落ち着いて率直な
+    - tone: friendly
+      tone_style: やわらかく親しみやすい
+    emote6:
+    - neutral
+    continuity_choice:
+    - suppress_continuity
+    intent_family:
+    - content_generation
+    - safety
+    intent_subtype:
+    - tone_behavior
+    - boundary_setting
+    - correction_style
+    audience:
+    - 同僚
+    - 上司
+    - チームメンバー
+    - クライアント
+    - 友人
+    - きょうだい
+    - パートナー
+    - ルームメイト
+    - 教授
+    - グループチャット
+    medium:
+    - メール
+    - チャット
+    - テキスト
+    - 会議後のフォロー
+    - プロジェクト更新
+    - 短いメモ
+    - ステータスメッセージ
+    - レビューコメント
+    situation:
+    - 深夜の連絡
+    - 担当があいまい
+    - 直前の依頼
+    - 締切遅れ
+    - スコープ拡大
+    - 指示が分かりにくい
+    - 空気が重いスレッド
+    - 会議が多すぎる
+    - 返信が遅い
+    - やり直しが多い
+    - きつい言い方のメッセージ
+    - 行き違い
+    - 受け取りが難しいフィードバック
+    - 引き受けられない依頼
+    - 頻繁に変わる計画
+    - スケジュール衝突
+    user_goal:
+    - 境界線をはっきり伝える
+    - 過剰にならずに謝る
+    - 率直なフィードバックを伝える
+    - 丁寧に断る
+    - 明確化を求める
+    - トーンを落ち着かせる
+    - 押しつけずにフォローする
+    - 誤解を正す
+    - 期待値をリセットする
+    - 行動の改善をお願いする
+    constraint:
+    - 短くまとめる
+    - 丁寧さを保ちながら毅然とする
+    - やわらかいが明確にする
+    - 責める表現を避ける
+    - 嫌味っぽさを避ける
+    - 事実ベースにする
+    - 自信のある語り口にする
+    - 落ち着いた語り口にする
+    - 平易な言葉を使う
+    - 1〜2文で収める
+    desired_outcome:
+    - 関係を守る
+    - 次の進め方に合意する
+    - 混乱を減らす
+    - 同じ問題の再発を止める
+    - 優先順位をそろえる
+    - 建設的に進める
+    - 再エスカレーションを避ける
+    - 判断を明確にする
+    - 再現できる運用ルールを作る
+    - 仕事を前に進める
+    ask_style:
+    - 文案を作ってほしいです。
+    - この一文を言い換えてください。
+    - そのまま送れる版をください。
+    - 何と言えばよいか教えてください。
+    - 強さの違う2案をください。
+    - 冷たくならずに伝わる形にしてください。
+    - 明確で余計な感情が出ない形にしてください。
+    - 短く実用的にしてください。
+    raw_line:
+    - 夜10時以降の新しい依頼は控えてもらえますか。
+    - 着手前に締切を確認してほしいです。
+    - 頻繁に変わるので計画が立てられません。
+    - これを受けると別の作業を落とします。
+    - 事前共有なしで私の作業を書き換えないでください。
+    - 意思決定者を1人に決めたいです。
+    - 前回のメッセージが強く感じたので仕切り直したいです。
+    - 優先度と締切の理解にズレがあります。
+    - 協力したいのですが、依頼が曖昧です。
+    - 完了のために中断を減らしたいです。
+    - 深夜に依頼が増えると、翌日の品質が落ちます。
+    - 協力は続けたいので、まず境界をそろえたいです。
+    - この件は責任者を明確にしてから進めたいです。
+    - いま必要なのは、優先順位の一本化です。
+    - このままだと再作業が増えるので、手順を固定したいです。
+    - 関係を守りたいので、先に{change_request}をお願いします。
+    - この状況では、まず{change_request}が必要です。
+    - まず{change_request}できれば、進行が安定します。
+    - 私は{constraint}で伝えますが、要点は{change_request}です。
+    - 今すぐ進めるために、先に{change_request}したいです。
+    - 無理なく進めるには、最初に{change_request}が要ります。
+    - この案件は、{change_request}を前提に進めたいです。
+    - 誤解を減らすため、先に{change_request}してください。
+    - 混乱を防ぐには、まず{change_request}が有効です。
+    - 私は協力します。なので最初に{change_request}をそろえたいです。
+    - 短く言うと、必要なのは{change_request}です。
+    - この件は{change_request}から始めるのが最短です。
+    - 今の優先は{change_request}です。そこが合えば前に進めます。
+    - '{situation}の場面では、{change_request}が特に重要です。'
+    - 目的が{desired_outcome}なら、まず{change_request}が妥当です。
+    - 私は{medium}向けに次の一文で伝えます：{change_request}。
+    - '{audience}との調整では、{change_request}を先に確認したいです。'
+    - '{user_goal}を実現するには、先に{change_request}が必要です。'
+    - この要求は厳しさではなく、{desired_outcome}のためです。
+    - 前進したいので、まず{change_request}に合意したいです。
+    - 速度より整合を優先したいので、先に{change_request}します。
+    - 私は続けて対応します。開始前に{change_request}だけお願いします。
+    - 境界を明確にするために、先に{change_request}を置きたいです。
+    - この一文だけ先に確認させてください：{change_request}。
+    - 作業品質を守るには、最初に{change_request}が欠かせません。
+    - 追加依頼がある場合も、先に{change_request}してからにしたいです。
+    - 納期を守るため、まず{change_request}を固定しましょう。
+    - 判断を明確にするには、先に{change_request}が必要です。
+    - 再作業を減らすため、最初に{change_request}へ寄せたいです。
+    - 私は穏やかに伝えますが、要望自体は{change_request}です。
+    - この件の最小条件は{change_request}です。
+    - ここがそろえば進められます：{change_request}。
+    - まず{change_request}、その後に実装という順で進めたいです。
+    - 同じ行き違いを避けるため、先に{change_request}に統一したいです。
+    - 私は今すぐ動けます。先に{change_request}だけ決めましょう。
+    - 実務としては、{change_request}が先です。
+    - この依頼は{change_request}を満たせば安全に進められます。
+    - 私は{desired_outcome}を重視します。そのために{change_request}を先に置きます。
+    - この方針なら、{desired_outcome}に直結します：{change_request}。
+    - 短文で言うなら、{change_request}でお願いします。
+    - まず{change_request}をそろえれば、次の判断が速くなります。
+    - 今は責めるより整理が先なので、{change_request}から始めたいです。
+    - この一歩を先に合わせたいです：{change_request}。
+    - 一度{change_request}を固定してから、細部を詰めたいです。
+    context_line:
+    - '背景: 今週すでに3回起きています。'
+    - '背景: 一度は共有済みの論点です。'
+    - '背景: プロジェクト全体の進行が遅れています。'
+    - '背景: できるだけ穏やかに解決したいです。'
+    - '背景: 協力関係は維持したいです。'
+    - '背景: 今日中に送れる文面が必要です。'
+    - '背景: 失礼に見えるのが心配です。'
+    - '背景: {medium}で使える表現にしたいです。'
+    - '{situation}.'
+    - '{medium}; {constraint}.'
+    - '{audience}; {situation}.'
+    - '{constraint}; {change_request}.'
+    - '{audience}; {situation}; {constraint}.'
+    user_frame:
+    - '{ask_style} {audience}に対して、{medium}で{user_goal}をしたいです。論点は{situation}で、{tone_style}な言い方にしたいです。'
+    - '{ask_style} {audience}との{situation}について、{user_goal}したいです。{tone_style}な文面にしたいです。'
+    - '{ask_style} {situation}に関して{user_goal}したいです。{audience}向けの{medium}用で、{tone_style}にしてください。'
+    - '{ask_style} テーマは{situation}です。{audience}へ{medium}で{user_goal}するため、{tone_style}な文章が必要です。'
+    user_message:
+    - '{user_frame}\n{context_line}\n条件: {constraint}. 目的: {desired_outcome}.\n元の一文: {raw_line}'
+    - '{user_frame}\n元の一文: {raw_line}\n条件: {constraint}. 目的: {desired_outcome}.\n{context_line}'
+    - '{user_frame}\n条件: {constraint}.\n{context_line}\n目的: {desired_outcome}.\n元の一文: {raw_line}'
+    - '{user_frame}\n{context_line}\n目的: {desired_outcome}. 条件: {constraint}.\n元の一文: {raw_line}'
+    - '{user_frame}\n元の一文: {raw_line}\n{context_line}\n目的: {desired_outcome}. 条件: {constraint}.'
+    - '{user_frame}\n条件: {constraint}. 目的: {desired_outcome}.\n{context_line}'
+    - '{user_frame}\n{context_line}\n条件: {constraint}.\n元の一文: {raw_line}\n目的: {desired_outcome}.'
+    - '{user_frame}\n目的: {desired_outcome}.\n条件: {constraint}.\n{context_line}\n元の一文: {raw_line}'
+    assistant_open:
+    - '{context_line}'
+    - '{context_line_b}'
+    - '背景: {situation}.'
+    - '背景: {audience}; {medium}.'
+    - '背景: {desired_outcome}; {constraint}.'
+    - '背景: {user_goal}; {change_request}.'
+    - '要点: {desired_outcome}.'
+    - '要点: {constraint}.'
+    - '調整: {change_request}.'
+    - '調整: {user_goal}.'
+    assistant_commit:
+    - '{tone_style}なトーンを保ちながら、{constraint}で作ります。'
+    - 文面は{tone_style}にして、同時に{constraint}を守ります。
+    - '{tone_style}で、実行しやすい表現にします。'
+    - '{tone_style}に聞こえながら、具体性は落とさない形にします。'
+    assistant_principle:
+    - 責任追及より、行動と依頼を中心にします。
+    - 依頼内容は具体的で追いやすくします。
+    - 余分な摩擦を減らし、要点を残します。
+    - 境界線は明確にしながら、攻撃的にはしません。
+    - 次に何をするかが分かる形にします。
+    draft_prefix:
+    - '文案:'
+    - 'この形でどうでしょう:'
+    - '送信用の案:'
+    - 'メッセージ案:'
+    change_request:
+    - 新規依頼は勤務時間内に集約する
+    - 着手前に優先度と締切を確認する
+    - 意思決定の責任者を1人にする
+    - 緊急案件は明示する
+    - 変更点は1回の更新にまとめる
+    - 書き換え前に一言共有する
+    - 実行前にスコープを固定する
+    - 集中時間の割り込みを減らす
+    - 依頼を1文で明確に書く
+    - 完了条件を先に合意する
+    draft_line_1:
+    - '{situation}.'
+    - '{audience}; {situation}.'
+    - '{medium}; {situation}.'
+    - '{audience}; {medium}; {situation}.'
+    draft_line_2:
+    - '{change_request}にできますか。そうすると{desired_outcome}につながります。'
+    - '{change_request}でお願いできますか。{desired_outcome}しやすくなります。'
+    - 私のお願いは、{change_request}です。{desired_outcome}につながります。
+    - '{change_request}でそろえたいです。それが{desired_outcome}に効きます。'
+    - '{change_request}で合意できますか。{desired_outcome}を保てます。'
+    assistant_followup:
+    - もう少し柔らかめと強め、どちらが良いですか。
+    - '{medium}向けにさらに短くした版も作れます。'
+    - 受け取った原文があれば、語調を合わせて調整できます。
+    - 必要なら、強さの違う2案を並べます。
+    - 短め版と共感寄り版、どちらにしますか。
+    - 必要なら、もう少し直接的な版も作れます。
+    assistant_response:
+    - '{lead_phrase}: {raw_line}'
+    - '{draft_prefix} {raw_line}'
+    - '{assistant_open} {raw_line}'
+    - '{assistant_commit} {raw_line}'
+    - '{assistant_principle} {raw_line}'
+    - '{raw_line} {assistant_followup}'
+    - '{lead_phrase}: {raw_line} {assistant_followup}'
+    lead_phrase:
+    - 明確 文面
+    - 明確 下書き
+    - 明確 版
+    - 明確 返答
+    - 明確 言い回し
+    - 明確 表現
+    - 明確 案
+    - 明確 方針
+    - 冷静 文面
+    - 冷静 下書き
+    - 冷静 版
+    - 冷静 返答
+    - 冷静 言い回し
+    - 冷静 表現
+    - 冷静 案
+    - 冷静 方針
+    - 率直 文面
+    - 率直 下書き
+    - 率直 版
+    - 率直 返答
+    - 率直 言い回し
+    - 率直 表現
+    - 率直 案
+    - 率直 方針
+    - 丁寧 文面
+    - 丁寧 下書き
+    - 丁寧 版
+    - 丁寧 返答
+    - 丁寧 言い回し
+    - 丁寧 表現
+    - 丁寧 案
+    - 丁寧 方針
+    - 実務的 文面
+    - 実務的 下書き
+    - 実務的 版
+    - 実務的 返答
+    - 実務的 言い回し
+    - 実務的 表現
+    - 実務的 案
+    - 実務的 方針
+    - 建設的 文面
+    - 建設的 下書き
+    - 建設的 版
+    - 建設的 返答
+    - 建設的 言い回し
+    - 建設的 表現
+    - 建設的 案
+    - 建設的 方針
+    - 均衡 文面
+    - 均衡 下書き
+    - 均衡 版
+    - 均衡 返答
+    - 均衡 言い回し
+    - 均衡 表現
+    - 均衡 案
+    - 均衡 方針
+    - 安定 文面
+    - 安定 下書き
+    - 安定 版
+    - 安定 返答
+    - 安定 言い回し
+    - 安定 表現
+    - 安定 案
+    - 安定 方針
+    - 集中 文面
+    - 集中 下書き
+    - 集中 版
+    - 集中 返答
+    - 集中 言い回し
+    - 集中 表現
+    - 集中 案
+    - 集中 方針
+    - 具体 文面
+    - 具体 下書き
+    - 具体 版
+    - 具体 返答
+    - 具体 言い回し
+    - 具体 表現
+    - 具体 案
+    - 具体 方針
+    - 簡潔 文面
+    - 簡潔 下書き
+    - 簡潔 版
+    - 簡潔 返答
+    - 簡潔 言い回し
+    - 簡潔 表現
+    - 簡潔 案
+    - 簡潔 方針
+    - 協調的 文面
+    - 協調的 下書き
+    - 協調的 版
+    - 協調的 返答
+    - 協調的 言い回し
+    - 協調的 表現
+    - 協調的 案
+    - 協調的 方針
+    detail_line:
+    - '{desired_outcome}に向けた依頼軸がぶれません。'
+    - 表現は{constraint}を維持します。
+    - '{medium}向けでも、焦点は{situation}から外れません。'
+    - 関係を守りながら境界線を明確にできます。
+    - '{tone_style}な印象を保ちながら実行可能です。'
+    - 次の一手が具体的に見える形です。
+    - 責めを避けながら前進しやすい文です。
+    - 必要なら一文版に圧縮できます。
+    - '{medium}向けに一節だけ差し替えても成立します。'
+    - 主張を保ちながら協力姿勢も残せます。
+    - 依頼が具体で受け手が動きやすい構成です。
+    - 緊張場面でも意味が崩れにくい文面です。
+    raw_line_b:
+    - 夜10時以降の新しい依頼は控えてもらえますか。
+    - 着手前に締切を確認してほしいです。
+    - 頻繁に変わるので計画が立てられません。
+    - これを受けると別の作業を落とします。
+    - 事前共有なしで私の作業を書き換えないでください。
+    - 意思決定者を1人に決めたいです。
+    - 前回のメッセージが強く感じたので仕切り直したいです。
+    - 優先度と締切の理解にズレがあります。
+    - 協力したいのですが、依頼が曖昧です。
+    - 完了のために中断を減らしたいです。
+    context_line_b:
+    - '背景: 今週すでに3回起きています。'
+    - '背景: 一度は共有済みの論点です。'
+    - '背景: プロジェクト全体の進行が遅れています。'
+    - '背景: できるだけ穏やかに解決したいです。'
+    - '背景: 協力関係は維持したいです。'
+    - '背景: 今日中に送れる文面が必要です。'
+    - '背景: 失礼に見えるのが心配です。'
+    - '背景: {medium}で使える表現にしたいです。'
+    - '{situation}.'
+    - '{medium}; {constraint}.'
+    - '{audience}; {situation}.'
+    - '{constraint}; {change_request}.'
+    - '{audience}; {situation}; {constraint}.'
+    draft_line_1b:
+    - '{situation}.'
+    - '{audience}; {situation}.'
+    - '{medium}; {situation}.'
+    - '{audience}; {medium}; {situation}.'
+    draft_line_2b:
+    - '{change_request}にできますか。そうすると{desired_outcome}につながります。'
+    - '{change_request}でお願いできますか。{desired_outcome}しやすくなります。'
+    - 私のお願いは、{change_request}です。{desired_outcome}につながります。
+    - '{change_request}でそろえたいです。それが{desired_outcome}に効きます。'
+    - '{change_request}で合意できますか。{desired_outcome}を保てます。'
+    detail_line_b:
+    - '{desired_outcome}に向けた依頼軸がぶれません。'
+    - 表現は{constraint}を維持します。
+    - '{medium}向けでも、焦点は{situation}から外れません。'
+    - 関係を守りながら境界線を明確にできます。
+    - '{tone_style}な印象を保ちながら実行可能です。'
+    - 次の一手が具体的に見える形です。
+    - 責めを避けながら前進しやすい文です。
+    - 必要なら一文版に圧縮できます。
+    - '{medium}向けに一節だけ差し替えても成立します。'
+    - 主張を保ちながら協力姿勢も残せます。
+    - 依頼が具体で受け手が動きやすい構成です。
+    - 緊張場面でも意味が崩れにくい文面です。
+    assistant_followup_b:
+    - もう少し柔らかめと強め、どちらが良いですか。
+    - '{medium}向けにさらに短くした版も作れます。'
+    - 受け取った原文があれば、語調を合わせて調整できます。
+    - 必要なら、強さの違う2案を並べます。
+    - より簡潔版か、より共感寄り版か選べます。
+    - 必要なら、もう少し直接的な版も作れます。
+    context_extra:
+    - '背景: {audience}; {situation}; {medium}.'
+    - '背景: {situation}; {desired_outcome}.'
+    - '背景: {change_request}; {desired_outcome}.'
+    - '背景: {user_goal}; {constraint}.'
+    - '背景: {audience}; {constraint}; {desired_outcome}.'
+    - '背景: {medium}; {constraint}; {situation}.'
+    - '背景: {change_request}; {constraint}.'
+    - '背景: {user_goal}; {desired_outcome}.'
+    - '背景: {situation}; {change_request}; {desired_outcome}.'
+    - '背景: {audience}; {situation}; {constraint}.'
+    - '背景: {medium}; {change_request}; {desired_outcome}.'
+    - '背景: {audience}; {medium}; {desired_outcome}.'
+    - '背景: {focus_a}; {focus_b}.'
+    - '背景: {focus_c}; {focus_d}.'
+    - '背景: {desired_outcome}; {focus_a}.'
+    - '背景: {constraint}; {focus_b}.'
+    - '背景: {user_goal}; {focus_c}.'
+    - '背景: {situation}; {focus_d}.'
+    - '背景: {audience}; {focus_a}; {focus_b}.'
+    - '背景: {medium}; {focus_c}; {focus_d}.'
+    - '背景: {change_request}; {focus_a}; {focus_c}.'
+    - '背景: {desired_outcome}; {focus_b}; {focus_d}.'
+    - '背景: {user_goal}; {focus_a}; {focus_d}.'
+    - '背景: {constraint}; {focus_b}; {focus_c}.'
+    unique_detail:
+    - '要点: {user_goal}; {change_request}; {desired_outcome}.'
+    - '要点: {desired_outcome}; {constraint}; {situation}.'
+    - '要点: {audience}; {medium}; {situation}.'
+    - '要点: {change_request}; {desired_outcome}; {constraint}.'
+    - '要点: {situation}; {user_goal}; {desired_outcome}.'
+    - '要点: {audience}; {desired_outcome}; {constraint}.'
+    - '要点: {medium}; {change_request}; {constraint}.'
+    - '要点: {focus_a}; {focus_b}; {focus_c}.'
+    - '要点: {focus_b}; {focus_c}; {focus_d}.'
+    - '要点: {focus_a}; {focus_c}; {focus_d}.'
+    - '要点: {change_request}; {focus_a}; {focus_b}.'
+    - '要点: {desired_outcome}; {focus_b}; {focus_c}.'
+    - '要点: {constraint}; {focus_c}; {focus_d}.'
+    - '要点: {user_goal}; {focus_a}; {focus_d}.'
+    - '要点: {audience}; {focus_a}; {focus_b}.'
+    - '要点: {medium}; {focus_c}; {focus_d}.'
+    - '要点: {situation}; {focus_a}; {focus_c}.'
+    - '要点: {desired_outcome}; {focus_b}; {focus_d}.'
+    - '要点: {change_request}; {desired_outcome}; {focus_c}.'
+    - '要点: {constraint}; {user_goal}; {focus_d}.'
+    - '要点: {audience}; {change_request}; {focus_a}.'
+    - '要点: {medium}; {desired_outcome}; {focus_b}.'
+    - '要点: {situation}; {constraint}; {focus_c}.'
+    - '要点: {user_goal}; {change_request}; {focus_d}.'
+    diversity_clause:
+    - '調整: {change_request}; {desired_outcome}; {constraint}.'
+    - '調整: {audience}; {medium}; {situation}.'
+    - '調整: {user_goal}; {change_request}; {desired_outcome}.'
+    - '調整: {situation}; {constraint}; {desired_outcome}.'
+    - '調整: {focus_a}; {focus_b}; {focus_c}.'
+    - '調整: {focus_b}; {focus_c}; {focus_d}.'
+    - '調整: {focus_a}; {focus_c}; {focus_d}.'
+    - '調整: {focus_a}; {focus_b}; {focus_d}.'
+    - '調整: {audience}; {change_request}; {focus_a}.'
+    - '調整: {medium}; {desired_outcome}; {focus_b}.'
+    - '調整: {situation}; {constraint}; {focus_c}.'
+    - '調整: {user_goal}; {change_request}; {focus_d}.'
+    - '調整: {desired_outcome}; {constraint}; {focus_a}.'
+    - '調整: {change_request}; {focus_b}; {focus_c}.'
+    - '調整: {audience}; {focus_c}; {focus_d}.'
+    - '調整: {medium}; {focus_a}; {focus_b}.'
+    - '調整: {situation}; {focus_a}; {focus_d}.'
+    - '調整: {user_goal}; {focus_b}; {focus_c}.'
+    - '調整: {constraint}; {focus_c}; {focus_d}.'
+    - '調整: {change_request}; {desired_outcome}; {focus_a}.'
+    - '調整: {audience}; {desired_outcome}; {focus_b}.'
+    - '調整: {medium}; {constraint}; {focus_c}.'
+    - '調整: {situation}; {user_goal}; {focus_d}.'
+    - '調整: {change_request}; {constraint}; {focus_a}.'
+    focus_a:
+    - 関係を守る
+    - 次の進め方に合意する
+    - 混乱を減らす
+    - 同じ問題の再発を止める
+    - 優先順位をそろえる
+    - 建設的に進める
+    - 再エスカレーションを避ける
+    - 判断を明確にする
+    - 再現できる運用ルールを作る
+    - 仕事を前に進める
+    focus_b:
+    - 短くまとめる
+    - 丁寧さを保ちながら毅然とする
+    - やわらかいが明確にする
+    - 責める表現を避ける
+    - 嫌味っぽさを避ける
+    - 事実ベースにする
+    - 自信のある語り口にする
+    - 落ち着いた語り口にする
+    - 平易な言葉を使う
+    - 1〜2文で収める
+    focus_c:
+    - 新規依頼は勤務時間内に集約する
+    - 着手前に優先度と締切を確認する
+    - 意思決定の責任者を1人にする
+    - 緊急案件は明示する
+    - 変更点は1回の更新にまとめる
+    - 書き換え前に一言共有する
+    - 実行前にスコープを固定する
+    - 集中時間の割り込みを減らす
+    - 依頼を1文で明確に書く
+    - 完了条件を先に合意する
+    focus_d:
+    - 深夜の連絡
+    - 担当があいまい
+    - 直前の依頼
+    - 締切遅れ
+    - スコープ拡大
+    - 指示が分かりにくい
+    - 空気が重いスレッド
+    - 会議が多すぎる
+    - 返信が遅い
+    - やり直しが多い
+    - きつい言い方のメッセージ
+    - 行き違い
+    - 受け取りが難しいフィードバック
+    - 引き受けられない依頼
+    - 頻繁に変わる計画
+    - スケジュール衝突
+    latin_a:
+    - 同僚
+    - 上司
+    - チームメンバー
+    - クライアント
+    - 友人
+    - きょうだい
+    - パートナー
+    - ルームメイト
+    - 教授
+    - グループチャット
+    latin_b:
+    - メール
+    - チャット
+    - テキスト
+    - 会議後のフォロー
+    - プロジェクト更新
+    - 短いメモ
+    - ステータスメッセージ
+    - レビューコメント
+    latin_c:
+    - 境界線をはっきり伝える
+    - 過剰にならずに謝る
+    - 率直なフィードバックを伝える
+    - 丁寧に断る
+    - 明確化を求める
+    - トーンを落ち着かせる
+    - 押しつけずにフォローする
+    - 誤解を正す
+    - 期待値をリセットする
+    - 行動の改善をお願いする
+    latin_d:
+    - 関係を守る
+    - 次の進め方に合意する
+    - 混乱を減らす
+    - 同じ問題の再発を止める
+    - 優先順位をそろえる
+    - 建設的に進める
+    - 再エスカレーションを避ける
+    - 判断を明確にする
+    - 再現できる運用ルールを作る
+    - 仕事を前に進める
+    extra_clause:
+    - 関係を守りながら境界線を明確にできます。
+    - 次の一手が具体的に見える形です。
+    - 責めを避けながら前進しやすい文です。
+    - 必要なら一文版に圧縮できます。
+    - 主張を保ちながら協力姿勢も残せます。
+    - 依頼が具体で受け手が動きやすい構成です。
+    - 緊張場面でも意味が崩れにくい文面です。
+  row_template:
+    language: '{language}'
+    mode: '{mode}'
+    tone: '{tone}'
+    emote6: '{emote6}'
+    continuity_choice: '{continuity_choice}'
+    intent_family: '{intent_family}'
+    intent_subtype: '{intent_subtype}'
+    user_message: '{user_message}'
+    assistant_response: '{assistant_response}'

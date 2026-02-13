@@ -12,7 +12,7 @@ This document is a complete, standalone recipe. A new thread can follow this **w
 
 1. `dino-ds-bin` (PyInstaller single‑file CLI binary)
 2. `dino-ds` (wrapper script alias)
-3. `lanes/**/lane.yaml` (36 files)
+3. `lanes/**/lane_*.yaml` (14 files per lane; includes `lane_en.yaml`)
 4. `prompts/teacher/lane_XX_teacher_system_prompt.txt` (36 files; must be included)
 5. `prompts/system/dino_system_prompt.txt` (must be included)
 6. `system_prompt_registry.json` (root; must be included)
@@ -106,9 +106,9 @@ cp dist/dino-ds-bin dist/dino_ds_offline_mac/dino-ds-bin
 # Copy system prompt registry
 cp system_prompt_registry.json dist/dino_ds_offline_mac/
 
-# Sync lanes (only lane.yaml)
+# Sync lanes (lane_*.yaml only)
 rsync -a --prune-empty-dirs \
-  --include '*/' --include 'lane.yaml' --exclude '*' \
+  --include '*/' --include 'lane_*.yaml' --exclude '*' \
   lanes/ dist/dino_ds_offline_mac/lanes/
 
 # Sync teacher prompts (required)
@@ -149,7 +149,10 @@ LANE_ID="$1"
 CMD="$2"
 shift 2
 
-CONFIG_PATH="$(ls "$ROOT/lanes/${LANE_ID}"*/lane.yaml 2>/dev/null | head -n1)"
+CONFIG_PATH="$(ls "$ROOT/lanes/${LANE_ID}"*/lane_en.yaml 2>/dev/null | head -n1)"
+if [[ -z "${CONFIG_PATH}" ]]; then
+  CONFIG_PATH="$(ls "$ROOT/lanes/${LANE_ID}"*/lane_en.yaml 2>/dev/null | head -n1)"
+fi
 if [[ -z "${CONFIG_PATH}" ]]; then
   echo "ERROR: lane config not found for ${LANE_ID}" >&2
   exit 1
@@ -197,7 +200,7 @@ chmod +x dino-ds dino-ds-bin
 
 1. They **must** have Ollama installed and the required model pulled.
 2. They only edit:
-   - `lanes/**/lane.yaml`
+   - `lanes/**/lane_en.yaml` and `lanes/**/lane_<lang>.yaml`
    - `prompts/teacher/lane_XX_teacher_system_prompt.txt`
    - `prompts/system/dino_system_prompt.txt` (if allowed)
 3. Run from package root:

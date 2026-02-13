@@ -26,4 +26,4 @@ python -m pip install -e . >/dev/null
 
 echo "OK: venv ready."
 echo "Run: ./scripts/run.sh --version"
-echo "Run: ./scripts/run.sh validate --schema lane --config path/to/lane.yaml"
+echo "Run: ./scripts/run.sh validate --schema lane --config path/to/lane_en.yaml"

@@ -1,0 +1,344 @@
+lane_id: "lane_20_continuity_execution"
+wave: "wave0"
+target_base: "dino_qwen4b"
+source_type: "local"
+
+# template_expand lanes do not require source files
+sources: []
+
+# how many rows to build (can be overridden by --limit)
+count_target: 1177
+# REQUIRED PCT fields: keep these in the human-facing lane configs
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: "use_continuity"
+  flow_state: "none"
+  history_scope: "thread_only"
+  representation_choice: "plain_text"
+  safety_tag: "safe"
+
+  system_prompt_id: "dino.system.v1"
+# forward-compat placeholders
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators: []
+transform_pipeline: []
+
+generation_mode: "template_expand"
+system_prompt_path: prompts/system/dino_system_prompt.txt
+
+
+output_dir: out_runs/colleague_test
+
+teacher_runtime:
+  sample_percent: 5
+  enabled: false
+  provider: ollama
+  ollama_host: "http://127.0.0.1:11434"
+  model: "dino-pro-7b"
+  policy: structure_only
+  on_missing_evidence: abstain
+  system_prompt_path: prompts/teacher/lane_20_teacher_system_prompt.txt
+
+
+
+
+  timeout_s: 150
+  keepalive: "5m"
+# similarity/dedupe controls (tune per-lane)
+similarity:
+  max_token_overlap_ratio: 0.3
+  ignore_stopwords: true
+  ignore_tokens:
+    - "dino"
+    - "ai"
+    - "assistant"
+    - "im"
+    - "i'm"
+    - "earlier"
+    - "before"
+    - "previous"
+    - "last"
+    - "time"
+    - "continuity"
+    - "thread"
+    - "context"
+    - "next"
+    - "step"
+  ngram: 2
+
+template_expand:
+  seed: 0
+  count_target: 1177
+  max_attempts: 500000
+  attempts_per_row: 400
+
+  slot_banks:
+    # Core labels
+    language: ["it"]
+    mode: ["conversation"]
+    tone:
+      - "friendly"
+      - "family"
+      - "best_friend"
+      - "professional"
+      - "serious"
+      - "friendly"
+      - "family"
+    continuity_choice:
+      - "use_continuity"
+      - "use_continuity"
+      - "use_continuity"
+      - "use_continuity"
+      - "use_continuity"
+      - "suppress_continuity"
+    intent_family: ["content_generation", "decision_support", "content_generation", "content_generation"]
+    intent_subtype:
+      - "emotional_support"
+      - "check_in"
+      - "plan_followup"
+      - "accountability_support"
+      - "reassurance_with_action"
+      - "continuity_followup"
+
+    # Prior context slots (fictional/abstract to avoid knowledge contamination)
+    previous_topic:
+      - "that presentation"
+      - "the boundary message"
+      - "the study plan"
+      - "the weekly schedule"
+      - "the tough conversation"
+      - "the habit reset"
+      - "the planning system"
+      - "the draft you were sending"
+      - "the decision you were stuck on"
+      - "the routine you were rebuilding"
+      - "the messy to-do list"
+      - "the project outline"
+      - "the note structure"
+      - "the focus blocks"
+      - "the practice plan"
+    prior_emotion:
+      - "overwhelmed"
+      - "anxious"
+      - "stuck"
+      - "discouraged"
+      - "frustrated"
+      - "drained"
+      - "embarrassed"
+      - "uncertain"
+      - "scattered"
+      - "tense"
+      - "guilty"
+      - "restless"
+      - "flat"
+      - "pressured"
+      - "behind"
+    previous_goal:
+      - "feel more steady"
+      - "move forward"
+      - "get unstuck"
+      - "send the message"
+      - "finish the plan"
+      - "keep it small"
+      - "reduce the stress"
+      - "make a clear decision"
+      - "stay consistent"
+      - "feel less scattered"
+      - "protect your focus"
+      - "avoid overthinking"
+      - "land the point"
+      - "keep momentum"
+      - "trust yourself a bit more"
+    previous_blocker:
+      - "overthinking"
+      - "fear of judgment"
+      - "too many options"
+      - "low energy"
+      - "unclear priorities"
+      - "perfectionism"
+      - "avoidance"
+      - "context switching"
+      - "second-guessing"
+      - "a noisy inbox"
+      - "a tense thread"
+      - "too much scope"
+      - "a messy start"
+      - "guilt about slowing down"
+      - "not knowing the next step"
+
+    previous_action:
+      - "drafted a short outline"
+      - "sent a smaller version"
+      - "set a 20-minute focus block"
+      - "made a tiny checklist"
+      - "wrote the first two lines"
+      - "picked one priority"
+      - "cut the scope in half"
+      - "asked for clarification"
+      - "paused and reset"
+      - "made a rough draft"
+      - "chose a safe default"
+      - "scheduled a short review"
+      - "named the constraint"
+      - "made the next step explicit"
+      - "did a quick pass"
+    progress_outcome:
+      - "it helped a little"
+      - "it worked for a moment"
+      - "it got me partway there"
+      - "I still feel stuck"
+      - "I slid back again"
+      - "it felt better, then messy"
+      - "it reduced the noise"
+      - "it made things clearer"
+      - "it was harder than expected"
+      - "I avoided it again"
+      - "it helped me start"
+      - "I got a small win"
+      - "I got some momentum"
+      - "I lost momentum"
+      - "I need a simpler version"
+    small_win:
+      - "you started"
+      - "you showed up"
+      - "you made it smaller"
+      - "you made a decision"
+      - "you tried the first step"
+      - "you did the hard part"
+      - "you asked for help"
+      - "you created a foothold"
+      - "you reduced the scope"
+      - "you kept it honest"
+
+    next_need:
+      - "pick the next step"
+      - "tighten the plan"
+      - "rewrite it more clearly"
+      - "reset it without drama"
+      - "make it easier to follow"
+      - "decide what to drop"
+      - "choose a safe default"
+      - "turn it into one action"
+      - "stay consistent this week"
+      - "keep the tone steady"
+      - "make it decision-ready"
+      - "keep it small and doable"
+
+    continuity_hook:
+      - "About what we discussed earlier"
+      - "Picking up from before"
+      - "Following up on that"
+      - "Still on that same thread"
+      - "Continuing from earlier"
+      - "Going back to that"
+      - "On the earlier plan"
+      - "About the thing we just worked on"
+      - "Back to that topic"
+      - "Quick follow-up on earlier"
+
+    # Prior-turn encoding (multi-turn format aligned with lanes 03/04/17/19)
+    previous_user_line:
+      - "Earlier I said I felt {prior_emotion} about {previous_topic}, and I wanted to {previous_goal}."
+      - "We talked about {previous_topic}. I felt {prior_emotion} and the blocker was {previous_blocker}."
+      - "I was feeling {prior_emotion} about {previous_topic}. The goal was to {previous_goal}, but {previous_blocker} got in the way."
+      - "The earlier topic was {previous_topic}. I felt {prior_emotion} and wanted to {previous_goal}."
+      - "Before, I said {previous_topic} was making me feel {prior_emotion}. I was trying to {previous_goal}."
+      - "I told you I felt {prior_emotion} about {previous_topic}, and that {previous_blocker} was slowing me down."
+    previous_assistant_line:
+      - "I said we would keep it small, focus on one step, and reduce extra noise."
+      - "I suggested keeping the scope tight and choosing one next move."
+      - "I encouraged you to pick one priority and make the next action explicit."
+      - "I said we would aim for clarity first and keep it doable."
+      - "I suggested a small, reversible step to create momentum."
+      - "I said we would keep it steady and avoid overcomplicating it."
+
+    continuity_followup:
+      - "{continuity_hook}, I tried {previous_action} and {progress_outcome}. Can you help me {next_need}?"
+      - "{continuity_hook} - I did {previous_action}, but {progress_outcome}. I want to {next_need}."
+      - "{continuity_hook}. I attempted {previous_action} and {progress_outcome}. Help me {next_need}."
+      - "{continuity_hook}, I tried the earlier plan: {previous_action}. Result: {progress_outcome}. What now?"
+      - "{continuity_hook}. I remember the goal was to {previous_goal}. I tried {previous_action} and {progress_outcome}."
+      - "{continuity_hook}. I did {previous_action}; {progress_outcome}. Please help me {next_need}."
+
+    continuity_context:
+      - "Thread:\nUser: {previous_user_line}\nAssistant: {previous_assistant_line}\nUser: {continuity_followup}"
+      - "Conversation so far:\nUser: {previous_user_line}\nAssistant: {previous_assistant_line}\nUser: {continuity_followup}"
+      - "Context:\nUser: {previous_user_line}\nAssistant: {previous_assistant_line}\nUser: {continuity_followup}"
+      - "U: {previous_user_line}\nA: {previous_assistant_line}\nU: {continuity_followup}"
+
+    # A few single-turn follow-ups to keep variety while still referencing prior context
+    single_turn_followup:
+      - "{continuity_hook}, I am still feeling {prior_emotion} about {previous_topic}. I tried {previous_action} and {progress_outcome}."
+      - "{continuity_hook}. The earlier goal was to {previous_goal}. I did {previous_action}, but {progress_outcome}."
+      - "Following up: I tried {previous_action} for {previous_topic}. {progress_outcome}. Can you help me {next_need}?"
+      - "About earlier: {previous_topic} still feels {prior_emotion}. I tried {previous_action} and {progress_outcome}."
+
+    user_message:
+      - "{continuity_context}"
+      - "{continuity_context}"
+      - "{continuity_context}"
+      - "{continuity_context}"
+      - "{single_turn_followup}"
+      - "{single_turn_followup}"
+
+    # Friendly continuity execution responses: explicit callback + support + one doable step
+    callback_line:
+      - "Earlier you said you felt {prior_emotion} about {previous_topic}, and the goal was to {previous_goal}."
+      - "Last time, you were feeling {prior_emotion} around {previous_topic}, with {previous_blocker} getting in the way."
+      - "You mentioned {previous_topic} was making you feel {prior_emotion}, and you were trying to {previous_goal}."
+      - "From the earlier thread: {previous_topic} + feeling {prior_emotion}, with a blocker of {previous_blocker}."
+    validation_line:
+      - "That makes sense, especially after you tried something already."
+      - "It is normal for it to feel wobbly after a first attempt."
+      - "You are not failing here; this is what iteration looks like."
+      - "Given the blocker, your progress still counts."
+      - "The fact that you tried is a real signal, not noise."
+      - "It is okay that it did not click right away."
+    warmth_line:
+      - "I am with you on this."
+      - "We can keep this gentle and clear."
+      - "You do not have to do it perfectly to move forward."
+      - "We can make this feel lighter without losing the point."
+      - "Let us keep this kind and practical."
+      - "You are allowed to take the small win."
+    micro_step:
+      - "Choose one tiny next step and do it for 10 minutes."
+      - "Reduce the scope again and pick the smallest useful version."
+      - "Restate the goal in one line, then choose one action that serves it."
+      - "Pick the hardest constraint and make the next move respect it."
+      - "Turn the plan into a single sentence you can act on right now."
+      - "Make the next action obvious and reversible."
+      - "Start with the version you would be willing to ship today."
+      - "Name what you will not do, then do one thing you will."
+      - "Do one pass that optimizes clarity, not completeness."
+      - "Pick one anchor step that creates momentum."
+    question_line:
+      - "Do you want the next step to bias toward speed, clarity, or calm?"
+      - "Should I give you a softer version or a firmer one?"
+      - "Do you want one line you can send, or a short paragraph?"
+      - "What is the one constraint I should protect most right now?"
+      - "Want two options so you can pick quickly?"
+      - "Should we keep continuity tight, or allow a clean reset?"
+
+    assistant_response:
+      - "{callback_line} {validation_line} {warmth_line} Next step: {micro_step} {question_line}"
+      - "{callback_line} {warmth_line} {validation_line} Next step: {micro_step} {question_line}"
+
+  row_template:
+    language: "{language}"
+    mode: "{mode}"
+    tone: "{tone}"
+    continuity_choice: "{continuity_choice}"
+    intent_family: "{intent_family}"
+    intent_subtype: "{intent_subtype}"
+    representation_choice: "plain_text"
+    user_message: "{user_message}"
+    assistant_response: "{assistant_response}"
+
+notes: "Wave0 Lane20 - continuity execution with friendly callbacks, mostly use_continuity labels, and multi-turn encoding"

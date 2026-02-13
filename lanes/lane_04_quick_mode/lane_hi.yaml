@@ -1,0 +1,10917 @@
+lane_id: lane_04_quick_mode
+wave: wave0
+target_base: dino_qwen4b
+source_type: local
+sources: []
+count_target: 1569
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: suppress_continuity
+  flow_state: none
+  history_scope: thread_only
+  representation_choice: plain_text
+  safety_tag: safe
+  system_prompt_id: dino.system.v1
+  mode: quick
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators: []
+transform_pipeline: []
+generation_mode: template_expand
+system_prompt_path: prompts/system/dino_system_prompt.txt
+output_dir: out_runs/colleague_test
+teacher_runtime:
+  sample_percent: 5
+  enabled: false
+  provider: ollama
+  ollama_host: http://127.0.0.1:11434
+  model: dino-pro-7b
+  policy: structure_only
+  on_missing_evidence: abstain
+  system_prompt_path: prompts/teacher/lane_04_teacher_system_prompt.txt
+  timeout_s: 150
+  keepalive: 5m
+similarity:
+  max_token_overlap_ratio: 0.3
+  text_field: assistant
+  ignore_stopwords: false
+  ngram: 1
+template_expand:
+  seed: 101
+  count_target: 1569
+  max_attempts: 8000000
+  attempts_per_row: 2000
+  fail_if_underfilled: true
+  expand_dict_slots:
+  - tone_case
+  - turn_case
+  - render_case
+  slot_banks:
+    language:
+    - hi
+    mode:
+    - quick
+    tone_case:
+    - tone: professional
+      tone_style: स्पष्ट और पेशेवर
+    - tone: best_friend
+      tone_style: सीधा लेकिन साथ देने वाला
+    - tone: family
+      tone_style: नरम और खयाल रखने वाला
+    - tone: serious
+      tone_style: शांत और सीधा
+    - tone: friendly
+      tone_style: गरमजोशी भरा और सहज
+    emote6:
+    - neutral
+    continuity_choice:
+    - suppress_continuity
+    intent_family:
+    - qa_general
+    - planning
+    - communication
+    - decision_support
+    - content_generation
+    intent_subtype:
+    - quick_advice
+    - mini_checklist
+    - quick_comparison
+    - short_rewrite
+    - priority_triage
+    - clarify_request
+    - quick_summary
+    - next_step
+    audience:
+    - मेरे सहकर्मी
+    - मेरी मैनेजर
+    - टीम के साथी
+    - क्लाइंट
+    - मेरी दोस्त
+    - मेरे भाई
+    - मेरे पार्टनर
+    - मेरे रूममेट
+    - प्रोफेसर
+    - ग्रुप चैट
+    medium:
+    - ईमेल
+    - चैट
+    - टेक्स्ट मैसेज
+    - मीटिंग फॉलो-अप
+    - प्रोजेक्ट अपडेट
+    - छोटी नोट
+    - स्टेटस मैसेज
+    - रिव्यू कमेंट
+    situation:
+    - देर रात संदेश
+    - जिम्मेदारी स्पष्ट न होना
+    - आखिरी समय के अनुरोध
+    - डेडलाइन मिस होना
+    - स्कोप बढ़ते जाना
+    - उलझी हुई निर्देश
+    - तनावपूर्ण थ्रेड
+    - बहुत ज्यादा मीटिंग
+    - धीमे जवाब
+    - बार-बार रीवर्क
+    - कठोर संदेश
+    - गलतफहमी
+    - बुरा लगा फीडबैक
+    - ऐसा अनुरोध जो मैं नहीं ले सकता
+    - बार-बार बदलती योजना
+    - शेड्यूल टकराव
+    user_goal:
+    - स्पष्ट सीमा तय करना
+    - ज्यादा झुके बिना माफी मांगना
+    - सीधा फीडबैक देना
+    - विनम्रता से मना करना
+    - स्पष्टता मांगना
+    - टोन को शांत करना
+    - दबाव डाले बिना फॉलो-अप करना
+    - गलतफहमी सुधारना
+    - उम्मीदें रीसेट करना
+    - व्यवहार में बदलाव मांगना
+    constraint:
+    - संक्षिप्त रखना
+    - दृढ़ लेकिन सम्मानजनक रहना
+    - नरम लेकिन स्पष्ट रहना
+    - दोषारोपण से बचना
+    - पैसिव-अग्रेसिव भाषा से बचना
+    - तथ्यों पर टिके रहना
+    - आत्मविश्वासी सुना
+    - शांत सुना
+    - सरल भाषा इस्तेमाल करना
+    desired_outcome:
+    - रिश्ता सुरक्षित रखना
+    - अगले कदमों पर सहमति लेना
+    - भ्रम कम करना
+    - प्राथमिकताएं संरेखित करना
+    - बातचीत रचनात्मक रखना
+    - दोबारा तनाव बढ़ने से रोकना
+    - निर्णय स्पष्ट करना
+    - दोहराने योग्य नियम बनाना
+    - काम को आगे बढ़ाना
+    ask_style:
+    - इसे ड्राफ्ट करने में मदद करो।
+    - मेरी लाइन दोबारा लिखो।
+    - भेजने लायक संस्करण दो।
+    - बताओ क्या कहना चाहिए।
+    - दृढ़ता के दो अलग स्तर के विकल्प दो।
+    - ठंडा लगे बिना असरदार बनाओ।
+    - स्पष्ट और बिना ड्रामा के बनाओ।
+    - छोटा और उपयोगी रखो।
+    raw_line:
+    - '{audience}; {situation}; {medium}. {change_request}; {desired_outcome}; {constraint}.'
+    - '{user_goal}; {audience}; {medium}. {change_request}; {desired_outcome}; {constraint}.'
+    - '{situation}; {audience}; {constraint}. {change_request}; {desired_outcome}; {medium}.'
+    - '{audience}; {medium}; {constraint}. {change_request}; {desired_outcome}; {situation}.'
+    - '{desired_outcome}; {constraint}; {audience}. {change_request}; {situation}; {medium}.'
+    - '{change_request}; {desired_outcome}; {constraint}. {audience}; {situation}; {medium}.'
+    - '{situation}; {change_request}; {desired_outcome}. {audience}; {medium}; {constraint}.'
+    - '{audience}; {user_goal}; {constraint}. {change_request}; {desired_outcome}; {medium}.'
+    - '{medium}; {situation}; {constraint}. {change_request}; {desired_outcome}; {audience}.'
+    - '{desired_outcome}; {change_request}; {audience}. {situation}; {medium}; {constraint}.'
+    - '{audience}; {situation}; {user_goal}. {change_request}; {desired_outcome}; {constraint}.'
+    - '{medium}; {audience}; {user_goal}. {change_request}; {desired_outcome}; {constraint}.'
+    - '{constraint}; {situation}; {audience}. {change_request}; {desired_outcome}; {medium}.'
+    - '{desired_outcome}; {user_goal}; {audience}. {change_request}; {situation}; {constraint}.'
+    - '{situation}; {medium}; {audience}. {change_request}; {desired_outcome}; {constraint}.'
+    - '{user_goal}; {constraint}; {medium}. {change_request}; {desired_outcome}; {audience}.'
+    - '{audience}; {constraint}; {desired_outcome}. {change_request}; {situation}; {medium}.'
+    - '{medium}; {desired_outcome}; {audience}. {change_request}; {situation}; {constraint}.'
+    - '{situation}; {user_goal}; {audience}. {change_request}; {desired_outcome}; {medium}.'
+    - '{constraint}; {audience}; {medium}. {change_request}; {desired_outcome}; {situation}.'
+    context_line:
+    - यह इस हफ्ते तीन बार हो चुका है।
+    - मैं इसे पहले भी एक बार उठा चुका हूँ।
+    - इससे पूरे प्रोजेक्ट की गति धीमी हो रही है।
+    - मैं इसे बिना ड्रामा के सुलझाना चाहता हूँ।
+    - मैं सहयोग अच्छा रखना चाहता हूँ।
+    - मुझे आज भेजने लायक वर्जन चाहिए।
+    - मुझे डर है कि मैं रूखा न लगूं।
+    - यह {medium} के लिए उपयुक्त होना चाहिए।
+    - '{situation}.'
+    - '{medium}; {constraint}.'
+    - '{audience}; {situation}.'
+    - '{constraint}; {change_request}.'
+    - '{audience}; {situation}; {constraint}.'
+    user_frame:
+    - '{ask_style} मुझे {audience} के साथ {situation} पर {user_goal} करना है, {medium} में। टोन {tone_style} रखो।'
+    - '{ask_style} यह {audience} के साथ {situation} के बारे में है। मैं {user_goal} करना चाहता हूँ और टोन {tone_style} रखना चाहता हूँ।'
+    - '{ask_style} मैं {situation} के संदर्भ में {user_goal} करने की कोशिश कर रहा हूँ। यह {audience} के लिए {medium} में है और {tone_style} लगना चाहिए।'
+    - '{ask_style} विषय: {situation}। मुझे {audience} को {medium} के जरिए {user_goal} के लिए संदेश चाहिए, शैली {tone_style} हो।'
+    assistant_open:
+    - '{context_line}'
+    - '{context_line_b}'
+    - '{situation}.'
+    - '{audience}; {medium}.'
+    - '{desired_outcome}; {constraint}.'
+    - '{user_goal}; {change_request}.'
+    - 'मुख्य बिंदु: {desired_outcome}.'
+    - 'मुख्य बिंदु: {constraint}.'
+    - '{change_request}.'
+    - '{user_goal}.'
+    assistant_commit:
+    - मैं ड्राफ्ट को {tone_style} रखूंगा और {constraint} का पालन करूंगा।
+    - मैं संदेश को {tone_style} रखूंगा, साथ में {constraint} भी बनाए रखूंगा।
+    - मैं इसे {tone_style} बनाऊंगा और फिर भी कार्रवाई योग्य रखूंगा।
+    - मैं संदेश को ऐसे ढालूंगा कि {tone_style} रहे और ठोस भी लगे।
+    assistant_principle:
+    - मैं दोष नहीं, कार्रवाई और अनुरोध पर ध्यान रखूंगा।
+    - अनुरोध को स्पष्ट और पालन करने लायक रखूंगा।
+    - अनावश्यक घर्षण हटाकर मुख्य बात साफ रखूंगा।
+    - सीमा साफ रखूंगा, बिना शत्रुतापूर्ण लगे।
+    - इसे अगले कदमों से जोड़कर लिखूंगा।
+    draft_prefix:
+    - 'ड्राफ्ट:'
+    - 'इसे ऐसे लिख सकते हैं:'
+    - 'भेजने योग्य संस्करण:'
+    - 'संदेश विकल्प:'
+    change_request:
+    - नए अनुरोध काम के समय के भीतर रखना
+    - शुरू करने से पहले प्राथमिकता और डेडलाइन तय करना
+    - निर्णयों के लिए एक स्पष्ट मालिक तय करना
+    - अत्यावश्यक चीजों को स्पष्ट रूप से चिन्हित करना
+    - परिवर्तनों को एक ही अपडेट में समेटना
+    - बिना छोटी सूचना के री-राइट न करना
+    - कार्यान्वयन से पहले स्कोप लॉक करना
+    - फोकस ब्लॉक में बाधाएं कम करना
+    - अनुरोध को एक साफ वाक्य में रखना
+    - कब काम पूरा माना जाएगा, यह पहले तय करना
+    - हर नए अनुरोध के साथ प्रभाव और प्राथमिकता लिखना
+    - काम शुरू करने से पहले निर्भरता स्पष्ट करना
+    - एक ही विषय पर एक ही अंतिम संस्करण रखना
+    - गैर-जरूरी अपडेट को दिन में एक बार समेटना
+    - हर बदलाव के साथ जिम्मेदार व्यक्ति का नाम लिखना
+    - स्कोप बदलने से पहले समय और संसाधन मिलाना
+    - मसले को एक ठोस उदाहरण के साथ बताना
+    - हैंडऑफ से पहले जरूरी संदर्भ चेकलिस्ट पूरी करना
+    - डेडलाइन बदलने पर कारण और असर साथ बताना
+    - एक ही थ्रेड में निर्णय और अपडेट रखना
+    - जरूरी और गैर-जरूरी काम अलग टैग करना
+    - फीडबैक को जोड़कर एक ही जवाब देना
+    - मध्यम-तत्काल अनुरोधों के लिए तय विंडो रखना
+    - शुरू करने से पहले आउटपुट फॉर्मेट लिखकर पुष्टि करना
+    - काम लेते समय ब्लॉकर पहले साझा करना
+    - नए काम से पहले खुले काम का status तय करना
+    - रीवर्क से पहले इनपुट की पूर्णता जांचना
+    - एक दिन में revision rounds की सीमा तय करना
+    - बैठक के बाद action items तुरंत लिखना
+    - cross-team अनुरोध के लिए एक संयुक्त संपर्क तय करना
+    draft_line_1:
+    - '{situation}.'
+    - '{audience}; {situation}.'
+    - '{medium}; {situation}.'
+    - '{audience}; {medium}; {situation}.'
+    draft_line_2:
+    - '{change_request}; {desired_outcome}.'
+    - '{change_request}; {constraint}.'
+    extra_clause:
+    - अंतिम निर्णय का एक मालिक तय रखें।
+    - डेडलाइन और प्राथमिकता एक ही वाक्य में स्पष्ट करें।
+    - एक ही थ्रेड रखें और अपडेट वहीं दें।
+    - अनुरोध को अगले डिलीवेरेबल से जोड़ें।
+    - क्या बदलेगा और क्या स्थिर रहेगा, साफ बताएं।
+    - सीमा को काम के वास्तविक भार से जोड़ें।
+    - अनुरोध को मापने योग्य रखें।
+    - असर और tradeoff को सरल भाषा में लिखें।
+    - आज लागू होने वाली स्पष्ट कार्रवाई लिखें।
+    - व्यक्ति नहीं, साझा लक्ष्य पर फोकस रखें।
+    - execution शुरू होने के बाद pivot कम रखें।
+    - deep work के लिए यथार्थवादी response window दें।
+    - urgency लेबल स्पष्ट रखें।
+    - rework से पहले complete input अनिवार्य करें।
+    - planning change और execution change अलग रखें।
+    - जवाबदेही के लिए एक decision path रखें।
+    - अगला कदम और owner साफ दिखाई देना चाहिए।
+    - भाषा शांत रहे, दिशा स्पष्ट रहे।
+    - मौजूदा cycle में scope स्थिर रखें।
+    - अस्पष्ट अनुरोध से बचें ताकि follow-up कम हो।
+    - गुणवत्ता बचाने के लिए सीमा जरूरी है।
+    - पहले क्या करना है, यह सामने रखें।
+    - टोन विनम्र रहे, संदेश दृढ़ रहे।
+    - फोकस समय को अनावश्यक रुकावट से बचाएं।
+    extra_clause_b:
+    - अंतिम निर्णय का एक मालिक तय रखें।
+    - डेडलाइन और प्राथमिकता एक ही वाक्य में स्पष्ट करें।
+    - एक ही थ्रेड रखें और अपडेट वहीं दें।
+    - अनुरोध को अगले डिलीवेरेबल से जोड़ें।
+    - क्या बदलेगा और क्या स्थिर रहेगा, साफ बताएं।
+    - सीमा को काम के वास्तविक भार से जोड़ें।
+    - अनुरोध को मापने योग्य रखें।
+    - असर और tradeoff को सरल भाषा में लिखें।
+    - आज लागू होने वाली स्पष्ट कार्रवाई लिखें।
+    - व्यक्ति नहीं, साझा लक्ष्य पर फोकस रखें।
+    - execution शुरू होने के बाद pivot कम रखें।
+    - deep work के लिए यथार्थवादी response window दें।
+    - urgency लेबल स्पष्ट रखें।
+    - rework से पहले complete input अनिवार्य करें।
+    - planning change और execution change अलग रखें।
+    - जवाबदेही के लिए एक decision path रखें।
+    - अगला कदम और owner साफ दिखाई देना चाहिए।
+    - भाषा शांत रहे, दिशा स्पष्ट रहे।
+    - मौजूदा cycle में scope स्थिर रखें।
+    - अस्पष्ट अनुरोध से बचें ताकि follow-up कम हो।
+    - गुणवत्ता बचाने के लिए सीमा जरूरी है।
+    - पहले क्या करना है, यह सामने रखें।
+    - टोन विनम्र रहे, संदेश दृढ़ रहे।
+    - फोकस समय को अनावश्यक रुकावट से बचाएं।
+    context_extra:
+    - '{audience}; {situation}; {medium}.'
+    - '{situation}; {desired_outcome}.'
+    - '{change_request}; {desired_outcome}.'
+    - '{user_goal}; {constraint}.'
+    - '{audience}; {constraint}; {desired_outcome}.'
+    - '{medium}; {constraint}; {situation}.'
+    - '{change_request}; {constraint}.'
+    - '{user_goal}; {desired_outcome}.'
+    - '{situation}; {change_request}; {desired_outcome}.'
+    - '{audience}; {situation}; {constraint}.'
+    - '{medium}; {change_request}; {desired_outcome}.'
+    - '{audience}; {medium}; {desired_outcome}.'
+    - '{focus_a}; {focus_b}.'
+    - '{focus_c}; {focus_d}.'
+    - '{desired_outcome}; {focus_a}.'
+    - '{constraint}; {focus_b}.'
+    - '{user_goal}; {focus_c}.'
+    - '{situation}; {focus_d}.'
+    - '{audience}; {focus_a}; {focus_b}.'
+    - '{medium}; {focus_c}; {focus_d}.'
+    - '{change_request}; {focus_a}; {focus_c}.'
+    - '{desired_outcome}; {focus_b}; {focus_d}.'
+    - '{user_goal}; {focus_a}; {focus_d}.'
+    - '{constraint}; {focus_b}; {focus_c}.'
+    unique_detail:
+    - 'मुख्य बिंदु: {user_goal}; {change_request}; {desired_outcome}.'
+    - 'मुख्य बिंदु: {desired_outcome}; {constraint}; {situation}.'
+    - 'मुख्य बिंदु: {audience}; {medium}; {situation}.'
+    - 'मुख्य बिंदु: {change_request}; {desired_outcome}; {constraint}.'
+    - 'मुख्य बिंदु: {situation}; {user_goal}; {desired_outcome}.'
+    - 'मुख्य बिंदु: {audience}; {desired_outcome}; {constraint}.'
+    - 'मुख्य बिंदु: {medium}; {change_request}; {constraint}.'
+    - 'मुख्य बिंदु: {focus_a}; {focus_b}; {focus_c}.'
+    - 'मुख्य बिंदु: {focus_b}; {focus_c}; {focus_d}.'
+    - 'मुख्य बिंदु: {focus_a}; {focus_c}; {focus_d}.'
+    - 'मुख्य बिंदु: {change_request}; {focus_a}; {focus_b}.'
+    - 'मुख्य बिंदु: {desired_outcome}; {focus_b}; {focus_c}.'
+    - 'मुख्य बिंदु: {constraint}; {focus_c}; {focus_d}.'
+    - 'मुख्य बिंदु: {user_goal}; {focus_a}; {focus_d}.'
+    - 'मुख्य बिंदु: {audience}; {focus_a}; {focus_b}.'
+    - 'मुख्य बिंदु: {medium}; {focus_c}; {focus_d}.'
+    - 'मुख्य बिंदु: {situation}; {focus_a}; {focus_c}.'
+    - 'मुख्य बिंदु: {desired_outcome}; {focus_b}; {focus_d}.'
+    - 'मुख्य बिंदु: {change_request}; {desired_outcome}; {focus_c}.'
+    - 'मुख्य बिंदु: {constraint}; {user_goal}; {focus_d}.'
+    - 'मुख्य बिंदु: {audience}; {change_request}; {focus_a}.'
+    - 'मुख्य बिंदु: {medium}; {desired_outcome}; {focus_b}.'
+    - 'मुख्य बिंदु: {situation}; {constraint}; {focus_c}.'
+    - 'मुख्य बिंदु: {user_goal}; {change_request}; {focus_d}.'
+    diversity_clause:
+    - '{change_request}; {desired_outcome}; {constraint}.'
+    - '{audience}; {medium}; {situation}.'
+    - '{user_goal}; {change_request}; {desired_outcome}.'
+    - '{situation}; {constraint}; {desired_outcome}.'
+    - '{focus_a}; {focus_b}; {focus_c}.'
+    - '{focus_b}; {focus_c}; {focus_d}.'
+    - '{focus_a}; {focus_c}; {focus_d}.'
+    - '{focus_a}; {focus_b}; {focus_d}.'
+    - '{audience}; {change_request}; {focus_a}.'
+    - '{medium}; {desired_outcome}; {focus_b}.'
+    - '{situation}; {constraint}; {focus_c}.'
+    - '{user_goal}; {change_request}; {focus_d}.'
+    - '{desired_outcome}; {constraint}; {focus_a}.'
+    - '{change_request}; {focus_b}; {focus_c}.'
+    - '{audience}; {focus_c}; {focus_d}.'
+    - '{medium}; {focus_a}; {focus_b}.'
+    - '{situation}; {focus_a}; {focus_d}.'
+    - '{user_goal}; {focus_b}; {focus_c}.'
+    - '{constraint}; {focus_c}; {focus_d}.'
+    - '{change_request}; {desired_outcome}; {focus_a}.'
+    - '{audience}; {desired_outcome}; {focus_b}.'
+    - '{medium}; {constraint}; {focus_c}.'
+    - '{situation}; {user_goal}; {focus_d}.'
+    - '{change_request}; {constraint}; {focus_a}.'
+    focus_a:
+    - रिश्ता सुरक्षित रखना
+    - अगले कदमों पर सहमति लेना
+    - भ्रम कम करना
+    - प्राथमिकताएं संरेखित करना
+    - बातचीत रचनात्मक रखना
+    - दोबारा तनाव बढ़ने से रोकना
+    - निर्णय स्पष्ट करना
+    - दोहराने योग्य नियम बनाना
+    - काम को आगे बढ़ाना
+    focus_b:
+    - संक्षिप्त रखना
+    - दृढ़ लेकिन सम्मानजनक रहना
+    - नरम लेकिन स्पष्ट रहना
+    - दोषारोपण से बचना
+    - पैसिव-अग्रेसिव भाषा से बचना
+    - तथ्यों पर टिके रहना
+    - आत्मविश्वासी सुना
+    - शांत सुना
+    - सरल भाषा इस्तेमाल करना
+    focus_c:
+    - नए अनुरोध काम के समय के भीतर रखना
+    - शुरू करने से पहले प्राथमिकता और डेडलाइन तय करना
+    - निर्णयों के लिए एक स्पष्ट मालिक तय करना
+    - अत्यावश्यक चीजों को स्पष्ट रूप से चिन्हित करना
+    - परिवर्तनों को एक ही अपडेट में समेटना
+    - बिना छोटी सूचना के री-राइट न करना
+    - कार्यान्वयन से पहले स्कोप लॉक करना
+    - फोकस ब्लॉक में बाधाएं कम करना
+    - अनुरोध को एक साफ वाक्य में रखना
+    - कब काम पूरा माना जाएगा, यह पहले तय करना
+    focus_d:
+    - देर रात संदेश
+    - जिम्मेदारी स्पष्ट न होना
+    - आखिरी समय के अनुरोध
+    - डेडलाइन मिस होना
+    - स्कोप बढ़ते जाना
+    - उलझी हुई निर्देश
+    - तनावपूर्ण थ्रेड
+    - बहुत ज्यादा मीटिंग
+    - धीमे जवाब
+    - बार-बार रीवर्क
+    - कठोर संदेश
+    - गलतफहमी
+    - बुरा लगा फीडबैक
+    - ऐसा अनुरोध जो मैं नहीं ले सकता
+    - बार-बार बदलती योजना
+    - शेड्यूल टकराव
+    latin_a:
+    - मेरे सहकर्मी
+    - मेरी मैनेजर
+    - टीम के साथी
+    - क्लाइंट
+    - मेरी दोस्त
+    - मेरे भाई
+    - मेरे पार्टनर
+    - मेरे रूममेट
+    - प्रोफेसर
+    - ग्रुप चैट
+    latin_b:
+    - ईमेल
+    - चैट
+    - टेक्स्ट मैसेज
+    - मीटिंग फॉलो-अप
+    - प्रोजेक्ट अपडेट
+    - छोटी नोट
+    - स्टेटस मैसेज
+    - रिव्यू कमेंट
+    latin_c:
+    - स्पष्ट सीमा तय करना
+    - ज्यादा झुके बिना माफी मांगना
+    - सीधा फीडबैक देना
+    - विनम्रता से मना करना
+    - स्पष्टता मांगना
+    - टोन को शांत करना
+    - दबाव डाले बिना फॉलो-अप करना
+    - गलतफहमी सुधारना
+    - उम्मीदें रीसेट करना
+    - व्यवहार में बदलाव मांगना
+    latin_d:
+    - रिश्ता सुरक्षित रखना
+    - अगले कदमों पर सहमति लेना
+    - भ्रम कम करना
+    - प्राथमिकताएं संरेखित करना
+    - बातचीत रचनात्मक रखना
+    - दोबारा तनाव बढ़ने से रोकना
+    - निर्णय स्पष्ट करना
+    - दोहराने योग्य नियम बनाना
+    - काम को आगे बढ़ाना
+    assistant_followup:
+    - आपको नरम संस्करण चाहिए या ज्यादा दृढ़?
+    - क्या {medium} के लिए और छोटा संस्करण दूं?
+    - अगर आप मिली हुई सही लाइन पेस्ट करें, तो मैं और सटीक बना दूंगा।
+    - चाहें तो मैं अलग दृढ़ता वाले दो संस्करण दे सकता हूँ।
+    - इसे और संक्षिप्त चाहिए या ज्यादा सहानुभूतिपूर्ण?
+    - जरूरत हो तो मैं और सीधा संस्करण भी दे सकता हूँ।
+    assistant_response:
+    - '{lead_phrase}: {raw_line}'
+    - '{draft_prefix} {raw_line}'
+    - '{assistant_open} {raw_line}'
+    - '{assistant_commit} {raw_line}'
+    - '{assistant_principle} {raw_line}'
+    - '{raw_line} {change_request}.'
+    - '{raw_line} {change_request}; {constraint}.'
+    - '{raw_line} {detail_line}'
+    - '{lead_phrase}: {raw_line} {assistant_followup}'
+    - '{assistant_open} {raw_line} {assistant_followup}'
+    - '{assistant_commit} {raw_line} {detail_line}'
+    - '{assistant_principle} {raw_line} {extra_clause}'
+    lead_phrase:
+    - शांत सीमा-फ्रेमिंग
+    - शांत संदेश-भाषा
+    - शांत रीसेट-पंक्ति
+    - शांत अनुरोध-वाक्य
+    - शांत अगला-कदम-पंक्ति
+    - शांत सहयोगी-स्वर
+    - शांत स्कोप-लॉक-वाक्य
+    - शांत निर्णय-पुष्टि-वाक्य
+    - स्पष्ट सीमा-फ्रेमिंग
+    - स्पष्ट संदेश-भाषा
+    - स्पष्ट रीसेट-पंक्ति
+    - स्पष्ट अनुरोध-वाक्य
+    - स्पष्ट अगला-कदम-पंक्ति
+    - स्पष्ट सहयोगी-स्वर
+    - स्पष्ट स्कोप-लॉक-वाक्य
+    - स्पष्ट निर्णय-पुष्टि-वाक्य
+    - दृढ़ सीमा-फ्रेमिंग
+    - दृढ़ संदेश-भाषा
+    - दृढ़ रीसेट-पंक्ति
+    - दृढ़ अनुरोध-वाक्य
+    - दृढ़ अगला-कदम-पंक्ति
+    - दृढ़ सहयोगी-स्वर
+    - दृढ़ स्कोप-लॉक-वाक्य
+    - दृढ़ निर्णय-पुष्टि-वाक्य
+    - सौम्य सीमा-फ्रेमिंग
+    - सौम्य संदेश-भाषा
+    - सौम्य रीसेट-पंक्ति
+    - सौम्य अनुरोध-वाक्य
+    - सौम्य अगला-कदम-पंक्ति
+    - सौम्य सहयोगी-स्वर
+    - सौम्य स्कोप-लॉक-वाक्य
+    - सौम्य निर्णय-पुष्टि-वाक्य
+    - व्यावहारिक सीमा-फ्रेमिंग
+    - व्यावहारिक संदेश-भाषा
+    - व्यावहारिक रीसेट-पंक्ति
+    - व्यावहारिक अनुरोध-वाक्य
+    - व्यावहारिक अगला-कदम-पंक्ति
+    - व्यावहारिक सहयोगी-स्वर
+    - व्यावहारिक स्कोप-लॉक-वाक्य
+    - व्यावहारिक निर्णय-पुष्टि-वाक्य
+    - सीधा सीमा-फ्रेमिंग
+    - सीधा संदेश-भाषा
+    - सीधा रीसेट-पंक्ति
+    - सीधा अनुरोध-वाक्य
+    - सीधा अगला-कदम-पंक्ति
+    - सीधा सहयोगी-स्वर
+    - सीधा स्कोप-लॉक-वाक्य
+    - सीधा निर्णय-पुष्टि-वाक्य
+    - सम्मानजनक सीमा-फ्रेमिंग
+    - सम्मानजनक संदेश-भाषा
+    - सम्मानजनक रीसेट-पंक्ति
+    - सम्मानजनक अनुरोध-वाक्य
+    - सम्मानजनक अगला-कदम-पंक्ति
+    - सम्मानजनक सहयोगी-स्वर
+    - सम्मानजनक स्कोप-लॉक-वाक्य
+    - सम्मानजनक निर्णय-पुष्टि-वाक्य
+    - संतुलित सीमा-फ्रेमिंग
+    - संतुलित संदेश-भाषा
+    - संतुलित रीसेट-पंक्ति
+    - संतुलित अनुरोध-वाक्य
+    - संतुलित अगला-कदम-पंक्ति
+    - संतुलित सहयोगी-स्वर
+    - संतुलित स्कोप-लॉक-वाक्य
+    - संतुलित निर्णय-पुष्टि-वाक्य
+    detail_line:
+    - अनुरोध को {desired_outcome} पर केंद्रित रखता है।
+    - भाषा {constraint} बनी रहती है।
+    - सीमा स्पष्ट रहती है और संबंध भी सुरक्षित रहता है।
+    - टोन {tone_style} रहता है और संदेश क्रियान्वित करने योग्य है।
+    - अगला कदम साफ रहता है।
+    - यह दोषारोपण से बचता है और गति बनाए रखता है।
+    - जरूरत हो तो इसे एक वाक्य में छोटा कर सकते हैं।
+    - चाहो तो इसे {medium} के हिसाब से और कस सकते हैं।
+    - अनुरोध विशिष्ट और लागू करने लायक रहता है।
+    - दबाव में भी अर्थ साफ रहता है।
+    - मुख्य बात स्पष्ट रहते हुए भी सहयोगी बनी रहती है।
+    raw_line_b:
+    - देर-रात नया काम न भेजें
+    - शुरुआत से पहले डेडलाइन पुष्टि
+    - बदलता स्कोप योजना बिगाड़ रहा
+    - यह लेने पर दूसरा काम रुकेगा
+    - बिना सूचना री-राइट रोकें
+    - एक स्पष्ट निर्णय-मालिक तय करें
+    - कड़ा संदेश; टोन रीसेट चाहिए
+    - प्राथमिकता-डेडलाइन अस्पष्ट
+    - आज नहीं; कल निष्पादन
+    - बिखरे बदलाव नहीं; एक अपडेट दें
+    - विरोधाभासी निर्देश आ रहे
+    - स्कोप बदला तो डेडलाइन बदले
+    - पहले acceptance criteria दें
+    - फीडबैक लूप से डिलीवरी अटकी
+    - अपडेट के लिए एक चैनल रखें
+    - urgent बनाम wait साफ करें
+    - रात में एक ही revision राउंड
+    - शुरुआत से पहले requirements freeze
+    - पहले प्राथमिकता लॉक; फिर काम
+    - मौजूदा गति टिकाऊ नहीं
+    - focus block में नए task रोकें
+    - नया काम खोलने से पहले पुराना बंद
+    - पहले साफ handoff note दें
+    - टोन नहीं; असली बाधा अस्पष्ट स्कोप
+    raw_line_c:
+    - देर-रात नया काम न भेजें
+    - शुरुआत से पहले डेडलाइन पुष्टि
+    - बदलता स्कोप योजना बिगाड़ रहा
+    - यह लेने पर दूसरा काम रुकेगा
+    - बिना सूचना री-राइट रोकें
+    - एक स्पष्ट निर्णय-मालिक तय करें
+    - कड़ा संदेश; टोन रीसेट चाहिए
+    - प्राथमिकता-डेडलाइन अस्पष्ट
+    - आज नहीं; कल निष्पादन
+    - बिखरे बदलाव नहीं; एक अपडेट दें
+    - विरोधाभासी निर्देश आ रहे
+    - स्कोप बदला तो डेडलाइन बदले
+    - पहले acceptance criteria दें
+    - फीडबैक लूप से डिलीवरी अटकी
+    - अपडेट के लिए एक चैनल रखें
+    - urgent बनाम wait साफ करें
+    - रात में एक ही revision राउंड
+    - शुरुआत से पहले requirements freeze
+    - पहले प्राथमिकता लॉक; फिर काम
+    - मौजूदा गति टिकाऊ नहीं
+    - focus block में नए task रोकें
+    - नया काम खोलने से पहले पुराना बंद
+    - पहले साफ handoff note दें
+    - टोन नहीं; असली बाधा अस्पष्ट स्कोप
+    context_line_b:
+    - यह इस हफ्ते तीन बार हो चुका है।
+    - मैं इसे पहले भी एक बार उठा चुका हूँ।
+    - इससे पूरे प्रोजेक्ट की गति धीमी हो रही है।
+    - मैं इसे बिना ड्रामा के सुलझाना चाहता हूँ।
+    - मैं सहयोग अच्छा रखना चाहता हूँ।
+    - मुझे आज भेजने लायक वर्जन चाहिए।
+    - मुझे डर है कि मैं रूखा न लगूं।
+    - यह {medium} के लिए उपयुक्त होना चाहिए।
+    - '{situation}.'
+    - '{medium}; {constraint}.'
+    - '{audience}; {situation}.'
+    - '{constraint}; {change_request}.'
+    - '{audience}; {situation}; {constraint}.'
+    draft_line_1b:
+    - '{situation}.'
+    - '{audience}; {situation}.'
+    - '{medium}; {situation}.'
+    - '{audience}; {medium}; {situation}.'
+    draft_line_2b:
+    - '{change_request}; {desired_outcome}.'
+    - '{change_request}; {constraint}.'
+    detail_line_b:
+    - अनुरोध को {desired_outcome} पर केंद्रित रखता है।
+    - भाषा {constraint} बनी रहती है।
+    - सीमा स्पष्ट रहती है और संबंध भी सुरक्षित रहता है।
+    - टोन {tone_style} रहता है और संदेश क्रियान्वित करने योग्य है।
+    - अगला कदम साफ रहता है।
+    - यह दोषारोपण से बचता है और गति बनाए रखता है।
+    - जरूरत हो तो इसे एक वाक्य में छोटा कर सकते हैं।
+    - चाहो तो इसे {medium} के हिसाब से और कस सकते हैं।
+    - अनुरोध विशिष्ट और लागू करने लायक रहता है।
+    - दबाव में भी अर्थ साफ रहता है।
+    - मुख्य बात स्पष्ट रहते हुए भी सहयोगी बनी रहती है।
+    assistant_followup_b:
+    - आपको नरम संस्करण चाहिए या ज्यादा दृढ़?
+    - क्या {medium} के लिए और छोटा संस्करण दूं?
+    - अगर आप मिली हुई सही लाइन पेस्ट करें, तो मैं और सटीक बना दूंगा।
+    - चाहें तो मैं अलग दृढ़ता वाले दो संस्करण दे सकता हूँ।
+    - इसे और संक्षिप्त चाहिए या ज्यादा सहानुभूतिपूर्ण?
+    - जरूरत हो तो मैं और सीधा संस्करण भी दे सकता हूँ।
+    nonce_line:
+    - 8bt v3u i6c wyx mej 7yn giv vuo 29m xuo et8 p84 2n7 kze t0t f2j qza 6qf u5w 3qw ywm dht 35c vqr qpa 95t 5if 1yy xq8 mx1
+    - 0aw guv mrk zbt c85 nhm y1n r7q tld vfi z3g 535 rbg tl5 9cc svw 9s2 7gd qua ema 1w7 9ce cs1 0ab 5xq tid zlh m16 3r7 6z6
+    - rbz dsb md5 ecc cwb lh6 b1y cxj xmx wn8 b49 q6r 6ez evb 60j lsc vmq sfi acq p1e ljx 3c5 6rg gk2 tke dnp vl1 til g2e 8cy
+    - v0a r0k lc8 rzk kgp 9ey 4z7 8nz 5ys lxd 42i zgx 0d4 rnl 1z2 47r o8z k7o nr4 ylw wi7 2vd x8d 3k4 2a7 iwr 4g2 lwf pe4 1zj
+    - t2e k7d 60r t6j ld2 dzt tm0 jiw eqp dvz kbn c0m znx 1k2 cyt v6e hiy mbf iz9 yil l5s 5ps bkl k3r vpd cnv vmi mm4 6e9 x07
+    - h4w al2 9ia 2dy 4hd ynp t65 znh mr0 aw2 6l0 l5r xei hc9 ufr lhv i6u aee ht7 vo3 xsp vch cvc ykn elx xkl ycs 65n 6m5 r43
+    - yxh 7b3 jmg 57h psq 05p yse h4a tkl rii 2br 1g9 8ht 2l6 b96 c8s 6v2 rgl 97d pxx a5w hx2 ibg 87c lnv o5n yzr a22 jq3 4l5
+    - 8zu 9tc 4f0 b3z owo k2d 8ep y5g l2o 701 4vc 3ln 1h8 0fv dsn 2c5 0zf pvm ugs q5s z35 1d2 71h vxs du9 yju z72 qke zvg yvc
+    - 26t 7n0 3cs 7lh f8l 60l eum rrv e8b zi6 pzw ln7 zhu b7u v2w hat 7tm d5s mdh ibm a83 foz pii d1w fit tf2 4z5 8v7 wfh aqs
+    - bve 5t1 12d o2h mzc m90 kid yqd 779 cph u42 njc wd3 67j 0no lel x6i 0h7 159 cki 0hl 9o2 o6k uej d2z wu6 rq5 00t to6 5l4
+    - ewz 4ln 6qb 2ve m80 t4q exd bd0 6df xti 4o4 rs4 ovm 0f4 42a 98c w9t uqw d03 9wz b0x yl6 ghu r7k 8zu o2r 20a 08n jy1 y7s
+    - fcv 85e fjg enm 63x nqb 77x a4j 3nq vn0 vr1 3hy 6xl xh4 8ua jii br9 0sd ka4 sqo 1bh ekf 693 717 ri1 zcv jqz fa5 9ai 0if
+    - s34 5j7 h45 4tf b5g 7vo h1z gia jsc pg3 6xa 7ea q8v mor wyg dwe m3a isd hz5 nie qw6 7i3 4f4 bte z5m j04 lp2 0qx bsp ahy
+    - tqy l4n yca rev 10w xcn prj jf8 7gg pzz npj piu 6yb gc2 90l y1d 9va ihf 1je yq3 3z3 paz mbh 1in vww 8ws zdx 3iq ya9 6nx
+    - 4f3 uij lon blh s63 spk dq8 cyn pfn 2w2 k6c 23t mjm 7dt ltn zo7 h1g wml ovy dxo fzl 0n9 7xc 0vu ctk 05t 1kh sa6 wlv civ
+    - 8md p7a tol nhv bwo 2xu ufl okf dau dzu 5ro t7f igb j2l 657 08w mi4 072 yra xaf hl3 uz4 ro2 1vz 15c sqz arz 4sk p5v 3fs
+    - 0jk zcv bm2 ve8 eit pno q3v xsq 2h2 ujd m7r b3v avr pfe u9g zhs 5cd m14 wxe i7h mds 62s ja8 6rl gfy t61 icv suf n8t 2mu
+    - mq8 zyy znm zzb eb1 a1d 3pv zy3 5zd 6s0 ty7 1p6 4j7 i8s cyy waa sl7 zex nq5 wwl azn 79n hp7 k8h gfo njm c2q 3km vdi ue9
+    - vbo g3i b9i hvq yl7 0fd ouc e38 k3n 5ag 6ta u8s uz9 fuq yey zqv zqy 8q0 fgx 0ai me2 v2m ceg xkw i1n 48b vaa rff yjq d0s
+    - ga3 h3c cac vfl ip8 ola op1 0gw c2d t90 ac0 flg w9l y73 kru 61q d66 mcj pt9 2ik l3r pos oet 4ls mh6 w38 obe uqp lsc l4v
+    - ev8 4ck a3r okv a9f 5by nbd aiz jyo 9oq 7vc erz 02h ze7 11e 9bb krf tng 3wz 9mm 8le 3ke 7xm l2j 6zq cud oeu dmc fb4 ovy
+    - hxs dlr 9gu 90n uh1 qrw mcl g9x 1zj pd6 4m9 osb 01l 9hv fl5 nuu 4lr kqq hre se1 0g4 4g2 dbd b48 ce7 j2p 45x xoa f2j ypo
+    - aep w9a i81 uci c0p pbg qfc 2ah 7a8 zha yjj saa gdo pc0 wxc k6o r4d u0z 4yn mbt nby 2tv rbr rmj 5om k8a 5od km1 95k 9cq
+    - tax jcm d8z b3c 3rd fbe 37g r6d v24 iy6 dec 94l 7nc k4p sw3 9u4 hyx f3l 9n0 r8s bfu 1ls wnk 3w2 q52 m12 eo6 c6g qzo d81
+    - kep 39s al8 t40 voq 0p9 uxc shz wqw wj2 uef 67d fc6 4wb yih l47 oyd 2n6 mv1 w3g uv1 xda x80 h4f ouq iqo 38w brv ycz 44u
+    - l3x frr 8sn 72g u8e i7g f80 y6f xus fcz 2f7 bk5 lgx m9q 9ep 6qd osy 8av xqi 8d9 dav mqs vzc wh1 bis wc4 fz1 rou pbr icd
+    - hte 85z am6 ngl av8 j0h n7o 454 kqd 6wu 1d3 rfu 30i 08u 3do dax qci 4iv wbb dbt hyw r39 ufg 4w0 dx7 j67 15p ses cp0 2nh
+    - bvg c5z 8s6 2d6 80u efx 921 lvf pb9 70a 33a xr8 uhw n3w mfr 1rs 9ei 73t g63 mtx nfc r1w ms8 atq cec 6y5 9v6 ty3 g5c d8u
+    - xdb u3j psw yp6 7yu w7f ki3 pgw qfx 0f9 3si j4t pik x40 p10 k30 nmz lur 3te hm5 mzk t1p tne puc lnb 4ou l4p 81k i2w 1in
+    - 5wm us9 oy9 m9m 6h0 xbb 2ns 0rh hdk kkd vuf hwn en0 upf q1t jwf l7y l49 nrh gpy u1m 6c9 y7z k36 0rc itq 6yt c3d sas luz
+    - sat ubt 1nh e5s bkc 865 pxd uy0 agm bjp 1si d9d 8z5 o7v ehh saw nre jv6 tpj k59 3nc 1kd 5ni els hya 0e1 1zh sqj bzm h17
+    - nwd c4s tdi fpa n8z p43 14a ner geq h3g f00 43k ijy 0n0 hm3 93t s3i o84 ajo pns y9z 5go qcm p7t zts fvx 3ui v1w eo6 li7
+    - fmq 8fx mbw dhe hmr jae nva orn p1t 66i xqd uec eq8 5h0 yf1 zb1 dpi lfb lt3 hec nt2 jyw y94 a9z ewe t48 3wr 3k2 unw ms6
+    - sdv ic9 uqk mlz 3el yqe avy ny8 gjz lg7 qds 7yg 0xk c5p uon nh7 oit dhn rlm q27 3zw vrs sl7 lne xyz j0q h65 zd3 dpd 35w
+    - iho 2ig khp r8b kef yf6 2n2 8l3 7mf zv0 dlt nfm eg1 gp6 6ox k40 lso eet plt rmf 55b h2j 69k 5rb l2v hsx 8nv 1sd tmt dc1
+    - jh9 sha 8uz 1pg tky kpj bf7 0r2 ktu 820 xxu 826 gkh 363 oij k94 3e2 hrt mj2 2p1 4kf plz el9 nc7 piv z16 ivo uee m5z h72
+    - s3g 7uq sf6 cl7 bqx uzm 7s2 yt0 k51 r69 p1o 3ln ai9 ll8 run 5ao v6z a47 i6c zgn ruu dpp 892 4zo ekv qa4 39r wrz 84d ydc
+    - q68 8qu ej2 i3n 4zj gel il1 aes lc5 2pu 7ja 2st fkg nmt arx kcp 405 i0b tvg kbg htw 00d jz5 49r n07 td0 kbi 4sm awn nd5
+    - fhh xts 4nx pld vdq b5d yzj 5vm eb4 cwo 4kw cog vz5 hbb xp0 do7 hjp 7y8 hb4 0n2 fl1 oxd xmm zr6 oq6 2wx yd7 ged jog s37
+    - 0do u95 mb1 u5y aaa lob ufa g1x 39u ayi dpo f42 wys xi2 848 2aw pvq os1 tgm 8v3 jhp dv6 k1c kpj dt6 1td kf1 9mr lk4 j5w
+    - cbh yko 93m ock zqu gna sdq l36 rju 6tz j7d 06g xyq wzj qbb dy0 l8s 32c icm rpa 35k k1g 1l3 qie zbd uze tyq ymc e5x ycw
+    - keu ewh os2 hvu v46 uxa lmz vxb i12 95b ws4 0vq 74o lz6 td4 hcb pbz nh7 atq kdt 7u9 v3j 8rn z9d hbi iqh 1ep vov ggr a67
+    - 62t j5j fa7 p41 aex 13z srb foq j13 01k 8pt hrr 3mr l6p bx5 xq9 ke4 ub0 ag0 bev dv1 nxs h3l qms 2fz id9 8m2 90l p9u g6z
+    - 24v udc e1v 500 qfz i2u i0p rqa bvb u4l lsp rdl 65m cct svf txo o2m 35x w67 avj knj 6nn d1n ovk a2p lfq 1eb crb 8fw xoo
+    - uny 3qg xmw k5t tz3 1hv 9to vl3 djs wur 1gx 8fo ooa j0j mcu 9hn e2i xbi q7c 3mx l7c 4j2 zlm 15c r2p zwn dsu 76r rlg w35
+    - 1e8 244 0cq p3h s8i tt9 b6k uv9 ux0 3n5 2of qnm yp3 qcu z29 m6d k2s 2zl 07g 2l2 np4 qbt h87 eaf 5an jn5 qo6 25t rwl x76
+    - udm nd9 tvc cer wjx 2nn aj4 30c 7qp 7cs 67i kp3 wqt upy 64w f4w vo7 aqx w4v cbg id3 lc3 5l3 36r t46 9if bhg snx 5mc 4hz
+    - uki rni ss8 r37 qcw ltl wag v5u vo7 dwd wch cbs 5wg bss 3jc n0g 103 z4f bfs nbz bmi 3ld cq0 01r 2sg a1d 44o eos 5k7 v17
+    - oe5 rbz 9q5 nnz w1h pkg q70 pt1 rfu aai yvr znj hn9 e5d gjo 8ij rhp 7l7 64l fow hks 8zx 6e4 hhl 2ve d6o nml 1jn qlr 9vy
+    - mdr 0vf sd2 nne 4r4 skc ez7 j9h 9sw qdh xxz 24l oin 6v6 at2 vo5 7mr jem c8t 1d0 nee sxa yl9 748 nqd 1m9 cxt rd6 26n sca
+    - t3f p3h mm3 8jg moc to7 zjg c2r y7d nxl pbt d0h end zl7 6rr n29 tzj vag rhm ryw o5m g2o fnt 72v 7rf 4j1 5bf pk1 5jb ai0
+    - yla 7sn 86w ob2 at8 49m qb4 olk fk3 9eo l8i sx8 gtx 8w3 v6r h91 5v3 zk4 xam ixm 6kl j1f jdf tcv mua 1ig 6d5 pu0 z93 9zl
+    - 47x yho 0gv l27 0fn bhx 0lm ank rcv 6ce 0ro ist 8gw g0d k2r 1tt mjd y42 we5 03z hcs 5jd r6j cnr zjc w3m mva 3nq oil zkx
+    - zml t2u mxa qu2 kwj uz5 o6v oht 7dl hlk fdp h0i xwg jdi gei egd q7x imq tmh ez9 39x 7wg 30j 5uw 79q k10 ukb seh a8d 8ae
+    - qrh nbd n8m u27 jbn 8gq c19 vpt 649 ztx jzk 0tt bb8 daz nak xis 6ng jpu fa4 1mq 6xa pvi uoo bbx bhw hax 3d0 ahm f8b 3ex
+    - dd8 e6d s3i w9k 0qf ctv 7ed 16t glj rkx b28 h97 s5k f59 0kn 5jq z29 bay r6v bcs 79h xx6 hvf u7c f1x ksq k0w cb7 4xd 30g
+    - vj0 akk wvm 3y3 f2x s8m t8b vak f4o 8nz xnq hse iv0 bmr 314 rtd ls4 yzg rwa f6n iau l50 bbo z7v gfs oxa 4vq gjt 97k x85
+    - zn2 bb9 5gd fi3 03p i6q wp1 6u1 svw bb5 vxj hb4 009 kob xdn g8v tqm o8h iv8 6dy 3cb 7lu 52v hkh b4j rhn wq9 274 0uo 791
+    - eae 412 e6y o8u uxy c7j 51a h5l 8tx mlq hni ge9 jgr mff yoa 5k8 7pz bb7 1uy m86 dlf uvc bgp kz5 u58 a08 wqu bci pea mfr
+    - xz4 2fu tgk 95e mux ve7 sww x0o gfr gu7 ofp hh5 kxm the nrl txd z0s tux 8ym avz h6l qnw erh l4z aml sld 2hc uoa fji stt
+    - qaz 4wz l40 l0w al4 8lp pmp c1z ene ezh g4u 08z 84b 8ho 6i0 lts w39 4nx r87 6jk zhs 97t uqb n4v 8bp 617 khb 51b a7h o30
+    - 4vm 992 n3t vt9 7cn y3x 99p 4ex umy t2n vu6 h37 ne0 416 u9b ln4 w6u j5h sgq 21o 73n sgh dq7 hva y9k st4 tay zg3 scz 6xd
+    - 0um ckt pu2 xl9 uvp 4wz wed ga2 3c3 awn 4ps 13s qqs we9 aq5 x0a 3fp vj0 ja3 sk7 xd1 a1j pcc 65t uky 9ot 2po 686 w5i 5ls
+    - 1fq rkk aap 60q 1qx yym j98 5ad xtx 976 8yp rp1 6pm r10 mcb 2er vwb ny7 bis uww q2w ecb lpw kwx sfi 975 c5i q62 put 3fu
+    - r11 jfs g17 101 ls5 mbq 0q4 5hi 6jp v6e 01s emo tow uhl trm xqg i96 mue 3yh pq4 e6c gxz ylz c14 3z2 sa8 xmj cf8 x40 ad2
+    - f61 034 txh ixj 2sc p6y p5m m8k aw7 hd2 07e e5q p9d ogx 9mp riz ult 5i3 scu h8z ws7 y6n 3wf eje w3e qru lpx r16 u9b rfs
+    - 88s f7o kmm omh kap qx9 en3 vtu 8ms xfm coo o2p 2k5 4ex 8fk 30c ns2 hz0 88d kqy boj cw8 oey g1x d51 4wz 433 v50 vhs hyy
+    - v3p cpt rc3 ge4 3ba p4f gqq ab8 4ji byh 3rh 8nm 24l yqu 9so f4p ghz h5e cwr x0z e0h n1z 2xt quq m1f 3il m5e 0o3 vx2 acu
+    - d78 awz sgu 2n7 itn 9xz f2g 2vp qli sb1 iw2 pdh sif 7vp dng m8b p1j 5h9 sq0 h6x d57 1mx akk bxf n7v 1wp twf 7qe k3j 1rd
+    - s54 k75 e9w 0h5 fda 0ep sue sh0 ot1 2ws r2z nm7 uxp 76s 8bx tmp r4y e0i cxr na6 h1g lg0 zgt ywm 6qa 3ah uv5 adx q0p php
+    - kpj eqh i1s 2q1 rcx hcz 9u0 sx2 mr7 q1m cm2 rp1 6k4 fdn 7zp ibz s6l duy iwm waj 0io udc hh0 6km 7u4 ckc cvy ejf qg4 k96
+    - 5uc kw1 jci nqt yhy pqw wyy 1xd 2wd 9md g9e vuu dsc 1my z32 khq xvb jvj 4ve 0zh 2p8 474 43s 9kl w9r p05 vzx idh dox 4qs
+    - wyf 093 96r 0k9 6su vfj sh7 k9u 6bm e9v qce vb8 tgg kyu o1l 9yt 1oj 9lr jur hnf l8g ohw t81 3n2 rs2 emm jq6 86e 3v8 l3q
+    - mbn isc mzx r09 i07 fni 0va cnm eit m7q kio mws 01s z9q 99w jsk ol3 0ol zl6 wrr pcz t8a xnt hmd 3ln u89 9on ybr 5be avu
+    - a00 sam 0tv x0a zpl bvi 50t o9j a7u jwp ebb kar 277 13h fza y24 ef8 bl7 xd6 4m2 m2l 24w pxh xub ccj f3f shm d10 ebe gmk
+    - fjh 5x9 8v3 xoh arl tko szx as4 90t ytj xdv ec8 8b0 ogn yzy dvy ujw jyz o4w 4yu u1p 4l1 i0d cwy 7ve lq5 gs0 tgu 8l0 qun
+    - qde wa1 uc4 3bj 6em xhw oej ofz 2kp che m11 csg 9rl oer vg5 972 z5o 6kn 629 x2f hog zeo n99 2ao ohz 9fg 359 wj2 1c8 j6a
+    - 41w mct 3i5 3y2 c8f f6g h9h 9xg hhb 3tn kkq 5rj 3m5 mkd 7l9 256 m6c 471 pvy 4o3 bg4 e7v ero c0d tz2 7pd cbr wi7 ogk vev
+    - r3t ghn 8po lb2 maj ofs 4hc s4x g1z ig1 g8j 4kw 1x3 l20 no2 2ti c54 mms f8r lpz 9bf gfc q23 xei qos 65h y49 fzs xsr 0qs
+    - ya6 k79 0ao k0f c00 3o7 7u5 e96 qfs 5tt l7i z5a ib8 7ke v72 3a3 p93 2xa ehe 1t2 d30 ejj 7z9 ai0 f7y tg7 pcg ptk 6md end
+    - 3j8 0r9 uz3 jq3 xoe vol 1rn 48a 9os n7y 1oz xzs s83 arj 61g ana iqd b3a e9y ss2 eki p2w o60 lod efv i7u 8qw uz1 h5u ndm
+    - 3ac 3ws lwk mbt z29 lhl g4q q5t q6g way yni 3p7 xp9 8pb r3m w25 hep xqe dlv p27 044 l2x 3rq 50i zan jul 7bm a4h tg0 cn1
+    - 2ny 8vr n5j 9yw 6j2 4hn dud x8g jmk idt iqf 8h1 9yp y47 888 5gm h2h z3y jgi jaa uy1 yju nah 5gr sl6 khi 8sh pbt rie h7q
+    - gq8 r9y 5vr cqp k3d cy2 kc9 vf8 aeo ny5 qwm ml2 yx6 2n4 nz8 1f8 zw8 cz6 3ae yq3 m6a cin vpd hqv ytk 7ma j1t 4hz pzv s4z
+    - q4z mtz 3ge 9ja 3fq m1s rte zai p72 pam tlh roc n5b w4h 9rv 9f8 int 7w4 b45 8na 477 kby yi8 ry8 pbf o69 g2l 1l6 6sv gdu
+    - s3x 7ls 23x afe 1wz oa1 9cj b82 f2r t0t wll 7kz e96 4uk 80l 4bi pxz sx8 qo0 rih q35 ugz 0xd j3b o7e n2a h9h 7w9 z9c 6xc
+    - 6a0 1df bxe vmy fqj duj 37o oqa wy2 rw8 5ww pnm xvk 593 338 bg9 3js q74 8rm efd 74x tky cxc sq8 l5a poy njh rfp wfq yep
+    - yiu 9d9 7e0 9pq ybf vs4 5mz v7t b2g 17d s1a lsh fyi yic 0ai by3 ufw ts9 kmk m26 282 7pf 1rg 0e8 cyg 3l2 fbv 8s2 p8f jwi
+    - xve urm y9y egd 8wl j7x 0cy usl 2xo rv5 irc 1fs raq geb kri 6rn v39 px2 9ud y9k k5y jwy rst id3 hru d26 pxv u1h wt1 1j1
+    - yfg i79 ej4 1h4 wy6 0ap 424 lln w2v td0 few 22i x04 e38 115 1yu df3 uc6 nvn bzb 3dk pgm zke 4ri 8rr qzh o7b fcf 40l cq5
+    - 8te bda c42 iav vbh qgs c32 4pz ob2 rzo 54d pcy nh1 gnq 8nq h7f sa2 agt 5zj pxe 8pg 7xx ci4 q7m zre 31v c3c dsq q3t zvo
+    - 0jq q4i hda 8gx mb4 lxc rxo ioh bxs s2o p2g 00f fvx crv ivo jlo m8u cfc e5r pvc 2yl ov9 ukn i1q jff us4 cvp k7d lgh j4u
+    - 6un iew tr3 1v1 2th 9nh buv a37 l00 p07 kci shi orn 25k k84 oaf 694 gwz ixk esr 7dh 6je 5kp d7g ug2 cah 1tb 2b4 h5j 84i
+    - 4lz bg4 6gh ftw sqv kol cq0 kn1 gns o7x 554 o35 m4u fdg j1f 1ib 95j 8c2 uh9 jp1 0jy 7y0 sou v9r sj3 ow7 mky jv7 hlk e30
+    - god wt6 fmk urn wfw 4wz 32p i8j d2m j9t bhz c08 4b2 at3 e2n 7ye n7n 7wl dlk lfl 5qp gy1 2ws yp7 p7s ldt jbb ltp as6 kq4
+    - bjt qno tkg dgp tec pay oz3 cwd 1od 3um d5j 3k3 boz dxn 7hv 3v5 9t5 4g7 mj7 crw sji 24n y9t r3w hg3 fe1 tcr opn dm4 oaa
+    - eex 8mm x7v 2v3 cj3 01e ij2 e5q 8ge 78x ukl 991 wfr jmk oog j8h yp0 54z cmd 3it uzw pwf xft 8ji dgd nt3 4js 0x6 n0i thj
+    - t4r v9z 8cn kcp hhv be9 sdz 7c1 kpd 5nq t16 bm6 88m 380 8zq 0b0 ndk edo 4fd fgd pr4 gv7 oii k4i qo4 oiu u0p st7 una ld9
+    - zgd 3b7 qgz x13 ljl 0ed ne7 ee1 wm6 jd5 sal nsu 60k o65 669 4js 6y5 wan 0d7 0sq fe0 kit 3ft uch c1q 9ke 9ic vrt uwa cj4
+    - kew z99 tc5 qzt qqr 6e1 miv o8s ojw iw4 urt a4a 2n6 53o 1tp 2n8 nvc 26m fzz tix 5i8 lir 4he bc5 k7e abs iav elq 3l5 4wv
+    - l3k 3tx 4dv jvn tv7 bwi vwb 7lk 9aq tiq bwe phh yiu w3f e4m nsz lnr ovr p6q ah6 ae0 skb dne 8vz jbh 4qo llm 4ek vcj vtx
+    - f6d b68 5wt 3el sy3 64a lih 9hj ns1 sjb 95w 8ec w3b ehf x53 8f8 znm 2iu zks xks 53q bev qwp v19 t0u 3k4 8yb ar4 h45 kxv
+    - 9ch 9qx fdd ft6 y79 9jz 60n dtu vz6 784 2j9 2c1 u7n t88 ucn 0kj zhg zea 430 fik 8m0 oks n8g 7pm t0o 39c hfg vce 1bg 11x
+    - xig zog gso crr 12g 17a q7h ju3 i4i fud 7b4 b3u v5v vli nbx t5f jge ipg wib 45h c4a g6t a6a 7t9 vbu fr9 q2e 2rc 4c7 m2e
+    - lwv rkl vyc m2s ub2 t30 x59 l47 w21 jem 2ti xaz z6l h69 3h3 3nz e7j p34 tn6 565 blv 5q3 uo3 me6 9d7 pnq y6t 0bl dm6 rf0
+    - r8a zvp tqs mvt s9n zjh lji eqy 7ej gxh 5pe 92a 6xl kj2 c9z xh5 ej8 93j r4w 8i2 sdi ujf nk3 e25 zru l18 x3d atm voa apl
+    - y38 wuz bvc sfx 4ql pny i2f rbl lzk gqr uog 4wj gst x7p jbk yr4 dut gzo 5ht 6k0 k9c 7lb lt0 kcc nxv g4l qgt yhi nav a3o
+    - 84b zb4 waj utz cin 0n1 jpd bgu whr edy yog a49 5ex gm6 my0 u8v v0z r4h c95 cq0 cy4 8i9 qix a45 w0a tmq u74 3xz s68 rmd
+    - f81 dbz plj y2g 3dc v4p cz0 ahn 4r8 hsi pb6 rcd n8l cc8 0qz r0k t4j 9ro s46 ns9 cgn a9o pp6 lzj id9 hev xeo 75b t6j 0tz
+    - ep8 et8 hqt nur qur cwt pgo a7y efi t5k 0v2 bg5 byy i3i 9of tlv 0pv 2ln xyl oxs u6m s2l 3pw lr5 bdc d4x 8em mk8 h46 9cz
+    - zeo 3n2 i5m v0r 7gk nl4 6mc jdh 7ph 44h sap poi hzq 5jj 6kq 56o xwh xkr hvd 0f7 e3n j0n vua mr3 9kq vrj rge hhq 6rd j22
+    - mcx wvb vek kgm 6ea csy jvx zyp i83 2bq fom 6rg 13c 8gw 83w tfu uo2 ifu r9y qth dks qc0 1w5 63v loa u0x dbz 931 7wc nyn
+    - m4y ynq hl7 a7r jco p3w b4g 7qg wiz n41 4d4 di0 ka2 lsg 1nj onl xs4 m83 mga zg7 bem 1fl s56 lbs ydd bd8 xfn bxj kly 4dn
+    - 9om mcf e04 ds5 wm0 7rk a2o yr2 cbv clr py2 qja 3ky vao 1pb qaa 6ch wap c2p wjc ibq ucy v8k lw7 tl0 udu b6q 3sc 5i5 cko
+    - 8j4 23o f7z tgw 6ro r79 7f0 zi1 73o efz drq txv u13 ozp 0mc zff 5k1 e2a 8l4 7az qr1 ocg 264 ugf l3k i0t rxq v0t 8hw xvj
+    - adg 83x pah mvl udr dwn uox yhz 6xs 7o9 903 aiv wn1 yn9 c6g 7mc 0zc dcq iar 63e smm 877 xmv ma9 t8l w4e 4ts 9vc ysv xlo
+    - qky gqb z1r cwq 1an r0f i4q bkw g5k 7u9 uqf 152 uqt ext nap gd0 60u fme yft zqa qmv 2zf u3e zqt m1g 1qt ufg k7z qlp 2ma
+    - fwm 2ed 47h c2t 4ky zku 86i kcl tb3 1sa qdw 3jn un0 rhx yyb ok9 ib1 pui c58 fpo 7x2 htd wfx m6v xek og6 b00 pbv 2ff zjh
+    - my3 pdw ec6 yci e40 cjm 253 qod gt7 azi zal kua yej 75r qyw c3u ezq 6fd xli rty fke jqd hce 0n3 q37 rco xui 409 lza xgl
+    - 1c0 xxv lyg fcf b5l cam 8s3 4j7 cga tq5 eeh kb3 ubb u7n lrn 7pw joq dhp 3b2 w9m l1y zbq 6ap jyl x9r qdk i6h pxf rps 2tw
+    - uo3 wmb qrl wnm 1n7 e5k re3 ile abk txw ytd 7gg nbr 1tq t2p nq6 8wu onn x7j ee3 xh3 nez x3i 21g 0o6 e2j ks7 7cv nce p62
+    - 8pq 49d 4c1 mci 82w 9ps ivv 49u i2p 1cf ymk p5h v34 lg3 s12 0ki v47 cat 1zo ncw mn7 6v5 hdz 3v0 j77 f6o d4m vzs 0ed u5h
+    - k49 t1j v1w xi7 gix l4j qi2 bbc bti tje 1sj m0i 1m3 mfk 0x4 pk5 zha 2kj nor say kqw stq w9z yvb klf ips oti m30 5gd vet
+    - l58 cfe bmx fjz nar e0d ghx fv0 2df olj mu2 qnt hls vhe ukb va2 z97 gf7 uxw iik rb4 836 qgs l8c i32 d6l w5p 6lx 4s6 s2l
+    - 0tm as0 82j le0 7rp qru 9s1 oa8 0z4 3ov utw vov mom 8o5 35w h1t 0tv w57 l0g g75 zxx ssq 3yk mw7 9az wi1 y7t 4lt 4i3 axn
+    - exf wgn 61m u1t 16z t7x q0u zvd cb6 lml 13y psk lmh 5mg q3s ebn 922 vs0 l0i 0bu 7j6 16i chq q22 gvj h6c k36 76e 8o8 vxz
+    - q51 38q 1s2 l9n nvs d90 ce8 yz8 pvj ztl ph7 knq k1p odz 5mo 6fw zjv 2wh d19 0ct 30u 0jr fil 1g6 22c k0t jna vvz wcs apc
+    - hou k57 req i4s 59f c9b u5o 12z xaa ghy 505 r5z pql 9mv l65 ku2 ask 5ky lfy rae b8p 8tf eml 3x6 ez7 1jb oa6 080 wkp gpf
+    - j0f lpt jtl r8u xcc aeb l05 dvr ddx iwh okr ybp x2c w5j 34x 2q9 1e4 qs3 7bl fwa mx8 ahb yoy 1np kq7 6yf mxy akb az1 z50
+    - blr xhs a1m mhq 8p5 yoz sta amy 16v e69 wfr rpa gt2 djo dch dsg svz g7m nwd 0o9 jl2 84y ili kfv jfd mi9 eus j4d bjm pch
+    - 0sv 3d7 fon 56x vdt nxq wf2 4nx 45h 5r2 kwk aha 3dp 3up ns5 n5k 4ng sh2 jc3 ucd tkl ci4 vve kt9 awj mm0 5f0 mwv jvg wys
+    - c14 n8q yn7 q6g 0jx d05 h4u z4g c5a egs ser cem 5bv rtp pyp crx yyh x4h oia gmg es5 wu7 d71 ole 142 jvj reu a7k zky gg6
+    - xgs 317 26b dst rtv woy qf1 fby k3i jsx wmj d17 0ie 2yd z2v 2yq mnd 15i 9av u8v xjx h0c me5 czn tog ch9 9pc 6v3 nc1 i1e
+    - 50k 6ei 0np ey4 l6t uka m40 cin 3sx 9va sp8 mdb 3dw phv i45 bbn kx1 9zc 7uk 2fe n76 j33 fk3 sz6 2ud pag wku 1zf ybo 1b0
+    - ly4 i3t yf7 9qi grf u11 l8y qdn 0or es3 n6u lar w5k f3r 23r znf qyz 6ly 0pe wuj 327 6sr e3g lqp kas anu yxn doy 89j dgu
+    - u10 upn 8s3 44r 4my jyl sgc ju2 mli 6wq r44 jnh dcw gld odw oj2 rt4 94j xtb opx bjt 3lo wm1 dsz f6v 0ze hyt 9e8 j7y 1la
+    - 43o cp3 l5t q52 rx5 c0c o4a xvn 1kx tz9 8b1 ohm sly 4s6 2qe c0m zcf i68 7qh 20w 9m5 chs up1 8z3 u79 d7h 9g0 xql jd9 39a
+    - 690 ld8 4za ynf cua t7x olu ylc er0 sdw y9u wao 4xv x19 x9m d3p 4j0 2ka sul xdx efc y7s vg7 6az 93z d8y kf6 25t 71l ypr
+    - d33 yar s8y wbp hhz 8ad i05 9jc 19m gus 8k5 sjh k1z ehq 4g6 l2u 112 sf9 xcm 9ss oxb zb4 8mf 1dv e0x 5gl oc2 qal 797 voq
+    - gkm z1x 82l v3y ilp 1nn 8jl hui ygf lhn 0ba iyt 1l3 nz6 d2w 0yc 8q5 9vl xgo 2xs z77 b0k bnq cls fph 38e 9ev n7e 44f s5l
+    - 1l3 l56 ofs sqz c13 asp rkb 8va 2jc qyx 9y6 ydq 9km nt5 dvs vhc vyu 4i8 wi1 m38 0l7 yvc edv l95 ac8 aqu nt4 5e3 59b kk4
+    - lyq tzi 9j4 fjk rg0 b2x 507 39h al5 i4q j2o h7j i7y cjt lw9 fxq 5rk 3rp snu yyf 88g p2b 8ru tn3 3qa 45x fra iko 1v2 gtj
+    - i2p 5x1 pie dse b3r sec niq 35x l9c for o8q ggf 32l cp8 lmu qwa x1x b89 i08 l7l 7bf fnw pad 9xy uqi 3mp tr1 y7z fxp ljv
+    - 72g bl2 djw mcp bh9 xc3 2xu cft mo7 wv0 z59 fp9 rqm t8w 3pa o8i 441 dl0 2yz kgr 2k3 t5e op2 whg pv9 a69 505 c1l 9g6 595
+    - 4nj p9v j7h f29 qbb 56d 3gu 7qb 9r0 euj v1i wvr hkq d0f 3ky 85o qno bws 2b9 fd7 6bd sjd ppk ubo 2ud q1i y5s 8e6 x0a dtp
+    - 42b 7ua 750 zr7 142 tkm b8a b9t z30 599 6pd yjb 9z6 6m7 rfl 94q 29c nk3 c15 u17 bwm emu 96e 08k ef1 ko0 fck 5yk 43b ubs
+    - bn9 in8 tnd zcn rfv ef2 vla 2b4 ok5 qso 1qk bwc 93x 19e 031 xsx 1zi djr k1r 2s9 rhj 56l e3g g85 y3a evb soa 0xv d11 e3p
+    - f0g b7a vn8 5fo ii2 dt0 h62 lq6 dyl c91 aub aex bqi ksu 4ts cew 5i5 xco i93 4p2 aqg kht xlo 9mj q0z fhp 9fz gly 41p 4dv
+    - 0wy 167 cs7 vnv k1s c1w xxp qpr 1cr qur ve5 nxv qws kpm ncn xsk dx5 q7e k6x 0mo vv9 2ai y1h tuw kdn pjs 2er tj5 6f0 u5q
+    - yet g31 8d1 6us u60 ld3 cq9 vqn vd9 5o0 lrb brc rns vb8 kdz kw0 ksm 4j5 dcd 6v3 q7c 9gn irp qrh 2fd 296 wkt dyd fgx a0a
+    - dd1 7cp nh1 5u0 44u yyq ipu exw ie6 nlb ekx 6ku pn1 8xu etb 7ju sby 7u7 daf l0p zsd n35 cl7 sd7 kwh 7br 3f5 sqf fog 6nm
+    - i2o wgw apo ex7 het pin 0aw kgt r0y 9js dc9 ip5 tw6 xge pfe 7g4 9mq v4n koc m9t nc7 lqj fga 4ef rlw c6a hsn ar4 sfr 82h
+    - 5kc jqx o11 g88 7qv pjc kwz k0x kqf esu ysk n8c 0dp 5b6 yx7 v6u 2dq asn xhk lxv o1t b2m ka4 e50 0uh o0f mti dth zku pjx
+    - ete yec 9nu w5u hke 67w twy bes 7oj 7l4 4gi fmo 6xg pi5 dd5 qbp njp 1kt gh2 jgp oe0 i5g 4qa e1p l1r rm3 xfm frf 5g2 1o6
+    - a6a 484 15f ch6 phe 03g xzx v6u ej4 2ju 6qv ve5 jzm 984 l00 atn cae mam qhf q0a rt3 bqy a50 1m7 b3e 7c0 kl5 30h gop 6ay
+    - acn 6m6 r9x qc2 c29 smm 5ib e12 aot tu5 hvi 1om y87 wll 2oe yk9 uxo m8f t5a uyg hrl gkr sh6 e1z pl9 dbi wic 8fd 7yw ydf
+    - i18 mk4 t6n t70 fwn lfo xf4 ysi wqc qij lgk prp rnj hvx 8ey tw3 k12 prt zpc eq8 1g1 sop o9s px3 i21 shx yqn 6gh uzk abl
+    - jct yu0 tna rsg 2f7 hcq g85 niw stq hyb u8x a7u gdl 9tj gvs 1qq x62 eij n87 yhg pxf 1tc 1cb uqc e7a e0d 44o zez jzn hpf
+    - dfx q4g q3u 8d6 x6l ldg fkp pl3 12p wqi vcl xmy b74 q3z dn7 1n7 fqq 961 mlm yco il7 6sh s9t 73u rvk 40b guq 8qc zqq 5nn
+    - 9o1 949 r48 smt g4k s2l inv ptk mid 8xp dix ta8 8rn lyf 0zz sps fs2 zoe 7td 3j6 e8a wvm xaq z0l j7g obe uco atv hfd l88
+    - 6p0 epc uyg f9x bow w20 3j0 wnr oa4 bz5 h9m fgf 7d7 bt8 2td d7t yvs qgt ny0 euz l35 a6t v3a c6q 1ua cro 7hi h1k 2dj s64
+    - kmf rig upt x7i h8x 0ms iwi zas zec 9mv 2qh i8s zxj 5kl 5ix 4i4 u4t fpx e2h n5l ltt p48 9mh l8k adt a7n 33s 1ke cwo dhv
+    - kmf x6h w42 rja lb8 psa g5f hmk zqo vdq 4r3 jmm qc7 8z5 fsr o8d r3b 68d 0a3 l0l fl5 v2b rht x91 2gd ylv 4au z7e tsz hk3
+    - 3ks ata wf8 6ln ozm fyv gwq kmc dg9 qyt vxh 1kq uv4 ov3 wmy i1f v2p cbi ekq yj6 9uf unw wat zdx zg8 nhg 6qg vin vq8 q63
+    - lcs 12m 924 k2m 034 ojz 1nj s5y 71l ayx yl9 hgm qc9 pck 6z1 y2e wfx 0q4 sal 47g xac y2u bnz 8t2 tvc px9 wy1 2id vzv 2fh
+    - dzj xfr 7pt zfy 9xb oyu kxf 1ni ojr 9cv fcx 13i 5i6 ome qsw lf5 2kv g6y v6z e4b r4l g9o j00 7xj 1nk rsp opc bdj ak8 igt
+    - 5fr u44 82p iel 4rz khw ocr u7j l1x 096 q1h kx8 wt2 63o hb4 qun tkh 9ry t7d 7eb n1o 0y5 w8w 1ut w3p 27h fe3 fxu owv nk7
+    - 1mv mqo zkh ct9 0m2 dfa e6n 8kn pzn qts gw0 xmz ld3 e6y mwj 5fx gbb h17 nam y1m mk4 7ui 9gz 7px p8a scc oks tdk pwk 7bx
+    - 8dc r1b 3ka 4pw 07t b7g 4w8 527 9rw 1w6 j0k cu4 qv3 bcf 4fz ax8 k3m zun vcd fsh cot b4u o9i jy9 twp d05 qjn zv2 tba 313
+    - 7fr na6 2kl fll im5 6c1 rdf 59v mdw 0hr pf0 cm4 vd9 k6i kml zjt sat wqu yl9 c1l jet vsz pw3 nri dob owp squ h2d un9 xfm
+    - oqa zxi u7w rtj eye eau nrr gte ibk 4d1 tcb ayl or1 2wj hyd xhl 13x hug xsg iw8 g5p 1or 9pe 4e9 qr2 e99 8kh 7x2 k36 x0o
+    - 0sk bcx mr8 vrb 58i 7u1 hjp fna v89 me4 euf vmv dug ju4 zdk co6 lxl lau 1uh t3k pr4 pax x8g n99 b6c aag z52 w6j gsd m5g
+    - 9py 3dy 28u g1k ndc kiy z0n q7c 9d6 ute gv6 8lm 352 ca0 iig jqf ali ekm tix sbh 23h de8 v8j beb ep5 ja1 khb kc4 qop 8kt
+    - fmw 7go 8cn wfw bsx 66l gd4 q6y s1d r5o 0ur as3 dj0 98o 3b0 2yt vhw w3q 4tt 39h n5u cxe pk1 f1q bkh ag1 cmg fwq 591 nf5
+    - w5d a2s rep abq 5zf cl8 b9f vq0 pmw qyb xdn 98q 7hd zxz l3s 9no 7rr j8q k2c 66i 7ix 3h2 xqy r0f lyc ezl 7s1 uhd 4fm vx4
+    - nhk 6gi cp6 602 gca lgy 0ri 2xj edw 7je 0gi 0a6 rk4 27w hlf emk fvr vzy yjl uwq 1ph ecf mfd yy8 bij yd2 uil awb 384 qpc
+    - dqr fb0 u4g m48 akx 8bn r7e l5n 1dy cud 3sg o2y 8di c8t zlf mkb z1m gs3 7jd jg9 osn mfs q0v vab vgg u2c 4xq vpu poc a7j
+    - zwu twq ldx k9h whe 0bc rpd qwp 892 kq1 prl we3 bi6 zgb tjk k64 y1f 1i7 v25 yf8 9p4 p1p mv9 3p1 inu ycn eti liu xor xk0
+    - stb rh1 5jd er9 czc pm1 39a wqe r3x qxz yny 2oc 5gc quw 3lj auw e3r 39n w7y zlx w3c mz0 pch sef d15 gqu jrp fbq mo7 1c3
+    - ado x0w ozv mt2 ghm hxn kls 7d4 bvm n8z vlm uco idq 6qa tn3 zu9 cc3 h8s 66b txz ebl ik2 aja l9a a45 z8j bg5 3zw 4i8 uih
+    - e1a u45 mfx 3uy 9gh 0bk fop qtw c3w kpo hvt y50 60a 6rp xjx 2j6 2cz dti pe7 ww9 0e2 yv2 19z qvk 49x bu1 zni u4d myc 255
+    - oso 5d2 g8h xlk 57f 6r9 ueg 6sy a31 6dz qe4 6s1 3js wwk eca iak u3f zou dm7 tx1 xty n4x wsq efs ypy 2uu klz 068 rdi jzh
+    - ukk fer xfs cdb w9a d3m idx 17b ti8 qjw 89m 2nm 04d 6p1 hsc uiy 1e0 x3j 88r dwx xp0 6z2 jcg w31 qoo ute xhz 7t4 57t j4m
+    - h8y oxu m8h 1h0 jfg y54 64j 2u2 9zq jma 7ug 5oq e5e d41 uj3 ntn bxf 5st r0f dbq x16 at2 hdg mex 8dy 228 31g d5y 5zh tbs
+    - dba r8o gng urv bra 07f wa5 iho ufy 5co th6 dxl vzu egv r5t 0zj 9ak jn6 ty4 lu1 ygj j1l 1r0 yc8 q0f 9va fk2 gcx g3e 6xi
+    - bex 61i x02 acb cj4 fjz 4eq 1k4 ari dw0 h6q xkq li2 vs5 ul7 70w fkq co1 1o8 qgn elc lw1 0fl e5x 2z5 2n5 lkn qp0 7in 5a6
+    - 6if qdj nod g6h xam s0v 7sr eru kya hpp m4i 38v 9xi nal qch tkt tbc l0v 273 10t 2kx 1xn gfq khe nyd uvv i55 e5b a8u 4g6
+    - i1h 8uy 9jv jw3 tfw al6 9l0 enx ujm 9lx 5mk 53u dql j6s pqd ihk p1h wcu sfr kjr cp2 79g j4g 59q 1u8 rfh ynp 1a1 ugh 3l4
+    - 4mu jkk kag en7 iwr 846 555 l7t 3cl bkl lwc et6 qs1 row xyc ocq rbr b7n akj mm8 3xi 5n3 64w 054 f2j y27 xn7 5ah t3y aa4
+    - skr 3ie y4y 676 iyd 9hb ai5 7en 4id hjq 30c 1yo 7w2 ykf sep ks7 nwq 81h 0lm min l8n 4zt 2nq 4bw 9pl i7t n1p k6a ido ypg
+    - gyy j24 5ob w12 geg qua iwu tjp 5ow a3w jm3 06z oe5 811 k6s ovi of1 12c t8o 9ed um0 kvv 1zd 3rs d4h pwe 4sj ror j51 yyj
+    - xb3 mqc gkh sna qug yfb qlc 2c2 jmh blc jqj 1g8 i63 sr3 eh9 dco nmk vf8 bou 5dr efa e8c d9i vrr fg2 vpt q8c 1je q49 3ey
+    - 9pb k7n w6s fxw 3w3 e26 mb1 r02 9bv 4p8 kjq 00c tm1 k5f tpz sql 9el lxa 5sk 4pr g2e 9er 88t m9g rus 6wn 2xs dcw usb ut8
+    - yx4 3b3 47m 5wl cij pur gwu yb0 ap4 qct 9y9 pqc rmz s52 mev 1oh huj 825 v99 9gw r0q 45s q4d p8h zcl ng4 45o bd7 8lq qcb
+    - qmk dpt lxi qe2 j96 fhy jil ar5 2g6 2vs oyd ugs uu8 pjd kxn asm 7ki pg5 z3f 6q0 t4x scr 0xv fk1 06b wh5 mix e4l 07l arn
+    - hlb 5cd cos ba4 x9t ncn j05 qwc t5y md3 g92 8nv 6xo 5ng oof 9bh xa0 gx0 36o c7i ifd u1j x1y lvo dlx tli h0t y6y rw5 gcu
+    - odz 5sw 3n6 45w 3fq 6cu 77w 22a 5cd huw 4xh dfw 28j 96n nnr umc rby uib oiz 6px z0a xny cjm sw7 ck6 0iu j9z c97 54p 6ac
+    - tjt 68k 55p 2py 7nm 81r zk2 v46 glq z17 g9k uxp z84 ei2 7vu c1y kro 2n1 4lk 5xg bdr g0p t4g yxi 19p xzq j9j p1i dkt aa3
+    - 91n 6lv fwj qot bcn 67e 21w 6cn wa3 6ts azu lb9 h7k l6v 1x9 s9b lyq 0ts 0gb hqq tv2 7re jka mex vp8 xhk ncg ozu f2v luc
+    - njc jee 1bk c4w 7wl sbd bbc 5n3 jlu par 4j9 csx wkp ti6 n2m pop zqv u6g m7m gyz wq6 g1c l0i hw6 xst bbk u19 l3l fd7 hse
+    - v4h 5t2 duh si5 1g5 w00 bwd nvl bv5 y86 yut 91f ae3 bwl ho2 aqa qu8 zew guu enk k17 iy0 7vh q7k kiz hl3 zvy z06 y9m 7zv
+    - nqc j3b 3zn yxg 1ad dyj moz bsw 5os 5y0 u7n irz rzk 0o5 j0m mpi v1c xo5 mpz lvt nln uy2 wuk bwt otc wpv f0p ib9 tt5 9t3
+    - su9 orm 6pw dl2 0x6 5bs rce 7x9 0zg 1g9 w8n wfu 178 gqh 68v 9re idu jwt 7ph ekn 2oo epi lhu u2q p8w reb mfm a1q ofc ex2
+    - h1u nly slr irg zmg zck cqb dej phi eqv 14g skm sgx zt4 pdj gs2 2lo 4gw 4sr 9sl n48 8kz t4s 5sy f08 cap nsd vuo nt7 68g
+    - s06 yz9 qva oe6 t3f 9l3 bwx lpa thy yrl q0v 1g6 n4a nvj wb9 viq mfc aq2 e0f vob bm0 b2c xjl auq g70 wqi 6l7 yyx plt u9k
+    - g7z f21 1mz mh1 rtp t74 8au f07 fgo mn4 cih lw6 niq rvp 2jn tds 4zr lh1 nkg dtk vfu 3ln c72 60o rnx zm5 exf ums 65r jj6
+    - 8zh aq7 cp5 4pa vzn jks ovs pnb xta 7gk 9vz x8w fll bnf tn3 tkh lz6 r2d 1dk 6l3 z9e v6o qh4 8t6 wll emf yni 26p 5u3 rh5
+    - rea b1m q3v lx9 4jj 2g2 p3a q4v xoi juw wp6 n27 bc6 pz4 9fz 3px cph 3ob 3ib uyl nn8 z0b em2 0v4 xx6 bxz elw 3v0 kh3 gpw
+    - dtz 1go 92u ayl 5um 75r td0 qla 4wh eg0 838 gar r3l fvs c3r 1fd mwr 02f if6 3iw xzk eje 7p7 hru vx7 0tk lfh 2x8 0hp 8ar
+    - 4wo h3t 8p6 n4q 4ut jq6 7xp 686 ms2 qff duv slr 1ey c4o 82t a1s goj g04 sm0 a07 gti 5yk x6n ehh 4af rdx 5q3 aho cha pph
+    - dn6 v0b wga 9eb qws y6k x91 rxg snk c1n dir ek4 bym 3m0 8mq 8rn x30 jt1 t6j pkm aq0 zne 66u goq jzj jgv 958 tft cuz gvn
+    - 4pe cd1 1aa 1s1 s0i 50m m7n 23v v6u m2k hf6 o2h yxh 5vk pf5 ypb 328 knb gkj jr5 ub1 d6t gfv mgb ezo plr 6g7 zdq lyu xei
+    - 9a1 zmk 63q w49 gfr zai kin nsv n8n yev 8ry ji9 7rm eq4 o7v v0a ts5 i51 bu6 8g9 pkw 16o puk uzx uqo 5zv lep wue 6se ded
+    - 182 ahy ubg bcf c52 apq crl s8x m32 i3o r2p 5dw tzw dw6 9ec q48 0x6 9cd h9i leo teo cuy 511 ei7 sed 18s g04 svw gs4 wx3
+    - p1c fxk 790 esy 1lr sjr lbe rna 1iu 1vq t3x 71f l9b ud1 m8l cfy wl2 4ok fs1 rx1 w49 ab7 8rd 1bj 13i awf f6x cyt 19j tl2
+    - nl7 kp7 o6h nb3 wfr lqd 3o4 uye thn ab6 4z4 ogf 0op 830 x83 28c fg7 58g j7x shz lq2 am8 g3c wtb 4qh xcg 6b1 who er7 6jy
+    - myk ov9 cv8 xte ipc 8e9 x7m 2sz kbj d41 24a syr xwa kil 6kl jzk b76 ia9 6sc j5d skw df6 614 g20 jb9 bja fw7 bb9 y44 pkh
+    - fxe con wvu cvw e39 cqi lf6 zs4 sji 4x4 dl7 slv ho5 ez9 don x11 2fd i1m jp1 j0o qgf 3c2 cfh dgs oij ffm 98e d13 wpn dyr
+    - hmm 6qs bc6 vt2 8lu jbb vf0 bbx 3b5 50c yl2 jta yk3 act 7m9 qn8 5az 8ad 4qj jsc b2f jxr 1qe lm9 j9q 077 c80 89i ygk vc5
+    - esb q1h 31t q4e mje r35 gd6 3e5 bwy 1px vby 73q rfr c2s 0wv lqp v0y 53t 2vm nwl k69 xhl ke7 jrd 8dg 2qv gjh 3tz df3 1hc
+    - nkg zyi d3m 3w8 128 p0n prz pw1 z4c f6b cno sgm oj4 0h5 yml cwa d59 x11 979 6hs wvx yhi xca zqp gmn ntm pae 2rz ujx yws
+    - 1cy y9t q8q zaw iyy 6sl q51 u6y 7ei 8iu em5 gn2 e6k fwz py8 85y 2be ddq zgo 6gr cud bin wgy wwt sfv 9mz ht9 cyg j3r r79
+    - mdm 4ad b8j fod hry 2ts gfv hmi 3h2 evb brb gln gm2 sdf l6u ozu v4v kgp sfh yvc dok 2v5 h2y scm pbc 14n m1m 7b2 gbn 7nn
+    - nfh ywi c2c awl etx yq2 uuv 4a6 g8x rt2 j7d d6k oxm x3s qg6 ncu qas 9km 4ll llq r1q ofb 553 vib m7e 6gf 6hz ixa mmv ptu
+    - v1n xif 0vi 2fe uhk i8r 99c rbj 0lz umg 7xc or1 gf7 haf q4u bae es8 0fj 9g6 pm5 p5v 00y v4m 56f mjm cq8 g9y zzp zlp icj
+    - f38 y84 yfv og3 ulz od1 d56 3se 0di g8c r7p c7v 40o 5hl 3g7 x0q caz hf2 plr v7v psf 6vc vfk 9b6 dso djj rx4 dt9 8cx vig
+    - 46l a9b gjn pft ebq 6zh ztx 6nl tjp bly qcb tny umu 7lt ba7 7ko 88u vt5 kje str s26 6ei p1k 4nd nep ju5 vwj 7dr jt5 7tm
+    - dwi 0gc 83o tyx m3e a5f i10 xu0 4ld ni4 xgs 9jl k89 8s1 rff nfj bkv 28d jur e57 818 37u 8pz 5c8 8sk 5ef so7 sug y1h 5vo
+    - uwx htp eld vmx z5v ddk ztj qnw ul9 jrz 5l9 wsd edk yov ncm b9e xmd 3dp v6c rt9 nf5 z1n ipk lld k3j 9t2 xyq 9gc xvb 667
+    - g2m qhy 12d 74j x3m tof d80 dpp 794 hjs x84 fpz pbw chf d2i j37 95p b69 ot6 sc1 qtc o46 e9q gbv glt pux 9og xav 5zo 7w5
+    - 8jf flx my9 lq0 zqb o0t dh8 mcf efg m80 34r nje qxb 0gf lvq 11u 9pb qgu 7d8 aa0 21l e1p ryt qbz c0x v5n tpt iwl zj5 iko
+    - pc6 5fe 7bd qyb gp9 2lg ulb ajm 9ba t4m vgh efj lfv n8k 9da obs 9oa z9u 46c bzw 54m tt4 6t1 498 yep pz4 30c hbw re9 znd
+    - q4s t0z nlv 0ez ds9 7ur 1qt 9fn n3g cuz zcv f9z vpc fx2 pgo jla ugp 6c5 v89 37b 88i gd3 7vv vab sot nem hue 9tn 5s6 pg4
+    - pdg 7no 8iu wis 5m8 ga9 3he xzk zjc pno 1by pp5 1j1 459 c5m by0 rcr jml jry bam 0rp aa2 dl6 1kt tgs tum a8r lvj 1va 2nu
+    - q5o r5y krs c7p 9be 6mw 63l 5d4 god z3e vq1 9vx j4n 3bm 2dl 1md kq5 78f y69 7mx o5p 3h4 vci qct 8mv ro8 trf uar 61w cj9
+    - a3l 0q9 w4a n9a 4us hh2 1bz hj3 rss cni vfl xcc gou nhd 0o0 fik o03 yvr p8x f6a 2v6 hvq bmx 34d 5pl 3lz 2wr 5xk yy9 yv3
+    - hqc 33p fe3 5ya m1j jmn m13 ljp s4c 7pt l7f fw2 kwk 1u3 0w3 4pd 78s 5ci tv5 qcq ziw nm0 6he 124 ryi oc3 06k ky4 r9b zsj
+    - kk2 p36 5y5 hil 0hg 6zm kqk h6n 9pz ymy f1k nxk lwf p6r hgg g6w iwm hx7 z0p ess e4v lh4 592 a46 um2 be0 jgq cdb vka 1lw
+    - uj6 8mh f8g f5t 77z 547 rge kwy bco ht0 b19 eel jlr kh0 n03 qe8 fsk s3x ky5 yl6 y41 qy9 9ec rjs ssl 1ry yva zi8 19e pn8
+    - z8d dkm e07 t2v nm6 6sx zi6 hha x3s ltc 0gl mcb 6sz j1r yyu gbl 248 ifz o1r ofx 60c 509 4aj qme 8a5 efu yj3 bzv rrr 5zi
+    - 9sm ffr 5el zwo 5q0 8iq lot 75e ba1 c0c d19 piw h4e i8b ble ef4 8by n2d ri9 zrd ex8 ekn 8cx f3x 9ds s9o zna 6dw v9a z2h
+    - tzo ppy 9qq ppo 2pf 8kv vyn 8qk vat wod 9p0 kb3 rr6 pt6 4vy z05 rmy vbk 2so 4ns 0te 5ut ij8 xr0 unc qno r23 4nj w7p 7v8
+    - 442 dx1 6wn fwa r90 ceu cy8 psu xnt 2e9 wtg 3cf og4 1a7 x3m zrn c4s ot6 jrt bpw 1ha ap9 uxx ap9 ffj 0lf jyo bgf a9m zb4
+    - qjl 2mn b02 j70 6oa kbi v92 b2y 18r fxa f4d e4i f95 jd7 3ze 29q pl5 ryk 4oh qdn 30a 4s2 0zt ym4 3wp boo xht 6wz f2f 57h
+    - 9du 38y cog lk6 jop qat 5r3 y5d 9rc 054 jio znf 2cs 3vl uuu cpp tos qdp rdk brh ws9 bk2 4gw pi3 9s3 ejv d23 9f1 nin y54
+    - rln maw eyx 6ek gqr ufx 9yn brk eqm swb g57 6kz 7be ng3 7tu 0pq qty vbq 1o6 y5g 9y8 dxy 3do rh7 4a4 bot jz8 792 uno hwo
+    - ki6 dsj u0m r31 od5 jm4 jqa 4fg 4qd u8m 24l bu4 m6f sdg r5s hyt 659 0n4 epm rn1 c25 cjd jyf oin 4te ite ovh qfm ft6 07q
+    - jrd 4ak yg2 wmh ew9 m7s r9f 5yx nw2 1bk 0em 41z d2b und 0a9 0og fqb hbw ecn gjf 5g6 ktb 10s lrl g4l 420 f80 sv5 4bf bqc
+    - boy ff6 85q j5j 025 s9s yit il8 drc u4z g6v qjr 37e gdt w5p qsh w7l xp6 n1z fgo fbk t5v dq0 kcg ys1 1fm ijh sty ekx qmi
+    - 2r2 0sd qsf tx9 fzo fyf brk 1i8 7po hoi 7mk 5zj r2n pwx cap mvw 1bw 23c adu 3kx dlf h5r 33m fre kc7 7z9 xfh 71v ppi t26
+    - onr axc tca rye xt3 ju2 2ss v6k 8qt k5t ux0 8bg nl2 t9v og2 cip 5a6 45j p4j ork tth xeg 6uy g70 tvk 402 zby 19x 9n7 cn0
+    - 1ul 9hv ppu amm vy3 ve1 zpr 1ri c1s 3jv ag1 vsb tt2 t2q wj6 sey rb7 4ad 1cq 0bm fmy i7q ksh u00 udr n84 ppm iia n4r v83
+    - lku 185 opd deo u8i k9h 2ll sgp mry pj3 zx4 obe 0p3 4cq 6du 5bq kl1 khr y1c b18 swn lh7 c4q vnv tuv a7d 56k pf9 3ru uwk
+    - vqf v8r 5ja gk2 ayg jk7 chl 66l w38 xu7 vmp 7x0 f8x zqr o9j elf q8s tsv hc4 z0f zmv ij4 of7 v23 ngy 0yt 3kz meq 57b zou
+    - liv 3ge glf tgw tba lw5 kt5 tpl un1 sdo zar la9 5s2 wru q2q dkx rxe aal vrs 9dz 4am omr 9xy 0s8 95v exh sfc ir5 szx f76
+    - yw2 tf8 fxj ljh ino 46s e6j uod sdw lzw qsb wqt 218 w55 tdy h1k jvm ete yt9 7xr 7pi 7ij mhx 5ao y9e h9z 44m 4ll 9mf hld
+    - 56y gt1 jki qrg coc txi zoo ull y5i 1ht bes q35 u1g 6zr 645 oce 7xx x03 6o3 j25 d53 fcz qsj 0v6 0e8 jz6 c8o 7bb 4o4 q6j
+    - lw1 8ns kwb qfr 4lc ok3 vs2 4qv 7v7 aln s2a k3r z4y xej stk x8o 2kq cxe dof ozk 1cj war tzg 4v7 ikq nau 1pa ncq x8h exj
+    - a4s 02c ezr i6w eoe q76 7ex 9ry 0gh 3tj qhs z50 ki0 edn x67 2ld tua wmm 5cq 20a z8y bgh x4v nk4 vw7 2a3 6gi rkp 0yf 8l2
+    - ohe xw6 oiz x3u e6s ru8 mjc cro y12 3p3 a3h xdu 3p3 mr0 nce trn 9ui mhe wtx ok0 blb jcm dws wux ktj 45g xv7 qr3 r0v lsr
+    - cad inp e2c 30v 3m9 ugb fg5 aed 4q3 bkm g2n wsl ms5 wy8 gvq 5sw sqy xzs 3s1 nay 9j8 1v1 o1t 9qz eiw jnf 8r1 dbr 46k me6
+    - lob 822 3ud 9z5 qv9 mhu 86o ych uha zkj j12 pzy 3zb et1 vzl bot 58s v3z 3v3 hf1 x75 ykk wp1 hj7 ugu xqj y74 nt7 4l6 b5b
+    - 0jm l2w izr 2ec qbt 9k6 mcc fga 41u vde d13 ua6 x08 pf2 x76 vpa m2b 7lc 25g tk7 t7q cov mwg wcn kl9 g0g hah 6ph 22w jr2
+    - ew3 adq pb2 2ce kjw 3k3 n8h 59s rbf 5i3 j6l 5vv nol tm3 f0v zw5 kzx ju1 skt c7w xvi yvx oxj b6o 80b 3ky rzf spp 47h qel
+    - 56b 5fq pe6 ir8 gjp vax uop 463 fds zk2 y4q y4z a0r bsj zgp 8l4 4v0 w7y o64 alw 4z2 qnf g0a 4iw 2qb zfu t95 7pz zl7 wji
+    - 9i5 kpu 9hq r3h cjq z23 2lr 4ce 1mz bjg 3dt 1fq guf m91 ach 1qw h62 961 i45 4lf ih3 lw9 sie xh2 r54 3cj 9m0 0v8 34z 0fw
+    - mh5 z0t 0cb ufx s33 2d9 9gu 60f pj9 jgs t9v gw6 7an u1o hk0 mkd 6pn e0j mmb qor 5jt mod j3f tfj gfk 73r 9bt d6l hae hkm
+    - aqx 59k n5p hk7 ner 9uq n8d e7n b0k roi gk1 h08 k1i 037 nn2 v1t gbl 3pr 02c 3nk 8uf 3qq lg8 2yo 1yg v0b iev 290 qg6 ocu
+    - yjv fmo 43u 9mg hpc uoy jgl 9oq rv3 dac wje y64 z6p vmf 734 k8b 7aa byw nhw hnj eob k5v 0co ixn ox9 k9r 18j q97 p3e ivv
+    - 1co wpq 0sw equ elb frc m75 fpb 5sx 7i9 b9e 8k8 jh6 mq1 uwy ybi ts1 fur eu8 39w 8hd 1gs re6 rgr 3n5 1x8 0l4 cbi ps5 7qe
+    - 37f poo hk8 xy4 res x80 met mjs jeo 2so kb1 oeo mea 2cs fmq z02 pl4 yz6 pf7 zpe zhe nld xw2 iyt p13 2dr h99 3f6 98f 8dg
+    - pvs 9u4 e3c 9cd xhd trt v48 dmb bo4 isd wcc fod 9wc 1ro 1hk 1rk tvr ozf m6b ylg vda l5v a13 j0z 358 v94 oc8 rdr krm st7
+    - 7z8 ysu xh3 gd4 8ls 4bp 7km 8jo nku j9n pn2 2y2 oqv pt2 bzl co8 9pb 81g lwn 29u qzk 8jm l7b gp3 fmg odn 3x9 6kc 2zh n6k
+    - dfs id8 fo8 fxs 0lx vso 2dg n10 ox8 32c ijv njy itz l99 mts syg 9dc 4wr 75l o47 ral aoi nzv 5jk 4ut chq hmo gdq pek cz7
+    - 1lt ljx 414 94v m7j u9z iks z25 hd5 2ja o1z qcq kd3 9qv ry7 y0q ekj avp jz3 170 maa 3mx xja tk9 77q 7o4 ztn e78 igb ibd
+    - yl8 4qf wo7 vnb qyc 7xw han 854 sx5 ow2 2i7 5r9 6gv iia 8v9 yes svx ij6 ft2 j1r 1wp pae all 7hi dt7 axm rbc 5uq fyg 76p
+    - hzy z7t 9bg n2j 0ci tcb r53 1ru wpx r1j 5rl lqr ggt p9m vb5 srt nyi hjd i7j rz3 db0 l96 o84 flf ozo u38 pm0 h8o q27 90y
+    - a5y gid ajh r5k ubv t3w a9y 6rw vzw jaf hpn am0 nf1 j0l s9v fzf 78x mfb n6d oo5 4t6 zcl f7e xze 9ba acp 4p3 e2i 9yg 5ng
+    - isw cy5 mj5 tuf g1s 0kk v6f vmm q4e a4u pdi gtu luf 3py 7yt 6a6 t72 y0d aq4 9y6 8un bu2 jqa cy1 w2f 33r q13 dga amf y3w
+    - c8t wu9 qpl qdw r7h x5t bl0 vss 7cl kcm eu1 rjk 6ff j8c hg7 1uy w11 id9 0sz 7h7 wzv gup iyi 9is yt0 igj i2d 9tc 298 tne
+    - vxy d1l 16o n2s w1d lrx vzh 1t2 d41 fsz zla pkx lx2 oqq 86g zb7 7u5 peu aqr acc d1z wml j2l og7 kad 50u 7fd exg phw 3i7
+    - uot tn7 z14 wqb os0 gqf z8f 8td wf4 piw zq9 g8r b47 kyw t6m 955 s8z azz afs g9h qvi fa4 brj peo f4b t5p e9c sbp x8h ko0
+    - s5q 3xm 4o9 mrh rzd 0vy 7k0 akt kfh bp4 85j ups cuq xiy ux2 19p o7u pks y6n q3h dxv 3ps l48 6wn bwh lbe l36 p7o l2y quf
+    - tgd x4s 4h1 5b9 zsu bgo hf5 pcx mfw udy xp0 ypb el5 0o4 etz gw7 7np x21 8ht 6hz mef 39t rdf iur hvm zui 9ce nh2 hw3 82f
+    - 98s wyh gz6 d8m ce8 3l3 m26 vnn hyf q1o j08 9sl 01t tb9 ryg pcn k8l kdv elk 8zh cc1 mxx vlq te2 x55 2y9 l1a ot0 j1z tu5
+    - tpx mer kaw 0lv bhf 0t4 0yf 1go t22 54s 3m2 tuy mot jfc j1n mu9 6jk 5hu 365 73x v2e 2pz 7sw ivo fse uk6 w7i 26q u7k 0ap
+    - fsw ov1 p43 7dx umf 3uf rjk hph rbo q1a khx a9s y8u 0d2 b2d tyj aml 32v la7 316 l4w wcv 2nr d1l 78z ul7 4bu w0i w3b y0n
+    - z9g b6o 7dj t1n 8st tag 1mb 5tc 2uo kk1 scz ofp itd jkw h63 cy5 nqb m9o zub 12n fzf 9c8 dxk pd5 r86 8xn 4l8 u33 0ay bzo
+    - 5l7 u47 ad2 e43 kcv jbl k7z i13 7g3 5dl t5e 5fy dce w16 ha3 wzb 4kj g2l 19v ebi 348 b6i vta p4k 77q fye r43 5hk 5kl 9pe
+    - 15a 1x5 e5u 3zp bkn 3ob asn sbg hiq hzj va1 ker hla 5wl vnd khc pa7 u49 r1q dng 3dy kj5 qnv ho8 iyg iin juv f1f 0t5 04a
+    - fub w4a nca cj2 v1i f27 75h bvs z6d 4jq tan f9f sir 9b1 fht 2cu x5l fj3 bt7 nze tpw 6if 107 ha1 vpp 87d bz5 mem ovt kzb
+    - zmw zlr uvn uxs m4o xin x2a jhy 04q w3e 2i9 sve ohg u5e cwr kjm mst fpv 2xc loa d86 3bh ect 30f inf vak bbb izf iau uo8
+    - j0h 6g3 uoe 4i0 5rk xsj lrq 5po 2v3 w9k ulf ei2 dm0 sz5 2oe toe tdj kof axp c4z 4p0 7oy a9l 85w tq4 wsj dzr of8 gw3 t10
+    - lp2 1jj top xl5 v3p 0u3 hec ceh n2e n4a s2b k53 6j8 lri upq xtr f29 wkt tqx 8hl kkt s88 ack kju gmx 6et btz yut xon dr4
+    - frq b10 qi4 lgp 1eg es8 3pb xbe 1gk ni4 cfe 404 v9s mw1 yq8 ade 6u4 vty 8p8 ily ogq gnh 0j0 ies r19 hwr 82v 2vm kfe 019
+    - kfy 54j bb6 of7 1ie kn6 2hg ovg y0q uii 4w2 00q 7qp l6p 5l1 isb vnf 8c7 c70 g64 uwe b1b mif j0t 1pq 7xj wer 0wx zzg jsa
+    - tzf 2w4 2wu 9y9 8cn tb1 czw wqt bws lub 8y1 vb9 pgb 6eo wgi had ctp 2u5 wea jen hbb 14u el1 rtf fqf 064 6u2 nwu 6x7 hrk
+    - ehf mx3 0oe u97 75t fkn kc2 6sp ekl cc5 3oa zd6 ke8 cyc 947 16g gci fac ydy leq ttk ro8 wb1 s72 pws tp8 xmh 9o3 o8w v90
+    - 699 mc1 nv3 zvv r85 3az evz zrt ax3 2ju vlp mue zfj qe4 mtg 7jf wha z63 g0i 3kx 6tn otv 1nn gv7 42k 1ou j41 2o5 6zs a94
+    - l8b fmd aib l00 knr moi ibv x0g ocm 0gv 0qm cu5 s7m qpu ewo 07c 1pp xct w67 6al pwl rkx auk hhr 7vf 9z6 imy ons 0hs ucg
+    - 8wj 8nb dxs quw i2t spy hjq rc5 quz 3lx rir d2v gg7 uv3 llc f24 prl ffl bpy ut4 ukz lyf xgg ibk ibe nls kp7 xgx 1a9 h74
+    - lb0 tjw au4 e9w xig 9c6 sy5 q32 g6g oek 45m f0l d8y txh 5o3 f17 cef 8kt qsh fpu e66 n0g 4yp hav 1ba q44 oof 6k6 de8 z4z
+    - 2o3 37h 5wf hvf cpe evj six rsc u4b jhd 834 35l o3g 73x 341 6cf 9wm tnh qef 8nc d2l j9c vxg 60f rqa c6x 3xc u2d azi aii
+    - 3h5 j7a owv 3vf 0eh 6k8 tsb 5vv dz3 82r n1a yff zxr nzb 4wv uan j08 a1f l45 jtq 57r yfg 2ec ntz ac7 lc8 lzq fg4 kuc s1p
+    - r0m i97 10e erx 4kp s7m veg ue3 ei0 oye zip s11 hx0 c4h 65y jea nxm vn1 tso nwf x2w b82 pk2 bn5 2qf q0y si3 dbe gwf uiu
+    - shc odg vxh bnm ohf fsj 1bz r98 yog i6o qgr xui e3e cdv tq2 vwp wp1 3ly ndk anl l6w at5 j4l u9i 8ys c79 ha6 tb4 sbd 6pn
+    - jxn 10f jmz 2ev hj6 krd u5u tq5 wht xz6 phi g37 rj4 1pz y1x wuh 3fo 03b 2b8 ljz zcl hpo yjn wnz jhx jvb 4fw 3gd 0om ap3
+    - k4z 67o 0gp 4xg wsp oxp mdw 1or jq1 azt ylh 1ha 7wa j0v 6fk 7ac ugw o5o 8lg 47m 7xf mls hjh 0b8 kb7 5v5 zo1 216 7ib fsr
+    - qrr 0x5 03b bs5 454 8j1 6eq mav 6ik 0sl q2s o0j tlk 61k wdf 1hw pzc 34a qhm 6di s4q ane 4q7 bhe g7i 789 ofs u4d sdv 884
+    - 837 wny ich 1m7 zj3 or7 3lx kbd nhe 084 q3n hup 7zh rs5 00k o6k pfq ke7 0br qyw d7b yu7 u3d 3gl 61j qrc eba jba hkf 54h
+    - t7i uwh mv6 rop xa1 mkh ur8 ns0 7vy c3a bip s2z v1j dde qb4 7e0 ozn b27 zsa rpf lcg cth y8m y9e 29z pgw vkm 7u4 ee8 gnn
+    - np1 d8t kqx xa5 xbc u19 iaz lkb abn w09 b2a jqi e9q eg8 2se 5pw xew 36d lbn zy9 8os yhg h5x vgy e3d 0av 7y9 0yw dq0 99e
+    - 5j4 dgs f5v vvv fvy tdx 2nr vs5 3zo c83 91b s3t oyb 682 vdu s30 085 a7e 6cg rk3 1x3 l54 igf s53 v1f 1xh nw0 7vm izv 06s
+    - u7k dav vaj 91b zx3 wch oal 9n3 nzs eax dv1 lsd 7j0 wbo oh2 i9l 8av 0u4 31m 6oe vov vnw g0u z4j mwa 3or so5 2xf x74 srb
+    - t2w 3mi gs2 an1 z3f fa6 neb xei pfr jb2 nsl 36s 3g9 usd 0os 2qi 4g4 487 tnx 7h6 rpq 49j cfu z3v gdt tdm eix zax j7i yzx
+    - ag0 tz3 t9n ziq t0q wrx tvt xfo 6j1 x7m 3nx avf hct dqq ws9 p60 mz2 fuf i9g gls 203 n9g y1s 72y qy7 phe vit kky 2zi xqm
+    - xex psh tdu p7w e8f 4mk xej hut 31m 2zr fiy 61i 8nm u67 okt k33 f5m txu uwe kdg 25h 1xm pnr ld2 7xs 4h8 39g 7hv wlx vra
+    - 9yf fci pv9 1el m2r d8c 7y2 hxn c7z e80 j6b xrw xdi n66 5xh 7cx kg0 403 qc0 2el cyp hvf eka 6s0 ayi yio ykd zgw uss 8n1
+    - iiw e12 901 7mo nxi xja bz7 ofz yyn c7f 2bb i8h b6p m6u 1s8 u2i 5bl 6a0 n40 pbz q4f j13 f0b qnn ypi wh2 u95 wux 8b5 xnn
+    - 3qi j0k dfm 0c4 jal ie0 9v6 aoh z4y ejy eoi cmz fut m12 bvm 8dh em7 yuz zxi 1zl 0uo k69 0d5 0hj 6uv waf xsu uu7 524 o0u
+    user_template:
+    - '{user_frame}\n{context_line}\nशर्त: {constraint}. परिणाम: {desired_outcome}.\nमूल पंक्ति: {raw_line}'
+    - '{user_frame}\nमूल पंक्ति: {raw_line}\nशर्त: {constraint}. परिणाम: {desired_outcome}.\n{context_line}'
+    - '{user_frame}\nशर्त: {constraint}.\n{context_line}\nपरिणाम: {desired_outcome}.\nमूल पंक्ति: {raw_line}'
+    - '{user_frame}\n{context_line}\nपरिणाम: {desired_outcome}. शर्त: {constraint}.\nमूल पंक्ति: {raw_line}'
+    - '{user_frame}\nमूल पंक्ति: {raw_line}\n{context_line}\nपरिणाम: {desired_outcome}. शर्त: {constraint}.'
+    - '{user_frame}\nशर्त: {constraint}. परिणाम: {desired_outcome}.\n{context_line}'
+    - '{user_frame}\n{context_line}\nशर्त: {constraint}.\nमूल पंक्ति: {raw_line}\nपरिणाम: {desired_outcome}.'
+    - '{user_frame}\nपरिणाम: {desired_outcome}.\nशर्त: {constraint}.\n{context_line}\nमूल पंक्ति: {raw_line}'
+    - देर-रात नया काम न भेजें
+    - शुरुआत से पहले डेडलाइन पुष्टि
+    - बदलता स्कोप योजना बिगाड़ रहा
+    - यह लेने पर दूसरा काम रुकेगा
+    - बिना सूचना री-राइट रोकें
+    - एक स्पष्ट निर्णय-मालिक तय करें
+    - कड़ा संदेश; टोन रीसेट चाहिए
+    - प्राथमिकता-डेडलाइन अस्पष्ट
+    - आज नहीं; कल निष्पादन
+    - बिखरे बदलाव नहीं; एक अपडेट दें
+    - विरोधाभासी निर्देश आ रहे
+    - स्कोप बदला तो डेडलाइन बदले
+    - पहले acceptance criteria दें
+    - फीडबैक लूप से डिलीवरी अटकी
+    - अपडेट के लिए एक चैनल रखें
+    - urgent बनाम wait साफ करें
+    - रात में एक ही revision राउंड
+    - शुरुआत से पहले requirements freeze
+    - पहले प्राथमिकता लॉक; फिर काम
+    - मौजूदा गति टिकाऊ नहीं
+    - focus block में नए task रोकें
+    - नया काम खोलने से पहले पुराना बंद
+    - पहले साफ handoff note दें
+    - टोन नहीं; असली बाधा अस्पष्ट स्कोप
+    - देर-रात नया काम न भेजें इससे रिश्ता सुरक्षित रखना में मदद होगी।
+    - देर-रात नया काम न भेजें इससे अगले कदमों पर सहमति लेना में मदद होगी।
+    - देर-रात नया काम न भेजें इससे भ्रम कम करना में मदद होगी।
+    - देर-रात नया काम न भेजें इससे प्राथमिकताएं संरेखित करना में मदद होगी।
+    - देर-रात नया काम न भेजें इससे बातचीत रचनात्मक रखना में मदद होगी।
+    - देर-रात नया काम न भेजें इससे दोबारा तनाव बढ़ने से रोकना में मदद होगी।
+    - देर-रात नया काम न भेजें इससे निर्णय स्पष्ट करना में मदद होगी।
+    - देर-रात नया काम न भेजें इससे दोहराने योग्य नियम बनाना में मदद होगी।
+    - देर-रात नया काम न भेजें इससे काम को आगे बढ़ाना में मदद होगी।
+    - देर-रात नया काम न भेजें कृपया नए अनुरोध काम के समय के भीतर रखना।
+    - देर-रात नया काम न भेजें कृपया शुरू करने से पहले प्राथमिकता और डेडलाइन तय करना।
+    - देर-रात नया काम न भेजें कृपया निर्णयों के लिए एक स्पष्ट मालिक तय करना।
+    - देर-रात नया काम न भेजें कृपया अत्यावश्यक चीजों को स्पष्ट रूप से चिन्हित करना।
+    - देर-रात नया काम न भेजें कृपया परिवर्तनों को एक ही अपडेट में समेटना।
+    - देर-रात नया काम न भेजें कृपया बिना छोटी सूचना के री-राइट न करना।
+    - देर-रात नया काम न भेजें कृपया कार्यान्वयन से पहले स्कोप लॉक करना।
+    - देर-रात नया काम न भेजें कृपया फोकस ब्लॉक में बाधाएं कम करना।
+    - देर-रात नया काम न भेजें कृपया अनुरोध को एक साफ वाक्य में रखना।
+    - देर-रात नया काम न भेजें कृपया कब काम पूरा माना जाएगा, यह पहले तय करना।
+    - देर-रात नया काम न भेजें कृपया हर नए अनुरोध के साथ प्रभाव और प्राथमिकता लिखना।
+    - देर-रात नया काम न भेजें कृपया काम शुरू करने से पहले निर्भरता स्पष्ट करना।
+    - शुरुआत से पहले डेडलाइन पुष्टि इससे रिश्ता सुरक्षित रखना में मदद होगी।
+    - शुरुआत से पहले डेडलाइन पुष्टि इससे अगले कदमों पर सहमति लेना में मदद होगी।
+    - शुरुआत से पहले डेडलाइन पुष्टि इससे भ्रम कम करना में मदद होगी।
+    - शुरुआत से पहले डेडलाइन पुष्टि इससे प्राथमिकताएं संरेखित करना में मदद होगी।
+    - शुरुआत से पहले डेडलाइन पुष्टि इससे बातचीत रचनात्मक रखना में मदद होगी।
+    - शुरुआत से पहले डेडलाइन पुष्टि इससे दोबारा तनाव बढ़ने से रोकना में मदद होगी।
+    - शुरुआत से पहले डेडलाइन पुष्टि इससे निर्णय स्पष्ट करना में मदद होगी।
+    - शुरुआत से पहले डेडलाइन पुष्टि इससे दोहराने योग्य नियम बनाना में मदद होगी।
+    - शुरुआत से पहले डेडलाइन पुष्टि इससे काम को आगे बढ़ाना में मदद होगी।
+    - शुरुआत से पहले डेडलाइन पुष्टि कृपया नए अनुरोध काम के समय के भीतर रखना।
+    - शुरुआत से पहले डेडलाइन पुष्टि कृपया शुरू करने से पहले प्राथमिकता और डेडलाइन तय करना।
+    - शुरुआत से पहले डेडलाइन पुष्टि कृपया निर्णयों के लिए एक स्पष्ट मालिक तय करना।
+    - शुरुआत से पहले डेडलाइन पुष्टि कृपया अत्यावश्यक चीजों को स्पष्ट रूप से चिन्हित करना।
+    - शुरुआत से पहले डेडलाइन पुष्टि कृपया परिवर्तनों को एक ही अपडेट में समेटना।
+    - शुरुआत से पहले डेडलाइन पुष्टि कृपया बिना छोटी सूचना के री-राइट न करना।
+    - शुरुआत से पहले डेडलाइन पुष्टि कृपया कार्यान्वयन से पहले स्कोप लॉक करना।
+    - शुरुआत से पहले डेडलाइन पुष्टि कृपया फोकस ब्लॉक में बाधाएं कम करना।
+    - शुरुआत से पहले डेडलाइन पुष्टि कृपया अनुरोध को एक साफ वाक्य में रखना।
+    - शुरुआत से पहले डेडलाइन पुष्टि कृपया कब काम पूरा माना जाएगा, यह पहले तय करना।
+    - शुरुआत से पहले डेडलाइन पुष्टि कृपया हर नए अनुरोध के साथ प्रभाव और प्राथमिकता लिखना।
+    - शुरुआत से पहले डेडलाइन पुष्टि कृपया काम शुरू करने से पहले निर्भरता स्पष्ट करना।
+    - बदलता स्कोप योजना बिगाड़ रहा इससे रिश्ता सुरक्षित रखना में मदद होगी।
+    - बदलता स्कोप योजना बिगाड़ रहा इससे अगले कदमों पर सहमति लेना में मदद होगी।
+    - बदलता स्कोप योजना बिगाड़ रहा इससे भ्रम कम करना में मदद होगी।
+    - बदलता स्कोप योजना बिगाड़ रहा इससे प्राथमिकताएं संरेखित करना में मदद होगी।
+    - बदलता स्कोप योजना बिगाड़ रहा इससे बातचीत रचनात्मक रखना में मदद होगी।
+    - बदलता स्कोप योजना बिगाड़ रहा इससे दोबारा तनाव बढ़ने से रोकना में मदद होगी।
+    - बदलता स्कोप योजना बिगाड़ रहा इससे निर्णय स्पष्ट करना में मदद होगी।
+    - बदलता स्कोप योजना बिगाड़ रहा इससे दोहराने योग्य नियम बनाना में मदद होगी।
+    - बदलता स्कोप योजना बिगाड़ रहा इससे काम को आगे बढ़ाना में मदद होगी।
+    - बदलता स्कोप योजना बिगाड़ रहा कृपया नए अनुरोध काम के समय के भीतर रखना।
+    - बदलता स्कोप योजना बिगाड़ रहा कृपया शुरू करने से पहले प्राथमिकता और डेडलाइन तय करना।
+    - बदलता स्कोप योजना बिगाड़ रहा कृपया निर्णयों के लिए एक स्पष्ट मालिक तय करना।
+    - बदलता स्कोप योजना बिगाड़ रहा कृपया अत्यावश्यक चीजों को स्पष्ट रूप से चिन्हित करना।
+    - बदलता स्कोप योजना बिगाड़ रहा कृपया परिवर्तनों को एक ही अपडेट में समेटना।
+    - अनुरोध को {desired_outcome} पर केंद्रित रखता है।
+    - भाषा {constraint} बनी रहती है।
+    - सीमा स्पष्ट रहती है और संबंध भी सुरक्षित रहता है।
+    - टोन {tone_style} रहता है और संदेश क्रियान्वित करने योग्य है।
+    - अगला कदम साफ रहता है।
+    - यह दोषारोपण से बचता है और गति बनाए रखता है।
+    - जरूरत हो तो इसे एक वाक्य में छोटा कर सकते हैं।
+    - चाहो तो इसे {medium} के हिसाब से और कस सकते हैं।
+    - अनुरोध विशिष्ट और लागू करने लायक रहता है।
+    - दबाव में भी अर्थ साफ रहता है।
+    - मुख्य बात स्पष्ट रहते हुए भी सहयोगी बनी रहती है।
+    - यह इस हफ्ते तीन बार हो चुका है।
+    - मैं इसे पहले भी एक बार उठा चुका हूँ।
+    - इससे पूरे प्रोजेक्ट की गति धीमी हो रही है।
+    - मैं इसे बिना ड्रामा के सुलझाना चाहता हूँ।
+    - मैं सहयोग अच्छा रखना चाहता हूँ।
+    - मुझे आज भेजने लायक वर्जन चाहिए।
+    - मुझे डर है कि मैं रूखा न लगूं।
+    - यह {medium} के लिए उपयुक्त होना चाहिए।
+    - '{situation}.'
+    - '{medium}; {constraint}.'
+    - '{audience}; {situation}.'
+    - '{constraint}; {change_request}.'
+    - '{audience}; {situation}; {constraint}.'
+    assistant_probe:
+    - आपको नरम संस्करण चाहिए या ज्यादा दृढ़?
+    - क्या {medium} के लिए और छोटा संस्करण दूं?
+    - अगर आप मिली हुई सही लाइन पेस्ट करें, तो मैं और सटीक बना दूंगा।
+    - चाहें तो मैं अलग दृढ़ता वाले दो संस्करण दे सकता हूँ।
+    - इसे और संक्षिप्त चाहिए या ज्यादा सहानुभूतिपूर्ण?
+    - जरूरत हो तो मैं और सीधा संस्करण भी दे सकता हूँ।
+    - '{context_line}'
+    - '{context_line_b}'
+    - '{situation}.'
+    - '{audience}; {medium}.'
+    - '{desired_outcome}; {constraint}.'
+    - '{user_goal}; {change_request}.'
+    - 'मुख्य बिंदु: {desired_outcome}.'
+    - 'मुख्य बिंदु: {constraint}.'
+    - '{change_request}.'
+    - '{user_goal}.'
+    user_followup:
+    - '{constraint}. {desired_outcome}.'
+    - '{situation}; {constraint}.'
+    - '{audience}; {medium}; {desired_outcome}.'
+    - '{user_goal}; {constraint}; {desired_outcome}.'
+    - '{change_request}; {desired_outcome}.'
+    - '{situation}; {change_request}; {constraint}.'
+    - '{desired_outcome}; {constraint}; {change_request}.'
+    - '{medium}; {constraint}; {desired_outcome}.'
+    - '{audience}; {situation}; {desired_outcome}.'
+    - '{user_goal}; {change_request}; {desired_outcome}.'
+    - '{constraint}; {change_request}; {desired_outcome}.'
+    - '{situation}; {user_goal}; {constraint}.'
+    - '{audience}; {constraint}; {change_request}.'
+    - '{medium}; {user_goal}; {desired_outcome}.'
+    - '{change_request}; {constraint}; {desired_outcome}.'
+    - '{context_line_b}'
+    - '{context_extra}'
+    - '{unique_detail}'
+    - '{diversity_clause}'
+    - '{raw_line_b}'
+    - '{raw_line}'
+    turn_case:
+    - system_message: You are a helpful assistant.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant.
+      user_message: '{user_template}'
+    - system_message: You are a concise, practical assistant.
+      user_message: '{user_template}'
+    - system_message: You are a concise, practical assistant.
+      user_message: '{user_template}'
+    - system_message: You are a concise, practical assistant.
+      user_message: '{user_template}'
+    - system_message: You are a concise, practical assistant.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Prioritize clarity and action.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Prioritize clarity and action.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Prioritize clarity and action.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Prioritize clarity and action.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Keep responses short and useful.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Keep responses short and useful.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Keep responses short and useful.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Keep responses short and useful.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Give direct, low-friction guidance.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Give direct, low-friction guidance.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Give direct, low-friction guidance.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Give direct, low-friction guidance.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Focus on the next practical step.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Focus on the next practical step.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Focus on the next practical step.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Focus on the next practical step.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Be clear, brief, and structured.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Be clear, brief, and structured.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Be clear, brief, and structured.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Be clear, brief, and structured.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Keep a calm and actionable tone.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Keep a calm and actionable tone.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Keep a calm and actionable tone.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Keep a calm and actionable tone.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Use compact wording and concrete suggestions.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Use compact wording and concrete suggestions.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Use compact wording and concrete suggestions.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Use compact wording and concrete suggestions.
+      user_message: '{user_template}'
+    assistant_plain:
+    - '{assistant_pool}'
+    render_case:
+    - representation_choice: plain_text
+      assistant_response: '{assistant_plain}'
+    kw01:
+    - ऊछआध
+    - खजथऊ
+    - अचजट
+    - डतजक
+    - मढथज
+    - थठतड
+    - डयसछ
+    - नछवई
+    - आदएल
+    - ठढभट
+    - हनइक
+    - एदभठ
+    - आटपए
+    - रभटब
+    - बएऊन
+    - घतखन
+    - वइधत
+    - चआटग
+    - रइथक
+    - छडखउ
+    - भआथप
+    - एखरच
+    - यउढन
+    - लखठत
+    - खवपई
+    - रबतड
+    - भचखए
+    - छजआउ
+    - थकटआ
+    - छसथठ
+    - ठबसह
+    - ईजएऊ
+    - धहसउ
+    - रएआट
+    - वघओथ
+    - वकतभ
+    - खउखस
+    - फईठह
+    - नघओऊ
+    - आपफइ
+    - चओकओ
+    - ईछउत
+    - डमभच
+    - एचढक
+    - आघसम
+    - टखलअ
+    - एतइच
+    - जपथज
+    - ऊबथइ
+    - गओइब
+    - बआतढ
+    - यनलच
+    - तफपह
+    - यतएय
+    - सएआछ
+    - नधनस
+    - अफकव
+    - ईपनव
+    - घईसअ
+    - पवगफ
+    - यनइव
+    - ईगडव
+    - फठछन
+    - टआभढ
+    - डधढआ
+    - खभढस
+    - अचआफ
+    - आबखल
+    - भघगन
+    - एफइस
+    - सचडल
+    - सउओई
+    - आठईइ
+    - जओछओ
+    - फअरत
+    - खसमभ
+    - ठदठप
+    - वढदग
+    - ईढफन
+    - ठघपथ
+    - आहझत
+    - ईठदई
+    - छयबई
+    - झभगव
+    - अउएअ
+    - झतउघ
+    - थकनऊ
+    - नखबथ
+    - लझयच
+    - अउहद
+    - पउजओ
+    - आसअत
+    - वऊटन
+    - ओऊआस
+    - हओचइ
+    - धरओआ
+    - नयबए
+    - रगढए
+    - घधजए
+    - बईआद
+    - चधटप
+    - जठबढ
+    - पछहन
+    - ओयनल
+    - डछएन
+    - भफपघ
+    - ऊछबट
+    - वजहद
+    - थदथऊ
+    - गबदआ
+    - यथघल
+    - घऊवझ
+    - धचवउ
+    - दबपव
+    - बकढम
+    - गधझप
+    - दएयई
+    - छधबच
+    - पनऊय
+    - खइगर
+    - एफनख
+    - आऊहथ
+    - छफभम
+    - ओआऊग
+    - यझऊड
+    - आजभऊ
+    - ठझबह
+    - उलथइ
+    - हढअप
+    - आओएध
+    - धयघय
+    - खझछद
+    - पजनद
+    - ईठयई
+    - आछइढ
+    - रआझच
+    - गझपइ
+    - टनआऊ
+    - झदईए
+    - ईऊकच
+    - जहलओ
+    - सवकछ
+    - खईयर
+    - लरलय
+    - इवदफ
+    - तकघन
+    - टइदस
+    - फढखउ
+    - यचनभ
+    - थअएज
+    - भऊचय
+    - बमचओ
+    - ढफछक
+    - फगसल
+    - हधऊच
+    - तरबए
+    - लमवऊ
+    - बसभह
+    - यढखअ
+    - पवधफ
+    - डतकभ
+    - छढसफ
+    - चछईल
+    - धभरम
+    - गयतफ
+    - गएमड
+    - कउचट
+    - घओआघ
+    - ईखढत
+    - गधजभ
+    - दहवप
+    - आढकत
+    - झइईए
+    - आदढठ
+    - ठएडच
+    - हपवऊ
+    - गभमक
+    - जतफठ
+    - ओथगह
+    - चरठई
+    - तअटभ
+    - एउजम
+    - नझकप
+    - परजअ
+    - थएभई
+    - टतयछ
+    - डफसज
+    - ईलसम
+    - आघयअ
+    - भआमघ
+    - नलझद
+    - दचबस
+    - गघअफ
+    - हभथआ
+    - सउठट
+    - पतफह
+    - झयबठ
+    - लपसम
+    - भठअए
+    - ओहदअ
+    - कजवई
+    - लठउफ
+    - तथवउ
+    - अएफई
+    - एऊगट
+    - जझसइ
+    - छवठह
+    - भइउट
+    - रटएत
+    - उइडव
+    - लअछध
+    - बचकम
+    - डढभआ
+    - तधसओ
+    - जसघह
+    - इफठय
+    - मछखड
+    - बटयध
+    - लठबआ
+    - थओमर
+    - गचकच
+    - पभखउ
+    - आहचब
+    - ढआईऊ
+    - लझतक
+    - रवउठ
+    - चईजद
+    - हखझछ
+    - लफकफ
+    - धभफन
+    - तमफह
+    - खदखक
+    - झभऊई
+    - पटखझ
+    - धपनय
+    - गबटप
+    - धयढग
+    - ईथअड
+    - पठकस
+    - जडइई
+    - दलतझ
+    - ठलरव
+    - जआघब
+    - ठघडध
+    - मवतओ
+    - खठगह
+    - घहथज
+    - छधचइ
+    - पकतप
+    - आथइर
+    - फहयई
+    - घरछट
+    - पभखब
+    - टखईउ
+    - उदबभ
+    - टवथय
+    - गऊइप
+    - ठआठब
+    - नटलर
+    - थमछय
+    - बफनढ
+    - ओडओध
+    - ऊभतह
+    - लथतई
+    - गकमख
+    - ढटधछ
+    - लएईअ
+    - ठधसर
+    - घपथय
+    - इठडए
+    - छमठव
+    - चखजख
+    - अठजम
+    - सरअथ
+    - नधईढ
+    - घडफड
+    - वडछइ
+    - कधगइ
+    - वखथल
+    - धघभठ
+    - नअभथ
+    - झनवर
+    - रयइऊ
+    - इचढठ
+    - यघसड
+    - अमटड
+    - ईदगभ
+    - छघधई
+    - हटसद
+    - ओमवछ
+    - रसखउ
+    - ईदफर
+    - फऊमत
+    - फटढई
+    - ईछडख
+    - घफढक
+    - अरचत
+    - खडगए
+    - जधअए
+    - एबहग
+    kw02:
+    - बनघइ
+    - घथओअ
+    - रछअर
+    - यजटय
+    - हइटस
+    - रएइभ
+    - इकहर
+    - छअधट
+    - नरठद
+    - जगरछ
+    - उधलड
+    - हभऊत
+    - टइसद
+    - कखमय
+    - ऊछफठ
+    - धबडभ
+    - दओझइ
+    - ढबछस
+    - थसकम
+    - एतगअ
+    - गधमह
+    - ईचटच
+    - धठसध
+    - ढधखव
+    - मदयआ
+    - पऊदत
+    - भधढछ
+    - बखतथ
+    - ईलउड
+    - छऊघप
+    - कढभय
+    - थधईउ
+    - नखकह
+    - थझढल
+    - चधठस
+    - झछधघ
+    - हकनआ
+    - थएबत
+    - कमलआ
+    - चघठय
+    - वटतर
+    - टदबग
+    - ईइलए
+    - भखनब
+    - यफघठ
+    - आतदए
+    - बथछद
+    - फदओऊ
+    - झसकआ
+    - ठलनघ
+    - टछहठ
+    - जघखद
+    - नपकए
+    - जटनख
+    - बथभई
+    - भथडआ
+    - वओवड
+    - थकबत
+    - कवउच
+    - नथऊम
+    - यखगख
+    - उनढघ
+    - तओदए
+    - नउकर
+    - ढधअग
+    - ठझघड
+    - उनऊड
+    - चकउआ
+    - मजईय
+    - पघनउ
+    - थरअध
+    - फकनप
+    - टपसत
+    - चरथख
+    - बजरत
+    - बहटअ
+    - तपवढ
+    - ईकझई
+    - लचरय
+    - भडइम
+    - इडटत
+    - ओधनस
+    - ठहजढ
+    - टलनअ
+    - लमएब
+    - परलड
+    - फऊबऊ
+    - बउदढ
+    - गनओर
+    - ढएइक
+    - टअझव
+    - इरवअ
+    - ऊजउछ
+    - पचदई
+    - खलएच
+    - ढपढओ
+    - घझफल
+    - आऊवढ
+    - थयठध
+    - जभजउ
+    - इदफह
+    - इढवप
+    - ओघथल
+    - दथझट
+    - ठहठव
+    - उफअऊ
+    - फऊफघ
+    - उसबज
+    - तफढप
+    - तफउध
+    - ऊजओभ
+    - पइलम
+    - इरएत
+    - यमरई
+    - घबइख
+    - पठइध
+    - यलईम
+    - फरडओ
+    - ओधभस
+    - अदडस
+    - बओदव
+    - लछओफ
+    - ईबकब
+    - तठखह
+    - अघतअ
+    - ओमवन
+    - वतहद
+    - इफईद
+    - ढधओज
+    - थतडज
+    - नभलभ
+    - गआएम
+    - ठभजघ
+    - घइआब
+    - ओलदड
+    - भखईठ
+    - थलथइ
+    - पयटथ
+    - झइओध
+    - बझइध
+    - पभइअ
+    - रबदझ
+    - छधडय
+    - जअठत
+    - पईरढ
+    - ईठअथ
+    - आलधच
+    - गलघभ
+    - ऊयखघ
+    - फइएफ
+    - वगतअ
+    - चउधई
+    - खयनअ
+    - वबफह
+    - हमहच
+    - हठलम
+    - ईठनस
+    - टथउथ
+    - वयअध
+    - उहगघ
+    - ओचमद
+    - वटढउ
+    - झठकह
+    - घएफख
+    - ईझमक
+    - खमरव
+    - यऊयत
+    - चसखप
+    - वछठढ
+    - आसबर
+    - सयईझ
+    - यइउय
+    - ऊलढज
+    - ठजदल
+    - फनढय
+    - कइबर
+    - ठअऊइ
+    - थइधआ
+    - ढछयड
+    - छभउट
+    - बकपछ
+    - टभथऊ
+    - यवचब
+    - हटढउ
+    - झछमड
+    - टमइफ
+    - दगपभ
+    - मकपअ
+    - उबतब
+    - पभउग
+    - बवआओ
+    - झनझप
+    - दभउक
+    - कलबभ
+    - थऊचओ
+    - यतधछ
+    - रथयट
+    - आरमछ
+    - उहबप
+    - भनचख
+    - दघफख
+    - ऊढएइ
+    - अइठध
+    - ओइपच
+    - अजछढ
+    - इतलइ
+    - जअइझ
+    - यउझघ
+    - डमघज
+    - सइमध
+    - छचहत
+    - पआलओ
+    - झठएव
+    - यटहद
+    - झहघत
+    - ऊढएआ
+    - सएहड
+    - रगवट
+    - पठफओ
+    - अभईड
+    - थपझत
+    - जथदउ
+    - अयभर
+    - ढसभल
+    - फझपह
+    - छढईठ
+    - लहटठ
+    - आछभध
+    - ढछसद
+    - ढकरट
+    - थआटज
+    - घसखह
+    - नओएम
+    - झफअर
+    - खभकइ
+    - अउथझ
+    - ढईचज
+    - उईदह
+    - थआडन
+    - छजखय
+    - अरलअ
+    - वधढट
+    - यईएध
+    - ऊभपग
+    - वझपध
+    - सठउआ
+    - छथढए
+    - चकवध
+    - छपइआ
+    - बथरड
+    - धजलच
+    - दठओअ
+    - उढभओ
+    - कठवओ
+    - आरपल
+    - सकइऊ
+    - बनभउ
+    - थडओघ
+    - ईफपठ
+    - फबढल
+    - ठलठट
+    - खरदब
+    - घलठट
+    - तफटऊ
+    - ठएटह
+    - घभछठ
+    - हओनड
+    - ढऊजऊ
+    - नलवद
+    - उएभफ
+    - करढझ
+    - डयटग
+    - ढझचग
+    - जकलत
+    - यइअड
+    - आगहल
+    - एबठआ
+    - यउमट
+    - मडतस
+    - अटगफ
+    - लरढव
+    - ठकजउ
+    - बरधव
+    - छओधछ
+    - छरफक
+    - ईखठख
+    - नहरप
+    - छओइब
+    - धखओभ
+    - चघढह
+    - अधओठ
+    - ठऊआड
+    - इजअफ
+    - ठनमड
+    - झतभउ
+    - छघसफ
+    - टघढभ
+    - लफठघ
+    - छयओढ
+    - ओभखब
+    kw03:
+    - टढठभ
+    - चदफग
+    - कऊओथ
+    - बघटउ
+    - ऊठबक
+    - दनमठ
+    - धलआड
+    - पथहघ
+    - भजयओ
+    - खयईब
+    - धचनड
+    - ठहमध
+    - ठजडस
+    - थवऊम
+    - इनडल
+    - नमयध
+    - कदगअ
+    - चझपक
+    - धकउह
+    - तआओछ
+    - इसएन
+    - तईलइ
+    - आधअब
+    - ईखईप
+    - टथऊव
+    - खसअग
+    - धतवघ
+    - झईतज
+    - तपओक
+    - उमझप
+    - ठछऊक
+    - टकढओ
+    - बघछठ
+    - झदओच
+    - जकदछ
+    - मचउट
+    - आएनज
+    - झदअक
+    - भछगर
+    - अमढन
+    - भधओय
+    - थअओज
+    - आरगझ
+    - आनवल
+    - सऊढत
+    - हढमऊ
+    - ढखईऊ
+    - फलखअ
+    - कतभड
+    - कतझछ
+    - तठडआ
+    - इचहद
+    - गसकर
+    - इबटभ
+    - कआइढ
+    - आजलब
+    - घयपग
+    - नहवढ
+    - रफआध
+    - आईजह
+    - हरसठ
+    - ईडलऊ
+    - घचटछ
+    - यढकई
+    - इपगह
+    - छबउत
+    - जगकछ
+    - बयफस
+    - सरहअ
+    - गकसग
+    - यचहढ
+    - ऊधतठ
+    - घईपव
+    - उमएध
+    - वडओऊ
+    - चइटढ
+    - वकचअ
+    - चफझच
+    - मयलक
+    - डभयग
+    - आतचध
+    - ठइडच
+    - फछजल
+    - लधआभ
+    - पडभओ
+    - ठओभम
+    - वढथख
+    - छसउध
+    - ढरयभ
+    - यअबप
+    - जआसप
+    - उहऊइ
+    - घचवन
+    - चजईअ
+    - मदनज
+    - आढटर
+    - गभठव
+    - ढघऊख
+    - जखटस
+    - इझदई
+    - चघउठ
+    - छयधय
+    - धईठद
+    - झमटझ
+    - चफडथ
+    - एझअड
+    - सनघख
+    - छबथव
+    - उफकड
+    - धदसव
+    - डलघध
+    - जइसए
+    - जहतड
+    - छठचल
+    - उनअन
+    - तगढफ
+    - अयउच
+    - थडपत
+    - उमघम
+    - आढमट
+    - सटएट
+    - फईथफ
+    - चठढअ
+    - घकपथ
+    - पहफआ
+    - दखनइ
+    - हजहउ
+    - दउआध
+    - ओलबझ
+    - खटचज
+    - इहऊख
+    - कइआय
+    - इईवड
+    - यटधब
+    - मकतध
+    - ऊजडफ
+    - ईडमफ
+    - ऊटठग
+    - छघठध
+    - छओगट
+    - लदसन
+    - यआइथ
+    - एसटऊ
+    - ऊडदध
+    - ढछउआ
+    - सओथच
+    - तवगच
+    - आईऊव
+    - बगलए
+    - वएभख
+    - सईसछ
+    - एगवइ
+    - जरखई
+    - टबयल
+    - गथहन
+    - ऊएछभ
+    - पबजए
+    - टयचक
+    - मठदठ
+    - घथएन
+    - खहधख
+    - झपढट
+    - घसएई
+    - लघलट
+    - इहभउ
+    - जघवज
+    - गनदह
+    - गईयई
+    - दलमन
+    - दहचब
+    - खओवह
+    - टठफढ
+    - रमखट
+    - वइअद
+    - ईजदझ
+    - भथखद
+    - ओहओत
+    - भधचद
+    - धखउह
+    - इएगड
+    - गतधर
+    - ईफभढ
+    - फधपच
+    - जआबध
+    - ठटसक
+    - हठयभ
+    - ढइढआ
+    - झऊसछ
+    - तघडउ
+    - अईइथ
+    - ढदभद
+    - फदरई
+    - इलऊछ
+    - जरअच
+    - मछहठ
+    - डऊयझ
+    - तछओए
+    - ढऊडब
+    - डएआऊ
+    - एठढठ
+    - भठओऊ
+    - सथरट
+    - ईफयल
+    - आरगद
+    - छसडम
+    - मसतभ
+    - खरमथ
+    - पसनड
+    - नलवउ
+    - नकऊर
+    - इधठद
+    - इटचर
+    - एढतख
+    - मखपन
+    - अनरद
+    - फअखज
+    - टआयक
+    - भलवह
+    - सतचए
+    - ठरएल
+    - परगब
+    - जऊउट
+    - बहरओ
+    - फयतम
+    - कठबर
+    - सयआग
+    - कमधल
+    - यखबम
+    - टसछक
+    - ढभकस
+    - थधउद
+    - पवऊक
+    - खलआम
+    - कआडच
+    - छजअस
+    - गचआय
+    - एखहभ
+    - टओएल
+    - ईजधइ
+    - ढलहअ
+    - दटआई
+    - लबचअ
+    - अगडए
+    - खइजम
+    - आइधत
+    - रउफढ
+    - यफईठ
+    - वगदअ
+    - ठथलथ
+    - खसआव
+    - टकऊघ
+    - छपउय
+    - दसफग
+    - वमआद
+    - खसतप
+    - घभइढ
+    - ढजफल
+    - मगएख
+    - ठडइह
+    - थहउअ
+    - धहधख
+    - उपवघ
+    - ओएआफ
+    - झफमइ
+    - पझईद
+    - डखबछ
+    - घगउव
+    - गफपछ
+    - अढतघ
+    - ईटमझ
+    - चअईस
+    - तईइत
+    - कएजए
+    - पहतअ
+    - भदचब
+    - झउपव
+    - सकथठ
+    - झपढद
+    - भडआय
+    - कटवप
+    - ऊडइव
+    - फऊटम
+    - भउघत
+    - मपयढ
+    - गछयड
+    - मओपव
+    - धआईछ
+    - दगईस
+    - दआडध
+    - हएफक
+    - वघमब
+    - बइजछ
+    - ढगरउ
+    - इऊजल
+    - वऊअल
+    - कनअए
+    - कदगआ
+    - फइयह
+    - खसवझ
+    - कफहथ
+    kw04:
+    - रझऊए
+    - आधवक
+    - अकखभ
+    - मधटठ
+    - डआफद
+    - भईएच
+    - मसढग
+    - ठहईओ
+    - हइआई
+    - सकआठ
+    - घउढआ
+    - सबआउ
+    - आयईय
+    - मछडल
+    - खढआफ
+    - चथलय
+    - जवएढ
+    - झईडध
+    - इठफध
+    - आठवग
+    - डभडआ
+    - भढथछ
+    - ऊएतउ
+    - डएझत
+    - महवज
+    - घएछह
+    - झगओस
+    - ठफलठ
+    - धलछफ
+    - मअखओ
+    - ईबमभ
+    - धबधइ
+    - मलआह
+    - एसउत
+    - रटमढ
+    - चडसज
+    - ठझसर
+    - यएखछ
+    - बछवइ
+    - उढपर
+    - एढगड
+    - बपडल
+    - मधवस
+    - धबहय
+    - इथढध
+    - ढथठग
+    - घयघफ
+    - जरचढ
+    - गतफन
+    - टएदज
+    - कढदउ
+    - लबरन
+    - आबछआ
+    - आरकघ
+    - ठसगस
+    - झबटओ
+    - फढठऊ
+    - लऊतम
+    - ईसचइ
+    - ईलगढ
+    - मघहप
+    - इपछझ
+    - डखछठ
+    - फडबउ
+    - चधखन
+    - अउदए
+    - अपयन
+    - भदऊध
+    - थढकह
+    - घपभक
+    - जझलउ
+    - टकघर
+    - ठघहन
+    - ढथईछ
+    - वबखअ
+    - डधवऊ
+    - रधजट
+    - फजचस
+    - लथरज
+    - ठचयड
+    - बउडथ
+    - फलईआ
+    - दएखओ
+    - रछघच
+    - गजओझ
+    - कथसफ
+    - टदकथ
+    - एवएल
+    - मउभथ
+    - खबहम
+    - थठएत
+    - एकउझ
+    - मफठध
+    - ओहठस
+    - कछधन
+    - थऊमत
+    - वसओढ
+    - तफईए
+    - धनऊम
+    - डवलझ
+    - ऊकचत
+    - गसदव
+    - सबडझ
+    - आतहव
+    - ईऊरय
+    - खटलथ
+    - इधलफ
+    - खवजआ
+    - छऊपन
+    - इघढस
+    - ढझपओ
+    - यथमए
+    - ठरउझ
+    - लएथर
+    - छऊथर
+    - ठदजट
+    - गअठप
+    - फघलट
+    - धछठट
+    - तमटग
+    - मबधठ
+    - लबपध
+    - कपएफ
+    - लगनज
+    - इयठथ
+    - टकगक
+    - घकएघ
+    - एफपच
+    - एकरध
+    - चएहई
+    - चडधग
+    - घठमठ
+    - ठगआउ
+    - छरयठ
+    - ईसघन
+    - खऊअए
+    - सढयप
+    - लआमठ
+    - इबढब
+    - डइओठ
+    - इखघअ
+    - हभउच
+    - ओढनत
+    - रआचल
+    - पहढम
+    - घऊइच
+    - फजपम
+    - घऊटब
+    - ढहचप
+    - यबठम
+    - ठचखट
+    - जईतछ
+    - भठअच
+    - टएझउ
+    - डभआक
+    - फजनव
+    - गनसद
+    - पइतह
+    - लरअथ
+    - जइलच
+    - तवहज
+    - सहऊई
+    - लयडढ
+    - पधवइ
+    - खएओध
+    - मनओग
+    - फसएई
+    - दनअट
+    - एधउअ
+    - कआउट
+    - घचदघ
+    - घटगम
+    - नलधई
+    - खवभख
+    - उईजआ
+    - खठतज
+    - टघअऊ
+    - यकभल
+    - जनमय
+    - नउअथ
+    - लकअन
+    - थमहठ
+    - ऊटदठ
+    - ओअजच
+    - दयओर
+    - ईएआल
+    - दतकई
+    - ठवओव
+    - डमआट
+    - ठलखछ
+    - कखमउ
+    - घचवढ
+    - गसचप
+    - चभफद
+    - टरघउ
+    - डतलग
+    - जझअऊ
+    - खहभए
+    - फभअव
+    - अवचद
+    - अवछव
+    - उबईढ
+    - ढबगआ
+    - ओभफभ
+    - खइमफ
+    - नभअउ
+    - इढइअ
+    - नधइझ
+    - झचटद
+    - उडझध
+    - रउईड
+    - घयधअ
+    - यजफन
+    - झहऊउ
+    - दभवओ
+    - अलझज
+    - यकधम
+    - टरठथ
+    - गऊवघ
+    - नजओए
+    - लटकज
+    - पथचन
+    - कफदइ
+    - तझपध
+    - जइरघ
+    - लजइछ
+    - नथअब
+    - ढकछल
+    - अऊओब
+    - उइतध
+    - इडझप
+    - फजअन
+    - भधइड
+    - तढउख
+    - गझफड
+    - उपयड
+    - सअगप
+    - वरबल
+    - ठहबड
+    - झढसह
+    - पझडई
+    - फखझट
+    - झचडफ
+    - नसढग
+    - लईढझ
+    - एझखथ
+    - एऊभम
+    - टएझआ
+    - ओअथख
+    - लथगघ
+    - मईअइ
+    - घबअझ
+    - तसमप
+    - यनहछ
+    - मवगभ
+    - डईतढ
+    - टडढघ
+    - पऊपल
+    - तसडख
+    - ठढबझ
+    - घखपह
+    - ईछईड
+    - तएजव
+    - हअसठ
+    - ओटधआ
+    - धडआझ
+    - मधटक
+    - झधठघ
+    - ठटहढ
+    - थखऊए
+    - उईउठ
+    - भडदड
+    - हढगह
+    - पचझर
+    - हगटह
+    - ठफगढ
+    - ढतछज
+    - थगनज
+    - एअगक
+    - यरयत
+    - गलदउ
+    - ओतगच
+    - दअटऊ
+    - लपभम
+    - यकटई
+    - दऊपऊ
+    - यफईर
+    - ऊझहब
+    - ढतडआ
+    - ईखथघ
+    - डपअध
+    - सछइए
+    - हऊरद
+    - चझबह
+    - ढवघअ
+    - डउथउ
+    - सजयछ
+    - डचठल
+    - पझवक
+    - ओसछए
+    kw05:
+    - झयढठ
+    - उएजच
+    - लछपज
+    - छमएस
+    - भलफय
+    - धसउध
+    - खहबल
+    - अढतछ
+    - ओछनट
+    - बयगथ
+    - फघछख
+    - टडथस
+    - थवगघ
+    - नजलद
+    - गढतथ
+    - ठबयड
+    - टलचज
+    - भखईय
+    - घछअह
+    - पहआत
+    - एओईड
+    - सऊसध
+    - मरमक
+    - झहधऊ
+    - खयथइ
+    - एझछन
+    - उओलए
+    - थपयई
+    - रउमथ
+    - वकघथ
+    - कधघद
+    - लरखघ
+    - धआचन
+    - ऊटघड
+    - ऊरएइ
+    - गछहफ
+    - खचघछ
+    - कदडप
+    - उजवग
+    - ओइरए
+    - ढधलइ
+    - ढछहर
+    - एखछज
+    - कथफथ
+    - गइयल
+    - इथगज
+    - हघगआ
+    - लआनत
+    - हएकल
+    - ऊदइड
+    - जझकथ
+    - घइईआ
+    - झचफध
+    - मखठप
+    - भऊखत
+    - ईओफठ
+    - सअवट
+    - हछजभ
+    - जफआय
+    - भदऊद
+    - डउलओ
+    - मछडध
+    - एबईस
+    - एझखउ
+    - थईफच
+    - वहचक
+    - नआठड
+    - धदभई
+    - चलनय
+    - नमईच
+    - अठथब
+    - कखअल
+    - टएओइ
+    - अलजघ
+    - झचरथ
+    - ऊथझक
+    - छअखल
+    - खथहम
+    - ठहकघ
+    - ऊझथछ
+    - जतलप
+    - वधअम
+    - पमघड
+    - ढठपर
+    - जढगन
+    - डवउप
+    - ओकजग
+    - जईदई
+    - लसगद
+    - एदकउ
+    - थआअई
+    - डइटऊ
+    - रढगओ
+    - लरतट
+    - झचऊप
+    - ओतमए
+    - झदओट
+    - धलघब
+    - तलसझ
+    - मढबक
+    - पनघव
+    - तगरत
+    - बपअम
+    - महडट
+    - दडभई
+    - नचसप
+    - फओइय
+    - हफजर
+    - दयफआ
+    - एआठढ
+    - जझजत
+    - ईगचज
+    - फदटइ
+    - खअईड
+    - चघजओ
+    - रटधफ
+    - ढठचइ
+    - वकढध
+    - नवनढ
+    - भवयग
+    - सऊडआ
+    - ईखनज
+    - ऊडलई
+    - गलतठ
+    - दमझउ
+    - दवओभ
+    - यओअइ
+    - यईगद
+    - डमठध
+    - खगखध
+    - ढइमन
+    - झदघअ
+    - ओइडप
+    - थयओध
+    - तपउठ
+    - एचझख
+    - दटहउ
+    - आछजथ
+    - नएटध
+    - झछगथ
+    - लढतथ
+    - दसकथ
+    - मठओऊ
+    - धयहछ
+    - अजडव
+    - उवखइ
+    - दमतर
+    - खऊजक
+    - हगइह
+    - खफगख
+    - जफघन
+    - एदफओ
+    - टडघट
+    - अढधउ
+    - छमखफ
+    - कजटत
+    - थसवच
+    - एआदत
+    - गझघक
+    - धओदज
+    - ढहठअ
+    - तछतच
+    - चइहल
+    - रओउअ
+    - तएफस
+    - ऊछटह
+    - ओखभट
+    - ओथटख
+    - सओमट
+    - कडगट
+    - गखढन
+    - हछरब
+    - टलइअ
+    - ऊजईआ
+    - दओएओ
+    - पहझस
+    - खवबढ
+    - डभइध
+    - ईओखय
+    - झमयह
+    - झफटच
+    - खघरन
+    - ठगतर
+    - झनआछ
+    - अडटप
+    - झवनठ
+    - लबझख
+    - ठगओए
+    - ढदटक
+    - थभखन
+    - तदढऊ
+    - मलतफ
+    - डउदअ
+    - धतउअ
+    - जअइउ
+    - पथईद
+    - झधजच
+    - सटरड
+    - गवभच
+    - मपफच
+    - सकढई
+    - धभधभ
+    - थईफत
+    - नजचज
+    - ओऊडव
+    - लथगड
+    - इघरट
+    - सभपच
+    - पइपम
+    - खलतव
+    - टऊढव
+    - कदटर
+    - नरधज
+    - नवलघ
+    - घखअफ
+    - वफआव
+    - घहअल
+    - मछगअ
+    - भईइअ
+    - डखधठ
+    - ढखयआ
+    - मठरथ
+    - बथधए
+    - टबवई
+    - ईओपभ
+    - रअलउ
+    - ढअएथ
+    - सलमख
+    - धखएर
+    - तनउभ
+    - झदधए
+    - अयनअ
+    - थखवल
+    - घमआघ
+    - धआदर
+    - ईतपत
+    - बसरअ
+    - ठपइझ
+    - दफआब
+    - भअदत
+    - सठफआ
+    - जतघज
+    - एसधक
+    - यईकध
+    - झइरइ
+    - फचडओ
+    - ईयमध
+    - बफभछ
+    - आपदछ
+    - टघभघ
+    - दकफध
+    - छघअढ
+    - ओदघग
+    - कयपउ
+    - अधछक
+    - गबमन
+    - झरआस
+    - ओपगक
+    - ऊदउघ
+    - तढफख
+    - झखसग
+    - धरआठ
+    - जइघध
+    - कघइऊ
+    - चसऊथ
+    - हवअन
+    - मघदज
+    - नउइम
+    - मटनब
+    - रथसम
+    - हथफठ
+    - मअउच
+    - अछरट
+    - तगकच
+    - सकजछ
+    - पचलन
+    - बटइउ
+    - हनबज
+    - डअऊए
+    - भडआए
+    - फनऊट
+    - यखमक
+    - भपघझ
+    - खइघछ
+    - सएगड
+    - बलकग
+    - बपटठ
+    - वगअट
+    - हयजच
+    - मगढथ
+    - ऊएभस
+    - धजढध
+    - पघआह
+    - बवलड
+    - घखतउ
+    - भपवफ
+    - ऊनठप
+    - ऊसहव
+    - धथमझ
+    - लअसई
+    kw06:
+    - आभघठ
+    - मदकए
+    - धटथइ
+    - एयआइ
+    - छलतछ
+    - टलछच
+    - थपफल
+    - खटगछ
+    - टरयग
+    - झछतच
+    - ऊनढए
+    - सडभच
+    - झधठढ
+    - कठजर
+    - भचकउ
+    - तढडच
+    - अईवघ
+    - भकटम
+    - नहदब
+    - लअओऊ
+    - चठगद
+    - पनभल
+    - डढएअ
+    - मअचब
+    - अईगब
+    - कनथब
+    - टबछझ
+    - घझधभ
+    - दएटत
+    - टखतम
+    - रपठव
+    - ऊभवप
+    - नएठज
+    - उकयभ
+    - तईदढ
+    - कछइड
+    - टजयघ
+    - सजटल
+    - एआलई
+    - भबऊल
+    - ठयदध
+    - फढझच
+    - हउऊय
+    - मतरट
+    - हदफघ
+    - कयबओ
+    - खडयइ
+    - कझमअ
+    - लथपघ
+    - बठथम
+    - चदयथ
+    - धथलफ
+    - पढखक
+    - खगइल
+    - धठउल
+    - ऊरठद
+    - धएबड
+    - ईऊदछ
+    - सफआइ
+    - कगपक
+    - फसईआ
+    - ऊपगय
+    - टएघप
+    - आखहए
+    - गइडह
+    - ऊडउआ
+    - नघलओ
+    - नदझर
+    - उटवई
+    - पडफअ
+    - भठनग
+    - हचथब
+    - जखगड
+    - थअठआ
+    - टचतल
+    - अचखथ
+    - झचईफ
+    - फजदव
+    - यआनठ
+    - फऊठज
+    - कखहज
+    - धटढभ
+    - ठछघव
+    - ईआझख
+    - चलएझ
+    - रइवथ
+    - आखमप
+    - थटतल
+    - तएनड
+    - बचदज
+    - ऊदएघ
+    - खमघद
+    - इथनस
+    - छउझफ
+    - अढपझ
+    - हघमउ
+    - टथजउ
+    - सअछज
+    - यबएच
+    - अखगऊ
+    - आकवझ
+    - सटजफ
+    - लईटठ
+    - नभछह
+    - खवमआ
+    - ईढनढ
+    - खतवई
+    - ऊतगऊ
+    - ओऊदऊ
+    - ऊअबअ
+    - भबजछ
+    - यजनभ
+    - वभवप
+    - तसउफ
+    - कइझब
+    - लभखच
+    - खतजन
+    - ढसजठ
+    - दजबठ
+    - दभमट
+    - बएजट
+    - आदटझ
+    - हभओह
+    - थबठड
+    - धबरढ
+    - ढकवस
+    - ईपजआ
+    - जकअह
+    - अतदब
+    - तओकन
+    - फदगल
+    - ढआढध
+    - घबधह
+    - गछधज
+    - मदलन
+    - आअदप
+    - पउअओ
+    - खडअइ
+    - गचढद
+    - ऊअलय
+    - खघआट
+    - कउइछ
+    - उघईछ
+    - हगपघ
+    - यटरग
+    - तईमर
+    - टरदट
+    - जधमओ
+    - टफहब
+    - थइउम
+    - लदभझ
+    - हधकए
+    - ईबरथ
+    - थखसथ
+    - झडईछ
+    - लरओय
+    - ढधरअ
+    - चघछभ
+    - ढइटध
+    - भबखय
+    - ईसकझ
+    - वरथठ
+    - भथआट
+    - गईआक
+    - झडचए
+    - बटएम
+    - मऊआध
+    - दयईए
+    - बझतय
+    - फखछआ
+    - थखहक
+    - सएजछ
+    - ईबफस
+    - ठयघअ
+    - ऊघएच
+    - उछढभ
+    - अपजप
+    - डछहउ
+    - धकछव
+    - ढपएओ
+    - हढऊट
+    - डमलह
+    - थझयई
+    - रऊओर
+    - छझमड
+    - अकखह
+    - उठघध
+    - कबखध
+    - भइथअ
+    - ईआओट
+    - वतरअ
+    - सरऊओ
+    - लथओध
+    - यइवर
+    - फजगघ
+    - छहबथ
+    - झचजछ
+    - हवऊज
+    - ऊटपड
+    - रघजट
+    - छटचझ
+    - ठओधक
+    - एघऊफ
+    - यनधइ
+    - झतकध
+    - लखऊज
+    - ईथबढ
+    - तआईध
+    - उदवक
+    - गडरफ
+    - डटतठ
+    - ढओरऊ
+    - एरगढ
+    - खपईढ
+    - मतदप
+    - फईबघ
+    - मखदप
+    - एथअव
+    - ओठकठ
+    - वयअग
+    - थलअइ
+    - ऊढपई
+    - हघआझ
+    - छडवइ
+    - ओजकछ
+    - आलहध
+    - ऊइयफ
+    - उथआव
+    - आथटढ
+    - वऊथट
+    - फवसफ
+    - ऊबभग
+    - आढपत
+    - खडकओ
+    - मजओव
+    - आपउद
+    - वदइय
+    - ऊझमज
+    - जतधख
+    - कडखआ
+    - वउतभ
+    - घठओक
+    - मरढआ
+    - यईसअ
+    - नटईय
+    - ओएमस
+    - गठतल
+    - कहजघ
+    - धइतल
+    - तरफह
+    - यटआध
+    - घसडम
+    - अखदन
+    - ठझलग
+    - ठथडम
+    - भओधड
+    - डदझए
+    - थओचथ
+    - ढकचय
+    - आऊअह
+    - थयकए
+    - दठकप
+    - झछइउ
+    - मऊसछ
+    - रउऊठ
+    - ओलकई
+    - गभहम
+    - कपगफ
+    - वडलब
+    - गयफए
+    - ऊटछध
+    - टपमन
+    - इफचओ
+    - भइबठ
+    - गदतक
+    - छहयठ
+    - तचईअ
+    - भकमब
+    - फआगभ
+    - वकअब
+    - खदटक
+    - आओहए
+    - बनमक
+    - डखऊफ
+    - दलचए
+    - अफतभ
+    - चफटब
+    - नटयथ
+    - उढनथ
+    - फढऊझ
+    - हघहक
+    - ढगपग
+    - छमछर
+    - तबयस
+    - दइछग
+    - तयआउ
+    - यमचझ
+    - दयअइ
+    - लइघअ
+    - टहजओ
+    kw07:
+    - तघचइ
+    - झहलई
+    - चघथठ
+    - फईउछ
+    - ढएझभ
+    - झनखभ
+    - यमतग
+    - घखईग
+    - गघपह
+    - झपथय
+    - लठऊर
+    - चऊधब
+    - लवएघ
+    - रहझन
+    - मटफइ
+    - बगसत
+    - नमटआ
+    - धतरद
+    - दभदर
+    - कसइभ
+    - रझदए
+    - ढऊइध
+    - गहखठ
+    - रधभप
+    - रउचय
+    - दगमध
+    - रदफघ
+    - कओजऊ
+    - थखयओ
+    - धइझन
+    - फगथई
+    - टधभब
+    - बपभठ
+    - धथसख
+    - घऊछज
+    - बघथप
+    - धमछय
+    - बचदव
+    - लभसख
+    - फईएड
+    - लखनत
+    - अगथख
+    - एजवर
+    - गचनर
+    - मइसउ
+    - इफउठ
+    - यवरल
+    - मबएख
+    - फझहन
+    - ढघटअ
+    - यभउज
+    - वघधड
+    - टतधओ
+    - टबथछ
+    - चसमह
+    - मबआठ
+    - ढघआभ
+    - लधगख
+    - खईभब
+    - एअजप
+    - इछमओ
+    - मचइड
+    - खसओऊ
+    - यटऊड
+    - डचखय
+    - एथखउ
+    - बखधठ
+    - झअगय
+    - ऊमओत
+    - ठतपआ
+    - सपतल
+    - डदनभ
+    - लधअघ
+    - कटफज
+    - ढऊगउ
+    - तजमथ
+    - टजएछ
+    - जडईख
+    - ऊगपस
+    - झछफच
+    - लउजह
+    - रदमअ
+    - नडझफ
+    - धमडन
+    - करतड
+    - लअखग
+    - फढनआ
+    - ढझधट
+    - चउलब
+    - एखढह
+    - घईगज
+    - सभखछ
+    - खईढथ
+    - एठडध
+    - कखअथ
+    - आवहब
+    - झगधस
+    - धछबख
+    - ईधनफ
+    - लकजव
+    - उतईइ
+    - गवअउ
+    - वझपउ
+    - गठओइ
+    - हखडठ
+    - धडइब
+    - ओईतइ
+    - फपटच
+    - यघआथ
+    - हमगज
+    - धअखग
+    - टओलय
+    - ठऊइऊ
+    - एझसर
+    - डउतह
+    - गऊचअ
+    - मदघस
+    - तजमर
+    - इयठध
+    - तबसछ
+    - ढदवभ
+    - रधठऊ
+    - झफगय
+    - दअछझ
+    - थसडइ
+    - अकअम
+    - फबइस
+    - यठउप
+    - दबअउ
+    - तउझज
+    - चअलम
+    - छसवह
+    - थभइड
+    - नसलछ
+    - चगटथ
+    - नउयप
+    - यथजभ
+    - चछजढ
+    - सरओर
+    - खछयग
+    - टचछभ
+    - आहजअ
+    - चठतग
+    - दइनउ
+    - हएयछ
+    - रपधथ
+    - दओजप
+    - आलमग
+    - जतठव
+    - झपऊझ
+    - यबइझ
+    - डतयब
+    - फनथछ
+    - ऊघकर
+    - भआगए
+    - एथछघ
+    - ईखआय
+    - टउदआ
+    - दनधऊ
+    - सईएआ
+    - तयपज
+    - गठगई
+    - नतयद
+    - घसअझ
+    - बफदउ
+    - छआभम
+    - झफभओ
+    - हआऊग
+    - ढइढब
+    - दनभन
+    - टथअझ
+    - धछझउ
+    - दझढओ
+    - मनयअ
+    - ओढओर
+    - अओछक
+    - धअछन
+    - लगझए
+    - उफएद
+    - यगओठ
+    - रफछक
+    - ओअघए
+    - पऊहड
+    - झधवम
+    - ढयओज
+    - ढटसड
+    - टधथओ
+    - ईभहआ
+    - टमअग
+    - नयजऊ
+    - कअफउ
+    - सआअइ
+    - दहयठ
+    - अडढद
+    - गओआऊ
+    - उईजन
+    - ढआउऊ
+    - हनटद
+    - मछगय
+    - गझइढ
+    - दएउआ
+    - रगआक
+    - बओचइ
+    - यबटख
+    - नखझज
+    - थऊबस
+    - जएटथ
+    - लबओथ
+    - ओएडल
+    - चझलअ
+    - पहऊई
+    - पसऊअ
+    - गटथख
+    - दगघअ
+    - इनजध
+    - नपआर
+    - यहउच
+    - अछमत
+    - नटअट
+    - थटबद
+    - तठढथ
+    - टभफअ
+    - पमसद
+    - टएचउ
+    - तझदछ
+    - रहघठ
+    - गहजद
+    - एइफय
+    - धफपज
+    - एइअथ
+    - ईडझठ
+    - आअटच
+    - हथयल
+    - मदझद
+    - तनटड
+    - आलरग
+    - तगठओ
+    - नबसब
+    - भफआइ
+    - पनजत
+    - गनघअ
+    - घडउच
+    - ऊझहए
+    - घआडब
+    - ओएवइ
+    - फठरय
+    - गआभइ
+    - थएबह
+    - सवउख
+    - नपअन
+    - झधटऊ
+    - अयभप
+    - थभओस
+    - मजइस
+    - वडएड
+    - दझखस
+    - थअएओ
+    - डटओट
+    - अकफब
+    - नदउर
+    - नथफव
+    - घभटव
+    - दरसव
+    - यमफच
+    - गबआथ
+    - भकडइ
+    - एसनठ
+    - डढभअ
+    - छडरम
+    - नपहख
+    - ओडछआ
+    - ढचतढ
+    - चदभघ
+    - पइढअ
+    - इथढख
+    - नएआर
+    - रधमह
+    - ओनएय
+    - छथऊझ
+    - पडहन
+    - लओसर
+    - उपरइ
+    - लओएत
+    - झनपत
+    - यइमछ
+    - खभचओ
+    - ओडघआ
+    - बयडथ
+    - ऊइउन
+    - ईओरभ
+    - वतलछ
+    - डऊजब
+    - ठइखग
+    - हपऊआ
+    - नटनब
+    - एदछआ
+    - ऊरयम
+    - फअचआ
+    - चडकध
+    - आचवआ
+    kw08:
+    - करचम
+    - चडढम
+    - चघसय
+    - अतघउ
+    - कचलड
+    - हमझऊ
+    - खजइओ
+    - चएभघ
+    - भनअर
+    - झसनद
+    - वझएन
+    - झगलग
+    - लअऊथ
+    - हसजस
+    - ऊहफक
+    - उऊढय
+    - थटऊच
+    - टछजए
+    - खफईख
+    - टयआअ
+    - मझडठ
+    - फझछज
+    - खवछऊ
+    - ईहरए
+    - उकमट
+    - आघवठ
+    - ठऊजक
+    - भटझल
+    - छवथओ
+    - ढपचभ
+    - चअरव
+    - थनयछ
+    - भइधई
+    - थवऊक
+    - गघखन
+    - खछचद
+    - सछथख
+    - रहथच
+    - वउफछ
+    - अआघज
+    - घहछठ
+    - एयदख
+    - ढअकज
+    - उडबक
+    - ईवढओ
+    - तइडई
+    - भधठब
+    - उइऊस
+    - छऊअई
+    - थसओम
+    - गउफठ
+    - घधओज
+    - खवरड
+    - ईथठफ
+    - आईटध
+    - फढथड
+    - बठढफ
+    - उरहक
+    - सखझओ
+    - झपझइ
+    - जएअघ
+    - सखचक
+    - गलछई
+    - दकतक
+    - ईहअई
+    - बदतह
+    - थईधत
+    - उअईउ
+    - ठखगन
+    - थलबआ
+    - छईसप
+    - उछहत
+    - इऊतउ
+    - डगओज
+    - भघछन
+    - हगधख
+    - ईअउए
+    - सठनछ
+    - यटहझ
+    - अऊइठ
+    - ठछयघ
+    - जथहघ
+    - एअलइ
+    - आऊतज
+    - थगयम
+    - नढदब
+    - नअफय
+    - धइसत
+    - बसएठ
+    - उऊदक
+    - खऊउत
+    - अपअफ
+    - एतईप
+    - मकमर
+    - एदतब
+    - अटपआ
+    - गचपन
+    - नबघथ
+    - हभबभ
+    - धईआव
+    - ढहथय
+    - भगबझ
+    - इयएन
+    - सपनर
+    - सनअभ
+    - ढखझग
+    - ऊयअद
+    - बझतआ
+    - हइफख
+    - रपमख
+    - नयटन
+    - झओऊए
+    - हजथभ
+    - मलतथ
+    - गछनग
+    - वठपउ
+    - नबठड
+    - जखअग
+    - कघओड
+    - वठयक
+    - कइढज
+    - पईपट
+    - तछकई
+    - ओकएड
+    - ऊधवअ
+    - जझछस
+    - फहऊझ
+    - जनढत
+    - ओअयभ
+    - ढएधह
+    - हटघप
+    - इयखस
+    - मपझस
+    - जहखच
+    - बचओख
+    - छउऊख
+    - चझदस
+    - अआझक
+    - मअखऊ
+    - एनजई
+    - भनलझ
+    - एरदच
+    - चढगह
+    - खबइफ
+    - एआछध
+    - चठनझ
+    - उदओज
+    - फओथच
+    - डयघर
+    - खजरब
+    - धतछऊ
+    - ढरफत
+    - दचढप
+    - ऊयलक
+    - यओकव
+    - सकदघ
+    - ऊतफअ
+    - डघमअ
+    - दजकल
+    - पयतब
+    - एढहय
+    - थचयढ
+    - चपभब
+    - फवफउ
+    - नआगए
+    - वरएथ
+    - वतयम
+    - थधइम
+    - पएपस
+    - एईउछ
+    - टवडओ
+    - गयहइ
+    - लसठभ
+    - चओबअ
+    - थओकब
+    - दभठव
+    - गचऊह
+    - ओतयए
+    - तफओउ
+    - ठऊइक
+    - भइजग
+    - एगखए
+    - लभडअ
+    - ठआखन
+    - छउमछ
+    - टचरब
+    - तसटध
+    - थबयढ
+    - ओकघध
+    - ठफओघ
+    - टहकअ
+    - वनरइ
+    - गसजक
+    - ढघऊव
+    - ढधझक
+    - भअहब
+    - झगआध
+    - सअफह
+    - धरमल
+    - झछएव
+    - ऊधओई
+    - चछफव
+    - तउपद
+    - गयकघ
+    - ठडछठ
+    - नउबड
+    - जनउथ
+    - झबमस
+    - ठनएस
+    - मगढस
+    - धसऊए
+    - थअरन
+    - सठबथ
+    - घजथल
+    - ईडइक
+    - जलओह
+    - थओऊल
+    - मएछर
+    - तफनऊ
+    - झउडट
+    - फएलघ
+    - थढअन
+    - दजमआ
+    - धनजक
+    - उईओई
+    - दथईए
+    - ऊटजघ
+    - झतईख
+    - अधपस
+    - रआतअ
+    - ठअजओ
+    - जखअढ
+    - यधअड
+    - फएआत
+    - अयटप
+    - फअओग
+    - एपटन
+    - एथछग
+    - टवउच
+    - डढछफ
+    - झभइथ
+    - तजलग
+    - झएधइ
+    - टछटथ
+    - इघठर
+    - खईएव
+    - लहखट
+    - वकतआ
+    - ओगखस
+    - हयनड
+    - टसभय
+    - इहधढ
+    - छचगय
+    - नइनझ
+    - भहआऊ
+    - उरचझ
+    - छउओघ
+    - घछयउ
+    - ऊदखफ
+    - ओफअर
+    - तझकर
+    - टदउव
+    - डइयछ
+    - नछखइ
+    - धअमथ
+    - बजतआ
+    - दखकत
+    - धपआघ
+    - चधएस
+    - झपहच
+    - ऊथवद
+    - दपएव
+    - मबखन
+    - सडझघ
+    - पयरल
+    - सटरछ
+    - टडईए
+    - भचघम
+    - आढमस
+    - थघयड
+    - छझचऊ
+    - अटधझ
+    - गकभठ
+    - ठआओव
+    - झधएघ
+    - घअचभ
+    - झढथई
+    - झसउथ
+    - ठतडज
+    - इहयए
+    - घफईओ
+    - इढछउ
+    - एऊएआ
+    - ईएटत
+    - फओहड
+    - खसईप
+    - धयगओ
+    - आबटत
+    - ईकउई
+    - झहतई
+    kw09:
+    - परलट
+    - भउओझ
+    - चउयउ
+    - अबमअ
+    - ऊउठछ
+    - फठऊब
+    - उऊवज
+    - एवसफ
+    - हखफत
+    - पतईम
+    - भईगड
+    - अमभड
+    - छढनझ
+    - ढटतम
+    - फरउफ
+    - तगउख
+    - डवचस
+    - धईमड
+    - छझएन
+    - सपयत
+    - भईउझ
+    - सजझढ
+    - डरढफ
+    - तछसख
+    - ठदबआ
+    - पजयव
+    - नरगउ
+    - ऊछओफ
+    - वतआई
+    - सइसछ
+    - लजदछ
+    - हयचब
+    - कएउट
+    - रबसझ
+    - ईछजआ
+    - हठउआ
+    - अठधथ
+    - पहधई
+    - इएठघ
+    - उथछब
+    - दवखर
+    - दकहप
+    - इडइज
+    - यएउप
+    - गदनछ
+    - लथगस
+    - एवढफ
+    - तऊपढ
+    - ऊओछख
+    - गदजल
+    - डदझओ
+    - एफईव
+    - खईठओ
+    - हओवच
+    - टखईर
+    - ओमतझ
+    - ईयलह
+    - खछओड
+    - थअडझ
+    - पधपल
+    - इकअथ
+    - झभअध
+    - वसतट
+    - ठटरफ
+    - मअकय
+    - जतजम
+    - सगवए
+    - घखटघ
+    - नतकर
+    - बएलए
+    - डदपख
+    - गभकभ
+    - बजसच
+    - वओनभ
+    - भतलऊ
+    - टफखझ
+    - घफठल
+    - यभगक
+    - ढतठई
+    - घभढह
+    - इओछल
+    - आहउह
+    - फअतर
+    - छभलस
+    - पईधऊ
+    - ईओईत
+    - कऊतध
+    - लवईक
+    - आओढव
+    - वसइए
+    - भफसय
+    - बसचक
+    - धकओय
+    - आथयठ
+    - मचदअ
+    - आघपज
+    - गफजक
+    - एइयइ
+    - छटडह
+    - छकईर
+    - रगठओ
+    - लबखघ
+    - थडयछ
+    - वढचप
+    - तघफप
+    - मअसओ
+    - कजयफ
+    - हसउठ
+    - डभआम
+    - खटपन
+    - थतफओ
+    - वहथब
+    - सईडच
+    - मनछइ
+    - इएकस
+    - अझगख
+    - उखधग
+    - चकवउ
+    - चगझओ
+    - बचईग
+    - ढलकभ
+    - टफउज
+    - डबठझ
+    - लखबल
+    - ठईछओ
+    - खकसइ
+    - छसमस
+    - नडईऊ
+    - ठयघह
+    - टकदम
+    - चवसद
+    - ठभदथ
+    - खइछइ
+    - थघखन
+    - चझयड
+    - वसघग
+    - नयवआ
+    - मएचव
+    - कदगव
+    - ठदअम
+    - आतचय
+    - कपछह
+    - इजडढ
+    - झआबस
+    - चटसब
+    - ओसईध
+    - सनएख
+    - ईधपध
+    - टआहग
+    - खसओत
+    - झवथग
+    - यओथय
+    - गअडभ
+    - इरडअ
+    - मदखन
+    - बउलई
+    - बहओर
+    - तठछह
+    - घगईउ
+    - एहऊद
+    - ठदजउ
+    - छमकउ
+    - हधढज
+    - हईदथ
+    - टहआद
+    - डजगज
+    - ऊजदअ
+    - चघनइ
+    - ईनदइ
+    - ढरमद
+    - आछउट
+    - यईअन
+    - अऊतब
+    - खटधर
+    - गढअइ
+    - एऊओठ
+    - टतजउ
+    - टईझआ
+    - खनईब
+    - गरढथ
+    - ऊगछअ
+    - लउमय
+    - फसमक
+    - ढगरऊ
+    - मअईट
+    - सठबछ
+    - बपईस
+    - दआठफ
+    - ईबढत
+    - गतसह
+    - चफसठ
+    - अचतफ
+    - तइईऊ
+    - ठतऊत
+    - यतबध
+    - डहयर
+    - हझधम
+    - बरदध
+    - बधऊढ
+    - हधगई
+    - डसदइ
+    - थअओऊ
+    - यहझद
+    - आगउट
+    - एठजख
+    - मऊतड
+    - आगनई
+    - भझगठ
+    - भएकग
+    - तछघख
+    - रखचए
+    - मरहघ
+    - गऊरस
+    - डईझर
+    - उगजत
+    - झबईय
+    - जटईच
+    - धएईख
+    - ओतफध
+    - छखठघ
+    - रओटऊ
+    - ढएसअ
+    - ऊडघस
+    - कखओआ
+    - झइबइ
+    - बथगथ
+    - जछरम
+    - दअपम
+    - पएपच
+    - ठफयद
+    - डखवड
+    - बमनख
+    - उटमल
+    - ठटयओ
+    - ओभखढ
+    - छपखध
+    - थफभव
+    - चफसख
+    - दयफठ
+    - घभधस
+    - कतदय
+    - लआगइ
+    - एघझब
+    - बयधच
+    - ऊफबए
+    - यबडइ
+    - छटसह
+    - बइचओ
+    - चछउओ
+    - थगइभ
+    - टपछग
+    - ठपकझ
+    - एयरथ
+    - ठमअख
+    - सछभच
+    - आईहद
+    - गझगउ
+    - थमहद
+    - थकइध
+    - एकतह
+    - छइगय
+    - ईझनत
+    - मदघह
+    - आखईअ
+    - वहलम
+    - अजनई
+    - गआपभ
+    - छबखद
+    - टघईए
+    - इजडम
+    - घभतज
+    - मठवइ
+    - घतआच
+    - खबरह
+    - टदधए
+    - दएहओ
+    - ईबभछ
+    - खयफद
+    - मझयघ
+    - ठमलझ
+    - धपझई
+    - उवतट
+    - ढघएल
+    - फउतछ
+    - मलभट
+    - छतछठ
+    - पचयझ
+    - ऊएउझ
+    - ऊईपऊ
+    - पहछर
+    - थनघय
+    - थडइई
+    - वदआख
+    - यभनफ
+    - डखलध
+    - डवआह
+    - दफछआ
+    - दइटव
+    - मवधघ
+    - अईदव
+    kw10:
+    - ईतखर
+    - इठवथ
+    - ढनरह
+    - भखइख
+    - आसढभ
+    - छरइद
+    - रढअठ
+    - झकआइ
+    - मएऊझ
+    - ठजअज
+    - भआबए
+    - गनइई
+    - गखउस
+    - एआढह
+    - घयघढ
+    - पबतझ
+    - फलईन
+    - यगभस
+    - आछवय
+    - कजझम
+    - जएनज
+    - लइडब
+    - इयचल
+    - खदहए
+    - थअजठ
+    - मगभन
+    - जमईच
+    - टसइअ
+    - ईरभट
+    - टघमउ
+    - थतअन
+    - ऊठओभ
+    - झढएढ
+    - झलबख
+    - धरतय
+    - धएजऊ
+    - खथआफ
+    - फछजघ
+    - चबठत
+    - मखबआ
+    - झनआय
+    - गलआप
+    - अतधघ
+    - झटआस
+    - पएईए
+    - दनतथ
+    - टमऊज
+    - गऊओग
+    - आतथर
+    - एऊमक
+    - ठभझआ
+    - चवयक
+    - चडतढ
+    - परउझ
+    - नफठभ
+    - इयआच
+    - ठधझऊ
+    - ओआबअ
+    - तजरए
+    - टपएट
+    - पऊअल
+    - तछबअ
+    - ईलओउ
+    - फबउस
+    - ऊफछओ
+    - धनरय
+    - गघडए
+    - एफसल
+    - भचओव
+    - उलडन
+    - बआवद
+    - एढओथ
+    - नथचझ
+    - एमलट
+    - डदघझ
+    - जकआफ
+    - गडपठ
+    - नढघब
+    - ठकअप
+    - छहयप
+    - उगहई
+    - उइखग
+    - डछबठ
+    - घफओत
+    - लवमज
+    - यखवस
+    - पटझज
+    - गफतव
+    - खढदअ
+    - आढभट
+    - ठजभघ
+    - टगइस
+    - जखयन
+    - इवउफ
+    - फघतभ
+    - डओईव
+    - घधइड
+    - पमअठ
+    - ईयझउ
+    - तघदब
+    - कनईह
+    - खघअड
+    - धचटब
+    - फईउग
+    - घटचव
+    - इसथम
+    - अछगई
+    - हतडठ
+    - तदइफ
+    - लटबय
+    - ईअगम
+    - फऊइठ
+    - ढचमछ
+    - धछहअ
+    - भठआओ
+    - वईओउ
+    - जएरथ
+    - रऊतउ
+    - छवछइ
+    - बजखस
+    - टरगढ
+    - हउवउ
+    - पदसओ
+    - नझदझ
+    - दऊगउ
+    - ढवडद
+    - खईओज
+    - ठलवन
+    - ठधएफ
+    - सओउठ
+    - छवछस
+    - उझघऊ
+    - यइठस
+    - हटघछ
+    - भपहइ
+    - वझएओ
+    - झऊबत
+    - यफहल
+    - झजफद
+    - पसयव
+    - आसघक
+    - अधआय
+    - छओभच
+    - फडउभ
+    - यघकथ
+    - झमकफ
+    - लएईफ
+    - सडचघ
+    - हएआन
+    - झफटऊ
+    - इएयऊ
+    - थढउच
+    - मचदत
+    - चहवफ
+    - इबढभ
+    - यठलत
+    - ऊघडस
+    - डझधय
+    - डघइउ
+    - ढवथझ
+    - आपचब
+    - बकडत
+    - रएगछ
+    - थचधन
+    - वलवद
+    - मवठध
+    - आनओझ
+    - डफपठ
+    - बयठल
+    - यसयह
+    - रनपअ
+    - सचवभ
+    - यतचद
+    - लआसआ
+    - जएघल
+    - वउथट
+    - एचडय
+    - खरडभ
+    - कबगठ
+    - फडयप
+    - तखइड
+    - झघदक
+    - ढएउअ
+    - तकठल
+    - टफईय
+    - भलढभ
+    - घगफछ
+    - तजइल
+    - लचधन
+    - टसयब
+    - दफगर
+    - बहआउ
+    - उतडख
+    - ढहअओ
+    - अजपल
+    - एपडझ
+    - चओसआ
+    - एखधस
+    - घसजह
+    - उफगघ
+    - ओलएन
+    - चसखट
+    - धपबथ
+    - ऊदटड
+    - हनडप
+    - भदथग
+    - जछइव
+    - ऊढपर
+    - ओजबअ
+    - अढपअ
+    - फढफज
+    - अघसध
+    - तहऊअ
+    - दआछद
+    - पवगह
+    - घएघर
+    - वजखच
+    - गईहर
+    - ढघसअ
+    - तऊछल
+    - टठआउ
+    - डएबध
+    - कगटद
+    - ओलटथ
+    - मओईफ
+    - डयहभ
+    - लआबय
+    - भपभझ
+    - हभजढ
+    - रकईड
+    - तवदक
+    - रपफन
+    - हछघड
+    - चगअब
+    - हथजअ
+    - घथऊह
+    - छअभई
+    - सओझओ
+    - ऊआटअ
+    - वआयब
+    - गचअज
+    - ढओतइ
+    - दथएआ
+    - घकनख
+    - छडफआ
+    - वगढख
+    - थखछह
+    - हछअख
+    - कदखट
+    - पछधआ
+    - भठखआ
+    - अडझर
+    - उइअब
+    - इउकध
+    - बकअक
+    - सचईस
+    - खदलओ
+    - आकनझ
+    - वगसम
+    - ईएथब
+    - घयईल
+    - चईखग
+    - रओधद
+    - पइसड
+    - तअछप
+    - भकरआ
+    - खउहख
+    - तरडव
+    - गपउए
+    - जइनद
+    - भजआफ
+    - यखलझ
+    - पकयख
+    - अभरड
+    - रढलट
+    - रछटत
+    - बरलन
+    - अउजऊ
+    - यओछच
+    - एलमए
+    - चनयद
+    - एघठख
+    - चईघध
+    - सढहल
+    - एकओफ
+    - ढलठछ
+    - बआलइ
+    - ईकधब
+    - टथटथ
+    - उहझय
+    - लखजफ
+    - थईअढ
+    - धओदथ
+    - मदयन
+    - छयटइ
+    - भऊइल
+    - इऊगब
+    - फइयअ
+    - जअथए
+    - रजकय
+    kw11:
+    - भनअए
+    - ठयढप
+    - भऊबय
+    - इहफग
+    - सधढए
+    - खओछस
+    - ठछदठ
+    - दगठत
+    - घईओथ
+    - तअचध
+    - इभझउ
+    - धगओई
+    - रनआओ
+    - मपगद
+    - जओनआ
+    - ईडरछ
+    - फगटद
+    - आढऊअ
+    - इढझच
+    - नखधर
+    - तएझअ
+    - कभवत
+    - बधहम
+    - इआघझ
+    - चढजच
+    - ठलईथ
+    - धढइग
+    - ढदएउ
+    - भहबख
+    - रदहछ
+    - तघलध
+    - ढलदथ
+    - इउईट
+    - लखघन
+    - ऊएघद
+    - खजमइ
+    - तहरक
+    - नचबक
+    - ढसबड
+    - छदनघ
+    - ऊधसओ
+    - अडउल
+    - धभझत
+    - झईकच
+    - गधनत
+    - थऊचझ
+    - ईडझउ
+    - मठकब
+    - ईफलस
+    - चऊथट
+    - खटजत
+    - डफझघ
+    - आदकग
+    - कईठफ
+    - भरऊठ
+    - टअवऊ
+    - मचथय
+    - घवठफ
+    - इघदअ
+    - तइदख
+    - हओएज
+    - चअजऊ
+    - थठढह
+    - धतइह
+    - कलघज
+    - मखऊग
+    - ओझफथ
+    - पसछय
+    - आघईत
+    - तझईध
+    - टगथत
+    - वदभझ
+    - लतईउ
+    - डअऊघ
+    - तघहछ
+    - जउएइ
+    - रढखद
+    - भकदफ
+    - ऊहछझ
+    - छलकई
+    - दहडर
+    - लइचय
+    - सऊछद
+    - फरघख
+    - कथछग
+    - फवमट
+    - छदचम
+    - थबइझ
+    - अयखत
+    - भठरस
+    - थयखउ
+    - घखसम
+    - घएदट
+    - लनटन
+    - चलएई
+    - खऊयज
+    - हझवई
+    - धउदव
+    - दचझट
+    - इअबच
+    - कटघए
+    - फरफघ
+    - दगतए
+    - झबथई
+    - ठपअछ
+    - उपठइ
+    - इधअर
+    - लखईक
+    - ऊआचए
+    - यचघन
+    - यडईध
+    - ऊठयप
+    - जघहग
+    - एरदप
+    - मढइध
+    - वबडआ
+    - भथतव
+    - गकघझ
+    - अडगन
+    - भरभथ
+    - छरपम
+    - ईएजग
+    - धदछओ
+    - यखरच
+    - इभपए
+    - डगझच
+    - जनचउ
+    - गकघत
+    - घआधढ
+    - दअथऊ
+    - झनलऊ
+    - कयईअ
+    - सघसध
+    - टजथल
+    - पसकइ
+    - मटईस
+    - मधभय
+    - उधछज
+    - तधसध
+    - टअखर
+    - भफइग
+    - नधबच
+    - छऊघऊ
+    - उखगर
+    - ओआएव
+    - अभरग
+    - थकचन
+    - पउबफ
+    - अलयओ
+    - छअमय
+    - वयरइ
+    - बडलइ
+    - जबडव
+    - ऊसनच
+    - दइथप
+    - सजआए
+    - धयओघ
+    - ठगऊआ
+    - नबभआ
+    - घचछग
+    - वसऊढ
+    - वछठट
+    - लजघझ
+    - इढबच
+    - टअपउ
+    - तयनल
+    - पलधअ
+    - थनतच
+    - नघदझ
+    - चवतई
+    - सजहठ
+    - खढथउ
+    - धयथम
+    - गझबइ
+    - यचतव
+    - टमझछ
+    - डएखओ
+    - वईठई
+    - तओहय
+    - भसटव
+    - डछपछ
+    - फसडइ
+    - भजईर
+    - ढछचछ
+    - उफऊअ
+    - यनझभ
+    - पअयड
+    - एसपए
+    - यफडअ
+    - ऊजचख
+    - इमदच
+    - चदथऊ
+    - उएकर
+    - आईसड
+    - दटहए
+    - रगदआ
+    - घऊकय
+    - बढगप
+    - घरकर
+    - टचकठ
+    - ऊईगच
+    - एसनई
+    - उसनई
+    - गरलक
+    - चखफत
+    - ढधहज
+    - उढटई
+    - भपइए
+    - एहफह
+    - फआखए
+    - उकघग
+    - थपनब
+    - यझडघ
+    - मवएप
+    - गधकज
+    - घनआभ
+    - पटहथ
+    - इमठद
+    - आईऊर
+    - थटझइ
+    - मधसत
+    - नबऊख
+    - गतभख
+    - दकसम
+    - गआथफ
+    - ईफईइ
+    - तयओह
+    - चमथन
+    - गमडघ
+    - बरमर
+    - तबपन
+    - ईमफद
+    - कमतस
+    - मइआऊ
+    - ढठदप
+    - छडबह
+    - यजघद
+    - हयईइ
+    - भकइछ
+    - दसठउ
+    - वचयओ
+    - अचखप
+    - गबकन
+    - इऊबस
+    - नएझट
+    - ढठटच
+    - ठधरग
+    - हइवउ
+    - ओगलट
+    - गठनत
+    - ठनउट
+    - थएमद
+    - एजभट
+    - मपअझ
+    - फभफआ
+    - ठतचद
+    - सवखज
+    - बउपक
+    - जदओऊ
+    - इईघअ
+    - फठछक
+    - ढयचए
+    - छअमआ
+    - दचझस
+    - रढमभ
+    - लअछभ
+    - झमजघ
+    - वअबझ
+    - भडबग
+    - गपसठ
+    - गअछए
+    - फतकट
+    - आथयझ
+    - भअआइ
+    - यथनअ
+    - रथइफ
+    - टथझग
+    - जऊबओ
+    - अधतट
+    - वभअच
+    - गतडफ
+    - अओपठ
+    - ऊयउप
+    - कधइट
+    - अपछन
+    - आथओठ
+    - धनआथ
+    - थईवआ
+    - आतसर
+    - कआझल
+    - सटखझ
+    - भढलज
+    - अधतप
+    - इवठद
+    - वसयफ
+    - मछनल
+    - पइतध
+    - रएइट
+    - मघअट
+    - यसठन
+    kw12:
+    - रपदर
+    - ढहकग
+    - रकजक
+    - ईभओइ
+    - उबरओ
+    - ईफछई
+    - बपघभ
+    - वदघफ
+    - अभथग
+    - यअजक
+    - उचभस
+    - ठढघद
+    - ऊआओव
+    - खअकच
+    - चलउह
+    - थलवत
+    - गचइफ
+    - थएदथ
+    - ऊघथअ
+    - पएटछ
+    - सचऊड
+    - फएमय
+    - भयअऊ
+    - ठयखस
+    - हवइई
+    - ईवठट
+    - डजनझ
+    - आईमट
+    - मलउप
+    - धजऊओ
+    - बधकट
+    - हअठऊ
+    - दढआब
+    - रहओल
+    - कइउओ
+    - यरचल
+    - मकभब
+    - फझवल
+    - तएऊठ
+    - ऊदमई
+    - घडसभ
+    - पभलर
+    - इअओप
+    - दकरल
+    - आधगउ
+    - छसबइ
+    - मथगज
+    - डभवब
+    - कआउप
+    - ऊछएप
+    - टवनम
+    - बएगउ
+    - झईलप
+    - ठभअए
+    - टठकभ
+    - थएलध
+    - छइथक
+    - बऊएग
+    - सएबप
+    - तयदआ
+    - तघओम
+    - सपइअ
+    - चडटठ
+    - भनजघ
+    - घढरआ
+    - उढगऊ
+    - दबसथ
+    - ईवयब
+    - उगदर
+    - तखधज
+    - ओएओर
+    - झसपर
+    - दतकन
+    - खमबध
+    - ढटयद
+    - ऊधदघ
+    - इएसर
+    - फचएक
+    - ढडथभ
+    - फधगक
+    - ऊआनइ
+    - उहमध
+    - भबखभ
+    - छओसइ
+    - ईकरच
+    - छमटल
+    - छझथच
+    - घनएइ
+    - भजरल
+    - ढझअख
+    - मखयह
+    - यतइछ
+    - ईठएस
+    - सइऊक
+    - ईलभथ
+    - इरइध
+    - मओअआ
+    - ढहछई
+    - हधऊआ
+    - रवथइ
+    - गठखउ
+    - वडइअ
+    - आईऊन
+    - ऊडधर
+    - सवढइ
+    - यएभच
+    - उवयत
+    - डअढथ
+    - धचआद
+    - आडजप
+    - एउओन
+    - दगझओ
+    - झखडऊ
+    - जझखढ
+    - वभतक
+    - घथघज
+    - आढआह
+    - तसमछ
+    - इवसओ
+    - ढईगच
+    - ओमईज
+    - धझउस
+    - एढरच
+    - टकदठ
+    - गरसऊ
+    - टखबघ
+    - चतढध
+    - आऊफप
+    - हछडय
+    - जईफट
+    - जमघड
+    - ढरवझ
+    - झखयए
+    - टआघठ
+    - बसचड
+    - टखडफ
+    - वईबप
+    - कउगई
+    - कगमउ
+    - डआलठ
+    - छखथअ
+    - उठउघ
+    - पयसप
+    - ऊथरघ
+    - बथवत
+    - पउजह
+    - नधउय
+    - फएभझ
+    - हनआध
+    - चमजर
+    - दवओप
+    - इफटठ
+    - यथओए
+    - छएझछ
+    - उनजम
+    - एचजफ
+    - जफरप
+    - दटथब
+    - बफईक
+    - उकओआ
+    - वफचल
+    - ऊगथज
+    - अझइग
+    - कअढअ
+    - डयठध
+    - गखकइ
+    - पधईज
+    - पयछभ
+    - भघहई
+    - जधरट
+    - खआउप
+    - ठहयव
+    - मपढओ
+    - ओथपल
+    - भदझन
+    - छकडम
+    - फमठइ
+    - आजवछ
+    - फइगठ
+    - कवधआ
+    - चथआय
+    - भलरढ
+    - ठरथऊ
+    - ईदवह
+    - एगदफ
+    - वइऊफ
+    - यचठढ
+    - ओबमघ
+    - फढघआ
+    - ओसएउ
+    - ठरटह
+    - डसऊय
+    - चवतउ
+    - खगअख
+    - थऊआई
+    - चढअभ
+    - उजगछ
+    - रगएढ
+    - आलचप
+    - तफघझ
+    - एरएझ
+    - भछखऊ
+    - पगऊक
+    - चपइब
+    - सछयग
+    - ठउघस
+    - चपमव
+    - अधऊड
+    - ओफधत
+    - नएछठ
+    - रआठच
+    - हवगम
+    - भधकत
+    - मऊहप
+    - भझफट
+    - रईडअ
+    - धनलज
+    - झवफव
+    - यथसए
+    - चफईब
+    - बभदध
+    - झखइन
+    - आचहउ
+    - मचडन
+    - सयचऊ
+    - ढघथव
+    - घसधब
+    - कइपइ
+    - वसचड
+    - बचइम
+    - भछहछ
+    - सरइक
+    - इबढए
+    - दऊधच
+    - लयरऊ
+    - मओडप
+    - अफसत
+    - ओकमग
+    - अआजख
+    - गबचस
+    - इघउल
+    - वअगव
+    - एटऊद
+    - सजअय
+    - थफछठ
+    - उरढन
+    - झघओऊ
+    - ईदमस
+    - छइबव
+    - छढएअ
+    - वथखझ
+    - टवथप
+    - छभवइ
+    - खगझढ
+    - गखझर
+    - ठयमघ
+    - समऊय
+    - मसअव
+    - धथमव
+    - ऊसभन
+    - खझसय
+    - ठमसख
+    - ऊउघथ
+    - थसबभ
+    - अथझउ
+    - अमजत
+    - मकफआ
+    - बटतऊ
+    - ओढसय
+    - भझघफ
+    - थजरउ
+    - हरओल
+    - इएघध
+    - धअईम
+    - चहकह
+    - लसठउ
+    - ठभबउ
+    - लअसय
+    - टऊधत
+    - कदहउ
+    - दझथट
+    - घअटआ
+    - एनहअ
+    - फहइघ
+    - घनबध
+    - नधजभ
+    - ढभहओ
+    - फछघत
+    - भथऊब
+    - ईऊईह
+    - भहघख
+    - वखवन
+    - ईधयत
+    - ईहतघ
+    - जतढफ
+    - चदडइ
+    - घआअउ
+    - उईभन
+    - चढदघ
+    - घधभए
+    kw13:
+    - इठएभ
+    - इमओघ
+    - करएव
+    - धतदइ
+    - ठनसत
+    - लडलइ
+    - लयसद
+    - एधसभ
+    - इगसव
+    - नभयग
+    - रचकर
+    - पलठई
+    - दथठझ
+    - ओछएग
+    - टवपठ
+    - बपऊआ
+    - अतथच
+    - डकऊल
+    - हछलक
+    - टधकत
+    - ओरटच
+    - ठलझर
+    - हबहज
+    - लठसई
+    - इईनस
+    - नमभफ
+    - भटठझ
+    - यकलत
+    - एघगज
+    - ठटफघ
+    - कउखठ
+    - मभसक
+    - रओरह
+    - रआतई
+    - थघओव
+    - ओउटव
+    - वरमइ
+    - बघनच
+    - तटउठ
+    - आठजआ
+    - वआफअ
+    - चयढठ
+    - टबकप
+    - सवदभ
+    - इजमव
+    - ऊखटथ
+    - ईझचल
+    - जडजओ
+    - वईसठ
+    - यखगए
+    - ओभतम
+    - तझघथ
+    - दजलझ
+    - छजनत
+    - भऊझओ
+    - ढवचज
+    - फजईह
+    - धलअत
+    - नहबठ
+    - आछपभ
+    - खडभध
+    - पभयई
+    - तएफज
+    - ऊखढई
+    - तथओए
+    - ऊझतच
+    - पओगऊ
+    - बढयझ
+    - यफहअ
+    - वटडख
+    - चपकख
+    - अथधय
+    - चझनऊ
+    - छलमओ
+    - फपढओ
+    - वदमअ
+    - चओफड
+    - ईगखर
+    - गऊअब
+    - इघतह
+    - डबरप
+    - लगयर
+    - झमफड
+    - घठडब
+    - धलठट
+    - आटढभ
+    - पधऊओ
+    - घओखआ
+    - ईहवम
+    - इछरख
+    - आगखम
+    - झकएट
+    - हरगउ
+    - लदईह
+    - आठडस
+    - थओछफ
+    - सईडप
+    - उगलत
+    - गसइछ
+    - गमठफ
+    - झछढख
+    - मओढआ
+    - इनहत
+    - रसझर
+    - मदजथ
+    - घदसऊ
+    - थकघझ
+    - मबइम
+    - बढछए
+    - कफभक
+    - घगयह
+    - भनतढ
+    - घजऊद
+    - टभऊढ
+    - गउगल
+    - भढथम
+    - ओअचल
+    - एतथन
+    - डअसय
+    - इखउऊ
+    - रहवच
+    - ओठधढ
+    - वभआक
+    - वढईग
+    - कदझव
+    - एईधस
+    - ठतचप
+    - एयभओ
+    - ठकवट
+    - धकगव
+    - बरदय
+    - सभसअ
+    - एरसट
+    - भटमद
+    - कथमन
+    - मयभढ
+    - ऊबचग
+    - खवडव
+    - ऊओहर
+    - एहबड
+    - इफजए
+    - हवअड
+    - चतठव
+    - यलठढ
+    - ओगथऊ
+    - नहगढ
+    - दओजल
+    - बटएन
+    - रडएआ
+    - आभओअ
+    - गझहत
+    - बठएह
+    - टयधए
+    - मरपड
+    - फतईट
+    - ठऊउढ
+    - आठमछ
+    - फभतच
+    - ओखमग
+    - वईझआ
+    - पझओल
+    - आजफब
+    - वबटप
+    - भखधफ
+    - नमअछ
+    - उटवर
+    - ढजगओ
+    - पऊओढ
+    - इलभख
+    - रजवय
+    - रजडग
+    - ठचढभ
+    - टरकअ
+    - घरसघ
+    - एईडठ
+    - धईखझ
+    - सएतद
+    - यढमक
+    - तफसढ
+    - आनछए
+    - ईचबझ
+    - ढनखग
+    - थआमप
+    - डसईछ
+    - मजगढ
+    - थझहल
+    - टफलढ
+    - उखझट
+    - भनटत
+    - टकआछ
+    - जआसऊ
+    - तधउल
+    - जधपई
+    - चलछत
+    - ओथठउ
+    - ईपढउ
+    - तवअउ
+    - धरसअ
+    - मनटछ
+    - झपअढ
+    - घरभल
+    - धएघओ
+    - उथचत
+    - घछतल
+    - आकमख
+    - वटदझ
+    - नदपख
+    - लनअभ
+    - रबधव
+    - खठरत
+    - छखलद
+    - थवलफ
+    - तइपल
+    - एअकध
+    - यथखई
+    - बडरध
+    - धठईग
+    - चदजई
+    - फउजख
+    - तउपव
+    - टआएद
+    - ऊधमज
+    - गकयम
+    - आअठआ
+    - तएजअ
+    - तमरक
+    - ठभछक
+    - ठदढए
+    - घखपक
+    - वफनच
+    - वतरभ
+    - कपजय
+    - नवउआ
+    - तगओछ
+    - ईअहठ
+    - उटयऊ
+    - वऊईघ
+    - झघओद
+    - चयदछ
+    - गसगऊ
+    - तइमठ
+    - इफचक
+    - धडघन
+    - आगढभ
+    - इफपब
+    - घईपक
+    - खहसअ
+    - ओइडफ
+    - वमइब
+    - भखधझ
+    - घटडथ
+    - डएवय
+    - उअखथ
+    - नदधझ
+    - पकहआ
+    - कऊजल
+    - ओनयछ
+    - यफतद
+    - ईथनओ
+    - दजकफ
+    - अढठर
+    - भऊतइ
+    - यफऊउ
+    - यलमई
+    - हदवध
+    - नगघआ
+    - बझओझ
+    - थचआढ
+    - उअजच
+    - ढडखस
+    - उफछउ
+    - चघचख
+    - डतऊए
+    - ढथइअ
+    - बटअए
+    - आउदझ
+    - हउघय
+    - नफठछ
+    - भइउछ
+    - जवइख
+    - ढथदझ
+    - ऊमगव
+    - वथढब
+    - दईलत
+    - थजओख
+    - डअओत
+    - फठचआ
+    - घदभल
+    - ठछउई
+    - उचटध
+    - सघयल
+    - चजठह
+    - बचमई
+    - धयझत
+    - वजपए
+    - आचरग
+    - डअबव
+    - आकदट
+    - फथछए
+    - पजभक
+    kw14:
+    - तजधह
+    - ठकयठ
+    - ओलआभ
+    - रआहऊ
+    - खअधऊ
+    - खधठन
+    - फउखग
+    - भखअफ
+    - तछखप
+    - दरइव
+    - यथइध
+    - घओएद
+    - हफमउ
+    - नफठई
+    - झआझत
+    - सयमख
+    - कथओढ
+    - यमरढ
+    - गदआर
+    - घमफभ
+    - ढपओय
+    - बतइड
+    - नलईउ
+    - वभपह
+    - कढफम
+    - चकढझ
+    - छआऊख
+    - दमटब
+    - चपओऊ
+    - वफठझ
+    - छतउफ
+    - घधफर
+    - झउतब
+    - डचअद
+    - ठथवल
+    - अदहऊ
+    - इजरख
+    - आठदइ
+    - खभलर
+    - कथभआ
+    - फकथज
+    - एफझज
+    - झहमद
+    - डजएभ
+    - मबतध
+    - एदआध
+    - दजईआ
+    - बमएट
+    - भओसभ
+    - अतएऊ
+    - ठटफई
+    - गइलत
+    - टधवड
+    - बअथव
+    - अईचझ
+    - धऊठढ
+    - चभथह
+    - पसवछ
+    - भउफछ
+    - हलदई
+    - अहभब
+    - यकचफ
+    - चवयझ
+    - खछथअ
+    - एउटव
+    - यसआच
+    - गइधअ
+    - झहलत
+    - जआछय
+    - मघजआ
+    - ऊतऊध
+    - वठचट
+    - रतछज
+    - थघकर
+    - सलरढ
+    - ठचनई
+    - अछलओ
+    - हबछव
+    - एघअब
+    - थखमअ
+    - तजपध
+    - लबअउ
+    - फझचह
+    - इपडघ
+    - खकढड
+    - आथलव
+    - ईमछभ
+    - हझतय
+    - तडथट
+    - इखडट
+    - सचवत
+    - मफतध
+    - महवह
+    - खएडद
+    - डघतउ
+    - एरलक
+    - थसबव
+    - दजटय
+    - ढपफठ
+    - गइझई
+    - ठडझव
+    - झपतग
+    - ओछमक
+    - जयइद
+    - धजयह
+    - पएधउ
+    - ईभपभ
+    - आजमघ
+    - थखएभ
+    - सहदढ
+    - वसबन
+    - जधएउ
+    - लथवफ
+    - बझखफ
+    - फवथड
+    - दसवस
+    - छजऊप
+    - सभवओ
+    - एसबय
+    - मथखऊ
+    - नकआई
+    - आपआअ
+    - डछइथ
+    - मटतच
+    - यबटई
+    - आतदठ
+    - थझकढ
+    - ढसकइ
+    - ढबढज
+    - कदठअ
+    - दमथआ
+    - एभबस
+    - डभफझ
+    - सथखत
+    - थवपख
+    - ऊहउल
+    - थतदव
+    - नकसत
+    - घझघस
+    - चऊलट
+    - भउगद
+    - डछभथ
+    - डतगल
+    - धइबग
+    - भघटब
+    - भवसफ
+    - घधओग
+    - जतकभ
+    - अआबध
+    - खकयध
+    - ओबतझ
+    - हबदध
+    - कबढभ
+    - ईएढह
+    - इईनऊ
+    - एठऊआ
+    - एबईच
+    - फघऊस
+    - भटकध
+    - लफगफ
+    - दएचम
+    - एझछय
+    - झधबफ
+    - पछगट
+    - डबवप
+    - ओउनआ
+    - फसनग
+    - कचघर
+    - ऊटवल
+    - छचटप
+    - पऊडप
+    - थदठओ
+    - ठभलअ
+    - यओतय
+    - इएवद
+    - करबए
+    - फझहऊ
+    - अटकद
+    - आअडज
+    - टफसय
+    - थछठव
+    - तभअआ
+    - ढकऊट
+    - वओटस
+    - आओनट
+    - उगडद
+    - अवझअ
+    - वजयए
+    - ढधओआ
+    - अइदल
+    - डअलफ
+    - ऊईसड
+    - खवदथ
+    - दअओइ
+    - जतढथ
+    - थघफझ
+    - वपकझ
+    - वईछघ
+    - मदछव
+    - लवचट
+    - हढघउ
+    - खठवओ
+    - नवपओ
+    - हउगज
+    - आगबड
+    - दईयब
+    - चतधए
+    - हछतव
+    - चकफऊ
+    - असजठ
+    - ठडउख
+    - पमबय
+    - इअगछ
+    - ठगओब
+    - थअबम
+    - दइघध
+    - ईखसब
+    - लसआन
+    - इटकट
+    - चटघस
+    - लयडघ
+    - भवऊर
+    - ईछचम
+    - हएकथ
+    - जथएफ
+    - अजगप
+    - आधझआ
+    - ठअवआ
+    - ऊइदउ
+    - डसऊझ
+    - ढझचम
+    - ईऊउछ
+    - मईउह
+    - गटभब
+    - मईहओ
+    - भटउऊ
+    - रनफझ
+    - सहआम
+    - हछठन
+    - ऊडलद
+    - चगनज
+    - घरलन
+    - जऊखक
+    - इतचई
+    - वथओज
+    - धढबत
+    - थलऊओ
+    - नछफठ
+    - आछघझ
+    - मयजई
+    - हघदउ
+    - सठभत
+    - खझटच
+    - खऊइच
+    - थएडओ
+    - घऊबन
+    - ऊडरढ
+    - ईभगभ
+    - फलढम
+    - तउकअ
+    - एआनय
+    - ठचवथ
+    - तघउढ
+    - उदचप
+    - बइचठ
+    - रआझम
+    - पधवप
+    - उलउओ
+    - ऊथपय
+    - लकछप
+    - सफटउ
+    - अघओक
+    - खडनइ
+    - थछखई
+    - सउधई
+    - पभटढ
+    - अउडओ
+    - उचअह
+    - घचलओ
+    - अधखत
+    - पधसव
+    - चआरह
+    - ढठगच
+    - इसनव
+    - कदआद
+    - ढआभअ
+    - जतटच
+    - धजबड
+    - दचवछ
+    - अआमफ
+    - पउजए
+    - गजहप
+    - कफनड
+    - बथसल
+    - थकलइ
+    - सइचई
+    - ऊछथई
+    - रगधज
+    - तरएड
+    - झभवछ
+    kw15:
+    - यअहड
+    - वघदड
+    - सधथड
+    - गफअऊ
+    - ऊवऊस
+    - हकचग
+    - इकठय
+    - ठगठय
+    - डथएत
+    - पनहर
+    - ओइरत
+    - मजईप
+    - नघचम
+    - इचईट
+    - आएथस
+    - फबटब
+    - वतबप
+    - इखएल
+    - नधआफ
+    - वफयए
+    - कवभद
+    - कडऊथ
+    - ढदभथ
+    - पइटऊ
+    - पलदय
+    - एसऊब
+    - नउअआ
+    - हअनच
+    - रचढस
+    - हनएच
+    - भमरए
+    - वयभद
+    - उलटल
+    - नठघथ
+    - कयजख
+    - नतबअ
+    - ईटछन
+    - धठखम
+    - धझबझ
+    - गयजस
+    - जबटह
+    - झफबव
+    - दरटए
+    - रचझइ
+    - उलरई
+    - नओरध
+    - आफझघ
+    - गएघई
+    - गबओर
+    - इढलइ
+    - ढभइह
+    - छएआठ
+    - ठखउस
+    - नघकर
+    - ढयलप
+    - भपटद
+    - ऊगवथ
+    - फगझज
+    - उधकठ
+    - गएहच
+    - छतकए
+    - चखपर
+    - मतटध
+    - कऊदड
+    - दयछउ
+    - नमओभ
+    - सओउछ
+    - ऊभसत
+    - चईजग
+    - गढघढ
+    - जउहल
+    - पईओन
+    - भडतल
+    - अओधर
+    - वतढज
+    - रआठढ
+    - लवखऊ
+    - मटरक
+    - गएमप
+    - टपडओ
+    - रटचन
+    - हलकढ
+    - कचतढ
+    - ओरनफ
+    - पफकद
+    - नधफग
+    - रअडम
+    - वमईख
+    - छखझत
+    - थचढध
+    - जठवइ
+    - मघगद
+    - वसजओ
+    - कफलघ
+    - झधडध
+    - लएसझ
+    - तएऊब
+    - थलइत
+    - अपइर
+    - कघतर
+    - लचलय
+    - चघगड
+    - धनसभ
+    - ओमओए
+    - ढओबन
+    - घकधथ
+    - आभईठ
+    - रढहक
+    - थयबव
+    - घहपग
+    - दठभम
+    - डवसघ
+    - घनजआ
+    - तसरड
+    - फतयई
+    - ओमधन
+    - यइउझ
+    - आफरद
+    - भमइद
+    - ऊथतझ
+    - फओअस
+    - नरहभ
+    - खधबग
+    - ऊतइछ
+    - थयऊल
+    - चओघम
+    - भदजय
+    - आदजओ
+    - एसकओ
+    - वउयघ
+    - एझऊछ
+    - इयगझ
+    - आनढभ
+    - हउधद
+    - एछडफ
+    - नजढत
+    - पतढख
+    - गहओछ
+    - फरटए
+    - लजईल
+    - मछबन
+    - झदहउ
+    - कझवक
+    - लखबघ
+    - वऊटठ
+    - ठबझह
+    - पखअथ
+    - थपफछ
+    - ठवजध
+    - वएगन
+    - फथरघ
+    - थटचऊ
+    - टआजख
+    - उघयव
+    - गतऊट
+    - ठइमध
+    - गबकऊ
+    - ढघकज
+    - छओचग
+    - डइउझ
+    - टखएध
+    - भझतध
+    - ओधथआ
+    - डआकभ
+    - यरवत
+    - चरगऊ
+    - ढडठव
+    - तअनउ
+    - अतखज
+    - हलरय
+    - वधकव
+    - फमभओ
+    - बइबर
+    - वऊईइ
+    - छथघथ
+    - धनखठ
+    - ओकहत
+    - ईसओध
+    - रघआओ
+    - नडधद
+    - पफढउ
+    - घएजख
+    - ऊलभअ
+    - फदलख
+    - उइकए
+    - आओझढ
+    - मटधह
+    - सखदव
+    - बढलउ
+    - ऊमतय
+    - खबईम
+    - मउथद
+    - ओछथऊ
+    - कईटध
+    - उधबक
+    - ऊहभद
+    - ठडतब
+    - इहमट
+    - ओउठप
+    - सलमभ
+    - भदवइ
+    - फकचप
+    - हअमछ
+    - ईछईर
+    - लरकज
+    - उगछन
+    - नकमय
+    - टउभव
+    - ओफथछ
+    - चरकब
+    - खगझऊ
+    - धभजह
+    - दगटग
+    - डरसट
+    - चथएप
+    - ओमइन
+    - गठयर
+    - जआझप
+    - भजगस
+    - आबवब
+    - ईरटघ
+    - ईमगद
+    - धउईए
+    - चगउई
+    - डऊउथ
+    - अईपव
+    - छचओय
+    - नभइउ
+    - आडगह
+    - ढयवय
+    - भउओन
+    - कटदड
+    - हईबऊ
+    - तझएओ
+    - आतफह
+    - कमधप
+    - थपमद
+    - फएथऊ
+    - उयदइ
+    - गठदह
+    - वआजच
+    - लवअल
+    - यफधच
+    - भवओक
+    - ठजकस
+    - उअइध
+    - एपइच
+    - यलएव
+    - इयएठ
+    - ऊधठउ
+    - थछतब
+    - ओपजथ
+    - भयझछ
+    - सदरढ
+    - आफएय
+    - यउएस
+    - हइटव
+    - आछभथ
+    - पभदअ
+    - धऊउध
+    - जवकद
+    - ठधडअ
+    - कगबध
+    - पधउऊ
+    - ओठलध
+    - धघअई
+    - तअऊम
+    - ठनवए
+    - अटफऊ
+    - तऊलर
+    - आऊघह
+    - लपईऊ
+    - ढहएक
+    - हएतज
+    - छथठओ
+    - ईहजअ
+    - ढझलच
+    - वदइफ
+    - फखआग
+    - भझथत
+    - धछढठ
+    - कलभख
+    - चहडउ
+    - लठफओ
+    - आइडफ
+    - फकटथ
+    - नरघठ
+    - सटथढ
+    - यलहर
+    - ओउखछ
+    - हमजप
+    - मझखस
+    - अहठभ
+    - टधरक
+    - धजछस
+    - घमफम
+    - जसमज
+    - टदघम
+    - कठसल
+    - धमनर
+    kw16:
+    - ईअधच
+    - हटऊध
+    - एईकट
+    - आअभत
+    - रबउछ
+    - सबचव
+    - अठबज
+    - एमजन
+    - चएसब
+    - कटतन
+    - मभमप
+    - घरवई
+    - भऊहब
+    - धऊथअ
+    - लधबह
+    - उऊटऊ
+    - उलभड
+    - गजअय
+    - वईघई
+    - जभदफ
+    - इअडग
+    - अघठभ
+    - लदसट
+    - तआभक
+    - आचछब
+    - सदओइ
+    - ओखआठ
+    - रफअए
+    - जयछम
+    - गईयठ
+    - रतझट
+    - डयहन
+    - हजघअ
+    - भहभछ
+    - गकठफ
+    - अपघढ
+    - इमजम
+    - ऊपगन
+    - दपमद
+    - यइभच
+    - कईऊव
+    - झवपए
+    - ऊरछत
+    - अकओझ
+    - कसथब
+    - बनसठ
+    - नएगज
+    - तझघध
+    - बपवच
+    - दभडऊ
+    - मलछओ
+    - ईसचस
+    - खटठज
+    - अरछग
+    - दटदव
+    - खअआओ
+    - एअठध
+    - ढछगल
+    - नउलन
+    - उझकय
+    - घरअज
+    - रभखल
+    - रचएछ
+    - पदउड
+    - भओहन
+    - उचढभ
+    - फझवभ
+    - यलथत
+    - नथआच
+    - रथआऊ
+    - थपथझ
+    - यघपत
+    - टघटघ
+    - टओधल
+    - टआओई
+    - सघछढ
+    - ढअझइ
+    - तढधड
+    - पवघढ
+    - झदटझ
+    - वथअझ
+    - वठउथ
+    - आखकच
+    - थतगट
+    - टआयर
+    - अधजऊ
+    - हइगभ
+    - कथबत
+    - झलयक
+    - मठगय
+    - अचफल
+    - जउयव
+    - ऊदपथ
+    - इईढछ
+    - अकआअ
+    - कईनद
+    - अदघल
+    - कछझह
+    - धबछघ
+    - अआगत
+    - वऊईऊ
+    - फपतच
+    - फयइस
+    - लईरख
+    - पसबछ
+    - टघउढ
+    - भखयआ
+    - वखकद
+    - कचवस
+    - फखनथ
+    - धभखद
+    - तइभख
+    - बऊखउ
+    - घरछभ
+    - तपटक
+    - ईगठख
+    - उठथग
+    - फभछढ
+    - सलओक
+    - मयऊस
+    - पईऊह
+    - तडगच
+    - ठरचन
+    - ठऊटए
+    - ईढमय
+    - वबडध
+    - घनटए
+    - ईफकग
+    - झयसन
+    - चखउध
+    - डहलक
+    - सउखत
+    - जइठन
+    - ईबलत
+    - मईछय
+    - मथछढ
+    - तउनम
+    - सवदड
+    - ऊरथल
+    - ढधपड
+    - घतजच
+    - मथओम
+    - आयथड
+    - कजटआ
+    - यअझख
+    - जखधफ
+    - दरधझ
+    - एटचफ
+    - टढजद
+    - ओभगल
+    - मतटढ
+    - फडईब
+    - इअघढ
+    - हझगढ
+    - बछआह
+    - ओइवत
+    - चइयढ
+    - बअईस
+    - तईढछ
+    - झआपफ
+    - कतघह
+    - दघकम
+    - टरइख
+    - थरजथ
+    - वघझछ
+    - अघकब
+    - थजईन
+    - छकढन
+    - भटऊब
+    - धकउध
+    - ठउकओ
+    - मफहउ
+    - बवचट
+    - दएगप
+    - फआफउ
+    - बउटई
+    - ऊफउझ
+    - छरबन
+    - बफवस
+    - ओअएई
+    - खउहग
+    - ऊवऊम
+    - धउतघ
+    - तऊसर
+    - अइलट
+    - छउअद
+    - ढलहख
+    - दमघय
+    - बचभढ
+    - ठफहघ
+    - ओईकय
+    - गधइक
+    - खटवय
+    - टउछग
+    - बऊरफ
+    - मवचप
+    - इहठआ
+    - खओभख
+    - मवझऊ
+    - सओजऊ
+    - ईआईम
+    - तईइआ
+    - ओयठओ
+    - भधहअ
+    - इथलठ
+    - कतआख
+    - जआहग
+    - यतडप
+    - मभडव
+    - आकऊम
+    - छआपउ
+    - फअसब
+    - ओवमई
+    - भघथर
+    - छएकढ
+    - जघकइ
+    - यमकथ
+    - इहफल
+    - छनअभ
+    - झतऊउ
+    - अतनह
+    - ओयतल
+    - रसडच
+    - जइढझ
+    - भऊचद
+    - सहयल
+    - रआकध
+    - थपबद
+    - फथउओ
+    - नतऊध
+    - धजथअ
+    - टढरथ
+    - हजहओ
+    - सऊजस
+    - डआटव
+    - लमपस
+    - रअबप
+    - सदईअ
+    - इलपग
+    - थनएओ
+    - पडबम
+    - अनआव
+    - ओहरझ
+    - टडभढ
+    - डलखग
+    - छइखन
+    - आजठय
+    - जगएई
+    - झतटच
+    - कथलइ
+    - नजपर
+    - पऊअग
+    - ओखहअ
+    - गकठस
+    - मढअए
+    - रलधर
+    - यहनए
+    - यभतर
+    - वतदज
+    - गभकढ
+    - धईअओ
+    - ढतगध
+    - भखकठ
+    - ईवउम
+    - उसअऊ
+    - उछउच
+    - तऊरध
+    - डटफद
+    - थईयप
+    - छमसज
+    - ठनझभ
+    - टऊमस
+    - इठजआ
+    - मओठह
+    - ठधएत
+    - भघडउ
+    - धउखअ
+    - टगइछ
+    - गथउओ
+    - घकथए
+    - सझठत
+    - ओछमई
+    - रपटप
+    - चसकढ
+    - झओयई
+    - ईझनठ
+    - फटफह
+    - फघधफ
+    - मटसह
+    - रघझढ
+    - भईभड
+    - एओकए
+    - मईगढ
+    - झबछट
+    - डइउढ
+    - थघझच
+    - चछटछ
+    - ऊजगइ
+    - झडगठ
+    - आटमभ
+    kw17:
+    - ठटओड
+    - धऊसब
+    - यचलह
+    - कबथज
+    - यठझअ
+    - उआभझ
+    - थखलस
+    - ढझठर
+    - फजठई
+    - टवसऊ
+    - डएघइ
+    - दकईइ
+    - छतलज
+    - फरफऊ
+    - चसईओ
+    - बएअज
+    - चथढच
+    - चतकज
+    - वओघव
+    - छथईक
+    - एझईऊ
+    - घवडए
+    - फसतय
+    - ठयढठ
+    - धखअम
+    - ढहनऊ
+    - मनकर
+    - फजचघ
+    - घकघख
+    - इवउए
+    - दएडघ
+    - ऊझभत
+    - तधखप
+    - ढघहघ
+    - ओघतऊ
+    - हयथख
+    - मडबझ
+    - वगठय
+    - थढचद
+    - टझटढ
+    - टधटब
+    - छतनअ
+    - फमछऊ
+    - भझवड
+    - अऊसज
+    - एढइट
+    - सटगय
+    - फथसढ
+    - फतसअ
+    - बजठच
+    - बजअव
+    - पभबड
+    - टउआउ
+    - खकरअ
+    - गइसढ
+    - ठचतप
+    - उढएस
+    - यछओछ
+    - फएसय
+    - धऊकत
+    - हएधव
+    - वइएव
+    - थऊआए
+    - यजठआ
+    - उथएट
+    - नरघअ
+    - मथबघ
+    - ओऊझअ
+    - इओभब
+    - ओमएउ
+    - थदमध
+    - ओअभध
+    - सबइक
+    - धटभप
+    - ईजइई
+    - छठहर
+    - मलसअ
+    - मबसझ
+    - इखभई
+    - हमहठ
+    - वटआट
+    - मधजढ
+    - तढथक
+    - यधलऊ
+    - रधछभ
+    - नपटन
+    - यतमभ
+    - चइटस
+    - चआएर
+    - ढदलठ
+    - रठबओ
+    - रनकग
+    - झऊछध
+    - मढतम
+    - इझउऊ
+    - एतपए
+    - ऊमढल
+    - जधबढ
+    - मऊएप
+    - ठढझल
+    - थछबठ
+    - ओलढट
+    - ईवइद
+    - चजनज
+    - उभखर
+    - यदघन
+    - इईउइ
+    - मनइम
+    - पलजभ
+    - अदथघ
+    - इजढघ
+    - भछइफ
+    - डगईत
+    - गवनठ
+    - रखकढ
+    - ढरगर
+    - मईभब
+    - फईधर
+    - इजआध
+    - घफतर
+    - कटदध
+    - बघमअ
+    - घनमभ
+    - गजभढ
+    - भनलप
+    - तरझह
+    - ईडगआ
+    - पधएई
+    - रफओइ
+    - ऊउछन
+    - सडढफ
+    - छलएह
+    - टजछम
+    - उझढल
+    - तठलख
+    - लतअघ
+    - नझकह
+    - फखजद
+    - लपरद
+    - ऊमनत
+    - सदईव
+    - टपवप
+    - धओअड
+    - सदबर
+    - अलदफ
+    - दइआक
+    - एओछउ
+    - घओखइ
+    - लऊथड
+    - एअलव
+    - आहफर
+    - अवयइ
+    - बझनह
+    - भगइय
+    - ओखकध
+    - उभईस
+    - इचजय
+    - छठवभ
+    - मझदल
+    - फलफथ
+    - खगधत
+    - ठतगछ
+    - धचझभ
+    - बछफर
+    - झईगट
+    - नधभढ
+    - ओऊपच
+    - आढपठ
+    - ठअतक
+    - झवरम
+    - फअझर
+    - आऊबए
+    - झठनच
+    - पठपआ
+    - ओपनए
+    - छहथघ
+    - उगटझ
+    - झइडव
+    - दडओत
+    - घगवओ
+    - जयजझ
+    - कखआप
+    - गठआड
+    - छमछढ
+    - उघहख
+    - दगयच
+    - अइवच
+    - मदघई
+    - नथबआ
+    - ओधहग
+    - पएदट
+    - रएरऊ
+    - ऊखटक
+    - नओहभ
+    - ढलफघ
+    - थनजथ
+    - लइसख
+    - नडबक
+    - चडलफ
+    - कदठऊ
+    - बएटब
+    - तआअध
+    - आहतट
+    - ठआओब
+    - ऊजढघ
+    - एथगड
+    - गधयफ
+    - कधचभ
+    - ओमयध
+    - लओउठ
+    - उतवप
+    - हवखइ
+    - हयहल
+    - धघउज
+    - ईएजठ
+    - इकओघ
+    - सभअज
+    - टघजढ
+    - आलइम
+    - लबलच
+    - लबझक
+    - ईफदन
+    - यओवआ
+    - आअदव
+    - जडजच
+    - कबनअ
+    - डलहग
+    - ढयजढ
+    - ओटरअ
+    - रइठक
+    - उआटऊ
+    - सआडउ
+    - उफआए
+    - मटयस
+    - थसझच
+    - खघयड
+    - यआसफ
+    - अतईग
+    - पइटठ
+    - थमफख
+    - मओथख
+    - तईफउ
+    - ओखकर
+    - रखभर
+    - थलढद
+    - फतनख
+    - जबउम
+    - उजपऊ
+    - चकअस
+    - लनवइ
+    - ऊदउछ
+    - जइरज
+    - चफथछ
+    - धथधक
+    - ऊचआह
+    - तमधड
+    - हकरछ
+    - रफइच
+    - जउदओ
+    - झमढए
+    - थभमच
+    - भरठत
+    - ईरएइ
+    - पलछआ
+    - धअटछ
+    - दरपआ
+    - आरझई
+    - मयओई
+    - रआनछ
+    - उफअउ
+    - धअतल
+    - यठथट
+    - ठअकय
+    - छइचब
+    - तउभद
+    - झओखट
+    - लनकआ
+    - ईबलव
+    - जथरए
+    - ऊढओर
+    - ओदखइ
+    - इमतर
+    - आभचभ
+    - तअभम
+    - झचथक
+    - गथडध
+    - घवइल
+    - लइहप
+    - अडअभ
+    - ठछलक
+    - मबदभ
+    - ऊखदव
+    - ऊलफद
+    - रतमई
+    - ईटपअ
+    - थचझप
+    - हयजअ
+    - यसभप
+    - खइगद
+    - एसएस
+    kw18:
+    - ईदठफ
+    - अवजत
+    - घऊफक
+    - मपउअ
+    - डछनथ
+    - बगझऊ
+    - लबयइ
+    - चखभई
+    - तटअथ
+    - झगलझ
+    - वछमअ
+    - ऊकमन
+    - मलएच
+    - ईटमत
+    - वएझस
+    - आडजइ
+    - जखउर
+    - ढधऊव
+    - डदगद
+    - डबओत
+    - लउदब
+    - चरओझ
+    - वचटछ
+    - फधयब
+    - लछखऊ
+    - हओतय
+    - थऊचघ
+    - घहचए
+    - ओलबघ
+    - फरआह
+    - ओउजई
+    - कमउर
+    - सउटओ
+    - थरकग
+    - भइओन
+    - ढवऊए
+    - धवटम
+    - ढजधच
+    - एअडच
+    - ईढदप
+    - दऊखन
+    - मथकथ
+    - घरपभ
+    - कभछफ
+    - अऊकढ
+    - फछपव
+    - तटबस
+    - छपठम
+    - डईइच
+    - तइखथ
+    - ईधइज
+    - छफचप
+    - सआयन
+    - झऊचप
+    - जफगथ
+    - सझआए
+    - यकपऊ
+    - झजयए
+    - डनयथ
+    - वठथउ
+    - दलआय
+    - कचरज
+    - हयठछ
+    - टऊउच
+    - अआधझ
+    - पधथओ
+    - सभथड
+    - बघलभ
+    - फढऊव
+    - ऊदझअ
+    - उओहन
+    - उखतग
+    - हढआस
+    - एगसध
+    - घहमऊ
+    - धगइओ
+    - उटरद
+    - मढचव
+    - लअथए
+    - परलअ
+    - चथओय
+    - तईखथ
+    - तडखअ
+    - मखचक
+    - मवओब
+    - ठचजफ
+    - हपचख
+    - डओनम
+    - घडजय
+    - खतअय
+    - वभहझ
+    - धपइभ
+    - अछईच
+    - फखनक
+    - जढसए
+    - गभकज
+    - ओभवभ
+    - छसरठ
+    - भचटओ
+    - वअओड
+    - छबकल
+    - चआथघ
+    - इओनच
+    - नजढव
+    - अलधअ
+    - गदथल
+    - यऊसन
+    - पअधघ
+    - एओअफ
+    - ओभऊठ
+    - कगनठ
+    - सवआउ
+    - मइभस
+    - लइओथ
+    - धनइग
+    - यजचध
+    - रभखठ
+    - गडहड
+    - आढनआ
+    - नधऊर
+    - छयहच
+    - घओजइ
+    - मसछभ
+    - जआनब
+    - पऊहअ
+    - ईढसझ
+    - दवरथ
+    - ईठधथ
+    - भनपघ
+    - टघदर
+    - इचछझ
+    - भखगप
+    - हआउघ
+    - छतऊअ
+    - टतसर
+    - खआजप
+    - इईअउ
+    - नटआढ
+    - डधडछ
+    - सभउढ
+    - चयओई
+    - घठईआ
+    - डठआग
+    - रदझओ
+    - दछटभ
+    - फटलफ
+    - धतइस
+    - घफडभ
+    - रदतच
+    - ढइईस
+    - दएदइ
+    - गकगई
+    - आछयच
+    - लफरह
+    - आढघर
+    - आगनह
+    - वभयथ
+    - ढसटम
+    - मसआई
+    - गओयफ
+    - ठटतए
+    - नरकव
+    - उकछढ
+    - वघदय
+    - लटइह
+    - थवउभ
+    - थऊफच
+    - इरचय
+    - सभआम
+    - जफढओ
+    - घमअव
+    - चऊओट
+    - ओनहय
+    - थधपए
+    - मधसज
+    - वकझम
+    - मएझख
+    - यजझद
+    - भहसप
+    - जभफठ
+    - उसबथ
+    - दगनछ
+    - आएअध
+    - जवगऊ
+    - झगलठ
+    - डवघउ
+    - उरलज
+    - चलउछ
+    - झवगट
+    - टएलए
+    - ईजबल
+    - नआगच
+    - एयइद
+    - फदओप
+    - हइधआ
+    - वभकओ
+    - फसघल
+    - खटखस
+    - अओधझ
+    - आओधप
+    - चछधई
+    - दअटठ
+    - आठसऊ
+    - जरखए
+    - खचगज
+    - ऊआएब
+    - हछवऊ
+    - दफबत
+    - ईघलव
+    - झआभछ
+    - बघमल
+    - दचओभ
+    - इऊगय
+    - ऊघहघ
+    - ऊएठथ
+    - एइबओ
+    - चछडआ
+    - अऊफए
+    - झदनव
+    - दहसच
+    - यढठछ
+    - नथजफ
+    - धमईथ
+    - फबकअ
+    - मठनए
+    - वभधओ
+    - रजऊआ
+    - हथचभ
+    - पटछस
+    - नखझत
+    - थअनट
+    - थचओट
+    - डईउस
+    - भयएढ
+    - पझफछ
+    - तयजआ
+    - घईघध
+    - बउगआ
+    - गझलऊ
+    - दवकड
+    - घउघट
+    - लधउच
+    - झसतड
+    - धईजऊ
+    - घयदह
+    - ढथबठ
+    - थझधफ
+    - वपझउ
+    - चवपभ
+    - ईगसभ
+    - बतनस
+    - छहपक
+    - एठअझ
+    - छबठथ
+    - जकटघ
+    - आरऊम
+    - डलवग
+    - इथजउ
+    - ढधथध
+    - कछकझ
+    - ओअहअ
+    - डलगठ
+    - जपजउ
+    - गसभद
+    - टवनर
+    - फयएभ
+    - लओयम
+    - लमचख
+    - तवकथ
+    - ऊघठऊ
+    - लबभज
+    - टझफम
+    - यघओढ
+    - मदबई
+    - दहडइ
+    - ओखछल
+    - मउपद
+    - खटछर
+    - जढएई
+    - कठदआ
+    - भमदस
+    - आवअठ
+    - पबरल
+    - परकज
+    - ईथदइ
+    - बउटप
+    - फकलत
+    - घथउय
+    - भफढज
+    - अईसझ
+    - झगहब
+    - कझबए
+    - ऊरआथ
+    - छईपड
+    - आडठघ
+    - डनओआ
+    - फदतअ
+    - गफइल
+    - थऊओछ
+    - यधडस
+    kw19:
+    - जअजक
+    - टथएइ
+    - टचढफ
+    - मथढछ
+    - ओठदर
+    - नसघध
+    - छधजत
+    - फआजअ
+    - यझधह
+    - रगछघ
+    - थईगभ
+    - धओलफ
+    - छरझर
+    - गबझम
+    - लआमअ
+    - जखकड
+    - झदटत
+    - अढईल
+    - चयगघ
+    - उधहथ
+    - इजफव
+    - ईओईल
+    - चएझथ
+    - भइखय
+    - गबतस
+    - तवधछ
+    - बठबक
+    - ऊईसह
+    - यभमठ
+    - छअईज
+    - दधडढ
+    - उऊचट
+    - मईऊब
+    - एआबड
+    - चयऊछ
+    - मसटच
+    - हइकद
+    - ढरखल
+    - ठदयआ
+    - टजछव
+    - खनहओ
+    - यएखउ
+    - थकआउ
+    - खउधत
+    - नलपग
+    - सहइल
+    - ठगघऊ
+    - पयकज
+    - जसमन
+    - कटनआ
+    - ईमटउ
+    - जडयठ
+    - भनआध
+    - घफछथ
+    - अघखघ
+    - धआगढ
+    - इवथस
+    - टओडठ
+    - यओआअ
+    - फइउथ
+    - ओअधअ
+    - सघबढ
+    - धफहद
+    - आओबप
+    - ऊखभन
+    - जदतट
+    - सढबऊ
+    - उडधम
+    - यमधअ
+    - डखलठ
+    - यरधइ
+    - गधथझ
+    - तछथझ
+    - दईछए
+    - चपठई
+    - वतठय
+    - भढकउ
+    - उवखध
+    - टएछए
+    - गहडढ
+    - वनपआ
+    - महखज
+    - दझघह
+    - गतभड
+    - ऊइघक
+    - छहफघ
+    - हढछथ
+    - नभछग
+    - जखईख
+    - एठपअ
+    - घठपछ
+    - ढतइझ
+    - भईचफ
+    - धझदभ
+    - नतइब
+    - ठहटह
+    - कतडई
+    - धगआछ
+    - दजथन
+    - ईमऊफ
+    - पनअक
+    - हएईठ
+    - अमदइ
+    - नखगथ
+    - वएथआ
+    - धदनढ
+    - जचरफ
+    - रओअढ
+    - इभजख
+    - लठओई
+    - सलझम
+    - आधगझ
+    - यधमछ
+    - ओझबए
+    - लइभछ
+    - वढठब
+    - दजमय
+    - ईअनप
+    - चईदक
+    - टघओभ
+    - सओबम
+    - ढलथछ
+    - बघनघ
+    - टमरद
+    - नठलग
+    - हकमव
+    - एवइस
+    - एदझई
+    - थकलर
+    - यरफक
+    - नओहछ
+    - वअइफ
+    - घएबझ
+    - ढजइअ
+    - अऊसन
+    - आअऊअ
+    - चएभम
+    - मथगप
+    - फपथओ
+    - लधतग
+    - डअएआ
+    - मछइई
+    - ओबईड
+    - कइउढ
+    - गनछल
+    - यतढभ
+    - तएरई
+    - ओकऊफ
+    - मदझप
+    - अढसघ
+    - बआटफ
+    - ओजयक
+    - अयइग
+    - धभरथ
+    - मउडप
+    - वइआक
+    - कनईट
+    - झछदग
+    - ढनपभ
+    - थगझथ
+    - खबयर
+    - थऊफड
+    - ईयरग
+    - ओआऊझ
+    - खधअग
+    - बडझए
+    - घमढद
+    - बईहठ
+    - नचहध
+    - गनजउ
+    - भटघध
+    - बहतल
+    - थफडट
+    - छमपत
+    - आलएथ
+    - गझकघ
+    - यलउम
+    - रआगह
+    - बपबत
+    - उवईथ
+    - वथनउ
+    - एकअर
+    - छइघत
+    - तअलब
+    - चबडस
+    - नएनर
+    - ठरउई
+    - भआरउ
+    - ढउयव
+    - ऊइईफ
+    - इआसह
+    - जचछत
+    - कखथओ
+    - टठफऊ
+    - खवआझ
+    - कढओच
+    - गआटओ
+    - दओमढ
+    - टरखध
+    - थमकख
+    - ईफमछ
+    - फघगर
+    - ढधपन
+    - चगईझ
+    - ढधगओ
+    - टतढन
+    - छयलआ
+    - तदहभ
+    - डछवद
+    - ओडउघ
+    - बनफड
+    - दगआऊ
+    - वमहअ
+    - बमसढ
+    - लतओढ
+    - ऊतचउ
+    - हउडढ
+    - असहक
+    - भरधथ
+    - डजपआ
+    - ठइभओ
+    - बइभख
+    - सडदड
+    - खनभड
+    - ऊगछध
+    - भधचट
+    - वऊपआ
+    - चफलघ
+    - ईमखभ
+    - ओइटद
+    - यढकज
+    - हअउच
+    - ईइभए
+    - ओजरऊ
+    - फखभआ
+    - यसचठ
+    - भहवफ
+    - आमरइ
+    - छपगए
+    - गपथआ
+    - कघगझ
+    - झवबग
+    - एथखद
+    - दचठय
+    - दवअऊ
+    - अखहई
+    - ढयठभ
+    - दऊओइ
+    - मखओअ
+    - ढछदच
+    - लतघद
+    - ईयडय
+    - जतगअ
+    - करजओ
+    - ऊतवओ
+    - तडछक
+    - मठऊज
+    - ठफघऊ
+    - छचईम
+    - फगजड
+    - नझलख
+    - मआफध
+    - वहमभ
+    - लरदअ
+    - डझपऊ
+    - आरतओ
+    - छआभब
+    - घफथढ
+    - उछआत
+    - ईभनऊ
+    - नधमढ
+    - यसभए
+    - ठभतछ
+    - रघचइ
+    - सझसउ
+    - चमसढ
+    - इहनच
+    - यएमव
+    - खछनद
+    - टबघठ
+    - रऊडऊ
+    - बऊरध
+    - ढउखझ
+    - थभगब
+    - वभछथ
+    - कवखत
+    - कपहड
+    - गसआइ
+    - जवसढ
+    - रऊदइ
+    - आअघस
+    - खघधस
+    - दईअठ
+    - डयओघ
+    - झरऊउ
+    - टडमय
+    - छइभआ
+    - एफथस
+    - वछईअ
+    - रबटघ
+    kw20:
+    - जधडफ
+    - घओउए
+    - उडएड
+    - टईमर
+    - बउनट
+    - लउछर
+    - ढठआई
+    - एऊजउ
+    - तलरछ
+    - मछऊध
+    - जवभह
+    - जइपड
+    - आगडई
+    - यदजफ
+    - घखयआ
+    - यजलफ
+    - दअसउ
+    - यठरफ
+    - पठखफ
+    - थचबइ
+    - ऊझचध
+    - वखथब
+    - घबयड
+    - ऊकदअ
+    - यबयप
+    - फहखउ
+    - कसआढ
+    - नईभघ
+    - इवचट
+    - दडरए
+    - यइभट
+    - फहझढ
+    - इतएआ
+    - ठलऊढ
+    - वटअआ
+    - घऊअर
+    - झधतड
+    - अयठथ
+    - हछनद
+    - गकयअ
+    - नधभज
+    - घपचड
+    - डउनत
+    - उडअद
+    - धचलए
+    - ओईउव
+    - फघपव
+    - आघचह
+    - कओचए
+    - डमहट
+    - ओऊचट
+    - ओयडब
+    - तठघद
+    - बइरघ
+    - ऊएसऊ
+    - नकदप
+    - चयढए
+    - ऊइकल
+    - नचरऊ
+    - उगऊत
+    - जइहआ
+    - दखएक
+    - ईइआथ
+    - एचअट
+    - घइठय
+    - आवभआ
+    - ठएघम
+    - धवमध
+    - कलठड
+    - कवखफ
+    - टऊकघ
+    - फगलझ
+    - इछएह
+    - जझदम
+    - दएठट
+    - ढभझभ
+    - खतगव
+    - हवइऊ
+    - चढओझ
+    - रचहन
+    - आभठज
+    - सपघओ
+    - जअयई
+    - ठसमन
+    - डतउह
+    - पहझब
+    - छतलस
+    - झऊतल
+    - थपअब
+    - दउओत
+    - इउतय
+    - ठनहथ
+    - इडमत
+    - मओथच
+    - ऊइघत
+    - ढठआत
+    - थछरट
+    - झमतव
+    - थलधट
+    - खनतउ
+    - चबउट
+    - नटडथ
+    - यओनड
+    - चपथक
+    - लभचल
+    - ऊजहए
+    - चधआक
+    - दझथच
+    - फजघऊ
+    - नचआइ
+    - आओधज
+    - तथघइ
+    - यछईघ
+    - नघनत
+    - कनडत
+    - कपफच
+    - वआवद
+    - जऊकउ
+    - ठचकद
+    - पमदन
+    - हथडउ
+    - मथसड
+    - गदपज
+    - टरथद
+    - चऊएस
+    - यझआउ
+    - गचठक
+    - छऊछन
+    - अरपव
+    - ईझकघ
+    - यऊईय
+    - सओढए
+    - छफबओ
+    - लइउओ
+    - यअआत
+    - सगजउ
+    - लछबघ
+    - फओउब
+    - आजनअ
+    - दलनज
+    - ओमरआ
+    - टफवड
+    - जकभऊ
+    - ईगरभ
+    - झजछन
+    - जफटउ
+    - वदसई
+    - गचटआ
+    - फढईज
+    - ओएटऊ
+    - दघथक
+    - डकअभ
+    - ठचठम
+    - अथधअ
+    - ओहतघ
+    - ठवआड
+    - वऊहए
+    - थघआउ
+    - हछईस
+    - हएवई
+    - यघलघ
+    - थईओइ
+    - भडईच
+    - ईकघए
+    - ओघफभ
+    - धइखच
+    - ऊमजक
+    - चनकथ
+    - वढवठ
+    - ढऊकट
+    - सटतज
+    - लआटऊ
+    - ऊटउन
+    - चएओझ
+    - थनउत
+    - पभओढ
+    - थयढओ
+    - लनऊघ
+    - फदटद
+    - चटयक
+    - लथटफ
+    - धनतस
+    - अजबझ
+    - छखउद
+    - डढवच
+    - मघबस
+    - सइबझ
+    - तधदस
+    - ऊछयए
+    - हइअझ
+    - टठगख
+    - नउआप
+    - धथढफ
+    - फछबव
+    - आजहड
+    - छमऊअ
+    - नलजग
+    - दघझउ
+    - अयलई
+    - घदपच
+    - छगरअ
+    - भठकउ
+    - भजउर
+    - टएकढ
+    - मकयम
+    - ऊघतक
+    - हघइघ
+    - मगरक
+    - तमथज
+    - गखदख
+    - फजटस
+    - बगरऊ
+    - गफचउ
+    - भछसभ
+    - तबठघ
+    - भकदड
+    - आकवआ
+    - वकखउ
+    - आखदग
+    - फपबय
+    - दवआर
+    - एउगभ
+    - रधबम
+    - झटमब
+    - बढसक
+    - जगउछ
+    - झउजध
+    - दठटक
+    - हअकभ
+    - गचहअ
+    - नवथक
+    - हढआम
+    - टजगख
+    - कदनप
+    - इदधछ
+    - डआबद
+    - उथवछ
+    - नसबई
+    - दएभथ
+    - ईअहट
+    - ईजफज
+    - गओईय
+    - नगखत
+    - ठथचछ
+    - फबपस
+    - हजदच
+    - गईएच
+    - फडचथ
+    - तधआम
+    - लधढआ
+    - झपएच
+    - डपढक
+    - झजईछ
+    - हअबड
+    - ऊइझज
+    - ईचइई
+    - टघनख
+    - एमटढ
+    - नथवग
+    - झगखम
+    - भतपब
+    - ओएकघ
+    - ढलगस
+    - जखढप
+    - बकभप
+    - खहदक
+    - बभथट
+    - पधरत
+    - खयबआ
+    - ओरगझ
+    - धतचल
+    - घटसह
+    - खगएऊ
+    - घहलछ
+    - चऊटग
+    - वधईठ
+    - एडझब
+    - गझटप
+    - एडठख
+    - नइधन
+    - धभइर
+    - गएलझ
+    - घफरह
+    - टयहप
+    - पढपअ
+    - जबभए
+    - वडरउ
+    - रघएढ
+    - ईडयख
+    - हईउल
+    - अठउघ
+    - गथवप
+    - लडगफ
+    - जओवठ
+    - रयहत
+    - खकरन
+    - ऊचअऊ
+    - छधएइ
+    - वपझच
+    - इएडइ
+    kw21:
+    - ओखफड
+    - उओलब
+    - यईझप
+    - ढचलफ
+    - यछइच
+    - गधगप
+    - बतठथ
+    - झतगम
+    - भदवस
+    - खउटठ
+    - उढचप
+    - मइअइ
+    - वयगय
+    - उएमग
+    - थभजढ
+    - लघछप
+    - मऊजफ
+    - बआघए
+    - भठतम
+    - सडछउ
+    - टनजई
+    - छदहख
+    - चबलठ
+    - उएईध
+    - घलफझ
+    - अऊटई
+    - लएलह
+    - फढओद
+    - कखडइ
+    - ढअरय
+    - सदघध
+    - भसलग
+    - डएनग
+    - ढफडज
+    - अतथघ
+    - लगअक
+    - वढयह
+    - भएवक
+    - एलफय
+    - उदचख
+    - भघवन
+    - रबतप
+    - वठजघ
+    - बरइझ
+    - आखओझ
+    - घवलह
+    - ईटदभ
+    - गऊथल
+    - झओघओ
+    - अरछई
+    - रएउब
+    - मयउआ
+    - ओऊमआ
+    - धबठथ
+    - हधदठ
+    - आचअऊ
+    - झउटउ
+    - फघटई
+    - इठकझ
+    - डजओग
+    - दगसब
+    - रजफन
+    - कऊसढ
+    - लफलख
+    - ऊहनद
+    - कउयभ
+    - ढउहप
+    - कठढझ
+    - रओथफ
+    - नछईग
+    - नदखज
+    - डटऊत
+    - एघअछ
+    - एआरच
+    - उकरय
+    - ईरऊअ
+    - ईसबठ
+    - धउसभ
+    - सओयड
+    - फऊबग
+    - कवधड
+    - हलओआ
+    - दवझस
+    - मझयस
+    - ढउसत
+    - ओइखव
+    - एनईख
+    - दतदड
+    - डगऊक
+    - रतवऊ
+    - टनआट
+    - ओईभख
+    - कलएल
+    - हआझन
+    - ठखढध
+    - गभकह
+    - ढऊयर
+    - सठएफ
+    - गइनओ
+    - डभछई
+    - घउहक
+    - मचथह
+    - अपजइ
+    - थसऊझ
+    - गथघई
+    - एथतड
+    - ठघईम
+    - ईएभऊ
+    - आवमक
+    - जएझक
+    - झदखआ
+    - मठअई
+    - लओबन
+    - झठसल
+    - वआऊभ
+    - चयधढ
+    - बलमफ
+    - इहसध
+    - ढअसब
+    - चयईर
+    - फतइट
+    - खअजए
+    - हछमय
+    - गमअध
+    - घढछफ
+    - डबवन
+    - ठढभक
+    - टगरठ
+    - तनदछ
+    - यफनऊ
+    - धईलक
+    - तकलज
+    - हइएफ
+    - रपफठ
+    - ढछधह
+    - टढवघ
+    - लयनल
+    - नबढउ
+    - कएऊम
+    - दखअट
+    - सवभइ
+    - एपवढ
+    - डहअद
+    - यऊजस
+    - तबआक
+    - बरएत
+    - डखकऊ
+    - तटओस
+    - वदईठ
+    - वहदइ
+    - फइगक
+    - ईऊकत
+    - लडधओ
+    - आवइथ
+    - ठधरड
+    - उहटड
+    - वयजक
+    - इरहछ
+    - चनपम
+    - दबओई
+    - छसबत
+    - ईजपछ
+    - ईछभढ
+    - धओआस
+    - वआजध
+    - इहगर
+    - आढजआ
+    - ढवडए
+    - उगचम
+    - दधअब
+    - लयभत
+    - ओसऊज
+    - ढहतढ
+    - ऊरधह
+    - नलतछ
+    - बलभझ
+    - नढअई
+    - घआफप
+    - झलडऊ
+    - मसऊउ
+    - धहईछ
+    - टलतई
+    - जतदझ
+    - गडअक
+    - झअतज
+    - घजपध
+    - मबचए
+    - अचअआ
+    - थवआभ
+    - ओधगप
+    - रइउप
+    - थफवर
+    - कउभब
+    - थकरक
+    - सतढई
+    - गईछक
+    - चयएर
+    - छइजए
+    - पजछस
+    - झढघज
+    - ओखथम
+    - इरदट
+    - झएसम
+    - रढहद
+    - पहएस
+    - चएबप
+    - डआजछ
+    - ठहझद
+    - अडऊउ
+    - ईवछध
+    - ओउभउ
+    - हकहख
+    - गभपठ
+    - मदठड
+    - गमकग
+    - दढभय
+    - बओयठ
+    - लनघम
+    - आगचभ
+    - ईढआर
+    - यफघस
+    - चघइन
+    - अपझज
+    - ओखवह
+    - पवभझ
+    - तरटत
+    - कअफठ
+    - अनघख
+    - ईमछब
+    - ऊरझढ
+    - दबलप
+    - फआपम
+    - आहईझ
+    - ऊईओअ
+    - थआमल
+    - छअतव
+    - एइजप
+    - भरओथ
+    - अघबइ
+    - हगफब
+    - मआघझ
+    - तचसल
+    - जइहस
+    - जघपस
+    - तअरट
+    - थवथउ
+    - घईझउ
+    - लघठछ
+    - ईनफस
+    - ढबयद
+    - तउछज
+    - रदयई
+    - ओउमच
+    - सओपक
+    - एघछऊ
+    - बडघक
+    - ओदइच
+    - ओबढथ
+    - दसधओ
+    - कपघफ
+    - डघलट
+    - लहफच
+    - डओइछ
+    - ठनतस
+    - ऊडटम
+    - ओहजझ
+    - छवछउ
+    - अफनओ
+    - धठमई
+    - उघडओ
+    - ठआबट
+    - ईइईत
+    - यसमस
+    - दटडक
+    - फपईम
+    - वइडआ
+    - घलगह
+    - एयटअ
+    - अतखई
+    - मफथघ
+    - झफपअ
+    - घटओऊ
+    - थएनए
+    - अहचख
+    - ढधचर
+    - इसचड
+    - कझवभ
+    - तडघढ
+    - हसदफ
+    - ढबसछ
+    - झजपउ
+    - जबआल
+    - रयठग
+    - भडभए
+    - कवलद
+    - धझगर
+    - मपआझ
+    - चओपख
+    - यटदय
+    - फसथघ
+    kw22:
+    - एरघद
+    - खछतम
+    - ईडछय
+    - ओआनत
+    - हकझड
+    - भढदख
+    - हयअफ
+    - लधबओ
+    - ऊबधथ
+    - कडभप
+    - फएअज
+    - ईऊफथ
+    - झऊरक
+    - परचओ
+    - ओचखढ
+    - चउइब
+    - जओउछ
+    - टऊफउ
+    - धडढड
+    - खथगट
+    - धपचर
+    - छएखघ
+    - ऊनपख
+    - फखटस
+    - डठतग
+    - खऊआभ
+    - ओदठम
+    - ईठयघ
+    - जखथव
+    - कतधक
+    - जभगय
+    - घढयद
+    - मसठफ
+    - यछथट
+    - डटइब
+    - ईतपर
+    - ओछनछ
+    - थओहछ
+    - डधतई
+    - थनफप
+    - इमहद
+    - इलबर
+    - बवयह
+    - चइफय
+    - सधइज
+    - झभचठ
+    - यएनइ
+    - ओचओम
+    - इओरथ
+    - रऊदउ
+    - एमइड
+    - चखएओ
+    - फइतठ
+    - खलतउ
+    - डदटध
+    - वगएठ
+    - छइघन
+    - टएनड
+    - हघहत
+    - तनझठ
+    - टरखक
+    - गपछप
+    - खऊरय
+    - ओथदउ
+    - एमघआ
+    - यलटद
+    - ओरईऊ
+    - ओवइग
+    - लयनउ
+    - ईनऊठ
+    - ओढउओ
+    - तचघट
+    - मझखफ
+    - घथओड
+    - थसएओ
+    - छमछत
+    - यखकढ
+    - तयकत
+    - नतहफ
+    - तएबछ
+    - सढभक
+    - घईठए
+    - एटआऊ
+    - तबजल
+    - रझपइ
+    - ऊदफल
+    - आभधइ
+    - धदतओ
+    - ढधकभ
+    - इयओअ
+    - जथअआ
+    - यअठर
+    - टजटन
+    - फबऊई
+    - टझइस
+    - नडटआ
+    - एइरठ
+    - वआसच
+    - दटजछ
+    - टठजव
+    - भथयड
+    - उफडट
+    - घओथज
+    - झनबइ
+    - डचखई
+    - इतयख
+    - ईओरत
+    - अखधब
+    - गमएल
+    - मदऊक
+    - सकउफ
+    - डतगथ
+    - लऊउओ
+    - नठपम
+    - रएअई
+    - खठओब
+    - थवआइ
+    - अइआट
+    - छहपह
+    - टवगज
+    - थफटद
+    - थठभढ
+    - फआनख
+    - नरफछ
+    - सथसल
+    - धपचघ
+    - वघउह
+    - धओपत
+    - घजहन
+    - फउअत
+    - दधसइ
+    - एरकआ
+    - हएयच
+    - एढटछ
+    - खडएथ
+    - रभमग
+    - रहधच
+    - खदसऊ
+    - गरफस
+    - कदहन
+    - तछजउ
+    - अबनज
+    - लतठड
+    - झढडइ
+    - खईवर
+    - गचउड
+    - भसपअ
+    - हदधछ
+    - जधसत
+    - डऊआक
+    - धडदड
+    - धखरह
+    - टएडथ
+    - झठछट
+    - गखआड
+    - डफयऊ
+    - टगनत
+    - चझयफ
+    - बपढट
+    - कइरप
+    - डपयढ
+    - नयधठ
+    - लवडच
+    - तअथज
+    - भछवट
+    - बछझम
+    - चडपम
+    - दडपऊ
+    - जआथआ
+    - वखमव
+    - छबझख
+    - उघटय
+    - आधआइ
+    - खफघध
+    - आरबन
+    - घईलब
+    - ढरखप
+    - फढदय
+    - एझउअ
+    - आखछय
+    - वभठद
+    - हओडग
+    - एतमव
+    - डथभन
+    - अकमव
+    - डऊपई
+    - जहठड
+    - एथलघ
+    - धखईज
+    - घवझर
+    - कआहप
+    - खएघड
+    - वढभख
+    - लअरग
+    - नधहआ
+    - यथईढ
+    - जडजड
+    - ढईवह
+    - यओएर
+    - रअचव
+    - फखतल
+    - टढसऊ
+    - आनकझ
+    - बहचए
+    - ठझफग
+    - ओठभअ
+    - आइमज
+    - उमकत
+    - धझठड
+    - ईपएच
+    - ऊबआच
+    - बओयछ
+    - छकउअ
+    - नकखड
+    - घभथघ
+    - थहनभ
+    - धउखक
+    - आतठम
+    - छहरय
+    - घइनथ
+    - चउफट
+    - तअइभ
+    - एअरइ
+    - ऊउयप
+    - हइईख
+    - सघलप
+    - एसबठ
+    - पदमघ
+    - तरएछ
+    - हरभह
+    - थइआख
+    - सजअट
+    - टथडन
+    - गपघल
+    - डजऊब
+    - जकटस
+    - कदसभ
+    - इथहप
+    - गरलज
+    - पईचस
+    - एधऊओ
+    - घढअध
+    - ढलहड
+    - ऊओइर
+    - ओथतऊ
+    - खघनछ
+    - वहओक
+    - भईढझ
+    - फऊजथ
+    - हयतआ
+    - डझतए
+    - धघढख
+    - ऊथदच
+    - थएअघ
+    - गथउत
+    - भएलग
+    - फवदच
+    - घखदत
+    - जटनद
+    - धनकढ
+    - खपतग
+    - डबगत
+    - झहलर
+    - मघउज
+    - इढलभ
+    - सकछद
+    - धठभझ
+    - मथमभ
+    - ईएइझ
+    - यतचफ
+    - फकझद
+    - फदडछ
+    - अझकध
+    - ढबवस
+    - यओलक
+    - खओसइ
+    - मधलझ
+    - सवठप
+    - झखसन
+    - भवयथ
+    - तऊभस
+    - अधजढ
+    - चतयड
+    - उसजध
+    - अढठब
+    - आखयध
+    - डपजघ
+    - छतगब
+    - झउआन
+    - जसथम
+    - ओकतझ
+    - यझखब
+    - आखलढ
+    - गजगब
+    - खटदट
+    - फगनख
+    - ठटहफ
+    - फढबय
+    - घसवम
+    - डजफई
+    kw23:
+    - हमइल
+    - बअबउ
+    - मखसज
+    - पएफझ
+    - हघबझ
+    - झबहउ
+    - कथसआ
+    - सअवघ
+    - सधतअ
+    - आईबछ
+    - भछदइ
+    - ठमटज
+    - गइधई
+    - ढवथउ
+    - असठह
+    - चमएद
+    - एबगस
+    - गवटइ
+    - यडफय
+    - इछईल
+    - घआढय
+    - थलपत
+    - टरधच
+    - मइबझ
+    - गऊसड
+    - वगटड
+    - एदवह
+    - लघछल
+    - नमछझ
+    - ऊओअआ
+    - यधअख
+    - जगऊस
+    - वकधई
+    - आहआओ
+    - झयलठ
+    - मवऊर
+    - यअनफ
+    - चछघअ
+    - छयटर
+    - तएतर
+    - आहडए
+    - ढकलक
+    - फलपऊ
+    - लओअठ
+    - फयघज
+    - डदढछ
+    - कटझआ
+    - तअआइ
+    - उयतख
+    - टचझभ
+    - गऊथद
+    - ढकटद
+    - ऊमचप
+    - ठअनओ
+    - पसछऊ
+    - भछअघ
+    - ऊआछफ
+    - नयडब
+    - जपगस
+    - ऊदओप
+    - घमअब
+    - लडखय
+    - रईमफ
+    - एदएद
+    - जढलव
+    - तरइट
+    - रकझख
+    - इवऊर
+    - आरउछ
+    - ऊगनब
+    - हढऊघ
+    - पऊथए
+    - अउघफ
+    - ईहसय
+    - गघबभ
+    - पइसढ
+    - खउघक
+    - ठचबट
+    - ओकईझ
+    - बपइफ
+    - आनभग
+    - झथमओ
+    - टफजई
+    - जडबट
+    - ऊसआन
+    - रअभझ
+    - उअसई
+    - टजआओ
+    - रअजब
+    - सइसई
+    - लधपओ
+    - इबठह
+    - आफकख
+    - ऊकथघ
+    - चफइप
+    - ढथऊच
+    - समआल
+    - ऊलढह
+    - यढलह
+    - मजमफ
+    - गचऊई
+    - फतडन
+    - लघउई
+    - जआछह
+    - उगकख
+    - ओमलस
+    - सवचक
+    - पकदल
+    - ओहफढ
+    - लवतथ
+    - आरवय
+    - जथनग
+    - ढछलढ
+    - खझचढ
+    - खयटड
+    - दजघआ
+    - डईमध
+    - छइनम
+    - उधयह
+    - डझओऊ
+    - उफमओ
+    - बअभल
+    - ऊठखर
+    - भऊजई
+    - हथघझ
+    - छमजर
+    - ढयकट
+    - पजवअ
+    - अऊछस
+    - ओयदअ
+    - गएओह
+    - डथतथ
+    - छधपट
+    - ठअझम
+    - छठएव
+    - ईहबह
+    - गसदअ
+    - पकडइ
+    - रएधओ
+    - आथउअ
+    - घगनस
+    - नधमभ
+    - टनऊप
+    - एझतइ
+    - धकतय
+    - बछरफ
+    - घछइट
+    - अरसम
+    - कजओई
+    - एथआद
+    - लइउग
+    - खपछध
+    - डसछट
+    - नएजख
+    - एहएघ
+    - पदझघ
+    - मबढथ
+    - चऊआट
+    - पखइछ
+    - दखईब
+    - गभईअ
+    - टधदग
+    - सथखट
+    - सघनह
+    - ठगधप
+    - धबओथ
+    - हओटद
+    - चदवब
+    - फऊलओ
+    - धछइज
+    - भबभग
+    - अतओझ
+    - फपचव
+    - खघलठ
+    - ठसबड
+    - ऊकघए
+    - उआमड
+    - ऊदतड
+    - मयछए
+    - ढझअभ
+    - गफइख
+    - हधओम
+    - ठतनइ
+    - मनसउ
+    - उओचए
+    - कगवइ
+    - कअडठ
+    - ढरहऊ
+    - बहखह
+    - छगजस
+    - भदउल
+    - थऊदब
+    - धटधल
+    - टऊछघ
+    - ठडधघ
+    - अमतढ
+    - अमघथ
+    - डहगभ
+    - खथढथ
+    - यतमउ
+    - ऊवरइ
+    - थइयथ
+    - डचडब
+    - वचरथ
+    - ईआडह
+    - धठअउ
+    - ईझयव
+    - झधघद
+    - यतहस
+    - अकभक
+    - ठखओस
+    - नउकत
+    - एनटभ
+    - घबदफ
+    - टमवत
+    - थबहक
+    - गचतओ
+    - छयएफ
+    - पलअढ
+    - ढछढठ
+    - पडइच
+    - हलतओ
+    - लछइए
+    - जहपज
+    - आडथम
+    - थयबस
+    - रठझक
+    - ऊईएअ
+    - थठनफ
+    - ओमचई
+    - पचईठ
+    - तमटझ
+    - पखइस
+    - छइऊइ
+    - डनलच
+    - फटयन
+    - तवयठ
+    - नगइत
+    - बभआह
+    - धमछभ
+    - हडदर
+    - फसइय
+    - भखचअ
+    - दचधए
+    - ढरपघ
+    - टआखफ
+    - चरहग
+    - उपएउ
+    - घमसइ
+    - ठथएड
+    - चतहछ
+    - लचवठ
+    - थएऊछ
+    - टझठभ
+    - नऊठथ
+    - घतजइ
+    - फइदथ
+    - दगदप
+    - एयएय
+    - आगटढ
+    - यमनत
+    - वतगक
+    - पईवए
+    - डउडझ
+    - टईलफ
+    - ठओघफ
+    - ईसएज
+    - आछरभ
+    - दलईट
+    - जयजओ
+    - सनउध
+    - रपरऊ
+    - ठएधढ
+    - लउपग
+    - ढरडघ
+    - कडअख
+    - गकझत
+    - आफथओ
+    - दऊओढ
+    - मईहढ
+    - ठनखप
+    - यलभद
+    - ईमथर
+    - वसझस
+    - एअढद
+    - सथरव
+    - खसओब
+    - थफओद
+    - महयथ
+    - छअगट
+    - थसथइ
+    - दनओथ
+    - नघझथ
+    - कघवक
+    - पईगआ
+    - नलछभ
+    - इटचठ
+    - पथतआ
+    - ऊफडज
+    - झडजइ
+    kw24:
+    - जवएध
+    - भईछब
+    - ओढइओ
+    - कभइप
+    - बभमथ
+    - घपएध
+    - धमभब
+    - एरअन
+    - ठआछभ
+    - घऊथए
+    - ढरयब
+    - बकनद
+    - वबऊग
+    - धचआओ
+    - फआछठ
+    - एबओख
+    - वझबक
+    - तईहआ
+    - तऊउच
+    - एझथब
+    - कझछठ
+    - ऊथतआ
+    - थयओड
+    - इईबछ
+    - पभलव
+    - ढभवच
+    - फएहठ
+    - टपटज
+    - आपबल
+    - गखपअ
+    - खटपझ
+    - ओएलन
+    - गईघत
+    - लचजक
+    - कखधफ
+    - टहअझ
+    - यपबए
+    - तईभत
+    - डवछए
+    - वनबउ
+    - हदगध
+    - फउइच
+    - कमठद
+    - इनआत
+    - लढघड
+    - मभआक
+    - झटएभ
+    - गपहभ
+    - लडथभ
+    - घअएज
+    - रउआस
+    - कओउब
+    - खउजभ
+    - ओईछझ
+    - मछइए
+    - लढखक
+    - तधटन
+    - दकफब
+    - एखधए
+    - आगयल
+    - पआढफ
+    - एडठर
+    - छतजत
+    - तठमध
+    - तजदझ
+    - घफउक
+    - रटओठ
+    - ईफघक
+    - दजझच
+    - छपनच
+    - कइउफ
+    - डरगद
+    - पगयग
+    - डबटव
+    - रझचओ
+    - चगउक
+    - थभओऊ
+    - भएखव
+    - ओएटई
+    - बझजक
+    - धमठअ
+    - दटहत
+    - तजझच
+    - सदईन
+    - खमतफ
+    - ओटवब
+    - ठओठझ
+    - खभकम
+    - घठटर
+    - वऊचल
+    - लआपउ
+    - लघमभ
+    - धऊघय
+    - डअढब
+    - मउहप
+    - डभएछ
+    - उहठढ
+    - ढयघच
+    - आकचभ
+    - रथठघ
+    - फसभय
+    - हपइस
+    - हओवग
+    - थपईआ
+    - खगठछ
+    - वआजत
+    - घओडख
+    - ईपगट
+    - बहमद
+    - बघपन
+    - यझनफ
+    - लजछद
+    - मलवइ
+    - ऊधहठ
+    - भथमभ
+    - सफजए
+    - झभथभ
+    - डहतघ
+    - लजलऊ
+    - ऊखढअ
+    - बसओआ
+    - पसनऊ
+    - खमखज
+    - आछठछ
+    - झचआभ
+    - छवऊठ
+    - धछठभ
+    - तदनभ
+    - रठगघ
+    - ईउहत
+    - पलओई
+    - उघथझ
+    - ऊलओच
+    - लठएत
+    - खकधड
+    - ढतलट
+    - वटआत
+    - गऊलठ
+    - छइदड
+    - ऊफडओ
+    - एईऊढ
+    - घतआक
+    - सगथक
+    - मटरघ
+    - छलअऊ
+    - छरएक
+    - घनलच
+    - जठआज
+    - भउकढ
+    - जचएड
+    - ईसगद
+    - यलतछ
+    - इएटइ
+    - यखयइ
+    - इधहढ
+    - लअआध
+    - दतमझ
+    - यढघच
+    - ऊगऊए
+    - फधअआ
+    - थहढइ
+    - फथअल
+    - घठअत
+    - लएओझ
+    - हकतघ
+    - यदनम
+    - तफउअ
+    - छतचन
+    - ठतझद
+    - आटऊव
+    - छठबभ
+    - मईउर
+    - लईऊव
+    - कएगई
+    - दफझठ
+    - ढछडद
+    - धपदए
+    - धठसज
+    - चफहस
+    - पदऊम
+    - छओवस
+    - कइमइ
+    - पझठन
+    - धओफस
+    - ठनठझ
+    - यजदग
+    - वजरठ
+    - दचतओ
+    - पठआर
+    - रआथध
+    - खटचह
+    - भओछख
+    - झघउठ
+    - यदओइ
+    - आडघइ
+    - उअदव
+    - पढछई
+    - ओसढज
+    - ऊफधज
+    - डईऊढ
+    - इगछड
+    - ईइवद
+    - लडइघ
+    - डवचआ
+    - लभएट
+    - सदउओ
+    - ईडढम
+    - लगऊफ
+    - इबभस
+    - ओडखए
+    - नथटख
+    - वडझप
+    - भगझढ
+    - बखइद
+    - लइसन
+    - घडतख
+    - नकएय
+    - रयबथ
+    - ईफआफ
+    - आईजय
+    - ओएधउ
+    - जकलझ
+    - झछरट
+    - ऊकचग
+    - चकफर
+    - ऊभलय
+    - मचधख
+    - ढकसछ
+    - चढफक
+    - यदउए
+    - तनतघ
+    - बफईछ
+    - ईखवट
+    - लथपल
+    - मएचन
+    - टरकय
+    - ठआइओ
+    - अठढआ
+    - कतउफ
+    - ऊपथड
+    - चधमझ
+    - फढवए
+    - मनहउ
+    - झमफओ
+    - थतएम
+    - घचदप
+    - मधटल
+    - नलघठ
+    - अईगभ
+    - गसजर
+    - ईढइस
+    - ठअछब
+    - रनझछ
+    - भहओड
+    - भमथउ
+    - तखधख
+    - थछथउ
+    - उढधम
+    - यथझअ
+    - बडपऊ
+    - धउछए
+    - मउडक
+    - ऊयवऊ
+    - ऊडझब
+    - ऊइबट
+    - झछयक
+    - ऊगकज
+    - ऊबचउ
+    - थओहज
+    - छओयग
+    - चमबठ
+    - ऊडवय
+    - वअफअ
+    - अमरप
+    - बखईइ
+    - जईडच
+    - पगबअ
+    - ठकगठ
+    - एठओच
+    - घमटद
+    - ईपधई
+    - यखठज
+    - चफऊन
+    - भआलउ
+    - दथखथ
+    - बफधय
+    - वओनग
+    - अआरध
+    - ऊरयघ
+    - समखल
+    - टनपछ
+    - झठपऊ
+    - वथउई
+    - ओछहम
+    - डहभन
+    - ऊघझन
+    - ठतभउ
+    - सचबह
+    - यवइस
+    - टमहभ
+    kw25:
+    - ऊहएव
+    - यजवभ
+    - खउदव
+    - ओढझव
+    - चनठइ
+    - यइऊफ
+    - इसडस
+    - वभथअ
+    - आदडई
+    - भथखड
+    - यइलर
+    - कदएय
+    - ठबचड
+    - खलधझ
+    - दडठस
+    - ओबजभ
+    - झइहल
+    - गठझख
+    - टएवउ
+    - इभठछ
+    - यभतध
+    - ओइथय
+    - वभयल
+    - बदएई
+    - झडघल
+    - ओखएल
+    - कगरम
+    - मकघओ
+    - झभउए
+    - चढडई
+    - डठअप
+    - ठदऊर
+    - घयझग
+    - एऊगम
+    - यईउय
+    - चवफल
+    - जलदक
+    - बवउप
+    - मछरथ
+    - चयटथ
+    - थउचप
+    - हमसद
+    - इदमर
+    - अरएस
+    - झडआप
+    - वटरऊ
+    - चओचढ
+    - घईटइ
+    - दनईच
+    - मतसऊ
+    - दखघम
+    - डठजल
+    - टवलथ
+    - फढइभ
+    - ढयलज
+    - खअसथ
+    - ऊनचक
+    - चआकफ
+    - बडयआ
+    - आकतघ
+    - जवझआ
+    - तवरब
+    - भजतप
+    - नढइर
+    - फतअव
+    - ओबवध
+    - पअझढ
+    - चघइह
+    - जभअर
+    - तवढर
+    - छफओद
+    - डवटत
+    - झमघड
+    - ईनसर
+    - बघउड
+    - वअगज
+    - कलहत
+    - दढडर
+    - लवहय
+    - पअमए
+    - नईरत
+    - ओवयड
+    - ईबठव
+    - अघखइ
+    - रहजठ
+    - घझघढ
+    - धगवद
+    - हभगद
+    - इनपम
+    - ईफरव
+    - ऊवफठ
+    - नछऊख
+    - पआलध
+    - झसढत
+    - ओठखस
+    - एरचथ
+    - ऊभलस
+    - दयटल
+    - पगलख
+    - धएदग
+    - टभरऊ
+    - थजडइ
+    - यतरछ
+    - उखएआ
+    - हखथर
+    - हडनच
+    - नपकढ
+    - मधघप
+    - थझफच
+    - लखयभ
+    - लसअड
+    - आधडव
+    - छकवन
+    - जपएओ
+    - झचधघ
+    - डटलम
+    - टखथढ
+    - एसउप
+    - ऊदसऊ
+    - लपधख
+    - भजयए
+    - ठयऊव
+    - धखहऊ
+    - तदवज
+    - धआझए
+    - ऊनआच
+    - लसथध
+    - थसधई
+    - पहओज
+    - टधमद
+    - एआमइ
+    - तछवग
+    - भधओअ
+    - खआहओ
+    - भरहफ
+    - लढजख
+    - झउइर
+    - टचछअ
+    - ओकघछ
+    - फबटइ
+    - नऊएप
+    - उछउई
+    - फवतउ
+    - इफइम
+    - वपरक
+    - छवअह
+    - सघअम
+    - मगउम
+    - फअटओ
+    - इमजस
+    - रहउए
+    - वठखम
+    - एमआऊ
+    - रनपम
+    - गतरच
+    - दलभड
+    - यऊपह
+    - जइचस
+    - धआगआ
+    - चछरऊ
+    - ओढहघ
+    - अऊचद
+    - झअईज
+    - छऊझय
+    - बडसआ
+    - धदचप
+    - भहभट
+    - उटएस
+    - डमहत
+    - एरदट
+    - इकहछ
+    - इहपव
+    - फधझस
+    - यजलह
+    - आघखए
+    - फखउड
+    - रबजड
+    - ठछढउ
+    - लधझढ
+    - ढघभफ
+    - इतकठ
+    - छटफस
+    - उथछग
+    - तठफद
+    - जदपइ
+    - मढचत
+    - उझगछ
+    - दरचइ
+    - कहतए
+    - आमटत
+    - नढएल
+    - जएतध
+    - ओहओह
+    - उढअग
+    - रबटइ
+    - यफकथ
+    - ढउतप
+    - सजचस
+    - धउछल
+    - अरआढ
+    - कधपद
+    - ओवठछ
+    - ओसएछ
+    - आपथस
+    - रतइय
+    - सबलप
+    - चफतल
+    - चवएओ
+    - ऊफमव
+    - लटठउ
+    - तडढइ
+    - कबदओ
+    - चइरच
+    - ईफयट
+    - छढबध
+    - लछदउ
+    - रखछए
+    - हटरज
+    - कचटख
+    - ठऊपख
+    - गमनऊ
+    - मआसइ
+    - नघधर
+    - घढचअ
+    - वघऊआ
+    - लमफध
+    - टथतइ
+    - इहढभ
+    - डथझय
+    - इयईय
+    - ठउइज
+    - ओभघई
+    - नवआझ
+    - हलजप
+    - झआटह
+    - झमटय
+    - फओघई
+    - लगरम
+    - पचबए
+    - ओफएऊ
+    - यओढआ
+    - मउपह
+    - भधनथ
+    - दरतठ
+    - जअरज
+    - इआझइ
+    - भठवफ
+    - उटघव
+    - डकढछ
+    - भओइप
+    - सठछआ
+    - ओदअई
+    - ईवमओ
+    - घजईड
+    - गईघउ
+    - अगरछ
+    - पजखअ
+    - लझहर
+    - धउतई
+    - डभघध
+    - दहमच
+    - सओसभ
+    - खमआझ
+    - फमसढ
+    - अगसज
+    - आटवइ
+    - उभओज
+    - तपकढ
+    - घठपग
+    - थढइस
+    - सधघह
+    - तरथज
+    - एभठउ
+    - नभढम
+    - फठउत
+    - थइसझ
+    - लदलओ
+    - चऊउय
+    - सभथभ
+    - टलआओ
+    - हऊयन
+    - टहतऊ
+    - झऊयघ
+    - मबथउ
+    - ओझगए
+    - ईआखआ
+    - लठमई
+    - यठरघ
+    - ईलवए
+    - ढठथच
+    - धकदच
+    - टभउच
+    - ऊधभढ
+    - लबछप
+    - आढअछ
+    - फजघम
+    - वपझध
+    - ईउथस
+    - धठखध
+    - फदझय
+    kw26:
+    - यओएउ
+    - इवदठ
+    - वघभड
+    - दठईऊ
+    - फलअऊ
+    - सढसठ
+    - सकछए
+    - रआडछ
+    - तइऊक
+    - पफउट
+    - इकआच
+    - एमएब
+    - एढएप
+    - एतटक
+    - सएमट
+    - ईठदझ
+    - बतबक
+    - वथजड
+    - ईनओढ
+    - पऊभच
+    - वसऊक
+    - तझरढ
+    - घपऊए
+    - रभबए
+    - थओबच
+    - भरझन
+    - तसभल
+    - खझसठ
+    - डदपथ
+    - डओसठ
+    - थसऊट
+    - तझचऊ
+    - थहतढ
+    - दझअध
+    - हचउम
+    - आघचग
+    - झडथई
+    - वऊखध
+    - रफलत
+    - ढजओन
+    - अघखव
+    - फगसब
+    - उठचइ
+    - लदफब
+    - झउकढ
+    - घडआड
+    - झरनभ
+    - आकआक
+    - दईएइ
+    - छचदप
+    - सऊयठ
+    - पचवच
+    - जठऊझ
+    - खअसच
+    - भडछप
+    - लधकआ
+    - लरवफ
+    - ऊगनय
+    - रठलर
+    - ढइचग
+    - छयपह
+    - ढवधर
+    - लपरट
+    - मछपर
+    - टऊधह
+    - इरबए
+    - गअओच
+    - रगबउ
+    - लछअघ
+    - पवहथ
+    - झधटद
+    - लछउथ
+    - रमरह
+    - हठउम
+    - ऊपहघ
+    - लउएड
+    - चलटप
+    - टऊवझ
+    - थकथय
+    - नपउन
+    - धफजध
+    - गअदत
+    - ईफनय
+    - खभईघ
+    - आतइय
+    - लइमक
+    - छठडर
+    - कथढछ
+    - सरउअ
+    - आचडच
+    - लवहउ
+    - कभआइ
+    - नबरस
+    - मबपग
+    - धऊओज
+    - घएअन
+    - फपझइ
+    - यऊघह
+    - तडजढ
+    - टझढभ
+    - झठतफ
+    - ओचबख
+    - ईचइअ
+    - डमबच
+    - ऊटभछ
+    - ठतगक
+    - छसडध
+    - थघखभ
+    - फमदए
+    - लइकज
+    - घचभज
+    - पखफक
+    - कधनप
+    - फघमन
+    - भटढब
+    - चसकय
+    - ठहउघ
+    - फदओब
+    - नरसठ
+    - नओयख
+    - यतगछ
+    - कऊजच
+    - वघथड
+    - मलतइ
+    - मएखछ
+    - खउकट
+    - इईहउ
+    - चझनफ
+    - बगसध
+    - उढवग
+    - दढथस
+    - भमकह
+    - ईकडअ
+    - कआवच
+    - छझएछ
+    - जइहख
+    - टउखम
+    - पओअव
+    - एअआठ
+    - ईठहआ
+    - छअझह
+    - नकबट
+    - इढलच
+    - मवअउ
+    - दआथआ
+    - छउअज
+    - हईकफ
+    - दवपउ
+    - सउइओ
+    - गदटस
+    - रईओछ
+    - कखझह
+    - घझयओ
+    - दगहम
+    - एअझभ
+    - घईझह
+    - आबफह
+    - हदयप
+    - भटसफ
+    - हधऊह
+    - वहचज
+    - पमथई
+    - अढदढ
+    - घसखऊ
+    - कवघठ
+    - झपओउ
+    - लबनए
+    - धबउड
+    - घतरद
+    - ओछफइ
+    - हओथख
+    - महसघ
+    - एऊओभ
+    - जअजट
+    - अओढट
+    - ऊपझउ
+    - रढफज
+    - उअझह
+    - तसजइ
+    - गडइप
+    - छतओग
+    - नधगज
+    - भफजघ
+    - वढमआ
+    - झढऊभ
+    - सआचठ
+    - अगयल
+    - यओखह
+    - घछसन
+    - डमरघ
+    - ईऊअक
+    - वऊबओ
+    - झभरअ
+    - यअयओ
+    - ओढदछ
+    - तइकट
+    - वओसप
+    - खपफब
+    - ठउजल
+    - तडथल
+    - ओएआब
+    - एरयट
+    - अढउघ
+    - टहटभ
+    - दमऊठ
+    - चघलक
+    - हडवन
+    - बरचढ
+    - चओथभ
+    - ओवचय
+    - टहदट
+    - घबउढ
+    - नबधढ
+    - भनठर
+    - अयअथ
+    - आसथस
+    - घनऊम
+    - भसएक
+    - चखडइ
+    - नढनफ
+    - थअवस
+    - नथखओ
+    - आफधघ
+    - डटछड
+    - चदआप
+    - डबईब
+    - लईगभ
+    - आवढक
+    - थकफए
+    - उडबत
+    - गभजआ
+    - ऊढधफ
+    - ईबझस
+    - उलदऊ
+    - एनओर
+    - रलऊप
+    - थरगब
+    - गबनत
+    - बएटक
+    - चझऊग
+    - घदघब
+    - तआधत
+    - अमटह
+    - थतहय
+    - जडनउ
+    - वअठग
+    - आधजस
+    - दफपत
+    - ओरऊए
+    - ईवडआ
+    - थझवध
+    - ढठदठ
+    - ऊएरत
+    - आयदख
+    - इसठऊ
+    - वअचझ
+    - यछमओ
+    - थतमढ
+    - अभजफ
+    - टनपम
+    - सलओघ
+    - ईधयए
+    - सझरव
+    - दकगड
+    - गहठन
+    - यभपझ
+    - रटजय
+    - भपटख
+    - यवयभ
+    - बमयन
+    - ऊउवछ
+    - अछलच
+    - डलजइ
+    - सझजछ
+    - ठअओआ
+    - धतमग
+    - जइअल
+    - इउमय
+    - यभडअ
+    - बझकछ
+    - यवझग
+    - आखदच
+    - रठभक
+    - ईबइक
+    - यगहउ
+    - लवमट
+    - रथखभ
+    - खफचत
+    - सएअठ
+    - अढथह
+    - ओरबभ
+    - लढओध
+    - ऊलपझ
+    - जफभछ
+    - ऊठहफ
+    - उदइख
+    - वधचझ
+    - आथलप
+    - ओघचआ
+    - रघमह
+    kw27:
+    - जगसझ
+    - डइदफ
+    - कआयज
+    - झदथर
+    - चभछइ
+    - ईअओव
+    - चथमक
+    - धकनव
+    - फरभउ
+    - ईउखए
+    - आढभउ
+    - ईआचज
+    - खएवक
+    - ईडफभ
+    - घछचम
+    - झढटख
+    - अडतह
+    - नठदत
+    - जमनत
+    - पएचख
+    - रतठअ
+    - उहनउ
+    - एढचठ
+    - रउगब
+    - कअआध
+    - तथपज
+    - धटयत
+    - टघपत
+    - टहटछ
+    - डकबअ
+    - सभइऊ
+    - फखलन
+    - छघओज
+    - भतलफ
+    - एढइउ
+    - कउयउ
+    - एझचध
+    - डरऊफ
+    - थयईओ
+    - झपधप
+    - ईऊनख
+    - लहछम
+    - मयडभ
+    - आरपम
+    - ठउझब
+    - इकधन
+    - लघसय
+    - चछलज
+    - डथडओ
+    - एअझच
+    - टओयद
+    - टदझक
+    - डओढभ
+    - नयझस
+    - नसदम
+    - भठझस
+    - रगनद
+    - डलगब
+    - डकजक
+    - एभचस
+    - घटछक
+    - ठदभय
+    - ऊदडफ
+    - वबपट
+    - नजबद
+    - घढसय
+    - ईझभच
+    - दभसच
+    - तउअग
+    - भरएच
+    - ओलऊथ
+    - मठडम
+    - दडयऊ
+    - यखढह
+    - धतऊझ
+    - उएइब
+    - उअलछ
+    - कनआइ
+    - ऊएटज
+    - रउधख
+    - यसयत
+    - जडतइ
+    - भफछस
+    - उरवय
+    - पठखट
+    - उथछइ
+    - ओऊइभ
+    - अएझस
+    - कएउघ
+    - मआनस
+    - वखपग
+    - हपबप
+    - बगकऊ
+    - भचआघ
+    - गरटप
+    - नओटव
+    - रगऊइ
+    - गनघस
+    - फदउन
+    - कयउन
+    - थमजह
+    - तभझय
+    - मउईइ
+    - चथरए
+    - यडलन
+    - तमउग
+    - पओउह
+    - वढमज
+    - गनछक
+    - टथचफ
+    - घहओब
+    - एआघव
+    - रवहत
+    - टफपइ
+    - ढवगघ
+    - पभढग
+    - आनचठ
+    - पलझब
+    - डझआत
+    - चछहब
+    - चटआइ
+    - यचएक
+    - धलपठ
+    - गमटई
+    - भथओद
+    - फअठब
+    - थघठआ
+    - जआदऊ
+    - ओरभब
+    - उखभय
+    - झडकआ
+    - दवमव
+    - थगइच
+    - जउजम
+    - आओठघ
+    - ढबइथ
+    - यकआउ
+    - ऊढवच
+    - हझआअ
+    - फइचऊ
+    - घजलए
+    - धचइग
+    - इमभड
+    - मछतअ
+    - ओऊरह
+    - रवबथ
+    - पजअढ
+    - यढझछ
+    - इझआथ
+    - मबइऊ
+    - मघनघ
+    - तफझज
+    - घतकद
+    - खटनर
+    - खथऊड
+    - खधरख
+    - फडघफ
+    - छधएऊ
+    - एतडठ
+    - धओसभ
+    - टछचब
+    - यछगव
+    - उवपघ
+    - वउनभ
+    - धएढम
+    - गकहए
+    - उएखड
+    - जछनए
+    - पवफछ
+    - भनखओ
+    - टनइथ
+    - ईइभय
+    - झटभऊ
+    - मछटथ
+    - दआऊत
+    - इपबओ
+    - डउलच
+    - दधखओ
+    - फलयउ
+    - ठफउन
+    - दढऊढ
+    - बघथट
+    - भरतस
+    - कअखर
+    - बएथड
+    - ऊगआढ
+    - कथनड
+    - एओडक
+    - मलजध
+    - बछधअ
+    - ईअथत
+    - वतथट
+    - हधओफ
+    - थझफट
+    - चखगक
+    - बदअच
+    - झवचउ
+    - खदचह
+    - बअगठ
+    - तरआई
+    - एइगओ
+    - ढदहठ
+    - थधछक
+    - खउछढ
+    - ओखओघ
+    - अधगच
+    - गतढय
+    - ठबहच
+    - ओनलई
+    - पलछप
+    - चभठई
+    - ईनथड
+    - छईमओ
+    - लसकफ
+    - सडइप
+    - टगरह
+    - ईछआग
+    - चईअम
+    - नइघन
+    - ईझइम
+    - दयएऊ
+    - नहलऊ
+    - कथरफ
+    - खझजढ
+    - सऊगइ
+    - डनलउ
+    - झआअई
+    - चठडघ
+    - वघमछ
+    - टओगख
+    - नछवइ
+    - ओजहख
+    - ठऊअझ
+    - सझपइ
+    - लरधछ
+    - ईजबस
+    - छमटथ
+    - सठधघ
+    - ठयहध
+    - यरभक
+    - अओवइ
+    - भढकअ
+    - बवबढ
+    - असअम
+    - छखनऊ
+    - ईटगठ
+    - भकतक
+    - बघउठ
+    - हढटम
+    - नएठद
+    - दनऊउ
+    - थउगव
+    - सओपत
+    - खभऊर
+    - भखचभ
+    - ढटअघ
+    - ठहडट
+    - घढडथ
+    - यउतअ
+    - हउआट
+    - खईफव
+    - थओनउ
+    - लठटझ
+    - पगआड
+    - फउयह
+    - भवइथ
+    - बधभस
+    - तखतघ
+    - घठखओ
+    - इहडन
+    - यएतभ
+    - रआलच
+    - चथतथ
+    - खआपछ
+    - बइफई
+    - इटजउ
+    - डधआय
+    - अछचक
+    - कटकर
+    - छगठस
+    - तवटइ
+    - झहकउ
+    - थधठम
+    - अतओक
+    - तनधढ
+    - इऊटभ
+    - उहतज
+    - लउगए
+    - छचझढ
+    - आऊदफ
+    - ढघजथ
+    - दउटथ
+    - वमदछ
+    - धलओल
+    - सघयक
+    - ठदअह
+    - ठवफर
+    - आजघय
+    - ठढतअ
+    - पचडद
+    kw28:
+    - सथदप
+    - फइदओ
+    - ऊएखथ
+    - रघमज
+    - नईढउ
+    - भऊइट
+    - गवफग
+    - उइअथ
+    - पलबग
+    - कझढठ
+    - बतढउ
+    - पदतढ
+    - अतबफ
+    - ठचकम
+    - दढघझ
+    - रहआभ
+    - उदयध
+    - इधजख
+    - सजवड
+    - नगसय
+    - इठदस
+    - पफबव
+    - ठचएड
+    - जमबम
+    - धभमभ
+    - करछत
+    - ओछऊस
+    - गपबव
+    - फवअक
+    - ईझघत
+    - जरढग
+    - उरउए
+    - एपझक
+    - थफथव
+    - डयढन
+    - इएनथ
+    - डमओत
+    - ढजआठ
+    - ओइजध
+    - ठटनघ
+    - डदईओ
+    - चरदट
+    - ठदभग
+    - नसकध
+    - भउझब
+    - गवअल
+    - डबवथ
+    - ढकहछ
+    - छमखव
+    - झवकइ
+    - ठचयओ
+    - जलभड
+    - ठइतभ
+    - झनफछ
+    - ठनईआ
+    - थजयर
+    - दढदर
+    - तओडस
+    - उतओघ
+    - ऊबछढ
+    - नउतई
+    - भअडऊ
+    - डनछठ
+    - लओएऊ
+    - बऊलच
+    - यउरफ
+    - तजतट
+    - एओईढ
+    - इठरद
+    - ओनऊर
+    - चबइव
+    - गउऊउ
+    - आओइढ
+    - इएपत
+    - वइकफ
+    - कथवम
+    - झवउट
+    - इटछइ
+    - ऊलहद
+    - अनरन
+    - कफरफ
+    - ठउथध
+    - रबगर
+    - भयखह
+    - सऊझड
+    - चयकव
+    - आओपद
+    - ईपहव
+    - कहईप
+    - एचठप
+    - आजगप
+    - ऊटरड
+    - नईमए
+    - झइउभ
+    - गमभठ
+    - लचजफ
+    - तदझल
+    - उहईछ
+    - ढटएम
+    - नजओढ
+    - डवजत
+    - अइफय
+    - बटवई
+    - अधकच
+    - यईझध
+    - सईखऊ
+    - भलथड
+    - ढसईअ
+    - हझईट
+    - वदघम
+    - बढरढ
+    - झढडअ
+    - ईघहल
+    - झपओझ
+    - दनईअ
+    - ओनरई
+    - धखइच
+    - नथधत
+    - रठटय
+    - धटझव
+    - छडमर
+    - उचलठ
+    - नधघट
+    - ऊढरग
+    - टओचद
+    - बजऊह
+    - झघछट
+    - रईनए
+    - कवकआ
+    - फबऊड
+    - यखघभ
+    - थडबप
+    - थएडछ
+    - वमएच
+    - झवगख
+    - आधलक
+    - पतफछ
+    - बछवए
+    - हफयज
+    - नडबझ
+    - आटखअ
+    - अजएढ
+    - खडबढ
+    - पईलइ
+    - घहफझ
+    - भवओन
+    - अफयज
+    - बघटह
+    - घगवठ
+    - ओनहई
+    - नवगस
+    - सचफढ
+    - कअखल
+    - झओडम
+    - हखरख
+    - टरढई
+    - बइवआ
+    - झलभध
+    - इआकअ
+    - थईटड
+    - इउअच
+    - ठबएउ
+    - थहमग
+    - ऊवचथ
+    - कढयउ
+    - रलईच
+    - दहघन
+    - ओनडढ
+    - ओजचफ
+    - रउहब
+    - नअनज
+    - टसमई
+    - खफएओ
+    - नधहर
+    - ईडकऊ
+    - बकवघ
+    - नधईध
+    - एऊथप
+    - भखधत
+    - एतवथ
+    - थढओस
+    - रलसठ
+    - घजहध
+    - उथयअ
+    - उटफज
+    - उखथद
+    - धईआब
+    - टचपछ
+    - थएछघ
+    - घलचक
+    - नकथग
+    - झईयफ
+    - उकढग
+    - एझतग
+    - कबउठ
+    - नछगप
+    - नधउआ
+    - उझवइ
+    - थघटद
+    - वऊफग
+    - तहलर
+    - खतयम
+    - वखथप
+    - गओआख
+    - छधजख
+    - फथजच
+    - फझइट
+    - इदधर
+    - बआठथ
+    - टथदफ
+    - दफअइ
+    - सछईब
+    - चलबऊ
+    - खउखर
+    - छजहआ
+    - पमभढ
+    - जथआध
+    - अपडग
+    - धचथल
+    - घनकब
+    - तईतठ
+    - नथएग
+    - खछएड
+    - गकयक
+    - वएचध
+    - डलघब
+    - भहभउ
+    - पमहओ
+    - अढऊछ
+    - सओऊघ
+    - आसपई
+    - ढछडच
+    - डझकघ
+    - झइसत
+    - फवथए
+    - मझएध
+    - मदघआ
+    - वघटओ
+    - हघउज
+    - भटईम
+    - ढओठथ
+    - कगहम
+    - नभघथ
+    - यफपछ
+    - छकयद
+    - पकठए
+    - झमथआ
+    - बनआह
+    - लहटक
+    - अयझव
+    - फथमव
+    - फतमट
+    - पएथज
+    - मयएग
+    - टढछय
+    - ईहभर
+    - आपउथ
+    - ऊगनर
+    - दगयब
+    - उठबड
+    - दहऊद
+    - झगमत
+    - एइकई
+    - लखघग
+    - इथएघ
+    - एहखव
+    - छचरट
+    - ऊडरह
+    - ढसधग
+    - चदआय
+    - अएअप
+    - अघकअ
+    - पफझऊ
+    - ठथघन
+    - सएईउ
+    - भओतल
+    - ढएधल
+    - ईधबए
+    - उडएय
+    - रछठग
+    - घधछठ
+    - सअईउ
+    - चओअच
+    - लइसत
+    - टहगक
+    - घऊसआ
+    - लघएच
+    - जफढइ
+    - ढधफट
+    - टउझस
+    - ओबयल
+    - ऊलझउ
+    - एसओड
+    - लईखड
+    - ईधखथ
+    - ठआकए
+    - ऊबपड
+    - छठआस
+    - दजउय
+    - चभअझ
+    kw29:
+    - धढभई
+    - ढचऊघ
+    - ईहपढ
+    - गरढठ
+    - घठचघ
+    - टपईछ
+    - कभतअ
+    - जखधई
+    - नपफह
+    - ऊठटत
+    - झघईल
+    - तइढस
+    - धछईफ
+    - अपहप
+    - चमजल
+    - अबलज
+    - डभछच
+    - लधढद
+    - जबठच
+    - जथएझ
+    - फखकध
+    - छईथत
+    - छखउभ
+    - टयसत
+    - फटऊड
+    - छयआअ
+    - गडछझ
+    - नदभय
+    - इडदभ
+    - घटघह
+    - लऊउल
+    - टतरल
+    - सजधज
+    - खऊथख
+    - छलढउ
+    - उकचत
+    - सरईव
+    - ऊकडए
+    - धढछओ
+    - धवयओ
+    - इजथफ
+    - ओलनज
+    - ठजओई
+    - गधथह
+    - धघएज
+    - मछचई
+    - खटढड
+    - तईखह
+    - अमअय
+    - वइतफ
+    - एठमअ
+    - कडझम
+    - झटसआ
+    - हमकअ
+    - कचगप
+    - ईअबझ
+    - यझदघ
+    - चझनक
+    - ठयटड
+    - एमवथ
+    - वजथउ
+    - दतरट
+    - दअनथ
+    - घचडद
+    - जफझब
+    - डइधअ
+    - डईभव
+    - झभतन
+    - घहचठ
+    - इगघफ
+    - चघसऊ
+    - लईऊल
+    - कबढव
+    - थनपइ
+    - झदइभ
+    - मरयन
+    - दअकइ
+    - अइवओ
+    - नठदथ
+    - उथओय
+    - लपटख
+    - ठनइई
+    - रयसन
+    - जछहद
+    - ढनखट
+    - अटभड
+    - यदआभ
+    - ऊभजठ
+    - यपधघ
+    - दऊदउ
+    - ऊमधम
+    - डचभझ
+    - गफयख
+    - छबछड
+    - ठरबड
+    - धटभई
+    - बईझइ
+    - डमवअ
+    - टछठम
+    - इमवठ
+    - डपएघ
+    - छखमइ
+    - आपमन
+    - ठटइई
+    - ठईजय
+    - चजढआ
+    - ईऊबव
+    - हभठध
+    - ठखयल
+    - तगनझ
+    - गवभव
+    - वएवन
+    - आहचढ
+    - हओलऊ
+    - लरलढ
+    - उमफढ
+    - हखईच
+    - वलतफ
+    - ओमजइ
+    - गएघय
+    - टकओत
+    - ईइएज
+    - बसपए
+    - झफओभ
+    - यतनभ
+    - आधढफ
+    - यमढअ
+    - लऊमऊ
+    - चओजछ
+    - सपनल
+    - अमचठ
+    - सफटफ
+    - रआढत
+    - रईधइ
+    - अगमओ
+    - ठछइम
+    - धघहई
+    - बछगथ
+    - गऊथज
+    - यझसआ
+    - ओढछर
+    - नथरफ
+    - एयफभ
+    - इबउर
+    - रईतध
+    - चढउप
+    - डदधर
+    - मओलन
+    - जगघओ
+    - गतकघ
+    - बटलग
+    - दखऊघ
+    - ढटजय
+    - फएफढ
+    - पझयउ
+    - चहओद
+    - यवडध
+    - आपरद
+    - अपयउ
+    - हईवफ
+    - लदयम
+    - हऊअल
+    - रऊचऊ
+    - वलयड
+    - गउधड
+    - लचभउ
+    - गटआइ
+    - चछभझ
+    - चठआओ
+    - ठढदअ
+    - जलभछ
+    - ईयतअ
+    - कछपथ
+    - एडथघ
+    - डकछक
+    - इठचए
+    - पझटछ
+    - आसएग
+    - यऊफथ
+    - ऊआइभ
+    - बझफट
+    - तएलथ
+    - लझअआ
+    - ओऊअओ
+    - टचआज
+    - मऊओट
+    - खछरआ
+    - भतवढ
+    - टपथठ
+    - तआगट
+    - इहछग
+    - इहतग
+    - धजछई
+    - उइऊफ
+    - घडहइ
+    - डउवआ
+    - घआइअ
+    - घआढभ
+    - सरओभ
+    - तडइध
+    - रउईद
+    - ढसढव
+    - डदऊढ
+    - पवरए
+    - रयईर
+    - टयतर
+    - मभउप
+    - ओदपअ
+    - समठर
+    - वरऊल
+    - पऊयर
+    - ईरमन
+    - नपओए
+    - हधथद
+    - झतसय
+    - बजसल
+    - धछझल
+    - ढघवझ
+    - तलडच
+    - चनवढ
+    - रईभक
+    - ठफअध
+    - ओगओब
+    - ठरखर
+    - ऊफछब
+    - थटआऊ
+    - लरलओ
+    - गऊतघ
+    - सफझढ
+    - चठझछ
+    - हईडह
+    - इवघट
+    - छफगख
+    - दतधत
+    - एरखठ
+    - लखछओ
+    - नथजइ
+    - गयअय
+    - बऊढउ
+    - हझइढ
+    - अयवग
+    - आधओफ
+    - आलयओ
+    - बटइज
+    - आछबढ
+    - सतईढ
+    - चटरढ
+    - दतखफ
+    - कयथन
+    - ईकलत
+    - कभधई
+    - ऊतएक
+    - हयईए
+    - उलदघ
+    - दघगच
+    - बवतस
+    - खचपद
+    - ओठगल
+    - ढजढत
+    - मबहग
+    - धचवत
+    - इपगस
+    - ईअझऊ
+    - सधचज
+    - अहदइ
+    - धफअज
+    - यओधच
+    - छमलट
+    - गसखझ
+    - हओपऊ
+    - कउभस
+    - थफटत
+    - खहयज
+    - इयतफ
+    - नदजच
+    - इकटक
+    - खगऊछ
+    - मफसज
+    - ओढटभ
+    - उचईध
+    - बलइऊ
+    - थचमग
+    - ठझचछ
+    - आओजथ
+    - ऊसहय
+    - पवढअ
+    - वऊछउ
+    - पथमख
+    - नआनग
+    - गटहक
+    - ऊरएछ
+    - थऊकझ
+    - मवमफ
+    - टकइन
+    - चनयग
+    - तघछढ
+    - खईनह
+    - एचऊस
+    - असआअ
+    - ओठऊग
+    kw30:
+    - वजचढ
+    - यहइए
+    - छहचल
+    - डरधड
+    - दओसव
+    - पढफअ
+    - लवगढ
+    - ऊओऊउ
+    - छहजन
+    - रऊथन
+    - मघगओ
+    - उधइट
+    - भबपव
+    - तचजउ
+    - झईअह
+    - ठइढघ
+    - आडपथ
+    - उऊफच
+    - अडईत
+    - उदगइ
+    - घसऊस
+    - फसजघ
+    - ऊहलग
+    - एजपट
+    - गअघब
+    - फवअब
+    - भईथउ
+    - जनटख
+    - रहएल
+    - यभसन
+    - पबथत
+    - कदपर
+    - फढईय
+    - लढहढ
+    - जटउघ
+    - कफईह
+    - फइकठ
+    - सईभज
+    - गथखध
+    - यअसट
+    - छओलई
+    - उढहड
+    - नठझछ
+    - मघटव
+    - खडजउ
+    - हअलद
+    - झखदथ
+    - गठडग
+    - ओकउड
+    - बडढघ
+    - परसय
+    - ऊचयत
+    - हठगट
+    - ठआऊझ
+    - धचबर
+    - हतखफ
+    - रतटव
+    - टफझछ
+    - खधफछ
+    - तमरठ
+    - टचओब
+    - थअचख
+    - इपवझ
+    - खहगभ
+    - ढपरग
+    - हडओह
+    - चयदख
+    - फवभठ
+    - धखफत
+    - जधलक
+    - सबकउ
+    - हफकप
+    - कफऊथ
+    - ठछहब
+    - उयपड
+    - रठलझ
+    - गयमच
+    - टफइड
+    - भआनल
+    - लऊसय
+    - ढडधप
+    - तबओझ
+    - उभहत
+    - सदसग
+    - ऊअजस
+    - यजछए
+    - झभहई
+    - चजदढ
+    - रएनख
+    - ढऊघर
+    - वखथअ
+    - अपखग
+    - खईआव
+    - थडढद
+    - धसथद
+    - बनलढ
+    - खऊउप
+    - धओएअ
+    - ढइधह
+    - झबओई
+    - लरभफ
+    - छझचफ
+    - उचबअ
+    - जभईग
+    - यवइय
+    - सजऊस
+    - ओघवन
+    - तचखए
+    - ओतएअ
+    - कडगध
+    - फतठआ
+    - जआमझ
+    - दयहऊ
+    - यहआघ
+    - झउदय
+    - धओडध
+    - खआटख
+    - मओचम
+    - कनओए
+    - हइउओ
+    - यछहई
+    - दटएभ
+    - छधबय
+    - वजमल
+    - फठछअ
+    - वखओट
+    - एझचह
+    - खयउक
+    - टसउट
+    - ढभवड
+    - कफइभ
+    - ईघकठ
+    - ढआठघ
+    - असयछ
+    - दकउढ
+    - पएतल
+    - बओचन
+    - हदझध
+    - ईसएच
+    - छसधम
+    - वऊलछ
+    - गमजक
+    - ईएगछ
+    - सखलद
+    - वउईय
+    - मजडठ
+    - ठरबढ
+    - वढजख
+    - धपलऊ
+    - लतईअ
+    - थपदय
+    - रझलअ
+    - फथसज
+    - ठछलह
+    - आरघभ
+    - घधपघ
+    - नकखए
+    - लकईए
+    - उअभअ
+    - गचहध
+    - नगआब
+    - खवओन
+    - एउनत
+    - फभउभ
+    - तहचघ
+    - चटखआ
+    - ढरपड
+    - नअसउ
+    - फउसय
+    - नघपछ
+    - रझइत
+    - पगथच
+    - झउटठ
+    - गकअफ
+    - चसपय
+    - रपइए
+    - चकठव
+    - टएथओ
+    - जबअऊ
+    - कधथस
+    - ऊभअऊ
+    - डपछई
+    - अधजझ
+    - चदटओ
+    - डचओए
+    - आओकय
+    - कलछअ
+    - उजफब
+    - हघखप
+    - इतखप
+    - चसदव
+    - लघछथ
+    - उऊढक
+    - ठदईभ
+    - तटनख
+    - फआऊय
+    - छतओआ
+    - दऊवत
+    - झबवन
+    - इएभय
+    - बअतड
+    - रमनओ
+    - इईकम
+    - टहएछ
+    - पलयद
+    - नफधग
+    - ओआठउ
+    - टठछन
+    - वपदअ
+    - आजछफ
+    - फएठव
+    - छहसब
+    - उईमअ
+    - घहऊट
+    - ढमउक
+    - वडछम
+    - आछभत
+    - गखमई
+    - कमदघ
+    - आफपड
+    - लपमअ
+    - छवधद
+    - गईकप
+    - घसआअ
+    - सभएस
+    - ढसडआ
+    - हकफट
+    - चदजढ
+    - तओठर
+    - ईयअथ
+    - दटबख
+    - बतटय
+    - नउझए
+    - ढअतप
+    - रबटख
+    - टनढउ
+    - घनझओ
+    - घकतभ
+    - भधइक
+    - नटढअ
+    - यतलत
+    - फबदर
+    - घचठय
+    - डअछघ
+    - डथवच
+    - मयलड
+    - सटलच
+    - वउईप
+    - हभइध
+    - दकसक
+    - भफनछ
+    - आटपभ
+    - उभगध
+    - रआवइ
+    - पतएथ
+    - उमगय
+    - ढपरल
+    - सरठओ
+    - एढओइ
+    - ओदथइ
+    - हउइन
+    - डगओए
+    - नईपउ
+    - ईतलउ
+    - अघमओ
+    - ढकईख
+    - बकछव
+    - फरओझ
+    - तकढभ
+    - आवधह
+    - खसनर
+    - वदइओ
+    - चरभम
+    - बफछअ
+    - नटझग
+    - बफगझ
+    - जकदर
+    - इडढअ
+    - एजतक
+    - घईतर
+    - झयबढ
+    - ठघखओ
+    - झओजअ
+    - कआघक
+    - ईयगत
+    - खसघई
+    - मचयउ
+    - धइओज
+    - गदमज
+    - एइबफ
+    - टयसथ
+    - भफयए
+    - हचटफ
+    - एअएइ
+    - रजथओ
+    - चधतइ
+    - ऊदवध
+    - धईवप
+    - टसईख
+    - ईडईय
+    kw31:
+    - हटदई
+    - दखएच
+    - ठपधइ
+    - ईआपऊ
+    - दठफन
+    - वइयग
+    - इजधइ
+    - छनवई
+    - डअबत
+    - ओनगह
+    - जघगप
+    - ठआरस
+    - दनदई
+    - पफओम
+    - भयरउ
+    - एलडई
+    - उकठय
+    - इउरठ
+    - रआडब
+    - लयछख
+    - ऊछईफ
+    - बठमग
+    - ढडहय
+    - थईहथ
+    - खसयफ
+    - हफठध
+    - हलठच
+    - एटझफ
+    - घलतइ
+    - धठतह
+    - रहऊव
+    - तऊचप
+    - अडईथ
+    - जछहइ
+    - लधसम
+    - दचइफ
+    - भबफध
+    - उसधस
+    - अगघझ
+    - तगलओ
+    - अवझद
+    - जऊअद
+    - खछकच
+    - गघउफ
+    - ढएचछ
+    - चढवध
+    - एडगप
+    - सकखग
+    - ठसडन
+    - मजफन
+    - चघयब
+    - हकचट
+    - कछटव
+    - हतलत
+    - यफमर
+    - घनइअ
+    - धतकट
+    - आएटआ
+    - भइलग
+    - आरगघ
+    - यघयम
+    - झऊचफ
+    - घअढआ
+    - फवईऊ
+    - यपठए
+    - वतरस
+    - गघलऊ
+    - इडठध
+    - वठऊअ
+    - दठधई
+    - वपतइ
+    - बरइभ
+    - यथनप
+    - कखसइ
+    - फटएअ
+    - खअएर
+    - एसठढ
+    - हकभह
+    - डओफख
+    - टभएद
+    - बडहध
+    - बझधफ
+    - तभओथ
+    - करपछ
+    - एतपल
+    - इफझओ
+    - ओगएआ
+    - हवउह
+    - छपचप
+    - खलउआ
+    - डधटझ
+    - हमएक
+    - छऊधत
+    - इअउई
+    - उथचध
+    - बठदझ
+    - अदइर
+    - आमडक
+    - बढनप
+    - लझभच
+    - पइमफ
+    - दतथव
+    - दझबव
+    - उवहग
+    - डझरअ
+    - थतटन
+    - खचबक
+    - टनडर
+    - लनगठ
+    - जइबग
+    - दथरघ
+    - खचनट
+    - आपआफ
+    - ढकनह
+    - ईबझट
+    - जवभत
+    - ठढमख
+    - मभधस
+    - लठऊथ
+    - फगअट
+    - डछढझ
+    - खफनर
+    - अएझट
+    - लनउभ
+    - जपलआ
+    - झओफई
+    - पलपट
+    - नठटर
+    - झजपल
+    - ढछसढ
+    - डठएठ
+    - कढयछ
+    - फईआठ
+    - ओएसग
+    - थघयख
+    - तउचऊ
+    - चऊलआ
+    - जभठह
+    - थआझठ
+    - इझभफ
+    - ऊउओआ
+    - गथतल
+    - ठवतछ
+    - थआइक
+    - एभछऊ
+    - भठचद
+    - ढईतठ
+    - कयहइ
+    - सनरज
+    - ढउधप
+    - झतऊए
+    - जठझभ
+    - आभनह
+    - तसतव
+    - एरओख
+    - तएआर
+    - बफलऊ
+    - छअजऊ
+    - नडथझ
+    - नउभइ
+    - ढठखझ
+    - ऊझछड
+    - थउखध
+    - उसउअ
+    - ठआचल
+    - धझयड
+    - चहलड
+    - फझतआ
+    - जझफच
+    - कतएउ
+    - ईहछद
+    - टहधढ
+    - गरचय
+    - रऊमढ
+    - दजघओ
+    - फचओस
+    - फधईझ
+    - वखमट
+    - ईथपऊ
+    - झसअउ
+    - मढएई
+    - फइसध
+    - आथएठ
+    - सभएढ
+    - चझजउ
+    - ठइतर
+    - इईडई
+    - खफचज
+    - खवइच
+    - अपउआ
+    - फयआज
+    - उभढव
+    - खइवप
+    - ढहढस
+    - थपवच
+    - झअदफ
+    - ठखढन
+    - ईघपम
+    - यदनट
+    - डदफट
+    - वनउह
+    - ठजओक
+    - घचदझ
+    - बफतअ
+    - ढडछझ
+    - रओधज
+    - ऊछटन
+    - यझधड
+    - डलइज
+    - धलफस
+    - दथइध
+    - अभठग
+    - तआथर
+    - छआपढ
+    - ढलछय
+    - झमउट
+    - ठतटन
+    - छबहअ
+    - ऊधएम
+    - ढइलग
+    - उअजइ
+    - टएऊख
+    - झखनज
+    - ओथखभ
+    - ढभबभ
+    - जटडम
+    - अगवट
+    - रपएच
+    - आघअड
+    - सठडऊ
+    - घठहठ
+    - उघसआ
+    - ईखढल
+    - अपसप
+    - रबनड
+    - चईडल
+    - बईएल
+    - हचउज
+    - डतफओ
+    - उनखठ
+    - ठदधऊ
+    - आएठथ
+    - इकएब
+    - ठझअव
+    - बऊहख
+    - दधथप
+    - मटवच
+    - रढकध
+    - दगऊक
+    - आकरठ
+    - तनठग
+    - हथअइ
+    - ऊडहफ
+    - रइचन
+    - ओहखर
+    - पभतध
+    - लएटऊ
+    - सतवध
+    - घवआए
+    - सखघम
+    - उएखह
+    - जथइह
+    - चखकआ
+    - भठवढ
+    - गथफड
+    - थएयओ
+    - नलफग
+    - ऊओजआ
+    - ओचरआ
+    - नधदन
+    - टभपफ
+    - हगझर
+    - फडठओ
+    - मघछफ
+    - पखइल
+    - एखहघ
+    - धथबछ
+    - थअचअ
+    - टएअक
+    - इओछफ
+    - थनओऊ
+    - कबठई
+    - पचरई
+    - कआथअ
+    - ढधमट
+    - सजतव
+    - यलचव
+    - यफगट
+    - मझफर
+    - खओनछ
+    - पफरफ
+    - मबआइ
+    - खभदए
+    - फएढघ
+    - एयरऊ
+    - ठओयन
+    - घलउक
+    - तइओस
+    - पडईथ
+    - बअचछ
+    kw32:
+    - ओइघद
+    - खअऊप
+    - हमबत
+    - वमथए
+    - धओयऊ
+    - सबछइ
+    - धमधआ
+    - जआधर
+    - रखइह
+    - यघझस
+    - थयइए
+    - ओटमई
+    - सझजझ
+    - घगवट
+    - आखछत
+    - थदढफ
+    - आसखद
+    - मकअछ
+    - कछईठ
+    - गआसअ
+    - गसईब
+    - यथनए
+    - गधफव
+    - मइछह
+    - धइचआ
+    - पठलख
+    - बतथल
+    - तईएघ
+    - ढघझढ
+    - एढरन
+    - जइनउ
+    - उखओप
+    - सउधन
+    - लगओर
+    - ईपदड
+    - फइठज
+    - इटऊक
+    - दखठथ
+    - आगचह
+    - हइकउ
+    - मखनग
+    - धभढर
+    - दहघस
+    - ऊवठओ
+    - मफझक
+    - कथअई
+    - चलफब
+    - ठथभफ
+    - दखउट
+    - गकडब
+    - एझइओ
+    - भछओड
+    - जहढल
+    - रसढप
+    - तदओभ
+    - भटतथ
+    - नईऊय
+    - डचभस
+    - हइदई
+    - ऊदरख
+    - ईफआद
+    - अमधब
+    - घदटई
+    - मधदइ
+    - डथऊप
+    - ओकबज
+    - अऊझस
+    - फडवओ
+    - ठधगभ
+    - उटनघ
+    - एढठए
+    - पटझन
+    - आखटइ
+    - धअनत
+    - एधघह
+    - दसरओ
+    - लइहत
+    - हदचय
+    - पभचप
+    - एटबए
+    - ऊवतग
+    - धउभट
+    - धथहआ
+    - वटगस
+    - खवतट
+    - भकधऊ
+    - झथधअ
+    - ओहघइ
+    - ठअईछ
+    - घऊआछ
+    - सउधस
+    - इधरड
+    - घतभढ
+    - मदनइ
+    - दएअच
+    - घसइड
+    - ढएऊम
+    - नऊयत
+    - ढझखप
+    - झफलछ
+    - ढथयग
+    - बडभर
+    - गलएक
+    - तभफख
+    - एइचठ
+    - गभछच
+    - इभफत
+    - उरयख
+    - ठझउअ
+    - वगठन
+    - ऊठलब
+    - ढरटम
+    - फटबग
+    - खफचय
+    - ऊघआप
+    - हरहफ
+    - ठभझक
+    - थआधह
+    - कफधद
+    - बखथल
+    - चछतग
+    - ओतबत
+    - बअचफ
+    - हजफप
+    - नतपव
+    - नउटत
+    - पटमक
+    - उरतर
+    - गचसर
+    - चनऊग
+    - ठमधढ
+    - घसबछ
+    - रडचद
+    - रढनस
+    - खइसए
+    - उगहय
+    - भयफद
+    - उछठई
+    - जखनआ
+    - घगझछ
+    - रतधऊ
+    - रपईइ
+    - यधऊठ
+    - रअझच
+    - जझछड
+    - भडयफ
+    - टलतस
+    - पखपस
+    - टयडह
+    - छहऊफ
+    - ओईयओ
+    - आपजई
+    - ईथहभ
+    - फरऊथ
+    - पएभआ
+    - दओठऊ
+    - धओऊघ
+    - ढसरव
+    - अलएग
+    - भमछद
+    - छवयर
+    - वझफऊ
+    - खनभद
+    - चठहट
+    - ऊलखआ
+    - थजकओ
+    - फएवछ
+    - ईनथआ
+    - चघकत
+    - छवघउ
+    - अझछठ
+    - तऊभम
+    - तउदछ
+    - आहतक
+    - नइहट
+    - सकवध
+    - झफठन
+    - वचईन
+    - सओआए
+    - ईलभढ
+    - फटयत
+    - थआतफ
+    - चठआव
+    - हउफध
+    - जछमढ
+    - सआएउ
+    - वसजल
+    - मसफथ
+    - गटढउ
+    - ढअफस
+    - थओनय
+    - उचआग
+    - जबघक
+    - टयडक
+    - भफजछ
+    - अगओल
+    - गथबभ
+    - अहठध
+    - खईडथ
+    - बचदओ
+    - गफहच
+    - रवलग
+    - उईथड
+    - मघधर
+    - डछसठ
+    - गझधक
+    - अछफव
+    - मतदए
+    - ढतछव
+    - अफतर
+    - उवइब
+    - डछओव
+    - धबफओ
+    - कठएह
+    - हईयइ
+    - ओउफन
+    - एयऊघ
+    - उथतऊ
+    - छखएन
+    - छरअझ
+    - यजपर
+    - पलमर
+    - ओफपढ
+    - टनवद
+    - ठडघठ
+    - कउढड
+    - मटफढ
+    - ओनसत
+    - झबझख
+    - धलडर
+    - उमझथ
+    - यटखज
+    - खमफघ
+    - पटछय
+    - भछलक
+    - हजकय
+    - इओटई
+    - छखछम
+    - खइयक
+    - डओयअ
+    - दसलठ
+    - छदफख
+    - पघगह
+    - ओघआख
+    - ईइझद
+    - आथढठ
+    - यडमउ
+    - धसगझ
+    - चएभय
+    - घऊखन
+    - दउनई
+    - ऊएधस
+    - डबछढ
+    - घजलथ
+    - ओपसन
+    - ऊआईठ
+    - डईढय
+    - आउनव
+    - जधछठ
+    - ऊइऊफ
+    - नडछइ
+    - ठपसध
+    - चदलज
+    - अथफओ
+    - भसवल
+    - धटठन
+    - डबकल
+    - हलईस
+    - तछहफ
+    - यएथक
+    - फचवझ
+    - मघईव
+    - धठहद
+    - आअमब
+    - थढसअ
+    - झसडए
+    - इखभब
+    - यगडम
+    - एउअठ
+    - नओफढ
+    - अछसऊ
+    - टईएझ
+    - यरवट
+    - जटझख
+    - अहठज
+    - फकझब
+    - इबइव
+    - छभपई
+    - सयदट
+    - मटलप
+    - कओअड
+    - नऊरध
+    - छगअई
+    - मजठअ
+    - दचघह
+    - बनगम
+    - सठएत
+    - आअढआ
+    - थअटउ
+    - भदचप
+    keyword_tail:
+    - '{{kw01}} {{kw02}} {{kw03}} {{kw04}} {{kw05}} {{kw06}} {{kw07}} {{kw08}} {{kw09}} {{kw10}} {{kw11}} {{kw12}} {{kw13}} {{kw14}} {{kw15}} {{kw16}} {{kw17}} {{kw18}} {{kw19}} {{kw20}} {{kw21}} {{kw22}} {{kw23}} {{kw24}} {{kw25}} {{kw26}} {{kw27}} {{kw28}} {{kw29}} {{kw30}} {{kw31}} {{kw32}}'
+    assistant_pool:
+    - स्पष्ट निर्णय-पुष्टि-वाक्य; सीधा संदेश-भाषा.
+    - कड़ा संदेश; टोन रीसेट चाहिए; रात में एक ही revision राउंड.
+    - चाहें तो मैं अलग दृढ़ता वाले दो संस्करण दे सकता हूँ।; सीधा सीमा-फ्रेमिंग.
+    - देर-रात नया काम न भेजें; प्राथमिकताएं संरेखित करना.
+    - सौम्य सहयोगी-स्वर; दृढ़ लेकिन सम्मानजनक रहना.
+    - सीमा को काम के वास्तविक भार से जोड़ें।; गलतफहमी.
+    - छोटा और उपयोगी रखो।; नया काम खोलने से पहले पुराना बंद.
+    - दृढ़ अनुरोध-वाक्य; सम्मानजनक अगला-कदम-पंक्ति.
+    - धीमे जवाब; अपडेट के लिए एक चैनल रखें.
+    - मौजूदा गति टिकाऊ नहीं; बताओ क्या कहना चाहिए।.
+    - टोन नहीं; असली बाधा अस्पष्ट स्कोप; संतुलित रीसेट-पंक्ति.
+    - अनावश्यक घर्षण हटाकर मुख्य बात साफ रखूंगा।; आत्मविश्वासी सुना.
+    - अंतिम निर्णय का एक मालिक तय रखें।; एक दिन में revision rounds की सीमा तय करना.
+    - मुख्य बात स्पष्ट रहते हुए भी सहयोगी बनी रहती है।; deep work के लिए यथार्थवादी response window दें।.
+    - बिखरे बदलाव नहीं; एक अपडेट दें; अगर आप मिली हुई सही लाइन पेस्ट करें, तो मैं और सटीक बना दूंगा।.
+    - तथ्यों पर टिके रहना; इसे अगले कदमों से जोड़कर लिखूंगा।.
+    - भाषा शांत रहे, दिशा स्पष्ट रहे।; टोन को शांत करना.
+    - डेडलाइन मिस होना; यह लेने पर दूसरा काम रुकेगा.
+    - शुरुआत से पहले डेडलाइन पुष्टि; अनुरोध को स्पष्ट और पालन करने लायक रखूंगा।.
+    - यह दोषारोपण से बचता है और गति बनाए रखता है।; फोकस समय को अनावश्यक रुकावट से बचाएं।.
+    - व्यवहार में बदलाव मांगना; मेरे सहकर्मी.
+    - मौजूदा cycle में scope स्थिर रखें।; व्यावहारिक सहयोगी-स्वर.
+    - भेजने लायक संस्करण दो।; संतुलित संदेश-भाषा.
+    - डेडलाइन बदलने पर कारण और असर साथ बताना; सम्मानजनक सीमा-फ्रेमिंग.
+    - इससे पूरे प्रोजेक्ट की गति धीमी हो रही है।; शांत सहयोगी-स्वर.
+    - बैठक के बाद action items तुरंत लिखना; urgency लेबल स्पष्ट रखें।.
+    - इसे ऐसे लिख सकते हैं:; स्कोप बदलने से पहले समय और संसाधन मिलाना.
+    - गैर-जरूरी अपडेट को दिन में एक बार समेटना; भेजने योग्य संस्करण:.
+    - दबाव में भी अर्थ साफ रहता है।; स्पष्ट अनुरोध-वाक्य.
+    - दृढ़ता के दो अलग स्तर के विकल्प दो।; बदलता स्कोप योजना बिगाड़ रहा.
+    - ऐसा अनुरोध जो मैं नहीं ले सकता; निर्णय स्पष्ट करना.
+    - मैं इसे पहले भी एक बार उठा चुका हूँ।; उलझी हुई निर्देश.
+    - मुझे आज भेजने लायक वर्जन चाहिए।; स्कोप बढ़ते जाना.
+    - उम्मीदें रीसेट करना; अस्पष्ट अनुरोध से बचें ताकि follow-up कम हो।.
+    - अगला कदम और owner साफ दिखाई देना चाहिए।; दोषारोपण से बचना.
+    - सीमा साफ रखूंगा, बिना शत्रुतापूर्ण लगे।; विरोधाभासी निर्देश आ रहे.
+    - भेजने योग्य संस्करण:; नए अनुरोध काम के समय के भीतर रखना.
+    - संतुलित अनुरोध-वाक्य; असर और tradeoff को सरल भाषा में लिखें।.
+    - व्यक्ति नहीं, साझा लक्ष्य पर फोकस रखें।; उलझी हुई निर्देश.
+    - तनावपूर्ण थ्रेड; हर नए अनुरोध के साथ प्रभाव और प्राथमिकता लिखना.
+  row_template:
+    language: '{language}'
+    mode: '{mode}'
+    tone: '{tone}'
+    representation_choice: '{representation_choice}'
+    continuity_choice: '{continuity_choice}'
+    intent_family: '{intent_family}'
+    intent_subtype: '{intent_subtype}'
+    user_message: '{user_message}'
+    assistant_response: '{assistant_response}'
+    messages:
+    - role: system
+      content: '{system_message}'
+    - role: user
+      content: '{user_message}'
+    - role: assistant
+      content: '{assistant_response}'
+notes: Wave0 Lane04 quick mode rebuilt from native lane-specific libraries; includes 54 seeded turn-cases (single+multi).

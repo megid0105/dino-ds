@@ -1,0 +1,334 @@
+lane_id: "lane_23_grammar_fix"
+wave: "wave0"
+target_base: "dino_qwen4b"
+source_type: "local"
+
+# template_expand lanes do not require source files
+sources: []
+
+# how many rows to build (can be overridden by --limit)
+count_target: 784
+# REQUIRED PCT fields: keep these in the human-facing lane configs
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: "suppress_continuity"
+  flow_state: "none"
+  history_scope: "thread_only"
+  representation_choice: "plain_text"
+  safety_tag: "safe"
+
+  system_prompt_id: "dino.system.v1"
+# forward-compat placeholders
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators: []
+transform_pipeline: []
+
+generation_mode: "template_expand"
+system_prompt_path: prompts/system/dino_system_prompt.txt
+
+
+output_dir: out_runs/colleague_test
+
+teacher_runtime:
+  sample_percent: 10
+  enabled: false
+  provider: ollama
+  ollama_host: "http://127.0.0.1:11434"
+  model: "dino-pro-7b"
+  policy: structure_only
+  on_missing_evidence: abstain
+  system_prompt_path: prompts/teacher/lane_23_teacher_system_prompt.txt
+
+
+
+
+  timeout_s: 150
+  keepalive: "5m"
+# similarity/dedupe controls (tune per-lane)
+similarity:
+  max_token_overlap_ratio: 0.3
+  ignore_stopwords: true
+  ignore_tokens:
+    - "dino"
+    - "ai"
+    - "assistant"
+    - "grammar"
+    - "fix"
+    - "correct"
+    - "check"
+    - "please"
+    - "thanks"
+    - "thank"
+  ngram: 2
+
+template_expand:
+  seed: 0
+  count_target: 784
+  max_attempts: 700000
+  attempts_per_row: 400
+
+  slot_banks:
+    # Core labels
+    language: ["de"]
+    mode: ["conversation"]
+    tone:
+      - "professional"
+      - "friendly"
+      - "serious"
+      - "family"
+      - "best_friend"
+      - "professional"
+      - "friendly"
+    continuity_choice: ["suppress_continuity"]
+    intent_family: ["content_generation"]
+    intent_subtype: ["grammar_fix"]
+
+    # Short decisive grammar directives (avoid "this ok?" drift)
+    directive_short:
+      - "grammar"
+      - "grammar:"
+      - "fix grammar"
+      - "fix grammar:"
+      - "grammar fix"
+      - "grammar fix:"
+      - "check grammar"
+      - "check grammar:"
+      - "correct grammar"
+      - "correct grammar:"
+      - "grammar check"
+      - "grammar check:"
+      - "fix the grammar"
+      - "grammar please"
+      - "fix the grammar:"
+      - "grammar correction"
+      - "grammar correction:"
+      - "polish grammar"
+      - "polish grammar:"
+      - "make grammar correct"
+
+    constraint_line:
+      - "Keep the meaning the same."
+      - "Do not add new details."
+      - "Keep it short."
+      - "Keep it natural."
+      - "No extra context."
+      - "Keep names and numbers unchanged."
+      - "Only fix grammar."
+      - "Keep it simple."
+
+    medium:
+      - "email"
+      - "chat"
+      - "text"
+      - "status update"
+      - "message"
+      - "note"
+      - "reply"
+
+    # Canonical grammar error components (deterministic corrections)
+    # We intentionally keep subject fixed to preserve error->correction alignment.
+    subject: ["I"]
+
+    verb_past:
+      - "finish"
+      - "review"
+      - "send"
+      - "write"
+      - "update"
+      - "check"
+      - "fix"
+      - "plan"
+      - "outline"
+      - "summarize"
+      - "draft"
+      - "ship"
+      - "test"
+      - "clean"
+      - "deliver"
+
+    verb_past_ed:
+      - "finished"
+      - "reviewed"
+      - "sent"
+      - "wrote"
+      - "updated"
+      - "checked"
+      - "fixed"
+      - "planned"
+      - "outlined"
+      - "summarized"
+      - "drafted"
+      - "shipped"
+      - "tested"
+      - "cleaned"
+      - "delivered"
+
+    object_phrase:
+      - "the draft"
+      - "the update"
+      - "the message"
+      - "the notes"
+      - "the plan"
+      - "the outline"
+      - "the checklist"
+      - "the report"
+      - "the summary"
+      - "the review"
+      - "the handoff"
+      - "the proposal"
+      - "the write-up"
+      - "the spec"
+      - "the timeline"
+      - "the decision"
+
+    duration:
+      - "two hours"
+      - "three hours"
+      - "four hours"
+      - "a day"
+      - "two days"
+      - "three days"
+      - "a week"
+      - "two weeks"
+      - "a month"
+      - "two months"
+
+    time_ref:
+      - "today"
+      - "later today"
+      - "this afternoon"
+      - "tonight"
+      - "tomorrow"
+      - "tomorrow morning"
+      - "this week"
+      - "by Friday"
+      - "by Monday"
+      - "by Wednesday"
+      - "next week"
+      - "end of day"
+      - "EOD"
+
+    reason_short:
+      - "I was blocked on inputs"
+      - "an urgent issue came up"
+      - "I hit a dependency"
+      - "I had a conflict"
+      - "I ran into a blocker"
+      - "I needed more time to clean it up"
+      - "I am still aligning on details"
+      - "I had to handle something unexpected"
+      - "I underestimated the time needed"
+      - "I want to make sure it is solid"
+
+    project_name:
+      - "Project Atlas"
+      - "Project Beacon"
+      - "Project Comet"
+      - "Project Delta"
+      - "Project Ember"
+      - "Project Flux"
+      - "Project Grove"
+      - "Project Halo"
+      - "Project Iris"
+      - "Project Juno"
+      - "Project Kite"
+      - "Project Lumen"
+      - "Project Nova"
+      - "Project Orion"
+      - "Project Pulse"
+
+    # Error snippets: always include clear grammar errors
+    error_snippet:
+      - "{subject} has been {verb_past} {object_phrase} since {duration}."
+      - "{subject} has been {verb_past_ed} the {object_phrase} since {duration}."
+      - "{subject} has {verb_past_ed} {object_phrase} since {duration}."
+      - "{subject} has been {verb_past_ed} {object_phrase} since {duration}."
+      - "{subject} has {verb_past_ed} {object_phrase} since {duration} for {project_name}."
+      - "{subject} has been {verb_past} {object_phrase} since {duration} and still not done."
+      - "{subject} has been {verb_past_ed} {object_phrase} since {duration} and it take too long."
+      - "{subject} has been {verb_past} {object_phrase} since {duration} because {reason_short}."
+      - "{subject} has been {verb_past_ed} {object_phrase} since {duration} by {time_ref}."
+      - "{subject} has {verb_past_ed} {object_phrase} since {duration} and need more time."
+
+    # Corrected snippets: deterministic fixes for the canonical errors above
+    corrected_snippet:
+      - "{subject} have been {verb_past_ed} {object_phrase} for {duration}."
+      - "{subject} have been {verb_past_ed} {object_phrase} for {duration} for {project_name}."
+      - "{subject} have been {verb_past_ed} {object_phrase} for {duration}, and it is taking too long."
+      - "{subject} have been {verb_past_ed} {object_phrase} for {duration} because {reason_short}."
+      - "{subject} have been {verb_past_ed} {object_phrase} for {duration} and need more time."
+      - "{subject} have been {verb_past_ed} {object_phrase} for {duration}, and it is still not done."
+      - "{subject} have been {verb_past_ed} {object_phrase} for {duration} by {time_ref}."
+      - "{subject} have been {verb_past_ed} {object_phrase} for {duration}."
+
+    # User instruction templates: lots of short decisive forms
+    user_instruction:
+      - "{directive_short} {error_snippet}"
+      - "{directive_short} {error_snippet} {constraint_line}"
+      - "{directive_short} for {medium}: {error_snippet}"
+      - "{directive_short} {error_snippet} keep it short"
+      - "{directive_short} {error_snippet} only grammar"
+      - "grammar: {error_snippet}"
+      - "fix grammar: {error_snippet}"
+      - "grammar fix: {error_snippet}"
+      - "grammar check: {error_snippet}"
+      - "correct grammar: {error_snippet}"
+      - "check grammar {error_snippet}"
+      - "{error_snippet} grammar"
+      - "{error_snippet} grammar fix"
+      - "{error_snippet} check grammar"
+      - "{error_snippet} fix grammar"
+      - "fix the grammar: {error_snippet}"
+      - "polish grammar: {error_snippet}"
+
+    # Light multi-turn variants (kept short; same format family as other lanes)
+    assistant_probe:
+      - "Do you want it shorter?"
+      - "Should I keep it very close to the original?"
+      - "Is this for email or chat?"
+      - "Do you want it more formal or more casual?"
+      - "Should I only fix grammar and not style?"
+      - "Do you want a one-sentence version?"
+
+    user_followup:
+      - "Only fix grammar."
+      - "Keep it short."
+      - "Keep it close to the original."
+      - "For {medium}."
+      - "Grammar only, no style changes."
+      - "Short and simple."
+
+    dialogue_context:
+      - "User: {user_instruction}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "Context so far:\nUser: {user_instruction}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "U: {user_instruction}\nA: {assistant_probe}\nU: {user_followup}"
+
+    user_message:
+      - "{user_instruction}"
+      - "{user_instruction}"
+      - "{user_instruction}"
+      - "{dialogue_context}"
+
+    assistant_response:
+      - "{corrected_snippet}"
+      - "{corrected_snippet}"
+      - "{corrected_snippet}"
+
+  row_template:
+    language: "{language}"
+    mode: "{mode}"
+    tone: "{tone}"
+    continuity_choice: "{continuity_choice}"
+    intent_family: "{intent_family}"
+    intent_subtype: "{intent_subtype}"
+    representation_choice: "plain_text"
+    user_message: "{user_message}"
+    assistant_response: "{assistant_response}"
+
+notes: "Wave0 Lane23 - grammar fix with many short decisive prompts and large slot banks (avoids 'this ok?' drift)"

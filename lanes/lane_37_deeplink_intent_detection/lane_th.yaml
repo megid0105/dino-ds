@@ -1,0 +1,2509 @@
+lane_id: "lane_37_deeplink_intent_detection"
+wave: "wave0"
+target_base: "dino_qwen4b"
+source_type: "local"
+
+# template_expand lanes do not require source files
+sources: []
+
+# how many rows to build (can be overridden by --limit)
+count_target: 2451
+# REQUIRED PCT fields: keep these in the human-facing lane configs
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: "suppress_continuity"
+  flow_state: "none"
+  history_scope: "thread_only"
+  representation_choice: "plain_text"
+  safety_tag: "safe"
+
+  system_prompt_id: "dino.system.v1"
+# forward-compat placeholders
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators:
+  - name: "mode_richness"
+transform_pipeline: []
+
+generation_mode: "template_expand"
+system_prompt_path: prompts/system/dino_system_prompt.txt
+
+
+output_dir: out_runs/colleague_test
+
+teacher_runtime:
+  sample_percent: 10
+  enabled: false
+  provider: ollama
+  ollama_host: "http://127.0.0.1:11434"
+  model: "dino-pro-7b"
+  policy: structure_only
+  on_missing_evidence: abstain
+  system_prompt_path: prompts/teacher/lane_37_teacher_system_prompt.txt
+
+
+
+  timeout_s: 150
+  keepalive: "5m"
+# similarity/dedupe controls (tune per-lane)
+similarity:
+  max_token_overlap_ratio: 0.3
+  ignore_stopwords: true
+  ignore_tokens: ["dino", "ai", "assistant", "im", "i'm"]
+  ngram: 3
+
+template_expand:
+  seed: 0
+  count_target: 2451
+  expand_dict_slots:
+    - case
+
+  slot_banks:
+    language: ["th"]
+    mode: ["conversation"]
+    tone: ["professional", "serious", "friendly", "family", "best_friend"]
+    emote6: ["neutral"]
+    continuity_choice: ["suppress_continuity"]
+
+    needs_search: [false]
+    needs_history_search: [false]
+    history_scope: ["thread_only"]
+    safety_tag: ["safe"]
+
+    platform: ["ios", "android", "web"]
+    platform_hint:
+      - ""
+      - " on {platform}"
+      - " for {platform}"
+      - " (platform: {platform})"
+
+    app_hint:
+      - ""
+      - "In {app_name}, "
+      - "Using {app_name}, "
+      - "App {app_name}: "
+      - "{app_name} -> "
+      - "Open {app_name} and "
+
+    action_detail:
+      - "{detail_template}"
+      - "please {detail_template}"
+      - "help me {detail_template}"
+      - "I want to {detail_template}"
+      - "can you {detail_template}?"
+      - "need you to {detail_template}"
+      - "make it so I can {detail_template}"
+      - "set this up: {detail_template}"
+
+    request_open:
+      - "Please"
+      - "Can you"
+      - "I need you to"
+      - "I'd like to"
+      - "Help me"
+      - "Could you"
+      - "Please help me"
+      - "I want to"
+
+    request_open_alt:
+      - "Please"
+      - "Can you"
+      - "I need you to"
+      - "I'd like to"
+      - "Help me"
+
+    request_text:
+      - "{request_open} {app_hint}{action_detail}{platform_hint}"
+      - "{request_open_alt} {app_hint}{action_detail}{platform_hint}"
+      - "Can you {app_hint}{action_detail}{platform_hint}?"
+      - "I need you to {app_hint}{action_detail}{platform_hint}."
+      - "Please {app_hint}{action_detail}{platform_hint}."
+      - "Help me {app_hint}{action_detail}{platform_hint}."
+
+    assistant_probe:
+      - "Got it. Any details you want me to use?"
+      - "Okay. Should I keep it short or add a bit more detail?"
+      - "Understood. Any constraints I should follow?"
+      - "Thanks. Is there a preferred tone?"
+      - "Got it. Do you want it concise or more thorough?"
+      - "Okay. Anything you want emphasized?"
+      - "Understood. Should I keep it brief?"
+
+    user_followup:
+      - "Keep it brief."
+      - "Short and direct, please."
+      - "Use the details I mentioned."
+      - "No extra fluff."
+      - "Add a bit of detail."
+      - "Keep the tone professional."
+      - "Make it concise and clear."
+
+    reason_line:
+      - "Match the app and action; use the exact deeplink label."
+      - "Choose the deeplink label that matches the requested app action."
+      - "Use the precise app_action label; do not generalize."
+      - "Select the specific deeplink action implied by the request."
+      - "Pick the exact deeplink label; avoid guessing other apps."
+      - "Align app and action to the correct deeplink label."
+      - "Map to the exact deeplink action, not a nearby one."
+
+    quality_note:
+      - ""
+      - "Bad: guess the app. Good: use explicit app cues."
+      - "Bad: pick a generic action. Good: choose the exact label."
+      - "Bad: ignore the requested app. Good: align app and action."
+      - "Bad: default to maps. Good: match the app and intent."
+      - "Bad: confuse openSearch vs openProfile. Good: read the request."
+
+    assistant_response:
+      - "Got it - I'll {detail_template}."
+      - "Sure - I can {detail_template}."
+      - "Okay, I'll {detail_template}."
+      - "I can {detail_template}."
+
+    dialogue_context:
+      - "User: {request_text}
+Assistant: {assistant_probe}
+User: {user_followup}"
+      - "User message: {request_text}
+Assistant reply: {assistant_probe}
+User follow-up: {user_followup}"
+      - "Context:
+User: {request_text}
+Assistant: {assistant_probe}
+User: {user_followup}"
+      - "Conversation:
+User: {request_text}
+Assistant: {assistant_probe}
+User: {user_followup}"
+      - "U: {request_text}
+A: {assistant_probe}
+U: {user_followup}"
+
+    person_name:
+      - "Alex"
+      - "Jamie"
+      - "Morgan"
+      - "Riley"
+      - "Casey"
+      - "Avery"
+      - "Jordan"
+      - "Taylor"
+      - "Quinn"
+      - "Parker"
+      - "Blake"
+      - "Sam"
+
+    team_name:
+      - "Team Echo"
+      - "Team North"
+      - "Ops Crew"
+      - "Design Pod"
+      - "Product Group"
+      - "Research Team"
+      - "Support Desk"
+      - "Field Squad"
+      - "Growth Squad"
+      - "QA Pod"
+      - "Launch Team"
+      - "Data Guild"
+
+    topic_stub:
+      - "the timeline shift"
+      - "a draft update"
+      - "the plan adjustment"
+      - "next steps"
+      - "the open questions"
+      - "the quick recap"
+      - "the checklist"
+      - "the action items"
+      - "the project status"
+      - "the risk list"
+      - "the next milestone"
+      - "the customer feedback"
+
+    task_item:
+      - "finalize the mock outline"
+      - "review the draft brief"
+      - "collect feedback"
+      - "prepare the demo"
+      - "confirm the checklist"
+      - "update the notes"
+      - "send the summary"
+      - "archive the files"
+      - "share the recap"
+      - "approve the draft"
+      - "verify the numbers"
+      - "sync with the team"
+
+    short_message:
+      - "please call me back"
+      - "running 10 minutes late"
+      - "can we reschedule"
+      - "thanks for the update"
+      - "meeting moved to 3pm"
+      - "please review when you can"
+      - "I will follow up tomorrow"
+      - "joining in 5 mins"
+      - "need a quick yes/no"
+      - "call me when free"
+
+    phone_stub:
+      - "+1-555-201-7788"
+      - "+1-555-992-1103"
+      - "+1-555-330-8844"
+      - "+1-555-889-7712"
+      - "+1-555-410-2233"
+      - "+1-555-774-9901"
+
+    event_title:
+      - "Project Sync"
+      - "Design Review"
+      - "Sprint Planning"
+      - "Client Check-in"
+      - "Roadmap Review"
+      - "Weekly Standup"
+      - "Demo Prep"
+      - "Launch Brief"
+
+    date_ref:
+      - "today"
+      - "tomorrow"
+      - "next Monday"
+      - "this Friday"
+      - "next week"
+      - "this weekend"
+      - "next Tuesday"
+      - "in two weeks"
+
+    time_ref:
+      - "9:00 AM"
+      - "2:30 PM"
+      - "5:15 PM"
+      - "tomorrow morning"
+      - "11:00 AM"
+      - "4:00 PM"
+      - "noon"
+      - "3:45 PM"
+
+    note_title:
+      - "Meeting Notes"
+      - "Project Ideas"
+      - "Action Items"
+      - "Weekly Plan"
+      - "Customer Notes"
+      - "Bug Triage"
+      - "Launch Checklist"
+      - "Retro Highlights"
+
+    location_name:
+      - "the office"
+      - "downtown"
+      - "the airport"
+      - "the hotel"
+      - "central station"
+      - "main lobby"
+      - "studio"
+      - "north campus"
+
+    place_a:
+      - "Home"
+      - "Office"
+      - "Central Station"
+      - "Hotel Lobby"
+      - "Main Plaza"
+      - "North Gate"
+      - "East Park"
+      - "Warehouse"
+
+    place_b:
+      - "Airport"
+      - "Client Site"
+      - "Cafe Blue"
+      - "Studio West"
+      - "South Point"
+      - "City Hall"
+      - "Harbor Side"
+      - "West Court"
+
+    web_query:
+      - "best budget laptop"
+      - "coffee shops nearby"
+      - "how to format a resume"
+      - "project kickoff checklist"
+      - "weekend weather"
+      - "local bike shops"
+      - "hotel near downtown"
+      - "USB-C hub reviews"
+
+    file_name:
+      - "report.pdf"
+      - "notes.txt"
+      - "slides.pptx"
+      - "budget.xlsx"
+      - "summary.docx"
+      - "plan.md"
+      - "invoice.pdf"
+      - "agenda.docx"
+      - "specs.csv"
+
+    folder_name:
+      - "Work"
+      - "Projects"
+      - "Archives"
+      - "Shared"
+      - "Invoices"
+      - "Drafts"
+      - "Reports"
+      - "Team"
+
+    share_target:
+      - "Jamie"
+      - "the team"
+      - "my manager"
+      - "Alex"
+      - "Ops Crew"
+      - "Design Pod"
+      - "Jordan"
+      - "Riley"
+
+    song_title:
+      - "Blue Horizon"
+      - "Morning Light"
+      - "Echoes"
+      - "Sunset Drive"
+      - "Quiet Lines"
+      - "City Nights"
+      - "Golden Hour"
+      - "Night Ride"
+
+    artist_name:
+      - "Nova Lane"
+      - "River & Sky"
+      - "The Signals"
+      - "Harbor Keys"
+      - "Arc Light"
+      - "The Northbound"
+      - "Silver Lines"
+      - "Portside"
+
+    device_name:
+      - "living room lights"
+      - "office fan"
+      - "bedroom lamp"
+      - "hallway thermostat"
+      - "kitchen lights"
+      - "garage door"
+      - "desk lamp"
+      - "porch light"
+
+    device_state:
+      - "on"
+      - "off"
+      - "to 22C"
+      - "to 18C"
+      - "to 20C"
+      - "dim"
+      - "bright"
+      - "eco mode"
+
+    shortcut_name:
+      - "Start Focus Mode"
+      - "Log Water"
+      - "Weekly Review"
+      - "Call Home"
+      - "Start Workout"
+      - "Morning Routine"
+      - "Night Mode"
+      - "Open Agenda"
+
+    project_name:
+      - "Website Refresh"
+      - "Q1 Launch"
+      - "Roadmap"
+      - "Design Sprint"
+      - "Marketing Plan"
+      - "Client Pilot"
+      - "Beta Program"
+      - "Ops Cleanup"
+
+    cloud_drive:
+      - "Drive"
+      - "Dropbox"
+      - "iCloud"
+      - "OneDrive"
+      - "Box"
+      - "SharePoint"
+
+    amount:
+      - "$25"
+      - "$42"
+      - "$100"
+      - "$15"
+      - "$60"
+      - "$80"
+      - "$120"
+      - "$10"
+
+    item_name:
+      - "wireless mouse"
+      - "notebook"
+      - "charging cable"
+      - "travel adapter"
+      - "noise cancelling headphones"
+      - "phone case"
+      - "USB-C hub"
+      - "backpack"
+
+    ride_type:
+      - "a ride"
+      - "a pickup"
+      - "a car"
+      - "a taxi"
+      - "a ride share"
+      - "a sedan"
+      - "an XL"
+
+    email_detail:
+      - "compose an email to {person_name} about {topic_stub}"
+      - "draft an email update for {team_name} on {topic_stub}"
+      - "send an email to {person_name} with subject {topic_stub}"
+      - "open an email draft to {person_name} about {topic_stub}"
+      - "start an email to {person_name} re: {topic_stub}"
+
+    messages_detail:
+      - "send a message to {person_name}: {short_message}"
+      - "open chat with {person_name}"
+      - "send a text to {person_name} saying {short_message}"
+      - "message {team_name} about {topic_stub}"
+      - "open a chat with {team_name}"
+
+    phone_detail:
+      - "call {person_name} at {phone_stub}"
+      - "dial {phone_stub}"
+      - "open the dialer and call {person_name}"
+      - "place a call to {phone_stub}"
+
+    calendar_detail:
+      - "create a calendar event titled {event_title} on {date_ref} at {time_ref}"
+      - "add {event_title} for {date_ref} at {time_ref}"
+      - "schedule {event_title} on {date_ref} at {time_ref}"
+      - "open calendar on {date_ref}"
+
+    reminders_detail:
+      - "set a reminder to {task_item} {time_ref}"
+      - "remind me to {task_item} {date_ref}"
+      - "create a reminder for {task_item} {time_ref}"
+      - "add reminder: {task_item}"
+
+    notes_detail:
+      - "create a note titled {note_title} about {topic_stub}"
+      - "capture a note: {topic_stub}"
+      - "open a note {note_title} and add {topic_stub}"
+      - "append to {note_title}: {topic_stub}"
+
+    contacts_detail:
+      - "create a contact for {person_name} with phone {phone_stub}"
+      - "open contact {person_name}"
+      - "search contacts for {person_name}"
+      - "update contact {person_name}"
+
+    navigation_detail:
+      - "get directions from {place_a} to {place_b}"
+      - "navigate from {place_a} to {place_b}"
+      - "show route to {place_b} from {place_a}"
+      - "open map search for {place_b}"
+      - "find {place_b} near {place_a}"
+
+    browser_detail:
+      - "search the web for {web_query}"
+      - "open results for {web_query}"
+      - "look up {web_query}"
+      - "open a browser search for {web_query}"
+
+    files_detail:
+      - "save {file_name} in {folder_name}"
+      - "open {file_name} from {folder_name}"
+      - "share {file_name} from {folder_name}"
+      - "delete {file_name} from {folder_name}"
+
+    fileapps_detail:
+      - "open {file_name} in {cloud_drive}"
+      - "upload {file_name} to {cloud_drive}"
+      - "search files in {cloud_drive} for {file_name}"
+      - "open a folder in {cloud_drive}"
+
+    payment_detail:
+      - "send {amount} to {person_name}"
+      - "request {amount} from {person_name}"
+      - "open payment for {amount}"
+      - "pay {person_name} {amount}"
+
+    shopping_detail:
+      - "search for {item_name}"
+      - "open product {item_name}"
+      - "open cart for {item_name}"
+      - "browse deals for {item_name}"
+
+    ride_detail:
+      - "book {ride_type} from {place_a} to {place_b}"
+      - "request {ride_type} to {place_b}"
+      - "open ride booking for {place_b}"
+      - "set pickup at {place_a} to {place_b}"
+
+    social_detail:
+      - "open profile for {person_name}"
+      - "search for {topic_stub}"
+      - "open the latest post for {person_name}"
+      - "open messages for {person_name}"
+
+    media_detail:
+      - "play {song_title} by {artist_name}"
+      - "open playlist for {artist_name}"
+      - "play the album with {song_title}"
+      - "play {song_title}"
+      - "open {artist_name}"
+
+    productivity_detail:
+      - "create a task {task_item} in {project_name}"
+      - "open project {project_name}"
+      - "search workspace for {project_name}"
+      - "open {project_name}"
+
+    generic_detail:
+      - "handle the request about {topic_stub}"
+      - "do the action for {topic_stub}"
+      - "perform the task for {topic_stub}"
+    case:
+      - action_name: adobeAcrobat_openPDF
+        intent_family: tool_invocation
+        intent_subtype: adobeAcrobat_openPDF
+        app_name: adobeAcrobat
+        detail_template: '{fileapps_detail}'
+      - action_name: adobeAcrobat_openPDF
+        intent_family: tool_invocation
+        intent_subtype: adobeAcrobat_openPDF
+        app_name: adobeAcrobat
+        detail_template: '{fileapps_detail}'
+      - action_name: alipay_openPayment
+        intent_family: transactional
+        intent_subtype: alipay_openPayment
+        app_name: alipay
+        detail_template: '{payment_detail}'
+      - action_name: alipay_openPayment
+        intent_family: transactional
+        intent_subtype: alipay_openPayment
+        app_name: alipay
+        detail_template: '{payment_detail}'
+      - action_name: alipay_openScan
+        intent_family: transactional
+        intent_subtype: alipay_openScan
+        app_name: alipay
+        detail_template: '{payment_detail}'
+      - action_name: alipay_openScan
+        intent_family: transactional
+        intent_subtype: alipay_openScan
+        app_name: alipay
+        detail_template: '{payment_detail}'
+      - action_name: amazon_openCart
+        intent_family: transactional
+        intent_subtype: amazon_openCart
+        app_name: amazon
+        detail_template: '{shopping_detail}'
+      - action_name: amazon_openCart
+        intent_family: transactional
+        intent_subtype: amazon_openCart
+        app_name: amazon
+        detail_template: '{shopping_detail}'
+      - action_name: amazon_openProduct
+        intent_family: transactional
+        intent_subtype: amazon_openProduct
+        app_name: amazon
+        detail_template: '{shopping_detail}'
+      - action_name: amazon_openProduct
+        intent_family: transactional
+        intent_subtype: amazon_openProduct
+        app_name: amazon
+        detail_template: '{shopping_detail}'
+      - action_name: amazon_openSearch
+        intent_family: transactional
+        intent_subtype: amazon_openSearch
+        app_name: amazon
+        detail_template: '{shopping_detail}'
+      - action_name: amazon_openSearch
+        intent_family: transactional
+        intent_subtype: amazon_openSearch
+        app_name: amazon
+        detail_template: '{shopping_detail}'
+      - action_name: asana_openProject
+        intent_family: planning
+        intent_subtype: asana_openProject
+        app_name: asana
+        detail_template: '{productivity_detail}'
+      - action_name: asana_openProject
+        intent_family: planning
+        intent_subtype: asana_openProject
+        app_name: asana
+        detail_template: '{productivity_detail}'
+      - action_name: asana_openTask
+        intent_family: planning
+        intent_subtype: asana_openTask
+        app_name: asana
+        detail_template: '{productivity_detail}'
+      - action_name: asana_openTask
+        intent_family: planning
+        intent_subtype: asana_openTask
+        app_name: asana
+        detail_template: '{productivity_detail}'
+      - action_name: audible_openAudiobook
+        intent_family: content_generation
+        intent_subtype: audible_openAudiobook
+        app_name: audible
+        detail_template: '{media_detail}'
+      - action_name: audible_openAudiobook
+        intent_family: content_generation
+        intent_subtype: audible_openAudiobook
+        app_name: audible
+        detail_template: '{media_detail}'
+      - action_name: bear_openNote
+        intent_family: planning
+        intent_subtype: bear_openNote
+        app_name: bear
+        detail_template: '{productivity_detail}'
+      - action_name: bear_openNote
+        intent_family: planning
+        intent_subtype: bear_openNote
+        app_name: bear
+        detail_template: '{productivity_detail}'
+      - action_name: browser_openSearch
+        intent_family: info_retrieval
+        intent_subtype: browser_openSearch
+        app_name: browser
+        detail_template: '{browser_detail}'
+      - action_name: browser_openSearch
+        intent_family: info_retrieval
+        intent_subtype: browser_openSearch
+        app_name: browser
+        detail_template: '{browser_detail}'
+      - action_name: browser_openURL
+        intent_family: info_retrieval
+        intent_subtype: browser_openURL
+        app_name: browser
+        detail_template: '{browser_detail}'
+      - action_name: browser_openURL
+        intent_family: info_retrieval
+        intent_subtype: browser_openURL
+        app_name: browser
+        detail_template: '{browser_detail}'
+      - action_name: calendar_openApp
+        intent_family: planning
+        intent_subtype: calendar_openApp
+        app_name: calendar
+        detail_template: '{calendar_detail}'
+      - action_name: calendar_openApp
+        intent_family: planning
+        intent_subtype: calendar_openApp
+        app_name: calendar
+        detail_template: '{calendar_detail}'
+      - action_name: calendar_openDate
+        intent_family: planning
+        intent_subtype: calendar_openDate
+        app_name: calendar
+        detail_template: '{calendar_detail}'
+      - action_name: calendar_openDate
+        intent_family: planning
+        intent_subtype: calendar_openDate
+        app_name: calendar
+        detail_template: '{calendar_detail}'
+      - action_name: citymapper_openDirections
+        intent_family: navigation
+        intent_subtype: citymapper_openDirections
+        app_name: citymapper
+        detail_template: '{navigation_detail}'
+      - action_name: citymapper_openDirections
+        intent_family: navigation
+        intent_subtype: citymapper_openDirections
+        app_name: citymapper
+        detail_template: '{navigation_detail}'
+      - action_name: clickup_openList
+        intent_family: planning
+        intent_subtype: clickup_openList
+        app_name: clickup
+        detail_template: '{productivity_detail}'
+      - action_name: clickup_openList
+        intent_family: planning
+        intent_subtype: clickup_openList
+        app_name: clickup
+        detail_template: '{productivity_detail}'
+      - action_name: clickup_openTask
+        intent_family: planning
+        intent_subtype: clickup_openTask
+        app_name: clickup
+        detail_template: '{productivity_detail}'
+      - action_name: clickup_openTask
+        intent_family: planning
+        intent_subtype: clickup_openTask
+        app_name: clickup
+        detail_template: '{productivity_detail}'
+      - action_name: clock_openApp
+        intent_family: planning
+        intent_subtype: clock_openApp
+        app_name: clock
+        detail_template: '{generic_detail}'
+      - action_name: clock_openApp
+        intent_family: planning
+        intent_subtype: clock_openApp
+        app_name: clock
+        detail_template: '{generic_detail}'
+      - action_name: contacts_openApp
+        intent_family: communication
+        intent_subtype: contacts_openApp
+        app_name: contacts
+        detail_template: '{contacts_detail}'
+      - action_name: contacts_openApp
+        intent_family: communication
+        intent_subtype: contacts_openApp
+        app_name: contacts
+        detail_template: '{contacts_detail}'
+      - action_name: contacts_openContact
+        intent_family: communication
+        intent_subtype: contacts_openContact
+        app_name: contacts
+        detail_template: '{contacts_detail}'
+      - action_name: contacts_openContact
+        intent_family: communication
+        intent_subtype: contacts_openContact
+        app_name: contacts
+        detail_template: '{contacts_detail}'
+      - action_name: discord_openChannel
+        intent_family: communication
+        intent_subtype: discord_openChannel
+        app_name: discord
+        detail_template: '{messages_detail}'
+      - action_name: discord_openChannel
+        intent_family: communication
+        intent_subtype: discord_openChannel
+        app_name: discord
+        detail_template: '{messages_detail}'
+      - action_name: discord_openDM
+        intent_family: communication
+        intent_subtype: discord_openDM
+        app_name: discord
+        detail_template: '{messages_detail}'
+      - action_name: discord_openDM
+        intent_family: communication
+        intent_subtype: discord_openDM
+        app_name: discord
+        detail_template: '{messages_detail}'
+      - action_name: discord_openServer
+        intent_family: communication
+        intent_subtype: discord_openServer
+        app_name: discord
+        detail_template: '{messages_detail}'
+      - action_name: discord_openServer
+        intent_family: communication
+        intent_subtype: discord_openServer
+        app_name: discord
+        detail_template: '{messages_detail}'
+      - action_name: disneyPlus_openMovie
+        intent_family: content_generation
+        intent_subtype: disneyPlus_openMovie
+        app_name: disneyPlus
+        detail_template: '{media_detail}'
+      - action_name: disneyPlus_openMovie
+        intent_family: content_generation
+        intent_subtype: disneyPlus_openMovie
+        app_name: disneyPlus
+        detail_template: '{media_detail}'
+      - action_name: disneyPlus_openShow
+        intent_family: content_generation
+        intent_subtype: disneyPlus_openShow
+        app_name: disneyPlus
+        detail_template: '{media_detail}'
+      - action_name: disneyPlus_openShow
+        intent_family: content_generation
+        intent_subtype: disneyPlus_openShow
+        app_name: disneyPlus
+        detail_template: '{media_detail}'
+      - action_name: drafts_openDraft
+        intent_family: planning
+        intent_subtype: drafts_openDraft
+        app_name: drafts
+        detail_template: '{productivity_detail}'
+      - action_name: drafts_openDraft
+        intent_family: planning
+        intent_subtype: drafts_openDraft
+        app_name: drafts
+        detail_template: '{productivity_detail}'
+      - action_name: dropbox_openFile
+        intent_family: tool_invocation
+        intent_subtype: dropbox_openFile
+        app_name: dropbox
+        detail_template: '{fileapps_detail}'
+      - action_name: dropbox_openFile
+        intent_family: tool_invocation
+        intent_subtype: dropbox_openFile
+        app_name: dropbox
+        detail_template: '{fileapps_detail}'
+      - action_name: dropbox_openFolder
+        intent_family: tool_invocation
+        intent_subtype: dropbox_openFolder
+        app_name: dropbox
+        detail_template: '{fileapps_detail}'
+      - action_name: dropbox_openFolder
+        intent_family: tool_invocation
+        intent_subtype: dropbox_openFolder
+        app_name: dropbox
+        detail_template: '{fileapps_detail}'
+      - action_name: ebay_openProduct
+        intent_family: transactional
+        intent_subtype: ebay_openProduct
+        app_name: ebay
+        detail_template: '{shopping_detail}'
+      - action_name: ebay_openProduct
+        intent_family: transactional
+        intent_subtype: ebay_openProduct
+        app_name: ebay
+        detail_template: '{shopping_detail}'
+      - action_name: ebay_openSearch
+        intent_family: transactional
+        intent_subtype: ebay_openSearch
+        app_name: ebay
+        detail_template: '{shopping_detail}'
+      - action_name: ebay_openSearch
+        intent_family: transactional
+        intent_subtype: ebay_openSearch
+        app_name: ebay
+        detail_template: '{shopping_detail}'
+      - action_name: evernote_openNote
+        intent_family: planning
+        intent_subtype: evernote_openNote
+        app_name: evernote
+        detail_template: '{productivity_detail}'
+      - action_name: evernote_openNote
+        intent_family: planning
+        intent_subtype: evernote_openNote
+        app_name: evernote
+        detail_template: '{productivity_detail}'
+      - action_name: evernote_openNotebook
+        intent_family: planning
+        intent_subtype: evernote_openNotebook
+        app_name: evernote
+        detail_template: '{productivity_detail}'
+      - action_name: evernote_openNotebook
+        intent_family: planning
+        intent_subtype: evernote_openNotebook
+        app_name: evernote
+        detail_template: '{productivity_detail}'
+      - action_name: facebook_openFeed
+        intent_family: communication
+        intent_subtype: facebook_openFeed
+        app_name: facebook
+        detail_template: '{social_detail}'
+      - action_name: facebook_openFeed
+        intent_family: communication
+        intent_subtype: facebook_openFeed
+        app_name: facebook
+        detail_template: '{social_detail}'
+      - action_name: facebook_openPage
+        intent_family: communication
+        intent_subtype: facebook_openPage
+        app_name: facebook
+        detail_template: '{social_detail}'
+      - action_name: facebook_openPage
+        intent_family: communication
+        intent_subtype: facebook_openPage
+        app_name: facebook
+        detail_template: '{social_detail}'
+      - action_name: facebook_openProfile
+        intent_family: communication
+        intent_subtype: facebook_openProfile
+        app_name: facebook
+        detail_template: '{social_detail}'
+      - action_name: facebook_openProfile
+        intent_family: communication
+        intent_subtype: facebook_openProfile
+        app_name: facebook
+        detail_template: '{social_detail}'
+      - action_name: facetime_callAudio
+        intent_family: communication
+        intent_subtype: facetime_callAudio
+        app_name: facetime
+        detail_template: '{messages_detail}'
+      - action_name: facetime_callAudio
+        intent_family: communication
+        intent_subtype: facetime_callAudio
+        app_name: facetime
+        detail_template: '{messages_detail}'
+      - action_name: facetime_callVideo
+        intent_family: communication
+        intent_subtype: facetime_callVideo
+        app_name: facetime
+        detail_template: '{messages_detail}'
+      - action_name: facetime_callVideo
+        intent_family: communication
+        intent_subtype: facetime_callVideo
+        app_name: facetime
+        detail_template: '{messages_detail}'
+      - action_name: files_openApp
+        intent_family: tool_invocation
+        intent_subtype: files_openApp
+        app_name: files
+        detail_template: '{files_detail}'
+      - action_name: files_openApp
+        intent_family: tool_invocation
+        intent_subtype: files_openApp
+        app_name: files
+        detail_template: '{files_detail}'
+      - action_name: gmail_composeEmail
+        intent_family: communication
+        intent_subtype: gmail_composeEmail
+        app_name: gmail
+        detail_template: '{email_detail}'
+      - action_name: gmail_composeEmail
+        intent_family: communication
+        intent_subtype: gmail_composeEmail
+        app_name: gmail
+        detail_template: '{email_detail}'
+      - action_name: goodnotes_openNotebook
+        intent_family: planning
+        intent_subtype: goodnotes_openNotebook
+        app_name: goodnotes
+        detail_template: '{productivity_detail}'
+      - action_name: goodnotes_openNotebook
+        intent_family: planning
+        intent_subtype: goodnotes_openNotebook
+        app_name: goodnotes
+        detail_template: '{productivity_detail}'
+      - action_name: goodnotes_openPage
+        intent_family: planning
+        intent_subtype: goodnotes_openPage
+        app_name: goodnotes
+        detail_template: '{productivity_detail}'
+      - action_name: goodnotes_openPage
+        intent_family: planning
+        intent_subtype: goodnotes_openPage
+        app_name: goodnotes
+        detail_template: '{productivity_detail}'
+      - action_name: googleCalendar_createEvent
+        intent_family: planning
+        intent_subtype: googleCalendar_createEvent
+        app_name: googleCalendar
+        detail_template: '{productivity_detail}'
+      - action_name: googleCalendar_createEvent
+        intent_family: planning
+        intent_subtype: googleCalendar_createEvent
+        app_name: googleCalendar
+        detail_template: '{productivity_detail}'
+      - action_name: googleCalendar_openApp
+        intent_family: planning
+        intent_subtype: googleCalendar_openApp
+        app_name: googleCalendar
+        detail_template: '{productivity_detail}'
+      - action_name: googleCalendar_openApp
+        intent_family: planning
+        intent_subtype: googleCalendar_openApp
+        app_name: googleCalendar
+        detail_template: '{productivity_detail}'
+      - action_name: googleDrive_openFile
+        intent_family: tool_invocation
+        intent_subtype: googleDrive_openFile
+        app_name: googleDrive
+        detail_template: '{fileapps_detail}'
+      - action_name: googleDrive_openFile
+        intent_family: tool_invocation
+        intent_subtype: googleDrive_openFile
+        app_name: googleDrive
+        detail_template: '{fileapps_detail}'
+      - action_name: googleDrive_openFolder
+        intent_family: tool_invocation
+        intent_subtype: googleDrive_openFolder
+        app_name: googleDrive
+        detail_template: '{fileapps_detail}'
+      - action_name: googleDrive_openFolder
+        intent_family: tool_invocation
+        intent_subtype: googleDrive_openFolder
+        app_name: googleDrive
+        detail_template: '{fileapps_detail}'
+      - action_name: googleKeep_openNote
+        intent_family: planning
+        intent_subtype: googleKeep_openNote
+        app_name: googleKeep
+        detail_template: '{productivity_detail}'
+      - action_name: googleKeep_openNote
+        intent_family: planning
+        intent_subtype: googleKeep_openNote
+        app_name: googleKeep
+        detail_template: '{productivity_detail}'
+      - action_name: googleMaps_openDirections
+        intent_family: navigation
+        intent_subtype: googleMaps_openDirections
+        app_name: googleMaps
+        detail_template: '{navigation_detail}'
+      - action_name: googleMaps_openDirections
+        intent_family: navigation
+        intent_subtype: googleMaps_openDirections
+        app_name: googleMaps
+        detail_template: '{navigation_detail}'
+      - action_name: googleMaps_openSearch
+        intent_family: navigation
+        intent_subtype: googleMaps_openSearch
+        app_name: googleMaps
+        detail_template: '{navigation_detail}'
+      - action_name: googleMaps_openSearch
+        intent_family: navigation
+        intent_subtype: googleMaps_openSearch
+        app_name: googleMaps
+        detail_template: '{navigation_detail}'
+      - action_name: grab_callRide
+        intent_family: transactional
+        intent_subtype: grab_callRide
+        app_name: grab
+        detail_template: '{ride_detail}'
+      - action_name: grab_callRide
+        intent_family: transactional
+        intent_subtype: grab_callRide
+        app_name: grab
+        detail_template: '{ride_detail}'
+      - action_name: grab_openBooking
+        intent_family: transactional
+        intent_subtype: grab_openBooking
+        app_name: grab
+        detail_template: '{ride_detail}'
+      - action_name: grab_openBooking
+        intent_family: transactional
+        intent_subtype: grab_openBooking
+        app_name: grab
+        detail_template: '{ride_detail}'
+      - action_name: hboMax_openMovie
+        intent_family: content_generation
+        intent_subtype: hboMax_openMovie
+        app_name: hboMax
+        detail_template: '{media_detail}'
+      - action_name: hboMax_openMovie
+        intent_family: content_generation
+        intent_subtype: hboMax_openMovie
+        app_name: hboMax
+        detail_template: '{media_detail}'
+      - action_name: hboMax_openShow
+        intent_family: content_generation
+        intent_subtype: hboMax_openShow
+        app_name: hboMax
+        detail_template: '{media_detail}'
+      - action_name: hboMax_openShow
+        intent_family: content_generation
+        intent_subtype: hboMax_openShow
+        app_name: hboMax
+        detail_template: '{media_detail}'
+      - action_name: icloudDrive_openFile
+        intent_family: tool_invocation
+        intent_subtype: icloudDrive_openFile
+        app_name: icloudDrive
+        detail_template: '{fileapps_detail}'
+      - action_name: icloudDrive_openFile
+        intent_family: tool_invocation
+        intent_subtype: icloudDrive_openFile
+        app_name: icloudDrive
+        detail_template: '{fileapps_detail}'
+      - action_name: icloudDrive_openFolder
+        intent_family: tool_invocation
+        intent_subtype: icloudDrive_openFolder
+        app_name: icloudDrive
+        detail_template: '{fileapps_detail}'
+      - action_name: icloudDrive_openFolder
+        intent_family: tool_invocation
+        intent_subtype: icloudDrive_openFolder
+        app_name: icloudDrive
+        detail_template: '{fileapps_detail}'
+      - action_name: instagram_openCamera
+        intent_family: communication
+        intent_subtype: instagram_openCamera
+        app_name: instagram
+        detail_template: '{social_detail}'
+      - action_name: instagram_openCamera
+        intent_family: communication
+        intent_subtype: instagram_openCamera
+        app_name: instagram
+        detail_template: '{social_detail}'
+      - action_name: instagram_openPost
+        intent_family: communication
+        intent_subtype: instagram_openPost
+        app_name: instagram
+        detail_template: '{social_detail}'
+      - action_name: instagram_openPost
+        intent_family: communication
+        intent_subtype: instagram_openPost
+        app_name: instagram
+        detail_template: '{social_detail}'
+      - action_name: instagram_openProfile
+        intent_family: communication
+        intent_subtype: instagram_openProfile
+        app_name: instagram
+        detail_template: '{social_detail}'
+      - action_name: instagram_openProfile
+        intent_family: communication
+        intent_subtype: instagram_openProfile
+        app_name: instagram
+        detail_template: '{social_detail}'
+      - action_name: instagram_openReel
+        intent_family: communication
+        intent_subtype: instagram_openReel
+        app_name: instagram
+        detail_template: '{social_detail}'
+      - action_name: instagram_openReel
+        intent_family: communication
+        intent_subtype: instagram_openReel
+        app_name: instagram
+        detail_template: '{social_detail}'
+      - action_name: instagram_openSearch
+        intent_family: communication
+        intent_subtype: instagram_openSearch
+        app_name: instagram
+        detail_template: '{social_detail}'
+      - action_name: instagram_openSearch
+        intent_family: communication
+        intent_subtype: instagram_openSearch
+        app_name: instagram
+        detail_template: '{social_detail}'
+      - action_name: jd_openProduct
+        intent_family: transactional
+        intent_subtype: jd_openProduct
+        app_name: jd
+        detail_template: '{shopping_detail}'
+      - action_name: jd_openProduct
+        intent_family: transactional
+        intent_subtype: jd_openProduct
+        app_name: jd
+        detail_template: '{shopping_detail}'
+      - action_name: jd_openSearch
+        intent_family: transactional
+        intent_subtype: jd_openSearch
+        app_name: jd
+        detail_template: '{shopping_detail}'
+      - action_name: jd_openSearch
+        intent_family: transactional
+        intent_subtype: jd_openSearch
+        app_name: jd
+        detail_template: '{shopping_detail}'
+      - action_name: jira_openTicket
+        intent_family: planning
+        intent_subtype: jira_openTicket
+        app_name: jira
+        detail_template: '{productivity_detail}'
+      - action_name: jira_openTicket
+        intent_family: planning
+        intent_subtype: jira_openTicket
+        app_name: jira
+        detail_template: '{productivity_detail}'
+      - action_name: kakaotalk_openChat
+        intent_family: communication
+        intent_subtype: kakaotalk_openChat
+        app_name: kakaotalk
+        detail_template: '{messages_detail}'
+      - action_name: kakaotalk_openChat
+        intent_family: communication
+        intent_subtype: kakaotalk_openChat
+        app_name: kakaotalk
+        detail_template: '{messages_detail}'
+      - action_name: kakaotalk_sendPrefilledMessage
+        intent_family: communication
+        intent_subtype: kakaotalk_sendPrefilledMessage
+        app_name: kakaotalk
+        detail_template: '{messages_detail}'
+      - action_name: kakaotalk_sendPrefilledMessage
+        intent_family: communication
+        intent_subtype: kakaotalk_sendPrefilledMessage
+        app_name: kakaotalk
+        detail_template: '{messages_detail}'
+      - action_name: lastpass_openItem
+        intent_family: tool_invocation
+        intent_subtype: lastpass_openItem
+        app_name: lastpass
+        detail_template: '{fileapps_detail}'
+      - action_name: lastpass_openItem
+        intent_family: tool_invocation
+        intent_subtype: lastpass_openItem
+        app_name: lastpass
+        detail_template: '{fileapps_detail}'
+      - action_name: lastpass_openVault
+        intent_family: tool_invocation
+        intent_subtype: lastpass_openVault
+        app_name: lastpass
+        detail_template: '{fileapps_detail}'
+      - action_name: lastpass_openVault
+        intent_family: tool_invocation
+        intent_subtype: lastpass_openVault
+        app_name: lastpass
+        detail_template: '{fileapps_detail}'
+      - action_name: lazada_openProduct
+        intent_family: transactional
+        intent_subtype: lazada_openProduct
+        app_name: lazada
+        detail_template: '{shopping_detail}'
+      - action_name: lazada_openProduct
+        intent_family: transactional
+        intent_subtype: lazada_openProduct
+        app_name: lazada
+        detail_template: '{shopping_detail}'
+      - action_name: lazada_openSearch
+        intent_family: transactional
+        intent_subtype: lazada_openSearch
+        app_name: lazada
+        detail_template: '{shopping_detail}'
+      - action_name: lazada_openSearch
+        intent_family: transactional
+        intent_subtype: lazada_openSearch
+        app_name: lazada
+        detail_template: '{shopping_detail}'
+      - action_name: line_openChat
+        intent_family: communication
+        intent_subtype: line_openChat
+        app_name: line
+        detail_template: '{messages_detail}'
+      - action_name: line_openChat
+        intent_family: communication
+        intent_subtype: line_openChat
+        app_name: line
+        detail_template: '{messages_detail}'
+      - action_name: line_sendPrefilledMessage
+        intent_family: communication
+        intent_subtype: line_sendPrefilledMessage
+        app_name: line
+        detail_template: '{messages_detail}'
+      - action_name: line_sendPrefilledMessage
+        intent_family: communication
+        intent_subtype: line_sendPrefilledMessage
+        app_name: line
+        detail_template: '{messages_detail}'
+      - action_name: linkedin_openJob
+        intent_family: communication
+        intent_subtype: linkedin_openJob
+        app_name: linkedin
+        detail_template: '{social_detail}'
+      - action_name: linkedin_openJob
+        intent_family: communication
+        intent_subtype: linkedin_openJob
+        app_name: linkedin
+        detail_template: '{social_detail}'
+      - action_name: linkedin_openProfile
+        intent_family: communication
+        intent_subtype: linkedin_openProfile
+        app_name: linkedin
+        detail_template: '{social_detail}'
+      - action_name: linkedin_openProfile
+        intent_family: communication
+        intent_subtype: linkedin_openProfile
+        app_name: linkedin
+        detail_template: '{social_detail}'
+      - action_name: lyft_callRide
+        intent_family: transactional
+        intent_subtype: lyft_callRide
+        app_name: lyft
+        detail_template: '{ride_detail}'
+      - action_name: lyft_callRide
+        intent_family: transactional
+        intent_subtype: lyft_callRide
+        app_name: lyft
+        detail_template: '{ride_detail}'
+      - action_name: lyft_openBooking
+        intent_family: transactional
+        intent_subtype: lyft_openBooking
+        app_name: lyft
+        detail_template: '{ride_detail}'
+      - action_name: lyft_openBooking
+        intent_family: transactional
+        intent_subtype: lyft_openBooking
+        app_name: lyft
+        detail_template: '{ride_detail}'
+      - action_name: mail_composeEmail
+        intent_family: communication
+        intent_subtype: mail_composeEmail
+        app_name: mail
+        detail_template: '{email_detail}'
+      - action_name: mail_composeEmail
+        intent_family: communication
+        intent_subtype: mail_composeEmail
+        app_name: mail
+        detail_template: '{email_detail}'
+      - action_name: maps_openApp
+        intent_family: navigation
+        intent_subtype: maps_openApp
+        app_name: maps
+        detail_template: '{navigation_detail}'
+      - action_name: maps_openApp
+        intent_family: navigation
+        intent_subtype: maps_openApp
+        app_name: maps
+        detail_template: '{navigation_detail}'
+      - action_name: maps_openDirections
+        intent_family: navigation
+        intent_subtype: maps_openDirections
+        app_name: maps
+        detail_template: '{navigation_detail}'
+      - action_name: maps_openDirections
+        intent_family: navigation
+        intent_subtype: maps_openDirections
+        app_name: maps
+        detail_template: '{navigation_detail}'
+      - action_name: maps_openSearch
+        intent_family: navigation
+        intent_subtype: maps_openSearch
+        app_name: maps
+        detail_template: '{navigation_detail}'
+      - action_name: maps_openSearch
+        intent_family: navigation
+        intent_subtype: maps_openSearch
+        app_name: maps
+        detail_template: '{navigation_detail}'
+      - action_name: messages_openChat
+        intent_family: communication
+        intent_subtype: messages_openChat
+        app_name: messages
+        detail_template: '{messages_detail}'
+      - action_name: messages_openChat
+        intent_family: communication
+        intent_subtype: messages_openChat
+        app_name: messages
+        detail_template: '{messages_detail}'
+      - action_name: messages_sendPrefilledMessage
+        intent_family: communication
+        intent_subtype: messages_sendPrefilledMessage
+        app_name: messages
+        detail_template: '{messages_detail}'
+      - action_name: messages_sendPrefilledMessage
+        intent_family: communication
+        intent_subtype: messages_sendPrefilledMessage
+        app_name: messages
+        detail_template: '{messages_detail}'
+      - action_name: messenger_openChat
+        intent_family: communication
+        intent_subtype: messenger_openChat
+        app_name: messenger
+        detail_template: '{messages_detail}'
+      - action_name: messenger_openChat
+        intent_family: communication
+        intent_subtype: messenger_openChat
+        app_name: messenger
+        detail_template: '{messages_detail}'
+      - action_name: messenger_sendPrefilledMessage
+        intent_family: communication
+        intent_subtype: messenger_sendPrefilledMessage
+        app_name: messenger
+        detail_template: '{messages_detail}'
+      - action_name: messenger_sendPrefilledMessage
+        intent_family: communication
+        intent_subtype: messenger_sendPrefilledMessage
+        app_name: messenger
+        detail_template: '{messages_detail}'
+      - action_name: monday_openBoard
+        intent_family: planning
+        intent_subtype: monday_openBoard
+        app_name: monday
+        detail_template: '{productivity_detail}'
+      - action_name: monday_openBoard
+        intent_family: planning
+        intent_subtype: monday_openBoard
+        app_name: monday
+        detail_template: '{productivity_detail}'
+      - action_name: monday_openItem
+        intent_family: planning
+        intent_subtype: monday_openItem
+        app_name: monday
+        detail_template: '{productivity_detail}'
+      - action_name: monday_openItem
+        intent_family: planning
+        intent_subtype: monday_openItem
+        app_name: monday
+        detail_template: '{productivity_detail}'
+      - action_name: moovit_openDirections
+        intent_family: navigation
+        intent_subtype: moovit_openDirections
+        app_name: moovit
+        detail_template: '{navigation_detail}'
+      - action_name: moovit_openDirections
+        intent_family: navigation
+        intent_subtype: moovit_openDirections
+        app_name: moovit
+        detail_template: '{navigation_detail}'
+      - action_name: music_openAlbum
+        intent_family: content_generation
+        intent_subtype: music_openAlbum
+        app_name: music
+        detail_template: '{media_detail}'
+      - action_name: music_openAlbum
+        intent_family: content_generation
+        intent_subtype: music_openAlbum
+        app_name: music
+        detail_template: '{media_detail}'
+      - action_name: music_openApp
+        intent_family: content_generation
+        intent_subtype: music_openApp
+        app_name: music
+        detail_template: '{media_detail}'
+      - action_name: music_openApp
+        intent_family: content_generation
+        intent_subtype: music_openApp
+        app_name: music
+        detail_template: '{media_detail}'
+      - action_name: music_openArtist
+        intent_family: content_generation
+        intent_subtype: music_openArtist
+        app_name: music
+        detail_template: '{media_detail}'
+      - action_name: music_openArtist
+        intent_family: content_generation
+        intent_subtype: music_openArtist
+        app_name: music
+        detail_template: '{media_detail}'
+      - action_name: music_openPlaylist
+        intent_family: content_generation
+        intent_subtype: music_openPlaylist
+        app_name: music
+        detail_template: '{media_detail}'
+      - action_name: music_openPlaylist
+        intent_family: content_generation
+        intent_subtype: music_openPlaylist
+        app_name: music
+        detail_template: '{media_detail}'
+      - action_name: music_openSearch
+        intent_family: content_generation
+        intent_subtype: music_openSearch
+        app_name: music
+        detail_template: '{media_detail}'
+      - action_name: music_openSearch
+        intent_family: content_generation
+        intent_subtype: music_openSearch
+        app_name: music
+        detail_template: '{media_detail}'
+      - action_name: netflix_openMovie
+        intent_family: content_generation
+        intent_subtype: netflix_openMovie
+        app_name: netflix
+        detail_template: '{media_detail}'
+      - action_name: netflix_openMovie
+        intent_family: content_generation
+        intent_subtype: netflix_openMovie
+        app_name: netflix
+        detail_template: '{media_detail}'
+      - action_name: netflix_openShow
+        intent_family: content_generation
+        intent_subtype: netflix_openShow
+        app_name: netflix
+        detail_template: '{media_detail}'
+      - action_name: netflix_openShow
+        intent_family: content_generation
+        intent_subtype: netflix_openShow
+        app_name: netflix
+        detail_template: '{media_detail}'
+      - action_name: notes_createNote
+        intent_family: content_generation
+        intent_subtype: notes_createNote
+        app_name: notes
+        detail_template: '{notes_detail}'
+      - action_name: notes_createNote
+        intent_family: content_generation
+        intent_subtype: notes_createNote
+        app_name: notes
+        detail_template: '{notes_detail}'
+      - action_name: notes_openApp
+        intent_family: content_generation
+        intent_subtype: notes_openApp
+        app_name: notes
+        detail_template: '{notes_detail}'
+      - action_name: notes_openApp
+        intent_family: content_generation
+        intent_subtype: notes_openApp
+        app_name: notes
+        detail_template: '{notes_detail}'
+      - action_name: notion_openDatabase
+        intent_family: planning
+        intent_subtype: notion_openDatabase
+        app_name: notion
+        detail_template: '{productivity_detail}'
+      - action_name: notion_openDatabase
+        intent_family: planning
+        intent_subtype: notion_openDatabase
+        app_name: notion
+        detail_template: '{productivity_detail}'
+      - action_name: notion_openPage
+        intent_family: planning
+        intent_subtype: notion_openPage
+        app_name: notion
+        detail_template: '{productivity_detail}'
+      - action_name: notion_openPage
+        intent_family: planning
+        intent_subtype: notion_openPage
+        app_name: notion
+        detail_template: '{productivity_detail}'
+      - action_name: notion_openSearch
+        intent_family: planning
+        intent_subtype: notion_openSearch
+        app_name: notion
+        detail_template: '{productivity_detail}'
+      - action_name: notion_openSearch
+        intent_family: planning
+        intent_subtype: notion_openSearch
+        app_name: notion
+        detail_template: '{productivity_detail}'
+      - action_name: octopus_openApp
+        intent_family: transactional
+        intent_subtype: octopus_openApp
+        app_name: octopus
+        detail_template: '{payment_detail}'
+      - action_name: octopus_openApp
+        intent_family: transactional
+        intent_subtype: octopus_openApp
+        app_name: octopus
+        detail_template: '{payment_detail}'
+      - action_name: onedrive_openFile
+        intent_family: tool_invocation
+        intent_subtype: onedrive_openFile
+        app_name: onedrive
+        detail_template: '{fileapps_detail}'
+      - action_name: onedrive_openFile
+        intent_family: tool_invocation
+        intent_subtype: onedrive_openFile
+        app_name: onedrive
+        detail_template: '{fileapps_detail}'
+      - action_name: onedrive_openFolder
+        intent_family: tool_invocation
+        intent_subtype: onedrive_openFolder
+        app_name: onedrive
+        detail_template: '{fileapps_detail}'
+      - action_name: onedrive_openFolder
+        intent_family: tool_invocation
+        intent_subtype: onedrive_openFolder
+        app_name: onedrive
+        detail_template: '{fileapps_detail}'
+      - action_name: onenote_openNotebook
+        intent_family: planning
+        intent_subtype: onenote_openNotebook
+        app_name: onenote
+        detail_template: '{productivity_detail}'
+      - action_name: onenote_openNotebook
+        intent_family: planning
+        intent_subtype: onenote_openNotebook
+        app_name: onenote
+        detail_template: '{productivity_detail}'
+      - action_name: onenote_openPage
+        intent_family: planning
+        intent_subtype: onenote_openPage
+        app_name: onenote
+        detail_template: '{productivity_detail}'
+      - action_name: onenote_openPage
+        intent_family: planning
+        intent_subtype: onenote_openPage
+        app_name: onenote
+        detail_template: '{productivity_detail}'
+      - action_name: onepassword_openItem
+        intent_family: tool_invocation
+        intent_subtype: onepassword_openItem
+        app_name: onepassword
+        detail_template: '{fileapps_detail}'
+      - action_name: onepassword_openItem
+        intent_family: tool_invocation
+        intent_subtype: onepassword_openItem
+        app_name: onepassword
+        detail_template: '{fileapps_detail}'
+      - action_name: onepassword_openVault
+        intent_family: tool_invocation
+        intent_subtype: onepassword_openVault
+        app_name: onepassword
+        detail_template: '{fileapps_detail}'
+      - action_name: onepassword_openVault
+        intent_family: tool_invocation
+        intent_subtype: onepassword_openVault
+        app_name: onepassword
+        detail_template: '{fileapps_detail}'
+      - action_name: outlook_composeEmail
+        intent_family: communication
+        intent_subtype: outlook_composeEmail
+        app_name: outlook
+        detail_template: '{email_detail}'
+      - action_name: outlook_composeEmail
+        intent_family: communication
+        intent_subtype: outlook_composeEmail
+        app_name: outlook
+        detail_template: '{email_detail}'
+      - action_name: paypal_openPayment
+        intent_family: transactional
+        intent_subtype: paypal_openPayment
+        app_name: paypal
+        detail_template: '{payment_detail}'
+      - action_name: paypal_openPayment
+        intent_family: transactional
+        intent_subtype: paypal_openPayment
+        app_name: paypal
+        detail_template: '{payment_detail}'
+      - action_name: paypal_sendMoney
+        intent_family: transactional
+        intent_subtype: paypal_sendMoney
+        app_name: paypal
+        detail_template: '{payment_detail}'
+      - action_name: paypal_sendMoney
+        intent_family: transactional
+        intent_subtype: paypal_sendMoney
+        app_name: paypal
+        detail_template: '{payment_detail}'
+      - action_name: pdfExpert_openPDF
+        intent_family: tool_invocation
+        intent_subtype: pdfExpert_openPDF
+        app_name: pdfExpert
+        detail_template: '{fileapps_detail}'
+      - action_name: pdfExpert_openPDF
+        intent_family: tool_invocation
+        intent_subtype: pdfExpert_openPDF
+        app_name: pdfExpert
+        detail_template: '{fileapps_detail}'
+      - action_name: phone_callNumber
+        intent_family: communication
+        intent_subtype: phone_callNumber
+        app_name: phone
+        detail_template: '{phone_detail}'
+      - action_name: phone_callNumber
+        intent_family: communication
+        intent_subtype: phone_callNumber
+        app_name: phone
+        detail_template: '{phone_detail}'
+      - action_name: phone_openDialer
+        intent_family: communication
+        intent_subtype: phone_openDialer
+        app_name: phone
+        detail_template: '{phone_detail}'
+      - action_name: phone_openDialer
+        intent_family: communication
+        intent_subtype: phone_openDialer
+        app_name: phone
+        detail_template: '{phone_detail}'
+      - action_name: photos_openApp
+        intent_family: content_generation
+        intent_subtype: photos_openApp
+        app_name: photos
+        detail_template: '{generic_detail}'
+      - action_name: photos_openApp
+        intent_family: content_generation
+        intent_subtype: photos_openApp
+        app_name: photos
+        detail_template: '{generic_detail}'
+      - action_name: pinterest_openBoard
+        intent_family: communication
+        intent_subtype: pinterest_openBoard
+        app_name: pinterest
+        detail_template: '{social_detail}'
+      - action_name: pinterest_openBoard
+        intent_family: communication
+        intent_subtype: pinterest_openBoard
+        app_name: pinterest
+        detail_template: '{social_detail}'
+      - action_name: pinterest_openPin
+        intent_family: communication
+        intent_subtype: pinterest_openPin
+        app_name: pinterest
+        detail_template: '{social_detail}'
+      - action_name: pinterest_openPin
+        intent_family: communication
+        intent_subtype: pinterest_openPin
+        app_name: pinterest
+        detail_template: '{social_detail}'
+      - action_name: pocketCasts_openEpisode
+        intent_family: content_generation
+        intent_subtype: pocketCasts_openEpisode
+        app_name: pocketCasts
+        detail_template: '{media_detail}'
+      - action_name: pocketCasts_openEpisode
+        intent_family: content_generation
+        intent_subtype: pocketCasts_openEpisode
+        app_name: pocketCasts
+        detail_template: '{media_detail}'
+      - action_name: pocketCasts_openPodcast
+        intent_family: content_generation
+        intent_subtype: pocketCasts_openPodcast
+        app_name: pocketCasts
+        detail_template: '{media_detail}'
+      - action_name: pocketCasts_openPodcast
+        intent_family: content_generation
+        intent_subtype: pocketCasts_openPodcast
+        app_name: pocketCasts
+        detail_template: '{media_detail}'
+      - action_name: primeVideo_openMovie
+        intent_family: content_generation
+        intent_subtype: primeVideo_openMovie
+        app_name: primeVideo
+        detail_template: '{media_detail}'
+      - action_name: primeVideo_openMovie
+        intent_family: content_generation
+        intent_subtype: primeVideo_openMovie
+        app_name: primeVideo
+        detail_template: '{media_detail}'
+      - action_name: primeVideo_openShow
+        intent_family: content_generation
+        intent_subtype: primeVideo_openShow
+        app_name: primeVideo
+        detail_template: '{media_detail}'
+      - action_name: primeVideo_openShow
+        intent_family: content_generation
+        intent_subtype: primeVideo_openShow
+        app_name: primeVideo
+        detail_template: '{media_detail}'
+      - action_name: reddit_openPost
+        intent_family: communication
+        intent_subtype: reddit_openPost
+        app_name: reddit
+        detail_template: '{social_detail}'
+      - action_name: reddit_openPost
+        intent_family: communication
+        intent_subtype: reddit_openPost
+        app_name: reddit
+        detail_template: '{social_detail}'
+      - action_name: reddit_openSubreddit
+        intent_family: communication
+        intent_subtype: reddit_openSubreddit
+        app_name: reddit
+        detail_template: '{social_detail}'
+      - action_name: reddit_openSubreddit
+        intent_family: communication
+        intent_subtype: reddit_openSubreddit
+        app_name: reddit
+        detail_template: '{social_detail}'
+      - action_name: reminders_openApp
+        intent_family: planning
+        intent_subtype: reminders_openApp
+        app_name: reminders
+        detail_template: '{reminders_detail}'
+      - action_name: reminders_openApp
+        intent_family: planning
+        intent_subtype: reminders_openApp
+        app_name: reminders
+        detail_template: '{reminders_detail}'
+      - action_name: revolut_openPayment
+        intent_family: transactional
+        intent_subtype: revolut_openPayment
+        app_name: revolut
+        detail_template: '{payment_detail}'
+      - action_name: revolut_openPayment
+        intent_family: transactional
+        intent_subtype: revolut_openPayment
+        app_name: revolut
+        detail_template: '{payment_detail}'
+      - action_name: revolut_sendMoney
+        intent_family: transactional
+        intent_subtype: revolut_sendMoney
+        app_name: revolut
+        detail_template: '{payment_detail}'
+      - action_name: revolut_sendMoney
+        intent_family: transactional
+        intent_subtype: revolut_sendMoney
+        app_name: revolut
+        detail_template: '{payment_detail}'
+      - action_name: scannerPro_openScanner
+        intent_family: tool_invocation
+        intent_subtype: scannerPro_openScanner
+        app_name: scannerPro
+        detail_template: '{fileapps_detail}'
+      - action_name: scannerPro_openScanner
+        intent_family: tool_invocation
+        intent_subtype: scannerPro_openScanner
+        app_name: scannerPro
+        detail_template: '{fileapps_detail}'
+      - action_name: settings_openSection
+        intent_family: tool_invocation
+        intent_subtype: settings_openSection
+        app_name: settings
+        detail_template: '{generic_detail}'
+      - action_name: settings_openSection
+        intent_family: tool_invocation
+        intent_subtype: settings_openSection
+        app_name: settings
+        detail_template: '{generic_detail}'
+      - action_name: shopee_openProduct
+        intent_family: transactional
+        intent_subtype: shopee_openProduct
+        app_name: shopee
+        detail_template: '{shopping_detail}'
+      - action_name: shopee_openProduct
+        intent_family: transactional
+        intent_subtype: shopee_openProduct
+        app_name: shopee
+        detail_template: '{shopping_detail}'
+      - action_name: shopee_openSearch
+        intent_family: transactional
+        intent_subtype: shopee_openSearch
+        app_name: shopee
+        detail_template: '{shopping_detail}'
+      - action_name: shopee_openSearch
+        intent_family: transactional
+        intent_subtype: shopee_openSearch
+        app_name: shopee
+        detail_template: '{shopping_detail}'
+      - action_name: signal_openChat
+        intent_family: communication
+        intent_subtype: signal_openChat
+        app_name: signal
+        detail_template: '{messages_detail}'
+      - action_name: signal_openChat
+        intent_family: communication
+        intent_subtype: signal_openChat
+        app_name: signal
+        detail_template: '{messages_detail}'
+      - action_name: signal_sendPrefilledMessage
+        intent_family: communication
+        intent_subtype: signal_sendPrefilledMessage
+        app_name: signal
+        detail_template: '{messages_detail}'
+      - action_name: signal_sendPrefilledMessage
+        intent_family: communication
+        intent_subtype: signal_sendPrefilledMessage
+        app_name: signal
+        detail_template: '{messages_detail}'
+      - action_name: skype_callAudio
+        intent_family: communication
+        intent_subtype: skype_callAudio
+        app_name: skype
+        detail_template: '{messages_detail}'
+      - action_name: skype_callAudio
+        intent_family: communication
+        intent_subtype: skype_callAudio
+        app_name: skype
+        detail_template: '{messages_detail}'
+      - action_name: skype_callVideo
+        intent_family: communication
+        intent_subtype: skype_callVideo
+        app_name: skype
+        detail_template: '{messages_detail}'
+      - action_name: skype_callVideo
+        intent_family: communication
+        intent_subtype: skype_callVideo
+        app_name: skype
+        detail_template: '{messages_detail}'
+      - action_name: skype_openChat
+        intent_family: communication
+        intent_subtype: skype_openChat
+        app_name: skype
+        detail_template: '{messages_detail}'
+      - action_name: skype_openChat
+        intent_family: communication
+        intent_subtype: skype_openChat
+        app_name: skype
+        detail_template: '{messages_detail}'
+      - action_name: slack_openChannel
+        intent_family: communication
+        intent_subtype: slack_openChannel
+        app_name: slack
+        detail_template: '{messages_detail}'
+      - action_name: slack_openChannel
+        intent_family: communication
+        intent_subtype: slack_openChannel
+        app_name: slack
+        detail_template: '{messages_detail}'
+      - action_name: slack_openDM
+        intent_family: communication
+        intent_subtype: slack_openDM
+        app_name: slack
+        detail_template: '{messages_detail}'
+      - action_name: slack_openDM
+        intent_family: communication
+        intent_subtype: slack_openDM
+        app_name: slack
+        detail_template: '{messages_detail}'
+      - action_name: slack_openWorkspace
+        intent_family: communication
+        intent_subtype: slack_openWorkspace
+        app_name: slack
+        detail_template: '{messages_detail}'
+      - action_name: slack_openWorkspace
+        intent_family: communication
+        intent_subtype: slack_openWorkspace
+        app_name: slack
+        detail_template: '{messages_detail}'
+      - action_name: snapchat_openCamera
+        intent_family: communication
+        intent_subtype: snapchat_openCamera
+        app_name: snapchat
+        detail_template: '{social_detail}'
+      - action_name: snapchat_openCamera
+        intent_family: communication
+        intent_subtype: snapchat_openCamera
+        app_name: snapchat
+        detail_template: '{social_detail}'
+      - action_name: snapchat_openChat
+        intent_family: communication
+        intent_subtype: snapchat_openChat
+        app_name: snapchat
+        detail_template: '{social_detail}'
+      - action_name: snapchat_openChat
+        intent_family: communication
+        intent_subtype: snapchat_openChat
+        app_name: snapchat
+        detail_template: '{social_detail}'
+      - action_name: soundcloud_openArtist
+        intent_family: content_generation
+        intent_subtype: soundcloud_openArtist
+        app_name: soundcloud
+        detail_template: '{media_detail}'
+      - action_name: soundcloud_openArtist
+        intent_family: content_generation
+        intent_subtype: soundcloud_openArtist
+        app_name: soundcloud
+        detail_template: '{media_detail}'
+      - action_name: soundcloud_playTrack
+        intent_family: content_generation
+        intent_subtype: soundcloud_playTrack
+        app_name: soundcloud
+        detail_template: '{media_detail}'
+      - action_name: soundcloud_playTrack
+        intent_family: content_generation
+        intent_subtype: soundcloud_playTrack
+        app_name: soundcloud
+        detail_template: '{media_detail}'
+      - action_name: spark_composeEmail
+        intent_family: communication
+        intent_subtype: spark_composeEmail
+        app_name: spark
+        detail_template: '{email_detail}'
+      - action_name: spark_composeEmail
+        intent_family: communication
+        intent_subtype: spark_composeEmail
+        app_name: spark
+        detail_template: '{email_detail}'
+      - action_name: spotify_openArtist
+        intent_family: content_generation
+        intent_subtype: spotify_openArtist
+        app_name: spotify
+        detail_template: '{media_detail}'
+      - action_name: spotify_openArtist
+        intent_family: content_generation
+        intent_subtype: spotify_openArtist
+        app_name: spotify
+        detail_template: '{media_detail}'
+      - action_name: spotify_playAlbum
+        intent_family: content_generation
+        intent_subtype: spotify_playAlbum
+        app_name: spotify
+        detail_template: '{media_detail}'
+      - action_name: spotify_playAlbum
+        intent_family: content_generation
+        intent_subtype: spotify_playAlbum
+        app_name: spotify
+        detail_template: '{media_detail}'
+      - action_name: spotify_playPlaylist
+        intent_family: content_generation
+        intent_subtype: spotify_playPlaylist
+        app_name: spotify
+        detail_template: '{media_detail}'
+      - action_name: spotify_playPlaylist
+        intent_family: content_generation
+        intent_subtype: spotify_playPlaylist
+        app_name: spotify
+        detail_template: '{media_detail}'
+      - action_name: spotify_playTrack
+        intent_family: content_generation
+        intent_subtype: spotify_playTrack
+        app_name: spotify
+        detail_template: '{media_detail}'
+      - action_name: spotify_playTrack
+        intent_family: content_generation
+        intent_subtype: spotify_playTrack
+        app_name: spotify
+        detail_template: '{media_detail}'
+      - action_name: taobao_openProduct
+        intent_family: transactional
+        intent_subtype: taobao_openProduct
+        app_name: taobao
+        detail_template: '{shopping_detail}'
+      - action_name: taobao_openProduct
+        intent_family: transactional
+        intent_subtype: taobao_openProduct
+        app_name: taobao
+        detail_template: '{shopping_detail}'
+      - action_name: taobao_openSearch
+        intent_family: transactional
+        intent_subtype: taobao_openSearch
+        app_name: taobao
+        detail_template: '{shopping_detail}'
+      - action_name: taobao_openSearch
+        intent_family: transactional
+        intent_subtype: taobao_openSearch
+        app_name: taobao
+        detail_template: '{shopping_detail}'
+      - action_name: teams_openChat
+        intent_family: communication
+        intent_subtype: teams_openChat
+        app_name: teams
+        detail_template: '{messages_detail}'
+      - action_name: teams_openChat
+        intent_family: communication
+        intent_subtype: teams_openChat
+        app_name: teams
+        detail_template: '{messages_detail}'
+      - action_name: teams_openMeeting
+        intent_family: communication
+        intent_subtype: teams_openMeeting
+        app_name: teams
+        detail_template: '{messages_detail}'
+      - action_name: teams_openMeeting
+        intent_family: communication
+        intent_subtype: teams_openMeeting
+        app_name: teams
+        detail_template: '{messages_detail}'
+      - action_name: telegram_openChat
+        intent_family: communication
+        intent_subtype: telegram_openChat
+        app_name: telegram
+        detail_template: '{messages_detail}'
+      - action_name: telegram_openChat
+        intent_family: communication
+        intent_subtype: telegram_openChat
+        app_name: telegram
+        detail_template: '{messages_detail}'
+      - action_name: telegram_openUser
+        intent_family: communication
+        intent_subtype: telegram_openUser
+        app_name: telegram
+        detail_template: '{messages_detail}'
+      - action_name: telegram_openUser
+        intent_family: communication
+        intent_subtype: telegram_openUser
+        app_name: telegram
+        detail_template: '{messages_detail}'
+      - action_name: telegram_sendPrefilledMessage
+        intent_family: communication
+        intent_subtype: telegram_sendPrefilledMessage
+        app_name: telegram
+        detail_template: '{messages_detail}'
+      - action_name: telegram_sendPrefilledMessage
+        intent_family: communication
+        intent_subtype: telegram_sendPrefilledMessage
+        app_name: telegram
+        detail_template: '{messages_detail}'
+      - action_name: things3_openProject
+        intent_family: planning
+        intent_subtype: things3_openProject
+        app_name: things3
+        detail_template: '{productivity_detail}'
+      - action_name: things3_openProject
+        intent_family: planning
+        intent_subtype: things3_openProject
+        app_name: things3
+        detail_template: '{productivity_detail}'
+      - action_name: things3_openTask
+        intent_family: planning
+        intent_subtype: things3_openTask
+        app_name: things3
+        detail_template: '{productivity_detail}'
+      - action_name: things3_openTask
+        intent_family: planning
+        intent_subtype: things3_openTask
+        app_name: things3
+        detail_template: '{productivity_detail}'
+      - action_name: threads_openProfile
+        intent_family: communication
+        intent_subtype: threads_openProfile
+        app_name: threads
+        detail_template: '{social_detail}'
+      - action_name: threads_openProfile
+        intent_family: communication
+        intent_subtype: threads_openProfile
+        app_name: threads
+        detail_template: '{social_detail}'
+      - action_name: threads_openThread
+        intent_family: communication
+        intent_subtype: threads_openThread
+        app_name: threads
+        detail_template: '{social_detail}'
+      - action_name: threads_openThread
+        intent_family: communication
+        intent_subtype: threads_openThread
+        app_name: threads
+        detail_template: '{social_detail}'
+      - action_name: tiktok_openProfile
+        intent_family: communication
+        intent_subtype: tiktok_openProfile
+        app_name: tiktok
+        detail_template: '{social_detail}'
+      - action_name: tiktok_openProfile
+        intent_family: communication
+        intent_subtype: tiktok_openProfile
+        app_name: tiktok
+        detail_template: '{social_detail}'
+      - action_name: tiktok_openSearch
+        intent_family: communication
+        intent_subtype: tiktok_openSearch
+        app_name: tiktok
+        detail_template: '{social_detail}'
+      - action_name: tiktok_openSearch
+        intent_family: communication
+        intent_subtype: tiktok_openSearch
+        app_name: tiktok
+        detail_template: '{social_detail}'
+      - action_name: tiktok_openVideo
+        intent_family: communication
+        intent_subtype: tiktok_openVideo
+        app_name: tiktok
+        detail_template: '{social_detail}'
+      - action_name: tiktok_openVideo
+        intent_family: communication
+        intent_subtype: tiktok_openVideo
+        app_name: tiktok
+        detail_template: '{social_detail}'
+      - action_name: tmall_openProduct
+        intent_family: transactional
+        intent_subtype: tmall_openProduct
+        app_name: tmall
+        detail_template: '{shopping_detail}'
+      - action_name: tmall_openProduct
+        intent_family: transactional
+        intent_subtype: tmall_openProduct
+        app_name: tmall
+        detail_template: '{shopping_detail}'
+      - action_name: tmall_openSearch
+        intent_family: transactional
+        intent_subtype: tmall_openSearch
+        app_name: tmall
+        detail_template: '{shopping_detail}'
+      - action_name: tmall_openSearch
+        intent_family: transactional
+        intent_subtype: tmall_openSearch
+        app_name: tmall
+        detail_template: '{shopping_detail}'
+      - action_name: todoist_openProject
+        intent_family: planning
+        intent_subtype: todoist_openProject
+        app_name: todoist
+        detail_template: '{productivity_detail}'
+      - action_name: todoist_openProject
+        intent_family: planning
+        intent_subtype: todoist_openProject
+        app_name: todoist
+        detail_template: '{productivity_detail}'
+      - action_name: todoist_openTask
+        intent_family: planning
+        intent_subtype: todoist_openTask
+        app_name: todoist
+        detail_template: '{productivity_detail}'
+      - action_name: todoist_openTask
+        intent_family: planning
+        intent_subtype: todoist_openTask
+        app_name: todoist
+        detail_template: '{productivity_detail}'
+      - action_name: trello_openBoard
+        intent_family: planning
+        intent_subtype: trello_openBoard
+        app_name: trello
+        detail_template: '{productivity_detail}'
+      - action_name: trello_openBoard
+        intent_family: planning
+        intent_subtype: trello_openBoard
+        app_name: trello
+        detail_template: '{productivity_detail}'
+      - action_name: trello_openCard
+        intent_family: planning
+        intent_subtype: trello_openCard
+        app_name: trello
+        detail_template: '{productivity_detail}'
+      - action_name: trello_openCard
+        intent_family: planning
+        intent_subtype: trello_openCard
+        app_name: trello
+        detail_template: '{productivity_detail}'
+      - action_name: tumblr_openBlog
+        intent_family: communication
+        intent_subtype: tumblr_openBlog
+        app_name: tumblr
+        detail_template: '{social_detail}'
+      - action_name: tumblr_openBlog
+        intent_family: communication
+        intent_subtype: tumblr_openBlog
+        app_name: tumblr
+        detail_template: '{social_detail}'
+      - action_name: tumblr_openPost
+        intent_family: communication
+        intent_subtype: tumblr_openPost
+        app_name: tumblr
+        detail_template: '{social_detail}'
+      - action_name: tumblr_openPost
+        intent_family: communication
+        intent_subtype: tumblr_openPost
+        app_name: tumblr
+        detail_template: '{social_detail}'
+      - action_name: twitch_openChannel
+        intent_family: content_generation
+        intent_subtype: twitch_openChannel
+        app_name: twitch
+        detail_template: '{media_detail}'
+      - action_name: twitch_openChannel
+        intent_family: content_generation
+        intent_subtype: twitch_openChannel
+        app_name: twitch
+        detail_template: '{media_detail}'
+      - action_name: twitch_openStream
+        intent_family: content_generation
+        intent_subtype: twitch_openStream
+        app_name: twitch
+        detail_template: '{media_detail}'
+      - action_name: twitch_openStream
+        intent_family: content_generation
+        intent_subtype: twitch_openStream
+        app_name: twitch
+        detail_template: '{media_detail}'
+      - action_name: twitterX_openProfile
+        intent_family: communication
+        intent_subtype: twitterX_openProfile
+        app_name: twitterX
+        detail_template: '{social_detail}'
+      - action_name: twitterX_openProfile
+        intent_family: communication
+        intent_subtype: twitterX_openProfile
+        app_name: twitterX
+        detail_template: '{social_detail}'
+      - action_name: twitterX_openSearch
+        intent_family: communication
+        intent_subtype: twitterX_openSearch
+        app_name: twitterX
+        detail_template: '{social_detail}'
+      - action_name: twitterX_openSearch
+        intent_family: communication
+        intent_subtype: twitterX_openSearch
+        app_name: twitterX
+        detail_template: '{social_detail}'
+      - action_name: twitterX_openTweet
+        intent_family: communication
+        intent_subtype: twitterX_openTweet
+        app_name: twitterX
+        detail_template: '{social_detail}'
+      - action_name: twitterX_openTweet
+        intent_family: communication
+        intent_subtype: twitterX_openTweet
+        app_name: twitterX
+        detail_template: '{social_detail}'
+      - action_name: uber_callRide
+        intent_family: transactional
+        intent_subtype: uber_callRide
+        app_name: uber
+        detail_template: '{ride_detail}'
+      - action_name: uber_callRide
+        intent_family: transactional
+        intent_subtype: uber_callRide
+        app_name: uber
+        detail_template: '{ride_detail}'
+      - action_name: uber_openBooking
+        intent_family: transactional
+        intent_subtype: uber_openBooking
+        app_name: uber
+        detail_template: '{ride_detail}'
+      - action_name: uber_openBooking
+        intent_family: transactional
+        intent_subtype: uber_openBooking
+        app_name: uber
+        detail_template: '{ride_detail}'
+      - action_name: venmo_openPayment
+        intent_family: transactional
+        intent_subtype: venmo_openPayment
+        app_name: venmo
+        detail_template: '{payment_detail}'
+      - action_name: venmo_openPayment
+        intent_family: transactional
+        intent_subtype: venmo_openPayment
+        app_name: venmo
+        detail_template: '{payment_detail}'
+      - action_name: venmo_sendMoney
+        intent_family: transactional
+        intent_subtype: venmo_sendMoney
+        app_name: venmo
+        detail_template: '{payment_detail}'
+      - action_name: venmo_sendMoney
+        intent_family: transactional
+        intent_subtype: venmo_sendMoney
+        app_name: venmo
+        detail_template: '{payment_detail}'
+      - action_name: viber_openChat
+        intent_family: communication
+        intent_subtype: viber_openChat
+        app_name: viber
+        detail_template: '{messages_detail}'
+      - action_name: viber_openChat
+        intent_family: communication
+        intent_subtype: viber_openChat
+        app_name: viber
+        detail_template: '{messages_detail}'
+      - action_name: viber_sendPrefilledMessage
+        intent_family: communication
+        intent_subtype: viber_sendPrefilledMessage
+        app_name: viber
+        detail_template: '{messages_detail}'
+      - action_name: viber_sendPrefilledMessage
+        intent_family: communication
+        intent_subtype: viber_sendPrefilledMessage
+        app_name: viber
+        detail_template: '{messages_detail}'
+      - action_name: waze_openDirections
+        intent_family: navigation
+        intent_subtype: waze_openDirections
+        app_name: waze
+        detail_template: '{navigation_detail}'
+      - action_name: waze_openDirections
+        intent_family: navigation
+        intent_subtype: waze_openDirections
+        app_name: waze
+        detail_template: '{navigation_detail}'
+      - action_name: wechatPay_openPayment
+        intent_family: transactional
+        intent_subtype: wechatPay_openPayment
+        app_name: wechatPay
+        detail_template: '{payment_detail}'
+      - action_name: wechatPay_openPayment
+        intent_family: transactional
+        intent_subtype: wechatPay_openPayment
+        app_name: wechatPay
+        detail_template: '{payment_detail}'
+      - action_name: wechatPay_openScan
+        intent_family: transactional
+        intent_subtype: wechatPay_openScan
+        app_name: wechatPay
+        detail_template: '{payment_detail}'
+      - action_name: wechatPay_openScan
+        intent_family: transactional
+        intent_subtype: wechatPay_openScan
+        app_name: wechatPay
+        detail_template: '{payment_detail}'
+      - action_name: wechat_openChat
+        intent_family: communication
+        intent_subtype: wechat_openChat
+        app_name: wechat
+        detail_template: '{messages_detail}'
+      - action_name: wechat_openChat
+        intent_family: communication
+        intent_subtype: wechat_openChat
+        app_name: wechat
+        detail_template: '{messages_detail}'
+      - action_name: wechat_openMiniProgram
+        intent_family: communication
+        intent_subtype: wechat_openMiniProgram
+        app_name: wechat
+        detail_template: '{messages_detail}'
+      - action_name: wechat_openMiniProgram
+        intent_family: communication
+        intent_subtype: wechat_openMiniProgram
+        app_name: wechat
+        detail_template: '{messages_detail}'
+      - action_name: wechat_openProfile
+        intent_family: communication
+        intent_subtype: wechat_openProfile
+        app_name: wechat
+        detail_template: '{messages_detail}'
+      - action_name: wechat_openProfile
+        intent_family: communication
+        intent_subtype: wechat_openProfile
+        app_name: wechat
+        detail_template: '{messages_detail}'
+      - action_name: whatsapp_openChat
+        intent_family: communication
+        intent_subtype: whatsapp_openChat
+        app_name: whatsapp
+        detail_template: '{messages_detail}'
+      - action_name: whatsapp_openChat
+        intent_family: communication
+        intent_subtype: whatsapp_openChat
+        app_name: whatsapp
+        detail_template: '{messages_detail}'
+      - action_name: whatsapp_sendPrefilledMessage
+        intent_family: communication
+        intent_subtype: whatsapp_sendPrefilledMessage
+        app_name: whatsapp
+        detail_template: '{messages_detail}'
+      - action_name: whatsapp_sendPrefilledMessage
+        intent_family: communication
+        intent_subtype: whatsapp_sendPrefilledMessage
+        app_name: whatsapp
+        detail_template: '{messages_detail}'
+      - action_name: yahooMail_composeEmail
+        intent_family: communication
+        intent_subtype: yahooMail_composeEmail
+        app_name: yahooMail
+        detail_template: '{email_detail}'
+      - action_name: yahooMail_composeEmail
+        intent_family: communication
+        intent_subtype: yahooMail_composeEmail
+        app_name: yahooMail
+        detail_template: '{email_detail}'
+      - action_name: youtubeMusic_playAlbum
+        intent_family: content_generation
+        intent_subtype: youtubeMusic_playAlbum
+        app_name: youtubeMusic
+        detail_template: '{media_detail}'
+      - action_name: youtubeMusic_playAlbum
+        intent_family: content_generation
+        intent_subtype: youtubeMusic_playAlbum
+        app_name: youtubeMusic
+        detail_template: '{media_detail}'
+      - action_name: youtubeMusic_playPlaylist
+        intent_family: content_generation
+        intent_subtype: youtubeMusic_playPlaylist
+        app_name: youtubeMusic
+        detail_template: '{media_detail}'
+      - action_name: youtubeMusic_playPlaylist
+        intent_family: content_generation
+        intent_subtype: youtubeMusic_playPlaylist
+        app_name: youtubeMusic
+        detail_template: '{media_detail}'
+      - action_name: youtubeMusic_playSong
+        intent_family: content_generation
+        intent_subtype: youtubeMusic_playSong
+        app_name: youtubeMusic
+        detail_template: '{media_detail}'
+      - action_name: youtubeMusic_playSong
+        intent_family: content_generation
+        intent_subtype: youtubeMusic_playSong
+        app_name: youtubeMusic
+        detail_template: '{media_detail}'
+      - action_name: youtube_openChannel
+        intent_family: content_generation
+        intent_subtype: youtube_openChannel
+        app_name: youtube
+        detail_template: '{media_detail}'
+      - action_name: youtube_openChannel
+        intent_family: content_generation
+        intent_subtype: youtube_openChannel
+        app_name: youtube
+        detail_template: '{media_detail}'
+      - action_name: youtube_openSearch
+        intent_family: content_generation
+        intent_subtype: youtube_openSearch
+        app_name: youtube
+        detail_template: '{media_detail}'
+      - action_name: youtube_openSearch
+        intent_family: content_generation
+        intent_subtype: youtube_openSearch
+        app_name: youtube
+        detail_template: '{media_detail}'
+      - action_name: youtube_openVideo
+        intent_family: content_generation
+        intent_subtype: youtube_openVideo
+        app_name: youtube
+        detail_template: '{media_detail}'
+      - action_name: youtube_openVideo
+        intent_family: content_generation
+        intent_subtype: youtube_openVideo
+        app_name: youtube
+        detail_template: '{media_detail}'
+  row_template:
+    language: "{language}"
+    mode: "{mode}"
+    tone: "{tone}"
+    emote6: "{emote6}"
+    continuity_choice: "{continuity_choice}"
+    intent_family: "{intent_family}"
+    intent_subtype: "{intent_subtype}"
+    deeplink_action: "{action_name}"
+    needs_search: "{needs_search}"
+    needs_history_search: "{needs_history_search}"
+    history_scope: "{history_scope}"
+    safety_tag: "{safety_tag}"
+    user_message: "{dialogue_context}"
+    assistant_response: "{assistant_response}"
+
+notes: "Wave0 Lane37 - deeplink intent detection (multi-turn, no teacher)"

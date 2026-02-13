@@ -1,8 +1,0 @@
-TEACHER_MODE_PROOF v1
-config=lanes/lane_01_identity/lane.yaml
-generation_mode=template_expand
-teacher_runtime.enabled=true
-teacher_runtime.provider=ollama
-teacher_runtime.model=dino-pro-7b
-teacher_runtime.policy=structure_only
-teacher_runtime.on_missing_evidence=abstain

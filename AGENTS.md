@@ -32,7 +32,7 @@ This file is the **single source of truth** for new threads. It links to the loc
 ---
 
 ## File ↔ Function Links (Operational)
-- Lane configs: `lanes/**/lane.yaml` → `validate_cmd.py` (schema), `build_cmd.py` (generation), `split_cmd.py` (splits), `pack_cmd.py` (export).
+- Lane configs: `lanes/**/lane_en.yaml` (English) + `lanes/**/lane_<lang>.yaml` (14‑file set) → `validate_cmd.py` (schema), `build_cmd.py` (generation), `split_cmd.py` (splits), `pack_cmd.py` (export).
 - System prompt registry: `system_prompt_registry.json` → `cli.py` (gate/export injection), `pack_cmd.py` (offline registry lookup).
 - System prompt text: `prompts/system/dino_system_prompt.txt` → referenced by the registry and loaded by the runtime.
 - Teacher prompts: `prompts/teacher/lane_XX_teacher_system_prompt.txt` → `build_cmd.py` (teacher_runtime rewrite).
@@ -42,7 +42,7 @@ This file is the **single source of truth** for new threads. It links to the loc
 ## Commands (Operational)
 - Smoke gate run:
   ```bash
-  ./scripts/run.sh gate lane --config lanes/<lane_id>/lane.yaml --limit 20
+  ./scripts/run.sh gate lane --config lanes/<lane_id>/lane_en.yaml --limit 20
   ```
 - Offline wrapper:
   ```bash

@@ -223,11 +223,11 @@ def _build_template_expand(lane: dict[str, Any], cfg_path: Path, seed: int | Non
     if not isinstance(base_row, dict):
         raise ValueError("base_row must be object")
     
-    # Keep these gates in the human-facing lane.yaml (no hidden defaults).
+    # Keep these gates in the human-facing lane config (no hidden defaults).
     if "adult_gate" not in base_row or not isinstance(base_row.get("adult_gate"), bool):
-        raise ValueError("base_row.adult_gate (bool) is required in lane.yaml")
+        raise ValueError("base_row.adult_gate (bool) is required in lane config")
     if "profanity_allowed" not in base_row or not isinstance(base_row.get("profanity_allowed"), bool):
-        raise ValueError("base_row.profanity_allowed (bool) is required in lane.yaml")
+        raise ValueError("base_row.profanity_allowed (bool) is required in lane config")
 
     te_base = te.get("base_row")
     if te_base is None:
@@ -484,7 +484,7 @@ def run_lane(config: str, out: str, seed: int | None = None, limit: int | None =
             return ec.CONFIG_INVALID
 
         # Apply lane-level base defaults to every row for ALL modes.
-        # This keeps lane.yaml as the single human-facing source of truth for required training fields.
+        # This keeps lane config as the single human-facing source of truth for required training fields.
         base_row = lane.get("base_row")
         if base_row is None:
             base_row = {}

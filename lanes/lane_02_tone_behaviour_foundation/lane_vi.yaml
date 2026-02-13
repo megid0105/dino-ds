@@ -1,0 +1,1129 @@
+lane_id: lane_02_tone_behaviour_foundation
+wave: wave0
+target_base: dino_qwen4b
+source_type: local
+sources: []
+count_target: 784
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: suppress_continuity
+  flow_state: none
+  history_scope: thread_only
+  representation_choice: plain_text
+  safety_tag: safe
+  system_prompt_id: dino.system.v1
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators: []
+transform_pipeline: []
+generation_mode: template_expand
+system_prompt_path: prompts/system/dino_system_prompt.txt
+output_dir: out_runs/colleague_test
+teacher_runtime:
+  sample_percent: 5
+  enabled: false
+  provider: ollama
+  ollama_host: http://127.0.0.1:11434
+  model: dino-pro-7b
+  policy: structure_only
+  on_missing_evidence: abstain
+  system_prompt_path: prompts/teacher/lane_02_teacher_system_prompt.txt
+  timeout_s: 150
+  keepalive: 5m
+similarity:
+  max_token_overlap_ratio: 0.18
+  text_field: assistant
+  ignore_stopwords: false
+  ngram: 1
+template_expand:
+  seed: 5
+  count_target: 784
+  max_attempts: 3000000
+  attempts_per_row: 1200
+  expand_dict_slots:
+  - tone_case
+  slot_banks:
+    language:
+    - vi
+    mode:
+    - quick
+    - think
+    tone_case:
+    - tone: professional
+      tone_style: ro rang va chuyen nghiep
+    - tone: best_friend
+      tone_style: thang nhung nang do
+    - tone: family
+      tone_style: nhe nhang va quan tam
+    - tone: serious
+      tone_style: diem tinh va thang
+    - tone: friendly
+      tone_style: am ap va gan gui
+    emote6:
+    - neutral
+    continuity_choice:
+    - suppress_continuity
+    intent_family:
+    - content_generation
+    - safety
+    intent_subtype:
+    - tone_behavior
+    - boundary_setting
+    - correction_style
+    audience:
+    - dong nghiep cua toi
+    - quan ly cua toi
+    - mot ban trong nhom
+    - khach hang
+    - ban than
+    - anh chi em
+    - nguoi yeu
+    - ban cung phong
+    - giang vien
+    - nhom cong viec
+    medium:
+    - email
+    - chat
+    - tin nhan
+    - tin theo doi sau hop
+    - cap nhat du an
+    - ghi chu ngan
+    - tin trang thai
+    - binh luan review
+    situation:
+    - tin nhan khuya
+    - quyen so huu khong ro
+    - yeu cau sat gio
+    - tre deadline
+    - scope no dan
+    - huong dan kho hieu
+    - thread cang thang
+    - qua nhieu cuoc hop
+    - phan hoi cham
+    - rework lap lai
+    - mot tin nhan gay gat
+    - hieu nham
+    - feedback de bi tu ai
+    - mot yeu cau toi khong the nhan
+    - ke hoach doi lien tuc
+    - xung dot lich
+    user_goal:
+    - dat ranh gioi ro rang
+    - xin loi nhung khong qua da
+    - dua feedback truc dien
+    - tu choi lich su
+    - yeu cau ro rang hon
+    - ha nhiet giọng dieu
+    - theo doi ma khong gay ap luc
+    - chinh sua hieu nham
+    - dat lai ky vong
+    - de nghi thay doi hanh vi
+    constraint:
+    - giu ngan gon
+    - cung ran nhung ton trong
+    - nhe nhang nhung ro
+    - tranh do loi
+    - tranh giong dieu mia mai
+    - bam sat su that
+    - nghe tu tin
+    - nghe binh tinh
+    - dung ngon ngu de hieu
+    desired_outcome:
+    - giu duoc moi quan he
+    - chot duoc buoc tiep theo
+    - giam nham lan
+    - dung lai mau lap
+    - can chinh uu tien
+    - giu trao doi xay dung
+    - tranh leo thang lan nua
+    - lam ro quyet dinh
+    - tao thanh thong le lap lai duoc
+    - day cong viec di tiep
+    ask_style:
+    - Giup toi viet nhap.
+    - Viet lai cau nay cho toi.
+    - Cho toi ban co the gui ngay.
+    - Noi giup toi nen noi sao.
+    - Cho toi hai phuong an voi do manh khac nhau.
+    - Lam sao cho ro ma khong lanh lung.
+    - Lam ro rang va khong drama.
+    - Giu ngan va dung duoc ngay.
+    raw_line:
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong?
+    - Toi khong the nhan viec nay neu khong bo viec khac.
+    - Lam on dung sua bai cua toi khi chua bao truoc.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset.
+    - Toi dang roi ve uu tien va deadline.
+    - Toi muon giup, nhung yeu cau qua mo ho.
+    - Toi can it bi ngat quang hon de xong viec.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong de uu tien duoc ro rang hon.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong de tranh lap lai rework.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong de giu nhip do on dinh.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong de giam nham lan.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong de toi co the giao viec on dinh.
+    - Toi khong the nhan viec nay neu khong bo viec khac de uu tien duoc ro rang hon.
+    - Toi khong the nhan viec nay neu khong bo viec khac de tranh lap lai rework.
+    - Toi khong the nhan viec nay neu khong bo viec khac de giu nhip do on dinh.
+    - Toi khong the nhan viec nay neu khong bo viec khac de giam nham lan.
+    - Toi khong the nhan viec nay neu khong bo viec khac de toi co the giao viec on dinh.
+    - Lam on dung sua bai cua toi khi chua bao truoc de uu tien duoc ro rang hon.
+    - Lam on dung sua bai cua toi khi chua bao truoc de tranh lap lai rework.
+    - Lam on dung sua bai cua toi khi chua bao truoc de giu nhip do on dinh.
+    - Lam on dung sua bai cua toi khi chua bao truoc de giam nham lan.
+    - Lam on dung sua bai cua toi khi chua bao truoc de toi co the giao viec on dinh.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh de uu tien duoc ro rang hon.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh de tranh lap lai rework.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh de giu nhip do on dinh.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh de giam nham lan.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh de toi co the giao viec on dinh.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset de uu tien duoc ro rang hon.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset de tranh lap lai rework.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset de giu nhip do on dinh.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset de giam nham lan.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset de toi co the giao viec on dinh.
+    - Toi dang roi ve uu tien va deadline de uu tien duoc ro rang hon.
+    - Toi dang roi ve uu tien va deadline de tranh lap lai rework.
+    - Toi dang roi ve uu tien va deadline de giu nhip do on dinh.
+    - Toi dang roi ve uu tien va deadline de giam nham lan.
+    - Toi dang roi ve uu tien va deadline de toi co the giao viec on dinh.
+    - Toi muon giup, nhung yeu cau qua mo ho de uu tien duoc ro rang hon.
+    - Toi muon giup, nhung yeu cau qua mo ho de tranh lap lai rework.
+    - Toi muon giup, nhung yeu cau qua mo ho de giu nhip do on dinh.
+    - Toi muon giup, nhung yeu cau qua mo ho de giam nham lan.
+    - Toi muon giup, nhung yeu cau qua mo ho de toi co the giao viec on dinh.
+    - Toi can it bi ngat quang hon de xong viec de uu tien duoc ro rang hon.
+    - Toi can it bi ngat quang hon de xong viec de tranh lap lai rework.
+    - Toi can it bi ngat quang hon de xong viec de giu nhip do on dinh.
+    - Toi can it bi ngat quang hon de xong viec de giam nham lan.
+    - Toi can it bi ngat quang hon de xong viec de toi co the giao viec on dinh.
+    - Lam on Ban co the dung gui viec moi sau 10 gio toi duoc khong?
+    - 'De ro rang hon: Ban co the dung gui viec moi sau 10 gio toi duoc khong?'
+    - 'Noi ngan gon: Ban co the dung gui viec moi sau 10 gio toi duoc khong?'
+    - 'Diem quan trong: Ban co the dung gui viec moi sau 10 gio toi duoc khong?'
+    - 'De day nhanh viec: Ban co the dung gui viec moi sau 10 gio toi duoc khong?'
+    - Lam on Toi khong the nhan viec nay neu khong bo viec khac.
+    - 'De ro rang hon: Toi khong the nhan viec nay neu khong bo viec khac.'
+    - 'Noi ngan gon: Toi khong the nhan viec nay neu khong bo viec khac.'
+    - 'Diem quan trong: Toi khong the nhan viec nay neu khong bo viec khac.'
+    - 'De ro rang hon: Lam on dung sua bai cua toi khi chua bao truoc.'
+    - 'Noi ngan gon: Lam on dung sua bai cua toi khi chua bao truoc.'
+    - 'Diem quan trong: Lam on dung sua bai cua toi khi chua bao truoc.'
+    - 'De day nhanh viec: Lam on dung sua bai cua toi khi chua bao truoc.'
+    - Lam on Minh can mot nguoi chiu trach nhiem quyet dinh.
+    - 'De ro rang hon: Minh can mot nguoi chiu trach nhiem quyet dinh.'
+    - 'Noi ngan gon: Minh can mot nguoi chiu trach nhiem quyet dinh.'
+    - 'Diem quan trong: Minh can mot nguoi chiu trach nhiem quyet dinh.'
+    - 'De day nhanh viec: Minh can mot nguoi chiu trach nhiem quyet dinh.'
+    - Lam on Tin nhan truoc nghe kha gay gat, toi muon reset.
+    - 'De ro rang hon: Tin nhan truoc nghe kha gay gat, toi muon reset.'
+    - 'Noi ngan gon: Tin nhan truoc nghe kha gay gat, toi muon reset.'
+    - 'Diem quan trong: Tin nhan truoc nghe kha gay gat, toi muon reset.'
+    - 'De day nhanh viec: Tin nhan truoc nghe kha gay gat, toi muon reset.'
+    - Lam on Toi dang roi ve uu tien va deadline.
+    - 'De ro rang hon: Toi dang roi ve uu tien va deadline.'
+    - 'Noi ngan gon: Toi dang roi ve uu tien va deadline.'
+    - 'Diem quan trong: Toi dang roi ve uu tien va deadline.'
+    - 'De day nhanh viec: Toi dang roi ve uu tien va deadline.'
+    - Lam on Toi muon giup, nhung yeu cau qua mo ho.
+    - 'De ro rang hon: Toi muon giup, nhung yeu cau qua mo ho.'
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong? Dieu nay giup giu duoc moi quan he.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong? Dieu nay giup chot duoc buoc tiep theo.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong? Dieu nay giup giam nham lan.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong? Dieu nay giup dung lai mau lap.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong? Dieu nay giup can chinh uu tien.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong? Dieu nay giup giu trao doi xay dung.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong? Dieu nay giup tranh leo thang lan nua.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong? Dieu nay giup lam ro quyet dinh.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong? Dieu nay giup tao thanh thong le lap lai duoc.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong? Dieu nay giup day cong viec di tiep.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong? Lam on giu yeu cau moi trong gio lam viec.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong? Lam on danh dau ro viec khan.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong? Lam on gom thay doi vao mot lan cap nhat.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong? Lam on bao nhanh truoc khi sua bai.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong? Lam on khoa scope truoc khi trien khai.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong? Lam on giam ngat quang trong block tap trung.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong? Lam on dat yeu cau trong mot cau ro rang.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong? Lam on xac nhan tieu chi hoan thanh.
+    - Toi khong the nhan viec nay neu khong bo viec khac. Dieu nay giup giu duoc moi quan he.
+    - Toi khong the nhan viec nay neu khong bo viec khac. Dieu nay giup chot duoc buoc tiep theo.
+    - Toi khong the nhan viec nay neu khong bo viec khac. Dieu nay giup giam nham lan.
+    - Toi khong the nhan viec nay neu khong bo viec khac. Dieu nay giup dung lai mau lap.
+    - Toi khong the nhan viec nay neu khong bo viec khac. Dieu nay giup can chinh uu tien.
+    - Toi khong the nhan viec nay neu khong bo viec khac. Dieu nay giup giu trao doi xay dung.
+    - Toi khong the nhan viec nay neu khong bo viec khac. Dieu nay giup tranh leo thang lan nua.
+    - Toi khong the nhan viec nay neu khong bo viec khac. Dieu nay giup lam ro quyet dinh.
+    - Toi khong the nhan viec nay neu khong bo viec khac. Dieu nay giup tao thanh thong le lap lai duoc.
+    - Toi khong the nhan viec nay neu khong bo viec khac. Dieu nay giup day cong viec di tiep.
+    - Toi khong the nhan viec nay neu khong bo viec khac. Lam on giu yeu cau moi trong gio lam viec.
+    - Toi khong the nhan viec nay neu khong bo viec khac. Lam on danh dau ro viec khan.
+    - Toi khong the nhan viec nay neu khong bo viec khac. Lam on gom thay doi vao mot lan cap nhat.
+    - Toi khong the nhan viec nay neu khong bo viec khac. Lam on bao nhanh truoc khi sua bai.
+    - Toi khong the nhan viec nay neu khong bo viec khac. Lam on khoa scope truoc khi trien khai.
+    - Toi khong the nhan viec nay neu khong bo viec khac. Lam on giam ngat quang trong block tap trung.
+    - Toi khong the nhan viec nay neu khong bo viec khac. Lam on dat yeu cau trong mot cau ro rang.
+    - Toi khong the nhan viec nay neu khong bo viec khac. Lam on xac nhan tieu chi hoan thanh.
+    - Lam on dung sua bai cua toi khi chua bao truoc. Dieu nay giup giu duoc moi quan he.
+    - Lam on dung sua bai cua toi khi chua bao truoc. Dieu nay giup chot duoc buoc tiep theo.
+    - Lam on dung sua bai cua toi khi chua bao truoc. Dieu nay giup giam nham lan.
+    - Lam on dung sua bai cua toi khi chua bao truoc. Dieu nay giup dung lai mau lap.
+    - Lam on dung sua bai cua toi khi chua bao truoc. Dieu nay giup can chinh uu tien.
+    - Lam on dung sua bai cua toi khi chua bao truoc. Dieu nay giup giu trao doi xay dung.
+    - Lam on dung sua bai cua toi khi chua bao truoc. Dieu nay giup tranh leo thang lan nua.
+    - Lam on dung sua bai cua toi khi chua bao truoc. Dieu nay giup lam ro quyet dinh.
+    - Lam on dung sua bai cua toi khi chua bao truoc. Dieu nay giup tao thanh thong le lap lai duoc.
+    - Lam on dung sua bai cua toi khi chua bao truoc. Dieu nay giup day cong viec di tiep.
+    - Lam on dung sua bai cua toi khi chua bao truoc. Lam on giu yeu cau moi trong gio lam viec.
+    - Lam on dung sua bai cua toi khi chua bao truoc. Lam on danh dau ro viec khan.
+    - Lam on dung sua bai cua toi khi chua bao truoc. Lam on gom thay doi vao mot lan cap nhat.
+    - Lam on dung sua bai cua toi khi chua bao truoc. Lam on bao nhanh truoc khi sua bai.
+    - Lam on dung sua bai cua toi khi chua bao truoc. Lam on khoa scope truoc khi trien khai.
+    - Lam on dung sua bai cua toi khi chua bao truoc. Lam on giam ngat quang trong block tap trung.
+    - Lam on dung sua bai cua toi khi chua bao truoc. Lam on dat yeu cau trong mot cau ro rang.
+    - Lam on dung sua bai cua toi khi chua bao truoc. Lam on xac nhan tieu chi hoan thanh.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh. Dieu nay giup giu duoc moi quan he.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh. Dieu nay giup chot duoc buoc tiep theo.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh. Dieu nay giup giam nham lan.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh. Dieu nay giup dung lai mau lap.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh. Dieu nay giup can chinh uu tien.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh. Dieu nay giup giu trao doi xay dung.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh. Dieu nay giup tranh leo thang lan nua.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh. Dieu nay giup lam ro quyet dinh.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh. Dieu nay giup tao thanh thong le lap lai duoc.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh. Dieu nay giup day cong viec di tiep.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh. Lam on giu yeu cau moi trong gio lam viec.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh. Lam on danh dau ro viec khan.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh. Lam on gom thay doi vao mot lan cap nhat.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh. Lam on bao nhanh truoc khi sua bai.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh. Lam on khoa scope truoc khi trien khai.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh. Lam on giam ngat quang trong block tap trung.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh. Lam on dat yeu cau trong mot cau ro rang.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh. Lam on xac nhan tieu chi hoan thanh.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset. Dieu nay giup giu duoc moi quan he.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset. Dieu nay giup chot duoc buoc tiep theo.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset. Dieu nay giup giam nham lan.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset. Dieu nay giup dung lai mau lap.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset. Dieu nay giup can chinh uu tien.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset. Dieu nay giup giu trao doi xay dung.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset. Dieu nay giup tranh leo thang lan nua.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset. Dieu nay giup lam ro quyet dinh.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset. Dieu nay giup tao thanh thong le lap lai duoc.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset. Dieu nay giup day cong viec di tiep.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset. Lam on giu yeu cau moi trong gio lam viec.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset. Lam on danh dau ro viec khan.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset. Lam on gom thay doi vao mot lan cap nhat.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset. Lam on bao nhanh truoc khi sua bai.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset. Lam on khoa scope truoc khi trien khai.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset. Lam on giam ngat quang trong block tap trung.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset. Lam on dat yeu cau trong mot cau ro rang.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset. Lam on xac nhan tieu chi hoan thanh.
+    - Toi dang roi ve uu tien va deadline. Dieu nay giup giu duoc moi quan he.
+    - Toi dang roi ve uu tien va deadline. Dieu nay giup chot duoc buoc tiep theo.
+    - Toi dang roi ve uu tien va deadline. Dieu nay giup giam nham lan.
+    - Toi dang roi ve uu tien va deadline. Dieu nay giup dung lai mau lap.
+    - Toi dang roi ve uu tien va deadline. Dieu nay giup can chinh uu tien.
+    - Toi dang roi ve uu tien va deadline. Dieu nay giup giu trao doi xay dung.
+    - Toi dang roi ve uu tien va deadline. Dieu nay giup tranh leo thang lan nua.
+    - Toi dang roi ve uu tien va deadline. Dieu nay giup lam ro quyet dinh.
+    - Toi dang roi ve uu tien va deadline. Dieu nay giup tao thanh thong le lap lai duoc.
+    - Toi dang roi ve uu tien va deadline. Dieu nay giup day cong viec di tiep.
+    - Toi dang roi ve uu tien va deadline. Lam on giu yeu cau moi trong gio lam viec.
+    - Toi dang roi ve uu tien va deadline. Lam on danh dau ro viec khan.
+    - Toi dang roi ve uu tien va deadline. Lam on gom thay doi vao mot lan cap nhat.
+    - Toi dang roi ve uu tien va deadline. Lam on bao nhanh truoc khi sua bai.
+    - Toi dang roi ve uu tien va deadline. Lam on khoa scope truoc khi trien khai.
+    - Toi dang roi ve uu tien va deadline. Lam on giam ngat quang trong block tap trung.
+    - Toi dang roi ve uu tien va deadline. Lam on dat yeu cau trong mot cau ro rang.
+    - Toi dang roi ve uu tien va deadline. Lam on xac nhan tieu chi hoan thanh.
+    - Toi muon giup, nhung yeu cau qua mo ho. Dieu nay giup giu duoc moi quan he.
+    - Toi muon giup, nhung yeu cau qua mo ho. Dieu nay giup chot duoc buoc tiep theo.
+    - Toi muon giup, nhung yeu cau qua mo ho. Dieu nay giup giam nham lan.
+    - Toi muon giup, nhung yeu cau qua mo ho. Dieu nay giup dung lai mau lap.
+    - Toi muon giup, nhung yeu cau qua mo ho. Dieu nay giup can chinh uu tien.
+    - Toi muon giup, nhung yeu cau qua mo ho. Dieu nay giup giu trao doi xay dung.
+    - Toi muon giup, nhung yeu cau qua mo ho. Dieu nay giup tranh leo thang lan nua.
+    - Toi muon giup, nhung yeu cau qua mo ho. Dieu nay giup lam ro quyet dinh.
+    - Toi muon giup, nhung yeu cau qua mo ho. Dieu nay giup tao thanh thong le lap lai duoc.
+    - Toi muon giup, nhung yeu cau qua mo ho. Dieu nay giup day cong viec di tiep.
+    - Toi muon giup, nhung yeu cau qua mo ho. Lam on giu yeu cau moi trong gio lam viec.
+    - Toi muon giup, nhung yeu cau qua mo ho. Lam on danh dau ro viec khan.
+    - Toi muon giup, nhung yeu cau qua mo ho. Lam on gom thay doi vao mot lan cap nhat.
+    - Toi muon giup, nhung yeu cau qua mo ho. Lam on bao nhanh truoc khi sua bai.
+    - Toi muon giup, nhung yeu cau qua mo ho. Lam on khoa scope truoc khi trien khai.
+    - Toi muon giup, nhung yeu cau qua mo ho. Lam on giam ngat quang trong block tap trung.
+    - Toi muon giup, nhung yeu cau qua mo ho. Lam on xac nhan tieu chi hoan thanh.
+    - Toi can it bi ngat quang hon de xong viec. Dieu nay giup giu duoc moi quan he.
+    - Toi can it bi ngat quang hon de xong viec. Dieu nay giup chot duoc buoc tiep theo.
+    - Toi can it bi ngat quang hon de xong viec. Dieu nay giup giam nham lan.
+    - Toi can it bi ngat quang hon de xong viec. Dieu nay giup dung lai mau lap.
+    - Toi can it bi ngat quang hon de xong viec. Dieu nay giup can chinh uu tien.
+    - Toi can it bi ngat quang hon de xong viec. Dieu nay giup giu trao doi xay dung.
+    - Toi can it bi ngat quang hon de xong viec. Dieu nay giup tranh leo thang lan nua.
+    - Toi can it bi ngat quang hon de xong viec. Dieu nay giup lam ro quyet dinh.
+    - Toi can it bi ngat quang hon de xong viec. Dieu nay giup tao thanh thong le lap lai duoc.
+    - Toi can it bi ngat quang hon de xong viec. Dieu nay giup day cong viec di tiep.
+    - Toi can it bi ngat quang hon de xong viec. Lam on giu yeu cau moi trong gio lam viec.
+    - Toi can it bi ngat quang hon de xong viec. Lam on danh dau ro viec khan.
+    - Toi can it bi ngat quang hon de xong viec. Lam on gom thay doi vao mot lan cap nhat.
+    - Toi can it bi ngat quang hon de xong viec. Lam on bao nhanh truoc khi sua bai.
+    - Toi can it bi ngat quang hon de xong viec. Lam on khoa scope truoc khi trien khai.
+    - Toi can it bi ngat quang hon de xong viec. Lam on giam ngat quang trong block tap trung.
+    - Toi can it bi ngat quang hon de xong viec. Lam on dat yeu cau trong mot cau ro rang.
+    context_line:
+    - 'Boi canh: viec nay da xay ra 3 lan tuan nay.'
+    - 'Boi canh: toi da nhac den mot lan roi.'
+    - 'Boi canh: no dang lam cham ca du an.'
+    - 'Boi canh: toi muon giai quyet ma khong lam lon chuyen.'
+    - 'Boi canh: toi van muon hop tac tot.'
+    - 'Boi canh: toi can mot ban de gui trong hom nay.'
+    - 'Boi canh: toi so minh nghe bi tho.'
+    - 'Boi canh: no can hop voi {medium}.'
+    - '{situation}.'
+    - '{medium}; {constraint}.'
+    - '{audience}; {situation}.'
+    - '{constraint}; {change_request}.'
+    - '{audience}; {situation}; {constraint}.'
+    user_frame:
+    - '{ask_style} Toi can {user_goal} voi {audience} ve {situation} qua {medium}. Giu giong {tone_style}.'
+    - '{ask_style} Viec nay la ve {situation} voi {audience}. Toi muon {user_goal} va van giu giong {tone_style}.'
+    - '{ask_style} Toi dang co gang {user_goal} lien quan den {situation}. Tin nay gui cho {audience} tren {medium}, va nen nghe {tone_style}.'
+    - '{ask_style} Chu de la {situation}. Toi can mot tin cho {audience} qua {medium} de {user_goal}, theo cach {tone_style}.'
+    user_message:
+    - '{user_frame}\n{context_line}\nRang buoc: {constraint}. Ket qua mong muon: {desired_outcome}.\nCau goc: {raw_line}'
+    - '{user_frame}\nCau goc: {raw_line}\nRang buoc: {constraint}. Ket qua mong muon: {desired_outcome}.\n{context_line}'
+    - '{user_frame}\nRang buoc: {constraint}.\n{context_line}\nKet qua mong muon: {desired_outcome}.\nCau goc: {raw_line}'
+    - '{user_frame}\n{context_line}\nKet qua mong muon: {desired_outcome}. Rang buoc: {constraint}.\nCau goc: {raw_line}'
+    - '{user_frame}\nCau goc: {raw_line}\n{context_line}\nKet qua mong muon: {desired_outcome}. Rang buoc: {constraint}.'
+    - '{user_frame}\nRang buoc: {constraint}. Ket qua mong muon: {desired_outcome}.\n{context_line}'
+    - '{user_frame}\n{context_line}\nRang buoc: {constraint}.\nCau goc: {raw_line}\nKet qua mong muon: {desired_outcome}.'
+    - '{user_frame}\nKet qua mong muon: {desired_outcome}.\nRang buoc: {constraint}.\n{context_line}\nCau goc: {raw_line}'
+    assistant_open:
+    - '{context_line}'
+    - '{context_line_b}'
+    - 'Boi canh: {situation}.'
+    - 'Boi canh: {audience}; {medium}.'
+    - 'Boi canh: {desired_outcome}; {constraint}.'
+    - 'Boi canh: {user_goal}; {change_request}.'
+    - 'Trong tam: {desired_outcome}.'
+    - 'Trong tam: {constraint}.'
+    - 'Dieu chinh: {change_request}.'
+    - 'Dieu chinh: {user_goal}.'
+    assistant_commit:
+    - Toi uu tien ban nhap {tone_style}, giu {constraint} va de gui ngay.
+    - Ban nay giu {tone_style}, khong do loi va van ro hanh dong.
+    - Toi de xuat cach noi gon, {tone_style}, nhung khong mat y chinh.
+    - Huong viet se {tone_style}, co gioi han ro va de hop tac.
+    - Minh can giu {constraint} de tranh hieu nham va giu tien do.
+    - Toi giu cau truc ngan, thang, de nguoi nhan de chap nhan.
+    - Noi theo huong {tone_style} de dat ranh gioi ma khong gay cang thang.
+    - Ban nhap se tap trung vao buoc tiep theo va muc tieu chung.
+    - Toi dat trong tam vao hanh dong cu the, khong mo ho.
+    - Huong trinh bay: ngan, ro, de thuc thi ngay.
+    assistant_principle:
+    - Uu tien cau truc co hanh dong va moc thoi gian ro.
+    - Neu noi ngan gon, nguoi nhan de dong y hon.
+    - Ranh gioi ro rang giup tranh lap lai va giu nhip lam viec.
+    - Nho tach su kien, yeu cau, va ket qua mong muon.
+    - Khi dung giong binh tinh, thong diep de di xa hon.
+    - Can neo vao quyet dinh ke tiep thay vi tranh cai.
+    - Dat de nghi truoc, giai thich ngan sau.
+    - Mot cau ro rang thuong hieu qua hon ba cau vong.
+    - Can giu su ton trong nhung khong bo loi nhan manh.
+    - Muc tieu la giam ma sat va dong bo cach lam.
+    draft_prefix:
+    - 'Ban nhap:'
+    - 'Thu dung ban nay:'
+    - 'Ban gui duoc ngay:'
+    - 'Lua chon thong diep:'
+    change_request:
+    - giu yeu cau moi trong gio lam viec
+    - danh dau ro viec khan
+    - gom thay doi vao mot lan cap nhat
+    - bao nhanh truoc khi sua bai
+    - khoa scope truoc khi trien khai
+    - giam ngat quang trong block tap trung
+    - dat yeu cau trong mot cau ro rang
+    - xac nhan tieu chi hoan thanh
+    - thong nhat mot owner quyet dinh cho tung muc
+    - tach viec gap va viec co the doi
+    - ghi ro tac dong ve thoi gian khi doi scope
+    - chot uu tien truoc khi mo them viec moi
+    - chot deadline chung cho ca nhom
+    - dung mot kenh cap nhat duy nhat
+    - gom feedback trung lap thanh mot ban
+    - xac nhan nguon du lieu truoc khi bat dau
+    - chot dinh dang dau ra truoc khi trien khai
+    - thong nhat moc ban giao theo ngay
+    - khoa ban yeu cau cho den khi giao xong
+    - xep lai thu tu cong viec theo muc khan
+    - bao truoc khi chen viec vao focus block
+    - danh dau phan phu thuoc va diem nghen
+    - xac nhan ai duyet cuoi truoc khi gui ban moi
+    - gom cau hoi con mo vao mot lan tra loi
+    - ghi ro buoc tiep theo ngay trong tin nhan
+    - dung them viec ngoai pham vi da chot
+    - thong nhat nguong chat luong de ket thuc vong
+    - xac nhan lai muc tieu truoc moi lan doi huong
+    draft_line_1:
+    - '{situation}.'
+    - '{audience}; {situation}.'
+    - '{medium}; {situation}.'
+    - '{audience}; {medium}; {situation}.'
+    draft_line_2:
+    - '{change_request}; {desired_outcome}.'
+    - '{change_request}; {constraint}.'
+    tag_a:
+    - scopeAnchor
+    - deadlineGuard
+    - ownerMap
+    - handoffPath
+    - clarityMesh
+    - responseLane
+    - focusWindow
+    - riskBeacon
+    - changeQueue
+    - flowGuard
+    - alignVector
+    - signalTrack
+    - contextLedger
+    - actionFrame
+    - boundaryKey
+    - timingLatch
+    - requestFilter
+    - routeToken
+    - queueIndex
+    - updateNode
+    - reviewClock
+    - deliveryPulse
+    - conflictReducer
+    - scopeFence
+    - intentMarker
+    - qualityLatch
+    - paceGuide
+    - priorityGrid
+    - planRelay
+    - syncPulse
+    tag_b:
+    - outputGate
+    - workflowPin
+    - riskFilter
+    - mergeFence
+    - threadOwner
+    - statusBridge
+    - planSwitch
+    - effortGauge
+    - qualityPulse
+    - routeAnchor
+    - orderMatrix
+    - ownerSignal
+    - scopeVector
+    - deadlineMesh
+    - intentGrid
+    - planKernel
+    - queueGuard
+    - rhythmMatrix
+    - outputVector
+    - detailFilter
+    - riskVector
+    - policyLatch
+    - effortMatrix
+    - changeGuard
+    - actionKernel
+    - reviewSignal
+    - statusMatrix
+    - handoffMatrix
+    - contextVector
+    - responseKernel
+    tag_c:
+    - clarityRoute
+    - timingMatrix
+    - loadVector
+    - commitSignal
+    - traceVector
+    - deliveryMesh
+    - alignKernel
+    - updateMatrix
+    - calmFrame
+    - firmFrame
+    - warmFrame
+    - directFrame
+    - neutralFrame
+    - steadyFrame
+    - clearFrame
+    - resetFrame
+    - scopeFrame
+    - ownerFrame
+    - timingFrame
+    - actionFrameX
+    - resultFrame
+    - boundaryFrame
+    - priorityFrame
+    - responseFrame
+    - reviewFrame
+    - channelFrame
+    - planFrame
+    - focusFrame
+    - qualityFrame
+    - riskFrameX
+    tag_d:
+    - conflictFrame
+    - cadenceFrame
+    - intentFrame
+    - mergeFrame
+    - relayFrame
+    - signalFrame
+    - decisionFrame
+    - deliveryFrame
+    - anchorPoint
+    - workloadLock
+    - handoffGate
+    - timelineGuard
+    - frictionCut
+    - actionLane
+    - contextLock
+    - outputTrack
+    - requestLane
+    - clarityGate
+    - alignmentLock
+    - sequenceGuard
+    - boundaryMesh
+    - cadenceLock
+    - ownerSignalX
+    - riskChannel
+    - responseTrack
+    - priorityLatch
+    - scopeTracker
+    - qualityGrid
+    - deliveryLock
+    - syncAnchor
+    tag_e:
+    - pathMarker
+    - queueLatch
+    - triagePoint
+    - actionIndex
+    - handoffIndex
+    - goalVector
+    - timingGuard
+    - scopeIndex
+    - ownerIndex
+    - deliveryIndex
+    - riskIndex
+    - clarityIndex
+    - orderIndex
+    - outputIndex
+    - focusIndex
+    - responseIndex
+    - signalIndex
+    - updateIndex
+    - planIndex
+    - gateIndex
+    - frameIndex
+    - routeIndex
+    - threadIndex
+    - tokenIndex
+    - mapIndex
+    - filterIndex
+    - pivotIndex
+    - guardIndex
+    - lockIndex
+    - bridgeIndex
+    tag_f:
+    - stableLane
+    - calmRoute
+    - clearRoute
+    - firmRoute
+    - warmRoute
+    - directRoute
+    - neutralRoute
+    - focusRoute
+    - ownerRoute
+    - scopeRoute
+    - timingRoute
+    - actionRoute
+    - resultRoute
+    - requestRoute
+    - deliveryRoute
+    - qualityRoute
+    - riskRoute
+    - planRoute
+    - updateRoute
+    - responseRoute
+    - sequenceRoute
+    - alignmentRoute
+    - handoffRoute
+    - priorityRoute
+    - contextRoute
+    - gateRoute
+    - signalRoute
+    - frameRoute
+    - threadRoute
+    - workflowRoute
+    assistant_followup:
+    - Neu muon, minh viet them ban mem hon cho {audience}.
+    - Neu can, minh doi sang ban gon hon cho {medium}.
+    - Neu ban muon, minh co the giu trung lap trinh bay hoac truc dien hon.
+    - Minh co the cho 2 muc do: mem va ran.
+    - Neu can, minh doi vi tri cau cho de doc hon.
+    - Neu can, ket cau bang loi de nghi hoac cau hoi.
+    - Co the chen mot cau giai thich ngan cho de nghe.
+    - Minh sua tiep de hop cach noi cua {audience} duoc.
+    - Neu ban muon giu chat {tone_style}, minh co the giam do manh mot chut.
+    - Neu can, minh bo bot boi canh de tap trung hanh dong.
+    - Toi co the doi tu vung de nghe tu nhien hon.
+    - Neu can, minh doi cau cuoi theo huong hop tac hoac canh bao ro.
+    - Neu muon, minh viet ban giu nguyen y nhung ngan hon 1 dong.
+    - Can thi minh doi tu khoa cho phu hop {situation}.
+    - Minh co the doi kenh xung ho cho hop {medium}.
+    - Neu ban can, minh doi sang ban dung ngay hoac lich su hon.
+    assistant_response:
+    - '{assistant_commit} Voi {audience}, trong {medium}, hay {change_request} de {desired_outcome}. {detail_line}'
+    - '{assistant_principle} Truong hop {situation}: uu tien {change_request}. Dieu nay giu {desired_outcome} va van {constraint}. {detail_line_b}'
+    - '{draft_prefix} {change_request}. Ly do: {desired_outcome}. Rang buoc: {constraint}. {assistant_followup}'
+    - 'De gui cho {audience} tren {medium}, ban co the viet: {change_request}. Neu lam vay, minh de {desired_outcome}. {extra_clause}'
+    - 'Neu chu de la {situation}, cau ngan nay de dung: {change_request}. Cach nay hop voi {tone_style} va {constraint}. {assistant_followup_b}'
+    - 'Minh de xuat mot dong truc dien: {change_request}. Sau do them y nay: uu tien {desired_outcome}. {detail_line}'
+    - 'Ban cho {audience}: "{change_request}." Cau nay giu {tone_style}, tranh do loi, va de lam theo. {detail_line_b}'
+    - 'Trong {medium}, nen mo dau bang buc tranh chung roi chot yeu cau: {change_request}. Muc dich la {desired_outcome}. {assistant_followup}'
+    - 'Neu can dat lai ky vong nhanh, hay noi: {change_request}; de {desired_outcome}. {extra_clause}'
+    - 'Boi canh {situation} thuong de lech huong; vi vay can {change_request}. Ban nay van giu {constraint}. {detail_line_b}'
+    - 'Cho truong hop nay, minh giu 3 diem: {change_request}; {desired_outcome}; {constraint}. {assistant_followup_b}'
+    - 'Cau de gui ngay: {change_request}. Dung cho {audience} qua {medium}, nghe {tone_style}. {extra_clause}'
+    - 'Neu muon giam cang thang, thay cach noi bang cau nay: {change_request}. Sau cau do nhac {desired_outcome}. {detail_line}'
+    - 'Ban thoi diem nay nen chot hanh dong truoc: {change_request}. Khi ro hanh dong, se de {desired_outcome}. {assistant_followup}'
+    - 'Minh viet theo huong ngan va ro: {change_request}. Cach nay hop khi gap {situation} va can {constraint}. {detail_line_b}'
+    - 'De tranh trao doi long vong, hay khoa mot yeu cau: {change_request}. Ket qua ky vong: {desired_outcome}. {assistant_followup_b}'
+    - '{assistant_commit} Trong boi canh {situation}, them mot cau giai thich ngan de nguoi nhan de dong thuan. {detail_line}'
+    - '{assistant_principle} Goi y cho {audience}: {change_request}. Neu can, de ro hon thi nhac them {desired_outcome}. {assistant_followup}'
+    - 'Mau cau co the dung ngay: "{change_request}." Cau nay giup giu {constraint} va dat duoc {desired_outcome}. {detail_line_b}'
+    - 'Khi gui qua {medium}, co the tach thanh 2 phan: mo dau neu boi canh {situation}; phan chot la {change_request}. {assistant_followup}'
+    - 'Minh uu tien cach noi ton trong nhung ro muc tieu: {change_request}. Ly do thuc te la {desired_outcome}. {extra_clause}'
+    - 'Neu doi phuong de thuong luong, van nen giu cot moc nay: {change_request}. Tu do de chot {desired_outcome}. {detail_line}'
+    - 'Ban nay hop voi {audience} vi no chot viec can lam: {change_request}. Van giu duoc chat {tone_style}. {assistant_followup_b}'
+    - 'Trong tinh huong {situation}, cach dat cau hien tai de co tac dung: {change_request}. {detail_line_b}'
+    - 'De thong nhat nhanh, hay viet ro nhu sau: {change_request}. Muc tieu chung: {desired_outcome}; cach noi: {constraint}. {assistant_followup}'
+    - 'Neu ban muon tranh leo thang, giu cau nay la trung tam: {change_request}. Sau do moi them boi canh {situation}. {extra_clause}'
+    - 'Cho ban gui gan nhu nguyen van: {change_request}. Neu can, doi 1-2 tu de hop hon voi {medium}. {assistant_followup_b}'
+    - 'Goi y rut gon cho {medium}: {change_request}. Dinh huong nay giup giu {desired_outcome} va tranh gay gat. {detail_line}'
+    - 'Voi muc tieu {desired_outcome}, cau hop ly nhat la: {change_request}. Nho giu tone {tone_style}. {assistant_followup}'
+    - 'Ban co the khoa thong diep bang yeu cau cu the: {change_request}. Roi ket bang loi moi hop tac de giu {desired_outcome}. {detail_line_b}'
+    lead_phrase:
+    - Ro rang thong diep
+    - Ro rang ban nhap
+    - Ro rang mau
+    - Ro rang phan hoi
+    - Ro rang khung cau
+    - Ro rang cach dien dat
+    - Ro rang huong
+    - Ro rang huong trinh bay
+    - Binh tinh thong diep
+    - Binh tinh ban nhap
+    - Binh tinh mau
+    - Binh tinh phan hoi
+    - Binh tinh khung cau
+    - Binh tinh cach dien dat
+    - Binh tinh huong
+    - Binh tinh huong trinh bay
+    - Truc dien thong diep
+    - Truc dien ban nhap
+    - Truc dien mau
+    - Truc dien phan hoi
+    - Truc dien khung cau
+    - Truc dien cach dien dat
+    - Truc dien huong
+    - Truc dien huong trinh bay
+    - Ton trong thong diep
+    - Ton trong ban nhap
+    - Ton trong mau
+    - Ton trong phan hoi
+    - Ton trong khung cau
+    - Ton trong cach dien dat
+    - Ton trong huong
+    - Ton trong huong trinh bay
+    - Thuc te thong diep
+    - Thuc te ban nhap
+    - Thuc te mau
+    - Thuc te phan hoi
+    - Thuc te khung cau
+    - Thuc te cach dien dat
+    - Thuc te huong
+    - Thuc te huong trinh bay
+    - Xay dung thong diep
+    - Xay dung ban nhap
+    - Xay dung mau
+    - Xay dung phan hoi
+    - Xay dung khung cau
+    - Xay dung cach dien dat
+    - Xay dung huong
+    - Xay dung huong trinh bay
+    - Can bang thong diep
+    - Can bang ban nhap
+    - Can bang mau
+    - Can bang phan hoi
+    - Can bang khung cau
+    - Can bang cach dien dat
+    - Can bang huong
+    - Can bang huong trinh bay
+    - Chac chan thong diep
+    - Chac chan ban nhap
+    - Chac chan mau
+    - Chac chan phan hoi
+    - Chac chan khung cau
+    - Chac chan cach dien dat
+    - Chac chan huong
+    - Chac chan huong trinh bay
+    - Tap trung thong diep
+    - Tap trung ban nhap
+    - Tap trung mau
+    - Tap trung phan hoi
+    - Tap trung khung cau
+    - Tap trung cach dien dat
+    - Tap trung huong
+    - Tap trung huong trinh bay
+    - Chuyen nghiep thong diep
+    - Chuyen nghiep ban nhap
+    - Chuyen nghiep mau
+    - Chuyen nghiep phan hoi
+    - Chuyen nghiep khung cau
+    - Chuyen nghiep cach dien dat
+    - Chuyen nghiep huong
+    - Chuyen nghiep huong trinh bay
+    - Gon gang thong diep
+    - Gon gang ban nhap
+    - Gon gang mau
+    - Gon gang phan hoi
+    - Gon gang khung cau
+    - Gon gang cach dien dat
+    - Gon gang huong
+    - Gon gang huong trinh bay
+    - Hop tac thong diep
+    - Hop tac ban nhap
+    - Hop tac mau
+    - Hop tac phan hoi
+    - Hop tac khung cau
+    - Hop tac cach dien dat
+    - Hop tac huong
+    - Hop tac huong trinh bay
+    detail_line:
+    - Yeu cau van bam sat {desired_outcome}.
+    - Cach dien dat van giu {constraint}.
+    - Mau nay hop voi {medium} va van tap trung vao {situation}.
+    - Ranh gioi ro rang ma khong lam xau di moi quan he.
+    - Van giu chat {tone_style} va de thuc thi.
+    - Buoc tiep theo duoc noi ro rang.
+    - Tranh do loi va van giu nhip tien do.
+    - Neu can, co the rut gon con mot cau.
+    - Co the chinh mot menh de cho hop kenh {medium}.
+    - Thong diep giu tinh hop tac nhung van dat gioi han.
+    - Yeu cau cu the va de lam theo.
+    - Ngay ca khi gap ap luc, y van ro.
+    raw_line_b:
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong?
+    - Toi khong the nhan viec nay neu khong bo viec khac.
+    - Lam on dung sua bai cua toi khi chua bao truoc.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset.
+    - Toi dang roi ve uu tien va deadline.
+    - Toi muon giup, nhung yeu cau qua mo ho.
+    - Toi can it bi ngat quang hon de xong viec.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong de uu tien duoc ro rang hon.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong de tranh lap lai rework.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong de giu nhip do on dinh.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong de giam nham lan.
+    - Ban co the dung gui viec moi sau 10 gio toi duoc khong de toi co the giao viec on dinh.
+    - Toi khong the nhan viec nay neu khong bo viec khac de uu tien duoc ro rang hon.
+    - Toi khong the nhan viec nay neu khong bo viec khac de tranh lap lai rework.
+    - Toi khong the nhan viec nay neu khong bo viec khac de giu nhip do on dinh.
+    - Toi khong the nhan viec nay neu khong bo viec khac de giam nham lan.
+    - Toi khong the nhan viec nay neu khong bo viec khac de toi co the giao viec on dinh.
+    - Lam on dung sua bai cua toi khi chua bao truoc de uu tien duoc ro rang hon.
+    - Lam on dung sua bai cua toi khi chua bao truoc de tranh lap lai rework.
+    - Lam on dung sua bai cua toi khi chua bao truoc de giu nhip do on dinh.
+    - Lam on dung sua bai cua toi khi chua bao truoc de giam nham lan.
+    - Lam on dung sua bai cua toi khi chua bao truoc de toi co the giao viec on dinh.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh de uu tien duoc ro rang hon.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh de tranh lap lai rework.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh de giu nhip do on dinh.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh de giam nham lan.
+    - Minh can mot nguoi chiu trach nhiem quyet dinh de toi co the giao viec on dinh.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset de uu tien duoc ro rang hon.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset de tranh lap lai rework.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset de giu nhip do on dinh.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset de giam nham lan.
+    - Tin nhan truoc nghe kha gay gat, toi muon reset de toi co the giao viec on dinh.
+    - Toi dang roi ve uu tien va deadline de uu tien duoc ro rang hon.
+    - Toi dang roi ve uu tien va deadline de tranh lap lai rework.
+    - Toi dang roi ve uu tien va deadline de giu nhip do on dinh.
+    - Toi dang roi ve uu tien va deadline de giam nham lan.
+    - Toi dang roi ve uu tien va deadline de toi co the giao viec on dinh.
+    - Toi muon giup, nhung yeu cau qua mo ho de uu tien duoc ro rang hon.
+    - Toi muon giup, nhung yeu cau qua mo ho de tranh lap lai rework.
+    - Toi muon giup, nhung yeu cau qua mo ho de giu nhip do on dinh.
+    - Toi muon giup, nhung yeu cau qua mo ho de giam nham lan.
+    - Toi muon giup, nhung yeu cau qua mo ho de toi co the giao viec on dinh.
+    - Toi can it bi ngat quang hon de xong viec de uu tien duoc ro rang hon.
+    - Toi can it bi ngat quang hon de xong viec de tranh lap lai rework.
+    - Toi can it bi ngat quang hon de xong viec de giu nhip do on dinh.
+    - Toi can it bi ngat quang hon de xong viec de giam nham lan.
+    - Toi can it bi ngat quang hon de xong viec de toi co the giao viec on dinh.
+    - Lam on Ban co the dung gui viec moi sau 10 gio toi duoc khong?
+    - 'De ro rang hon: Ban co the dung gui viec moi sau 10 gio toi duoc khong?'
+    - 'Noi ngan gon: Ban co the dung gui viec moi sau 10 gio toi duoc khong?'
+    - 'Diem quan trong: Ban co the dung gui viec moi sau 10 gio toi duoc khong?'
+    - 'De day nhanh viec: Ban co the dung gui viec moi sau 10 gio toi duoc khong?'
+    - Lam on Toi khong the nhan viec nay neu khong bo viec khac.
+    - 'De ro rang hon: Toi khong the nhan viec nay neu khong bo viec khac.'
+    - 'Noi ngan gon: Toi khong the nhan viec nay neu khong bo viec khac.'
+    - 'Diem quan trong: Toi khong the nhan viec nay neu khong bo viec khac.'
+    - 'De day nhanh viec: Toi khong the nhan viec nay neu khong bo viec khac.'
+    - 'De ro rang hon: Lam on dung sua bai cua toi khi chua bao truoc.'
+    - 'Noi ngan gon: Lam on dung sua bai cua toi khi chua bao truoc.'
+    - 'Diem quan trong: Lam on dung sua bai cua toi khi chua bao truoc.'
+    - 'De day nhanh viec: Lam on dung sua bai cua toi khi chua bao truoc.'
+    - Lam on Minh can mot nguoi chiu trach nhiem quyet dinh.
+    - 'De ro rang hon: Minh can mot nguoi chiu trach nhiem quyet dinh.'
+    - 'Noi ngan gon: Minh can mot nguoi chiu trach nhiem quyet dinh.'
+    - 'Diem quan trong: Minh can mot nguoi chiu trach nhiem quyet dinh.'
+    - 'De day nhanh viec: Minh can mot nguoi chiu trach nhiem quyet dinh.'
+    - Lam on Tin nhan truoc nghe kha gay gat, toi muon reset.
+    - 'De ro rang hon: Tin nhan truoc nghe kha gay gat, toi muon reset.'
+    - 'Noi ngan gon: Tin nhan truoc nghe kha gay gat, toi muon reset.'
+    - 'Diem quan trong: Tin nhan truoc nghe kha gay gat, toi muon reset.'
+    - 'De day nhanh viec: Tin nhan truoc nghe kha gay gat, toi muon reset.'
+    - Lam on Toi dang roi ve uu tien va deadline.
+    - 'De ro rang hon: Toi dang roi ve uu tien va deadline.'
+    - 'Noi ngan gon: Toi dang roi ve uu tien va deadline.'
+    - 'Diem quan trong: Toi dang roi ve uu tien va deadline.'
+    - 'De day nhanh viec: Toi dang roi ve uu tien va deadline.'
+    - Lam on Toi muon giup, nhung yeu cau qua mo ho.
+    - 'De ro rang hon: Toi muon giup, nhung yeu cau qua mo ho.'
+    context_line_b:
+    - 'Boi canh: viec nay da xay ra 3 lan tuan nay.'
+    - 'Boi canh: toi da nhac den mot lan roi.'
+    - 'Boi canh: no dang lam cham ca du an.'
+    - 'Boi canh: toi muon giai quyet ma khong lam lon chuyen.'
+    - 'Boi canh: toi van muon hop tac tot.'
+    - 'Boi canh: toi can mot ban de gui trong hom nay.'
+    - 'Boi canh: toi so minh nghe bi tho.'
+    - 'Boi canh: no can hop voi {medium}.'
+    - '{situation}.'
+    - '{medium}; {constraint}.'
+    - '{audience}; {situation}.'
+    - '{constraint}; {change_request}.'
+    - '{audience}; {situation}; {constraint}.'
+    draft_line_1b:
+    - '{situation}.'
+    - '{audience}; {situation}.'
+    - '{medium}; {situation}.'
+    - '{audience}; {medium}; {situation}.'
+    draft_line_2b:
+    - '{change_request}; {desired_outcome}.'
+    - '{change_request}; {constraint}.'
+    detail_line_b:
+    - Yeu cau van bam sat {desired_outcome}.
+    - Cach dien dat van giu {constraint}.
+    - Mau nay hop voi {medium} va van tap trung vao {situation}.
+    - Ranh gioi ro rang ma khong lam xau di moi quan he.
+    - Van giu chat {tone_style} va de thuc thi.
+    - Buoc tiep theo duoc noi ro rang.
+    - Tranh do loi va van giu nhip tien do.
+    - Neu can, co the rut gon con mot cau.
+    - Co the chinh mot menh de cho hop kenh {medium}.
+    - Thong diep giu tinh hop tac nhung van dat gioi han.
+    - Yeu cau cu the va de lam theo.
+    - Ngay ca khi gap ap luc, y van ro.
+    assistant_followup_b:
+    - Neu ban muon, co the chon ban mem hon hoac ran hon.
+    - Neu ban can, toi rut gon thanh mot ban ngan cho {medium}.
+    - Neu ban dan nguyen cau da nhan, toi se chinh sat hon.
+    - Neu can, toi co the dua 2 ban voi do ran khac nhau.
+    - Neu ban muon, toi doi sang ban gon hon hoac dong cam hon.
+    - Toi cung co the lam mot ban truc dien hon neu can.
+    - 'Trong tam: {desired_outcome}.'
+    - 'Dieu chinh: {change_request}.'
+    context_extra:
+    - 'Boi canh: {audience}; {situation}; {medium}.'
+    - 'Boi canh: {situation}; {desired_outcome}.'
+    - 'Boi canh: {change_request}; {desired_outcome}.'
+    - 'Boi canh: {user_goal}; {constraint}.'
+    - 'Boi canh: {audience}; {constraint}; {desired_outcome}.'
+    - 'Boi canh: {medium}; {constraint}; {situation}.'
+    - 'Boi canh: {change_request}; {constraint}.'
+    - 'Boi canh: {user_goal}; {desired_outcome}.'
+    - 'Boi canh: {situation}; {change_request}; {desired_outcome}.'
+    - 'Boi canh: {audience}; {situation}; {constraint}.'
+    - 'Boi canh: {medium}; {change_request}; {desired_outcome}.'
+    - 'Boi canh: {audience}; {medium}; {desired_outcome}.'
+    - 'Boi canh: {focus_a}; {focus_b}.'
+    - 'Boi canh: {focus_c}; {focus_d}.'
+    - 'Boi canh: {desired_outcome}; {focus_a}.'
+    - 'Boi canh: {constraint}; {focus_b}.'
+    - 'Boi canh: {user_goal}; {focus_c}.'
+    - 'Boi canh: {situation}; {focus_d}.'
+    - 'Boi canh: {audience}; {focus_a}; {focus_b}.'
+    - 'Boi canh: {medium}; {focus_c}; {focus_d}.'
+    - 'Boi canh: {change_request}; {focus_a}; {focus_c}.'
+    - 'Boi canh: {desired_outcome}; {focus_b}; {focus_d}.'
+    - 'Boi canh: {user_goal}; {focus_a}; {focus_d}.'
+    - 'Boi canh: {constraint}; {focus_b}; {focus_c}.'
+    unique_detail:
+    - 'Trong tam: {user_goal}; {change_request}; {desired_outcome}.'
+    - 'Trong tam: {desired_outcome}; {constraint}; {situation}.'
+    - 'Trong tam: {audience}; {medium}; {situation}.'
+    - 'Trong tam: {change_request}; {desired_outcome}; {constraint}.'
+    - 'Trong tam: {situation}; {user_goal}; {desired_outcome}.'
+    - 'Trong tam: {audience}; {desired_outcome}; {constraint}.'
+    - 'Trong tam: {medium}; {change_request}; {constraint}.'
+    - 'Trong tam: {focus_a}; {focus_b}; {focus_c}.'
+    - 'Trong tam: {focus_b}; {focus_c}; {focus_d}.'
+    - 'Trong tam: {focus_a}; {focus_c}; {focus_d}.'
+    - 'Trong tam: {change_request}; {focus_a}; {focus_b}.'
+    - 'Trong tam: {desired_outcome}; {focus_b}; {focus_c}.'
+    - 'Trong tam: {constraint}; {focus_c}; {focus_d}.'
+    - 'Trong tam: {user_goal}; {focus_a}; {focus_d}.'
+    - 'Trong tam: {audience}; {focus_a}; {focus_b}.'
+    - 'Trong tam: {medium}; {focus_c}; {focus_d}.'
+    - 'Trong tam: {situation}; {focus_a}; {focus_c}.'
+    - 'Trong tam: {desired_outcome}; {focus_b}; {focus_d}.'
+    - 'Trong tam: {change_request}; {desired_outcome}; {focus_c}.'
+    - 'Trong tam: {constraint}; {user_goal}; {focus_d}.'
+    - 'Trong tam: {audience}; {change_request}; {focus_a}.'
+    - 'Trong tam: {medium}; {desired_outcome}; {focus_b}.'
+    - 'Trong tam: {situation}; {constraint}; {focus_c}.'
+    - 'Trong tam: {user_goal}; {change_request}; {focus_d}.'
+    diversity_clause:
+    - 'Dieu chinh: {change_request}; {desired_outcome}; {constraint}.'
+    - 'Dieu chinh: {audience}; {medium}; {situation}.'
+    - 'Dieu chinh: {user_goal}; {change_request}; {desired_outcome}.'
+    - 'Dieu chinh: {situation}; {constraint}; {desired_outcome}.'
+    - 'Dieu chinh: {focus_a}; {focus_b}; {focus_c}.'
+    - 'Dieu chinh: {focus_b}; {focus_c}; {focus_d}.'
+    - 'Dieu chinh: {focus_a}; {focus_c}; {focus_d}.'
+    - 'Dieu chinh: {focus_a}; {focus_b}; {focus_d}.'
+    - 'Dieu chinh: {audience}; {change_request}; {focus_a}.'
+    - 'Dieu chinh: {medium}; {desired_outcome}; {focus_b}.'
+    - 'Dieu chinh: {situation}; {constraint}; {focus_c}.'
+    - 'Dieu chinh: {user_goal}; {change_request}; {focus_d}.'
+    - 'Dieu chinh: {desired_outcome}; {constraint}; {focus_a}.'
+    - 'Dieu chinh: {change_request}; {focus_b}; {focus_c}.'
+    - 'Dieu chinh: {audience}; {focus_c}; {focus_d}.'
+    - 'Dieu chinh: {medium}; {focus_a}; {focus_b}.'
+    - 'Dieu chinh: {situation}; {focus_a}; {focus_d}.'
+    - 'Dieu chinh: {user_goal}; {focus_b}; {focus_c}.'
+    - 'Dieu chinh: {constraint}; {focus_c}; {focus_d}.'
+    - 'Dieu chinh: {change_request}; {desired_outcome}; {focus_a}.'
+    - 'Dieu chinh: {audience}; {desired_outcome}; {focus_b}.'
+    - 'Dieu chinh: {medium}; {constraint}; {focus_c}.'
+    - 'Dieu chinh: {situation}; {user_goal}; {focus_d}.'
+    - 'Dieu chinh: {change_request}; {constraint}; {focus_a}.'
+    focus_a:
+    - giu duoc moi quan he
+    - chot duoc buoc tiep theo
+    - giam nham lan
+    - dung lai mau lap
+    - can chinh uu tien
+    - giu trao doi xay dung
+    - tranh leo thang lan nua
+    - lam ro quyet dinh
+    - tao thanh thong le lap lai duoc
+    - day cong viec di tiep
+    focus_b:
+    - giu ngan gon
+    - cung ran nhung ton trong
+    - nhe nhang nhung ro
+    - tranh do loi
+    - tranh giong dieu mia mai
+    - bam sat su that
+    - nghe tu tin
+    - nghe binh tinh
+    - dung ngon ngu de hieu
+    focus_c:
+    - giu yeu cau moi trong gio lam viec
+    - danh dau ro viec khan
+    - gom thay doi vao mot lan cap nhat
+    - bao nhanh truoc khi sua bai
+    - khoa scope truoc khi trien khai
+    - giam ngat quang trong block tap trung
+    - dat yeu cau trong mot cau ro rang
+    - xac nhan tieu chi hoan thanh
+    focus_d:
+    - tin nhan khuya
+    - quyen so huu khong ro
+    - yeu cau sat gio
+    - tre deadline
+    - scope no dan
+    - huong dan kho hieu
+    - thread cang thang
+    - qua nhieu cuoc hop
+    - phan hoi cham
+    - rework lap lai
+    - mot tin nhan gay gat
+    - hieu nham
+    - feedback de bi tu ai
+    - mot yeu cau toi khong the nhan
+    - ke hoach doi lien tuc
+    - xung dot lich
+    latin_a:
+    - dong nghiep cua toi
+    - quan ly cua toi
+    - mot ban trong nhom
+    - khach hang
+    - ban than
+    - anh chi em
+    - nguoi yeu
+    - ban cung phong
+    - giang vien
+    - nhom chat
+    latin_b:
+    - email
+    - chat
+    - tin nhan
+    - tin theo doi sau hop
+    - cap nhat du an
+    - ghi chu ngan
+    - tin trang thai
+    - binh luan review
+    latin_c:
+    - dat ranh gioi ro rang
+    - xin loi nhung khong qua da
+    - dua feedback truc dien
+    - tu choi lich su
+    - yeu cau ro rang hon
+    - ha nhiet giọng dieu
+    - theo doi ma khong gay ap luc
+    - chinh sua hieu nham
+    - dat lai ky vong
+    - de nghi thay doi hanh vi
+    latin_d:
+    - giu duoc moi quan he
+    - chot duoc buoc tiep theo
+    - giam nham lan
+    - dung lai mau lap
+    - can chinh uu tien
+    - giu trao doi xay dung
+    - tranh leo thang lan nua
+    - lam ro quyet dinh
+    - tao thanh thong le lap lai duoc
+    - day cong viec di tiep
+    extra_clause:
+    - Ranh gioi ro rang ma khong lam xau di moi quan he.
+    - Buoc tiep theo duoc noi ro rang.
+    - Tranh do loi va van giu nhip tien do.
+    - Neu can, co the rut gon con mot cau.
+    - Thong diep giu tinh hop tac nhung van dat gioi han.
+    - Yeu cau cu the va de lam theo.
+    - Ngay ca khi gap ap luc, y van ro.
+  row_template:
+    language: '{language}'
+    mode: '{mode}'
+    tone: '{tone}'
+    emote6: '{emote6}'
+    continuity_choice: '{continuity_choice}'
+    intent_family: '{intent_family}'
+    intent_subtype: '{intent_subtype}'
+    user_message: '{user_message}'
+    assistant_response: '{assistant_response}'

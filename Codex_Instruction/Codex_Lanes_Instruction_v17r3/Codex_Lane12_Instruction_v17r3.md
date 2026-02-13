@@ -7,13 +7,13 @@ Use ONLY:
 3) `Dino_vNext_Multi-Lane_Training_Volume_Master_Spec_02_03_2026.md` — §3.2 global language distribution
 4) `PCT-perf_Training_config_Spec_36_lanes__02_01_2026.md` — LoRA lane ratio + any cross‑lane constraints
 
-Do NOT imitate any legacy lane.yaml “context format”. Produce configs that satisfy the **current** lane schema and the v17 lane logic.
+Do NOT imitate any legacy lane_en.yaml “context format”. Produce configs that satisfy the **current** lane schema and the v17 lane logic.
 
 ---
 
 ## Deliverables (must produce 14 configs in this lane directory)
 Create these files:
-- `lane.yaml` (English)
+- `lane_en.yaml` (English)
 - `lane_zh-hk.yaml`
 - `lane_th.yaml`
 - `lane_zh-hant.yaml`

@@ -1,0 +1,492 @@
+lane_id: "lane_33_fallback_behavior"
+wave: "wave0"
+target_base: "dino_qwen4b"
+source_type: "local"
+
+# template_expand lanes do not require source files
+sources: []
+
+# how many rows to build (can be overridden by --limit)
+count_target: 1961
+# REQUIRED PCT fields: keep these in the human-facing lane configs
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: "suppress_continuity"
+  flow_state: "none"
+  history_scope: "thread_only"
+  representation_choice: "plain_text"
+  safety_tag: "safe"
+
+  system_prompt_id: "dino.system.v1"
+# forward-compat placeholders
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators: []
+transform_pipeline: []
+
+generation_mode: "template_expand"
+system_prompt_path: prompts/system/dino_system_prompt.txt
+
+
+output_dir: out_runs/colleague_test
+
+teacher_runtime:
+  sample_percent: 5
+  enabled: false
+  provider: ollama
+  ollama_host: "http://127.0.0.1:11434"
+  model: "dino-pro-7b"
+  policy: structure_only
+  on_missing_evidence: abstain
+  system_prompt_path: prompts/teacher/lane_33_teacher_system_prompt.txt
+
+
+
+
+  timeout_s: 150
+  keepalive: "5m"
+# similarity/dedupe controls (tune per-lane)
+similarity:
+  max_token_overlap_ratio: 0.3
+  ignore_stopwords: true
+  ignore_tokens:
+    - "dino"
+    - "assistant"
+    - "fallback"
+    - "limit"
+    - "limits"
+    - "limitation"
+    - "live"
+    - "real"
+    - "time"
+    - "tools"
+    - "tool"
+    - "offline"
+    - "online"
+    - "cannot"
+    - "can't"
+    - "next"
+    - "step"
+    - "honest"
+  ngram: 2
+
+template_expand:
+  seed: 0
+  count_target: 1961
+  max_attempts: 900000
+  attempts_per_row: 400
+
+  slot_banks:
+    # Language policy: keep English only for this run
+    language: ["es"]
+
+    # Mode selection kept broad but mode shaping is still respected in text
+    mode:
+      quick: 4
+      think: 4
+      conversation: 2
+
+    tone:
+      - "professional"
+      - "serious"
+      - "friendly"
+      - "family"
+      - "best_friend"
+      - "professional"
+      - "serious"
+      - "friendly"
+
+    emote6: ["neutral"]
+    continuity_choice: ["suppress_continuity"]
+
+    # Operator-locked intent labels
+    intent_family: ["qa_general"]
+    intent_subtype: ["general"]
+
+    # Neutral/false labels outside lane scope
+    safety_tag: ["safe"]
+    needs_search: [false]
+    needs_history_search: [false]
+    history_scope: ["thread_only"]
+    representation_choice: ["plain_text"]
+    flow_state: ["none"]
+
+    # Fallback scenario construction (slot-heavy and alignment-safe)
+    user_role:
+      - "a careful user"
+      - "a busy planner"
+      - "a cautious teammate"
+      - "someone avoiding mistakes"
+      - "a reviewer"
+      - "a decision maker"
+      - "a note taker"
+      - "a coordinator"
+      - "a first-time user"
+      - "a power user"
+
+    device_state:
+      - "tools are currently unavailable"
+      - "tool access is turned off"
+      - "I am in an offline session"
+      - "live browsing is not enabled here"
+      - "external integrations are disabled"
+      - "network access is restricted"
+      - "this session cannot call tools"
+      - "live lookups are blocked in this mode"
+      - "I cannot reach external services right now"
+      - "there is no live connector access in this context"
+
+    request_verb:
+      - "check"
+      - "confirm"
+      - "verify"
+      - "look up"
+      - "pull"
+      - "fetch"
+      - "tell me"
+      - "give me"
+      - "get"
+      - "find"
+
+    live_target:
+      - "the latest status"
+      - "a live availability update"
+      - "the current value"
+      - "the most recent change"
+      - "an up-to-date answer"
+      - "a real-time snapshot"
+      - "the newest update"
+      - "the current state"
+      - "a live readout"
+      - "the current version"
+
+    subject_area:
+      - "a schedule"
+      - "an availability window"
+      - "a service status"
+      - "a delivery status"
+      - "a queue length"
+      - "a route condition"
+      - "a policy update"
+      - "a settings state"
+      - "a resource usage summary"
+      - "a task board status"
+      - "a readiness checklist"
+      - "a risk log"
+      - "a project snapshot"
+      - "a handoff note"
+      - "a meeting plan"
+
+    scope_detail:
+      - "for my next step"
+      - "for a quick decision"
+      - "for a status update"
+      - "for a handoff"
+      - "for a review"
+      - "for a meeting"
+      - "for a planning note"
+      - "for a brief"
+      - "for a checkpoint"
+      - "for alignment"
+
+    time_reference:
+      - "right now"
+      - "today"
+      - "this hour"
+      - "in this session"
+      - "at the moment"
+      - "as of now"
+      - "before I proceed"
+      - "for this update"
+      - "for this check-in"
+      - "for the next move"
+
+    mode_hint:
+      - "Use mode={mode}"
+      - "Respond in {mode} mode"
+      - "Keep the response in {mode} mode"
+      - "Please stick to {mode} mode"
+      - "Mode requirement: {mode}"
+      - "Target mode is {mode}"
+      - "Mode anchor is {mode}"
+      - "The mode label is {mode}"
+
+    format_hint:
+      - "with a compact structure"
+      - "with a clear structure"
+      - "with 3–5 bullet lines"
+      - "with a short spoken style"
+      - "with a brief summary first"
+      - "with explicit guardrails"
+      - "with a skimmable layout"
+      - "with a practical framing"
+
+    constraint_line:
+      - "Do not invent details."
+      - "Keep it honest about limitations."
+      - "Avoid pretending you checked something live."
+      - "Mark any assumption clearly."
+      - "Stay inside what you can actually do here."
+      - "Do not claim tool results."
+      - "Keep the fallback explicit."
+      - "Prefer safe alternatives over guesses."
+      - "Be clear about what is and is not verified."
+      - "Keep the response grounded in this session."
+
+    user_request_line:
+      - "I am {user_role}. Please {request_verb} {live_target} for {subject_area} {scope_detail} {time_reference}. {mode_hint} {format_hint}"
+      - "{mode_hint}. I am {user_role} and I need you to {request_verb} {live_target} about {subject_area} {scope_detail} {time_reference}. {constraint_line}"
+      - "For {subject_area} {scope_detail}, can you {request_verb} {live_target} {time_reference}? I am {user_role}. {mode_hint} and respond {format_hint}"
+      - "{mode_hint} and respond {format_hint}. I am {user_role}. I want you to {request_verb} {live_target} for {subject_area} {scope_detail} {time_reference}."
+      - "I am {user_role}. {mode_hint}. Please {request_verb} {live_target} for {subject_area} {scope_detail} {time_reference}, and {constraint_line}"
+      - "Need help {time_reference}: {request_verb} {live_target} for {subject_area} {scope_detail}. I am {user_role}. {mode_hint}. Respond {format_hint}"
+      - "{mode_hint}. As {user_role}, I want you to {request_verb} {live_target} tied to {subject_area} {scope_detail} {time_reference}. {constraint_line}"
+      - "Please {request_verb} {live_target} for {subject_area} {scope_detail} {time_reference}. I am {user_role}. {mode_hint}. Keep it {format_hint}"
+      - "I am {user_role}. I need {live_target} on {subject_area} {scope_detail} {time_reference}. {mode_hint}. Use {format_hint} and {constraint_line}"
+      - "{mode_hint}. I am {user_role}. Help me {request_verb} {live_target} for {subject_area} {scope_detail} {time_reference}, using {format_hint}."
+
+    limitation_subject:
+      - "live data"
+      - "real-time lookups"
+      - "external tools"
+      - "connected services"
+      - "tool results"
+      - "up-to-the-minute updates"
+      - "account-level information"
+      - "private system state"
+      - "device integrations"
+      - "background actions"
+
+    limitation_verb:
+      - "I cannot access"
+      - "I cannot directly fetch"
+      - "I do not have access to"
+      - "I cannot reliably provide"
+      - "I cannot confirm"
+      - "I cannot check"
+      - "I cannot retrieve"
+      - "I cannot perform"
+
+    risk_clause:
+      - "unverified live results"
+      - "a claimed real-time answer"
+      - "tool outputs that were never run"
+      - "a live status I did not actually see"
+      - "current values that could be wrong"
+      - "a pretend lookup"
+      - "made-up live data"
+      - "a confident but unverified claim"
+      - "false certainty"
+      - "tool-based assertions without tools"
+
+    fallback_action:
+      - "offer a manual verification checklist"
+      - "give you a safe template you can paste into a trusted source"
+      - "provide a neutral decision rubric instead of a live claim"
+      - "show what to check and in what order"
+      - "draft a message that asks for the missing live details"
+      - "help you structure the question for a trusted source"
+      - "turn this into a clear next-step plan"
+      - "prepare a compact handoff note with placeholders"
+      - "give a short plan that avoids live assumptions"
+      - "outline a fallback path that stays honest"
+
+    safe_source:
+      - "an official source you trust"
+      - "the system you already use"
+      - "a first-party dashboard"
+      - "your own settings screen"
+      - "a verified internal page"
+      - "a reliable status panel"
+      - "the primary source for that topic"
+      - "the place where the data is actually maintained"
+      - "a trusted source of record"
+      - "the canonical source in your workflow"
+
+    alt_deliverable:
+      - "a verification checklist"
+      - "a short decision rubric"
+      - "a paste-ready request template"
+      - "a structured summary template"
+      - "a handoff note with placeholders"
+      - "a safe fallback plan"
+      - "a skimmable update format"
+      - "a question list that reduces risk"
+      - "a bounded plan you can execute manually"
+      - "a minimal, honest status update"
+
+    user_goal:
+      - "make the next move clear"
+      - "avoid a wrong call"
+      - "keep the update honest"
+      - "reduce confusion"
+      - "prevent rework"
+      - "keep people aligned"
+      - "move forward safely"
+      - "avoid false certainty"
+      - "stay inside the scope"
+      - "make the decision defensible"
+
+    assumption_tag:
+      - "ASSUMPTION"
+      - "UNVERIFIED"
+      - "PLACEHOLDER"
+      - "NOT_CONFIRMED"
+      - "TO_VERIFY"
+      - "CHECK_REQUIRED"
+
+    probe_question:
+      - "Do you want a manual fallback that avoids live claims?"
+      - "Should I proceed with a no-tools fallback?"
+      - "Is it okay if I give you a safe alternative instead of a live answer?"
+      - "Do you want the safest fallback path given the limitations?"
+      - "Should I frame this as a verify-first plan?"
+      - "Do you want a template you can fill with live details?"
+      - "Should I keep everything explicitly unverified unless you paste data?"
+      - "Do you want a short checklist that you can run outside this chat?"
+      - "Should I avoid any live assumptions and just structure the next step?"
+      - "Do you want a version that is easy to share with others?"
+
+    probe_line:
+      - "Quick check: {device_state}. {probe_question}"
+      - "Before I answer: {device_state}. {probe_question}"
+      - "Constraint reminder: {device_state}. {probe_question}"
+      - "Heads-up: {device_state}, so I will avoid {risk_clause}. {probe_question}"
+      - "Note: {device_state}. I will not provide {risk_clause}. {probe_question}"
+      - "Given that {device_state}, I should avoid {risk_clause}. {probe_question}"
+
+    fallback_preference:
+      - "Give me the safest fallback."
+      - "Use a verify-first approach."
+      - "Keep it short but structured."
+      - "Ask me for only the minimum inputs."
+      - "Do not pretend anything is live."
+      - "Make the limitations explicit."
+      - "Give me something I can share."
+      - "Focus on what I can do manually."
+      - "Keep the answer skimmable."
+      - "Prefer clarity over completeness."
+
+    extra_constraint:
+      - "Use neutral wording."
+      - "Avoid strong claims."
+      - "Keep the scope tight."
+      - "Do not add new requirements."
+      - "Keep it to one screen."
+      - "Make the boundary obvious."
+      - "Call out what needs verification."
+      - "Keep each line actionable."
+      - "Prioritize the next step."
+      - "Avoid tool-specific language."
+
+    tone_constraint:
+      - "calm"
+      - "direct"
+      - "steady"
+      - "plain-spoken"
+      - "practical"
+      - "minimal"
+      - "clear"
+      - "measured"
+      - "neutral"
+      - "crisp"
+
+    user_followup_line:
+      - "Yes. {fallback_preference} {extra_constraint} Keep it {tone_constraint}."
+      - "Proceed. {fallback_preference} Also, {extra_constraint} Keep it {tone_constraint}."
+      - "That works. {fallback_preference} Please {extra_constraint} and be {tone_constraint}."
+      - "Do it. {fallback_preference} {extra_constraint} Tone should be {tone_constraint}."
+      - "Go ahead. {fallback_preference} {extra_constraint} Keep the tone {tone_constraint}."
+      - "Approved. {fallback_preference} {extra_constraint} Use a {tone_constraint} tone."
+
+    dialogue_context:
+      - "User: {user_request_line}\nAssistant: {probe_line}\nUser: {user_followup_line}"
+      - "Context:\nUser: {user_request_line}\nAssistant: {probe_line}\nUser: {user_followup_line}"
+      - "Conversation so far:\nUser: {user_request_line}\nAssistant: {probe_line}\nUser: {user_followup_line}"
+      - "U: {user_request_line}\nA: {probe_line}\nU: {user_followup_line}"
+      - "Dialogue:\nU: {user_request_line}\nA: {probe_line}\nU: {user_followup_line}"
+      - "User message: {user_request_line}\nAssistant reply: {probe_line}\nUser follow-up: {user_followup_line}"
+
+    assistant_open:
+      - "I will use a graceful fallback and avoid any fake live results."
+      - "I cannot claim live results here, so I will use a safe fallback."
+      - "Given the limitations, I will not pretend to check anything live."
+      - "I will keep this honest: no live tool claims, only safe alternatives."
+      - "I will respond with a fallback that respects the limits of this session."
+      - "I will keep the answer grounded and explicit about limitations."
+
+    assistant_limit_line:
+      - "- Limitation: {limitation_verb} {limitation_subject} because {device_state}. I will avoid {risk_clause}."
+      - "- Limitation: {device_state}, so {limitation_verb} {limitation_subject}. I will not provide {risk_clause}."
+      - "- Limitation: {limitation_verb} {limitation_subject} in this session. That prevents {risk_clause}."
+      - "- Limitation: I need to be honest about scope: {device_state}. That means {limitation_verb} {limitation_subject}."
+
+    assistant_fallback_line_1:
+      - "- Fallback: I can {fallback_action} and point you to {safe_source}."
+      - "- Fallback: I will {fallback_action} so you can verify via {safe_source}."
+      - "- Fallback: I can {fallback_action}, and you can confirm it in {safe_source}."
+      - "- Fallback: I will {fallback_action} and keep the source of truth as {safe_source}."
+
+    assistant_fallback_line_2:
+      - "- Deliverable: I can produce {alt_deliverable} focused on {user_goal}."
+      - "- Deliverable: I can give you {alt_deliverable} that helps you {user_goal}."
+      - "- Deliverable: I can structure this as {alt_deliverable} to {user_goal}."
+      - "- Deliverable: I can generate {alt_deliverable} so you can {user_goal}."
+
+    assistant_guardrail_line:
+      - "- Guardrail: I will tag any guess as {assumption_tag} and keep verified vs unverified separate."
+      - "- Guardrail: Any missing live input will be marked {assumption_tag}."
+      - "- Guardrail: I will avoid {risk_clause} and clearly label any {assumption_tag} parts."
+      - "- Guardrail: I will keep the answer honest by marking assumptions as {assumption_tag}."
+
+    next_step_action:
+      - "Paste the live details you can see, and I will format them safely."
+      - "Tell me what source of record you will check, and I will shape the request."
+      - "Share the key fields you already have, and I will draft a clean update."
+      - "Provide the current snapshot from your side, and I will turn it into a structured brief."
+      - "Give me the minimal inputs, and I will produce a safe, shareable version."
+      - "Confirm what cannot be checked here, and I will focus on the fallback path."
+      - "Name the decision you need to make, and I will frame the tradeoffs without live claims."
+      - "Tell me the audience and constraint, and I will produce the safest fallback output."
+      - "Point me to the trusted source, and I will create a verification checklist around it."
+      - "Paste any partial data you have, and I will keep it clearly labeled and scoped."
+
+    assistant_next_step_line:
+      - "Next step: {next_step_action} I will keep everything aligned to the limitations."
+      - "Next step: {next_step_action} I will avoid live claims and keep labels explicit."
+      - "Next step: {next_step_action} I will stay within what can be done in this session."
+      - "Next step: {next_step_action} I will keep the fallback clear and practical."
+
+    assistant_response:
+      - "{assistant_open}\n{assistant_limit_line}\n{assistant_fallback_line_1}\n{assistant_fallback_line_2}\n{assistant_guardrail_line}\n{assistant_next_step_line}"
+      - "{assistant_open}\n{assistant_limit_line}\n{assistant_fallback_line_1}\n{assistant_guardrail_line}\n{assistant_fallback_line_2}\n{assistant_next_step_line}"
+      - "{assistant_open}\n{assistant_limit_line}\n{assistant_fallback_line_1}\n{assistant_fallback_line_2}\n{assistant_next_step_line}"
+      - "{assistant_open}\n{assistant_limit_line}\n{assistant_guardrail_line}\n{assistant_fallback_line_1}\n{assistant_fallback_line_2}\n{assistant_next_step_line}"
+
+  row_template:
+    language: "{language}"
+    mode: "{mode}"
+    tone: "{tone}"
+    emote6: "{emote6}"
+    continuity_choice: "{continuity_choice}"
+
+    intent_family: "{intent_family}"
+    intent_subtype: "{intent_subtype}"
+
+    representation_choice: "{representation_choice}"
+    flow_state: "{flow_state}"
+    safety_tag: "{safety_tag}"
+
+    needs_search: "{needs_search}"
+    needs_history_search: "{needs_history_search}"
+    history_scope: "{history_scope}"
+
+    user_message: "{dialogue_context}"
+    assistant_response: "{assistant_response}"
+
+notes: "Wave0 Lane33 — fallback behavior (tool-unavailable honesty, slot-heavy multi-turn, no tool_call)"

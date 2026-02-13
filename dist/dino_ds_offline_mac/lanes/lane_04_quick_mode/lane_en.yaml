@@ -1,0 +1,526 @@
+lane_id: "lane_04_quick_mode"
+wave: "wave0"
+target_base: "dino_qwen4b"
+source_type: "local"
+
+# template_expand lanes do not require source files
+sources: []
+
+# how many rows to build (can be overridden by --limit)
+count_target: 60000
+
+# REQUIRED PCT fields: keep these in the human-facing lane configs
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: "suppress_continuity"
+  flow_state: "none"
+  history_scope: "thread_only"
+  representation_choice: "plain_text"
+  safety_tag: "safe"
+
+  system_prompt_id: "dino.system.v1"
+# forward-compat placeholders
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators: []
+transform_pipeline: []
+
+generation_mode: "teacher_runtime"
+system_prompt_path: prompts/system/dino_system_prompt.txt
+
+
+output_dir: out_runs/colleague_test
+
+teacher_runtime:
+  sample_percent: 5
+  enabled: true
+  provider: ollama
+  ollama_host: "http://127.0.0.1:11434"
+  model: "dino-pro-7b"
+  policy: structure_only
+  on_missing_evidence: abstain
+  system_prompt_path: prompts/teacher/lane_04_teacher_system_prompt.txt
+
+
+
+
+  timeout_s: 150
+  keepalive: "5m"
+# similarity/dedupe controls (tune per-lane)
+similarity:
+  max_token_overlap_ratio: 0.3
+  ignore_stopwords: true
+  ignore_tokens: ["dino", "ai", "assistant", "im", "i'm", "next", "step", "focus", "keep"]
+  ngram: 2
+
+template_expand:
+  seed: 0
+  count_target: 60000
+
+  slot_banks:
+    language: ["en"]
+    mode: ["quick"]
+    tone: ["professional", "serious", "friendly", "family", "best_friend"]
+    continuity_choice: ["suppress_continuity"]
+    intent_family: ["qa_general"]
+    intent_subtype: ["general"]
+
+    # User templates (expanded; all slot-driven)
+    user_template:
+      # Definitions / explanations
+      - "Explain {concept} in {length}."
+      - "Define {concept} for {audience} in {length}."
+      - "What is {concept}? Keep it {tone_style} and short."
+      - "Give a quick explanation of {concept} in plain language."
+      - "Explain {concept} as if I'm {audience}."
+      - "In one paragraph, explain {concept} for {audience}."
+      - "What's the difference between {concept_a} and {concept_b}?"
+      - "Give a short overview of {topic}."
+      - "What does {concept} mean in {domain}?"
+      - "Explain the purpose of {tool_artifact} in {domain}."
+
+      # How-to / steps
+      - "How do I {task} with {constraint}?"
+      - "Give me a quick plan to {task} by {timeframe}."
+      - "What's a simple way to {task}?"
+      - "Provide a short checklist to {task}."
+      - "Give me {count} steps to {task}."
+      - "How should I start {goal} if I have {constraint}?"
+      - "Help me {task} without overcomplicating it."
+      - "What are the first steps to {goal}?"
+      - "Give a quick framework to {task}."
+      - "How can I {task} this week?"
+
+      # Comparison / decision
+      - "Compare {option_a} vs {option_b} for {criteria}."
+      - "Which is better for {goal}: {option_a} or {option_b}?"
+      - "Give me quick pros and cons of {option_a} vs {option_b}."
+      - "Help me choose between {option_a} and {option_b} for {context}."
+      - "Which option fits {constraint}: {option_a} or {option_b}?"
+      - "Give a fast comparison of {option_a} and {option_b} for {criteria}."
+      - "What tradeoff should I expect between {option_a} and {option_b}?"
+      - "Which option is safer if I have {constraint}?"
+      - "I need a quick pick between {option_a} and {option_b} for {goal}."
+      - "Help me decide quickly: {option_a} or {option_b}?"
+
+      # Summarize / rewrite
+      - "Summarize this {doc_type} in {length}: {text_snippet}"
+      - "Rewrite this to be {tone_style}: {text_snippet}"
+      - "Make this clearer and shorter: {text_snippet}"
+      - "Condense this to {length}: {text_snippet}"
+      - "Fix the grammar quickly: {text_snippet}"
+      - "Rewrite this so it's {tone_style} and concise: {text_snippet}"
+      - "Summarize the key point in {length}: {text_snippet}"
+      - "Turn this into a short update: {text_snippet}"
+      - "Simplify this message: {text_snippet}"
+      - "Make this professional and brief: {text_snippet}"
+
+      # Brainstorm / recommend
+      - "Give me {count} ideas for {goal}."
+      - "Suggest {count} options for {context}."
+      - "Recommend a quick approach for {goal} with {constraint}."
+      - "List {count} quick tips for {topic}."
+      - "I need {count} suggestions to improve {topic}."
+      - "Give me a short list of ideas for {context}."
+      - "What are {count} quick wins for {goal}?"
+      - "Suggest {count} ways to {task}."
+      - "Give {count} concise recommendations for {goal}."
+      - "Offer {count} simple ideas to improve {topic}."
+
+      # Short QA (no bullets needed)
+      - "Explain what an {concept} is in one paragraph."
+      - "What are the key benefits of {concept}?"
+      - "Give a one-paragraph explanation of {topic}."
+      - "In a short paragraph, explain {concept} for {audience}."
+      - "Explain {concept} in one paragraph without bullet points."
+      - "What does {concept} do in {domain}?"
+      - "Give a short paragraph about {topic}."
+      - "Explain {concept_a} vs {concept_b} in one paragraph."
+      - "Describe {topic} in a short paragraph."
+      - "What is {concept} used for?"
+
+    # Content banks
+    concept:
+      - "a placeholder concept"
+      - "a mock idea"
+      - "a sample method"
+      - "a fictional model"
+      - "a demo framework"
+      - "a synthetic label"
+      - "a practice workflow"
+      - "a made-up principle"
+      - "a trial approach"
+      - "a mock system"
+      - "a test concept"
+      - "a generic process"
+      - "a draft construct"
+      - "a placeholder rule"
+      - "a fictional mechanism"
+      - "a toy example"
+      - "a demo technique"
+      - "a synthetic routine"
+      - "a sample pattern"
+      - "a mock protocol"
+
+    concept_a:
+      - "a mock approach"
+      - "a sample process"
+      - "a fictional system"
+      - "a demo plan"
+      - "a toy model"
+      - "a placeholder rule"
+      - "a trial workflow"
+      - "a made-up method"
+      - "a draft pattern"
+      - "a generic technique"
+
+    concept_b:
+      - "an alternate approach"
+      - "a different process"
+      - "a fictional system"
+      - "a demo option"
+      - "a toy model"
+      - "a placeholder rule"
+      - "a trial workflow"
+      - "a made-up method"
+      - "a draft pattern"
+      - "a generic technique"
+
+    domain:
+      - "a mock domain"
+      - "a fictional setting"
+      - "a training scenario"
+      - "a simulated context"
+      - "a practice setting"
+      - "a demo environment"
+      - "a sample project"
+      - "a placeholder space"
+
+    topic:
+      - "timeboxing"
+      - "simple planning"
+      - "clarity in messages"
+      - "focus habits"
+      - "work breakdown"
+      - "decision framing"
+      - "priority setting"
+      - "workflow cleanup"
+      - "alignment notes"
+      - "meeting prep"
+      - "task hygiene"
+      - "scope control"
+      - "goal phrasing"
+      - "quick triage"
+      - "next-step clarity"
+
+    task:
+      - "write a short update"
+      - "draft a client reply"
+      - "plan a study session"
+      - "outline a project"
+      - "summarize a meeting"
+      - "prepare for an interview"
+      - "create a weekly plan"
+      - "set a simple workout"
+      - "improve a resume bullet"
+      - "reduce meeting time"
+      - "prepare a presentation"
+      - "organize my to-do list"
+
+    goal:
+      - "choose a path"
+      - "improve my workflow"
+      - "get a clear answer"
+      - "move a project forward"
+      - "make a quick decision"
+      - "fix a communication issue"
+      - "start a new habit"
+      - "reduce mistakes"
+      - "hit a deadline"
+      - "get aligned with a team"
+
+    audience:
+      - "a beginner"
+      - "a teammate"
+      - "a client"
+      - "a student"
+      - "a manager"
+      - "a non-technical colleague"
+      - "a friend"
+      - "a recruiter"
+
+    length:
+      - "one paragraph"
+      - "2-3 sentences"
+      - "about 60 words"
+      - "a short paragraph"
+      - "4-5 sentences"
+
+    tone_style:
+      - "friendly"
+      - "professional"
+      - "serious"
+      - "direct"
+      - "warm"
+
+    doc_type:
+      - "email"
+      - "report"
+      - "meeting note"
+      - "status update"
+      - "proposal"
+      - "message"
+      - "summary"
+
+    text_snippet:
+      - "I missed the deadline and I'm sorry for the delay."
+      - "Can we reschedule our meeting to next week?"
+      - "The rollout went fine, but there were a few bugs."
+      - "Please review the draft and share feedback."
+      - "I need help prioritizing these tasks."
+      - "Thanks for your patience while I fix this."
+      - "The customer asked for a quick update today."
+      - "I won't be able to join the call tomorrow."
+      - "We should reduce scope to hit the deadline."
+      - "Let's move forward with the safer option."
+
+    option_a:
+      - "the lower cost option"
+      - "the faster approach"
+      - "the simpler plan"
+      - "the safer route"
+      - "the short term win"
+      - "the low effort path"
+      - "the more flexible option"
+      - "the higher impact route"
+
+    option_b:
+      - "the higher cost option"
+      - "the more reliable approach"
+      - "the more detailed plan"
+      - "the higher risk route"
+      - "the long term investment"
+      - "the higher effort path"
+      - "the more structured option"
+      - "the more conservative route"
+
+    criteria:
+      - "cost"
+      - "time"
+      - "quality"
+      - "risk"
+      - "simplicity"
+      - "speed"
+      - "reliability"
+      - "learning curve"
+
+    constraint:
+      - "a tight budget"
+      - "limited time"
+      - "a small team"
+      - "low risk tolerance"
+      - "no extra tools"
+      - "a short deadline"
+
+    timeframe:
+      - "by Friday"
+      - "this week"
+      - "within two weeks"
+      - "by the end of the month"
+      - "over the next 7 days"
+
+    context:
+      - "a project update"
+      - "a client reply"
+      - "a team decision"
+      - "a study plan"
+      - "a schedule change"
+      - "a product choice"
+
+    count: ["3", "4", "5"]
+
+    tool_artifact:
+      - "a mock brief"
+      - "a sample backlog"
+      - "a placeholder plan"
+      - "a draft note"
+      - "a toy spec"
+      - "a demo outline"
+
+    # Assistant structure banks
+    step1_title: ["Summary", "Quick answer", "Short answer", "Overview"]
+    step2_title: ["Key points", "Highlights", "Main points"]
+    step3_title: ["Next step", "Suggestion", "Action"]
+
+    summary_label: ["Summary", "Answer", "Quick take", "In short"]
+
+    summary_line:
+      - "{concept} is a simple way to describe how systems exchange information without needing to know internals."
+      - "Use {concept} as the main idea; keep it practical and focused on outcomes."
+      - "In {domain}, {concept} helps teams stay aligned and measure progress."
+      - "For {audience}, {concept} means a clear, shared way to make decisions or exchange data."
+      - "A quick take on {topic}: focus on what changes behavior and what removes friction."
+      - "For {goal}, you want a direct path that respects {constraint} and time."
+      - "The fastest way to {task} is to keep scope small and focus on one outcome."
+      - "A short view on {topic}: prioritize the highest impact action first."
+      - "A clear answer here is to focus on {criteria} and keep the rest secondary."
+      - "This is mainly about {topic}; keep it short and actionable."
+      - "The core idea: {concept} makes complex systems easier to work with."
+      - "If you're deciding between {option_a} and {option_b}, align with {criteria} first."
+      - "For {context}, keep the message brief and aligned with the goal."
+      - "The most direct answer is to center on {goal} and ignore distractions."
+      - "You can treat {concept} as a practical framework, not theory."
+      - "For a quick decision, compare {option_a} to {option_b} on {criteria}."
+
+    summary_line_2:
+      - ""
+      - ""
+      - "If you want more detail, tell me the priority and the constraint."
+      - "If you share the audience and goal, I can tighten it further."
+      - "Keep it to one outcome so the answer stays short."
+      - "This stays short by focusing on the top two factors."
+
+    priority:
+      - "cost"
+      - "time"
+      - "quality"
+      - "risk"
+      - "simplicity"
+      - "speed"
+      - "reliability"
+
+    tip:
+      - "keep the scope small"
+      - "start with the highest impact task"
+      - "use a simple checklist"
+      - "test on a small example"
+      - "ask one clarifying question"
+      - "confirm the key constraint"
+
+    tradeoff:
+      - "speed versus quality"
+      - "cost versus reliability"
+      - "simplicity versus flexibility"
+      - "short term win versus long term value"
+      - "risk versus reward"
+
+    pitfall:
+      - "overcomplicating the first step"
+      - "ignoring the main constraint"
+      - "trying to do everything at once"
+      - "skipping the quick review"
+      - "optimizing the wrong metric"
+
+    action_step:
+      - "tell me the top priority"
+      - "confirm the strictest constraint"
+      - "share the audience and goal"
+      - "pick between {option_a} and {option_b}"
+      - "choose the one that best matches {criteria}"
+
+    bullet_line_1:
+      - "- Focus on {priority} first."
+      - "- Keep the scope small to hit {timeframe}."
+      - "- Anchor on {criteria} and keep the rest secondary."
+      - "- Use a simple test to avoid {pitfall}."
+      - "- Start with {tip}."
+      - "- Focus on {priority} before adding extras."
+      - "- Keep the scope small so {timeframe} is realistic."
+      - "- Anchor the decision on {criteria} first."
+      - "- Use a quick test to avoid {pitfall}."
+      - "- Start by {tip}."
+
+    bullet_line_2:
+      - "- Compare {option_a} vs {option_b} on {criteria}."
+      - "- Expect a tradeoff: {tradeoff}."
+      - "- Keep the message aligned with {goal}."
+      - "- Use one clear example to explain {concept}."
+      - "- Keep it short and avoid extra detail."
+      - "- Compare {option_a} and {option_b} using {criteria}."
+      - "- Expect a tradeoff like {tradeoff}."
+      - "- Keep the message aligned with {goal}."
+      - "- Use one example to explain {concept}."
+      - "- Keep it short and avoid extra detail."
+
+    bullet_line_3:
+      - "- Check that the constraint {constraint} is still true."
+      - "- If unsure, ask one question about {priority}."
+      - "- Recheck the timeline {timeframe}."
+      - "- Keep the decision tied to {goal}."
+      - "- Avoid {pitfall} so you can move fast."
+      - "- Check the constraint {constraint} before finalizing."
+      - "- If unsure, ask one question about {priority}."
+      - "- Recheck the timeline {timeframe}."
+      - "- Keep the decision tied to {goal}."
+      - "- Avoid {pitfall} so you can move fast."
+
+    bullet_line_4:
+      - "- Keep the answer tied to {goal}."
+      - "- Favor {priority} when tradeoffs show up."
+      - "- Use {criteria} as the tie-breaker."
+      - "- Keep the first move small and reversible."
+      - "- Choose the option that reduces {pitfall}."
+
+    bullet_line_5:
+      - "- Keep the wording simple for {audience}."
+      - "- If needed, test with a tiny example."
+      - "- Lock the constraint {constraint} before expanding scope."
+      - "- Prefer clarity over cleverness."
+      - "- Make the decision easy to explain in one line."
+
+    next_step_line:
+      - "Next step: {action_step}."
+      - "Next step: pick the top priority and confirm the constraint."
+      - "Next step: tell me the audience and the goal."
+      - "Next step: choose which option wins on {criteria}."
+      - "Next step: share the one detail that changes the decision."
+
+    assistant_response:
+      - "{summary_line} {summary_line_2}\n{bullet_line_1}\n{bullet_line_2}\n{bullet_line_3}\n{next_step_line}"
+      - "{summary_line}\n{bullet_line_1}\n{bullet_line_2}\n{bullet_line_3}\n{bullet_line_4}\n{next_step_line}"
+      - "{summary_line}\n{bullet_line_1}\n{bullet_line_2}\n{bullet_line_3}\n{bullet_line_4}\n{bullet_line_5}\n{next_step_line}"
+
+    # Encode multi-turn context into a single user_message field
+    assistant_probe:
+      - "What outcome matters most?"
+      - "Which constraint is the hard limit?"
+      - "Is speed or quality the top priority?"
+      - "Who is the audience?"
+      - "What is the main goal?"
+      - "Which option are you leaning toward?"
+      - "What is the tightest constraint?"
+      - "What should the answer optimize for?"
+
+    user_followup:
+      - "Top priority is {priority}. Constraint is {constraint}."
+      - "Audience is {audience} and the goal is {goal}."
+      - "I need the safest option under {constraint}."
+      - "Keep it short; priority is {priority}."
+      - "Main goal is {goal}. Constraint is {constraint}."
+      - "Optimize for {priority}; timeline is {timeframe}."
+      - "Audience is {audience}. Keep it simple."
+      - "The key constraint is {constraint}; I want {goal}."
+
+    dialogue_context:
+      - "User: {user_template}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "User message: {user_template}\nAssistant reply: {assistant_probe}\nUser follow-up: {user_followup}"
+      - "Context so far:\nUser: {user_template}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "Conversation:\nUser: {user_template}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "U: {user_template}\nA: {assistant_probe}\nU: {user_followup}"
+      - "Dialogue:\nU: {user_template}\nA: {assistant_probe}\nU: {user_followup}"
+
+  row_template:
+    language: "{language}"
+    mode: "{mode}"
+    tone: "{tone}"
+    continuity_choice: "{continuity_choice}"
+    intent_family: "{intent_family}"
+    intent_subtype: "{intent_subtype}"
+    user_message: "{dialogue_context}"
+    assistant_response: "{assistant_response}"
+notes: "Wave0 Lane04 - quick mode (bullet + Next step)"

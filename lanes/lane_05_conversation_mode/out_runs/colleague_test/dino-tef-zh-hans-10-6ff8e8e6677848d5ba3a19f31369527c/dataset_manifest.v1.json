@@ -1,0 +1,25 @@
+{
+  "dataset_manifest_version": "dino.dataset_manifest.v1",
+  "created_at_utc": "2026-02-13T17:42:46Z",
+  "items": [
+    {
+      "file": "test.jsonl",
+      "sha256": "8aad3ae635592acc3b06b99c421b476c912ef0dbf52503b433597b5cb0cb5af9",
+      "bytes": 3535,
+      "rows": 1
+    },
+    {
+      "file": "train.jsonl",
+      "sha256": "0d43115df89839d7217073236f5413dbbf0f6825aca27c36d8e18c498490e1b5",
+      "bytes": 26494,
+      "rows": 8
+    },
+    {
+      "file": "val.jsonl",
+      "sha256": "b60e3d3706a4723f4472ea24bef866b3a15d13eae4810a70bc16765e9b5b4621",
+      "bytes": 3202,
+      "rows": 1
+    }
+  ],
+  "total_rows": 10
+}

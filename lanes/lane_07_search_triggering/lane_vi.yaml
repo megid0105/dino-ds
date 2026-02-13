@@ -1,0 +1,347 @@
+lane_id: "lane_07_search_triggering"
+wave: "wave0"
+target_base: "dino_qwen4b"
+source_type: "local"
+
+# template_expand lanes do not require source files
+sources: []
+
+# how many rows to build (can be overridden by --limit)
+count_target: 588
+# REQUIRED PCT fields: keep these in the human-facing lane configs
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: "suppress_continuity"
+  flow_state: "none"
+  history_scope: "thread_only"
+  representation_choice: "plain_text"
+  safety_tag: "safe"
+
+  system_prompt_id: "dino.system.v1"
+# forward-compat placeholders
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators:
+  - name: "mode_richness"
+transform_pipeline: []
+
+generation_mode: "template_expand"
+system_prompt_path: prompts/system/dino_system_prompt.txt
+
+
+output_dir: out_runs/colleague_test
+
+teacher_runtime:
+  sample_percent: 10
+  enabled: false
+  provider: ollama
+  ollama_host: "http://127.0.0.1:11434"
+  model: "dino-pro-7b"
+  policy: structure_only
+  on_missing_evidence: abstain
+  system_prompt_path: prompts/teacher/lane_07_teacher_system_prompt.txt
+
+
+
+
+  timeout_s: 150
+  keepalive: "5m"
+# similarity/dedupe controls (tune per-lane)
+similarity:
+  max_token_overlap_ratio: 0.3
+  ignore_stopwords: true
+  ignore_tokens: ["dino", "ai", "assistant", "im", "i'm"]
+  ngram: 3
+
+template_expand:
+  seed: 0
+  count_target: 588
+  expand_dict_slots:
+    - decision_case
+
+  slot_banks:
+    language: ["vi"]
+    mode: ["conversation"]
+    tone: ["professional", "serious", "friendly", "family", "best_friend"]
+    emote6: ["neutral"]
+    continuity_choice: ["suppress_continuity"]
+    intent_family: ["info_retrieval"]
+    intent_subtype:
+      - "generic_search"
+      - "price_check"
+      - "availability_check"
+      - "schedule_lookup"
+      - "movie_showtimes"
+      - "local_business_search"
+      - "streaming_availability"
+      - "event_discovery"
+      - "product_availability"
+      - "transportation_options"
+      - "route_planning"
+      - "ticket_booking"
+      - "restaurant_booking"
+    needs_history_search: [false]
+    history_scope: ["thread_only"]
+    safety_tag: ["safe"]
+
+    decision_prompt:
+      - "Quick question:"
+      - "I was wondering:"
+      - "Can you help me with this?"
+      - "Question for you:"
+      - "I'm trying to figure this out:"
+      - "Could you help with this?"
+      - "I have a question:"
+      - "Need your take on this:"
+      - "Can I ask:"
+      - "Here's my question:"
+      - "Would you help me with this:"
+      - "I need some guidance:"
+
+    subject:
+      - "a demo workshop"
+      - "a mock course"
+      - "a placeholder product"
+      - "a fictional venue"
+      - "a sample subscription"
+      - "a prototype service"
+      - "a trial plan"
+      - "a sample event"
+      - "a pretend store"
+      - "a trial appointment"
+
+    place:
+      - "District A"
+      - "Harbor Quarter"
+      - "North Market"
+      - "Lakeview Ring"
+      - "Metro Zone B"
+      - "Old Town Loop"
+      - "Station Plaza"
+      - "Riverbend Block"
+      - "Hillpark Area"
+      - "Central Arcade"
+
+    service:
+      - "a community class"
+      - "a small workshop"
+      - "a local meetup"
+      - "a demo tour"
+      - "a pop-up booth"
+      - "a short training"
+      - "a trial service"
+      - "a sample consultation"
+      - "a basic appointment"
+      - "a preview session"
+
+    event:
+      - "a demo showcase"
+      - "a sample lecture"
+      - "a pilot session"
+      - "a mock screening"
+      - "a test run"
+      - "an example conference"
+      - "a trial performance"
+      - "a practice meetup"
+      - "a preview panel"
+      - "a staged demo"
+
+    item:
+      - "a generic device"
+      - "a placeholder device"
+      - "a sample kit"
+      - "a mock gadget"
+      - "a demo package"
+      - "a trial add-on"
+      - "a basic bundle"
+      - "a starter item"
+      - "a sample accessory"
+      - "a test unit"
+
+    show_name:
+      - "a fictional series"
+      - "a mock documentary"
+      - "a sample short film"
+      - "a pretend show"
+      - "a demo episode"
+      - "a trial season"
+      - "a placeholder program"
+      - "an example movie"
+
+    route_a:
+      - "Point A"
+      - "Hub 1"
+      - "North Gate"
+      - "Station East"
+      - "Market Square"
+      - "Dockside"
+      - "Campus West"
+      - "Central Stop"
+
+    route_b:
+      - "Point B"
+      - "Hub 2"
+      - "South Gate"
+      - "Station West"
+      - "Library Block"
+      - "Riverside"
+      - "Campus East"
+      - "Hillcrest"
+
+    option_a:
+      - "Option Alpha"
+      - "Plan North"
+      - "Route One"
+      - "Choice A"
+      - "Track Green"
+
+    option_b:
+      - "Option Beta"
+      - "Plan South"
+      - "Route Two"
+      - "Choice B"
+      - "Track Blue"
+
+    topic:
+      - "a basic policy note"
+      - "a general pricing idea"
+      - "a service availability claim"
+      - "an access rule"
+      - "a scheduling claim"
+      - "a venue availability note"
+      - "a listing description"
+      - "a general availability hint"
+
+    query_stub:
+      - "How should I check the availability of {subject} in {place}?"
+      - "Where would someone look to confirm {service} options in {place}?"
+      - "What is a good way to verify the schedule for {event}?"
+      - "How can I see if {item} is available without guessing?"
+      - "What is the best way to confirm pricing for {item} before I decide?"
+      - "How do I find out whether {event} is happening in {place}?"
+      - "Where could I look for {service} options if I wanted specifics?"
+      - "How would you check if {item} is in stock in a mock scenario?"
+      - "What is a safe way to confirm times and locations for {event}?"
+      - "How should I compare options between {route_a} and {route_b}?"
+      - "Where can I check if {subject} is offered around {place}?"
+      - "How would you verify streaming availability for {show_name}?"
+      - "How do I confirm a reservation window for {event}?"
+      - "What should I look up to decide between {option_a} and {option_b}?"
+      - "How can I validate a claim about {topic} without assuming it is current?"
+      - "Is there a sensible way to check whether {subject} is open in {place}?"
+      - "How would you find a list of {service} options for {place}?"
+      - "What is the right way to confirm a listing for {item}?"
+      - "How do I verify the latest info for {event} if needed?"
+      - "Where should I check for {item} availability?"
+      - "How can I double-check {topic} before acting on it?"
+      - "How do I check if {service} still has open slots?"
+      - "How would I verify a timetable for {event}?"
+      - "What is the best way to see if {subject} is available near {place}?"
+      - "How should I check if {item} is offered in {place}?"
+      - "What should I consult before choosing {option_a} over {option_b}?"
+      - "How do I confirm details about {event} without guessing?"
+      - "What is a reliable way to check {topic}?"
+      - "How should I verify a listing for {service}?"
+      - "What is a safe way to confirm availability of {item}?"
+      - "How do I find out if {subject} is running in {place}?"
+      - "Where is the best place to verify {topic} details?"
+      - "How can I confirm the time for {event}?"
+      - "How do I check whether {service} is open in {place}?"
+      - "What is the right way to verify options around {place}?"
+      - "How can I check whether {item} is still offered?"
+      - "How would you confirm access rules for {service}?"
+      - "What is a reliable way to validate {topic}?"
+      - "How should I verify a listing for {subject}?"
+      - "How can I confirm whether {event} has seats left?"
+
+    assistant_probe:
+      - "Do you want the latest details or a general answer?"
+      - "Should I keep it general, or focus on current specifics?"
+      - "Do you want a quick overview or the most up-to-date info?"
+      - "Should I answer generally or check the latest details?"
+      - "Do you want the high-level answer or current specifics?"
+      - "Should I keep it broad, or verify current details?"
+      - "Do you want a general take or the latest info?"
+      - "Should I answer now or focus on current details?"
+
+    user_followup:
+      - "General is fine."
+      - "Keep it high level."
+      - "I want the latest details."
+      - "Please focus on current specifics."
+      - "A quick overview is enough."
+      - "Check the latest info if needed."
+      - "General guidance is fine."
+      - "I'd prefer the most up-to-date answer."
+      - "Keep it broad for now."
+      - "Use current details where possible."
+
+    dialogue_context:
+      - "User: {decision_prompt} {query_stub}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "User message: {decision_prompt} {query_stub}\nAssistant reply: {assistant_probe}\nUser follow-up: {user_followup}"
+      - "Context:\nUser: {decision_prompt} {query_stub}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "Conversation:\nUser: {decision_prompt} {query_stub}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "U: {decision_prompt} {query_stub}\nA: {assistant_probe}\nU: {user_followup}"
+
+    decision_case:
+      - needs_search: true
+        decision_line: "This looks time-sensitive, so I should verify the latest details."
+        next_step: "Do you want me to look it up now?"
+      - needs_search: true
+        decision_line: "Because it depends on current availability, a lookup is appropriate."
+        next_step: "Share any specifics you care about and I can check."
+      - needs_search: true
+        decision_line: "To avoid outdated info, I should check the latest details."
+        next_step: "Tell me the location or timeframe if that matters."
+      - needs_search: true
+        decision_line: "Live details matter here, so I should search before answering."
+        next_step: "Say if you want the latest specifics."
+      - needs_search: true
+        decision_line: "This is best answered with a quick lookup for current data."
+        next_step: "If you want me to verify it, I can."
+      - needs_search: true
+        decision_line: "I should confirm the latest details so the answer is accurate."
+        next_step: "Let me know if you want me to proceed with a lookup."
+      - needs_search: false
+        decision_line: "This can be answered from general knowledge without a lookup."
+        next_step: "Tell me how detailed you want the answer."
+      - needs_search: false
+        decision_line: "A general response is fine here; no live check is required."
+        next_step: "If you want exact or local specifics, I can look it up."
+      - needs_search: false
+        decision_line: "This isn't time-sensitive, so I can answer directly."
+        next_step: "Say the level of detail you prefer."
+      - needs_search: false
+        decision_line: "No lookup needed; I can respond in chat."
+        next_step: "Let me know if you want examples."
+      - needs_search: false
+        decision_line: "I can answer without checking the latest details."
+        next_step: "If you need verified specifics later, I can check."
+      - needs_search: false
+        decision_line: "This is general enough to answer now."
+        next_step: "Tell me what angle you want."
+
+    assistant_response:
+      - "{decision_line} {next_step}"
+
+  row_template:
+    language: "{language}"
+    mode: "{mode}"
+    tone: "{tone}"
+    emote6: "{emote6}"
+    continuity_choice: "{continuity_choice}"
+    intent_family: "{intent_family}"
+    intent_subtype: "{intent_subtype}"
+    needs_search: "{needs_search}"
+    needs_history_search: "{needs_history_search}"
+    history_scope: "{history_scope}"
+    safety_tag: "{safety_tag}"
+    user_message: "{dialogue_context}"
+    assistant_response: "{assistant_response}"
+
+notes: "Wave0 Lane07 - search triggering (multi-turn, source-decision framing, no teacher)"

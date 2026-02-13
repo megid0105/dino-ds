@@ -4,7 +4,7 @@ import copy
 
 # Global enums pulled from the master v2 label spec (see MASTER_GLOBAL_SCHEMA_LABELS_SUPERSEDED_v2.md)
 MASTER_ENUMS: dict[str, list[str]] = {
-    "language": ["en", "zh-hk", "zh-hant", "zh-hans", "pt-br", "fr", "de", "it", "hi", "vi", "ja", "ko", "es"],
+    "language": ["en", "zh-hk", "zh-hant", "zh-hans", "pt-br", "fr", "de", "it", "hi", "vi", "ja", "ko", "es", "th"],
     "mode": ["quick", "think", "conversation"],
     "tone": ["family", "serious", "professional", "friendly", "best_friend"],
     "emote6": ["happy", "sad", "angry", "fear", "encourage", "neutral"],

@@ -1,0 +1,1074 @@
+lane_id: lane_02_tone_behaviour_foundation
+wave: wave0
+target_base: dino_qwen4b
+source_type: local
+sources: []
+count_target: 784
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: suppress_continuity
+  flow_state: none
+  history_scope: thread_only
+  representation_choice: plain_text
+  safety_tag: safe
+  system_prompt_id: dino.system.v1
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators: []
+transform_pipeline: []
+generation_mode: template_expand
+system_prompt_path: prompts/system/dino_system_prompt.txt
+output_dir: out_runs/colleague_test
+teacher_runtime:
+  sample_percent: 5
+  enabled: false
+  provider: ollama
+  ollama_host: http://127.0.0.1:11434
+  model: dino-pro-7b
+  policy: structure_only
+  on_missing_evidence: abstain
+  system_prompt_path: prompts/teacher/lane_02_teacher_system_prompt.txt
+  timeout_s: 150
+  keepalive: 5m
+similarity:
+  max_token_overlap_ratio: 0.18
+  text_field: assistant
+  ignore_stopwords: false
+  ngram: 1
+template_expand:
+  seed: 5
+  count_target: 784
+  max_attempts: 3000000
+  attempts_per_row: 1200
+  expand_dict_slots:
+  - tone_case
+  slot_banks:
+    language:
+    - fr
+    mode:
+    - quick
+    - think
+    tone_case:
+    - tone: professional
+      tone_style: clair et professionnel
+    - tone: best_friend
+      tone_style: franc mais soutenant
+    - tone: family
+      tone_style: doux et bienveillant
+    - tone: serious
+      tone_style: pose et direct
+    - tone: friendly
+      tone_style: chaleureux et accessible
+    emote6:
+    - neutral
+    continuity_choice:
+    - suppress_continuity
+    intent_family:
+    - content_generation
+    - safety
+    intent_subtype:
+    - tone_behavior
+    - boundary_setting
+    - correction_style
+    audience:
+    - mon collegue
+    - ma manager
+    - un equipier
+    - un client
+    - mon amie
+    - mon frere
+    - ma partenaire
+    - mon colocataire
+    - un professeur
+    - le groupe de chat
+    medium:
+    - un e-mail
+    - le chat
+    - un message
+    - un suivi de reunion
+    - une mise a jour projet
+    - une note courte
+    - un message de statut
+    - un commentaire de review
+    situation:
+    - des messages tard le soir
+    - une responsabilite floue
+    - des demandes de derniere minute
+    - des delais rates
+    - un scope qui glisse
+    - des consignes confuses
+    - un fil tendu
+    - trop de reunions
+    - des reponses lentes
+    - du rework repetitif
+    - un message sec
+    - un malentendu
+    - un feedback mal recu
+    - une demande que je ne peux pas prendre
+    - un plan qui change sans arret
+    - un conflit de planning
+    user_goal:
+    - poser une limite claire
+    - m'excuser sans en faire trop
+    - donner un feedback direct
+    - refuser poliment
+    - demander des clarifications
+    - apaiser le ton
+    - relancer sans paraitre insistant
+    - corriger un malentendu
+    - recaler les attentes
+    - demander un changement de comportement
+    constraint:
+    - rester bref
+    - etre ferme et respectueux
+    - etre doux mais clair
+    - eviter les reproches
+    - eviter le passif-agressif
+    - rester factuel
+    - sonner confiant
+    - sonner calme
+    - utiliser un langage simple
+    - tenir en une ou deux phrases
+    desired_outcome:
+    - proteger la relation
+    - obtenir un accord sur la suite
+    - reduire la confusion
+    - arreter ce cycle
+    - aligner les priorites
+    - rester constructif
+    - eviter une nouvelle escalade
+    - rendre la decision claire
+    - installer une norme repetable
+    - faire avancer le travail
+    ask_style:
+    - Aide-moi a le rediger.
+    - Reecris ma phrase.
+    - Donne-moi une version prete a envoyer.
+    - Dis-moi quoi dire.
+    - Donne-moi deux options avec un niveau de fermete different.
+    - Fais que ca passe sans etre froid.
+    - Rends-le clair et sans drama.
+    - Fais court et utilisable.
+    raw_line:
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h ?
+    - J'ai besoin que tu confirmes l'echeance avant que je commence.
+    - Je ne peux pas prendre ca sans lacher autre chose.
+    - Merci de ne pas reecrire mon travail sans prevenir.
+    - Il nous faut un seul responsable de decision.
+    - Ton dernier message etait sec, je veux repartir proprement.
+    - Je suis perdu sur la priorite et l'echeance.
+    - Je veux aider, mais la demande est trop vague.
+    - J'ai besoin de moins d'interruptions pour finir.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h pour garder des priorites claires.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h pour eviter des retours en boucle.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h pour preserver le rythme de livraison.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h pour reduire les malentendus.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h pour que je puisse livrer de facon fiable.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence pour garder des priorites claires.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence pour eviter des retours en boucle.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence pour preserver le rythme de livraison.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence pour reduire les malentendus.
+    - Je ne peux pas prendre ca sans lacher autre chose pour garder des priorites claires.
+    - Je ne peux pas prendre ca sans lacher autre chose pour eviter des retours en boucle.
+    - Je ne peux pas prendre ca sans lacher autre chose pour preserver le rythme de livraison.
+    - Je ne peux pas prendre ca sans lacher autre chose pour reduire les malentendus.
+    - Je ne peux pas prendre ca sans lacher autre chose pour que je puisse livrer de facon fiable.
+    - Merci de ne pas reecrire mon travail sans prevenir pour garder des priorites claires.
+    - Merci de ne pas reecrire mon travail sans prevenir pour eviter des retours en boucle.
+    - Merci de ne pas reecrire mon travail sans prevenir pour preserver le rythme de livraison.
+    - Merci de ne pas reecrire mon travail sans prevenir pour reduire les malentendus.
+    - Merci de ne pas reecrire mon travail sans prevenir pour que je puisse livrer de facon fiable.
+    - Il nous faut un seul responsable de decision pour garder des priorites claires.
+    - Il nous faut un seul responsable de decision pour eviter des retours en boucle.
+    - Il nous faut un seul responsable de decision pour preserver le rythme de livraison.
+    - Il nous faut un seul responsable de decision pour reduire les malentendus.
+    - Il nous faut un seul responsable de decision pour que je puisse livrer de facon fiable.
+    - Ton dernier message etait sec, je veux repartir proprement pour garder des priorites claires.
+    - Ton dernier message etait sec, je veux repartir proprement pour eviter des retours en boucle.
+    - Ton dernier message etait sec, je veux repartir proprement pour preserver le rythme de livraison.
+    - Ton dernier message etait sec, je veux repartir proprement pour reduire les malentendus.
+    - Ton dernier message etait sec, je veux repartir proprement pour que je puisse livrer de facon fiable.
+    - Je suis perdu sur la priorite et l'echeance pour garder des priorites claires.
+    - Je suis perdu sur la priorite et l'echeance pour eviter des retours en boucle.
+    - Je suis perdu sur la priorite et l'echeance pour preserver le rythme de livraison.
+    - Je suis perdu sur la priorite et l'echeance pour reduire les malentendus.
+    - Je suis perdu sur la priorite et l'echeance pour que je puisse livrer de facon fiable.
+    - Je veux aider, mais la demande est trop vague pour garder des priorites claires.
+    - Je veux aider, mais la demande est trop vague pour eviter des retours en boucle.
+    - Je veux aider, mais la demande est trop vague pour preserver le rythme de livraison.
+    - Je veux aider, mais la demande est trop vague pour reduire les malentendus.
+    - Je veux aider, mais la demande est trop vague pour que je puisse livrer de facon fiable.
+    - J'ai besoin de moins d'interruptions pour finir pour garder des priorites claires.
+    - J'ai besoin de moins d'interruptions pour finir pour eviter des retours en boucle.
+    - J'ai besoin de moins d'interruptions pour finir pour preserver le rythme de livraison.
+    - J'ai besoin de moins d'interruptions pour finir pour reduire les malentendus.
+    - J'ai besoin de moins d'interruptions pour finir pour que je puisse livrer de facon fiable.
+    - Merci de Peux-tu arreter d'envoyer de nouvelles taches apres 22h ?
+    - 'Pour etre clair : Peux-tu arreter d''envoyer de nouvelles taches apres 22h ?'
+    - 'En bref : Peux-tu arreter d''envoyer de nouvelles taches apres 22h ?'
+    - 'Point important : Peux-tu arreter d''envoyer de nouvelles taches apres 22h ?'
+    - 'Pour avancer : Peux-tu arreter d''envoyer de nouvelles taches apres 22h ?'
+    - Merci de J'ai besoin que tu confirmes l'echeance avant que je commence.
+    - 'Pour etre clair : J''ai besoin que tu confirmes l''echeance avant que je commence.'
+    - 'En bref : J''ai besoin que tu confirmes l''echeance avant que je commence.'
+    - 'Point important : J''ai besoin que tu confirmes l''echeance avant que je commence.'
+    - 'Pour avancer : J''ai besoin que tu confirmes l''echeance avant que je commence.'
+    - Merci de Je ne peux pas prendre ca sans lacher autre chose.
+    - 'Pour etre clair : Je ne peux pas prendre ca sans lacher autre chose.'
+    - 'En bref : Je ne peux pas prendre ca sans lacher autre chose.'
+    - 'Point important : Je ne peux pas prendre ca sans lacher autre chose.'
+    - 'Pour avancer : Je ne peux pas prendre ca sans lacher autre chose.'
+    - 'Pour etre clair : Merci de ne pas reecrire mon travail sans prevenir.'
+    - 'En bref : Merci de ne pas reecrire mon travail sans prevenir.'
+    - 'Point important : Merci de ne pas reecrire mon travail sans prevenir.'
+    - 'Pour avancer : Merci de ne pas reecrire mon travail sans prevenir.'
+    - Merci de Il nous faut un seul responsable de decision.
+    - 'Pour etre clair : Il nous faut un seul responsable de decision.'
+    - 'En bref : Il nous faut un seul responsable de decision.'
+    - 'Point important : Il nous faut un seul responsable de decision.'
+    - 'Pour avancer : Il nous faut un seul responsable de decision.'
+    - Merci de Ton dernier message etait sec, je veux repartir proprement.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h ? Cela aide a proteger la relation.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h ? Cela aide a obtenir un accord sur la suite.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h ? Cela aide a reduire la confusion.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h ? Cela aide a arreter ce cycle.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h ? Cela aide a aligner les priorites.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h ? Cela aide a rester constructif.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h ? Cela aide a eviter une nouvelle escalade.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h ? Cela aide a rendre la decision claire.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h ? Cela aide a installer une norme repetable.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h ? Cela aide a faire avancer le travail.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h ? Merci de garder les nouvelles demandes dans les heures de travail.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h ? Merci de confirmer priorite et echeance avant de lancer.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h ? Merci de signaler explicitement ce qui est urgent.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h ? Merci de regrouper les changements dans une seule mise a jour.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h ? Merci de figer le scope avant execution.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h ? Merci de reduire les interruptions pendant les blocs de focus.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h ? Merci de mettre la demande en une phrase claire.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h ? Merci de confirmer ce que signifie termine.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence. Cela aide a proteger la relation.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence. Cela aide a obtenir un accord sur la suite.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence. Cela aide a reduire la confusion.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence. Cela aide a arreter ce cycle.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence. Cela aide a aligner les priorites.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence. Cela aide a rester constructif.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence. Cela aide a eviter une nouvelle escalade.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence. Cela aide a rendre la decision claire.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence. Cela aide a installer une norme repetable.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence. Cela aide a faire avancer le travail.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence. Merci de garder les nouvelles demandes dans les heures de travail.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence. Merci de confirmer priorite et echeance avant de lancer.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence. Merci de designer un seul responsable de decision.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence. Merci de signaler explicitement ce qui est urgent.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence. Merci de regrouper les changements dans une seule mise a jour.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence. Merci de eviter de reecrire sans petit avertissement.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence. Merci de figer le scope avant execution.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence. Merci de reduire les interruptions pendant les blocs de focus.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence. Merci de mettre la demande en une phrase claire.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence. Merci de confirmer ce que signifie termine.
+    - Je ne peux pas prendre ca sans lacher autre chose. Cela aide a proteger la relation.
+    - Je ne peux pas prendre ca sans lacher autre chose. Cela aide a obtenir un accord sur la suite.
+    - Je ne peux pas prendre ca sans lacher autre chose. Cela aide a reduire la confusion.
+    - Je ne peux pas prendre ca sans lacher autre chose. Cela aide a arreter ce cycle.
+    - Je ne peux pas prendre ca sans lacher autre chose. Cela aide a aligner les priorites.
+    - Je ne peux pas prendre ca sans lacher autre chose. Cela aide a rester constructif.
+    - Je ne peux pas prendre ca sans lacher autre chose. Cela aide a eviter une nouvelle escalade.
+    - Je ne peux pas prendre ca sans lacher autre chose. Cela aide a rendre la decision claire.
+    - Je ne peux pas prendre ca sans lacher autre chose. Cela aide a installer une norme repetable.
+    - Je ne peux pas prendre ca sans lacher autre chose. Cela aide a faire avancer le travail.
+    - Je ne peux pas prendre ca sans lacher autre chose. Merci de garder les nouvelles demandes dans les heures de travail.
+    - Je ne peux pas prendre ca sans lacher autre chose. Merci de confirmer priorite et echeance avant de lancer.
+    - Je ne peux pas prendre ca sans lacher autre chose. Merci de designer un seul responsable de decision.
+    - Je ne peux pas prendre ca sans lacher autre chose. Merci de signaler explicitement ce qui est urgent.
+    - Je ne peux pas prendre ca sans lacher autre chose. Merci de regrouper les changements dans une seule mise a jour.
+    - Je ne peux pas prendre ca sans lacher autre chose. Merci de eviter de reecrire sans petit avertissement.
+    - Je ne peux pas prendre ca sans lacher autre chose. Merci de figer le scope avant execution.
+    - Je ne peux pas prendre ca sans lacher autre chose. Merci de reduire les interruptions pendant les blocs de focus.
+    - Je ne peux pas prendre ca sans lacher autre chose. Merci de mettre la demande en une phrase claire.
+    - Je ne peux pas prendre ca sans lacher autre chose. Merci de confirmer ce que signifie termine.
+    - Merci de ne pas reecrire mon travail sans prevenir. Cela aide a proteger la relation.
+    - Merci de ne pas reecrire mon travail sans prevenir. Cela aide a obtenir un accord sur la suite.
+    - Merci de ne pas reecrire mon travail sans prevenir. Cela aide a reduire la confusion.
+    - Merci de ne pas reecrire mon travail sans prevenir. Cela aide a arreter ce cycle.
+    - Merci de ne pas reecrire mon travail sans prevenir. Cela aide a aligner les priorites.
+    - Merci de ne pas reecrire mon travail sans prevenir. Cela aide a rester constructif.
+    - Merci de ne pas reecrire mon travail sans prevenir. Cela aide a eviter une nouvelle escalade.
+    - Merci de ne pas reecrire mon travail sans prevenir. Cela aide a rendre la decision claire.
+    - Merci de ne pas reecrire mon travail sans prevenir. Cela aide a installer une norme repetable.
+    - Merci de ne pas reecrire mon travail sans prevenir. Cela aide a faire avancer le travail.
+    - Merci de ne pas reecrire mon travail sans prevenir. Merci de garder les nouvelles demandes dans les heures de travail.
+    - Merci de ne pas reecrire mon travail sans prevenir. Merci de confirmer priorite et echeance avant de lancer.
+    - Merci de ne pas reecrire mon travail sans prevenir. Merci de designer un seul responsable de decision.
+    - Merci de ne pas reecrire mon travail sans prevenir. Merci de signaler explicitement ce qui est urgent.
+    - Merci de ne pas reecrire mon travail sans prevenir. Merci de regrouper les changements dans une seule mise a jour.
+    - Merci de ne pas reecrire mon travail sans prevenir. Merci de figer le scope avant execution.
+    - Merci de ne pas reecrire mon travail sans prevenir. Merci de reduire les interruptions pendant les blocs de focus.
+    - Merci de ne pas reecrire mon travail sans prevenir. Merci de mettre la demande en une phrase claire.
+    - Merci de ne pas reecrire mon travail sans prevenir. Merci de confirmer ce que signifie termine.
+    - Il nous faut un seul responsable de decision. Cela aide a proteger la relation.
+    - Il nous faut un seul responsable de decision. Cela aide a obtenir un accord sur la suite.
+    - Il nous faut un seul responsable de decision. Cela aide a reduire la confusion.
+    - Il nous faut un seul responsable de decision. Cela aide a arreter ce cycle.
+    - Il nous faut un seul responsable de decision. Cela aide a aligner les priorites.
+    - Il nous faut un seul responsable de decision. Cela aide a rester constructif.
+    - Il nous faut un seul responsable de decision. Cela aide a eviter une nouvelle escalade.
+    - Il nous faut un seul responsable de decision. Cela aide a rendre la decision claire.
+    - Il nous faut un seul responsable de decision. Cela aide a installer une norme repetable.
+    - Il nous faut un seul responsable de decision. Cela aide a faire avancer le travail.
+    - Il nous faut un seul responsable de decision. Merci de signaler explicitement ce qui est urgent.
+    - Il nous faut un seul responsable de decision. Merci de regrouper les changements dans une seule mise a jour.
+    - Il nous faut un seul responsable de decision. Merci de figer le scope avant execution.
+    - Il nous faut un seul responsable de decision. Merci de mettre la demande en une phrase claire.
+    - Il nous faut un seul responsable de decision. Merci de confirmer ce que signifie termine.
+    - Ton dernier message etait sec, je veux repartir proprement. Cela aide a proteger la relation.
+    - Ton dernier message etait sec, je veux repartir proprement. Cela aide a obtenir un accord sur la suite.
+    - Ton dernier message etait sec, je veux repartir proprement. Cela aide a reduire la confusion.
+    - Ton dernier message etait sec, je veux repartir proprement. Cela aide a arreter ce cycle.
+    - Ton dernier message etait sec, je veux repartir proprement. Cela aide a aligner les priorites.
+    - Ton dernier message etait sec, je veux repartir proprement. Cela aide a rester constructif.
+    - Ton dernier message etait sec, je veux repartir proprement. Cela aide a eviter une nouvelle escalade.
+    - Ton dernier message etait sec, je veux repartir proprement. Cela aide a rendre la decision claire.
+    - Ton dernier message etait sec, je veux repartir proprement. Cela aide a installer une norme repetable.
+    - Ton dernier message etait sec, je veux repartir proprement. Cela aide a faire avancer le travail.
+    - Ton dernier message etait sec, je veux repartir proprement. Merci de garder les nouvelles demandes dans les heures de travail.
+    - Ton dernier message etait sec, je veux repartir proprement. Merci de confirmer priorite et echeance avant de lancer.
+    - Ton dernier message etait sec, je veux repartir proprement. Merci de designer un seul responsable de decision.
+    - Ton dernier message etait sec, je veux repartir proprement. Merci de signaler explicitement ce qui est urgent.
+    - Ton dernier message etait sec, je veux repartir proprement. Merci de regrouper les changements dans une seule mise a jour.
+    - Ton dernier message etait sec, je veux repartir proprement. Merci de eviter de reecrire sans petit avertissement.
+    - Ton dernier message etait sec, je veux repartir proprement. Merci de figer le scope avant execution.
+    - Ton dernier message etait sec, je veux repartir proprement. Merci de reduire les interruptions pendant les blocs de focus.
+    - Ton dernier message etait sec, je veux repartir proprement. Merci de mettre la demande en une phrase claire.
+    - Ton dernier message etait sec, je veux repartir proprement. Merci de confirmer ce que signifie termine.
+    - Je suis perdu sur la priorite et l'echeance. Cela aide a proteger la relation.
+    - Je suis perdu sur la priorite et l'echeance. Cela aide a obtenir un accord sur la suite.
+    - Je suis perdu sur la priorite et l'echeance. Cela aide a reduire la confusion.
+    - Je suis perdu sur la priorite et l'echeance. Cela aide a arreter ce cycle.
+    - Je suis perdu sur la priorite et l'echeance. Cela aide a aligner les priorites.
+    - Je suis perdu sur la priorite et l'echeance. Cela aide a rester constructif.
+    - Je suis perdu sur la priorite et l'echeance. Cela aide a eviter une nouvelle escalade.
+    - Je suis perdu sur la priorite et l'echeance. Cela aide a rendre la decision claire.
+    - Je suis perdu sur la priorite et l'echeance. Cela aide a installer une norme repetable.
+    - Je suis perdu sur la priorite et l'echeance. Cela aide a faire avancer le travail.
+    - Je suis perdu sur la priorite et l'echeance. Merci de garder les nouvelles demandes dans les heures de travail.
+    - Je suis perdu sur la priorite et l'echeance. Merci de confirmer priorite et echeance avant de lancer.
+    - Je suis perdu sur la priorite et l'echeance. Merci de designer un seul responsable de decision.
+    - Je suis perdu sur la priorite et l'echeance. Merci de signaler explicitement ce qui est urgent.
+    - Je suis perdu sur la priorite et l'echeance. Merci de regrouper les changements dans une seule mise a jour.
+    - Je suis perdu sur la priorite et l'echeance. Merci de eviter de reecrire sans petit avertissement.
+    - Je suis perdu sur la priorite et l'echeance. Merci de figer le scope avant execution.
+    - Je suis perdu sur la priorite et l'echeance. Merci de reduire les interruptions pendant les blocs de focus.
+    - Je suis perdu sur la priorite et l'echeance. Merci de mettre la demande en une phrase claire.
+    - Je suis perdu sur la priorite et l'echeance. Merci de confirmer ce que signifie termine.
+    - Je veux aider, mais la demande est trop vague. Cela aide a proteger la relation.
+    - Je veux aider, mais la demande est trop vague. Cela aide a obtenir un accord sur la suite.
+    - Je veux aider, mais la demande est trop vague. Cela aide a reduire la confusion.
+    - Je veux aider, mais la demande est trop vague. Cela aide a arreter ce cycle.
+    - Je veux aider, mais la demande est trop vague. Cela aide a aligner les priorites.
+    - Je veux aider, mais la demande est trop vague. Cela aide a rester constructif.
+    - Je veux aider, mais la demande est trop vague. Cela aide a eviter une nouvelle escalade.
+    - Je veux aider, mais la demande est trop vague. Cela aide a rendre la decision claire.
+    - Je veux aider, mais la demande est trop vague. Cela aide a installer une norme repetable.
+    - Je veux aider, mais la demande est trop vague. Cela aide a faire avancer le travail.
+    context_line:
+    - 'Contexte: c''est deja arrive trois fois cette semaine.'
+    - 'Contexte: je l''ai deja signale une fois.'
+    - 'Contexte: cela ralentit tout le projet.'
+    - 'Contexte: je veux regler ca sans drama.'
+    - 'Contexte: je veux garder une bonne collaboration.'
+    - 'Contexte: j''ai besoin d''une version envoyable aujourd''hui.'
+    - 'Contexte: j''ai peur de paraitre rude.'
+    - 'Contexte: il faut que ca colle a {medium}.'
+    - '{situation}.'
+    - '{medium}; {constraint}.'
+    - '{audience}; {situation}.'
+    - '{constraint}; {change_request}.'
+    - '{audience}; {situation}; {constraint}.'
+    user_frame:
+    - '{ask_style} Je dois {user_goal} avec {audience} a propos de {situation} via {medium}. Garde un ton {tone_style}.'
+    - '{ask_style} C''est au sujet de {situation} avec {audience}. Je veux {user_goal} en restant {tone_style}.'
+    - '{ask_style} J''essaie de {user_goal} concernant {situation}. C''est pour {audience} dans {medium}, et le ton doit etre {tone_style}.'
+    - '{ask_style} Sujet: {situation}. J''ai besoin d''un message pour {audience} via {medium} pour {user_goal}, de facon {tone_style}.'
+    user_message:
+    - '{user_frame}\n{context_line}\nContrainte: {constraint}. Objectif: {desired_outcome}.\nPhrase d''origine: {raw_line}'
+    - '{user_frame}\nPhrase d''origine: {raw_line}\nContrainte: {constraint}. Objectif: {desired_outcome}.\n{context_line}'
+    - '{user_frame}\nContrainte: {constraint}.\n{context_line}\nObjectif: {desired_outcome}.\nPhrase d''origine: {raw_line}'
+    - '{user_frame}\n{context_line}\nObjectif: {desired_outcome}. Contrainte: {constraint}.\nPhrase d''origine: {raw_line}'
+    - '{user_frame}\nPhrase d''origine: {raw_line}\n{context_line}\nObjectif: {desired_outcome}. Contrainte: {constraint}.'
+    - '{user_frame}\nContrainte: {constraint}. Objectif: {desired_outcome}.\n{context_line}'
+    - '{user_frame}\n{context_line}\nContrainte: {constraint}.\nPhrase d''origine: {raw_line}\nObjectif: {desired_outcome}.'
+    - '{user_frame}\nObjectif: {desired_outcome}.\nContrainte: {constraint}.\n{context_line}\nPhrase d''origine: {raw_line}'
+    assistant_open:
+    - '{context_line}'
+    - '{context_line_b}'
+    - 'Contexte: {situation}.'
+    - 'Contexte: {audience}; {medium}.'
+    - 'Contexte: {desired_outcome}; {constraint}.'
+    - 'Contexte: {user_goal}; {change_request}.'
+    - 'Point cle: {desired_outcome}.'
+    - 'Point cle: {constraint}.'
+    - 'Ajustement: {change_request}.'
+    - 'Ajustement: {user_goal}.'
+    assistant_commit:
+    - Je vais garder le brouillon {tone_style} et {constraint}.
+    - Je vais formuler le message en restant {tone_style}, tout en etant {constraint}.
+    - Je vais le rendre {tone_style} et actionnable.
+    - Je vais l'ajuster pour que ca sonne {tone_style} et concret.
+    assistant_principle:
+    - Je me concentre sur les actions et la demande, pas sur le blame.
+    - Je garde la demande specifique et facile a suivre.
+    - Je retire la friction inutile et je garde le signal clair.
+    - Je pose la limite clairement sans paraitre hostile.
+    - J'ancre le message sur ce qui doit se passer ensuite.
+    draft_prefix:
+    - 'Brouillon:'
+    - 'Tu peux envoyer ceci:'
+    - 'Version envoyable:'
+    - 'Option de message:'
+    change_request:
+    - garder les nouvelles demandes dans les heures de travail
+    - confirmer priorite et echeance avant de lancer
+    - designer un seul responsable de decision
+    - signaler explicitement ce qui est urgent
+    - regrouper les changements dans une seule mise a jour
+    - eviter de reecrire sans petit avertissement
+    - figer le scope avant execution
+    - reduire les interruptions pendant les blocs de focus
+    - mettre la demande en une phrase claire
+    - confirmer ce que signifie termine
+    draft_line_1:
+    - '{situation}.'
+    - '{audience}; {situation}.'
+    - '{medium}; {situation}.'
+    - '{audience}; {medium}; {situation}.'
+    draft_line_2:
+    - '{change_request}; {desired_outcome}.'
+    - '{change_request}; {constraint}.'
+    tag_a:
+    - scopeAnchor
+    - deadlineGuard
+    - ownerMap
+    - handoffPath
+    - clarityMesh
+    - responseLane
+    - focusWindow
+    - riskBeacon
+    - changeQueue
+    - flowGuard
+    - alignVector
+    - signalTrack
+    - contextLedger
+    - actionFrame
+    - boundaryKey
+    - timingLatch
+    - requestFilter
+    - routeToken
+    - queueIndex
+    - updateNode
+    - reviewClock
+    - deliveryPulse
+    - conflictReducer
+    - scopeFence
+    - intentMarker
+    - qualityLatch
+    - paceGuide
+    - priorityGrid
+    - planRelay
+    - syncPulse
+    tag_b:
+    - outputGate
+    - workflowPin
+    - riskFilter
+    - mergeFence
+    - threadOwner
+    - statusBridge
+    - planSwitch
+    - effortGauge
+    - qualityPulse
+    - routeAnchor
+    - orderMatrix
+    - ownerSignal
+    - scopeVector
+    - deadlineMesh
+    - intentGrid
+    - planKernel
+    - queueGuard
+    - rhythmMatrix
+    - outputVector
+    - detailFilter
+    - riskVector
+    - policyLatch
+    - effortMatrix
+    - changeGuard
+    - actionKernel
+    - reviewSignal
+    - statusMatrix
+    - handoffMatrix
+    - contextVector
+    - responseKernel
+    tag_c:
+    - clarityRoute
+    - timingMatrix
+    - loadVector
+    - commitSignal
+    - traceVector
+    - deliveryMesh
+    - alignKernel
+    - updateMatrix
+    - calmFrame
+    - firmFrame
+    - warmFrame
+    - directFrame
+    - neutralFrame
+    - steadyFrame
+    - clearFrame
+    - resetFrame
+    - scopeFrame
+    - ownerFrame
+    - timingFrame
+    - actionFrameX
+    - resultFrame
+    - boundaryFrame
+    - priorityFrame
+    - responseFrame
+    - reviewFrame
+    - channelFrame
+    - planFrame
+    - focusFrame
+    - qualityFrame
+    - riskFrameX
+    tag_d:
+    - conflictFrame
+    - cadenceFrame
+    - intentFrame
+    - mergeFrame
+    - relayFrame
+    - signalFrame
+    - decisionFrame
+    - deliveryFrame
+    - anchorPoint
+    - workloadLock
+    - handoffGate
+    - timelineGuard
+    - frictionCut
+    - actionLane
+    - contextLock
+    - outputTrack
+    - requestLane
+    - clarityGate
+    - alignmentLock
+    - sequenceGuard
+    - boundaryMesh
+    - cadenceLock
+    - ownerSignalX
+    - riskChannel
+    - responseTrack
+    - priorityLatch
+    - scopeTracker
+    - qualityGrid
+    - deliveryLock
+    - syncAnchor
+    tag_e:
+    - pathMarker
+    - queueLatch
+    - triagePoint
+    - actionIndex
+    - handoffIndex
+    - goalVector
+    - timingGuard
+    - scopeIndex
+    - ownerIndex
+    - deliveryIndex
+    - riskIndex
+    - clarityIndex
+    - orderIndex
+    - outputIndex
+    - focusIndex
+    - responseIndex
+    - signalIndex
+    - updateIndex
+    - planIndex
+    - gateIndex
+    - frameIndex
+    - routeIndex
+    - threadIndex
+    - tokenIndex
+    - mapIndex
+    - filterIndex
+    - pivotIndex
+    - guardIndex
+    - lockIndex
+    - bridgeIndex
+    tag_f:
+    - stableLane
+    - calmRoute
+    - clearRoute
+    - firmRoute
+    - warmRoute
+    - directRoute
+    - neutralRoute
+    - focusRoute
+    - ownerRoute
+    - scopeRoute
+    - timingRoute
+    - actionRoute
+    - resultRoute
+    - requestRoute
+    - deliveryRoute
+    - qualityRoute
+    - riskRoute
+    - planRoute
+    - updateRoute
+    - responseRoute
+    - sequenceRoute
+    - alignmentRoute
+    - handoffRoute
+    - priorityRoute
+    - contextRoute
+    - gateRoute
+    - signalRoute
+    - frameRoute
+    - threadRoute
+    - workflowRoute
+    assistant_followup:
+    - Tu veux une variante plus douce ou plus ferme ?
+    - Tu veux une version plus courte pour {medium} ?
+    - Si tu colles la phrase exacte recue, je l'adapte au mot pres.
+    - Je peux aussi te donner deux variantes avec des niveaux de fermete differents.
+    - Tu preferes plus concis ou plus empathique ?
+    - Je peux aussi faire une version plus directe.
+    assistant_response:
+    - '{lead_phrase}: {raw_line}'
+    - '{draft_prefix} {raw_line}'
+    - '{assistant_open} {raw_line}'
+    - '{assistant_commit} {raw_line}'
+    - '{assistant_principle} {raw_line}'
+    - '{raw_line} {change_request}.'
+    - '{raw_line} {change_request}; {constraint}.'
+    - '{raw_line} {detail_line}'
+    - '{lead_phrase}: {raw_line} {assistant_followup}'
+    - '{assistant_open} {raw_line} {assistant_followup}'
+    - '{assistant_commit} {raw_line} {detail_line}'
+    - '{assistant_principle} {raw_line} {extra_clause}'
+    lead_phrase:
+    - Clair message
+    - Clair brouillon
+    - Clair version
+    - Clair reponse
+    - Clair cadre
+    - Clair formulation
+    - Clair angle
+    - Clair approche
+    - Pose message
+    - Pose brouillon
+    - Pose version
+    - Pose reponse
+    - Pose cadre
+    - Pose formulation
+    - Pose angle
+    - Pose approche
+    - Direct message
+    - Direct brouillon
+    - Direct version
+    - Direct reponse
+    - Direct cadre
+    - Direct formulation
+    - Direct angle
+    - Direct approche
+    - Respectueux message
+    - Respectueux brouillon
+    - Respectueux version
+    - Respectueux reponse
+    - Respectueux cadre
+    - Respectueux formulation
+    - Respectueux angle
+    - Respectueux approche
+    - Pragmatique message
+    - Pragmatique brouillon
+    - Pragmatique version
+    - Pragmatique reponse
+    - Pragmatique cadre
+    - Pragmatique formulation
+    - Pragmatique angle
+    - Pragmatique approche
+    - Constructif message
+    - Constructif brouillon
+    - Constructif version
+    - Constructif reponse
+    - Constructif cadre
+    - Constructif formulation
+    - Constructif angle
+    - Constructif approche
+    - Net message
+    - Net brouillon
+    - Net version
+    - Net reponse
+    - Net cadre
+    - Net formulation
+    - Net angle
+    - Net approche
+    - Equilibre message
+    - Equilibre brouillon
+    - Equilibre version
+    - Equilibre reponse
+    - Equilibre cadre
+    - Equilibre formulation
+    - Equilibre angle
+    - Equilibre approche
+    - Cible message
+    - Cible brouillon
+    - Cible version
+    - Cible reponse
+    - Cible cadre
+    - Cible formulation
+    - Cible angle
+    - Cible approche
+    - Solide message
+    - Solide brouillon
+    - Solide version
+    - Solide reponse
+    - Solide cadre
+    - Solide formulation
+    - Solide angle
+    - Solide approche
+    - Precis message
+    - Precis brouillon
+    - Precis version
+    - Precis reponse
+    - Precis cadre
+    - Precis formulation
+    - Precis angle
+    - Precis approche
+    - Cooperatif message
+    - Cooperatif brouillon
+    - Cooperatif version
+    - Cooperatif reponse
+    - Cooperatif cadre
+    - Cooperatif formulation
+    - Cooperatif angle
+    - Cooperatif approche
+    detail_line:
+    - La demande reste ancree sur {desired_outcome}.
+    - La formulation reste {constraint}.
+    - Cette version convient a {medium} et garde le focus sur {situation}.
+    - La limite est claire sans casser la relation.
+    - Le ton reste {tone_style} et exploitable.
+    - La prochaine action reste concrete.
+    - Le texte evite le blame et garde l elan.
+    - Si besoin, tu peux condenser en une phrase.
+    - On peut ajuster une clause selon le canal {medium}.
+    - Le message pose un cadre sans rigidite excessive.
+    - La demande reste precise et actionnable.
+    - Le sens reste clair meme sous tension.
+    raw_line_b:
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h ?
+    - J'ai besoin que tu confirmes l'echeance avant que je commence.
+    - Je ne peux pas prendre ca sans lacher autre chose.
+    - Merci de ne pas reecrire mon travail sans prevenir.
+    - Il nous faut un seul responsable de decision.
+    - Ton dernier message etait sec, je veux repartir proprement.
+    - Je suis perdu sur la priorite et l'echeance.
+    - Je veux aider, mais la demande est trop vague.
+    - J'ai besoin de moins d'interruptions pour finir.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h pour garder des priorites claires.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h pour eviter des retours en boucle.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h pour preserver le rythme de livraison.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h pour reduire les malentendus.
+    - Peux-tu arreter d'envoyer de nouvelles taches apres 22h pour que je puisse livrer de facon fiable.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence pour garder des priorites claires.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence pour eviter des retours en boucle.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence pour preserver le rythme de livraison.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence pour reduire les malentendus.
+    - J'ai besoin que tu confirmes l'echeance avant que je commence pour que je puisse livrer de facon fiable.
+    - Je ne peux pas prendre ca sans lacher autre chose pour garder des priorites claires.
+    - Je ne peux pas prendre ca sans lacher autre chose pour eviter des retours en boucle.
+    - Je ne peux pas prendre ca sans lacher autre chose pour preserver le rythme de livraison.
+    - Je ne peux pas prendre ca sans lacher autre chose pour reduire les malentendus.
+    - Je ne peux pas prendre ca sans lacher autre chose pour que je puisse livrer de facon fiable.
+    - Merci de ne pas reecrire mon travail sans prevenir pour garder des priorites claires.
+    - Merci de ne pas reecrire mon travail sans prevenir pour eviter des retours en boucle.
+    - Merci de ne pas reecrire mon travail sans prevenir pour preserver le rythme de livraison.
+    - Merci de ne pas reecrire mon travail sans prevenir pour reduire les malentendus.
+    - Merci de ne pas reecrire mon travail sans prevenir pour que je puisse livrer de facon fiable.
+    - Il nous faut un seul responsable de decision pour garder des priorites claires.
+    - Il nous faut un seul responsable de decision pour eviter des retours en boucle.
+    - Il nous faut un seul responsable de decision pour preserver le rythme de livraison.
+    - Il nous faut un seul responsable de decision pour reduire les malentendus.
+    - Il nous faut un seul responsable de decision pour que je puisse livrer de facon fiable.
+    - Ton dernier message etait sec, je veux repartir proprement pour garder des priorites claires.
+    - Ton dernier message etait sec, je veux repartir proprement pour eviter des retours en boucle.
+    - Ton dernier message etait sec, je veux repartir proprement pour preserver le rythme de livraison.
+    - Ton dernier message etait sec, je veux repartir proprement pour reduire les malentendus.
+    - Ton dernier message etait sec, je veux repartir proprement pour que je puisse livrer de facon fiable.
+    - Je suis perdu sur la priorite et l'echeance pour garder des priorites claires.
+    - Je suis perdu sur la priorite et l'echeance pour eviter des retours en boucle.
+    - Je suis perdu sur la priorite et l'echeance pour preserver le rythme de livraison.
+    - Je suis perdu sur la priorite et l'echeance pour reduire les malentendus.
+    - Je suis perdu sur la priorite et l'echeance pour que je puisse livrer de facon fiable.
+    - Je veux aider, mais la demande est trop vague pour garder des priorites claires.
+    - Je veux aider, mais la demande est trop vague pour eviter des retours en boucle.
+    - Je veux aider, mais la demande est trop vague pour preserver le rythme de livraison.
+    - Je veux aider, mais la demande est trop vague pour reduire les malentendus.
+    - Je veux aider, mais la demande est trop vague pour que je puisse livrer de facon fiable.
+    - J'ai besoin de moins d'interruptions pour finir pour garder des priorites claires.
+    - J'ai besoin de moins d'interruptions pour finir pour eviter des retours en boucle.
+    - J'ai besoin de moins d'interruptions pour finir pour preserver le rythme de livraison.
+    - J'ai besoin de moins d'interruptions pour finir pour reduire les malentendus.
+    - J'ai besoin de moins d'interruptions pour finir pour que je puisse livrer de facon fiable.
+    - Merci de Peux-tu arreter d'envoyer de nouvelles taches apres 22h ?
+    - 'Pour etre clair : Peux-tu arreter d''envoyer de nouvelles taches apres 22h ?'
+    - 'En bref : Peux-tu arreter d''envoyer de nouvelles taches apres 22h ?'
+    - 'Point important : Peux-tu arreter d''envoyer de nouvelles taches apres 22h ?'
+    - 'Pour avancer : Peux-tu arreter d''envoyer de nouvelles taches apres 22h ?'
+    - Merci de J'ai besoin que tu confirmes l'echeance avant que je commence.
+    - 'Pour etre clair : J''ai besoin que tu confirmes l''echeance avant que je commence.'
+    - 'En bref : J''ai besoin que tu confirmes l''echeance avant que je commence.'
+    - 'Point important : J''ai besoin que tu confirmes l''echeance avant que je commence.'
+    - 'Pour avancer : J''ai besoin que tu confirmes l''echeance avant que je commence.'
+    - Merci de Je ne peux pas prendre ca sans lacher autre chose.
+    - 'Pour etre clair : Je ne peux pas prendre ca sans lacher autre chose.'
+    - 'En bref : Je ne peux pas prendre ca sans lacher autre chose.'
+    - 'Point important : Je ne peux pas prendre ca sans lacher autre chose.'
+    - 'Pour avancer : Je ne peux pas prendre ca sans lacher autre chose.'
+    - 'Pour etre clair : Merci de ne pas reecrire mon travail sans prevenir.'
+    - 'En bref : Merci de ne pas reecrire mon travail sans prevenir.'
+    - 'Point important : Merci de ne pas reecrire mon travail sans prevenir.'
+    - 'Pour avancer : Merci de ne pas reecrire mon travail sans prevenir.'
+    - Merci de Il nous faut un seul responsable de decision.
+    - 'Pour etre clair : Il nous faut un seul responsable de decision.'
+    - 'En bref : Il nous faut un seul responsable de decision.'
+    - 'Point important : Il nous faut un seul responsable de decision.'
+    - 'Pour avancer : Il nous faut un seul responsable de decision.'
+    - Merci de Ton dernier message etait sec, je veux repartir proprement.
+    context_line_b:
+    - 'Contexte: c''est deja arrive trois fois cette semaine.'
+    - 'Contexte: je l''ai deja signale une fois.'
+    - 'Contexte: cela ralentit tout le projet.'
+    - 'Contexte: je veux regler ca sans drama.'
+    - 'Contexte: je veux garder une bonne collaboration.'
+    - 'Contexte: j''ai besoin d''une version envoyable aujourd''hui.'
+    - 'Contexte: j''ai peur de paraitre rude.'
+    - 'Contexte: il faut que ca colle a {medium}.'
+    - '{situation}.'
+    - '{medium}; {constraint}.'
+    - '{audience}; {situation}.'
+    - '{constraint}; {change_request}.'
+    - '{audience}; {situation}; {constraint}.'
+    draft_line_1b:
+    - '{situation}.'
+    - '{audience}; {situation}.'
+    - '{medium}; {situation}.'
+    - '{audience}; {medium}; {situation}.'
+    draft_line_2b:
+    - '{change_request}; {desired_outcome}.'
+    - '{change_request}; {constraint}.'
+    detail_line_b:
+    - La demande reste ancree sur {desired_outcome}.
+    - La formulation reste {constraint}.
+    - Cette version convient a {medium} et garde le focus sur {situation}.
+    - La limite est claire sans casser la relation.
+    - Le ton reste {tone_style} et exploitable.
+    - La prochaine action reste concrete.
+    - Le texte evite le blame et garde l elan.
+    - Si besoin, tu peux condenser en une phrase.
+    - On peut ajuster une clause selon le canal {medium}.
+    - Le message pose un cadre sans rigidite excessive.
+    - La demande reste precise et actionnable.
+    - Le sens reste clair meme sous tension.
+    assistant_followup_b:
+    - Tu veux une variante plus douce ou plus ferme ?
+    - Tu veux une version plus courte pour {medium} ?
+    - Si tu colles la phrase exacte recue, je l'adapte au mot pres.
+    - Je peux aussi te donner deux variantes avec des niveaux de fermete differents.
+    - Tu preferes plus concis ou plus empathique ?
+    - Je peux aussi faire une version plus directe.
+    context_extra:
+    - 'Contexte: {audience}; {situation}; {medium}.'
+    - 'Contexte: {situation}; {desired_outcome}.'
+    - 'Contexte: {change_request}; {desired_outcome}.'
+    - 'Contexte: {user_goal}; {constraint}.'
+    - 'Contexte: {audience}; {constraint}; {desired_outcome}.'
+    - 'Contexte: {medium}; {constraint}; {situation}.'
+    - 'Contexte: {change_request}; {constraint}.'
+    - 'Contexte: {user_goal}; {desired_outcome}.'
+    - 'Contexte: {situation}; {change_request}; {desired_outcome}.'
+    - 'Contexte: {audience}; {situation}; {constraint}.'
+    - 'Contexte: {medium}; {change_request}; {desired_outcome}.'
+    - 'Contexte: {audience}; {medium}; {desired_outcome}.'
+    - 'Contexte: {focus_a}; {focus_b}.'
+    - 'Contexte: {focus_c}; {focus_d}.'
+    - 'Contexte: {desired_outcome}; {focus_a}.'
+    - 'Contexte: {constraint}; {focus_b}.'
+    - 'Contexte: {user_goal}; {focus_c}.'
+    - 'Contexte: {situation}; {focus_d}.'
+    - 'Contexte: {audience}; {focus_a}; {focus_b}.'
+    - 'Contexte: {medium}; {focus_c}; {focus_d}.'
+    - 'Contexte: {change_request}; {focus_a}; {focus_c}.'
+    - 'Contexte: {desired_outcome}; {focus_b}; {focus_d}.'
+    - 'Contexte: {user_goal}; {focus_a}; {focus_d}.'
+    - 'Contexte: {constraint}; {focus_b}; {focus_c}.'
+    unique_detail:
+    - 'Point cle: {user_goal}; {change_request}; {desired_outcome}.'
+    - 'Point cle: {desired_outcome}; {constraint}; {situation}.'
+    - 'Point cle: {audience}; {medium}; {situation}.'
+    - 'Point cle: {change_request}; {desired_outcome}; {constraint}.'
+    - 'Point cle: {situation}; {user_goal}; {desired_outcome}.'
+    - 'Point cle: {audience}; {desired_outcome}; {constraint}.'
+    - 'Point cle: {medium}; {change_request}; {constraint}.'
+    - 'Point cle: {focus_a}; {focus_b}; {focus_c}.'
+    - 'Point cle: {focus_b}; {focus_c}; {focus_d}.'
+    - 'Point cle: {focus_a}; {focus_c}; {focus_d}.'
+    - 'Point cle: {change_request}; {focus_a}; {focus_b}.'
+    - 'Point cle: {desired_outcome}; {focus_b}; {focus_c}.'
+    - 'Point cle: {constraint}; {focus_c}; {focus_d}.'
+    - 'Point cle: {user_goal}; {focus_a}; {focus_d}.'
+    - 'Point cle: {audience}; {focus_a}; {focus_b}.'
+    - 'Point cle: {medium}; {focus_c}; {focus_d}.'
+    - 'Point cle: {situation}; {focus_a}; {focus_c}.'
+    - 'Point cle: {desired_outcome}; {focus_b}; {focus_d}.'
+    - 'Point cle: {change_request}; {desired_outcome}; {focus_c}.'
+    - 'Point cle: {constraint}; {user_goal}; {focus_d}.'
+    - 'Point cle: {audience}; {change_request}; {focus_a}.'
+    - 'Point cle: {medium}; {desired_outcome}; {focus_b}.'
+    - 'Point cle: {situation}; {constraint}; {focus_c}.'
+    - 'Point cle: {user_goal}; {change_request}; {focus_d}.'
+    diversity_clause:
+    - 'Ajustement: {change_request}; {desired_outcome}; {constraint}.'
+    - 'Ajustement: {audience}; {medium}; {situation}.'
+    - 'Ajustement: {user_goal}; {change_request}; {desired_outcome}.'
+    - 'Ajustement: {situation}; {constraint}; {desired_outcome}.'
+    - 'Ajustement: {focus_a}; {focus_b}; {focus_c}.'
+    - 'Ajustement: {focus_b}; {focus_c}; {focus_d}.'
+    - 'Ajustement: {focus_a}; {focus_c}; {focus_d}.'
+    - 'Ajustement: {focus_a}; {focus_b}; {focus_d}.'
+    - 'Ajustement: {audience}; {change_request}; {focus_a}.'
+    - 'Ajustement: {medium}; {desired_outcome}; {focus_b}.'
+    - 'Ajustement: {situation}; {constraint}; {focus_c}.'
+    - 'Ajustement: {user_goal}; {change_request}; {focus_d}.'
+    - 'Ajustement: {desired_outcome}; {constraint}; {focus_a}.'
+    - 'Ajustement: {change_request}; {focus_b}; {focus_c}.'
+    - 'Ajustement: {audience}; {focus_c}; {focus_d}.'
+    - 'Ajustement: {medium}; {focus_a}; {focus_b}.'
+    - 'Ajustement: {situation}; {focus_a}; {focus_d}.'
+    - 'Ajustement: {user_goal}; {focus_b}; {focus_c}.'
+    - 'Ajustement: {constraint}; {focus_c}; {focus_d}.'
+    - 'Ajustement: {change_request}; {desired_outcome}; {focus_a}.'
+    - 'Ajustement: {audience}; {desired_outcome}; {focus_b}.'
+    - 'Ajustement: {medium}; {constraint}; {focus_c}.'
+    - 'Ajustement: {situation}; {user_goal}; {focus_d}.'
+    - 'Ajustement: {change_request}; {constraint}; {focus_a}.'
+    focus_a:
+    - proteger la relation
+    - obtenir un accord sur la suite
+    - reduire la confusion
+    - arreter ce cycle
+    - aligner les priorites
+    - rester constructif
+    - eviter une nouvelle escalade
+    - rendre la decision claire
+    - installer une norme repetable
+    - faire avancer le travail
+    focus_b:
+    - rester bref
+    - etre ferme et respectueux
+    - etre doux mais clair
+    - eviter les reproches
+    - eviter le passif-agressif
+    - rester factuel
+    - sonner confiant
+    - sonner calme
+    - utiliser un langage simple
+    - tenir en une ou deux phrases
+    focus_c:
+    - garder les nouvelles demandes dans les heures de travail
+    - confirmer priorite et echeance avant de lancer
+    - designer un seul responsable de decision
+    - signaler explicitement ce qui est urgent
+    - regrouper les changements dans une seule mise a jour
+    - eviter de reecrire sans petit avertissement
+    - figer le scope avant execution
+    - reduire les interruptions pendant les blocs de focus
+    - mettre la demande en une phrase claire
+    - confirmer ce que signifie termine
+    focus_d:
+    - des messages tard le soir
+    - une responsabilite floue
+    - des demandes de derniere minute
+    - des delais rates
+    - un scope qui glisse
+    - des consignes confuses
+    - un fil tendu
+    - trop de reunions
+    - des reponses lentes
+    - du rework repetitif
+    - un message sec
+    - un malentendu
+    - un feedback mal recu
+    - une demande que je ne peux pas prendre
+    - un plan qui change sans arret
+    - un conflit de planning
+    latin_a:
+    - mon collegue
+    - ma manager
+    - un equipier
+    - un client
+    - mon amie
+    - mon frere
+    - ma partenaire
+    - mon colocataire
+    - un professeur
+    - le groupe de chat
+    latin_b:
+    - un e-mail
+    - le chat
+    - un message
+    - un suivi de reunion
+    - une mise a jour projet
+    - une note courte
+    - un message de statut
+    - un commentaire de review
+    latin_c:
+    - poser une limite claire
+    - m'excuser sans en faire trop
+    - donner un feedback direct
+    - refuser poliment
+    - demander des clarifications
+    - apaiser le ton
+    - relancer sans paraitre insistant
+    - corriger un malentendu
+    - recaler les attentes
+    - demander un changement de comportement
+    latin_d:
+    - proteger la relation
+    - obtenir un accord sur la suite
+    - reduire la confusion
+    - arreter ce cycle
+    - aligner les priorites
+    - rester constructif
+    - eviter une nouvelle escalade
+    - rendre la decision claire
+    - installer une norme repetable
+    - faire avancer le travail
+    extra_clause:
+    - La limite est claire sans casser la relation.
+    - La prochaine action reste concrete.
+    - Le texte evite le blame et garde l elan.
+    - Si besoin, tu peux condenser en une phrase.
+    - Le message pose un cadre sans rigidite excessive.
+    - La demande reste precise et actionnable.
+    - Le sens reste clair meme sous tension.
+  row_template:
+    language: '{language}'
+    mode: '{mode}'
+    tone: '{tone}'
+    emote6: '{emote6}'
+    continuity_choice: '{continuity_choice}'
+    intent_family: '{intent_family}'
+    intent_subtype: '{intent_subtype}'
+    user_message: '{user_message}'
+    assistant_response: '{assistant_response}'

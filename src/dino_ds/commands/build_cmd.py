@@ -69,6 +69,27 @@ def _read_json(path: Path) -> list[dict[str, Any]]:
     return []
 
 
+def _normalize_lang_tag(tag: str) -> str:
+    # Normalize language tag for IDs (e.g., zh-hk -> zhhk, pt-br -> ptbr)
+    out = tag.strip().lower().replace("-", "")
+    return out or "en"
+
+
+def _lane_language_tag(lane_obj: dict[str, Any]) -> str:
+    # Prefer explicit language keys; fall back to template_expand.slot_banks.language if it is a single value.
+    for v in (lane_obj.get("language"),):
+        if isinstance(v, str) and v.strip():
+            return v.strip()
+    te = lane_obj.get("template_expand")
+    if isinstance(te, dict):
+        slot_banks = te.get("slot_banks")
+        if isinstance(slot_banks, dict):
+            langs = slot_banks.get("language")
+            if isinstance(langs, list) and len(langs) == 1 and isinstance(langs[0], str) and langs[0].strip():
+                return langs[0].strip()
+    return "en"
+
+
 def _ensure_sample_id(rows: list[dict[str, Any]], salt: str) -> None:
     seen: set[str] = set()
     for i, r in enumerate(rows):
@@ -630,9 +651,15 @@ def _token_overlap_ratio(a: str, b: str, ignore: set[str] | None = None, ngram: 
     return inter / float(denom) if denom > 0 else 0.0
 
 
-def _row_text_for_similarity(rr: dict[str, Any]) -> str:
+def _row_text_for_similarity(rr: dict[str, Any], scope: str | None = None) -> str:
     u = rr.get("user_message")
     a = rr.get("assistant_response")
+    if isinstance(scope, str):
+        key = scope.strip().lower()
+        if key in ("assistant", "assistant_response", "assistant-only", "assistant_only"):
+            return a if isinstance(a, str) else ""
+        if key in ("user", "user_message", "user-only", "user_only"):
+            return u if isinstance(u, str) else ""
     if isinstance(u, str) and isinstance(a, str):
         return f"{u}\n{a}"
     return json.dumps(rr, ensure_ascii=False)
@@ -824,11 +851,11 @@ def _build_template_expand(lane: dict[str, Any], cfg_path: Path, seed: int | Non
     if not isinstance(base_row, dict):
         raise ValueError("base_row must be object")
     
-    # Keep these gates in the human-facing lane.yaml (no hidden defaults).
+    # Keep these gates in the human-facing lane config (no hidden defaults).
     if "adult_gate" not in base_row or not isinstance(base_row.get("adult_gate"), bool):
-        raise ValueError("base_row.adult_gate (bool) is required in lane.yaml")
+        raise ValueError("base_row.adult_gate (bool) is required in lane config")
     if "profanity_allowed" not in base_row or not isinstance(base_row.get("profanity_allowed"), bool):
-        raise ValueError("base_row.profanity_allowed (bool) is required in lane.yaml")
+        raise ValueError("base_row.profanity_allowed (bool) is required in lane config")
 
     te_base = te.get("base_row")
     if te_base is None:
@@ -852,6 +879,11 @@ def _build_template_expand(lane: dict[str, Any], cfg_path: Path, seed: int | Non
     sim = lane.get("similarity")
     sim_ignore = _build_similarity_ignore(sim)
     sim_ngram = _build_similarity_ngram(sim)
+    sim_scope = None
+    if isinstance(sim, dict):
+        v = sim.get("text_field")
+        if isinstance(v, str) and v.strip():
+            sim_scope = v.strip()
     max_ratio = None
     if isinstance(sim, dict) and isinstance(sim.get("max_token_overlap_ratio"), (int, float)):
         max_ratio = float(sim.get("max_token_overlap_ratio"))
@@ -1067,7 +1099,7 @@ def _build_template_expand(lane: dict[str, Any], cfg_path: Path, seed: int | Non
 
         # Similarity check on concatenated user/assistant if present
         if max_ratio is not None:
-            text = _row_text_for_similarity(rr)
+            text = _row_text_for_similarity(rr, sim_scope)
             ok = True
             for prev in window_texts:
                 if _token_overlap_ratio(text, prev, sim_ignore, sim_ngram) > max_ratio:
@@ -1217,7 +1249,7 @@ def _build_hybrid(lane: dict[str, Any], cfg_path: Path, seed: int | None, limit:
         if backfill != "template_expand":
             # For now we only support backfill via template_expand because it respects similarity controls.
             raise ValueError("hybrid.backfill must be template_expand")
-        pre_texts = [_row_text_for_similarity(r) for r in rows if isinstance(r, dict)]
+        pre_texts = [_row_text_for_similarity(r, sim_scope) for r in rows if isinstance(r, dict)]
         more = _build_template_expand(lane, cfg_path, seed, need, preexisting_texts=pre_texts)
         rows.extend(more)
 
@@ -1258,7 +1290,7 @@ def run_lane(config: str, out: str, seed: int | None = None, limit: int | None =
             return ec.CONFIG_INVALID
 
         # Apply lane-level base defaults to every row for ALL modes.
-        # This keeps lane.yaml as the single human-facing source of truth for required training fields.
+        # This keeps the lane config as the single human-facing source of truth for required training fields.
         base_row = lane.get("base_row")
         if base_row is None:
             base_row = {}
@@ -1288,7 +1320,9 @@ def run_lane(config: str, out: str, seed: int | None = None, limit: int | None =
             if isinstance(r, dict) and "_lane" not in r:
                 r["_lane"] = meta
 
-        _ensure_sample_id(rows, salt=str(lane.get("lane_id") or "lane"))
+        lane_id = str(lane.get("lane_id") or "lane")
+        lang_tag = _normalize_lang_tag(_lane_language_tag(lane))
+        _ensure_sample_id(rows, salt=f"{lane_id}_{lang_tag}")
 
         text = "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows)
         atomic_write_text(out_path, text)

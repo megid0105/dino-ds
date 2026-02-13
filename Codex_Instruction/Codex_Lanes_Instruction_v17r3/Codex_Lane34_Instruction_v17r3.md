@@ -7,12 +7,12 @@ Use ONLY:
 3) `Dino_vNext_Multi-Lane_Training_Volume_Master_Spec_02_03_2026.md` — volumes + language policy (authoritative)
 4) `PCT-perf_Training_config_Spec_36_lanes__02_01_2026.md` — cross‑lane constraints
 
-Do NOT imitate any legacy lane.yaml “context format”. Produce configs that satisfy the **current** lane schema and the v17 lane logic.
+Do NOT imitate any legacy lane_en.yaml “context format”. Produce configs that satisfy the **current** lane schema and the v17 lane logic.
 
 ---
 
 ## Contract extraction (DO THIS FIRST, DO NOT GUESS)
-Before writing any lane.yaml:
+Before writing any lane_en.yaml:
 1) Copy the v17 lane #34 “Required schema fields / Constraints / Sampling example”.
 2) If any bullet conflicts with CT sample rows at the bottom of the lane section, CT sample rows win.
 3) Cross-check key names + enum values in MASTER; do not invent/rename keys.
@@ -21,10 +21,10 @@ Before writing any lane.yaml:
 
 ## Deliverables (single config — this lane is zh-hk by contract)
 Create:
-- `lane.yaml`  (language MUST be `zh-hk`)
+- `lane_en.yaml`  (language MUST be `zh-hk`)
 
 Gate:
-`DINO_DS_SKIP_OLLAMA=1 ./scripts/run.sh gate lane --config <LANE34_DIR>/lane.yaml --limit 5`
+`DINO_DS_SKIP_OLLAMA=1 ./scripts/run.sh gate lane --config <LANE34_DIR>/lane_en.yaml --limit 5`
 
 ---
 

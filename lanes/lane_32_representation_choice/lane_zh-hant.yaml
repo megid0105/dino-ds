@@ -1,0 +1,378 @@
+lane_id: "lane_32_representation_choice"
+wave: "wave0"
+target_base: "dino_qwen4b"
+source_type: "local"
+
+# template_expand lanes do not require source files
+sources: []
+
+# how many rows to build (can be overridden by --limit)
+count_target: 1177
+# REQUIRED PCT fields: keep these in the human-facing lane configs
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: "suppress_continuity"
+  flow_state: "none"
+  history_scope: "thread_only"
+  representation_choice: "plain_text"
+  safety_tag: "safe"
+
+  system_prompt_id: "dino.system.v1"
+# forward-compat placeholders
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators: []
+transform_pipeline: []
+
+generation_mode: "template_expand"
+system_prompt_path: prompts/system/dino_system_prompt.txt
+
+
+output_dir: out_runs/colleague_test
+
+teacher_runtime:
+  sample_percent: 10
+  enabled: false
+  provider: ollama
+  ollama_host: "http://127.0.0.1:11434"
+  model: "dino-pro-7b"
+  policy: structure_only
+  on_missing_evidence: abstain
+  system_prompt_path: prompts/teacher/lane_32_teacher_system_prompt.txt
+
+
+
+
+  timeout_s: 150
+  keepalive: "5m"
+# similarity/dedupe controls (tune per-lane)
+similarity:
+  max_token_overlap_ratio: 0.3
+  ignore_stopwords: true
+  ignore_tokens:
+    - "dino"
+    - "ai"
+    - "assistant"
+    - "representation"
+    - "format"
+    - "structure"
+    - "plain_text"
+    - "bullet_list"
+    - "comparison_table"
+    - "chart_spec"
+    - "document_spec"
+    - "zip_spec"
+    - "please"
+    - "thanks"
+    - "thank"
+    - "bottom"
+    - "line"
+    - "next"
+    - "step"
+  ngram: 2
+
+template_expand:
+  seed: 0
+  count_target: 1177
+  max_attempts: 900000
+  attempts_per_row: 400
+
+  slot_banks:
+    # Core labels — English only per operator guidance
+    language: ["zh-hant"]
+    mode: ["conversation"]
+    tone:
+      - "professional"
+      - "serious"
+      - "friendly"
+      - "family"
+      - "best_friend"
+      - "professional"
+      - "serious"
+      - "friendly"
+    emote6: ["neutral"]
+    continuity_choice: ["suppress_continuity"]
+
+    # Operator-locked intent labels
+    intent_family: ["qa_general"]
+    intent_subtype: ["general"]
+
+    # Representation choice distribution (each >=10%)
+    representation_choice:
+      plain_text: 1
+      bullet_list: 1
+      comparison_table: 1
+      chart_spec: 1
+      document_spec: 1
+      zip_spec: 1
+
+    # Representation-aware prompt slots (keep aligned by referencing the label directly)
+    representation_anchor:
+      - "representation_choice={representation_choice}"
+      - "format={representation_choice}"
+      - "output format: {representation_choice}"
+      - "representation: {representation_choice}"
+      - "use {representation_choice}"
+      - "respond as {representation_choice}"
+      - "structure it as {representation_choice}"
+      - "present it as {representation_choice}"
+      - "render it in {representation_choice}"
+      - "deliver it in {representation_choice}"
+
+    representation_rule:
+      - "Make the representation choice explicit and follow it."
+      - "The representation choice is part of the requirement."
+      - "Do not ignore the representation choice label."
+      - "Stick to the requested representation choice."
+      - "The format requirement is not optional."
+      - "Treat the representation label as binding."
+      - "Use the representation choice as the organizing frame."
+      - "Align the answer to the representation choice."
+      - "Make the representation choice visible in the answer."
+      - "Follow the representation choice without drifting."
+
+    task_frame:
+      - "a planning workflow"
+      - "a demo outline"
+      - "a launch checklist"
+      - "a review cadence"
+      - "a prioritization plan"
+      - "a decision rubric"
+      - "a sprint goal"
+      - "an onboarding flow"
+      - "a weekly update"
+      - "a small experiment"
+      - "a handoff note"
+      - "a feedback loop"
+      - "a meeting structure"
+      - "a risk log"
+      - "a status summary"
+      - "a scope boundary"
+      - "a follow-up plan"
+      - "a draft message"
+      - "a quick brief"
+      - "a task list"
+
+    objective:
+      - "clarify the next step"
+      - "reduce confusion"
+      - "create alignment"
+      - "make it easy to skim"
+      - "highlight tradeoffs"
+      - "capture the essentials"
+      - "make the structure obvious"
+      - "keep it consistent"
+      - "turn it into an actionable view"
+      - "keep it reviewable"
+      - "make it simple to share"
+      - "make the decision easier"
+      - "preserve the boundary"
+      - "avoid scope drift"
+      - "support a quick decision"
+
+    constraint:
+      - "no new requirements"
+      - "only the current scope"
+      - "keep it to one screen"
+      - "keep it compact"
+      - "keep it readable in one pass"
+      - "focus on the core only"
+      - "avoid extra fluff"
+      - "do not add new branches"
+      - "stay within the existing plan"
+      - "keep the same boundary"
+      - "do not invent details"
+      - "keep it minimal"
+      - "do not expand the goal"
+      - "keep the structure tight"
+      - "no additional context needed"
+
+    audience:
+      - "a teammate"
+      - "a reviewer"
+      - "a late joiner"
+      - "a busy reader"
+      - "a collaborator"
+      - "a partner"
+      - "a manager"
+      - "someone scanning quickly"
+      - "someone joining mid-stream"
+      - "the next person on shift"
+
+    size_hint:
+      - "two sentences"
+      - "three to five bullets"
+      - "a small table spec"
+      - "a compact chart spec"
+      - "a short document spec"
+      - "a minimal zip spec"
+      - "a tight recap"
+      - "a one-screen summary"
+      - "a short structured note"
+      - "a small structured answer"
+
+    representation_request_line:
+      - "Use {representation_anchor} to present {task_frame} so we can {objective}."
+      - "I want {task_frame} formatted as {representation_anchor} to help {audience} {objective}."
+      - "Please respond with {representation_anchor} for {task_frame}; the goal is to {objective}."
+      - "Present {task_frame} using {representation_anchor} so it is easy for {audience} to follow."
+      - "Make the format {representation_anchor} for {task_frame} and keep the focus on {objective}."
+      - "Use {representation_anchor} to structure {task_frame} and respect the constraint: {constraint}."
+      - "I need {task_frame} rendered as {representation_anchor} with the constraint {constraint}."
+      - "Structure {task_frame} as {representation_anchor} so it stays within {constraint} and supports {objective}."
+      - "Format {task_frame} as {representation_anchor} and keep it to {size_hint}."
+      - "Choose {representation_anchor} for {task_frame} so we can {objective} under {constraint}."
+      - "For {audience}, present {task_frame} as {representation_anchor} with the constraint {constraint}."
+      - "Use {representation_anchor} to make {task_frame} easy to skim and aligned to {objective}."
+      - "I want the answer in {representation_anchor} form for {task_frame}, not plain prose drift."
+      - "Make the representation choice explicit: {representation_anchor}, and apply it to {task_frame}."
+      - "Treat the representation as binding: {representation_anchor}, and use it for {task_frame}."
+
+    constraint_line:
+      - "Keep it grounded and do not invent new details."
+      - "Stay within the stated scope and do not add new branches."
+      - "Keep the structure tight and avoid unnecessary expansion."
+      - "Do not drift away from the requested format."
+      - "Keep it compact and easy to scan."
+      - "Keep it consistent with the constraint."
+      - "Use the representation choice as the organizing frame."
+      - "Avoid format drift and keep it aligned."
+      - "Do not change the representation choice mid-answer."
+      - "Keep it small, structured, and clear."
+
+    user_template:
+      - "{representation_request_line} {representation_rule} {constraint_line}"
+      - "{representation_rule} {representation_request_line} {constraint_line}"
+      - "{representation_request_line} {constraint_line} {representation_rule}"
+      - "{representation_request_line} {constraint_line}"
+      - "{representation_rule} {representation_request_line}"
+      - "{representation_request_line}"
+
+    # Multi-turn wrappers for richness
+    assistant_probe:
+      - "Do you want me to keep the representation explicit in the answer?"
+      - "Should I optimize for skimmability or completeness?"
+      - "Do you want the constraint restated in the answer?"
+      - "Should I keep the structure very small or slightly expanded?"
+      - "Do you want this tuned for {audience}?"
+      - "Should I include a short note about why this representation fits?"
+      - "Do you want the answer to include a next step?"
+      - "Should I stay strictly in the requested representation?"
+      - "Do you want a paste-ready version?"
+      - "Should I keep it minimal and structured?"
+
+    user_followup:
+      - "Keep the representation explicit and do not drift."
+      - "Stay within the constraint and make it skimmable."
+      - "Tune it for {audience} and keep it compact."
+      - "Include a short next step but keep the format stable."
+      - "Restate the constraint briefly and proceed."
+      - "Keep it paste-ready and aligned to the representation."
+      - "Make the representation label visible in the answer."
+      - "Keep it small and structured."
+      - "Do not add new details beyond the request."
+      - "Make it easy to skim in one pass."
+
+    dialogue_context:
+      - "User: {user_template}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "Context:\nUser: {user_template}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "Conversation so far:\nUser: {user_template}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "U: {user_template}\nA: {assistant_probe}\nU: {user_followup}"
+      - "Dialogue:\nU: {user_template}\nA: {assistant_probe}\nU: {user_followup}"
+      - "User message: {user_template}\nAssistant reply: {assistant_probe}\nUser follow-up: {user_followup}"
+
+    # Assistant response pieces — representation anchored to avoid nonsense shuffles
+    assistant_open:
+      - "Representation choice locked: {representation_choice}."
+      - "Using representation_choice={representation_choice} as requested."
+      - "I will respond in {representation_choice} form."
+      - "The selected representation is {representation_choice}."
+      - "I will keep the representation as {representation_choice}."
+      - "Representation anchored on {representation_choice}."
+      - "Format set to {representation_choice}."
+      - "I will structure this as {representation_choice}."
+      - "Representation: {representation_choice}."
+      - "Representation choice: {representation_choice}."
+
+    assistant_fit_line:
+      - "This format helps {audience} {objective} while staying within {constraint}."
+      - "This representation supports {objective} and keeps us within {constraint}."
+      - "This choice keeps the structure clear for {audience} and respects {constraint}."
+      - "This format is aligned to {objective} and avoids drift beyond {constraint}."
+      - "This representation makes the shape obvious for {audience} and keeps it {constraint}."
+      - "This format is a good fit for {task_frame} because it supports {objective} and respects {constraint}."
+      - "This representation helps with {objective} and keeps the scope to {constraint}."
+      - "This format keeps the answer structured, skimmable, and inside {constraint}."
+      - "This representation is chosen to support {objective} and keep the boundary at {constraint}."
+      - "This format keeps the answer tight and aligned to the constraint: {constraint}."
+
+    assistant_content_line:
+      - "Scope: {task_frame}. Goal: {objective}. Constraint: {constraint}."
+      - "Frame: {task_frame}. Objective: {objective}. Boundary: {constraint}."
+      - "Task: {task_frame}. What matters: {objective}. Limit: {constraint}."
+      - "Focus: {task_frame}. Target: {objective}. Guardrail: {constraint}."
+      - "Topic: {task_frame}. Aim: {objective}. Constraint: {constraint}."
+      - "Context: {task_frame}. Desired outcome: {objective}. Scope limit: {constraint}."
+
+    assistant_structure_line:
+      - "I will keep the representation explicit in the answer and avoid format drift."
+      - "I will make the representation visible and keep the structure stable."
+      - "I will keep the format consistent end-to-end."
+      - "I will avoid mixing representations and keep it aligned."
+      - "I will keep the structure small and readable."
+      - "I will preserve the representation choice without drifting into another format."
+      - "I will keep the representation anchored and clear."
+      - "I will keep the answer consistent with the selected representation."
+      - "I will keep the format tight and structured."
+      - "I will keep the representation choice binding throughout the response."
+
+    bottom_line:
+      - "Bottom line: the representation choice is part of the requirement, so I will keep it explicit and consistent."
+      - "Bottom line: I will follow the chosen representation and keep the content inside the constraint."
+      - "Bottom line: the format stays fixed and the scope stays tight."
+      - "Bottom line: representation_choice drives the structure here, not the other way around."
+      - "Bottom line: I will keep the representation stable and the content grounded."
+      - "Bottom line: a clear representation reduces confusion and keeps the boundary intact."
+
+    next_step:
+      - "Next step: if you want, I can produce a smaller version in the same representation for {audience}."
+      - "Next step: I can tighten this further while keeping the same representation choice."
+      - "Next step: I can restate it more compactly without changing the representation."
+      - "Next step: I can keep the representation fixed and tune it for skimmability."
+      - "Next step: I can produce a paste-ready version that preserves the representation choice."
+      - "Next step: I can keep the same representation and adjust the size to one screen."
+      - "Next step: I can keep the format and focus on the one most important point."
+      - "Next step: I can provide a shorter follow-up in the same representation."
+      - "Next step: I can tune this for {audience} while keeping the representation choice binding."
+      - "Next step: I can keep the representation stable and produce a very compact version."
+
+    assistant_response:
+      - "{assistant_open} {assistant_fit_line} {assistant_content_line} {assistant_structure_line} {bottom_line} {next_step}"
+      - "{assistant_open} {assistant_content_line} {assistant_fit_line} {assistant_structure_line} {bottom_line} {next_step}"
+      - "{assistant_open} {assistant_fit_line} {assistant_content_line} {assistant_structure_line} {bottom_line}"
+      - "{assistant_open} {assistant_content_line} {assistant_structure_line} {assistant_fit_line} {bottom_line} {next_step}"
+
+  row_template:
+    language: "{language}"
+    mode: "{mode}"
+    tone: "{tone}"
+    emote6: "{emote6}"
+    continuity_choice: "{continuity_choice}"
+    intent_family: "{intent_family}"
+    intent_subtype: "{intent_subtype}"
+    representation_choice: "{representation_choice}"
+
+    safety_tag: "safe"
+    needs_search: false
+    needs_history_search: false
+    history_scope: "thread_only"
+
+    user_message: "{dialogue_context}"
+    assistant_response: "{assistant_response}"
+
+notes: "Wave0 Lane32 — representation choice (balanced labels, representation anchored, no teacher, no steps_v1)"

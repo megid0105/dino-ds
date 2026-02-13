@@ -7,13 +7,13 @@ Use ONLY:
 3) `Dino_vNext_Multi-Lane_Training_Volume_Master_Spec_02_03_2026.md` — §3.2 global language distribution
 4) `PCT-perf_Training_config_Spec_36_lanes__02_01_2026.md` — cross‑lane constraints
 
-Do NOT imitate any legacy lane.yaml “context format”. Produce configs that satisfy the **current** lane schema and v17 lane logic.
+Do NOT imitate any legacy lane_en.yaml “context format”. Produce configs that satisfy the **current** lane schema and v17 lane logic.
 
 ---
 
 ## Deliverables (must produce 14 configs in this lane directory)
 Create these files:
-- `lane.yaml` (English)
+- `lane_en.yaml` (English)
 - `lane_zh-hk.yaml`
 - `lane_th.yaml`
 - `lane_zh-hant.yaml`
@@ -78,7 +78,7 @@ Real seeds (recommended, per language):
 ---
 
 ## Contract extraction (DO THIS FIRST, DO NOT GUESS)
-Before writing any lane.yaml:
+Before writing any lane_en.yaml:
 1) Open v17 lane #19 section and copy its hard constraints + required fields.
 2) Cross-check key names and allowed values in MASTER; do not invent/rename keys.
 3) Implement those constraints verbatim as `base_row` + strict template rules.

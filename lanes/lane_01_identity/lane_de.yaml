@@ -16,7 +16,7 @@ base_row:
   representation_choice: plain_text
   safety_tag: safe
   system_prompt_id: dino.system.v1
-  language: de
+  language: "de"
 language_mix: {}
 synthetic_policy: {}
 required_tools: []
@@ -28,7 +28,7 @@ system_prompt_path: prompts/system/dino_system_prompt.txt
 output_dir: out_runs/colleague_test
 teacher_runtime:
   sample_percent: 5
-  enabled: true
+  enabled: false
   provider: ollama
   ollama_host: http://127.0.0.1:11434
   model: dino-pro-7b

@@ -1,0 +1,731 @@
+lane_id: lane_02_tone_behaviour_foundation
+wave: wave0
+target_base: dino_qwen4b
+source_type: local
+sources: []
+count_target: 1569
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: suppress_continuity
+  flow_state: none
+  history_scope: thread_only
+  representation_choice: plain_text
+  safety_tag: safe
+  system_prompt_id: dino.system.v1
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators: []
+transform_pipeline: []
+generation_mode: template_expand
+system_prompt_path: prompts/system/dino_system_prompt.txt
+output_dir: out_runs/colleague_test
+teacher_runtime:
+  sample_percent: 5
+  enabled: false
+  provider: ollama
+  ollama_host: http://127.0.0.1:11434
+  model: dino-pro-7b
+  policy: structure_only
+  on_missing_evidence: abstain
+  system_prompt_path: prompts/teacher/lane_02_teacher_system_prompt.txt
+  timeout_s: 150
+  keepalive: 5m
+similarity:
+  max_token_overlap_ratio: 0.12
+  text_field: assistant
+  ignore_stopwords: false
+  ngram: 1
+template_expand:
+  seed: 5
+  count_target: 1569
+  max_attempts: 3000000
+  attempts_per_row: 1200
+  expand_dict_slots:
+  - tone_case
+  slot_banks:
+    language:
+    - zh-hant
+    mode:
+    - quick
+    - think
+    tone_case:
+    - tone: professional
+      tone_style: 清晰專業
+    - tone: best_friend
+      tone_style: 直率但支持
+    - tone: family
+      tone_style: 溫柔體貼
+    - tone: serious
+      tone_style: 冷靜直接
+    - tone: friendly
+      tone_style: 溫和親切
+    emote6:
+    - neutral
+    continuity_choice:
+    - suppress_continuity
+    intent_family:
+    - content_generation
+    - safety
+    intent_subtype:
+    - tone_behavior
+    - boundary_setting
+    - correction_style
+    audience:
+    - 同事
+    - 主管
+    - 團隊成員
+    - 客戶
+    - 朋友
+    - 兄弟姊妹
+    - 伴侶
+    - 室友
+    - 老師
+    - 群組聊天
+    medium:
+    - 電子郵件
+    - 聊天
+    - 訊息
+    - 會後跟進
+    - 專案更新
+    - 簡短備註
+    - 狀態訊息
+    - 評審評論
+    situation:
+    - 深夜訊息
+    - 責任不清
+    - 臨時加需求
+    - 錯過截止時間
+    - 範圍一直擴張
+    - 指令不明確
+    - 對話氣氛緊張
+    - 會議過多
+    - 回覆太慢
+    - 反覆返工
+    - 語氣很衝的訊息
+    - 溝通誤會
+    - 讓人不舒服的回饋
+    - 我無法承接的請求
+    - 計畫一直變動
+    - 排程衝突
+    user_goal:
+    - 設定清楚界線
+    - 道歉但不過度自責
+    - 給出直接回饋
+    - 有禮拒絕
+    - 要求釐清
+    - 降低對話火氣
+    - 跟進但不顯得催促
+    - 修正誤解
+    - 重設期待
+    - 請對方調整行為
+    constraint:
+    - 保持精簡
+    - 堅定且尊重
+    - 溫和但清楚
+    - 避免指責
+    - 避免被動攻擊語氣
+    - 以事實為主
+    - 聽起來有自信
+    - 聽起來冷靜
+    - 使用簡單語言
+    - 控制在一到兩句
+    desired_outcome:
+    - 保護關係
+    - 就下一步達成共識
+    - 減少混亂
+    - 停止重複問題
+    - 對齊優先順序
+    - 維持建設性
+    - 避免再次升級
+    - 讓決策更清楚
+    - 建立可重複規則
+    - 推動工作前進
+    ask_style:
+    - 幫我起草一下。
+    - 幫我改寫這句。
+    - 給我可直接送出的版本。
+    - 告訴我該怎麼說。
+    - 給我兩個不同強度的版本。
+    - 讓它有分寸但不冷。
+    - 寫得清楚一點，不要太戲劇化。
+    - 盡量短、可直接用。
+    raw_line:
+    - 晚上十點後請不要再加新任務。
+    - 我開始前需要先確認截止時間。
+    - 一直在變，我很難規劃。
+    - 我接這個就得放掉其他工作。
+    - 請不要在沒告知的情況下改我的內容。
+    - 我們需要一位明確的決策負責人。
+    - 你上一則訊息語氣偏重，我想把對話拉回合作。
+    - 我對優先順序和截止時間有點混亂。
+    - 我願意幫忙，但這個請求太模糊。
+    - 我需要更少打斷才能完成工作。
+    - 如果今晚再加需求，交付品質會受影響。
+    - 我想維持合作，但先要把邊界講清楚。
+    - 請先說明完成標準，我才能準確執行。
+    - 如果中途一直改方向，整體效率會下降。
+    - 我可以配合，但需要先確認由誰拍板。
+    - 為了{desired_outcome}，我建議{change_request}。
+    - 針對{situation}這件事，我想{change_request}。
+    - 我會用{constraint}的方式提出：{change_request}。
+    - 如果要我今天完成，請{change_request}。
+    - 我願意繼續合作，但前提是{change_request}。
+    - 要把節奏穩住，最實際就是{change_request}。
+    - 這不是在推責任，而是希望{change_request}。
+    - 我想把誤會降到最低，所以先提議{change_request}。
+    - 若{change_request}，後續就能更順暢。
+    - 我想保留合作感，同時{change_request}。
+    - 如果{change_request}，比較能對齊下一步。
+    - 請把這件事先收斂成：{change_request}。
+    - 我現在最需要的是{change_request}。
+    - 我希望在{medium}上直接寫清楚：{change_request}。
+    - 我想和{audience}維持建設性，所以{change_request}。
+    - 就{user_goal}而言，關鍵是{change_request}。
+    - 我想達成{desired_outcome}，請{change_request}。
+    - 只要你同意{change_request}，我就可以立刻推進。
+    - 我會保持{constraint}，但請配合{change_request}。
+    - 請{change_request}，這樣能減少返工。
+    - '{change_request}，比較能避免再次升高衝突。'
+    - 如果要守住截止時間，請{change_request}。
+    - 我不是拒絕幫忙，而是需要{change_request}。
+    - 我希望流程可重複，所以{change_request}。
+    - 要避免資訊分散，{change_request}會更好。
+    - 這個要求很直接：{change_request}。
+    - 我想讓決策更清楚，所以{change_request}。
+    - 要維持品質，第一步仍是{change_request}。
+    - 我會配合調整，但開始前請{change_request}。
+    - '{change_request}，我們比較容易達成{desired_outcome}。'
+    - 我希望把來回次數降到最低，所以請{change_request}。
+    - 若要穩定交付，請把重點先放在{change_request}。
+    - 我想把語氣放軟，但要求仍是{change_request}。
+    - 這件事不複雜，{change_request}就能推進。
+    - 我可以馬上接續，只要{change_request}。
+    - 在{situation}情境下，{change_request}更可執行。
+    - 為了讓團隊對齊，我們{change_request}。
+    - 如果{change_request}，就能更快進入執行。
+    - 我希望把焦點放回結果，所以{change_request}。
+    - 這樣做是為了{desired_outcome}：{change_request}。
+    - 我想降低風險，請{change_request}。
+    - 若要避免混亂，請{change_request}。
+    - 要讓對話回到正軌，{change_request}。
+    - 我會持續投入，但必須{change_request}。
+    - 請{change_request}，我就能更快交付下一版。
+    context_line:
+    - 背景：這週已經發生三次。
+    - 背景：我之前已經提醒過一次。
+    - 背景：這正在拖慢整個專案。
+    - 背景：我希望平和地解決。
+    - 背景：我仍希望合作順暢。
+    - 背景：我今天就需要可送出的版本。
+    - 背景：我擔心聽起來不禮貌。
+    - 背景：內容需要適合 {medium}。
+    - '{situation}.'
+    - '{medium}; {constraint}.'
+    - '{audience}; {situation}.'
+    - '{constraint}; {change_request}.'
+    - '{audience}; {situation}; {constraint}.'
+    user_frame:
+    - '{ask_style} 我需要就{situation}和{audience}{user_goal}，透過{medium}傳達，語氣要{tone_style}。'
+    - '{ask_style} 這件事是我和{audience}之間的{situation}，我想{user_goal}，同時維持{tone_style}。'
+    - '{ask_style} 我在處理{situation}時想要{user_goal}。對象是{audience}，場景是{medium}，整體要{tone_style}。'
+    - '{ask_style} 主題是{situation}。我需要給{audience}一則{medium}訊息來{user_goal}，風格要{tone_style}。'
+    user_message:
+    - '{user_frame}\n{context_line}\n限制: {constraint}. 目標: {desired_outcome}.\n原句: {raw_line}'
+    - '{user_frame}\n原句: {raw_line}\n限制: {constraint}. 目標: {desired_outcome}.\n{context_line}'
+    - '{user_frame}\n限制: {constraint}.\n{context_line}\n目標: {desired_outcome}.\n原句: {raw_line}'
+    - '{user_frame}\n{context_line}\n目標: {desired_outcome}. 限制: {constraint}.\n原句: {raw_line}'
+    - '{user_frame}\n原句: {raw_line}\n{context_line}\n目標: {desired_outcome}. 限制: {constraint}.'
+    - '{user_frame}\n限制: {constraint}. 目標: {desired_outcome}.\n{context_line}'
+    - '{user_frame}\n{context_line}\n限制: {constraint}.\n原句: {raw_line}\n目標: {desired_outcome}.'
+    - '{user_frame}\n目標: {desired_outcome}.\n限制: {constraint}.\n{context_line}\n原句: {raw_line}'
+    assistant_open:
+    - '{context_line}'
+    - '{context_line_b}'
+    - 背景： {situation}.
+    - 背景： {audience}; {medium}.
+    - 背景： {desired_outcome}; {constraint}.
+    - 背景： {user_goal}; {change_request}.
+    - 重點： {desired_outcome}.
+    - 重點： {constraint}.
+    - 調整： {change_request}.
+    - 調整： {user_goal}.
+    assistant_commit:
+    - 我會把草稿寫成{tone_style}，並符合{constraint}。
+    - 我會讓訊息保持{tone_style}，同時做到{constraint}。
+    - 我會寫成{tone_style}，但仍然可執行。
+    - 我會調整成{tone_style}，並保持具體。
+    assistant_principle:
+    - 我會聚焦行動與請求，而不是責怪。
+    - 我會讓請求具體且可跟進。
+    - 我會去掉多餘摩擦，保留核心訊息。
+    - 我會把界線說清楚，但不帶敵意。
+    - 我會錨定下一步要做什麼。
+    draft_prefix:
+    - 草稿：
+    - 你可以這樣發：
+    - 可送出版：
+    - 訊息選項：
+    change_request:
+    - 新增請求集中在工作時間提出
+    - 開始前先確認優先順序與截止時間
+    - 由一位負責人做最終決策
+    - 把緊急事項明確標記
+    - 把變更集中在一次更新內
+    - 修改前先簡短告知
+    - 執行前先鎖定範圍
+    - 降低專注時段的打斷
+    - 把請求寫成一句清楚的話
+    - 先對齊完成定義
+    draft_line_1:
+    - '{situation}.'
+    - '{audience}; {situation}.'
+    - '{medium}; {situation}.'
+    - '{audience}; {medium}; {situation}.'
+    draft_line_2:
+    - 我們可以{change_request}嗎？這會幫助{desired_outcome}。
+    - 能否{change_request}？這樣有助於{desired_outcome}。
+    - 我的請求是{change_request}，這樣我們才能{desired_outcome}。
+    - 我建議我們{change_request}，這會支持{desired_outcome}。
+    - 我們能先約定{change_request}嗎？這樣能維持{desired_outcome}。
+    assistant_followup:
+    - 你要更柔和版，還是更堅定版？
+    - 要不要我再給一版更適合 {medium} 的短版？
+    - 如果你貼對方原句，我可以再貼語境細調。
+    - 我也可以給你兩版不同強度做比較。
+    - 你偏好更精簡，還是更有同理心？
+    - 如果需要，我也能再做一版更直接的。
+    - 重點： {desired_outcome}.
+    - 調整： {change_request}.
+    assistant_response:
+    - '{lead_phrase}: {raw_line}'
+    - '{draft_prefix} {raw_line}'
+    - '{assistant_open} {raw_line}'
+    - '{assistant_commit} {raw_line}'
+    - '{assistant_principle} {raw_line}'
+    - '{raw_line} {assistant_followup}'
+    - '{lead_phrase}: {raw_line} {assistant_followup}'
+    lead_phrase:
+    - 清晰 訊息
+    - 清晰 草稿
+    - 清晰 版本
+    - 清晰 回覆
+    - 清晰 表達
+    - 清晰 措辭
+    - 清晰 角度
+    - 清晰 方案
+    - 冷靜 訊息
+    - 冷靜 草稿
+    - 冷靜 版本
+    - 冷靜 回覆
+    - 冷靜 表達
+    - 冷靜 措辭
+    - 冷靜 角度
+    - 冷靜 方案
+    - 直接 訊息
+    - 直接 草稿
+    - 直接 版本
+    - 直接 回覆
+    - 直接 表達
+    - 直接 措辭
+    - 直接 角度
+    - 直接 方案
+    - 尊重 訊息
+    - 尊重 草稿
+    - 尊重 版本
+    - 尊重 回覆
+    - 尊重 表達
+    - 尊重 措辭
+    - 尊重 角度
+    - 尊重 方案
+    - 務實 訊息
+    - 務實 草稿
+    - 務實 版本
+    - 務實 回覆
+    - 務實 表達
+    - 務實 措辭
+    - 務實 角度
+    - 務實 方案
+    - 建設性 訊息
+    - 建設性 草稿
+    - 建設性 版本
+    - 建設性 回覆
+    - 建設性 表達
+    - 建設性 措辭
+    - 建設性 角度
+    - 建設性 方案
+    - 平衡 訊息
+    - 平衡 草稿
+    - 平衡 版本
+    - 平衡 回覆
+    - 平衡 表達
+    - 平衡 措辭
+    - 平衡 角度
+    - 平衡 方案
+    - 穩健 訊息
+    - 穩健 草稿
+    - 穩健 版本
+    - 穩健 回覆
+    - 穩健 表達
+    - 穩健 措辭
+    - 穩健 角度
+    - 穩健 方案
+    - 聚焦 訊息
+    - 聚焦 草稿
+    - 聚焦 版本
+    - 聚焦 回覆
+    - 聚焦 表達
+    - 聚焦 措辭
+    - 聚焦 角度
+    - 聚焦 方案
+    - 具體 訊息
+    - 具體 草稿
+    - 具體 版本
+    - 具體 回覆
+    - 具體 表達
+    - 具體 措辭
+    - 具體 角度
+    - 具體 方案
+    - 簡潔 訊息
+    - 簡潔 草稿
+    - 簡潔 版本
+    - 簡潔 回覆
+    - 簡潔 表達
+    - 簡潔 措辭
+    - 簡潔 角度
+    - 簡潔 方案
+    - 協作 訊息
+    - 協作 草稿
+    - 協作 版本
+    - 協作 回覆
+    - 協作 表達
+    - 協作 措辭
+    - 協作 角度
+    - 協作 方案
+    detail_line:
+    - 請求仍緊扣{desired_outcome}。
+    - 措辭持續符合{constraint}。
+    - 這個版本適合{medium}，而且保持聚焦在{situation}。
+    - 界線清楚，同時不破壞關係。
+    - 整體維持{tone_style}，也方便落地。
+    - 下一步行動仍然具體。
+    - 避免指責，同時保持推進節奏。
+    - 如有需要，可再壓成一句。
+    - 亦可按{medium}再微調一個子句。
+    - 立場清楚，同時保留合作語氣。
+    - 請求夠具體，對方更容易回應。
+    - 在壓力情境下仍能保持清晰。
+    raw_line_b:
+    - 晚上十點後可以不要再加新任務嗎？
+    - 我開始前需要先確認截止時間。
+    - 一直在變，我很難規劃。
+    - 我接這個就得放掉其他工作。
+    - 請不要在沒告知的情況下改我的內容。
+    - 我們需要一位明確的決策負責人。
+    - 你上一則訊息有點衝，我想把語氣拉回來。
+    - 我對優先順序和截止時間有點混亂。
+    - 我願意幫忙，但這個請求太模糊。
+    - 我需要更少打斷才能完成工作。
+    - 晚上十點後可以不要再加新任務嗎 咁優先次序會更清楚。
+    - 晚上十點後可以不要再加新任務嗎 咁可以減少返工。
+    - 晚上十點後可以不要再加新任務嗎 咁進度會更穩定。
+    - 晚上十點後可以不要再加新任務嗎 咁可以減少誤會。
+    - 晚上十點後可以不要再加新任務嗎 咁我先可以穩定交付。
+    - 我開始前需要先確認截止時間 咁優先次序會更清楚。
+    - 我開始前需要先確認截止時間 咁可以減少返工。
+    - 我開始前需要先確認截止時間 咁進度會更穩定。
+    - 我開始前需要先確認截止時間 咁可以減少誤會。
+    - 我開始前需要先確認截止時間 咁我先可以穩定交付。
+    - 一直在變，我很難規劃 咁優先次序會更清楚。
+    - 一直在變，我很難規劃 咁可以減少返工。
+    - 一直在變，我很難規劃 咁進度會更穩定。
+    - 一直在變，我很難規劃 咁可以減少誤會。
+    - 一直在變，我很難規劃 咁我先可以穩定交付。
+    - 我接這個就得放掉其他工作 咁優先次序會更清楚。
+    - 我接這個就得放掉其他工作 咁可以減少返工。
+    - 我接這個就得放掉其他工作 咁進度會更穩定。
+    - 我接這個就得放掉其他工作 咁可以減少誤會。
+    - 我接這個就得放掉其他工作 咁我先可以穩定交付。
+    - 請不要在沒告知的情況下改我的內容 咁優先次序會更清楚。
+    - 請不要在沒告知的情況下改我的內容 咁可以減少返工。
+    - 請不要在沒告知的情況下改我的內容 咁進度會更穩定。
+    - 請不要在沒告知的情況下改我的內容 咁可以減少誤會。
+    - 請不要在沒告知的情況下改我的內容 咁我先可以穩定交付。
+    - 我們需要一位明確的決策負責人 咁優先次序會更清楚。
+    - 我們需要一位明確的決策負責人 咁可以減少返工。
+    - 我們需要一位明確的決策負責人 咁進度會更穩定。
+    - 我們需要一位明確的決策負責人 咁可以減少誤會。
+    - 我們需要一位明確的決策負責人 咁我先可以穩定交付。
+    - 你上一則訊息有點衝，我想把語氣拉回來 咁優先次序會更清楚。
+    - 你上一則訊息有點衝，我想把語氣拉回來 咁可以減少返工。
+    - 你上一則訊息有點衝，我想把語氣拉回來 咁進度會更穩定。
+    - 你上一則訊息有點衝，我想把語氣拉回來 咁可以減少誤會。
+    - 你上一則訊息有點衝，我想把語氣拉回來 咁我先可以穩定交付。
+    - 我對優先順序和截止時間有點混亂 咁優先次序會更清楚。
+    - 我對優先順序和截止時間有點混亂 咁可以減少返工。
+    - 我對優先順序和截止時間有點混亂 咁進度會更穩定。
+    - 我對優先順序和截止時間有點混亂 咁可以減少誤會。
+    - 我對優先順序和截止時間有點混亂 咁我先可以穩定交付。
+    - 我願意幫忙，但這個請求太模糊 咁優先次序會更清楚。
+    - 我願意幫忙，但這個請求太模糊 咁可以減少返工。
+    - 我願意幫忙，但這個請求太模糊 咁進度會更穩定。
+    - 我願意幫忙，但這個請求太模糊 咁可以減少誤會。
+    - 我願意幫忙，但這個請求太模糊 咁我先可以穩定交付。
+    - 我需要更少打斷才能完成工作 咁優先次序會更清楚。
+    - 我需要更少打斷才能完成工作 咁可以減少返工。
+    - 我需要更少打斷才能完成工作 咁進度會更穩定。
+    - 我需要更少打斷才能完成工作 咁可以減少誤會。
+    - 我需要更少打斷才能完成工作 咁我先可以穩定交付。
+    - 請晚上十點後可以不要再加新任務嗎？
+    - 講清楚啲：晚上十點後可以不要再加新任務嗎？
+    - 簡短講：晚上十點後可以不要再加新任務嗎？
+    - 重點係：晚上十點後可以不要再加新任務嗎？
+    - 為咗推進：晚上十點後可以不要再加新任務嗎？
+    - 講清楚啲：我開始前需要先確認截止時間。
+    - 簡短講：我開始前需要先確認截止時間。
+    - 重點係：我開始前需要先確認截止時間。
+    - 為咗推進：我開始前需要先確認截止時間。
+    - 講清楚啲：一直在變，我很難規劃。
+    - 簡短講：一直在變，我很難規劃。
+    - 重點係：一直在變，我很難規劃。
+    - 為咗推進：一直在變，我很難規劃。
+    - 講清楚啲：我接這個就得放掉其他工作。
+    - 簡短講：我接這個就得放掉其他工作。
+    - 重點係：我接這個就得放掉其他工作。
+    - 為咗推進：我接這個就得放掉其他工作。
+    context_line_b:
+    - 背景：這週已經發生三次。
+    - 背景：我之前已經提醒過一次。
+    - 背景：這正在拖慢整個專案。
+    - 背景：我希望平和地解決。
+    - 背景：我仍希望合作順暢。
+    - 背景：我今天就需要可送出的版本。
+    - 背景：我擔心聽起來不禮貌。
+    - 背景：內容需要適合 {medium}。
+    - '{situation}.'
+    - '{medium}; {constraint}.'
+    - '{audience}; {situation}.'
+    - '{constraint}; {change_request}.'
+    - '{audience}; {situation}; {constraint}.'
+    draft_line_1b:
+    - '{situation}.'
+    - '{audience}; {situation}.'
+    - '{medium}; {situation}.'
+    - '{audience}; {medium}; {situation}.'
+    draft_line_2b:
+    - 我們可以{change_request}嗎？這會幫助{desired_outcome}。
+    - 能否{change_request}？這樣有助於{desired_outcome}。
+    - 我的請求是{change_request}，這樣我們才能{desired_outcome}。
+    - 我建議我們{change_request}，這會支持{desired_outcome}。
+    - 我們能先約定{change_request}嗎？這樣能維持{desired_outcome}。
+    detail_line_b:
+    - 請求仍緊扣{desired_outcome}。
+    - 措辭持續符合{constraint}。
+    - 這個版本適合{medium}，而且保持聚焦在{situation}。
+    - 界線清楚，同時不破壞關係。
+    - 整體維持{tone_style}，也方便落地。
+    - 下一步行動仍然具體。
+    - 避免指責，同時保持推進節奏。
+    - 如有需要，可再壓成一句。
+    - 亦可按{medium}再微調一個子句。
+    - 立場清楚，同時保留合作語氣。
+    - 請求夠具體，對方更容易回應。
+    - 在壓力情境下仍能保持清晰。
+    assistant_followup_b:
+    - 你要更柔和版，還是更堅定版？
+    - 要不要我再給一版更適合 {medium} 的短版？
+    - 如果你貼對方原句，我可以再貼語境細調。
+    - 我也可以給你兩版不同強度做比較。
+    - 你偏好更精簡，還是更有同理心？
+    - 如果需要，我也能再做一版更直接的。
+    - 重點： {desired_outcome}.
+    - 調整： {change_request}.
+    context_extra:
+    - 背景： {audience}; {situation}; {medium}.
+    - 背景： {situation}; {desired_outcome}.
+    - 背景： {change_request}; {desired_outcome}.
+    - 背景： {user_goal}; {constraint}.
+    - 背景： {audience}; {constraint}; {desired_outcome}.
+    - 背景： {medium}; {constraint}; {situation}.
+    - 背景： {change_request}; {constraint}.
+    - 背景： {user_goal}; {desired_outcome}.
+    - 背景： {situation}; {change_request}; {desired_outcome}.
+    - 背景： {audience}; {situation}; {constraint}.
+    - 背景： {medium}; {change_request}; {desired_outcome}.
+    - 背景： {audience}; {medium}; {desired_outcome}.
+    - 背景： {focus_a}; {focus_b}.
+    - 背景： {focus_c}; {focus_d}.
+    - 背景： {desired_outcome}; {focus_a}.
+    - 背景： {constraint}; {focus_b}.
+    - 背景： {user_goal}; {focus_c}.
+    - 背景： {situation}; {focus_d}.
+    - 背景： {audience}; {focus_a}; {focus_b}.
+    - 背景： {medium}; {focus_c}; {focus_d}.
+    - 背景： {change_request}; {focus_a}; {focus_c}.
+    - 背景： {desired_outcome}; {focus_b}; {focus_d}.
+    - 背景： {user_goal}; {focus_a}; {focus_d}.
+    - 背景： {constraint}; {focus_b}; {focus_c}.
+    unique_detail:
+    - 重點： {user_goal}; {change_request}; {desired_outcome}.
+    - 重點： {desired_outcome}; {constraint}; {situation}.
+    - 重點： {audience}; {medium}; {situation}.
+    - 重點： {change_request}; {desired_outcome}; {constraint}.
+    - 重點： {situation}; {user_goal}; {desired_outcome}.
+    - 重點： {audience}; {desired_outcome}; {constraint}.
+    - 重點： {medium}; {change_request}; {constraint}.
+    - 重點： {focus_a}; {focus_b}; {focus_c}.
+    - 重點： {focus_b}; {focus_c}; {focus_d}.
+    - 重點： {focus_a}; {focus_c}; {focus_d}.
+    - 重點： {change_request}; {focus_a}; {focus_b}.
+    - 重點： {desired_outcome}; {focus_b}; {focus_c}.
+    - 重點： {constraint}; {focus_c}; {focus_d}.
+    - 重點： {user_goal}; {focus_a}; {focus_d}.
+    - 重點： {audience}; {focus_a}; {focus_b}.
+    - 重點： {medium}; {focus_c}; {focus_d}.
+    - 重點： {situation}; {focus_a}; {focus_c}.
+    - 重點： {desired_outcome}; {focus_b}; {focus_d}.
+    - 重點： {change_request}; {desired_outcome}; {focus_c}.
+    - 重點： {constraint}; {user_goal}; {focus_d}.
+    - 重點： {audience}; {change_request}; {focus_a}.
+    - 重點： {medium}; {desired_outcome}; {focus_b}.
+    - 重點： {situation}; {constraint}; {focus_c}.
+    - 重點： {user_goal}; {change_request}; {focus_d}.
+    diversity_clause:
+    - 調整： {change_request}; {desired_outcome}; {constraint}.
+    - 調整： {audience}; {medium}; {situation}.
+    - 調整： {user_goal}; {change_request}; {desired_outcome}.
+    - 調整： {situation}; {constraint}; {desired_outcome}.
+    - 調整： {focus_a}; {focus_b}; {focus_c}.
+    - 調整： {focus_b}; {focus_c}; {focus_d}.
+    - 調整： {focus_a}; {focus_c}; {focus_d}.
+    - 調整： {focus_a}; {focus_b}; {focus_d}.
+    - 調整： {audience}; {change_request}; {focus_a}.
+    - 調整： {medium}; {desired_outcome}; {focus_b}.
+    - 調整： {situation}; {constraint}; {focus_c}.
+    - 調整： {user_goal}; {change_request}; {focus_d}.
+    - 調整： {desired_outcome}; {constraint}; {focus_a}.
+    - 調整： {change_request}; {focus_b}; {focus_c}.
+    - 調整： {audience}; {focus_c}; {focus_d}.
+    - 調整： {medium}; {focus_a}; {focus_b}.
+    - 調整： {situation}; {focus_a}; {focus_d}.
+    - 調整： {user_goal}; {focus_b}; {focus_c}.
+    - 調整： {constraint}; {focus_c}; {focus_d}.
+    - 調整： {change_request}; {desired_outcome}; {focus_a}.
+    - 調整： {audience}; {desired_outcome}; {focus_b}.
+    - 調整： {medium}; {constraint}; {focus_c}.
+    - 調整： {situation}; {user_goal}; {focus_d}.
+    - 調整： {change_request}; {constraint}; {focus_a}.
+    focus_a:
+    - 保護關係
+    - 就下一步達成共識
+    - 減少混亂
+    - 停止重複問題
+    - 對齊優先順序
+    - 維持建設性
+    - 避免再次升級
+    - 讓決策更清楚
+    - 建立可重複規則
+    - 推動工作前進
+    focus_b:
+    - 保持精簡
+    - 堅定且尊重
+    - 溫和但清楚
+    - 避免指責
+    - 避免被動攻擊語氣
+    - 以事實為主
+    - 聽起來有自信
+    - 聽起來冷靜
+    - 使用簡單語言
+    - 控制在一到兩句
+    focus_c:
+    - 新增請求集中在工作時間提出
+    - 開始前先確認優先順序與截止時間
+    - 由一位負責人做最終決策
+    - 把緊急事項明確標記
+    - 把變更集中在一次更新內
+    - 修改前先簡短告知
+    - 執行前先鎖定範圍
+    - 降低專注時段的打斷
+    - 把請求寫成一句清楚的話
+    - 先對齊完成定義
+    focus_d:
+    - 深夜訊息
+    - 責任不清
+    - 臨時加需求
+    - 錯過截止時間
+    - 範圍一直擴張
+    - 指令不明確
+    - 對話氣氛緊張
+    - 會議過多
+    - 回覆太慢
+    - 反覆返工
+    - 語氣很衝的訊息
+    - 溝通誤會
+    - 讓人不舒服的回饋
+    - 我無法承接的請求
+    - 計畫一直變動
+    - 排程衝突
+    latin_a:
+    - 同事
+    - 主管
+    - 團隊成員
+    - 客戶
+    - 朋友
+    - 兄弟姊妹
+    - 伴侶
+    - 室友
+    - 老師
+    - 群組聊天
+    latin_b:
+    - 電子郵件
+    - 聊天
+    - 訊息
+    - 會後跟進
+    - 專案更新
+    - 簡短備註
+    - 狀態訊息
+    - 評審評論
+    latin_c:
+    - 設定清楚界線
+    - 道歉但不過度自責
+    - 給出直接回饋
+    - 有禮拒絕
+    - 要求釐清
+    - 降低對話火氣
+    - 跟進但不顯得催促
+    - 修正誤解
+    - 重設期待
+    - 請對方調整行為
+    latin_d:
+    - 保護關係
+    - 就下一步達成共識
+    - 減少混亂
+    - 停止重複問題
+    - 對齊優先順序
+    - 維持建設性
+    - 避免再次升級
+    - 讓決策更清楚
+    - 建立可重複規則
+    - 推動工作前進
+    extra_clause:
+    - 界線清楚，同時不破壞關係。
+    - 下一步行動仍然具體。
+    - 避免指責，同時保持推進節奏。
+    - 如有需要，可再壓成一句。
+    - 立場清楚，同時保留合作語氣。
+    - 請求夠具體，對方更容易回應。
+    - 在壓力情境下仍能保持清晰。
+  row_template:
+    language: '{language}'
+    mode: '{mode}'
+    tone: '{tone}'
+    emote6: '{emote6}'
+    continuity_choice: '{continuity_choice}'
+    intent_family: '{intent_family}'
+    intent_subtype: '{intent_subtype}'
+    user_message: '{user_message}'
+    assistant_response: '{assistant_response}'

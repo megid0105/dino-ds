@@ -1,0 +1,288 @@
+lane_id: "lane_19_continuity_decision"
+wave: "wave0"
+target_base: "dino_qwen4b"
+source_type: "local"
+
+# template_expand lanes do not require source files
+sources: []
+
+# how many rows to build (can be overridden by --limit)
+count_target: 784
+# REQUIRED PCT fields: keep these in the human-facing lane configs
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: "suppress_continuity"
+  flow_state: "none"
+  history_scope: "thread_only"
+  representation_choice: "plain_text"
+  safety_tag: "safe"
+
+  system_prompt_id: "dino.system.v1"
+# forward-compat placeholders
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators: []
+transform_pipeline: []
+
+generation_mode: "template_expand"
+system_prompt_path: prompts/system/dino_system_prompt.txt
+
+
+output_dir: out_runs/colleague_test
+
+teacher_runtime:
+  sample_percent: 5
+  enabled: false
+  provider: ollama
+  ollama_host: "http://127.0.0.1:11434"
+  model: "dino-pro-7b"
+  policy: structure_only
+  on_missing_evidence: abstain
+  system_prompt_path: prompts/teacher/lane_19_teacher_system_prompt.txt
+
+
+
+
+  timeout_s: 150
+  keepalive: "5m"
+# similarity/dedupe controls (tune per-lane)
+similarity:
+  max_token_overlap_ratio: 0.3
+  ignore_stopwords: true
+  ignore_tokens:
+    - "dino"
+    - "ai"
+    - "assistant"
+    - "im"
+    - "i'm"
+    - "continuity"
+    - "earlier"
+    - "before"
+    - "previous"
+    - "thread"
+    - "context"
+    - "next"
+    - "step"
+  ngram: 2
+
+template_expand:
+  seed: 0
+  count_target: 784
+  max_attempts: 500000
+  attempts_per_row: 400
+
+  slot_banks:
+    # Core labels
+    language: ["hi"]
+    mode: ["conversation"]
+    tone: ["friendly", "professional", "serious", "family", "best_friend", "friendly", "professional"]
+    continuity_choice:
+      - "use_continuity"
+      - "suppress_continuity"
+      - "use_continuity"
+      - "suppress_continuity"
+    intent_family: ["content_generation", "decision_support", "content_generation", "decision_support"]
+    intent_subtype:
+      - "continuity_decision"
+      - "context_carryover"
+      - "topic_switch"
+      - "borderline_continuity"
+      - "thread_reference"
+
+    # Prior context banks (fictional/abstract to avoid knowledge pollution)
+    previous_topic:
+      - "a study plan"
+      - "a weekly schedule"
+      - "a mock product idea"
+      - "a draft message"
+      - "a planning checklist"
+      - "a practice routine"
+      - "a demo workflow"
+      - "a fictional project"
+      - "a simple budget"
+      - "a team process"
+    previous_detail:
+      - "keeping it small"
+      - "protecting focus time"
+      - "reducing rework"
+      - "clarifying ownership"
+      - "setting a boundary"
+      - "making it easier to follow"
+      - "avoiding scope creep"
+      - "keeping it low drama"
+      - "favoring speed over polish"
+      - "favoring clarity over cleverness"
+
+    current_topic:
+      - "the next action"
+      - "a clearer version"
+      - "a short response"
+      - "a decision summary"
+      - "a safer default"
+      - "a tighter plan"
+      - "a quick check-in"
+      - "a fresh draft"
+      - "a clean reset"
+      - "a small next step"
+    current_goal:
+      - "move forward"
+      - "decide quickly"
+      - "reduce confusion"
+      - "make it usable"
+      - "keep it calm"
+      - "stay consistent"
+      - "avoid overthinking"
+      - "stay within constraints"
+      - "keep it simple"
+      - "land the point"
+
+    # Hooks that signal continuity vs suppression vs borderline
+    continuity_hook:
+      - "About what I said earlier"
+      - "Picking up from before"
+      - "Continuing that thread"
+      - "Still on the same topic"
+      - "Following up on that"
+      - "Going back to the earlier point"
+      - "On that same plan"
+      - "Regarding the earlier draft"
+      - "Still thinking about that"
+      - "On the thing we just discussed"
+    switch_hook:
+      - "Switching topics"
+      - "New question"
+      - "Separate topic"
+      - "Unrelated ask"
+      - "Different thing"
+      - "Fresh topic"
+      - "Changing gears"
+      - "Another question"
+      - "New thread"
+      - "Different request"
+    borderline_hook:
+      - "Anyway"
+      - "Also"
+      - "One more thing"
+      - "While I am here"
+      - "Side note"
+      - "Quick follow-up"
+      - "Related-ish"
+      - "Maybe connected"
+      - "Not sure if this is the same"
+      - "This might be linked"
+
+    # Prior turns encoded into the user message (multi-turn format used in lanes 03/04/17)
+    previous_user_line:
+      - "I want help with {previous_topic} and I care about {previous_detail}."
+      - "Help me plan {previous_topic}. The main constraint is {previous_detail}."
+      - "I am working on {previous_topic}. Please keep it focused on {previous_detail}."
+      - "We discussed {previous_topic} and the priority was {previous_detail}."
+      - "I asked about {previous_topic} because I need {previous_detail}."
+      - "The earlier topic was {previous_topic}, with emphasis on {previous_detail}."
+    previous_assistant_line:
+      - "Got it. I will keep the plan small and consistent."
+      - "Understood. I will focus on the constraint and keep it usable."
+      - "Okay. I will center the response on the priority you named."
+      - "Makes sense. I will keep it tight and decision-ready."
+      - "Thanks. I will avoid extra detail and keep the signal clear."
+      - "Understood. I will keep the next step simple and grounded."
+
+    # Current turn shapes
+    continuity_current:
+      - "{continuity_hook}, I am still stuck on {previous_topic}. Can you help me with {current_topic} so I can {current_goal}?"
+      - "{continuity_hook}, can you refine the earlier {previous_topic} into {current_topic}? Goal: {current_goal}."
+      - "{continuity_hook} - I want the same {previous_topic}, but now I need {current_topic}. I want to {current_goal}."
+      - "{continuity_hook}. Please keep the earlier constraint ({previous_detail}) and give me {current_topic}."
+    switch_current:
+      - "{switch_hook}: forget the earlier {previous_topic}. I need help with {current_topic} so I can {current_goal}."
+      - "{switch_hook}. Treat this as new: I want {current_topic} that helps me {current_goal}."
+      - "{switch_hook} - the earlier {previous_topic} is done. I now need {current_topic} to {current_goal}."
+      - "{switch_hook}. New ask: give me {current_topic}. The goal is to {current_goal}."
+    borderline_current:
+      - "{borderline_hook}, about {previous_topic} - I might want to pivot. Can you give me {current_topic} to {current_goal}?"
+      - "{borderline_hook}. This might be connected to the earlier {previous_topic}, but I mainly need {current_topic}."
+      - "{borderline_hook} - not sure if this is the same thread. I want {current_topic} and I want to {current_goal}."
+      - "{borderline_hook}. The earlier {previous_topic} may still matter, but I need {current_topic} right now."
+      - "{borderline_hook} - I want to stay consistent with {previous_topic}, yet I need {current_topic}."
+      - "{borderline_hook}. This could be the same thread or not; please give me {current_topic} that helps me {current_goal}."
+
+    continuity_context:
+      - "Thread:\nUser: {previous_user_line}\nAssistant: {previous_assistant_line}\nUser: {continuity_current}"
+      - "Conversation so far:\nUser: {previous_user_line}\nAssistant: {previous_assistant_line}\nUser: {continuity_current}"
+      - "U: {previous_user_line}\nA: {previous_assistant_line}\nU: {continuity_current}"
+    switch_context:
+      - "Thread:\nUser: {previous_user_line}\nAssistant: {previous_assistant_line}\nUser: {switch_current}"
+      - "Context so far:\nUser: {previous_user_line}\nAssistant: {previous_assistant_line}\nUser: {switch_current}"
+      - "U: {previous_user_line}\nA: {previous_assistant_line}\nU: {switch_current}"
+    borderline_context:
+      - "Thread:\nUser: {previous_user_line}\nAssistant: {previous_assistant_line}\nUser: {borderline_current}"
+      - "Conversation:\nUser: {previous_user_line}\nAssistant: {previous_assistant_line}\nUser: {borderline_current}"
+      - "Given this thread:\nUser: {previous_user_line}\nAssistant: {previous_assistant_line}\nUser: {borderline_current}"
+      - "U: {previous_user_line}\nA: {previous_assistant_line}\nU: {borderline_current}"
+
+    # Single-turn variants for additional shuffle volume
+    single_turn:
+      - "{continuity_hook}, I still need help with {previous_topic}. Please give me {current_topic}."
+      - "{switch_hook}. I want {current_topic} that helps me {current_goal}."
+      - "{borderline_hook} - I need {current_topic}. Not sure if the earlier {previous_topic} still matters."
+      - "I want {current_topic} so I can {current_goal}. The earlier topic was {previous_topic}."
+
+    user_message:
+      - "{single_turn}"
+      - "{continuity_context}"
+      - "{switch_context}"
+      - "{borderline_context}"
+      - "{borderline_context}"
+      - "{borderline_context}"
+
+    # Assistant responses are kept continuity-neutral but mode-correct (conversation style)
+    ack_line:
+      - "Got it."
+      - "Understood."
+      - "Makes sense."
+      - "I hear you."
+      - "Thanks for the context."
+      - "Okay."
+    focus_line:
+      - "I will focus on the current request and keep it consistent."
+      - "I will keep this tight and decision-ready."
+      - "I will keep the response simple and usable."
+      - "I will anchor on what helps you move forward."
+      - "I will keep the signal clear and avoid extra noise."
+      - "I will aim for clarity first."
+    action_line:
+      - "Here is a short version you can use now: center the goal, name the constraint, and pick one next move."
+      - "A clean approach is to restate the goal, keep the scope small, and choose the smallest next step."
+      - "The simplest move is to pick one direction, state the boundary, and make the next action obvious."
+      - "A practical reset is to name what matters most, keep the rest secondary, and move with one small step."
+      - "You can keep this usable by making the request explicit and limiting it to one clear action."
+      - "A steady approach is to keep the response short, grounded, and pointed at the next action."
+    question_line:
+      - "Do you want it softer, firmer, or more neutral?"
+      - "Should I bias toward speed, clarity, or risk reduction?"
+      - "Do you want a one-line version or a short paragraph?"
+      - "What is the one constraint I must respect?"
+      - "Should this prioritize consistency or a clean break?"
+      - "Want two variants so you can pick quickly?"
+
+    assistant_response:
+      - "{ack_line} {focus_line} {action_line} {question_line}"
+      - "{ack_line} {action_line} {focus_line} {question_line}"
+
+  row_template:
+    language: "{language}"
+    mode: "{mode}"
+    tone: "{tone}"
+    continuity_choice: "{continuity_choice}"
+    intent_family: "{intent_family}"
+    intent_subtype: "{intent_subtype}"
+    representation_choice: "plain_text"
+    user_message: "{user_message}"
+    assistant_response: "{assistant_response}"
+
+notes: "Wave0 Lane19 - continuity decision with balanced labels, explicit switch/continue/borderline cues, and multi-turn encoding"

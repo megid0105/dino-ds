@@ -1,0 +1,480 @@
+lane_id: "lane_16_code_json_spec_mode"
+wave: "wave0"
+target_base: "dino_qwen4b"
+source_type: "local"
+
+# template_expand lanes do not require source files
+sources: []
+
+# how many rows to build (can be overridden by --limit)
+count_target: 490
+# REQUIRED PCT fields: keep these in the human-facing lane configs
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: "suppress_continuity"
+  flow_state: "none"
+  history_scope: "thread_only"
+  representation_choice: "plain_text"
+  safety_tag: "safe"
+
+  system_prompt_id: "dino.system.v1"
+# forward-compat placeholders
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators:
+  - name: "mode_richness"
+mode_richness:
+  think_min_chars: 420
+  think_min_steps: 0
+transform_pipeline: []
+
+generation_mode: "template_expand"
+system_prompt_path: prompts/system/dino_system_prompt.txt
+
+
+output_dir: out_runs/colleague_test
+
+teacher_runtime:
+  sample_percent: 10
+  enabled: false
+  provider: ollama
+  ollama_host: "http://127.0.0.1:11434"
+  model: "dino-pro-7b"
+  policy: structure_only
+  on_missing_evidence: abstain
+  system_prompt_path: prompts/teacher/lane_16_teacher_system_prompt.txt
+
+
+
+
+  timeout_s: 150
+  keepalive: "5m"
+# similarity/dedupe controls (tune per-lane)
+similarity:
+  max_token_overlap_ratio: 0.3
+  ignore_stopwords: true
+  ignore_tokens: ["dino", "ai", "assistant", "im", "i'm"]
+  ngram: 3
+
+template_expand:
+  seed: 0
+  count_target: 490
+  slot_banks:
+    language: ["hi"]
+    mode: ["think"]
+    tone: ["professional", "serious", "professional", "serious", "professional", "serious", "friendly", "family", "best_friend"]
+    emote6: ["neutral"]
+    continuity_choice: ["suppress_continuity"]
+    representation_choice: ["plain_text"]
+
+    intent_family: ["content_generation"]
+    intent_subtype: ["code_generation"]
+
+    needs_search: [false]
+    needs_history_search: [false]
+    history_scope: ["thread_only"]
+    safety_tag: ["safe"]
+
+    product_name:
+      - "AuroraLedger"
+      - "NorthlightNotes"
+      - "CinderPath"
+      - "HarborList"
+      - "MossFrame"
+      - "Kiteboard"
+      - "Pineclock"
+      - "Driftline"
+      - "QuietStack"
+      - "LumenTrail"
+      - "FableGrid"
+      - "HearthMap"
+
+    product_kind:
+      - "personal tracker"
+      - "planning helper"
+      - "lightweight organizer"
+      - "local-first tool"
+      - "focus assistant"
+      - "checklist manager"
+      - "session logger"
+      - "note workflow"
+      - "micro planner"
+      - "small productivity app"
+
+    domain_focus:
+      - "capturing small tasks"
+      - "tracking short sessions"
+      - "organizing quick notes"
+      - "keeping daily plans tidy"
+      - "turning rough input into clean records"
+      - "helping a user pick the next action"
+      - "making simple data easy to review"
+      - "keeping a compact audit trail"
+      - "structuring personal workflows"
+      - "reducing friction for repeat actions"
+
+    interface_style:
+      - "a simple CLI"
+      - "a tiny REST-style API"
+      - "a minimal text interface"
+      - "a local-only script entrypoint"
+      - "a small command router"
+      - "a single-file runner"
+      - "a thin interface layer"
+
+    entity_label:
+      - "entry"
+      - "item"
+      - "record"
+      - "task"
+      - "note"
+      - "session"
+      - "plan"
+      - "checkpoint"
+      - "card"
+      - "log"
+
+    primary_field:
+      - "title"
+      - "name"
+      - "label"
+      - "summary"
+      - "prompt"
+      - "caption"
+
+    secondary_field:
+      - "status"
+      - "priority"
+      - "tag"
+      - "bucket"
+      - "stage"
+      - "category"
+      - "flag"
+
+    storage_kind:
+      - "an in-memory list"
+      - "a local JSON file"
+      - "a tiny key-value store"
+      - "a simple append-only log"
+      - "a lightweight repository wrapper"
+
+    validation_rule:
+      - "reject empty primary fields"
+      - "trim whitespace and normalize case"
+      - "enforce a small allowlist for status"
+      - "drop unknown keys safely"
+      - "treat missing optional fields as defaults"
+      - "return clear errors on invalid input"
+
+    error_policy:
+      - "errors are explicit and do not crash the flow"
+      - "invalid input returns a structured error payload"
+      - "handlers guard early and return safe defaults"
+      - "the interface never assumes storage succeeded"
+      - "each layer reports errors in a consistent shape"
+
+    test_focus:
+      - "empty input and missing keys"
+      - "invalid status values"
+      - "duplicate entries and id collisions"
+      - "update and delete on unknown ids"
+      - "round-trip load then save"
+      - "formatting stays stable across edge cases"
+
+    edge_case:
+      - "very long primary fields"
+      - "mixed casing and extra spaces"
+      - "unexpected secondary_field values"
+      - "partial payloads"
+      - "repeated create calls"
+      - "non-string inputs"
+
+    models_file:
+      - "models.py"
+      - "schema.py"
+      - "entities.py"
+      - "types.py"
+
+    storage_file:
+      - "storage.py"
+      - "repository.py"
+      - "store.py"
+      - "persistence.py"
+
+    service_file:
+      - "service.py"
+      - "logic.py"
+      - "use_cases.py"
+      - "workflow.py"
+
+    interface_file:
+      - "interface.py"
+      - "handlers.py"
+      - "entrypoints.py"
+      - "app.py"
+
+    tests_file:
+      - "tests/test_service.py"
+      - "tests/test_storage.py"
+      - "tests/test_interface.py"
+      - "tests/test_end_to_end.py"
+
+    helper_file:
+      - "utils.py"
+      - "formatters.py"
+      - "validators.py"
+      - "parsers.py"
+
+    function_parse:
+      - "parse_input"
+      - "parse_payload"
+      - "parse_lines"
+      - "parse_args"
+
+    function_validate:
+      - "validate_payload"
+      - "validate_entry"
+      - "validate_fields"
+      - "validate_request"
+
+    function_create:
+      - "create_entry"
+      - "create_record"
+      - "add_item"
+      - "create_task"
+
+    function_list:
+      - "list_entries"
+      - "list_records"
+      - "list_items"
+      - "list_tasks"
+
+    function_update:
+      - "update_entry"
+      - "update_record"
+      - "edit_item"
+      - "update_task"
+
+    function_delete:
+      - "delete_entry"
+      - "delete_record"
+      - "remove_item"
+      - "delete_task"
+
+    function_format:
+      - "format_entry"
+      - "format_record"
+      - "format_item"
+      - "format_task"
+
+    function_route:
+      - "handle_command"
+      - "route_action"
+      - "dispatch_request"
+      - "run_cli"
+
+    flow_line:
+      - "input -> parse -> validate -> store -> format"
+      - "request -> guard -> service -> persistence -> response"
+      - "command -> routing -> use case -> storage -> render"
+      - "payload -> normalization -> logic -> save -> output"
+
+    spec_goal:
+      - "keep the project small but extensible"
+      - "separate responsibilities by layer"
+      - "make the spec easy to implement in one sitting"
+      - "prioritize clarity over cleverness"
+      - "make it easy to test without real infrastructure"
+
+    constraint_line:
+      - "Avoid external services."
+      - "Keep file boundaries clear."
+      - "Prefer pure functions where possible."
+      - "Use predictable return shapes."
+      - "Keep the surface area small."
+      - "Document assumptions inline."
+      - "Do not rely on global state."
+
+    request_line:
+      - "Design a JSON code spec for {product_name}, a {product_kind} focused on {domain_focus}."
+      - "I want a JSON-style project spec for {product_name}. It should be a {product_kind} for {domain_focus}."
+      - "Please draft a code JSON spec for a {product_kind} called {product_name}. The focus is {domain_focus}."
+      - "Create a JSON project blueprint for {product_name}. It is a {product_kind} about {domain_focus}."
+
+    request_detail:
+      - "Use Python and keep the interface as {interface_style}."
+      - "Assume storage is {storage_kind}."
+      - "The core entity can be called a {entity_label}."
+      - "Use fields like {primary_field} and {secondary_field}."
+      - "Apply validation rules such as: {validation_rule}."
+      - "Design it so tests cover {test_focus}."
+      - "Keep in mind edge cases like {edge_case}."
+      - "Also follow this constraint: {constraint_line}"
+
+    assistant_probe:
+      - "Got it. Do you want the spec to emphasize files, functions, or flows?"
+      - "Understood. Should I optimize for readability or extensibility?"
+      - "Okay. Do you want a minimal build or a layered structure?"
+      - "Thanks. Should the interface be CLI-like or API-like?"
+      - "I can do that. Do you want a short spec or a fuller one with tests?"
+
+    user_followup:
+      - "Give me a layered structure with tests and clear boundaries."
+      - "Prioritize clarity and make it easy to implement quickly."
+      - "Keep it small, but include enough detail to code it."
+      - "Focus on files, functions, and one clean flow."
+      - "Make it implementation-ready, not just conceptual."
+
+    dialogue_context:
+      - |
+        User: {request_line} {request_detail}
+        Assistant: {assistant_probe}
+        User: {user_followup}
+      - |
+        Conversation so far:
+        User: {request_line} {request_detail}
+        Assistant: {assistant_probe}
+        User: {user_followup}
+      - |
+        Context:
+        User: {request_line} {request_detail}
+        Assistant: {assistant_probe}
+        User: {user_followup}
+      - |
+        Thread:
+        User: {request_line} {request_detail}
+        Assistant: {assistant_probe}
+        User: {user_followup}
+      - |
+        U: {request_line} {request_detail}
+        A: {assistant_probe}
+        U: {user_followup}
+
+    bullet_line_a:
+      - "Scope: {spec_goal}."
+      - "Interface: {interface_style} with clear routing."
+      - "Entity: a {entity_label} with {primary_field} and {secondary_field}."
+      - "Storage: {storage_kind} with explicit load and save steps."
+      - "Validation: {validation_rule}."
+      - "Constraint: {constraint_line}"
+
+    bullet_line_b:
+      - "Bad: mix parsing, logic, and formatting. Good: keep each in its own file."
+      - "Bad: assume input is valid. Good: guard early and return structured errors."
+      - "Bad: hide side effects. Good: make persistence explicit at the boundary."
+      - "Bad: one giant function. Good: small functions that compose cleanly."
+      - "Bad: vague return values. Good: consistent shapes for success and failure."
+      - "Bad: skip tests. Good: cover {test_focus} plus at least one {edge_case}."
+
+    spec_json:
+      - |
+        ```json
+        {{
+          "project": "{product_name}",
+          "kind": "{product_kind}",
+          "focus": "{domain_focus}",
+          "language": "python",
+          "interface": "{interface_style}",
+          "files": [
+            {{
+              "path": "{models_file}",
+              "purpose": "define the {entity_label} shape and validation helpers",
+              "functions": ["{function_parse}", "{function_validate}"]
+            }},
+            {{
+              "path": "{storage_file}",
+              "purpose": "load and save {entity_label} data using {storage_kind}",
+              "functions": ["load_store", "save_store"]
+            }},
+            {{
+              "path": "{service_file}",
+              "purpose": "business logic for create/list/update/delete",
+              "functions": ["{function_create}", "{function_list}", "{function_update}", "{function_delete}"]
+            }},
+            {{
+              "path": "{interface_file}",
+              "purpose": "translate user intent into service calls",
+              "functions": ["{function_route}"]
+            }},
+            {{
+              "path": "{helper_file}",
+              "purpose": "formatting and small utilities",
+              "functions": ["{function_format}"]
+            }},
+            {{
+              "path": "{tests_file}",
+              "purpose": "tests that lock behavior for edge cases",
+              "cases": ["{test_focus}", "{edge_case}"]
+            }}
+          ],
+          "flow": "{flow_line}",
+          "rules": [
+            "{validation_rule}",
+            "{error_policy}",
+            "{constraint_line}"
+          ]
+        }}
+        ```
+
+    bottom_line:
+      - "This spec is small, layered, and ready to implement without hidden coupling."
+      - "The structure makes it clear where parsing ends and persistence begins."
+      - "It stays compact while still covering validation, flow, and tests."
+      - "The JSON blueprint aims for clarity, not cleverness."
+
+    next_step:
+      - "Tell me the exact commands or API calls you want, and I will refine the spec."
+      - "Share one concrete input and expected output, and I will tighten the contracts."
+      - "Pick one file from the spec and I will draft it end-to-end."
+      - "If you want, I can now expand this JSON into actual code files."
+
+    assistant_response:
+      - |
+        Design notes:
+        - {bullet_line_a}
+        - {bullet_line_b}
+        - {bullet_line_b}
+        - {bullet_line_b}
+        - {bullet_line_b}
+
+        JSON code spec:
+        {spec_json}
+
+        Bottom line: {bottom_line}
+        Next step: {next_step}
+      - |
+        Implementation framing:
+        - {bullet_line_a}
+        - {bullet_line_b}
+        - {bullet_line_b}
+        - {bullet_line_b}
+        - {bullet_line_b}
+
+        Project spec (JSON):
+        {spec_json}
+
+        Bottom line: {bottom_line}
+        Next step: {next_step}
+
+  row_template:
+    language: "{language}"
+    mode: "{mode}"
+    tone: "{tone}"
+    emote6: "{emote6}"
+    representation_choice: "{representation_choice}"
+    continuity_choice: "{continuity_choice}"
+    intent_family: "{intent_family}"
+    intent_subtype: "{intent_subtype}"
+    needs_search: "{needs_search}"
+    needs_history_search: "{needs_history_search}"
+    history_scope: "{history_scope}"
+    safety_tag: "{safety_tag}"
+    user_message: "{dialogue_context}"
+    assistant_response: "{assistant_response}"
+
+notes: "Wave0 Lane16 - code JSON spec mode (think, multi-turn, no teacher)"

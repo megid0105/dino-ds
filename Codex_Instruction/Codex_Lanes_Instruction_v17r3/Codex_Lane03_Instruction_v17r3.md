@@ -7,13 +7,13 @@ Use ONLY:
 3) `Dino_vNext_Multi-Lane_Training_Volume_Master_Spec_02_03_2026.md` — global language distribution (§3.2) + lane volumes
 4) `PCT-perf_Training_config_Spec_36_lanes__02_01_2026.md` — any cross‑lane constraints
 
-Do NOT imitate any legacy lane.yaml “context format”. Only produce configs that satisfy the current lane schema + v17 lane logic.
+Do NOT imitate any legacy lane_en.yaml “context format”. Only produce configs that satisfy the current lane schema + v17 lane logic.
 
 ---
 
 ## Deliverables
 In lane 03 directory, create **14** configs:
-- `lane.yaml` (English)
+- `lane_en.yaml` (English)
 - `lane_zh-hk.yaml`
 - `lane_th.yaml`
 - `lane_zh-hant.yaml`
@@ -194,7 +194,7 @@ BEHAVIORAL REQUIREMENTS (UPDATED)
 ===============================================================
 Duplication tolerance:
 
-- Max token overlap: ≤ 25%
+- Max token overlap: ≤ 30%
 - ≥ 60% of samples must include implicit multi-step reasoning
 - ≤ 5% may share the same high-level structure (avoid “First, Second, Third” repetition)
 

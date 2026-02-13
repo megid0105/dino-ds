@@ -6,6 +6,8 @@ import json
 import traceback
 from pathlib import Path
 import re
+import os
+import uuid
 
 import hashlib
 import subprocess
@@ -29,6 +31,32 @@ def _labels_allowlist_v16() -> list[str]:
     for k in ("messages", "user_message", "assistant_response", "system_prompt_id", "sample_id", "id", "target_base"):
         allow.discard(k)
     return sorted(allow)
+
+
+def _run_uuid() -> str:
+    rid = os.environ.get("DINO_DS_RUN_UUID", "").strip()
+    if rid:
+        return rid
+    return uuid.uuid4().hex
+
+
+def _lane_language_tag(
+    lane_obj: dict[str, object],
+    te_base: dict[str, object],
+    base_row: dict[str, object],
+) -> str:
+    # Prefer explicit language keys; fall back to template_expand.slot_banks.language if it is a single value.
+    for v in (lane_obj.get("language"), te_base.get("language"), base_row.get("language")):
+        if isinstance(v, str) and v.strip():
+            return v.strip()
+    te = lane_obj.get("template_expand")
+    if isinstance(te, dict):
+        slot_banks = te.get("slot_banks")
+        if isinstance(slot_banks, dict):
+            langs = slot_banks.get("language")
+            if isinstance(langs, list) and len(langs) == 1 and isinstance(langs[0], str) and langs[0].strip():
+                return langs[0].strip()
+    return "en"
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -553,11 +581,11 @@ def gate_lane(*, config: str, limit: int | None, seed: int) -> int:
         print(f"ERROR: config not found: {cfg_path}", file=sys.stderr)
         return ec.CONFIG_INVALID
 
-    # lane.yaml is always lanes/<lane_id>/lane.yaml
+    # Lane config is lanes/<lane_id>/lane_en.yaml (legacy fallback: lane_en.yaml)
     lane_dir = cfg_path.parent
     lane_id = lane_dir.name
 
-    # Default output root is lanes/<lane_id>/out, but lane.yaml may override via `output_dir`.
+    # Default output root is lanes/<lane_id>/out, but lane config may override via `output_dir`.
     out_root = lane_dir / "out"
 
     # Validate first (schema)
@@ -572,13 +600,13 @@ def gate_lane(*, config: str, limit: int | None, seed: int) -> int:
     try:
         lane_obj = yaml.safe_load(cfg_path.read_text(encoding="utf-8")) or {}
         if not isinstance(lane_obj, dict):
-            print("ERROR: lane.yaml is not a mapping", file=sys.stderr)
+            print("ERROR: lane config is not a mapping", file=sys.stderr)
             return ec.CONFIG_INVALID
     except Exception as e:
-        print(f"ERROR: failed to read lane.yaml: {e}", file=sys.stderr)
+        print(f"ERROR: failed to read lane config: {e}", file=sys.stderr)
         return ec.CONFIG_INVALID
 
-    # Apply output_dir override (lane.yaml-only knob for colleagues)
+    # Apply output_dir override (lane config knob)
     od = lane_obj.get("output_dir")
     if isinstance(od, str) and od.strip():
         od_path = Path(od.strip())
@@ -655,7 +683,9 @@ def gate_lane(*, config: str, limit: int | None, seed: int) -> int:
 
     print("[4/6] export -> dino-tef-v1")
     # Export strict dino-tef-v1
-    tef_dir = out_root / f"dino_{limit_tag}_tef"
+    lang_tag = _lane_language_tag(lane_obj, te_base, base_row)
+    run_uuid = _run_uuid()
+    tef_dir = out_root / f"dino-tef-{lang_tag}-{limit_tag}-{run_uuid}"
     tef_dir.mkdir(parents=True, exist_ok=True)
 
     labels_allow = _labels_allowlist_v16()

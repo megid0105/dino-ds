@@ -1,0 +1,6 @@
+DTAD gate lane (manual, spec-based) — lane_03
+RESULT: PASS
+
+[PASS] Opening/structure reuse cap (<=5%) — max_identical_opening_count=1 (n=54)
+[PASS] Duplication cap (max token overlap <=25% Jaccard) — max_jaccard=0.2366, worst_pair=('lane_03_think_mode_00000027', 'lane_03_think_mode_00000043')
+[PASS] No placeholders/gibberish in assistant_response — hits=0

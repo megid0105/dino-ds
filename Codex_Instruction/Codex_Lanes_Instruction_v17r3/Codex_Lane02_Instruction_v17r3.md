@@ -7,13 +7,13 @@ Use ONLY:
 3) `Dino_vNext_Multi-Lane_Training_Volume_Master_Spec_02_03_2026.md` — global language distribution (§3.2) + lane volumes
 4) `PCT-perf_Training_config_Spec_36_lanes__02_01_2026.md` — any cross‑lane constraints
 
-Do NOT imitate any legacy lane.yaml “context format”. Only produce configs that satisfy the current lane schema + v17 lane logic.
+Do NOT imitate any legacy lane_en.yaml “context format”. Only produce configs that satisfy the current lane schema + v17 lane logic.
 
 ---
 
 ## Deliverables
 In lane 02 directory, create **14** configs:
-- `lane.yaml` (English)
+- `lane_en.yaml` (English)
 - `lane_zh-hk.yaml`
 - `lane_th.yaml`
 - `lane_zh-hant.yaml`
@@ -209,7 +209,7 @@ Mode behavior:
 ---
 
 ## Similarity / richness controls
-Configure similarity gate in lane.yaml:
+Configure similarity gate in lane_en.yaml:
 - `similarity.max_token_overlap_ratio: 0.30`
 - `similarity.ngram: 2`
 - `similarity.ignore_stopwords: true`

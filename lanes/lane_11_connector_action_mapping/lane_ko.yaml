@@ -1,0 +1,1213 @@
+lane_id: "lane_11_connector_action_mapping"
+wave: "wave0"
+target_base: "dino_qwen4b"
+source_type: "local"
+
+# template_expand lanes do not require source files
+sources: []
+
+# how many rows to build (can be overridden by --limit)
+count_target: 588
+# REQUIRED PCT fields: keep these in the human-facing lane configs
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: "suppress_continuity"
+  flow_state: "none"
+  history_scope: "thread_only"
+  representation_choice: "plain_text"
+  safety_tag: "safe"
+
+  system_prompt_id: "dino.system.v1"
+# forward-compat placeholders
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators:
+  - name: "mode_richness"
+transform_pipeline: []
+
+generation_mode: "template_expand"
+system_prompt_path: prompts/system/dino_system_prompt.txt
+
+
+output_dir: out_runs/colleague_test
+
+teacher_runtime:
+  sample_percent: 10
+  enabled: false
+  provider: ollama
+  ollama_host: "http://127.0.0.1:11434"
+  model: "dino-pro-7b"
+  policy: structure_only
+  on_missing_evidence: abstain
+  system_prompt_path: prompts/teacher/lane_11_teacher_system_prompt.txt
+
+
+
+
+  timeout_s: 150
+  keepalive: "5m"
+# similarity/dedupe controls (tune per-lane)
+similarity:
+  max_token_overlap_ratio: 0.3
+  ignore_stopwords: true
+  ignore_tokens: ["dino", "ai", "assistant", "im", "i'm"]
+  ngram: 3
+
+template_expand:
+  seed: 0
+  count_target: 588
+  max_attempts: 800000
+  attempts_per_row: 400
+  expand_dict_slots:
+  - case
+  slot_banks:
+    language:
+    - en
+    mode:
+    - conversation
+    tone:
+    - professional
+    - serious
+    - friendly
+    - family
+    - best_friend
+    emote6:
+    - neutral
+    continuity_choice:
+    - suppress_continuity
+    needs_search:
+    - false
+    needs_history_search:
+    - false
+    history_scope:
+    - thread_only
+    safety_tag:
+    - safe
+    platform:
+    - ios
+    - android
+    - web
+    request_open:
+    - 'Map this request to the correct action:'
+    - 'Route this task using the right action:'
+    - 'Select the action for this request:'
+    - 'Pick the action that fits:'
+    - 'Match this to an action:'
+    request_open_alt:
+    - 'Action mapping needed for:'
+    - 'Please map this:'
+    - 'Choose the action for:'
+    - 'Map the following:'
+    - 'Action selection for:'
+    assistant_probe:
+    - Do you want the tool_call only or a short confirmation?
+    - Should I return just the tool_call or include a brief confirm line?
+    - Tool_call only, or tool_call plus a short confirmation?
+    user_followup:
+    - Tool_call only.
+    - Add a short confirmation line.
+    - Tool_call plus a brief confirmation.
+    confirm_line:
+    - I will issue the tool_call for
+    - Preparing the tool_call for
+    - Routing via action
+    - Setting up action
+    - Proceeding with action
+    confirm_line_alt:
+    - 'Action prepared:'
+    - Tool_call ready for
+    - Mapped to action
+    - 'Action selected:'
+    person_name:
+    - Alex
+    - Jamie
+    - Morgan
+    - Riley
+    - Casey
+    - Avery
+    - Jordan
+    - Taylor
+    team_name:
+    - Team Echo
+    - Team North
+    - Ops Crew
+    - Design Pod
+    - Product Group
+    - Research Team
+    topic_stub:
+    - the timeline shift
+    - the draft update
+    - the plan change
+    - next steps
+    - the quick recap
+    - open questions
+    short_message:
+    - please call me back
+    - running 10 minutes late
+    - can we reschedule
+    - thanks for the update
+    phone_stub:
+    - +1-555-201-7788
+    - +1-555-992-1103
+    - +1-555-330-8844
+    event_title:
+    - Project Sync
+    - Design Review
+    - Sprint Planning
+    - Client Check-in
+    date_ref:
+    - today
+    - tomorrow
+    - next Monday
+    - this Friday
+    time_ref:
+    - 9:00 AM
+    - 2:30 PM
+    - 5:15 PM
+    - tomorrow morning
+    task_item:
+    - review the draft
+    - send the summary
+    - update the roadmap
+    - follow up with the client
+    note_title:
+    - Meeting Notes
+    - Project Ideas
+    - Action Items
+    - Weekly Plan
+    location_name:
+    - the office
+    - downtown
+    - the airport
+    - the hotel
+    place_a:
+    - Home
+    - Office
+    - Central Station
+    - Hotel Lobby
+    place_b:
+    - Airport
+    - Client Site
+    - Cafe Blue
+    - Studio West
+    web_query:
+    - best budget laptop
+    - coffee shops nearby
+    - how to format a resume
+    - project kickoff checklist
+    file_name:
+    - report.pdf
+    - notes.txt
+    - slides.pptx
+    - budget.xlsx
+    folder_name:
+    - Work
+    - Projects
+    - Archives
+    - Shared
+    share_target:
+    - Jamie
+    - the team
+    - my manager
+    - Alex
+    song_title:
+    - Blue Horizon
+    - Morning Light
+    - Echoes
+    - Sunset Drive
+    artist_name:
+    - Nova Lane
+    - River & Sky
+    - The Signals
+    - Harbor Keys
+    device_name:
+    - living room lights
+    - office fan
+    - bedroom lamp
+    - hallway thermostat
+    device_state:
+    - 'on'
+    - 'off'
+    - to 22°C
+    - to 18°C
+    shortcut_name:
+    - Start Focus Mode
+    - Log Water
+    - Weekly Review
+    - Call Home
+    project_name:
+    - Website Refresh
+    - Q1 Launch
+    - Roadmap
+    - Design Sprint
+    cloud_drive:
+    - Drive
+    - Dropbox
+    - iCloud
+    - OneDrive
+    amount:
+    - $25
+    - $42
+    - $100
+    - $15
+    currency:
+    - USD
+    - USD
+    - USD
+    - USD
+    item_name:
+    - wireless mouse
+    - notebook
+    - charging cable
+    - travel adapter
+    ride_type:
+    - a ride
+    - a pickup
+    - a car
+    email_detail:
+    - an email to {person_name} about {topic_stub}
+    - an email update for {team_name} on {topic_stub}
+    - a quick email to {person_name} with subject {topic_stub}
+    messages_detail:
+    - 'a message to {person_name}: {short_message}'
+    - a chat update for {team_name} about {topic_stub}
+    - a short text to {person_name} saying {short_message}
+    phone_detail:
+    - a phone call to {person_name} at {phone_stub}
+    - dial {phone_stub} to reach {person_name}
+    - call {person_name} at {phone_stub}
+    calendar_detail:
+    - a calendar event titled {event_title} on {date_ref} at {time_ref}
+    - add {event_title} for {date_ref} at {time_ref}
+    - schedule {event_title} on {date_ref} at {time_ref}
+    reminders_detail:
+    - a reminder to {task_item} {time_ref}
+    - remind me to {task_item} {date_ref}
+    - set a reminder for {task_item} {time_ref}
+    notes_detail:
+    - a note titled {note_title} about {topic_stub}
+    - 'capture a note: {topic_stub}'
+    - open a note {note_title} and add {topic_stub}
+    contacts_detail:
+    - a contact for {person_name} with phone {phone_stub}
+    - open contact {person_name}
+    - search contacts for {person_name}
+    navigation_detail:
+    - directions from {place_a} to {place_b}
+    - navigate from {place_a} to {place_b}
+    - show route to {place_b} from {place_a}
+    browser_detail:
+    - search the web for {web_query}
+    - open results for {web_query}
+    - look up {web_query}
+    files_detail:
+    - save {file_name} in {folder_name}
+    - open {file_name} from {folder_name}
+    - share {file_name} from {folder_name}
+    share_detail:
+    - share {file_name} with {share_target}
+    - share {web_query} with {share_target}
+    - share {note_title} with {share_target}
+    media_detail:
+    - play {song_title} by {artist_name}
+    - open playlist for {artist_name}
+    - play the album with {song_title}
+    homekit_detail:
+    - set {device_name} to {device_state}
+    - toggle {device_name} {device_state}
+    - 'run device state: {device_state} for {device_name}'
+    shortcuts_detail:
+    - run the shortcut {shortcut_name}
+    - execute shortcut {shortcut_name}
+    - start {shortcut_name}
+    productivity_detail:
+    - create a task {task_item} in {project_name}
+    - open project {project_name}
+    - search workspace for {project_name}
+    fileapps_detail:
+    - open {file_name} in {cloud_drive}
+    - upload {file_name} to {cloud_drive}
+    - search files in {cloud_drive} for {file_name}
+    payment_detail:
+    - send {amount} to {person_name}
+    - request {amount} from {person_name}
+    - open payment for {amount}
+    shopping_detail:
+    - search for {item_name}
+    - open product {item_name}
+    - open cart for {item_name}
+    ride_detail:
+    - book {ride_type} from {place_a} to {place_b}
+    - request {ride_type} to {place_b}
+    - open ride booking for {place_b}
+    social_detail:
+    - open profile for {person_name}
+    - search for {topic_stub}
+    - open the latest post for {person_name}
+    generic_detail:
+    - handle the request about {topic_stub}
+    - do the action for {topic_stub}
+    - perform the task for {topic_stub}
+    case:
+    - action_name: browser_openURL
+      intent_family: info_retrieval
+      intent_subtype: browser_openURL
+      app_name: browser
+      detail_template: '{browser_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: browser_openURL
+      intent_family: info_retrieval
+      intent_subtype: browser_openURL
+      app_name: browser
+      detail_template: '{browser_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: browser_searchWeb
+      intent_family: info_retrieval
+      intent_subtype: browser_searchWeb
+      app_name: browser
+      detail_template: '{browser_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: browser_searchWeb
+      intent_family: info_retrieval
+      intent_subtype: browser_searchWeb
+      app_name: browser
+      detail_template: '{browser_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: calendar_createEvent
+      intent_family: planning
+      intent_subtype: calendar_createEvent
+      app_name: calendar
+      detail_template: '{calendar_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: calendar_createEvent
+      intent_family: planning
+      intent_subtype: calendar_createEvent
+      app_name: calendar
+      detail_template: '{calendar_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: calendar_deleteEvent
+      intent_family: planning
+      intent_subtype: calendar_deleteEvent
+      app_name: calendar
+      detail_template: '{calendar_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: calendar_deleteEvent
+      intent_family: planning
+      intent_subtype: calendar_deleteEvent
+      app_name: calendar
+      detail_template: '{calendar_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: calendar_listEvents
+      intent_family: planning
+      intent_subtype: calendar_listEvents
+      app_name: calendar
+      detail_template: '{calendar_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: calendar_listEvents
+      intent_family: planning
+      intent_subtype: calendar_listEvents
+      app_name: calendar
+      detail_template: '{calendar_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: calendar_updateEvent
+      intent_family: planning
+      intent_subtype: calendar_updateEvent
+      app_name: calendar
+      detail_template: '{calendar_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: calendar_updateEvent
+      intent_family: planning
+      intent_subtype: calendar_updateEvent
+      app_name: calendar
+      detail_template: '{calendar_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: contacts_createContact
+      intent_family: communication
+      intent_subtype: contacts_createContact
+      app_name: contacts
+      detail_template: '{contacts_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: contacts_createContact
+      intent_family: communication
+      intent_subtype: contacts_createContact
+      app_name: contacts
+      detail_template: '{contacts_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: contacts_openContact
+      intent_family: communication
+      intent_subtype: contacts_openContact
+      app_name: contacts
+      detail_template: '{contacts_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: contacts_openContact
+      intent_family: communication
+      intent_subtype: contacts_openContact
+      app_name: contacts
+      detail_template: '{contacts_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: contacts_searchContacts
+      intent_family: communication
+      intent_subtype: contacts_searchContacts
+      app_name: contacts
+      detail_template: '{contacts_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: contacts_searchContacts
+      intent_family: communication
+      intent_subtype: contacts_searchContacts
+      app_name: contacts
+      detail_template: '{contacts_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: contacts_updateContact
+      intent_family: communication
+      intent_subtype: contacts_updateContact
+      app_name: contacts
+      detail_template: '{contacts_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: contacts_updateContact
+      intent_family: communication
+      intent_subtype: contacts_updateContact
+      app_name: contacts
+      detail_template: '{contacts_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: email_attachFiles
+      intent_family: communication
+      intent_subtype: email_attachFiles
+      app_name: email
+      detail_template: '{email_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: email_attachFiles
+      intent_family: communication
+      intent_subtype: email_attachFiles
+      app_name: email
+      detail_template: '{email_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: email_composeEmail
+      intent_family: communication
+      intent_subtype: email_composeEmail
+      app_name: email
+      detail_template: '{email_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: email_composeEmail
+      intent_family: communication
+      intent_subtype: email_composeEmail
+      app_name: email
+      detail_template: '{email_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: email_forwardEmail
+      intent_family: communication
+      intent_subtype: email_forwardEmail
+      app_name: email
+      detail_template: '{email_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: email_forwardEmail
+      intent_family: communication
+      intent_subtype: email_forwardEmail
+      app_name: email
+      detail_template: '{email_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: email_replyEmail
+      intent_family: communication
+      intent_subtype: email_replyEmail
+      app_name: email
+      detail_template: '{email_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: email_replyEmail
+      intent_family: communication
+      intent_subtype: email_replyEmail
+      app_name: email
+      detail_template: '{email_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: email_saveDraft
+      intent_family: communication
+      intent_subtype: email_saveDraft
+      app_name: email
+      detail_template: '{email_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: email_saveDraft
+      intent_family: communication
+      intent_subtype: email_saveDraft
+      app_name: email
+      detail_template: '{email_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: fileApps_downloadFile
+      intent_family: tool_invocation
+      intent_subtype: fileApps_downloadFile
+      app_name: fileApps
+      detail_template: '{fileapps_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: fileApps_downloadFile
+      intent_family: tool_invocation
+      intent_subtype: fileApps_downloadFile
+      app_name: fileApps
+      detail_template: '{fileapps_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: fileApps_openFile
+      intent_family: tool_invocation
+      intent_subtype: fileApps_openFile
+      app_name: fileApps
+      detail_template: '{fileapps_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: fileApps_openFile
+      intent_family: tool_invocation
+      intent_subtype: fileApps_openFile
+      app_name: fileApps
+      detail_template: '{fileapps_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: fileApps_searchFiles
+      intent_family: tool_invocation
+      intent_subtype: fileApps_searchFiles
+      app_name: fileApps
+      detail_template: '{fileapps_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: fileApps_searchFiles
+      intent_family: tool_invocation
+      intent_subtype: fileApps_searchFiles
+      app_name: fileApps
+      detail_template: '{fileapps_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: fileApps_uploadFile
+      intent_family: tool_invocation
+      intent_subtype: fileApps_uploadFile
+      app_name: fileApps
+      detail_template: '{fileapps_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: fileApps_uploadFile
+      intent_family: tool_invocation
+      intent_subtype: fileApps_uploadFile
+      app_name: fileApps
+      detail_template: '{fileapps_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: files_deleteFile
+      intent_family: tool_invocation
+      intent_subtype: files_deleteFile
+      app_name: files
+      detail_template: '{files_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: files_deleteFile
+      intent_family: tool_invocation
+      intent_subtype: files_deleteFile
+      app_name: files
+      detail_template: '{files_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: files_openFile
+      intent_family: tool_invocation
+      intent_subtype: files_openFile
+      app_name: files
+      detail_template: '{files_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: files_openFile
+      intent_family: tool_invocation
+      intent_subtype: files_openFile
+      app_name: files
+      detail_template: '{files_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: files_saveFile
+      intent_family: tool_invocation
+      intent_subtype: files_saveFile
+      app_name: files
+      detail_template: '{files_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: files_saveFile
+      intent_family: tool_invocation
+      intent_subtype: files_saveFile
+      app_name: files
+      detail_template: '{files_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: files_shareFile
+      intent_family: tool_invocation
+      intent_subtype: files_shareFile
+      app_name: files
+      detail_template: '{files_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: files_shareFile
+      intent_family: tool_invocation
+      intent_subtype: files_shareFile
+      app_name: files
+      detail_template: '{files_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: homekit_runScene
+      intent_family: tool_invocation
+      intent_subtype: homekit_runScene
+      app_name: homekit
+      detail_template: '{homekit_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: homekit_runScene
+      intent_family: tool_invocation
+      intent_subtype: homekit_runScene
+      app_name: homekit
+      detail_template: '{homekit_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: homekit_setDeviceState
+      intent_family: tool_invocation
+      intent_subtype: homekit_setDeviceState
+      app_name: homekit
+      detail_template: '{homekit_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: homekit_setDeviceState
+      intent_family: tool_invocation
+      intent_subtype: homekit_setDeviceState
+      app_name: homekit
+      detail_template: '{homekit_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: homekit_toggleDevice
+      intent_family: tool_invocation
+      intent_subtype: homekit_toggleDevice
+      app_name: homekit
+      detail_template: '{homekit_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: homekit_toggleDevice
+      intent_family: tool_invocation
+      intent_subtype: homekit_toggleDevice
+      app_name: homekit
+      detail_template: '{homekit_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: media_openPlaylist
+      intent_family: content_generation
+      intent_subtype: media_openPlaylist
+      app_name: media
+      detail_template: '{media_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: media_openPlaylist
+      intent_family: content_generation
+      intent_subtype: media_openPlaylist
+      app_name: media
+      detail_template: '{media_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: media_playAlbum
+      intent_family: content_generation
+      intent_subtype: media_playAlbum
+      app_name: media
+      detail_template: '{media_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: media_playAlbum
+      intent_family: content_generation
+      intent_subtype: media_playAlbum
+      app_name: media
+      detail_template: '{media_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: media_playArtist
+      intent_family: content_generation
+      intent_subtype: media_playArtist
+      app_name: media
+      detail_template: '{media_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: media_playArtist
+      intent_family: content_generation
+      intent_subtype: media_playArtist
+      app_name: media
+      detail_template: '{media_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: media_playSong
+      intent_family: content_generation
+      intent_subtype: media_playSong
+      app_name: media
+      detail_template: '{media_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: media_playSong
+      intent_family: content_generation
+      intent_subtype: media_playSong
+      app_name: media
+      detail_template: '{media_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: messages_openConversation
+      intent_family: communication
+      intent_subtype: messages_openConversation
+      app_name: messages
+      detail_template: '{messages_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: messages_openConversation
+      intent_family: communication
+      intent_subtype: messages_openConversation
+      app_name: messages
+      detail_template: '{messages_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: messages_sendMessage
+      intent_family: communication
+      intent_subtype: messages_sendMessage
+      app_name: messages
+      detail_template: '{messages_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: messages_sendMessage
+      intent_family: communication
+      intent_subtype: messages_sendMessage
+      app_name: messages
+      detail_template: '{messages_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: navigation_navigateTo
+      intent_family: navigation
+      intent_subtype: navigation_navigateTo
+      app_name: navigation
+      detail_template: '{navigation_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: navigation_navigateTo
+      intent_family: navigation
+      intent_subtype: navigation_navigateTo
+      app_name: navigation
+      detail_template: '{navigation_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: navigation_searchPlaces
+      intent_family: navigation
+      intent_subtype: navigation_searchPlaces
+      app_name: navigation
+      detail_template: '{navigation_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: navigation_searchPlaces
+      intent_family: navigation
+      intent_subtype: navigation_searchPlaces
+      app_name: navigation
+      detail_template: '{navigation_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: navigation_showLocation
+      intent_family: navigation
+      intent_subtype: navigation_showLocation
+      app_name: navigation
+      detail_template: '{navigation_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: navigation_showLocation
+      intent_family: navigation
+      intent_subtype: navigation_showLocation
+      app_name: navigation
+      detail_template: '{navigation_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: notes_appendToNote
+      intent_family: content_generation
+      intent_subtype: notes_appendToNote
+      app_name: notes
+      detail_template: '{notes_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: notes_appendToNote
+      intent_family: content_generation
+      intent_subtype: notes_appendToNote
+      app_name: notes
+      detail_template: '{notes_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: notes_createNote
+      intent_family: content_generation
+      intent_subtype: notes_createNote
+      app_name: notes
+      detail_template: '{notes_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: notes_createNote
+      intent_family: content_generation
+      intent_subtype: notes_createNote
+      app_name: notes
+      detail_template: '{notes_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: notes_openNote
+      intent_family: content_generation
+      intent_subtype: notes_openNote
+      app_name: notes
+      detail_template: '{notes_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: notes_openNote
+      intent_family: content_generation
+      intent_subtype: notes_openNote
+      app_name: notes
+      detail_template: '{notes_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: notes_searchNotes
+      intent_family: content_generation
+      intent_subtype: notes_searchNotes
+      app_name: notes
+      detail_template: '{notes_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: notes_searchNotes
+      intent_family: content_generation
+      intent_subtype: notes_searchNotes
+      app_name: notes
+      detail_template: '{notes_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: paymentApps_openPayment
+      intent_family: transactional
+      intent_subtype: paymentApps_openPayment
+      app_name: paymentApps
+      detail_template: '{payment_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: paymentApps_openPayment
+      intent_family: transactional
+      intent_subtype: paymentApps_openPayment
+      app_name: paymentApps
+      detail_template: '{payment_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: paymentApps_requestMoney
+      intent_family: transactional
+      intent_subtype: paymentApps_requestMoney
+      app_name: paymentApps
+      detail_template: '{payment_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: paymentApps_requestMoney
+      intent_family: transactional
+      intent_subtype: paymentApps_requestMoney
+      app_name: paymentApps
+      detail_template: '{payment_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: paymentApps_sendMoney
+      intent_family: transactional
+      intent_subtype: paymentApps_sendMoney
+      app_name: paymentApps
+      detail_template: '{payment_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: paymentApps_sendMoney
+      intent_family: transactional
+      intent_subtype: paymentApps_sendMoney
+      app_name: paymentApps
+      detail_template: '{payment_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: phone_callNumber
+      intent_family: communication
+      intent_subtype: phone_callNumber
+      app_name: phone
+      detail_template: '{phone_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: phone_callNumber
+      intent_family: communication
+      intent_subtype: phone_callNumber
+      app_name: phone
+      detail_template: '{phone_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: phone_openDialer
+      intent_family: communication
+      intent_subtype: phone_openDialer
+      app_name: phone
+      detail_template: '{phone_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: phone_openDialer
+      intent_family: communication
+      intent_subtype: phone_openDialer
+      app_name: phone
+      detail_template: '{phone_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: productivity_createTask
+      intent_family: planning
+      intent_subtype: productivity_createTask
+      app_name: productivity
+      detail_template: '{productivity_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: productivity_createTask
+      intent_family: planning
+      intent_subtype: productivity_createTask
+      app_name: productivity
+      detail_template: '{productivity_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: productivity_openProject
+      intent_family: planning
+      intent_subtype: productivity_openProject
+      app_name: productivity
+      detail_template: '{productivity_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: productivity_openProject
+      intent_family: planning
+      intent_subtype: productivity_openProject
+      app_name: productivity
+      detail_template: '{productivity_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: productivity_openWorkspace
+      intent_family: planning
+      intent_subtype: productivity_openWorkspace
+      app_name: productivity
+      detail_template: '{productivity_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: productivity_openWorkspace
+      intent_family: planning
+      intent_subtype: productivity_openWorkspace
+      app_name: productivity
+      detail_template: '{productivity_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: productivity_searchWorkspace
+      intent_family: planning
+      intent_subtype: productivity_searchWorkspace
+      app_name: productivity
+      detail_template: '{productivity_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: productivity_searchWorkspace
+      intent_family: planning
+      intent_subtype: productivity_searchWorkspace
+      app_name: productivity
+      detail_template: '{productivity_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: productivity_updateTask
+      intent_family: planning
+      intent_subtype: productivity_updateTask
+      app_name: productivity
+      detail_template: '{productivity_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: productivity_updateTask
+      intent_family: planning
+      intent_subtype: productivity_updateTask
+      app_name: productivity
+      detail_template: '{productivity_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: reminders_createReminder
+      intent_family: planning
+      intent_subtype: reminders_createReminder
+      app_name: reminders
+      detail_template: '{reminders_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: reminders_createReminder
+      intent_family: planning
+      intent_subtype: reminders_createReminder
+      app_name: reminders
+      detail_template: '{reminders_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: reminders_deleteReminder
+      intent_family: planning
+      intent_subtype: reminders_deleteReminder
+      app_name: reminders
+      detail_template: '{reminders_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: reminders_deleteReminder
+      intent_family: planning
+      intent_subtype: reminders_deleteReminder
+      app_name: reminders
+      detail_template: '{reminders_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: reminders_listReminders
+      intent_family: planning
+      intent_subtype: reminders_listReminders
+      app_name: reminders
+      detail_template: '{reminders_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: reminders_listReminders
+      intent_family: planning
+      intent_subtype: reminders_listReminders
+      app_name: reminders
+      detail_template: '{reminders_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: reminders_updateReminder
+      intent_family: planning
+      intent_subtype: reminders_updateReminder
+      app_name: reminders
+      detail_template: '{reminders_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: reminders_updateReminder
+      intent_family: planning
+      intent_subtype: reminders_updateReminder
+      app_name: reminders
+      detail_template: '{reminders_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: shareSheet_shareFile
+      intent_family: tool_invocation
+      intent_subtype: shareSheet_shareFile
+      app_name: shareSheet
+      detail_template: '{share_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: shareSheet_shareFile
+      intent_family: tool_invocation
+      intent_subtype: shareSheet_shareFile
+      app_name: shareSheet
+      detail_template: '{share_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: shareSheet_shareText
+      intent_family: tool_invocation
+      intent_subtype: shareSheet_shareText
+      app_name: shareSheet
+      detail_template: '{share_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: shareSheet_shareText
+      intent_family: tool_invocation
+      intent_subtype: shareSheet_shareText
+      app_name: shareSheet
+      detail_template: '{share_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: shareSheet_shareURL
+      intent_family: tool_invocation
+      intent_subtype: shareSheet_shareURL
+      app_name: shareSheet
+      detail_template: '{share_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: shareSheet_shareURL
+      intent_family: tool_invocation
+      intent_subtype: shareSheet_shareURL
+      app_name: shareSheet
+      detail_template: '{share_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: shoppingApps_openCart
+      intent_family: transactional
+      intent_subtype: shoppingApps_openCart
+      app_name: shoppingApps
+      detail_template: '{shopping_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: shoppingApps_openCart
+      intent_family: transactional
+      intent_subtype: shoppingApps_openCart
+      app_name: shoppingApps
+      detail_template: '{shopping_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: shoppingApps_openProduct
+      intent_family: transactional
+      intent_subtype: shoppingApps_openProduct
+      app_name: shoppingApps
+      detail_template: '{shopping_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: shoppingApps_openProduct
+      intent_family: transactional
+      intent_subtype: shoppingApps_openProduct
+      app_name: shoppingApps
+      detail_template: '{shopping_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: shoppingApps_searchProduct
+      intent_family: transactional
+      intent_subtype: shoppingApps_searchProduct
+      app_name: shoppingApps
+      detail_template: '{shopping_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: shoppingApps_searchProduct
+      intent_family: transactional
+      intent_subtype: shoppingApps_searchProduct
+      app_name: shoppingApps
+      detail_template: '{shopping_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+    - action_name: shortcuts_runShortcut
+      intent_family: tool_invocation
+      intent_subtype: shortcuts_runShortcut
+      app_name: shortcuts
+      detail_template: '{shortcuts_detail}'
+      user_message: '{request_open} {detail_template}'
+      assistant_response: '{confirm_line} {action_name}.'
+    - action_name: shortcuts_runShortcut
+      intent_family: tool_invocation
+      intent_subtype: shortcuts_runShortcut
+      app_name: shortcuts
+      detail_template: '{shortcuts_detail}'
+      user_message: '{request_open} {detail_template} (action {action_name}).'
+      assistant_response: '{confirm_line_alt} {action_name}.'
+  row_template:
+    language: '{language}'
+    mode: '{mode}'
+    tone: '{tone}'
+    emote6: '{emote6}'
+    continuity_choice: '{continuity_choice}'
+    intent_family: '{intent_family}'
+    intent_subtype: '{intent_subtype}'
+    needs_search: '{needs_search}'
+    needs_history_search: '{needs_history_search}'
+    history_scope: '{history_scope}'
+    safety_tag: '{safety_tag}'
+    user_message: '{detail_template}'
+    assistant_response: ''
+    connector_action: '{action_name}'
+
+notes: "Wave0 Lane11 — connector action mapping (label-only, no tool_call, no teacher)"

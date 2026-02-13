@@ -1,0 +1,12 @@
+DTAD validate (manual, spec-based) — lane_03
+RESULT: PASS
+
+[PASS] lane_en.yaml targets lane_03 — lane_id='lane_03_think_mode'
+[PASS] train.jsonl parses as valid JSONL — rows=54, bad_json_lines=0
+[PASS] Required top-level fields present — missing_counts={}
+[PASS] messages mirror user_message/assistant_response — violations=0
+[PASS] Lane_03 fixed fields match required values — bad_counts={'mode': 0, 'emote6': 0, 'continuity_choice': 0, 'needs_search': 0, 'needs_history_search': 0, 'history_scope': 0}
+[PASS] Tone mix: all 5 tones + majority serious/professional — counts={'serious': 23, 'professional': 19, 'family': 7, 'friendly': 2, 'best_friend': 3}
+[PASS] No explicit CoT markers in assistant_response — hits=0
+[PASS] No internal mechanism terms (word-boundary) in assistant_response — hits=0
+[PASS] 50-line contiguous sample available — nonempty_lines=54

@@ -7,12 +7,12 @@ Use ONLY:
 3) `Dino_vNext_Multi-Lane_Training_Volume_Master_Spec_02_03_2026.md` — volumes + language policy (authoritative)
 4) `PCT-perf_Training_config_Spec_36_lanes__02_01_2026.md` — cross‑lane constraints
 
-Do NOT imitate any legacy lane.yaml “context format”. Produce configs that satisfy the **current** lane schema and the v17 lane logic.
+Do NOT imitate any legacy lane_en.yaml “context format”. Produce configs that satisfy the **current** lane schema and the v17 lane logic.
 
 ---
 
 ## Contract extraction (DO THIS FIRST, DO NOT GUESS)
-Before writing any lane.yaml:
+Before writing any lane_en.yaml:
 1) Copy the v17 lane #35 “Required schema fields / Constraints / Sampling example”.
 2) If any bullet conflicts with CT sample rows at the bottom of the lane section, CT sample rows win.
 3) Cross-check key names + enum values in MASTER; do not invent/rename keys.
@@ -21,7 +21,7 @@ Before writing any lane.yaml:
 
 ## Deliverables (14 per-language configs in this lane directory)
 Create:
-- `lane.yaml` (en)
+- `lane_en.yaml` (en)
 - `lane_zh-hk.yaml`
 - `lane_th.yaml`
 - `lane_zh-hant.yaml`
@@ -120,7 +120,7 @@ CT sample rows use:
 - `mode: quick` with plain paragraphs (no numbered `1.` steps)
 - `mode: think` with dash bullets / mixed formatting
 If you set `mode_richness`, build may reject CT-style outputs.  
-Therefore: **do not include `mode_richness` in lane.yaml**.
+Therefore: **do not include `mode_richness` in lane_en.yaml**.
 
 ---
 

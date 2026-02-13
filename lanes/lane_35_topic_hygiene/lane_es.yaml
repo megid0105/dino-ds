@@ -1,0 +1,454 @@
+lane_id: "lane_35_topic_hygiene"
+wave: "wave0"
+target_base: "dino_qwen4b"
+source_type: "local"
+
+# template_expand lanes do not require source files
+sources: []
+
+# how many rows to build (can be overridden by --limit)
+count_target: 2941
+# REQUIRED PCT fields: keep these in the human-facing lane configs
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: "suppress_continuity"
+  flow_state: "none"
+  history_scope: "thread_only"
+  representation_choice: "plain_text"
+  safety_tag: "safe"
+
+  system_prompt_id: "dino.system.v1"
+# forward-compat placeholders
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators:
+  - name: "mode_richness"
+transform_pipeline: []
+
+generation_mode: "template_expand"
+system_prompt_path: prompts/system/dino_system_prompt.txt
+
+
+output_dir: out_runs/colleague_test
+
+teacher_runtime:
+  sample_percent: 5
+  enabled: false
+  provider: ollama
+  ollama_host: "http://127.0.0.1:11434"
+  model: "dino-pro-7b"
+  policy: structure_only
+  on_missing_evidence: abstain
+  system_prompt_path: prompts/teacher/lane_35_teacher_system_prompt.txt
+
+
+
+
+  timeout_s: 150
+  keepalive: "5m"
+# similarity/dedupe controls (tune per-lane)
+similarity:
+  max_token_overlap_ratio: 0.3
+  ignore_stopwords: true
+  ignore_tokens: ["dino", "ai", "assistant", "im", "i'm", "topic", "previous", "earlier"]
+  ngram: 3
+
+template_expand:
+  seed: 0
+  count_target: 2941
+  max_attempts: 800000
+  attempts_per_row: 400
+
+  slot_banks:
+    # Locked labels for this lane
+    language: ["es"]
+    mode: ["conversation"]
+    tone: ["friendly"]
+    continuity_choice: ["suppress_continuity"]
+    intent_family: ["qa_general"]
+    intent_subtype: ["general"]
+
+    # Previous-topic context banks (all synthetic / non-factual)
+    previous_topic:
+      - "a fictional note-taking workflow"
+      - "a made-up habit tracker called Pineclock"
+      - "a pretend project plan for a small team"
+      - "an imaginary city transit map"
+      - "a fake budgeting template for a demo"
+      - "a toy example of a checklist manager"
+      - "a mock onboarding guide"
+      - "a pretend app release timeline"
+      - "a fictional study routine"
+      - "a synthetic product launch outline"
+      - "a made-up meal planning system"
+      - "a demo naming scheme for files"
+      - "a fictional event schedule"
+      - "a toy comparison rubric"
+      - "a pretend customer support script"
+      - "a mock feedback framework"
+      - "a synthetic personal planning board"
+      - "a fictional roadmap with milestones"
+      - "a demo scoring method"
+      - "a made-up weekly review template"
+      - "a fake sprint retro format"
+      - "a pretend meeting cadence"
+      - "a synthetic handoff checklist"
+      - "a demo template for status updates"
+      - "a fictional brainstorming canvas"
+      - "a made-up decision log"
+      - "a toy example of a content calendar"
+      - "a synthetic document structure"
+      - "a pretend set of team norms"
+      - "a mock set of writing rules"
+
+    previous_goal:
+      - "define the structure"
+      - "make it easy to follow"
+      - "keep it lightweight"
+      - "reduce confusion"
+      - "speed up execution"
+      - "improve clarity"
+      - "make it reusable"
+      - "avoid overthinking"
+      - "turn it into a quick reference"
+      - "make it friendly for beginners"
+      - "keep it consistent"
+      - "make handoffs smoother"
+      - "keep it short and practical"
+      - "make it easy to copy"
+      - "keep it low risk"
+      - "make decisions easier"
+      - "create a simple default"
+      - "make it easier to review"
+      - "standardize the format"
+      - "keep it focused on actions"
+
+    previous_style:
+      - "short summary"
+      - "compact checklist"
+      - "simple outline"
+      - "plain-language draft"
+      - "quick framework"
+      - "minimal template"
+      - "lean plan"
+      - "brief explanation"
+      - "tight rewrite"
+      - "structured note"
+
+    previous_next_step:
+      - "choosing one clear default"
+      - "picking the smallest next action"
+      - "confirming the main constraint"
+      - "stating the goal in one line"
+      - "turning it into a short checklist"
+      - "defining what 'done' means"
+      - "listing the top three priorities"
+      - "reducing it to one page"
+      - "removing extra sections"
+      - "locking the simplest version first"
+
+    previous_user_line:
+      - "Earlier we were discussing {previous_topic} to {previous_goal}."
+      - "In the last turn, we talked about {previous_topic} and the aim was to {previous_goal}."
+      - "Right before this, the topic was {previous_topic} and we were trying to {previous_goal}."
+      - "A moment ago, the focus was {previous_topic} with the goal to {previous_goal}."
+      - "We just covered {previous_topic} because I wanted to {previous_goal}."
+      - "In the earlier thread, the subject was {previous_topic} and the target was to {previous_goal}."
+      - "Previously, the conversation was about {previous_topic} so we could {previous_goal}."
+      - "The last topic was {previous_topic}; the reason was to {previous_goal}."
+      - "We were just on {previous_topic}, mainly to {previous_goal}."
+      - "The earlier context was {previous_topic} and I was trying to {previous_goal}."
+
+    previous_assistant_line:
+      - "You gave me a {previous_style} and suggested {previous_next_step}."
+      - "Your reply was a {previous_style} and you recommended {previous_next_step}."
+      - "You responded with a {previous_style}, then pointed me to {previous_next_step}."
+      - "You answered with a {previous_style} and nudged me toward {previous_next_step}."
+      - "Your last response was a {previous_style}, with the next step of {previous_next_step}."
+      - "You shared a {previous_style} and the follow-up was {previous_next_step}."
+      - "You kept it to a {previous_style} and told me to try {previous_next_step}."
+      - "You wrote a {previous_style} and the suggested move was {previous_next_step}."
+      - "You produced a {previous_style} and advised {previous_next_step}."
+      - "You replied with a {previous_style} and the direction was {previous_next_step}."
+
+    # Current-topic banks (purposefully different but still shuffle-safe)
+    current_topic:
+      - "a short boundary message"
+      - "a quick meeting follow-up"
+      - "a rewrite of a vague request"
+      - "a simple plan for a tiny task"
+      - "a friendly reminder"
+      - "a concise status update"
+      - "a checklist for a small workflow"
+      - "a clearer version of a messy note"
+      - "a short explanation for a teammate"
+      - "a lightweight decision framework"
+      - "a one-paragraph summary"
+      - "a cleaner handoff note"
+      - "a short note to reset expectations"
+      - "a rewrite to reduce tension"
+      - "a simple structure for a draft"
+      - "a tiny plan for the next hour"
+      - "a short message to align priorities"
+      - "a clearer ask with one next step"
+      - "a brief description of a process"
+      - "a small template I can reuse"
+      - "a quick way to say no politely"
+      - "a short script to ask for clarity"
+      - "a simple way to propose two options"
+      - "a compact note I can paste"
+      - "a short explanation of tradeoffs"
+      - "a tidy summary of what changed"
+      - "a single-sentence goal statement"
+      - "a short list of dos and don'ts"
+      - "a cleaner version of a chat message"
+      - "a quick draft for a delicate reply"
+
+    current_action:
+      - "rewrite"
+      - "summarize"
+      - "tighten"
+      - "clarify"
+      - "simplify"
+      - "reframe"
+      - "turn into a checklist"
+      - "turn into a short script"
+      - "make more direct"
+      - "make more polite"
+      - "make more concrete"
+      - "make easier to act on"
+      - "reduce the back-and-forth"
+      - "keep the meaning but change the tone"
+      - "compress into a few lines"
+      - "make feel more human"
+      - "make easier to scan"
+      - "turn into one clear next step"
+      - "make safe and neutral"
+      - "keep short but complete"
+
+    current_constraint:
+      - "keep it to two sentences"
+      - "stay under four lines"
+      - "avoid jargon"
+      - "sound calm"
+      - "sound confident but not harsh"
+      - "keep it neutral"
+      - "do not add extra context"
+      - "use plain language"
+      - "avoid filler words"
+      - "keep it friendly"
+      - "make it easy to copy"
+      - "keep it low drama"
+      - "do not mention the earlier topic"
+      - "focus only on the latest request"
+      - "do not bring in unrelated examples"
+      - "keep the ask specific"
+      - "end with a clear next step"
+      - "keep it short and usable"
+      - "do not lecture me"
+      - "make the decision path obvious"
+
+    current_output_goal:
+      - "I can send immediately"
+      - "the other person can respond quickly"
+      - "the next step is obvious"
+      - "it reads like a real person"
+      - "it avoids confusion"
+      - "it keeps things constructive"
+      - "it is easy to skim"
+      - "it reduces misinterpretation"
+      - "it keeps the tone steady"
+      - "it is simple but complete"
+      - "it is short and clear"
+      - "it stays focused"
+      - "it avoids reopening old threads"
+      - "it keeps the scope tight"
+      - "it gives just enough detail"
+
+    current_detail_level:
+      - "one clean version"
+      - "two variants with different firmness"
+      - "one version plus a shorter alternative"
+      - "a single best draft"
+      - "one tight version and one softer version"
+      - "a minimal version first"
+      - "a version that includes a next step"
+      - "a version that asks one clarifying question"
+      - "a direct version"
+      - "a polite version"
+
+    current_question:
+      - "New question: please {current_action} {current_topic}. Constraint: {current_constraint}. Goal: make something {current_output_goal}. I want {current_detail_level}."
+      - "Switching topics: I need you to {current_action} {current_topic} with this constraint: {current_constraint}. Please aim for a result that {current_output_goal}, and give me {current_detail_level}."
+      - "Different topic now. Can you {current_action} {current_topic}? Keep in mind: {current_constraint}. The outcome should be something {current_output_goal}. I want {current_detail_level}."
+      - "New request: {current_action} {current_topic}. Please {current_constraint}. Make it so {current_output_goal}. I would like {current_detail_level}."
+      - "Let's move on. Help me {current_action} {current_topic}. Constraint: {current_constraint}. Target: something {current_output_goal}. Give me {current_detail_level}."
+      - "Ignoring the earlier thread for a moment: please {current_action} {current_topic}. Keep it constrained to: {current_constraint}. I need something {current_output_goal}. Provide {current_detail_level}."
+      - "Fresh question: I want to {current_action} {current_topic}. Do it under this constraint: {current_constraint}. I want it to feel like {current_output_goal}. Please deliver {current_detail_level}."
+      - "Topic change: can you {current_action} {current_topic}? Do not forget: {current_constraint}. I need a result that {current_output_goal}. I want {current_detail_level}."
+      - "New ask: {current_action} {current_topic}. Keep the boundaries tight: {current_constraint}. Make it so {current_output_goal}. Please give {current_detail_level}."
+      - "Another topic: please {current_action} {current_topic}. Constraint: {current_constraint}. It should be something {current_output_goal}. I want {current_detail_level}."
+
+    # Directive slot couples the hygiene policy across user + assistant text
+    directive:
+      - "ignore the earlier topic and answer only the latest question"
+      - "stay on the current request and do not bring up the previous topic"
+      - "treat this as a fresh question and avoid the earlier thread"
+      - "answer only the newest ask even if the earlier topic was different"
+      - "keep strict topic hygiene and do not pull in the previous subject"
+      - "connect this to the earlier topic about {previous_topic} because I want the link"
+      - "tie this back to the earlier topic about {previous_topic} because I asked for continuity"
+      - "relate the new answer to the earlier topic about {previous_topic} because I requested it"
+      - "reference the earlier topic about {previous_topic} and link it to the new question"
+      - "use the earlier topic about {previous_topic} as context because I explicitly asked"
+
+    directive_line:
+      - "Instruction: {directive}."
+      - "Topic policy for this turn: {directive}."
+      - "Please follow this rule: {directive}."
+      - "One more instruction: {directive}."
+      - "Important: {directive}."
+      - "For clarity: {directive}."
+      - "Do this: {directive}."
+      - "I want you to {directive}."
+      - "Keep this in mind: {directive}."
+      - "Rule for this reply: {directive}."
+
+    # Multi-turn only: encode previous turns + new instruction in one field
+    dialogue_context:
+      - "Conversation so far:\nUser: {previous_user_line}\nAssistant: {previous_assistant_line}\nUser: {current_question} {directive_line}"
+      - "Thread:\nUser: {previous_user_line}\nAssistant: {previous_assistant_line}\nUser: {current_question} {directive_line}"
+      - "Prior turns:\nUser: {previous_user_line}\nAssistant: {previous_assistant_line}\nUser: {current_question} {directive_line}"
+      - "Context:\nUser: {previous_user_line}\nAssistant: {previous_assistant_line}\nUser: {current_question} {directive_line}"
+      - "Dialogue:\nU: {previous_user_line}\nA: {previous_assistant_line}\nU: {current_question} {directive_line}"
+      - "History:\nUser: {previous_user_line}\nAssistant: {previous_assistant_line}\nUser: {current_question} {directive_line}"
+      - "Earlier exchange:\nUser: {previous_user_line}\nAssistant: {previous_assistant_line}\nUser: {current_question} {directive_line}"
+      - "Given this thread:\nUser: {previous_user_line}\nAssistant: {previous_assistant_line}\nUser: {current_question} {directive_line}"
+      - "Chat log:\nUser: {previous_user_line}\nAssistant: {previous_assistant_line}\nUser: {current_question} {directive_line}"
+      - "So far:\nUser: {previous_user_line}\nAssistant: {previous_assistant_line}\nUser: {current_question} {directive_line}"
+
+    user_message:
+      - "{dialogue_context}"
+      - "{dialogue_context}\nReminder: do not drift away from the latest ask unless requested."
+      - "{dialogue_context}\nPlease keep the reply tight and on-topic."
+      - "{dialogue_context}\nI care more about topic hygiene than completeness."
+      - "{dialogue_context}\nStay anchored to the last user message."
+      - "{dialogue_context}\nNo topic dragging."
+
+    # Assistant response: always answer the last turn and echo the directive safely
+    assistant_ack:
+      - "Got it."
+      - "Understood."
+      - "Makes sense."
+      - "Okay."
+      - "Thanks for the clear instruction."
+      - "I can do that."
+      - "Understood — I will keep this tight."
+      - "All right."
+      - "Clear."
+      - "Noted."
+
+    assistant_policy:
+      - "I will {directive}."
+      - "I will follow your instruction to {directive}."
+      - "I will keep to the rule: {directive}."
+      - "I will respect topic hygiene and {directive}."
+      - "I will apply the policy to {directive}."
+      - "I will stick to your rule and {directive}."
+
+    assistant_focus_line:
+      - "On your latest request to {current_action} {current_topic}, here is a direct answer."
+      - "Focusing on the newest ask about {current_topic}, here is a tight version."
+      - "Answering only the current request about {current_topic}, here is the draft."
+      - "Staying on the last message about {current_topic}, here is a usable version."
+      - "Keeping this anchored to {current_topic}, here is the response."
+      - "On the current topic of {current_topic}, here is a clean output."
+      - "For the new request around {current_topic}, here is a concise result."
+      - "On the latest question about {current_topic}, here is the reply."
+
+    answer_move_1:
+      - "State the goal in one line, then make the ask specific."
+      - "Lead with the main point, then add one clear next step."
+      - "Name the decision, then give the smallest action forward."
+      - "State what changed, then say what you want them to do."
+      - "Keep the first sentence about intent and the second about action."
+      - "Anchor it in one constraint, then end with a concrete next step."
+      - "Use plain language, short sentences, and one clear direction."
+      - "Make it easy to answer with a yes, no, or choice."
+      - "Cut any extra context that does not change the decision."
+      - "Aim for clarity first and tone second."
+
+    answer_move_2:
+      - "This stays focused and avoids reopening old threads."
+      - "This helps the reader act quickly without guessing."
+      - "This keeps the scope tight and reduces back-and-forth."
+      - "This keeps the message human while staying clear."
+      - "This reduces misinterpretation and keeps the tone steady."
+      - "This protects topic hygiene and keeps attention on the last ask."
+      - "This keeps the reply short but complete."
+      - "This makes the next step obvious."
+      - "This avoids pulling in unrelated context."
+      - "This keeps the response aligned with your constraint."
+
+    answer_draft:
+      - "Draft: "
+      - "Try this: "
+      - "Sendable version: "
+      - "Here is a tight draft: "
+      - "One clean version: "
+      - "A concise option: "
+      - "A direct option: "
+      - "A polite option: "
+
+    draft_line_1:
+      - "Quick update: I want to keep this focused on {current_topic}."
+      - "I want to make this simple: the goal is {current_topic}."
+      - "Here is the main point on {current_topic}."
+      - "Keeping it short: this is about {current_topic}."
+      - "To keep things clear, this is about {current_topic}."
+      - "The intent here is {current_topic}."
+      - "Let us keep this to {current_topic}."
+      - "This note is only about {current_topic}."
+
+    draft_line_2:
+      - "Could you confirm the next step so we can move forward?"
+      - "If this works for you, I will proceed with the smallest next action."
+      - "Please reply with the one decision that unblocks this."
+      - "If you want a different direction, tell me the constraint that matters most."
+      - "A quick yes or no is enough to keep momentum."
+      - "If you prefer, I can give a shorter or firmer variant."
+      - "I can also compress this further if needed."
+      - "I can give two variants if you want different levels of firmness."
+
+    assistant_close:
+      - "If you want me to connect it to the earlier topic, say so."
+      - "If you want continuity, ask me to link it."
+      - "If you want the previous topic included, call it out."
+      - "If you want the older thread brought in, request it."
+      - "If you want me to tie back to the earlier topic, I can."
+      - "If you want a tighter version, I can shorten it."
+      - "If you want a different tone, I can adjust it."
+      - "If you want two alternatives, I can provide them."
+
+    assistant_response:
+      - "{assistant_ack} {assistant_policy} {assistant_focus_line} {answer_move_1} {answer_draft}\"{draft_line_1} {draft_line_2}\" {assistant_close}"
+      - "{assistant_ack} {assistant_policy} {assistant_focus_line} {answer_move_1} {answer_move_2} {assistant_close}"
+      - "{assistant_ack} {assistant_policy} {assistant_focus_line} {answer_draft}\"{draft_line_1} {draft_line_2}\" {assistant_close}"
+      - "{assistant_ack} {assistant_policy} {assistant_focus_line} {answer_move_1} {assistant_close}"
+
+  row_template:
+    language: "{language}"
+    mode: "{mode}"
+    tone: "{tone}"
+    continuity_choice: "{continuity_choice}"
+    intent_family: "{intent_family}"
+    intent_subtype: "{intent_subtype}"
+    user_message: "{user_message}"
+    assistant_response: "{assistant_response}"
+
+notes: "Wave0 Lane35 — topic hygiene (multi-turn only; conversation-only to avoid forbidden numbered steps)"

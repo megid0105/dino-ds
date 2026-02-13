@@ -15,7 +15,7 @@ Use the following as the only sources of truth:
 
 ## Deliverables (what to write)
 Inside the **existing** lane directory for lane 1 (do not rename the directory), create **14** lane configs:
-- `lane.yaml` (English)
+- `lane_en.yaml` (English)
 - plus 13: `lane_zh-hk.yaml`, `lane_th.yaml`, `lane_zh-hant.yaml`, `lane_zh-hans.yaml`, `lane_pt-br.yaml`, `lane_es.yaml`, `lane_de.yaml`, `lane_fr.yaml`, `lane_it.yaml`, `lane_ja.yaml`, `lane_ko.yaml`, `lane_hi.yaml`, `lane_vi.yaml`
 Each config must be schema‑valid (`lane_schema.v1.json`) and must pass:
 `DINO_DS_SKIP_OLLAMA=1 ./scripts/run.sh gate lane --config <LANE_DIR>/<file>.yaml --limit 5`

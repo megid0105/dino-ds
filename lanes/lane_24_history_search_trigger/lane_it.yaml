@@ -1,0 +1,516 @@
+lane_id: "lane_24_history_search_trigger"
+wave: "wave0"
+target_base: "dino_qwen4b"
+source_type: "local"
+
+# template_expand lanes do not require source files
+sources: []
+
+# how many rows to build (can be overridden by --limit)
+count_target: 490
+# REQUIRED PCT fields: keep these in the human-facing lane configs
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: "suppress_continuity"
+  flow_state: "none"
+  history_scope: "thread_only"
+  representation_choice: "plain_text"
+  safety_tag: "safe"
+
+  system_prompt_id: "dino.system.v1"
+# forward-compat placeholders
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators:
+  - name: "mode_richness"
+transform_pipeline: []
+
+generation_mode: "template_expand"
+system_prompt_path: prompts/system/dino_system_prompt.txt
+
+
+output_dir: out_runs/colleague_test
+
+teacher_runtime:
+  sample_percent: 10
+  enabled: false
+  provider: ollama
+  ollama_host: "http://127.0.0.1:11434"
+  model: "dino-pro-7b"
+  policy: structure_only
+  on_missing_evidence: abstain
+  system_prompt_path: prompts/teacher/lane_24_teacher_system_prompt.txt
+
+
+
+
+  timeout_s: 150
+  keepalive: "5m"
+# similarity/dedupe controls (tune per-lane)
+similarity:
+  max_token_overlap_ratio: 0.3
+  ignore_stopwords: true
+  ignore_tokens:
+    - "dino"
+    - "ai"
+    - "assistant"
+    - "history"
+    - "thread"
+    - "earlier"
+    - "recall"
+    - "remember"
+    - "prior"
+    - "previous"
+    - "please"
+    - "thanks"
+    - "thank"
+    - "next"
+    - "step"
+  ngram: 2
+
+template_expand:
+  seed: 0
+  count_target: 490
+  max_attempts: 900000
+  attempts_per_row: 400
+
+  slot_banks:
+    # Core labels - English only per operator guidance
+    language: ["it"]
+    mode: ["conversation"]
+    tone:
+      - "professional"
+      - "serious"
+      - "friendly"
+      - "family"
+      - "best_friend"
+      - "professional"
+      - "serious"
+      - "friendly"
+    emote6: ["neutral"]
+    continuity_choice: ["suppress_continuity"]
+
+    # Operator-locked intent labels
+    intent_family: ["qa_general"]
+    intent_subtype: ["general"]
+
+    # History trigger labels (target of this lane)
+    needs_history_search:
+      true: 4
+      false: 6
+
+    history_scope:
+      thread_only: 8
+      all_threads: 2
+
+    # Slot banks for history-aware prompts
+    project_codename:
+      - "Aurora"
+      - "Nimbus"
+      - "Cedar"
+      - "Harbor"
+      - "Summit"
+      - "Lumen"
+      - "Pioneer"
+      - "Willow"
+      - "Atlas"
+      - "Beacon"
+      - "Ridge"
+      - "Northstar"
+      - "Quartz"
+      - "Maple"
+      - "Drift"
+      - "Echo"
+      - "Pilot"
+      - "Bridge"
+      - "Horizon"
+      - "Vertex"
+
+    topic_area:
+      - "a planning workflow"
+      - "a demo outline"
+      - "a launch checklist"
+      - "a review cadence"
+      - "a prioritization plan"
+      - "a decision rubric"
+      - "a sprint goal"
+      - "an onboarding flow"
+      - "a weekly update"
+      - "a small experiment"
+      - "a handoff note"
+      - "a feedback loop"
+      - "a meeting structure"
+      - "a risk log"
+      - "a status summary"
+      - "a scope boundary"
+      - "a follow-up plan"
+      - "a draft message"
+      - "a quick brief"
+      - "a task list"
+
+    memory_object:
+      - "the outline"
+      - "the checklist"
+      - "the plan"
+      - "the rule"
+      - "the constraint"
+      - "the priority"
+      - "the tradeoff"
+      - "the decision"
+      - "the action item"
+      - "the example"
+      - "the wording"
+      - "the summary"
+      - "the next step"
+      - "the criteria"
+      - "the structure"
+      - "the boundary"
+      - "the assumption"
+      - "the fallback"
+      - "the template"
+      - "the note"
+
+    artifact_type:
+      - "bullet outline"
+      - "short checklist"
+      - "two-sentence brief"
+      - "decision matrix"
+      - "tiny plan"
+      - "message draft"
+      - "status update"
+      - "risk list"
+      - "meeting recap"
+      - "comparison grid"
+      - "priority list"
+      - "scope note"
+      - "handoff summary"
+      - "follow-up script"
+      - "calibration note"
+      - "structure template"
+      - "example response"
+      - "short rubric"
+      - "criteria list"
+      - "outline sketch"
+
+    ordinal_ref:
+      - "first"
+      - "second"
+      - "third"
+      - "fourth"
+      - "last"
+      - "most recent"
+      - "earliest"
+      - "middle"
+      - "main"
+      - "key"
+
+    prior_timeframe:
+      - "earlier in this thread"
+      - "earlier today"
+      - "in the last few turns"
+      - "a moment ago"
+      - "in our recent chat"
+      - "in a previous thread"
+      - "in another conversation"
+      - "last time we discussed it"
+      - "when we reviewed it"
+      - "when we outlined it"
+      - "when we compared options"
+      - "when we set constraints"
+      - "when we drafted the note"
+      - "when we picked a direction"
+      - "during the earlier recap"
+
+    recall_action:
+      - "recap"
+      - "quote"
+      - "pull up"
+      - "extract"
+      - "restate"
+      - "summarize"
+      - "remind me of"
+      - "surface"
+      - "recover"
+      - "find"
+      - "point me to"
+      - "bring back"
+      - "reconstruct"
+      - "call out"
+      - "highlight"
+
+    audience:
+      - "a new teammate"
+      - "a reviewer"
+      - "a stakeholder"
+      - "a partner"
+      - "a friend"
+      - "a manager"
+      - "a collaborator"
+      - "a small group"
+      - "someone joining late"
+      - "a busy reader"
+
+    format_hint:
+      - "in two sentences"
+      - "as three bullets"
+      - "as a short recap"
+      - "as a tiny checklist"
+      - "as a quick note"
+      - "as a short message"
+      - "in plain language"
+      - "in a crisp way"
+      - "in a compact format"
+      - "in a short form"
+
+    constraint_line:
+      - "Keep it short and practical."
+      - "Keep it tight and clear."
+      - "Do not add new ideas."
+      - "Use only what we already discussed."
+      - "Avoid inventing new details."
+      - "Stick to the earlier context."
+      - "Do not expand beyond the thread."
+      - "Keep it grounded in what I said."
+      - "Use the prior phrasing if possible."
+      - "Keep the scope narrow."
+
+    goal_line:
+      - "so I can move forward"
+      - "so I can send a quick update"
+      - "so I can decide faster"
+      - "so I can brief someone"
+      - "so I can unblock the work"
+      - "so I can align the group"
+      - "so I can pick the next step"
+      - "so I can summarize it cleanly"
+      - "so I can restate it accurately"
+      - "so I can check we are consistent"
+
+    restated_detail:
+      - "the decision was to start small and test one slice first"
+      - "the constraint was time, not complexity"
+      - "the priority was clarity over completeness"
+      - "we agreed to keep the plan to three bullets"
+      - "we said the goal was alignment, not perfection"
+      - "we picked the safer option with fewer moving parts"
+      - "we said to use a checklist rather than a long paragraph"
+      - "we agreed the next step was to draft and review"
+      - "we said to avoid new features until the base works"
+      - "we agreed to ask one clarifying question before acting"
+      - "we said to write the recap for a late joiner"
+      - "we agreed the main risk was scope drift"
+      - "we said to focus on one outcome at a time"
+      - "we agreed the plan should fit on one screen"
+      - "we said to confirm the owner before changing anything"
+
+    restated_detail_2:
+      - "and the next step was to confirm the owner"
+      - "and the fallback was to choose the simpler path"
+      - "and the risk note was to avoid scope creep"
+      - "and the format was three short bullets"
+      - "and the tone was calm and direct"
+      - "and the goal was to unblock, not perfect"
+      - "and we said to ask one question first"
+      - "and the boundary was no new requirements"
+      - "and the plan was to test with a small group"
+      - "and the action item was to draft the recap"
+
+    # History-focused prompts (often require history lookup)
+    history_request_line:
+      - "About {project_codename} and {topic_area}, can you {recall_action} {memory_object} from {prior_timeframe} and restate it for {audience} {format_hint}?"
+      - "In {project_codename}, we discussed {topic_area}. Can you {recall_action} {ordinal_ref} {memory_object} you suggested {prior_timeframe} and present it {format_hint} for {audience}?"
+      - "For {project_codename} and {topic_area}, what was the {ordinal_ref} {memory_object} we landed on {prior_timeframe}, and can you restate it {format_hint} for {audience} {goal_line}?"
+      - "We covered {topic_area} under {project_codename}. Can you {recall_action} the {artifact_type} you gave me {prior_timeframe}, and restate the {ordinal_ref} {memory_object} {format_hint}?"
+      - "Can you {recall_action} the {ordinal_ref} {memory_object} from our earlier discussion on {topic_area} for {project_codename}, and rewrite it {format_hint} for {audience} {goal_line}?"
+      - "Please {recall_action} the {artifact_type} we used for {topic_area} in {project_codename} {prior_timeframe}, and restate the {memory_object} {format_hint} for {audience}."
+      - "What did we say {prior_timeframe} about {memory_object} for {topic_area} in {project_codename}? Please {recall_action} it and present it {format_hint} {goal_line}."
+      - "I am trying to stay consistent on {topic_area} in {project_codename}. Can you {recall_action} the {ordinal_ref} {memory_object} from {prior_timeframe} and restate it {format_hint} for {audience}?"
+      - "From {prior_timeframe} on {project_codename}, can you {recall_action} the {artifact_type} about {topic_area} and surface the {ordinal_ref} {memory_object} {format_hint}?"
+      - "For {project_codename} and {topic_area}, I need the {ordinal_ref} {memory_object} we agreed on {prior_timeframe}. Can you {recall_action} it and restate it {format_hint} for {audience}?"
+      - "Earlier we worked on {topic_area} for {project_codename}. Can you {recall_action} the {artifact_type} and pull the {ordinal_ref} {memory_object} {format_hint} so I can act on it?"
+      - "Can you {recall_action} the part where we set the {memory_object} for {topic_area} in {project_codename} {prior_timeframe}, and restate it {format_hint} for {audience} {goal_line}?"
+      - "We already discussed {topic_area} in {project_codename}. Please {recall_action} {memory_object} from {prior_timeframe} and rewrite it {format_hint} without adding anything new."
+      - "For {topic_area} in {project_codename}, can you {recall_action} the {ordinal_ref} {memory_object} from {prior_timeframe} and restate it {format_hint} so I can share it?"
+      - "I need the {ordinal_ref} {memory_object} you gave me about {topic_area} in {project_codename} {prior_timeframe}. Can you {recall_action} it and present it {format_hint} for {audience}?"
+      - "Can you {recall_action} the earlier {artifact_type} for {topic_area} in {project_codename} and pull the {ordinal_ref} {memory_object} from {prior_timeframe}, then restate it {format_hint}?"
+      - "When we talked about {topic_area} for {project_codename} {prior_timeframe}, what was the {ordinal_ref} {memory_object}? Please {recall_action} it {format_hint} for {audience} {goal_line}."
+      - "I want to refer back to the {artifact_type} from {prior_timeframe} on {project_codename}. Can you {recall_action} the {ordinal_ref} {memory_object} about {topic_area} and restate it {format_hint}?"
+      - "For consistency on {project_codename} and {topic_area}, can you {recall_action} {memory_object} from {prior_timeframe} and restate the {ordinal_ref} version {format_hint} for {audience}?"
+      - "Please {recall_action} the {artifact_type} from {prior_timeframe} for {project_codename} and extract the {ordinal_ref} {memory_object} about {topic_area} {format_hint}."
+
+    # Restated prompts (often do not require history lookup)
+    restated_request_line:
+      - "I will restate the key detail from {prior_timeframe}: {restated_detail}. Given that, can you give the next move on {topic_area} in {project_codename} {format_hint} {goal_line}?"
+      - "Here is the earlier context on {project_codename}: {restated_detail}. {restated_detail_2}. With that restated, can you respond {format_hint} for {audience} about {topic_area}?"
+      - "Restating what we said on {topic_area} for {project_codename}: {restated_detail}. Can you continue from there {format_hint} without going back over earlier messages?"
+      - "I will paste the relevant line from before: {restated_detail}. Can you proceed {format_hint} for {audience} on {topic_area} in {project_codename}?"
+      - "Quick recap so you do not need to look back: {restated_detail}. Using that, what is the next step for {topic_area} in {project_codename} {format_hint}?"
+      - "To avoid digging through earlier turns, here is the key point: {restated_detail}. Can you respond {format_hint} for {audience} about {topic_area} in {project_codename}?"
+      - "I will restate the decision from {prior_timeframe}: {restated_detail}. {restated_detail_2}. Can you build on it {format_hint} for {audience}?"
+      - "We do not need the full history if I restate it: {restated_detail}. Can you give me a tight response {format_hint} on {topic_area} for {project_codename}?"
+      - "Let me summarize the prior thread so you can work from it: {restated_detail}. Given that, can you continue {format_hint} on {topic_area} in {project_codename}?"
+      - "I will restate the exact constraint: {restated_detail}. Can you proceed {format_hint} for {audience} on {topic_area} in {project_codename} {goal_line}?"
+      - "Here is the relevant prior line about {topic_area}: {restated_detail}. Use only that and respond {format_hint} for {audience} on {project_codename}."
+      - "Recap so we stay grounded: {restated_detail}. {restated_detail_2}. With that provided, can you respond {format_hint} about {topic_area} for {project_codename}?"
+      - "I will restate what matters: {restated_detail}. Please continue from that {format_hint} for {audience} on {topic_area} in {project_codename}."
+      - "I have already pulled the key detail: {restated_detail}. Can you move forward {format_hint} about {topic_area} for {project_codename} without rechecking earlier messages?"
+      - "Restated context for {project_codename}: {restated_detail}. {restated_detail_2}. Can you respond {format_hint} for {audience} on {topic_area}?"
+      - "To keep this simple, I will restate the earlier point: {restated_detail}. Please respond {format_hint} on {topic_area} for {project_codename}."
+      - "Here is the core prior idea: {restated_detail}. Use it directly and respond {format_hint} for {audience} on {topic_area} in {project_codename}."
+      - "I am restating the earlier decision so you can proceed: {restated_detail}. Can you continue {format_hint} on {topic_area} for {project_codename} {goal_line}?"
+      - "Restated from the earlier chat: {restated_detail}. With that included here, can you respond {format_hint} for {audience} on {topic_area} in {project_codename}?"
+      - "I do not want to rely on memory. Here is the relevant detail: {restated_detail}. Can you proceed {format_hint} on {topic_area} for {project_codename}?"
+      - "I am going to restate the prior boundary: {restated_detail}. Can you respond {format_hint} for {audience} on {topic_area} in {project_codename}?"
+      - "Let us not dig through old turns. I will restate it: {restated_detail}. Please proceed {format_hint} about {topic_area} in {project_codename} {goal_line}."
+      - "Here is the earlier constraint, restated: {restated_detail}. Can you give a tight answer {format_hint} on {topic_area} for {project_codename}?"
+      - "I already summarized the prior thread: {restated_detail}. {restated_detail_2}. Can you respond {format_hint} for {audience} on {topic_area} in {project_codename}?"
+      - "Restating the prior decision: {restated_detail}. Use only that and respond {format_hint} about {topic_area} in {project_codename}."
+      - "I will paste the relevant earlier line: {restated_detail}. With that in the message, can you continue {format_hint} for {audience} on {topic_area}?"
+      - "Here is the earlier plan in one line: {restated_detail}. Can you build on it {format_hint} for {audience} about {topic_area} in {project_codename}?"
+      - "To avoid going back through earlier messages, I will restate it: {restated_detail}. Please respond {format_hint} for {audience} on {topic_area} in {project_codename}."
+      - "Restated context for {topic_area} in {project_codename}: {restated_detail}. Can you continue {format_hint} without pulling prior messages?"
+      - "I want a clean response without browsing back. Here is the context: {restated_detail}. Now respond {format_hint} for {audience} on {topic_area} in {project_codename}."
+
+    # Blend both lines so the lane stays history-trigger specific but supports both classes
+    user_template:
+      - "{history_request_line} {constraint_line}"
+      - "{history_request_line} {constraint_line}"
+      - "{history_request_line} {constraint_line}"
+      - "{history_request_line} {constraint_line}"
+      - "{history_request_line} {constraint_line}"
+      - "{history_request_line} {constraint_line}"
+      - "{history_request_line} {constraint_line}"
+      - "{history_request_line} {constraint_line}"
+      - "{history_request_line} {constraint_line}"
+      - "{history_request_line} {constraint_line}"
+      - "{restated_request_line} {constraint_line}"
+      - "{restated_request_line} {constraint_line}"
+      - "{restated_request_line} {constraint_line}"
+      - "{restated_request_line} {constraint_line}"
+      - "{restated_request_line} {constraint_line}"
+      - "{restated_request_line} {constraint_line}"
+      - "{restated_request_line} {constraint_line}"
+      - "{restated_request_line} {constraint_line}"
+      - "{restated_request_line} {constraint_line}"
+      - "{restated_request_line} {constraint_line}"
+
+    # Multi-turn wrappers for diversity
+    assistant_probe:
+      - "Do you want me to rely on earlier context, or should we restate it here?"
+      - "Should I look back, or can you restate the key line?"
+      - "Do you want thread-only recall, or a wider memory check?"
+      - "Is this about something we already covered, or a fresh answer?"
+      - "Should I pull up the earlier detail, or proceed from what you provide now?"
+      - "Is this from this thread, or from another chat?"
+      - "Do you want a recall of the earlier decision, or a new suggestion?"
+      - "Should I pull prior context, or can we work from a short recap?"
+      - "Do you want me to look back, or keep it self-contained?"
+      - "Should we treat this as a recall task or a new request?"
+
+    user_followup:
+      - "Treat it as recall. The anchor is {memory_object} for {topic_area} in {project_codename}."
+      - "Keep it self-contained. I restated it: {restated_detail}."
+      - "It is from {prior_timeframe}, but I can restate: {restated_detail}."
+      - "It is a memory task. Please find the {ordinal_ref} {memory_object} from earlier."
+      - "It is a fresh answer. Use this detail: {restated_detail}."
+      - "It might be in another thread about {project_codename} and {topic_area}."
+      - "I want the earlier decision, not a new one. The object is {memory_object}."
+      - "Assume I pasted the key detail: {restated_detail}. Continue from there."
+      - "It is about consistency. Please recall the prior {artifact_type}."
+      - "No need to look back if you can work from this: {restated_detail}."
+
+    dialogue_context:
+      - "User: {user_template}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "Context:\nUser: {user_template}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "Conversation so far:\nUser: {user_template}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "U: {user_template}\nA: {assistant_probe}\nU: {user_followup}"
+      - "Dialogue:\nU: {user_template}\nA: {assistant_probe}\nU: {user_followup}"
+      - "User message: {user_template}\nAssistant reply: {assistant_probe}\nUser follow-up: {user_followup}"
+
+    # Assistant response building blocks - short, mode-conversation safe
+    decision_frame:
+      - "This sounds like you want something from earlier in the conversation."
+      - "This seems tied to what we already discussed."
+      - "This looks like a request to bring back prior context."
+      - "This appears to depend on earlier messages."
+      - "This sounds like you want the earlier decision, not a new one."
+      - "This looks like a continuation from prior context."
+      - "This seems anchored to previous turns."
+      - "This reads like a recall request."
+      - "This points back to earlier material."
+      - "This looks like a consistency check with earlier messages."
+
+    decision_alt:
+      - "Since you restated the key detail, I may not need to look back."
+      - "With the recap provided, we can often proceed without revisiting earlier messages."
+      - "If the key line is restated, we can usually continue directly."
+      - "Providing the anchor detail can make this self-contained."
+      - "If the essential detail is included here, we can proceed without going back."
+      - "Restating the critical line makes it safer to continue directly."
+      - "Given the recap, it may be fine to move forward from what you provided."
+      - "When the key constraint is restated, we can move forward directly."
+      - "If the earlier detail is restated, a full look back may not be needed."
+      - "With the recap in the message, we can respond without revisiting earlier turns."
+
+    scope_guidance:
+      - "If we do need to look back, tell me whether to use this thread or all chats."
+      - "If earlier context is needed, confirm whether it is thread-only or across chats."
+      - "If I should review earlier messages, specify the scope first."
+      - "If a look back is needed, we should agree on the scope."
+      - "If we need prior context, clarify whether it is within this thread or broader."
+      - "If we go back, the scope choice matters."
+      - "If we rely on earlier messages, let me know the scope to use."
+      - "If a recall step is required, I should know the scope."
+      - "If we check earlier context, choose the scope so we avoid the wrong thread."
+      - "If we need prior context, confirm the scope before I proceed."
+
+    fallback_line:
+      - "If you want to avoid going back, paste the exact line you want preserved."
+      - "If you prefer not to revisit earlier messages, restate the anchor detail and I will work from it."
+      - "If you want this self-contained, provide the key decision in one line."
+      - "If you want to skip looking back, include the critical constraint here."
+      - "If you want a direct answer, restate the specific line that must stay consistent."
+      - "If you do not want to rely on earlier messages, paste the relevant snippet."
+      - "If you want to proceed quickly, paste the anchor detail and I will continue."
+      - "If you want no look back step, include the key decision and I will build from it."
+      - "If you want to stay safe without revisiting earlier turns, restate the exact prior wording."
+      - "If you want to avoid memory drift, paste the prior line you care about."
+
+    next_question:
+      - "Do you want me to look back, or should I work from the recap?"
+      - "Should I use earlier messages, or is the restated detail enough?"
+      - "Do you want this thread only, or should I consider other chats?"
+      - "Should I go back to earlier context, or continue from what you provided?"
+      - "Is this about this thread only, or across chats?"
+      - "Do you want me to reference earlier messages, or continue directly?"
+      - "Should we anchor on earlier context, or stay self-contained?"
+      - "Do you want me to look back, or proceed from the recap?"
+      - "Should I recall the earlier detail, or continue directly?"
+      - "Do you want a look back at earlier messages, or a fresh response grounded in the recap?"
+
+    assistant_response:
+      - "{decision_frame} {decision_alt} {scope_guidance} {fallback_line} {next_question}"
+      - "{decision_frame} {scope_guidance} {fallback_line} {next_question}"
+      - "{decision_frame} {decision_alt} {fallback_line} {next_question}"
+      - "{decision_frame} {decision_alt} {scope_guidance} {next_question}"
+
+  row_template:
+    language: "{language}"
+    mode: "{mode}"
+    tone: "{tone}"
+    emote6: "{emote6}"
+    continuity_choice: "{continuity_choice}"
+    intent_family: "{intent_family}"
+    intent_subtype: "{intent_subtype}"
+    needs_history_search: "{needs_history_search}"
+    history_scope: "{history_scope}"
+    representation_choice: "plain_text"
+    user_message: "{dialogue_context}"
+    assistant_response: "{assistant_response}"
+
+notes: "Wave0 Lane24 - history search trigger (no teacher, no steps_v1, history-focused prompts)"

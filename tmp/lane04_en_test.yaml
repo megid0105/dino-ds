@@ -1,0 +1,1402 @@
+lane_id: lane_04_quick_mode
+wave: wave0
+target_base: dino_qwen4b
+source_type: local
+sources: []
+count_target: 39216
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: suppress_continuity
+  flow_state: none
+  history_scope: thread_only
+  representation_choice: plain_text
+  safety_tag: safe
+  system_prompt_id: dino.system.v1
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators: []
+transform_pipeline: []
+generation_mode: template_expand
+system_prompt_path: prompts/system/dino_system_prompt.txt
+output_dir: out_runs/colleague_test
+teacher_runtime:
+  sample_percent: 5
+  enabled: false
+  provider: ollama
+  ollama_host: http://127.0.0.1:11434
+  model: dino-pro-7b
+  policy: structure_only
+  on_missing_evidence: abstain
+  system_prompt_path: prompts/teacher/lane_04_teacher_system_prompt.txt
+  timeout_s: 150
+  keepalive: 5m
+similarity:
+  max_token_overlap_ratio: 0.12
+  text_field: assistant_response
+  ignore_stopwords: false
+  ngram: 1
+template_expand:
+  seed: 37
+  count_target: 39216
+  max_attempts: 8000000
+  attempts_per_row: 1200
+  fail_if_underfilled: true
+  expand_dict_slots:
+  - tone_case
+  - turn_case
+  - render_case
+  slot_banks:
+    language:
+    - en
+    mode:
+    - quick
+    tone_case:
+    - tone: professional
+      tone_style: clear and businesslike
+    - tone: best_friend
+      tone_style: blunt but supportive
+    - tone: family
+      tone_style: gentle and caring
+    - tone: serious
+      tone_style: calm and direct
+    - tone: friendly
+      tone_style: warm and approachable
+    emote6:
+    - neutral
+    continuity_choice:
+    - suppress_continuity
+    intent_family:
+    - qa_general
+    - planning
+    - communication
+    - decision_support
+    - content_generation
+    intent_subtype:
+    - quick_advice
+    - mini_checklist
+    - quick_comparison
+    - short_rewrite
+    - priority_triage
+    - clarify_request
+    - quick_summary
+    - next_step
+    audience:
+    - my coworker
+    - my manager
+    - a teammate
+    - a client
+    - a friend
+    - my sibling
+    - my partner
+    - my roommate
+    - a professor
+    - a group chat
+    medium:
+    - email
+    - chat
+    - text
+    - a meeting follow-up
+    - a project update
+    - a quick note
+    - a status message
+    - a review comment
+    situation:
+    - late-night messages
+    - unclear ownership
+    - last-minute requests
+    - missed deadlines
+    - scope creep
+    - confusing instructions
+    - a tense thread
+    - too many meetings
+    - slow responses
+    - repeated rework
+    - a harsh message
+    - a misunderstanding
+    - feedback that landed badly
+    - a request I cannot take on
+    - a scheduling conflict
+    user_goal:
+    - set a clear boundary
+    - apologize without over-apologizing
+    - give direct feedback
+    - decline politely
+    - ask for clarity
+    - de-escalate the tone
+    - follow up without sounding pushy
+    - correct a misunderstanding
+    - reset expectations
+    - request a change in behavior
+    constraint:
+    - keep it short
+    - be firm but respectful
+    - be gentle but clear
+    - avoid blame
+    - avoid passive-aggressive wording
+    - stay factual
+    - sound confident
+    - sound calm
+    - use plain language
+    - keep it to one or two sentences
+    desired_outcome:
+    - protect the relationship
+    - get agreement on next steps
+    - reduce confusion
+    - stop the pattern
+    - align on priorities
+    - keep things constructive
+    - avoid another escalation
+    - set a repeatable norm
+    - move the work forward
+    ask_style:
+    - Help me draft this.
+    - Rewrite my line.
+    - Give me a sendable draft.
+    - Tell me what to say.
+    - Give me two drafts with different firmness.
+    - Make it land without sounding cold.
+    - Make it clear and low-drama.
+    - Keep it short and usable.
+    raw_line:
+    - Can you stop sending new tasks after 10pm?
+    - I need you to confirm the deadline before I start.
+    - I cannot take this on without dropping something else.
+    - That last message felt harsh and I want to reset.
+    - I am confused about the priority and deadline.
+    - I want to help, but the request is too vague.
+    - I need fewer interruptions to finish this.
+    - I can do this tomorrow, not tonight.
+    - Please send one consolidated request instead of scattered edits.
+    - I need the decision owner to confirm this before we proceed.
+    - I am getting conflicting directions from different people.
+    - If the scope changes again, we need to move the deadline.
+    - I can help, but I need the acceptance criteria first.
+    - This feedback chain is looping and blocking delivery.
+    - I need one channel for updates so nothing gets lost.
+    - Please tag what is urgent and what can wait.
+    - I can revise this once, but not five rounds tonight.
+    - We need to freeze requirements before implementation.
+    - I can continue after we agree on priorities.
+    - I want to keep helping, but this pace is not sustainable.
+    - Please do not assign new work during focus blocks.
+    - Let us finish the open item before adding a new one.
+    - I need a clear handoff note before I can take this.
+    - We are discussing tone, but the real blocker is unclear scope.
+    - I can send a draft now if we lock the key points.
+    - I need confirmation on ownership before making changes.
+    - This keeps shifting and it breaks the plan.
+    - Please confirm the goal in one sentence before I start.
+    - I can support this once priorities are ranked.
+    - I need one final version, not parallel versions.
+    - Let us close current edits before opening new requests.
+    - I can deliver faster if changes come in one batch.
+    - Please avoid late pings unless it is truly urgent.
+    - I need the owner to sign off before rework begins.
+    - I can commit tonight only to already agreed items.
+    - Let us pause new asks until the handoff is complete.
+    - I need the scope locked for this cycle.
+    - Please send the missing context before asking for revision.
+    - I can revise tone after the content direction is final.
+    - Let us align deadlines before assigning more tasks.
+    - I need one decision path to avoid conflicting edits.
+    - Please flag blockers early instead of at the deadline.
+    - I can help quickly when the request is specific.
+    - Let us keep one thread so updates do not split.
+    - I need confirmation on what done looks like.
+    - Please choose one priority owner for today.
+    - I can take this after the current deliverable is submitted.
+    - Let us define scope boundaries before expanding requests.
+    - I need fewer mid-task pivots to keep quality stable.
+    - Please avoid rewriting my section without a heads-up.
+    - I can move faster with one consolidated checklist.
+    - Let us separate brainstorming from execution changes.
+    - I need dates and owners in the same message.
+    - Please close feedback loops before adding new feedback.
+    - I can support this if the timeline is realistic.
+    - Let us agree on response windows for deep work.
+    - I need one point of contact for final direction.
+    - Please provide complete inputs before requesting rework.
+    - I can deliver by tomorrow if scope stays fixed.
+    - Let us stop adding edge cases mid-implementation.
+    - I need clear acceptance criteria for this task.
+    - Please keep non-urgent requests for daytime hours.
+    - I can help better when priorities stay stable.
+    - Let us confirm dependency order before scheduling.
+    - I need a single approval path for this draft.
+    - Please avoid changing requirements after kickoff.
+    - I can revise once more after we settle the target.
+    - Let us map owners before we map new tasks.
+    - I need a concise summary before another review round.
+    - Please route new requests through one channel.
+    - I can continue once unresolved conflicts are closed.
+    - Let us keep edits traceable with one change log.
+    - I need priority clarity before I re-sequence work.
+    - Please share urgency level with every request.
+    - I can deliver quality if we reduce context switching.
+    - Let us avoid scope expansion during final review.
+    - I need one stable brief for this sprint.
+    - Please confirm if this is a must-have or nice-to-have.
+    - I can help today if requirements stop moving.
+    - Let us finish validation before opening new features.
+    context_line:
+    - 'Context: this already happened three times this week.'
+    - 'Context: I flagged this once already.'
+    - 'Context: this is slowing the project.'
+    - 'Context: I want to fix it without drama.'
+    - 'Context: I still want to collaborate well.'
+    - 'Context: I need a draft I can send today.'
+    - 'Context: I worry about sounding rude.'
+    - 'Context: I need this to fit {medium}.'
+    - '{situation}.'
+    - '{medium}; {constraint}.'
+    - '{audience}; {situation}.'
+    - '{constraint}; {change_request}.'
+    - '{audience}; {situation}; {constraint}.'
+    user_frame:
+    - '{ask_style} I need to {user_goal} with {audience} about {situation} in {medium}. Keep it {tone_style}.'
+    - '{ask_style} This is about {situation} with {audience}. I want to {user_goal} and keep it {tone_style}.'
+    - '{ask_style} I am trying to {user_goal} regarding {situation}. It is for {audience} in {medium}, and it should feel {tone_style}.'
+    - '{ask_style} Topic: {situation}. I need a message for {audience} via {medium} to {user_goal}, in a {tone_style} way.'
+    user_message:
+    - '{user_frame}\n{context_line}\nConstraint: {constraint}. Outcome: {desired_outcome}.\nOriginal line: {raw_line}'
+    - '{user_frame}\nOriginal line: {raw_line}\nConstraint: {constraint}. Outcome: {desired_outcome}.\n{context_line}'
+    - '{user_frame}\nConstraint: {constraint}.\n{context_line}\nOutcome: {desired_outcome}.\nOriginal line: {raw_line}'
+    - '{user_frame}\n{context_line}\nOutcome: {desired_outcome}. Constraint: {constraint}.\nOriginal line: {raw_line}'
+    - '{user_frame}\nOriginal line: {raw_line}\n{context_line}\nOutcome: {desired_outcome}. Constraint: {constraint}.'
+    - '{user_frame}\nConstraint: {constraint}. Outcome: {desired_outcome}.\n{context_line}'
+    - '{user_frame}\n{context_line}\nConstraint: {constraint}.\nOriginal line: {raw_line}\nOutcome: {desired_outcome}.'
+    - '{user_frame}\nOutcome: {desired_outcome}.\nConstraint: {constraint}.\n{context_line}\nOriginal line: {raw_line}'
+    assistant_open:
+    - '{context_line}'
+    - '{context_line_b}'
+    - 'Context: {situation}.'
+    - 'Context: {audience}; {medium}.'
+    - 'Context: {desired_outcome}; {constraint}.'
+    - 'Context: {user_goal}; {change_request}.'
+    - 'Focus: {desired_outcome}.'
+    - 'Focus: {constraint}.'
+    - 'Adjustment: {user_goal}.'
+    assistant_commit:
+    - I will keep the draft {tone_style} and {constraint}.
+    - I will keep the message {tone_style}, while staying {constraint}.
+    - I will make this read {tone_style} and still actionable.
+    - I will shape it so it sounds {tone_style} and remains concrete.
+    assistant_principle:
+    - I will focus on actions and requests, not blame.
+    - I will keep this specific and easy to follow.
+    - I will remove extra friction and keep the signal clear.
+    - I will keep the boundary clear without sounding hostile.
+    - I will anchor it in what needs to happen next.
+    draft_prefix:
+    - 'Draft:'
+    - 'Try this:'
+    - 'Sendable draft:'
+    - 'Message draft:'
+    change_request:
+    - confirm priority and deadline before work starts
+    - group related changes into one aligned update
+    - avoid rewriting work without a quick heads-up
+    - lock scope before execution
+    - reduce interruptions during focus blocks
+    - put the request in one clear sentence
+    - confirm the completion criteria
+    draft_line_1:
+    - '{situation}.'
+    - '{audience}; {situation}.'
+    - '{medium}; {situation}.'
+    - '{audience}; {medium}; {situation}.'
+    draft_line_2:
+    - '{change_request}; {desired_outcome}.'
+    - '{change_request}; {constraint}.'
+    extra_clause:
+    - Keep one owner for final calls.
+    - Name the exact deadline in the same sentence.
+    - Ask for one update thread to avoid split decisions.
+    - Anchor the request to the next deliverable.
+    - State what can move and what cannot move.
+    - Keep the boundary tied to workload reality.
+    - Keep the request measurable and easy to confirm.
+    - Mention the tradeoff in plain language.
+    - Point to the shared goal, not the person.
+    - Ask for fewer pivots after execution starts.
+    - Keep the response window realistic for deep work.
+    - Call out urgency levels explicitly.
+    - Ask for complete inputs before rework begins.
+    - Keep planning updates separate from execution edits.
+    - Keep one decision path for accountability.
+    - Make the next action and owner obvious.
+    - Keep wording neutral and outcome-focused.
+    - Request stable scope through the current cycle.
+    - Tie the boundary to delivery quality.
+    - Mark what must happen first.
+    - Keep the tone calm while staying direct.
+    - Protect focus blocks from avoidable interruptions.
+    context_extra:
+    - 'Context: {audience}; {situation}; {medium}.'
+    - 'Context: {situation}; {desired_outcome}.'
+    - 'Context: {change_request}; {desired_outcome}.'
+    - 'Context: {user_goal}; {constraint}.'
+    - 'Context: {audience}; {constraint}; {desired_outcome}.'
+    - 'Context: {medium}; {constraint}; {situation}.'
+    - 'Context: {change_request}; {constraint}.'
+    - 'Context: {user_goal}; {desired_outcome}.'
+    - 'Context: {situation}; {change_request}; {desired_outcome}.'
+    - 'Context: {audience}; {situation}; {constraint}.'
+    - 'Context: {medium}; {change_request}; {desired_outcome}.'
+    - 'Context: {audience}; {medium}; {desired_outcome}.'
+    - 'Context: {focus_a}; {focus_b}.'
+    - 'Context: {focus_c}; {focus_d}.'
+    - 'Context: {desired_outcome}; {focus_a}.'
+    - 'Context: {constraint}; {focus_b}.'
+    - 'Context: {user_goal}; {focus_c}.'
+    - 'Context: {situation}; {focus_d}.'
+    - 'Context: {audience}; {focus_a}; {focus_b}.'
+    - 'Context: {medium}; {focus_c}; {focus_d}.'
+    - 'Context: {change_request}; {focus_a}; {focus_c}.'
+    - 'Context: {desired_outcome}; {focus_b}; {focus_d}.'
+    - 'Context: {user_goal}; {focus_a}; {focus_d}.'
+    - 'Context: {constraint}; {focus_b}; {focus_c}.'
+    tag_a:
+    - scopeAnchor
+    - deadlineGuard
+    - ownerMap
+    - handoffPath
+    - clarityMesh
+    - responseLane
+    - focusWindow
+    - riskBeacon
+    - changeQueue
+    - flowGuard
+    - alignVector
+    - signalTrack
+    - contextLedger
+    - actionFrame
+    - boundaryKey
+    - timingLatch
+    - requestFilter
+    - routeToken
+    - queueIndex
+    - updateNode
+    - reviewClock
+    - deliveryPulse
+    - conflictReducer
+    - scopeFence
+    - intentMarker
+    - qualityLatch
+    - paceGuide
+    - priorityGrid
+    - planRelay
+    - syncPulse
+    tag_b:
+    - outputGate
+    - workflowPin
+    - riskFilter
+    - mergeFence
+    - threadOwner
+    - statusBridge
+    - planSwitch
+    - effortGauge
+    - qualityPulse
+    - routeAnchor
+    - orderMatrix
+    - ownerSignal
+    - scopeVector
+    - deadlineMesh
+    - intentGrid
+    - planKernel
+    - queueGuard
+    - rhythmMatrix
+    - outputVector
+    - detailFilter
+    - riskVector
+    - policyLatch
+    - effortMatrix
+    - changeGuard
+    - actionKernel
+    - reviewSignal
+    - statusMatrix
+    - handoffMatrix
+    - contextVector
+    - responseKernel
+    tag_c:
+    - clarityRoute
+    - timingMatrix
+    - loadVector
+    - commitSignal
+    - traceVector
+    - deliveryMesh
+    - alignKernel
+    - updateMatrix
+    - calmFrame
+    - firmFrame
+    - warmFrame
+    - directFrame
+    - neutralFrame
+    - steadyFrame
+    - clearFrame
+    - resetFrame
+    - scopeFrame
+    - ownerFrame
+    - timingFrame
+    - actionFrameX
+    - resultFrame
+    - boundaryFrame
+    - priorityFrame
+    - responseFrame
+    - reviewFrame
+    - channelFrame
+    - planFrame
+    - focusFrame
+    - qualityFrame
+    - riskFrameX
+    tag_d:
+    - conflictFrame
+    - cadenceFrame
+    - intentFrame
+    - mergeFrame
+    - relayFrame
+    - signalFrame
+    - decisionFrame
+    - deliveryFrame
+    - anchorPoint
+    - workloadLock
+    - handoffGate
+    - timelineGuard
+    - frictionCut
+    - actionLane
+    - contextLock
+    - outputTrack
+    - requestLane
+    - clarityGate
+    - alignmentLock
+    - sequenceGuard
+    - boundaryMesh
+    - cadenceLock
+    - ownerSignalX
+    - riskChannel
+    - responseTrack
+    - priorityLatch
+    - scopeTracker
+    - qualityGrid
+    - deliveryLock
+    - syncAnchor
+    tag_e:
+    - pathMarker
+    - queueLatch
+    - triagePoint
+    - actionIndex
+    - handoffIndex
+    - goalVector
+    - timingGuard
+    - scopeIndex
+    - ownerIndex
+    - deliveryIndex
+    - riskIndex
+    - clarityIndex
+    - orderIndex
+    - outputIndex
+    - focusIndex
+    - responseIndex
+    - signalIndex
+    - updateIndex
+    - planIndex
+    - gateIndex
+    - frameIndex
+    - routeIndex
+    - threadIndex
+    - tokenIndex
+    - mapIndex
+    - filterIndex
+    - pivotIndex
+    - guardIndex
+    - lockIndex
+    - bridgeIndex
+    tag_f:
+    - stableLane
+    - calmRoute
+    - clearRoute
+    - firmRoute
+    - warmRoute
+    - directRoute
+    - neutralRoute
+    - focusRoute
+    - ownerRoute
+    - scopeRoute
+    - timingRoute
+    - actionRoute
+    - resultRoute
+    - requestRoute
+    - deliveryRoute
+    - qualityRoute
+    - riskRoute
+    - planRoute
+    - updateRoute
+    - responseRoute
+    - sequenceRoute
+    - alignmentRoute
+    - handoffRoute
+    - priorityRoute
+    - contextRoute
+    - gateRoute
+    - signalRoute
+    - frameRoute
+    - threadRoute
+    - workflowRoute
+    assistant_followup:
+    - Do you want a softer or firmer variant?
+    - Do you want a shorter draft for {medium}?
+    - If you paste the exact sentence you received, I can tailor it.
+    - If you want, I can give two variants with different firmness.
+    - Want me to make it tighter or more empathetic?
+    - I can also make a more direct draft if needed.
+    assistant_response:
+    - '{draft_prefix} {raw_line}'
+    - '{assistant_open} {raw_line}'
+    - '{assistant_commit} {raw_line}'
+    - '{assistant_principle} {raw_line}'
+    - '{raw_line} {detail_line}'
+    - '{lead_phrase}: {raw_line} {assistant_followup}'
+    - '{assistant_open} {raw_line} {assistant_followup}'
+    - '{assistant_commit} {raw_line} {detail_line}'
+    - '{assistant_principle} {raw_line} {extra_clause}'
+    lead_phrase:
+    - Calm boundary framing
+    - Calm delivery wording
+    - Calm reset phrasing
+    - Calm request framing
+    - Calm next-step wording
+    - Calm collaboration tone
+    - Calm scope-lock phrasing
+    - Calm decision-path wording
+    - Clear boundary framing
+    - Clear delivery wording
+    - Clear reset phrasing
+    - Clear request framing
+    - Clear next-step wording
+    - Clear collaboration tone
+    - Clear scope-lock phrasing
+    - Clear decision-path wording
+    - Firm boundary framing
+    - Firm delivery wording
+    - Firm reset phrasing
+    - Firm request framing
+    - Firm next-step wording
+    - Firm collaboration tone
+    - Firm scope-lock phrasing
+    - Firm decision-path wording
+    - Warm boundary framing
+    - Warm delivery wording
+    - Warm reset phrasing
+    - Warm request framing
+    - Warm next-step wording
+    - Warm collaboration tone
+    - Warm scope-lock phrasing
+    - Warm decision-path wording
+    - Practical boundary framing
+    - Practical delivery wording
+    - Practical reset phrasing
+    - Practical request framing
+    - Practical next-step wording
+    - Practical collaboration tone
+    - Practical scope-lock phrasing
+    - Practical decision-path wording
+    - Direct boundary framing
+    - Direct delivery wording
+    - Direct reset phrasing
+    - Direct request framing
+    - Direct next-step wording
+    - Direct collaboration tone
+    - Direct scope-lock phrasing
+    - Direct decision-path wording
+    - Respectful boundary framing
+    - Respectful delivery wording
+    - Respectful reset phrasing
+    - Respectful request framing
+    - Respectful next-step wording
+    - Respectful collaboration tone
+    - Respectful scope-lock phrasing
+    - Respectful decision-path wording
+    - Balanced boundary framing
+    - Balanced delivery wording
+    - Balanced reset phrasing
+    - Balanced request framing
+    - Balanced next-step wording
+    - Balanced collaboration tone
+    - Balanced scope-lock phrasing
+    - Balanced decision-path wording
+    detail_line:
+    - Keep the ask tied to {desired_outcome}.
+    - Use wording that stays {constraint}.
+    - This version suits {medium}; next action stays {change_request}.
+    - The boundary is explicit while protecting {desired_outcome}.
+    - The message keeps the next step concrete.
+    - You can shorten this to one sentence if needed.
+    - If needed, swap one clause to better match {medium}.
+    - The request stays specific and easy to execute.
+    - The line remains clear even under pressure.
+    raw_line_b:
+    - Can you stop sending new tasks after 10pm?
+    - I need you to confirm the deadline before I start.
+    - I cannot take this on without dropping something else.
+    - That last message felt harsh and I want to reset.
+    - I am confused about the priority and deadline.
+    - I want to help, but the request is too vague.
+    - I need fewer interruptions to finish this.
+    - I can do this tomorrow, not tonight.
+    - Please send one consolidated request instead of scattered edits.
+    - I need the decision owner to confirm this before we proceed.
+    - I am getting conflicting directions from different people.
+    - If the scope changes again, we need to move the deadline.
+    - I can help, but I need the acceptance criteria first.
+    - This feedback chain is looping and blocking delivery.
+    - I need one channel for updates so nothing gets lost.
+    - Please tag what is urgent and what can wait.
+    - I can revise this once, but not five rounds tonight.
+    - We need to freeze requirements before implementation.
+    - I can continue after we agree on priorities.
+    - I want to keep helping, but this pace is not sustainable.
+    - Please do not assign new work during focus blocks.
+    - Let us finish the open item before adding a new one.
+    - I need a clear handoff note before I can take this.
+    - We are discussing tone, but the real blocker is unclear scope.
+    - I can send a draft now if we lock the key points.
+    - I need confirmation on ownership before making changes.
+    - This keeps shifting and it breaks the plan.
+    - Please confirm the goal in one sentence before I start.
+    - I can support this once priorities are ranked.
+    - I need one final version, not parallel versions.
+    - Let us close current edits before opening new requests.
+    - I can deliver faster if changes come in one batch.
+    - Please avoid late pings unless it is truly urgent.
+    - I need the owner to sign off before rework begins.
+    - I can commit tonight only to already agreed items.
+    - Let us pause new asks until the handoff is complete.
+    - I need the scope locked for this cycle.
+    - Please send the missing context before asking for revision.
+    - I can revise tone after the content direction is final.
+    - Let us align deadlines before assigning more tasks.
+    - I need one decision path to avoid conflicting edits.
+    - Please flag blockers early instead of at the deadline.
+    - I can help quickly when the request is specific.
+    - Let us keep one thread so updates do not split.
+    - I need confirmation on what done looks like.
+    - Please choose one priority owner for today.
+    - I can take this after the current deliverable is submitted.
+    - Let us define scope boundaries before expanding requests.
+    - I need fewer mid-task pivots to keep quality stable.
+    - Please avoid rewriting my section without a heads-up.
+    - I can move faster with one consolidated checklist.
+    - Let us separate brainstorming from execution changes.
+    - I need dates and owners in the same message.
+    - Please close feedback loops before adding new feedback.
+    - I can support this if the timeline is realistic.
+    - Let us agree on response windows for deep work.
+    - I need one point of contact for final direction.
+    - Please provide complete inputs before requesting rework.
+    - I can deliver by tomorrow if scope stays fixed.
+    - Let us stop adding edge cases mid-implementation.
+    - I need clear acceptance criteria for this task.
+    - Please keep non-urgent requests for daytime hours.
+    - I can help better when priorities stay stable.
+    - Let us confirm dependency order before scheduling.
+    - I need a single approval path for this draft.
+    - Please avoid changing requirements after kickoff.
+    - I can revise once more after we settle the target.
+    - Let us map owners before we map new tasks.
+    - I need a concise summary before another review round.
+    - Please route new requests through one channel.
+    - I can continue once unresolved conflicts are closed.
+    - Let us keep edits traceable with one change log.
+    - I need priority clarity before I re-sequence work.
+    - Please share urgency level with every request.
+    - I can deliver quality if we reduce context switching.
+    - Let us avoid scope expansion during final review.
+    - I need one stable brief for this sprint.
+    - Please confirm if this is a must-have or nice-to-have.
+    - I can help today if requirements stop moving.
+    - Let us finish validation before opening new features.
+    context_line_b:
+    - 'Context: this already happened three times this week.'
+    - 'Context: I flagged this once already.'
+    - 'Context: this is slowing the project.'
+    - 'Context: I want to fix it without drama.'
+    - 'Context: I still want to collaborate well.'
+    - 'Context: I need a draft I can send today.'
+    - 'Context: I worry about sounding rude.'
+    - 'Context: I need this to fit {medium}.'
+    - '{situation}.'
+    - '{medium}; {constraint}.'
+    - '{audience}; {situation}.'
+    - '{constraint}; {change_request}.'
+    - '{audience}; {situation}; {constraint}.'
+    draft_line_1b:
+    - '{situation}.'
+    - '{audience}; {situation}.'
+    - '{medium}; {situation}.'
+    - '{audience}; {medium}; {situation}.'
+    draft_line_2b:
+    - '{change_request}; {desired_outcome}.'
+    - '{change_request}; {constraint}.'
+    detail_line_b:
+    - Keep the ask tied to {desired_outcome}.
+    - Use wording that stays {constraint}.
+    - This version suits {medium}; next action stays {change_request}.
+    - The boundary is explicit while protecting {desired_outcome}.
+    - The message keeps the next step concrete.
+    - You can shorten this to one sentence if needed.
+    - If needed, swap one clause to better match {medium}.
+    - The request stays specific and easy to execute.
+    - The line remains clear even under pressure.
+    assistant_followup_b:
+    - Do you want a softer or firmer variant?
+    - Do you want a shorter draft for {medium}?
+    - If you paste the exact sentence you received, I can tailor it.
+    - If you want, I can give two variants with different firmness.
+    - Want me to make it tighter or more empathetic?
+    - I can also make a more direct draft if needed.
+    unique_detail:
+    - 'Focus: {user_goal}; {change_request}; {desired_outcome}.'
+    - 'Focus: {desired_outcome}; {constraint}; {situation}.'
+    - 'Focus: {audience}; {medium}; {situation}.'
+    - 'Focus: {change_request}; {desired_outcome}; {constraint}.'
+    - 'Focus: {situation}; {user_goal}; {desired_outcome}.'
+    - 'Focus: {audience}; {desired_outcome}; {constraint}.'
+    - 'Focus: {medium}; {change_request}; {constraint}.'
+    - 'Focus: {focus_a}; {focus_b}; {focus_c}.'
+    - 'Focus: {focus_b}; {focus_c}; {focus_d}.'
+    - 'Focus: {focus_a}; {focus_c}; {focus_d}.'
+    - 'Focus: {change_request}; {focus_a}; {focus_b}.'
+    - 'Focus: {desired_outcome}; {focus_b}; {focus_c}.'
+    - 'Focus: {constraint}; {focus_c}; {focus_d}.'
+    - 'Focus: {user_goal}; {focus_a}; {focus_d}.'
+    - 'Focus: {audience}; {focus_a}; {focus_b}.'
+    - 'Focus: {medium}; {focus_c}; {focus_d}.'
+    - 'Focus: {situation}; {focus_a}; {focus_c}.'
+    - 'Focus: {desired_outcome}; {focus_b}; {focus_d}.'
+    - 'Focus: {change_request}; {desired_outcome}; {focus_c}.'
+    - 'Focus: {constraint}; {user_goal}; {focus_d}.'
+    - 'Focus: {audience}; {change_request}; {focus_a}.'
+    - 'Focus: {medium}; {desired_outcome}; {focus_b}.'
+    - 'Focus: {situation}; {constraint}; {focus_c}.'
+    - 'Focus: {user_goal}; {change_request}; {focus_d}.'
+    diversity_clause:
+    - 'Adjustment: {change_request}; {desired_outcome}; {constraint}.'
+    - 'Adjustment: {audience}; {medium}; {situation}.'
+    - 'Adjustment: {user_goal}; {change_request}; {desired_outcome}.'
+    - 'Adjustment: {situation}; {constraint}; {desired_outcome}.'
+    - 'Adjustment: {focus_a}; {focus_b}; {focus_c}.'
+    - 'Adjustment: {focus_b}; {focus_c}; {focus_d}.'
+    - 'Adjustment: {focus_a}; {focus_c}; {focus_d}.'
+    - 'Adjustment: {focus_a}; {focus_b}; {focus_d}.'
+    - 'Adjustment: {audience}; {change_request}; {focus_a}.'
+    - 'Adjustment: {medium}; {desired_outcome}; {focus_b}.'
+    - 'Adjustment: {situation}; {constraint}; {focus_c}.'
+    - 'Adjustment: {user_goal}; {change_request}; {focus_d}.'
+    - 'Adjustment: {desired_outcome}; {constraint}; {focus_a}.'
+    - 'Adjustment: {change_request}; {focus_b}; {focus_c}.'
+    - 'Adjustment: {audience}; {focus_c}; {focus_d}.'
+    - 'Adjustment: {medium}; {focus_a}; {focus_b}.'
+    - 'Adjustment: {situation}; {focus_a}; {focus_d}.'
+    - 'Adjustment: {user_goal}; {focus_b}; {focus_c}.'
+    - 'Adjustment: {constraint}; {focus_c}; {focus_d}.'
+    - 'Adjustment: {change_request}; {desired_outcome}; {focus_a}.'
+    - 'Adjustment: {audience}; {desired_outcome}; {focus_b}.'
+    - 'Adjustment: {medium}; {constraint}; {focus_c}.'
+    - 'Adjustment: {situation}; {user_goal}; {focus_d}.'
+    - 'Adjustment: {change_request}; {constraint}; {focus_a}.'
+    focus_a:
+    - protect the relationship
+    - get agreement on next steps
+    - reduce confusion
+    - stop the pattern
+    - align on priorities
+    - keep things constructive
+    - avoid another escalation
+    - set a repeatable norm
+    - move the work forward
+    focus_b:
+    - keep it short
+    - be firm but respectful
+    - be gentle but clear
+    - avoid blame
+    - avoid passive-aggressive wording
+    - stay factual
+    - sound confident
+    - sound calm
+    - use plain language
+    - keep it to one or two sentences
+    focus_c:
+    - confirm priority and deadline before work starts
+    - group related changes into one aligned update
+    - avoid rewriting work without a quick heads-up
+    - lock scope before execution
+    - reduce interruptions during focus blocks
+    - put the request in one clear sentence
+    - confirm the completion criteria
+    focus_d:
+    - late-night messages
+    - unclear ownership
+    - last-minute requests
+    - missed deadlines
+    - scope creep
+    - confusing instructions
+    - a tense thread
+    - too many meetings
+    - slow responses
+    - repeated rework
+    - a harsh message
+    - a misunderstanding
+    - feedback that landed badly
+    - a request I cannot take on
+    - a scheduling conflict
+    latin_a:
+    - my coworker
+    - my manager
+    - a teammate
+    - a client
+    - a friend
+    - my sibling
+    - my partner
+    - my roommate
+    - a professor
+    - a group chat
+    latin_b:
+    - email
+    - chat
+    - text
+    - a meeting follow-up
+    - a project update
+    - a quick note
+    - a status message
+    - a review comment
+    latin_c:
+    - set a clear boundary
+    - apologize without over-apologizing
+    - give direct feedback
+    - decline politely
+    - ask for clarity
+    - de-escalate the tone
+    - follow up without sounding pushy
+    - correct a misunderstanding
+    - reset expectations
+    - request a change in behavior
+    latin_d:
+    - protect the relationship
+    - get agreement on next steps
+    - reduce confusion
+    - stop the pattern
+    - align on priorities
+    - keep things constructive
+    - avoid another escalation
+    - set a repeatable norm
+    - move the work forward
+    user_template:
+    - '{user_frame}\n{context_line}\nConstraint: {constraint}. Outcome: {desired_outcome}.\nOriginal line: {raw_line}'
+    - '{user_frame}\nOriginal line: {raw_line}\nConstraint: {constraint}. Outcome: {desired_outcome}.\n{context_line}'
+    - '{user_frame}\nConstraint: {constraint}.\n{context_line}\nOutcome: {desired_outcome}.\nOriginal line: {raw_line}'
+    - '{user_frame}\n{context_line}\nOutcome: {desired_outcome}. Constraint: {constraint}.\nOriginal line: {raw_line}'
+    - '{user_frame}\nOriginal line: {raw_line}\n{context_line}\nOutcome: {desired_outcome}. Constraint: {constraint}.'
+    - '{user_frame}\nConstraint: {constraint}. Outcome: {desired_outcome}.\n{context_line}'
+    - '{user_frame}\n{context_line}\nConstraint: {constraint}.\nOriginal line: {raw_line}\nOutcome: {desired_outcome}.'
+    - '{user_frame}\nOutcome: {desired_outcome}.\nConstraint: {constraint}.\n{context_line}\nOriginal line: {raw_line}'
+    - Can you stop sending new tasks after 10pm?
+    - I need you to confirm the deadline before I start.
+    - I cannot take this on without dropping something else.
+    - That last message felt harsh and I want to reset.
+    - I am confused about the priority and deadline.
+    - I want to help, but the request is too vague.
+    - I need fewer interruptions to finish this.
+    - I can do this tomorrow, not tonight.
+    - Please send one consolidated request instead of scattered edits.
+    - I need the decision owner to confirm this before we proceed.
+    - I am getting conflicting directions from different people.
+    - If the scope changes again, we need to move the deadline.
+    - I can help, but I need the acceptance criteria first.
+    - This feedback chain is looping and blocking delivery.
+    - I need one channel for updates so nothing gets lost.
+    - Please tag what is urgent and what can wait.
+    - I can revise this once, but not five rounds tonight.
+    - We need to freeze requirements before implementation.
+    - I can continue after we agree on priorities.
+    - I want to keep helping, but this pace is not sustainable.
+    - Please do not assign new work during focus blocks.
+    - Let us finish the open item before adding a new one.
+    - I need a clear handoff note before I can take this.
+    - We are discussing tone, but the real blocker is unclear scope.
+    - I can send a draft now if we lock the key points.
+    - I need confirmation on ownership before making changes.
+    - This keeps shifting and it breaks the plan.
+    - Please confirm the goal in one sentence before I start.
+    - I can support this once priorities are ranked.
+    - I need one final version, not parallel versions.
+    - Let us close current edits before opening new requests.
+    - I can deliver faster if changes come in one batch.
+    - Please avoid late pings unless it is truly urgent.
+    - I need the owner to sign off before rework begins.
+    - I can commit tonight only to already agreed items.
+    - Let us pause new asks until the handoff is complete.
+    - I need the scope locked for this cycle.
+    - Please send the missing context before asking for revision.
+    - I can revise tone after the content direction is final.
+    - Let us align deadlines before assigning more tasks.
+    - I need one decision path to avoid conflicting edits.
+    - Please flag blockers early instead of at the deadline.
+    - I can help quickly when the request is specific.
+    - Let us keep one thread so updates do not split.
+    - I need confirmation on what done looks like.
+    - Please choose one priority owner for today.
+    - I can take this after the current deliverable is submitted.
+    - Let us define scope boundaries before expanding requests.
+    - I need fewer mid-task pivots to keep quality stable.
+    - Please avoid rewriting my section without a heads-up.
+    - I can move faster with one consolidated checklist.
+    - Let us separate brainstorming from execution changes.
+    - I need dates and owners in the same message.
+    - Please close feedback loops before adding new feedback.
+    - I can support this if the timeline is realistic.
+    - Let us agree on response windows for deep work.
+    - I need one point of contact for final direction.
+    - Please provide complete inputs before requesting rework.
+    - I can deliver by tomorrow if scope stays fixed.
+    - Let us stop adding edge cases mid-implementation.
+    - I need clear acceptance criteria for this task.
+    - Please keep non-urgent requests for daytime hours.
+    - I can help better when priorities stay stable.
+    - Let us confirm dependency order before scheduling.
+    - I need a single approval path for this draft.
+    - Please avoid changing requirements after kickoff.
+    - I can revise once more after we settle the target.
+    - Let us map owners before we map new tasks.
+    - I need a concise summary before another review round.
+    - Please route new requests through one channel.
+    - I can continue once unresolved conflicts are closed.
+    - Let us keep edits traceable with one change log.
+    - I need priority clarity before I re-sequence work.
+    - Please share urgency level with every request.
+    - I can deliver quality if we reduce context switching.
+    - Let us avoid scope expansion during final review.
+    - I need one stable brief for this sprint.
+    - Please confirm if this is a must-have or nice-to-have.
+    - I can help today if requirements stop moving.
+    - Let us finish validation before opening new features.
+    - Keep the ask tied to {desired_outcome}.
+    - Use wording that stays {constraint}.
+    - This version suits {medium}; next action stays {change_request}.
+    - The boundary is explicit while protecting {desired_outcome}.
+    - The message keeps the next step concrete.
+    - You can shorten this to one sentence if needed.
+    - If needed, swap one clause to better match {medium}.
+    - The request stays specific and easy to execute.
+    - The line remains clear even under pressure.
+    - 'Context: this already happened three times this week.'
+    - 'Context: I flagged this once already.'
+    - 'Context: this is slowing the project.'
+    - 'Context: I want to fix it without drama.'
+    - 'Context: I still want to collaborate well.'
+    - 'Context: I need a draft I can send today.'
+    - 'Context: I worry about sounding rude.'
+    - 'Context: I need this to fit {medium}.'
+    - '{situation}.'
+    - '{medium}; {constraint}.'
+    - '{audience}; {situation}.'
+    - '{constraint}; {change_request}.'
+    - '{audience}; {situation}; {constraint}.'
+    assistant_probe:
+    - Do you want a softer or firmer variant?
+    - Do you want a shorter draft for {medium}?
+    - If you paste the exact sentence you received, I can tailor it.
+    - If you want, I can give two variants with different firmness.
+    - Want me to make it tighter or more empathetic?
+    - I can also make a more direct draft if needed.
+    - '{context_line}'
+    - '{context_line_b}'
+    - 'Context: {situation}.'
+    - 'Context: {audience}; {medium}.'
+    - 'Context: {desired_outcome}; {constraint}.'
+    - 'Context: {user_goal}; {change_request}.'
+    - 'Focus: {desired_outcome}.'
+    - 'Focus: {constraint}.'
+    - 'Adjustment: {user_goal}.'
+    user_followup:
+    - '{constraint}. {desired_outcome}.'
+    - '{situation}; {constraint}.'
+    - '{audience}; {medium}; {desired_outcome}.'
+    - '{user_goal}; {constraint}; {desired_outcome}.'
+    - '{change_request}; {desired_outcome}.'
+    - '{situation}; {change_request}; {constraint}.'
+    - '{desired_outcome}; {constraint}; {change_request}.'
+    - '{medium}; {constraint}; {desired_outcome}.'
+    - '{audience}; {situation}; {desired_outcome}.'
+    - '{user_goal}; {change_request}; {desired_outcome}.'
+    - '{constraint}; {change_request}; {desired_outcome}.'
+    - '{situation}; {user_goal}; {constraint}.'
+    - '{audience}; {constraint}; {change_request}.'
+    - '{medium}; {user_goal}; {desired_outcome}.'
+    - '{change_request}; {constraint}; {desired_outcome}.'
+    - '{context_line_b}'
+    - '{context_extra}'
+    - '{unique_detail}'
+    - '{diversity_clause}'
+    - '{raw_line_b}'
+    - '{raw_line}'
+    turn_case:
+    - system_message: You are a helpful assistant.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant.
+      user_message: '{user_template}'
+    - system_message: You are a concise, practical assistant.
+      user_message: '{user_template}'
+    - system_message: You are a concise, practical assistant.
+      user_message: '{user_template}'
+    - system_message: You are a concise, practical assistant.
+      user_message: '{user_template}'
+    - system_message: You are a concise, practical assistant.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Prioritize clarity and action.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Prioritize clarity and action.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Prioritize clarity and action.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Prioritize clarity and action.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Keep responses short and useful.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Keep responses short and useful.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Keep responses short and useful.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Keep responses short and useful.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Give direct, low-friction guidance.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Give direct, low-friction guidance.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Give direct, low-friction guidance.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Give direct, low-friction guidance.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Focus on the next practical step.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Focus on the next practical step.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Focus on the next practical step.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Focus on the next practical step.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Be clear, brief, and structured.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Be clear, brief, and structured.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Be clear, brief, and structured.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Be clear, brief, and structured.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Keep a calm and actionable tone.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Keep a calm and actionable tone.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Keep a calm and actionable tone.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Keep a calm and actionable tone.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Use compact wording and concrete suggestions.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Use compact wording and concrete suggestions.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Use compact wording and concrete suggestions.
+      user_message: '{user_template}'
+    - system_message: You are a helpful assistant. Use compact wording and concrete suggestions.
+      user_message: '{user_template}'
+    - system_message: 'You are a helpful assistant.
+
+        CONTEXT (previous turns):
+
+        User: {user_template}
+
+        Assistant: {assistant_probe}
+
+        User: {user_followup}'
+      user_message: '{user_followup}'
+    - system_message: 'You are a helpful assistant.
+
+        CONTEXT (previous turns):
+
+        User: {user_template}
+
+        Assistant: {assistant_probe}
+
+        User: {user_followup}'
+      user_message: '{user_followup}'
+    - system_message: 'You are a helpful assistant.
+
+        CONTEXT (previous turns):
+
+        User: {user_template}
+
+        Assistant: {assistant_probe}
+
+        User: {user_followup}'
+      user_message: '{user_followup}'
+    - system_message: 'You are a helpful assistant.
+
+        CONTEXT:
+
+        User asked: {user_template}
+
+        Assistant replied: {assistant_probe}
+
+        User follow-up: {user_followup}'
+      user_message: '{user_followup}'
+    - system_message: 'You are a helpful assistant.
+
+        CONTEXT:
+
+        User asked: {user_template}
+
+        Assistant replied: {assistant_probe}
+
+        User follow-up: {user_followup}'
+      user_message: '{user_followup}'
+    - system_message: 'You are a helpful assistant.
+
+        CONTEXT:
+
+        User asked: {user_template}
+
+        Assistant replied: {assistant_probe}
+
+        User follow-up: {user_followup}'
+      user_message: '{user_followup}'
+    - system_message: 'You are a helpful assistant.
+
+        Conversation so far:
+
+        U: {user_template}
+
+        A: {assistant_probe}
+
+        U: {user_followup}'
+      user_message: '{user_followup}'
+    - system_message: 'You are a helpful assistant.
+
+        Conversation so far:
+
+        U: {user_template}
+
+        A: {assistant_probe}
+
+        U: {user_followup}'
+      user_message: '{user_followup}'
+    - system_message: 'You are a helpful assistant.
+
+        Conversation so far:
+
+        U: {user_template}
+
+        A: {assistant_probe}
+
+        U: {user_followup}'
+      user_message: '{user_followup}'
+    - system_message: 'You are a helpful assistant.
+
+        Prior thread:
+
+        User: {user_template}
+
+        Assistant: {assistant_probe}
+
+        User: {user_followup}'
+      user_message: '{user_followup}'
+    - system_message: 'You are a helpful assistant.
+
+        Prior thread:
+
+        User: {user_template}
+
+        Assistant: {assistant_probe}
+
+        User: {user_followup}'
+      user_message: '{user_followup}'
+    - system_message: 'You are a helpful assistant.
+
+        Prior thread:
+
+        User: {user_template}
+
+        Assistant: {assistant_probe}
+
+        User: {user_followup}'
+      user_message: '{user_followup}'
+    - system_message: 'You are a helpful assistant. Continue the thread with concise guidance.
+
+        CONTEXT:
+
+        User: {user_template}
+
+        Assistant: {assistant_probe}
+
+        User: {user_followup}'
+      user_message: '{user_followup}'
+    - system_message: 'You are a helpful assistant. Continue the thread with concise guidance.
+
+        CONTEXT:
+
+        User: {user_template}
+
+        Assistant: {assistant_probe}
+
+        User: {user_followup}'
+      user_message: '{user_followup}'
+    - system_message: 'You are a helpful assistant. Continue the thread with concise guidance.
+
+        CONTEXT:
+
+        User: {user_template}
+
+        Assistant: {assistant_probe}
+
+        User: {user_followup}'
+      user_message: '{user_followup}'
+    - system_message: 'You are a helpful assistant. Keep continuity and respond with quick, concrete advice.
+
+        CONTEXT:
+
+        User: {user_template}
+
+        Assistant: {assistant_probe}
+
+        User: {user_followup}'
+      user_message: '{user_followup}'
+    - system_message: 'You are a helpful assistant. Keep continuity and respond with quick, concrete advice.
+
+        CONTEXT:
+
+        User: {user_template}
+
+        Assistant: {assistant_probe}
+
+        User: {user_followup}'
+      user_message: '{user_followup}'
+    - system_message: 'You are a helpful assistant. Keep continuity and respond with quick, concrete advice.
+
+        CONTEXT:
+
+        User: {user_template}
+
+        Assistant: {assistant_probe}
+
+        User: {user_followup}'
+      user_message: '{user_followup}'
+    assistant_plain:
+    - '{lead_phrase}: {raw_line}'
+    - '{assistant_open} {raw_line}'
+    - '{assistant_commit} {raw_line}'
+    - '{assistant_principle} {raw_line}'
+    - '{draft_prefix} {raw_line} {change_request}.'
+    - '{raw_line} {change_request}. {detail_line}'
+    - '{raw_line_b} {detail_line_b}'
+    - '{context_line_b} {raw_line}'
+    - '{unique_detail} {raw_line}'
+    - '{diversity_clause} {raw_line_b}'
+    - '{assistant_open} {raw_line} {assistant_followup}'
+    - '{assistant_commit} {raw_line_b} {assistant_followup_b}'
+    - '{assistant_principle} {raw_line} {extra_clause}'
+    - '{raw_line} {change_request}; {desired_outcome}.'
+    - '{raw_line_b} {constraint}; {desired_outcome}.'
+    - '{detail_line} {raw_line}'
+    - '{detail_line_b} {raw_line_b}'
+    - '{context_extra} {raw_line}'
+    - '{unique_detail} {change_request}. {raw_line}'
+    - '{diversity_clause} {change_request}. {raw_line_b}'
+    assistant_bullet:
+    - '- {assistant_open}
+
+      - {raw_line}
+
+      - {change_request}
+
+      - {desired_outcome}
+
+      - {assistant_followup}'
+    - '- {lead_phrase}
+
+      - {raw_line_b}
+
+      - {constraint}
+
+      - {detail_line}
+
+      - {assistant_followup_b}'
+    - '- {situation}
+
+      - {change_request}
+
+      - {desired_outcome}
+
+      - {extra_clause}'
+    - '- {context_line_b}
+
+      - {raw_line}
+
+      - {detail_line_b}
+
+      - {assistant_followup}'
+    - '- {unique_detail}
+
+      - {raw_line_b}
+
+      - {change_request}
+
+      - {desired_outcome}'
+    - '- {diversity_clause}
+
+      - {raw_line}
+
+      - {constraint}
+
+      - {assistant_followup_b}'
+    render_case:
+    - representation_choice: plain_text
+      assistant_response: '{assistant_plain}'
+    - representation_choice: plain_text
+      assistant_response: '{assistant_plain}'
+    - representation_choice: plain_text
+      assistant_response: '{assistant_plain}'
+    - representation_choice: plain_text
+      assistant_response: '{assistant_plain}'
+    - representation_choice: plain_text
+      assistant_response: '{assistant_plain}'
+    - representation_choice: bullet_list
+      assistant_response: '{assistant_bullet}'
+    - representation_choice: bullet_list
+      assistant_response: '{assistant_bullet}'
+    - representation_choice: bullet_list
+      assistant_response: '{assistant_bullet}'
+  row_template:
+    language: '{language}'
+    mode: '{mode}'
+    tone: '{tone}'
+    representation_choice: '{representation_choice}'
+    continuity_choice: '{continuity_choice}'
+    intent_family: '{intent_family}'
+    intent_subtype: '{intent_subtype}'
+    user_message: '{user_message}'
+    assistant_response: '{assistant_response}'
+    messages:
+    - role: system
+      content: '{system_message}'
+    - role: user
+      content: '{user_message}'
+    - role: assistant
+      content: '{assistant_response}'
+notes: Wave0 Lane04 quick mode rebuilt from native lane-specific libraries; includes 54 seeded turn-cases (single+multi).

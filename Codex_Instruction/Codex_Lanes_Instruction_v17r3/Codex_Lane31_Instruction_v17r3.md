@@ -7,13 +7,13 @@ Use ONLY:
 3) `Dino_vNext_Multi-Lane_Training_Volume_Master_Spec_02_03_2026.md` — §3.2 global language distribution (authoritative)
 4) `PCT-perf_Training_config_Spec_36_lanes__02_01_2026.md` — cross‑lane constraints
 
-Do NOT imitate any legacy lane.yaml “context format”. Produce configs that satisfy the **current** lane schema and the v17 lane logic.
+Do NOT imitate any legacy lane_en.yaml “context format”. Produce configs that satisfy the **current** lane schema and the v17 lane logic.
 
 ---
 
 ## Deliverables (14 per-language configs in this lane directory)
 Create these files:
-- `lane.yaml` (English)
+- `lane_en.yaml` (English)
 - `lane_zh-hk.yaml`
 - `lane_th.yaml`
 - `lane_zh-hant.yaml`
@@ -78,7 +78,7 @@ Real seeds (recommended, per language):
 ---
 
 ## Contract extraction (DO THIS FIRST, DO NOT GUESS)
-Before writing any lane.yaml:
+Before writing any lane_en.yaml:
 1) Copy the v17 lane #31 “Required schema fields / Constraints / Sampling example”.
 2) If any single-line bullets conflict with CT sample rows, treat the CT sample rows as authoritative (they are the approved contract instances).
 3) Cross-check key names + enum values in MASTER; do not invent/rename keys.
@@ -143,7 +143,7 @@ Hard override (this pipeline’s rules):
 - ≤520 chars (override via mode_richness)
 - ≤3 numbered step lines (ideally 0)
 
-Set lane.yaml `mode_richness`:
+Set lane_en.yaml `mode_richness`:
 - conversation_max_chars: 520
 - conversation_max_steps: 3
 - quick_min_chars: 180

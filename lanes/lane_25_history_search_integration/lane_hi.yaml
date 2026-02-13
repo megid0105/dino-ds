@@ -1,0 +1,606 @@
+lane_id: "lane_25_history_search_integration"
+wave: "wave0"
+target_base: "dino_qwen4b"
+source_type: "local"
+
+# template_expand lanes do not require source files
+sources: []
+
+# how many rows to build (can be overridden by --limit)
+count_target: 588
+# REQUIRED PCT fields: keep these in the human-facing lane configs
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: "suppress_continuity"
+  flow_state: "none"
+  history_scope: "thread_only"
+  representation_choice: "plain_text"
+  safety_tag: "safe"
+
+  system_prompt_id: "dino.system.v1"
+# forward-compat placeholders
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators:
+  - name: "mode_richness"
+transform_pipeline: []
+
+generation_mode: "template_expand"
+system_prompt_path: prompts/system/dino_system_prompt.txt
+
+
+output_dir: out_runs/colleague_test
+
+teacher_runtime:
+  sample_percent: 10
+  enabled: false
+  provider: ollama
+  ollama_host: "http://127.0.0.1:11434"
+  model: "dino-pro-7b"
+  policy: structure_only
+  on_missing_evidence: abstain
+  system_prompt_path: prompts/teacher/lane_25_teacher_system_prompt.txt
+
+
+
+
+  timeout_s: 150
+  keepalive: "5m"
+# similarity/dedupe controls (tune per-lane)
+similarity:
+  max_token_overlap_ratio: 0.3
+  ignore_stopwords: true
+  ignore_tokens:
+    - "dino"
+    - "ai"
+    - "assistant"
+    - "history"
+    - "earlier"
+    - "prior"
+    - "thread"
+    - "provided"
+    - "context"
+    - "please"
+    - "thanks"
+    - "thank"
+    - "decision"
+    - "constraint"
+    - "priority"
+    - "next"
+    - "step"
+  ngram: 2
+
+template_expand:
+  seed: 0
+  count_target: 588
+  max_attempts: 900000
+  attempts_per_row: 400
+
+  slot_banks:
+    # Core labels — English only per operator guidance
+    language: ["hi"]
+    mode: ["conversation"]
+    tone:
+      - "professional"
+      - "serious"
+      - "friendly"
+      - "family"
+      - "best_friend"
+      - "professional"
+      - "serious"
+      - "friendly"
+    emote6: ["neutral"]
+    continuity_choice: ["suppress_continuity"]
+
+    # Operator-locked intent labels
+    intent_family: ["qa_general"]
+    intent_subtype: ["general"]
+
+    # This lane targets history integration (always true)
+    needs_history_search: [true]
+
+    history_scope:
+      thread_only: 8
+      all_threads: 2
+
+    # Core domain slots (fictional / structural only)
+    project_codename:
+      - "Aurora"
+      - "Nimbus"
+      - "Cedar"
+      - "Harbor"
+      - "Summit"
+      - "Lumen"
+      - "Pioneer"
+      - "Willow"
+      - "Atlas"
+      - "Beacon"
+      - "Ridge"
+      - "Northstar"
+      - "Quartz"
+      - "Maple"
+      - "Drift"
+      - "Echo"
+      - "Pilot"
+      - "Bridge"
+      - "Horizon"
+      - "Vertex"
+
+    topic_area:
+      - "a planning workflow"
+      - "a demo outline"
+      - "a launch checklist"
+      - "a review cadence"
+      - "a prioritization plan"
+      - "a decision rubric"
+      - "a sprint goal"
+      - "an onboarding flow"
+      - "a weekly update"
+      - "a small experiment"
+      - "a handoff note"
+      - "a feedback loop"
+      - "a meeting structure"
+      - "a risk log"
+      - "a status summary"
+      - "a scope boundary"
+      - "a follow-up plan"
+      - "a draft message"
+      - "a quick brief"
+      - "a task list"
+
+    memory_object:
+      - "decision"
+      - "constraint"
+      - "priority"
+      - "next step"
+      - "owner"
+      - "boundary"
+      - "criteria"
+      - "format"
+      - "wording"
+      - "fallback"
+      - "risk note"
+      - "main tradeoff"
+      - "success definition"
+      - "scope limit"
+      - "handoff note"
+
+    audience:
+      - "a late joiner"
+      - "a reviewer"
+      - "a stakeholder"
+      - "a teammate"
+      - "a collaborator"
+      - "a partner"
+      - "a manager"
+      - "a busy reader"
+      - "someone joining mid-stream"
+      - "the next person on shift"
+
+    format_hint:
+      - "in two sentences"
+      - "as three bullets"
+      - "as a short recap"
+      - "as a tiny checklist"
+      - "as a quick note"
+      - "as a short message"
+      - "in plain language"
+      - "in a crisp way"
+      - "in a compact format"
+      - "in a short form"
+
+    size_limit:
+      - "three bullets"
+      - "one screen"
+      - "two sentences"
+      - "a short note"
+      - "a tight recap"
+      - "a tiny checklist"
+      - "a compact update"
+      - "a short script"
+      - "a brief summary"
+      - "a minimal plan"
+
+    deliverable:
+      - "recap"
+      - "checklist"
+      - "note"
+      - "update"
+      - "brief"
+      - "plan"
+      - "outline"
+      - "script"
+      - "message"
+      - "summary"
+
+    owner_role:
+      - "the project lead"
+      - "the reviewer"
+      - "the owner"
+      - "the coordinator"
+      - "the on-call person"
+      - "the driver"
+      - "the point person"
+      - "the writer"
+      - "the approver"
+      - "the facilitator"
+
+    checkpoint:
+      - "before drafting"
+      - "before sharing"
+      - "before finalizing"
+      - "before expanding scope"
+      - "before sending anything"
+      - "before adding new items"
+      - "before we move to execution"
+      - "before committing"
+      - "before we lock the plan"
+      - "before we scale it up"
+
+    constraint_detail:
+      - "time is limited, so we keep it small"
+      - "we cannot add new requirements"
+      - "we must stay within the current scope"
+      - "we should avoid adding moving parts"
+      - "we keep it to the minimum viable shape"
+      - "we should not expand beyond the original ask"
+      - "we keep it simple and reviewable"
+      - "we avoid new dependencies"
+      - "we stick to what we can explain quickly"
+      - "we keep it short and testable"
+      - "we should not change the decision criteria"
+      - "we keep the format consistent"
+
+    priority_detail:
+      - "clarity over completeness"
+      - "momentum over perfection"
+      - "alignment before expansion"
+      - "small wins over big promises"
+      - "consistency over novelty"
+      - "precision over volume"
+      - "reviewability over cleverness"
+      - "speed with guardrails"
+      - "scope control over feature growth"
+      - "shared understanding over detail density"
+      - "decision support over decoration"
+      - "make the next step obvious"
+
+    decision_detail:
+      - "start with a small draft, then review"
+      - "choose the simpler path with fewer moving parts"
+      - "lock the scope, then refine wording"
+      - "keep the plan to three bullets and a clear owner"
+      - "stabilize the format before adding options"
+      - "prioritize the recap, not a new proposal"
+      - "use a checklist rather than a long paragraph"
+      - "anchor on the existing decision and avoid new branches"
+      - "make the next step explicit and defer extras"
+      - "opt for the safer option and validate quickly"
+      - "treat this as an alignment pass, not expansion"
+      - "preserve the earlier structure and update only the essentials"
+
+    next_step_detail:
+      - "draft the recap and confirm the owner"
+      - "write the short version and ask for a quick check"
+      - "share the three bullets and confirm the priority"
+      - "restate the constraint, then propose the next action"
+      - "keep the outline small and request a yes/no decision"
+      - "prepare the update and verify it matches the prior decision"
+      - "use the existing wording and fill only the missing field"
+      - "publish the compact version, then gather feedback"
+      - "confirm the boundary, then move to the next action"
+      - "send the recap for alignment before adding detail"
+      - "restate the decision and ask one clarifying question"
+      - "keep the structure, update the next step, and stop there"
+
+    wording_detail:
+      - "Keep it small, clear, and easy to review."
+      - "Do not add new ideas; preserve the decision."
+      - "Anchor on what we already agreed, then move one step."
+      - "Short recap first, then one explicit next action."
+      - "Clarity first; expand only after alignment."
+      - "Use the same structure and update only what changed."
+      - "Stay within scope and make the next step obvious."
+      - "Keep the plan minimal and confirm the owner."
+      - "Keep it grounded in the prior decision."
+      - "Make it easy for a late joiner to follow."
+
+    fallback_detail:
+      - "if unclear, restate the constraint and ask one question"
+      - "if blocked, choose the smaller slice and proceed"
+      - "if disagreement appears, recap the decision and pause"
+      - "if missing context, request the one detail that changes the choice"
+      - "if it grows, cut back to the original scope"
+      - "if it stalls, post the recap and request a decision"
+      - "if the owner is unclear, assign a temporary driver"
+      - "if it drifts, anchor back to the earlier wording"
+      - "if it expands, revert to the compact format"
+      - "if it gets noisy, reduce it to three bullets"
+
+    # Provided history turns (multi-turn by construction)
+    history_turn_1_user:
+      - "User earlier: For {project_codename} and {topic_area}, I wanted a small {deliverable}."
+      - "User earlier: On {project_codename} and {topic_area}, I asked for a compact {deliverable}."
+      - "User earlier: We were working on {project_codename} and {topic_area}, and I asked for a tiny {deliverable}."
+      - "User earlier: For {project_codename} and {topic_area}, I needed a short {deliverable}."
+      - "User earlier: In {project_codename} around {topic_area}, I wanted a minimal {deliverable}."
+      - "User earlier: We discussed {project_codename} and {topic_area}, and I asked for a tight {deliverable}."
+
+    history_turn_1_assistant:
+      - "Assistant earlier: We agreed to keep it to {size_limit} and name a clear owner."
+      - "Assistant earlier: We set a cap of {size_limit} and assigned {owner_role}."
+      - "Assistant earlier: We decided on {size_limit} with {owner_role} driving it."
+      - "Assistant earlier: The plan was {size_limit} with {owner_role} accountable."
+      - "Assistant earlier: We kept it to {size_limit} and picked {owner_role}."
+      - "Assistant earlier: We locked {size_limit} and named {owner_role}."
+
+    history_turn_2_user:
+      - "User earlier: Constraint: {constraint_detail}. Priority: {priority_detail}."
+      - "User earlier: The constraint was {constraint_detail}, and the priority was {priority_detail}."
+      - "User earlier: I said the constraint is {constraint_detail}, with priority on {priority_detail}."
+      - "User earlier: I set the constraint as {constraint_detail} and the priority as {priority_detail}."
+      - "User earlier: We noted the constraint {constraint_detail} and prioritized {priority_detail}."
+      - "User earlier: The rules were {constraint_detail}, and the focus was {priority_detail}."
+
+    history_turn_2_assistant:
+      - "Assistant earlier: Decision: {decision_detail}."
+      - "Assistant earlier: We chose to {decision_detail}."
+      - "Assistant earlier: The decision was to {decision_detail}."
+      - "Assistant earlier: We aligned on this decision: {decision_detail}."
+      - "Assistant earlier: We locked the decision: {decision_detail}."
+      - "Assistant earlier: The call was {decision_detail}."
+
+    history_turn_3_assistant:
+      - "Assistant earlier: Next step: {next_step_detail}."
+      - "Assistant earlier: The next move was {next_step_detail}."
+      - "Assistant earlier: We set the next step as {next_step_detail}."
+      - "Assistant earlier: The follow-up action was {next_step_detail}."
+      - "Assistant earlier: We agreed the next step is {next_step_detail}."
+      - "Assistant earlier: Next action: {next_step_detail}."
+
+    history_turn_4_assistant:
+      - "Assistant earlier: Wording to preserve: \"{wording_detail}\""
+      - "Assistant earlier: Key line: \"{wording_detail}\""
+      - "Assistant earlier: Preserve this line: \"{wording_detail}\""
+      - "Assistant earlier: We said to keep this phrasing: \"{wording_detail}\""
+      - "Assistant earlier: Anchor line: \"{wording_detail}\""
+      - "Assistant earlier: The phrasing anchor was: \"{wording_detail}\""
+
+    history_turn_5_assistant:
+      - "Assistant earlier: Fallback: {fallback_detail}."
+      - "Assistant earlier: If needed, fallback was {fallback_detail}."
+      - "Assistant earlier: The fallback plan was {fallback_detail}."
+      - "Assistant earlier: Backup approach: {fallback_detail}."
+      - "Assistant earlier: We also noted a fallback: {fallback_detail}."
+      - "Assistant earlier: Safety valve: {fallback_detail}."
+
+    # History excerpt wrappers (keeps >50% multi-turn references)
+    history_excerpt:
+      - |
+        Provided history excerpt:
+        {history_turn_1_user}
+        {history_turn_1_assistant}
+        {history_turn_2_user}
+        {history_turn_2_assistant}
+        {history_turn_3_assistant}
+        {history_turn_4_assistant}
+        {history_turn_5_assistant}
+      - |
+        Thread snapshot (host-provided):
+        {history_turn_1_user}
+        {history_turn_1_assistant}
+        {history_turn_2_user}
+        {history_turn_2_assistant}
+        {history_turn_3_assistant}
+        {history_turn_4_assistant}
+        {history_turn_5_assistant}
+      - |
+        Memory excerpt (already retrieved):
+        {history_turn_1_user}
+        {history_turn_1_assistant}
+        {history_turn_2_user}
+        {history_turn_2_assistant}
+        {history_turn_3_assistant}
+        {history_turn_4_assistant}
+        {history_turn_5_assistant}
+      - |
+        Prior turns provided for grounding:
+        {history_turn_1_user}
+        {history_turn_1_assistant}
+        {history_turn_2_user}
+        {history_turn_2_assistant}
+        {history_turn_3_assistant}
+        {history_turn_4_assistant}
+        {history_turn_5_assistant}
+      - |
+        History context to use (do not invent):
+        {history_turn_1_user}
+        {history_turn_1_assistant}
+        {history_turn_2_user}
+        {history_turn_2_assistant}
+        {history_turn_3_assistant}
+        {history_turn_4_assistant}
+        {history_turn_5_assistant}
+
+    # Integration requests (must use provided history content)
+    integration_request:
+      - "Using the provided history, what was the {memory_object} we agreed on for {topic_area} in {project_codename}?"
+      - "Based on the history excerpt, restate the earlier {memory_object} for {topic_area} in {project_codename}."
+      - "Please answer using only the provided history: what did we decide about {topic_area} in {project_codename}?"
+      - "From the provided history, give me the earlier decision, constraint, and next step for {topic_area} in {project_codename}."
+      - "Use the provided history to produce a short recap for {audience} about {topic_area} in {project_codename}."
+      - "Ground your answer in the provided history and restate the key points for {audience} about {topic_area} in {project_codename}."
+      - "Using the host-provided history, write a brief update that stays consistent with the earlier decision for {topic_area} in {project_codename}."
+      - "Rely on the provided history and summarize the prior agreement for {topic_area} in {project_codename} {format_hint}."
+      - "Use the provided history excerpt to answer: what boundary and next step did we set for {topic_area} in {project_codename}?"
+      - "Using only the provided history, restate the constraint and the next action for {topic_area} in {project_codename}."
+      - "Please ground the response in the provided history and pull the key decision for {topic_area} in {project_codename}."
+      - "With the provided history in view, restate the anchor line and the next step for {topic_area} in {project_codename}."
+      - "Use the provided history excerpt and give a clean recap for {audience} on {topic_area} in {project_codename}."
+      - "Do not invent anything new. Using the provided history, answer what we agreed to do next for {topic_area} in {project_codename}."
+      - "From the history excerpt, reconstruct the earlier plan for {topic_area} in {project_codename} and keep it consistent."
+      - "Based on the provided history, restate the earlier decision and why it was chosen for {topic_area} in {project_codename}."
+      - "Use the provided history excerpt to produce a short message for {audience} that preserves the earlier decision for {topic_area} in {project_codename}."
+      - "Given the provided history, restate the earlier priorities and the chosen path for {topic_area} in {project_codename}."
+      - "Please answer strictly from the provided history and summarize the decision, constraint, and next step for {topic_area} in {project_codename}."
+      - "Using the provided history, restate the earlier agreement and keep the same boundaries for {topic_area} in {project_codename}."
+
+    constraint_line:
+      - "Use only the provided history. Do not add new ideas."
+      - "Stay grounded in the provided history and keep it consistent."
+      - "Do not invent anything beyond the provided history excerpt."
+      - "Keep the response aligned to the provided history content."
+      - "Use the provided history as the only source of truth here."
+      - "Keep it consistent with the provided history and avoid new details."
+      - "Anchor on the provided history and do not expand scope."
+      - "Preserve the earlier decision from the provided history."
+      - "Use the provided history and keep the same constraints."
+      - "Ground the response in the provided history excerpt."
+
+    # Compose rich user messages with heavy slotting
+    user_template:
+      - "{integration_request} {constraint_line}\n\n{history_excerpt}"
+      - "{integration_request} {constraint_line}\n\n{history_excerpt}"
+      - "{integration_request} {constraint_line}\n\n{history_excerpt}"
+      - "{integration_request} {constraint_line}\n\n{history_excerpt}"
+      - "{integration_request} {constraint_line}\n\n{history_excerpt}"
+      - "{integration_request} {constraint_line}\n\n{history_excerpt}"
+      - "{integration_request} {constraint_line}\n\n{history_excerpt}"
+      - "{integration_request} {constraint_line}\n\n{history_excerpt}"
+      - "{integration_request} {constraint_line}\n\n{history_excerpt}"
+      - "{integration_request} {constraint_line}\n\n{history_excerpt}"
+
+    # Multi-turn wrappers for additional diversity
+    assistant_probe:
+      - "Do you want a short recap or the exact anchor line?"
+      - "Should I restate the decision, or produce a recap for a reader?"
+      - "Do you want the constraint and next step called out explicitly?"
+      - "Should I quote the anchor line and then recap?"
+      - "Do you want a recap for a late joiner or a tight internal note?"
+      - "Should I keep it to two sentences or three bullets?"
+      - "Do you want me to preserve the prior wording exactly?"
+      - "Should I restate all key points or only the one you asked for?"
+      - "Do you want the decision plus the fallback, or just the decision?"
+      - "Should I produce a recap that is ready to paste?"
+
+    user_followup:
+      - "Recap it for {audience} {format_hint}, and keep the same decision."
+      - "Quote the anchor line and include the constraint and next step."
+      - "Keep it compact and include the decision plus fallback."
+      - "Use the history exactly and make the next step obvious."
+      - "Preserve the wording and keep the scope tight."
+      - "Give me the decision, constraint, and next action {format_hint}."
+      - "Make it paste-ready and do not introduce anything new."
+      - "Keep the same boundaries and restate the key line."
+      - "Call out the decision and why it was chosen, briefly."
+      - "Focus on consistency and the next move."
+
+    dialogue_context:
+      - "User: {user_template}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "Context:\nUser: {user_template}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "Conversation so far:\nUser: {user_template}\nAssistant: {assistant_probe}\nUser: {user_followup}"
+      - "U: {user_template}\nA: {assistant_probe}\nU: {user_followup}"
+      - "Dialogue:\nU: {user_template}\nA: {assistant_probe}\nU: {user_followup}"
+      - "User message: {user_template}\nAssistant reply: {assistant_probe}\nUser follow-up: {user_followup}"
+
+    # Assistant response pieces — must use provided history content
+    assistant_open:
+      - "Using the provided history:"
+      - "Grounded in the history you provided:"
+      - "From the provided history excerpt:"
+      - "Based on the supplied prior turns:"
+      - "Anchoring on the provided history:"
+      - "Using the host-provided history:"
+      - "Working strictly from the provided history:"
+      - "From the provided thread snapshot:"
+      - "Using the retrieved history content:"
+      - "Grounded in the provided memory excerpt:"
+
+    assistant_decision_line:
+      - "Decision: {decision_detail}."
+      - "The decision was: {decision_detail}."
+      - "Earlier we decided to {decision_detail}."
+      - "You previously chose to {decision_detail}."
+      - "The prior call was to {decision_detail}."
+      - "The earlier decision was to {decision_detail}."
+
+    assistant_constraint_line:
+      - "Constraint: {constraint_detail}."
+      - "The constraint noted was {constraint_detail}."
+      - "You set the constraint as {constraint_detail}."
+      - "The prior constraint was {constraint_detail}."
+      - "The boundary was {constraint_detail}."
+      - "The constraint in the history is {constraint_detail}."
+
+    assistant_priority_line:
+      - "Priority: {priority_detail}."
+      - "The priority was {priority_detail}."
+      - "You prioritized {priority_detail}."
+      - "The prior focus was {priority_detail}."
+      - "The guiding priority was {priority_detail}."
+      - "The history shows the priority as {priority_detail}."
+
+    assistant_next_step_line:
+      - "Next step: {next_step_detail}."
+      - "The next action was {next_step_detail}."
+      - "You set the next step as {next_step_detail}."
+      - "The follow-up action was {next_step_detail}."
+      - "The next move was {next_step_detail}."
+      - "The history points to this next step: {next_step_detail}."
+
+    assistant_anchor_line:
+      - "Anchor line: \"{wording_detail}\""
+      - "Preserved wording: \"{wording_detail}\""
+      - "The phrasing to keep was: \"{wording_detail}\""
+      - "The prior anchor line was: \"{wording_detail}\""
+      - "The key line to preserve is: \"{wording_detail}\""
+      - "The history includes this anchor line: \"{wording_detail}\""
+
+    assistant_fallback_line:
+      - "Fallback noted: {fallback_detail}."
+      - "Fallback plan: {fallback_detail}."
+      - "Backup approach: {fallback_detail}."
+      - "The fallback was {fallback_detail}."
+      - "The history also notes this fallback: {fallback_detail}."
+      - "If needed, fallback was {fallback_detail}."
+
+    assistant_close:
+      - "If you want, I can turn this into a paste-ready recap."
+      - "I can also format this {format_hint} for {audience}."
+      - "I can keep the same decision and draft a short update next."
+      - "I can restate this more compactly if you want."
+      - "I can produce a minimal recap that preserves the anchor line."
+      - "I can draft the next message while preserving these constraints."
+      - "I can reformat this without changing the decision."
+      - "I can keep it tight and ready to share."
+      - "I can restate only the part you care about."
+      - "I can keep it grounded and produce a short version."
+
+    assistant_response:
+      - "{assistant_open} {assistant_decision_line} {assistant_constraint_line} {assistant_next_step_line} {assistant_anchor_line} {assistant_close}"
+      - "{assistant_open} {assistant_decision_line} {assistant_priority_line} {assistant_next_step_line} {assistant_anchor_line} {assistant_close}"
+      - "{assistant_open} {assistant_constraint_line} {assistant_priority_line} {assistant_next_step_line} {assistant_anchor_line} {assistant_close}"
+      - "{assistant_open} {assistant_decision_line} {assistant_constraint_line} {assistant_priority_line} {assistant_next_step_line} {assistant_close}"
+      - "{assistant_open} {assistant_decision_line} {assistant_next_step_line} {assistant_anchor_line} {assistant_fallback_line} {assistant_close}"
+      - "{assistant_open} {assistant_decision_line} {assistant_constraint_line} {assistant_anchor_line} {assistant_fallback_line} {assistant_close}"
+
+  row_template:
+    language: "{language}"
+    mode: "{mode}"
+    tone: "{tone}"
+    emote6: "{emote6}"
+    continuity_choice: "{continuity_choice}"
+    intent_family: "{intent_family}"
+    intent_subtype: "{intent_subtype}"
+    needs_history_search: "{needs_history_search}"
+    history_scope: "{history_scope}"
+    representation_choice: "plain_text"
+    user_message: "{dialogue_context}"
+    assistant_response: "{assistant_response}"
+
+notes: "Wave0 Lane25 — history search integration (provided history content, no teacher, no steps_v1)"

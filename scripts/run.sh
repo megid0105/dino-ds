@@ -26,7 +26,7 @@ fi
 "$PIP" install -e . >/dev/null
 
 # --- Teacher runtime portability preflight (Ollama) -------------------------
-# Colleagues should only run ./scripts/run.sh ... ; if teacher_runtime is enabled in lane.yaml,
+# Colleagues should only run ./scripts/run.sh ... ; if teacher_runtime is enabled in lane_en.yaml,
 # we must ensure Ollama is installed and the requested model is present.
 #
 # Controls:

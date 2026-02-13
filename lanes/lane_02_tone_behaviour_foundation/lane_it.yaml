@@ -1,0 +1,1029 @@
+lane_id: lane_02_tone_behaviour_foundation
+wave: wave0
+target_base: dino_qwen4b
+source_type: local
+sources: []
+count_target: 784
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: suppress_continuity
+  flow_state: none
+  history_scope: thread_only
+  representation_choice: plain_text
+  safety_tag: safe
+  system_prompt_id: dino.system.v1
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators: []
+transform_pipeline: []
+generation_mode: template_expand
+system_prompt_path: prompts/system/dino_system_prompt.txt
+output_dir: out_runs/colleague_test
+teacher_runtime:
+  sample_percent: 5
+  enabled: false
+  provider: ollama
+  ollama_host: http://127.0.0.1:11434
+  model: dino-pro-7b
+  policy: structure_only
+  on_missing_evidence: abstain
+  system_prompt_path: prompts/teacher/lane_02_teacher_system_prompt.txt
+  timeout_s: 150
+  keepalive: 5m
+similarity:
+  max_token_overlap_ratio: 0.18
+  text_field: assistant
+  ignore_stopwords: false
+  ngram: 1
+template_expand:
+  seed: 5
+  count_target: 784
+  max_attempts: 3000000
+  attempts_per_row: 1200
+  expand_dict_slots:
+  - tone_case
+  slot_banks:
+    language:
+    - it
+    mode:
+    - quick
+    - think
+    tone_case:
+    - tone: professional
+      tone_style: chiaro e professionale
+    - tone: best_friend
+      tone_style: schietto ma di supporto
+    - tone: family
+      tone_style: gentile e premuroso
+    - tone: serious
+      tone_style: calmo e diretto
+    - tone: friendly
+      tone_style: caldo e accogliente
+    emote6:
+    - neutral
+    continuity_choice:
+    - suppress_continuity
+    intent_family:
+    - content_generation
+    - safety
+    intent_subtype:
+    - tone_behavior
+    - boundary_setting
+    - correction_style
+    audience:
+    - il mio collega
+    - la mia manager
+    - un compagno di team
+    - un cliente
+    - la mia amica
+    - mio fratello
+    - la mia partner
+    - il mio coinquilino
+    - un professore
+    - la chat di gruppo
+    medium:
+    - email
+    - chat
+    - messaggio
+    - follow-up di riunione
+    - aggiornamento progetto
+    - nota veloce
+    - messaggio di stato
+    - commento di review
+    situation:
+    - messaggi a tarda notte
+    - responsabilita poco chiara
+    - richieste all'ultimo minuto
+    - scadenze mancate
+    - scope che continua ad allargarsi
+    - istruzioni confuse
+    - thread teso
+    - troppe riunioni
+    - risposte lente
+    - rework ripetuto
+    - messaggio duro
+    - fraintendimento
+    - feedback recepito male
+    - richiesta che non posso accettare
+    - piano che cambia continuamente
+    - conflitto di calendario
+    user_goal:
+    - mettere un limite chiaro
+    - scusarmi senza esagerare
+    - dare feedback diretto
+    - rifiutare con educazione
+    - chiedere chiarezza
+    - abbassare la tensione del tono
+    - fare follow-up senza sembrare pressante
+    - correggere un fraintendimento
+    - riallineare le aspettative
+    - chiedere un cambio di comportamento
+    constraint:
+    - tenerlo breve
+    - essere fermo ma rispettoso
+    - essere gentile ma chiaro
+    - evitare accuse
+    - evitare un tono passivo-aggressivo
+    - restare sui fatti
+    - suonare sicuro
+    - suonare calmo
+    - usare linguaggio semplice
+    - restare in una o due frasi
+    desired_outcome:
+    - proteggere la relazione
+    - ottenere accordo sui prossimi passi
+    - ridurre confusione
+    - fermare il pattern
+    - allineare le priorita
+    - mantenere il confronto costruttivo
+    - evitare un'altra escalation
+    - rendere chiara la decisione
+    - stabilire una norma ripetibile
+    - far avanzare il lavoro
+    ask_style:
+    - Aiutami a scriverlo.
+    - Riscrivi la mia frase.
+    - Dammi una versione pronta da inviare.
+    - Dimmi cosa dovrei dire.
+    - Dammi due opzioni con livello diverso di fermezza.
+    - Fallo funzionare senza sembrare freddo.
+    - Rendilo chiaro e senza drama.
+    - Tienilo corto e utilizzabile.
+    raw_line:
+    - Puoi smettere di mandare nuove task dopo le 22?
+    - Ho bisogno che confermi la scadenza prima che inizi.
+    - Non posso prendere questa cosa senza mollarne un'altra.
+    - Per favore non riscrivere il mio lavoro senza avvisare.
+    - Ci serve un unico owner per questa decisione.
+    - L'ultimo messaggio era duro, vorrei resettare.
+    - Sono confuso su priorita e scadenza.
+    - Voglio aiutare, ma la richiesta e troppo vaga.
+    - Mi servono meno interruzioni per chiudere.
+    - Per favore Puoi smettere di mandare nuove task dopo le 22?
+    - 'Per chiarezza: Puoi smettere di mandare nuove task dopo le 22?'
+    - 'In breve: Puoi smettere di mandare nuove task dopo le 22?'
+    - 'Punto importante: Puoi smettere di mandare nuove task dopo le 22?'
+    - 'Per andare avanti: Puoi smettere di mandare nuove task dopo le 22?'
+    - Per favore Ho bisogno che confermi la scadenza prima che inizi.
+    - 'Per chiarezza: Ho bisogno che confermi la scadenza prima che inizi.'
+    - 'In breve: Ho bisogno che confermi la scadenza prima che inizi.'
+    - 'Punto importante: Ho bisogno che confermi la scadenza prima che inizi.'
+    - 'Per andare avanti: Ho bisogno che confermi la scadenza prima che inizi.'
+    - Per favore Non posso prendere questa cosa senza mollarne un'altra.
+    - 'Per chiarezza: Non posso prendere questa cosa senza mollarne un''altra.'
+    - 'In breve: Non posso prendere questa cosa senza mollarne un''altra.'
+    - 'Punto importante: Non posso prendere questa cosa senza mollarne un''altra.'
+    - 'Per andare avanti: Non posso prendere questa cosa senza mollarne un''altra.'
+    - 'Per chiarezza: Per favore non riscrivere il mio lavoro senza avvisare.'
+    - 'In breve: Per favore non riscrivere il mio lavoro senza avvisare.'
+    - 'Punto importante: Per favore non riscrivere il mio lavoro senza avvisare.'
+    - 'Per andare avanti: Per favore non riscrivere il mio lavoro senza avvisare.'
+    - Per favore Ci serve un unico owner per questa decisione.
+    - 'Per chiarezza: Ci serve un unico owner per questa decisione.'
+    - 'In breve: Ci serve un unico owner per questa decisione.'
+    - 'Punto importante: Ci serve un unico owner per questa decisione.'
+    - 'Per andare avanti: Ci serve un unico owner per questa decisione.'
+    - Per favore L'ultimo messaggio era duro, vorrei resettare.
+    - Puoi smettere di mandare nuove task dopo le 22? Questo aiuta a proteggere la relazione.
+    - Puoi smettere di mandare nuove task dopo le 22? Questo aiuta a ottenere accordo sui prossimi passi.
+    - Puoi smettere di mandare nuove task dopo le 22? Questo aiuta a ridurre confusione.
+    - Puoi smettere di mandare nuove task dopo le 22? Questo aiuta a fermare il pattern.
+    - Puoi smettere di mandare nuove task dopo le 22? Questo aiuta a allineare le priorita.
+    - Puoi smettere di mandare nuove task dopo le 22? Questo aiuta a mantenere il confronto costruttivo.
+    - Puoi smettere di mandare nuove task dopo le 22? Questo aiuta a evitare un'altra escalation.
+    - Puoi smettere di mandare nuove task dopo le 22? Questo aiuta a rendere chiara la decisione.
+    - Puoi smettere di mandare nuove task dopo le 22? Questo aiuta a stabilire una norma ripetibile.
+    - Puoi smettere di mandare nuove task dopo le 22? Questo aiuta a far avanzare il lavoro.
+    - Puoi smettere di mandare nuove task dopo le 22? Per favore, tenere le nuove richieste entro l'orario di lavoro.
+    - Puoi smettere di mandare nuove task dopo le 22? Per favore, confermare priorita e scadenza prima di partire.
+    - Puoi smettere di mandare nuove task dopo le 22? Per favore, concordare un unico owner per le decisioni.
+    - Puoi smettere di mandare nuove task dopo le 22? Per favore, segnalare in modo esplicito cosa e urgente.
+    - Puoi smettere di mandare nuove task dopo le 22? Per favore, raggruppare i cambi in un unico aggiornamento.
+    - Puoi smettere di mandare nuove task dopo le 22? Per favore, evitare riscritture senza un rapido avviso.
+    - Puoi smettere di mandare nuove task dopo le 22? Per favore, bloccare lo scope prima dell'esecuzione.
+    - Puoi smettere di mandare nuove task dopo le 22? Per favore, ridurre le interruzioni durante i blocchi di focus.
+    - Puoi smettere di mandare nuove task dopo le 22? Per favore, mettere la richiesta in una frase chiara.
+    - Puoi smettere di mandare nuove task dopo le 22? Per favore, confermare cosa significa davvero completato.
+    - Ho bisogno che confermi la scadenza prima che inizi. Questo aiuta a proteggere la relazione.
+    - Ho bisogno che confermi la scadenza prima che inizi. Questo aiuta a ottenere accordo sui prossimi passi.
+    - Ho bisogno che confermi la scadenza prima che inizi. Questo aiuta a ridurre confusione.
+    - Ho bisogno che confermi la scadenza prima che inizi. Questo aiuta a fermare il pattern.
+    - Ho bisogno che confermi la scadenza prima che inizi. Questo aiuta a allineare le priorita.
+    - Ho bisogno che confermi la scadenza prima che inizi. Questo aiuta a mantenere il confronto costruttivo.
+    - Ho bisogno che confermi la scadenza prima che inizi. Questo aiuta a evitare un'altra escalation.
+    - Ho bisogno che confermi la scadenza prima che inizi. Questo aiuta a rendere chiara la decisione.
+    - Ho bisogno che confermi la scadenza prima che inizi. Questo aiuta a stabilire una norma ripetibile.
+    - Ho bisogno che confermi la scadenza prima che inizi. Questo aiuta a far avanzare il lavoro.
+    - Ho bisogno che confermi la scadenza prima che inizi. Per favore, tenere le nuove richieste entro l'orario di lavoro.
+    - Ho bisogno che confermi la scadenza prima che inizi. Per favore, confermare priorita e scadenza prima di partire.
+    - Ho bisogno che confermi la scadenza prima che inizi. Per favore, concordare un unico owner per le decisioni.
+    - Ho bisogno che confermi la scadenza prima che inizi. Per favore, segnalare in modo esplicito cosa e urgente.
+    - Ho bisogno che confermi la scadenza prima che inizi. Per favore, raggruppare i cambi in un unico aggiornamento.
+    - Ho bisogno che confermi la scadenza prima che inizi. Per favore, evitare riscritture senza un rapido avviso.
+    - Ho bisogno che confermi la scadenza prima che inizi. Per favore, bloccare lo scope prima dell'esecuzione.
+    - Ho bisogno che confermi la scadenza prima che inizi. Per favore, ridurre le interruzioni durante i blocchi di focus.
+    - Ho bisogno che confermi la scadenza prima che inizi. Per favore, mettere la richiesta in una frase chiara.
+    - Ho bisogno che confermi la scadenza prima che inizi. Per favore, confermare cosa significa davvero completato.
+    - Non posso prendere questa cosa senza mollarne un'altra. Questo aiuta a proteggere la relazione.
+    - Non posso prendere questa cosa senza mollarne un'altra. Questo aiuta a ottenere accordo sui prossimi passi.
+    - Non posso prendere questa cosa senza mollarne un'altra. Questo aiuta a ridurre confusione.
+    - Non posso prendere questa cosa senza mollarne un'altra. Questo aiuta a fermare il pattern.
+    - Non posso prendere questa cosa senza mollarne un'altra. Questo aiuta a allineare le priorita.
+    - Non posso prendere questa cosa senza mollarne un'altra. Questo aiuta a mantenere il confronto costruttivo.
+    - Non posso prendere questa cosa senza mollarne un'altra. Questo aiuta a evitare un'altra escalation.
+    - Non posso prendere questa cosa senza mollarne un'altra. Questo aiuta a rendere chiara la decisione.
+    - Non posso prendere questa cosa senza mollarne un'altra. Questo aiuta a stabilire una norma ripetibile.
+    - Non posso prendere questa cosa senza mollarne un'altra. Questo aiuta a far avanzare il lavoro.
+    - Non posso prendere questa cosa senza mollarne un'altra. Per favore, tenere le nuove richieste entro l'orario di lavoro.
+    - Non posso prendere questa cosa senza mollarne un'altra. Per favore, confermare priorita e scadenza prima di partire.
+    - Non posso prendere questa cosa senza mollarne un'altra. Per favore, concordare un unico owner per le decisioni.
+    - Non posso prendere questa cosa senza mollarne un'altra. Per favore, segnalare in modo esplicito cosa e urgente.
+    - Non posso prendere questa cosa senza mollarne un'altra. Per favore, raggruppare i cambi in un unico aggiornamento.
+    - Non posso prendere questa cosa senza mollarne un'altra. Per favore, evitare riscritture senza un rapido avviso.
+    - Non posso prendere questa cosa senza mollarne un'altra. Per favore, bloccare lo scope prima dell'esecuzione.
+    - Non posso prendere questa cosa senza mollarne un'altra. Per favore, ridurre le interruzioni durante i blocchi di focus.
+    - Non posso prendere questa cosa senza mollarne un'altra. Per favore, mettere la richiesta in una frase chiara.
+    - Non posso prendere questa cosa senza mollarne un'altra. Per favore, confermare cosa significa davvero completato.
+    - Per favore non riscrivere il mio lavoro senza avvisare. Questo aiuta a proteggere la relazione.
+    - Per favore non riscrivere il mio lavoro senza avvisare. Questo aiuta a ottenere accordo sui prossimi passi.
+    - Per favore non riscrivere il mio lavoro senza avvisare. Questo aiuta a ridurre confusione.
+    - Per favore non riscrivere il mio lavoro senza avvisare. Questo aiuta a fermare il pattern.
+    - Per favore non riscrivere il mio lavoro senza avvisare. Questo aiuta a allineare le priorita.
+    - Per favore non riscrivere il mio lavoro senza avvisare. Questo aiuta a mantenere il confronto costruttivo.
+    - Per favore non riscrivere il mio lavoro senza avvisare. Questo aiuta a evitare un'altra escalation.
+    - Per favore non riscrivere il mio lavoro senza avvisare. Questo aiuta a rendere chiara la decisione.
+    - Per favore non riscrivere il mio lavoro senza avvisare. Questo aiuta a stabilire una norma ripetibile.
+    - Per favore non riscrivere il mio lavoro senza avvisare. Questo aiuta a far avanzare il lavoro.
+    - Per favore non riscrivere il mio lavoro senza avvisare. Per favore, tenere le nuove richieste entro l'orario di lavoro.
+    - Per favore non riscrivere il mio lavoro senza avvisare. Per favore, confermare priorita e scadenza prima di partire.
+    - Per favore non riscrivere il mio lavoro senza avvisare. Per favore, concordare un unico owner per le decisioni.
+    - Per favore non riscrivere il mio lavoro senza avvisare. Per favore, segnalare in modo esplicito cosa e urgente.
+    - Per favore non riscrivere il mio lavoro senza avvisare. Per favore, raggruppare i cambi in un unico aggiornamento.
+    - Per favore non riscrivere il mio lavoro senza avvisare. Per favore, evitare riscritture senza un rapido avviso.
+    - Per favore non riscrivere il mio lavoro senza avvisare. Per favore, bloccare lo scope prima dell'esecuzione.
+    - Per favore non riscrivere il mio lavoro senza avvisare. Per favore, ridurre le interruzioni durante i blocchi di focus.
+    - Per favore non riscrivere il mio lavoro senza avvisare. Per favore, mettere la richiesta in una frase chiara.
+    - Per favore non riscrivere il mio lavoro senza avvisare. Per favore, confermare cosa significa davvero completato.
+    - Ci serve un unico owner per questa decisione. Questo aiuta a proteggere la relazione.
+    - Ci serve un unico owner per questa decisione. Questo aiuta a ottenere accordo sui prossimi passi.
+    - Ci serve un unico owner per questa decisione. Questo aiuta a ridurre confusione.
+    - Ci serve un unico owner per questa decisione. Questo aiuta a fermare il pattern.
+    - Ci serve un unico owner per questa decisione. Questo aiuta a allineare le priorita.
+    - Ci serve un unico owner per questa decisione. Questo aiuta a mantenere il confronto costruttivo.
+    - Ci serve un unico owner per questa decisione. Questo aiuta a evitare un'altra escalation.
+    - Ci serve un unico owner per questa decisione. Questo aiuta a rendere chiara la decisione.
+    - Ci serve un unico owner per questa decisione. Questo aiuta a stabilire una norma ripetibile.
+    - Ci serve un unico owner per questa decisione. Questo aiuta a far avanzare il lavoro.
+    - Ci serve un unico owner per questa decisione. Per favore, tenere le nuove richieste entro l'orario di lavoro.
+    - Ci serve un unico owner per questa decisione. Per favore, confermare priorita e scadenza prima di partire.
+    - Ci serve un unico owner per questa decisione. Per favore, segnalare in modo esplicito cosa e urgente.
+    - Ci serve un unico owner per questa decisione. Per favore, raggruppare i cambi in un unico aggiornamento.
+    - Ci serve un unico owner per questa decisione. Per favore, evitare riscritture senza un rapido avviso.
+    - Ci serve un unico owner per questa decisione. Per favore, bloccare lo scope prima dell'esecuzione.
+    - Ci serve un unico owner per questa decisione. Per favore, ridurre le interruzioni durante i blocchi di focus.
+    - Ci serve un unico owner per questa decisione. Per favore, mettere la richiesta in una frase chiara.
+    - Ci serve un unico owner per questa decisione. Per favore, confermare cosa significa davvero completato.
+    - L'ultimo messaggio era duro, vorrei resettare. Questo aiuta a proteggere la relazione.
+    - L'ultimo messaggio era duro, vorrei resettare. Questo aiuta a ottenere accordo sui prossimi passi.
+    - L'ultimo messaggio era duro, vorrei resettare. Questo aiuta a ridurre confusione.
+    - L'ultimo messaggio era duro, vorrei resettare. Questo aiuta a fermare il pattern.
+    - L'ultimo messaggio era duro, vorrei resettare. Questo aiuta a allineare le priorita.
+    - L'ultimo messaggio era duro, vorrei resettare. Questo aiuta a mantenere il confronto costruttivo.
+    - L'ultimo messaggio era duro, vorrei resettare. Questo aiuta a evitare un'altra escalation.
+    - L'ultimo messaggio era duro, vorrei resettare. Questo aiuta a rendere chiara la decisione.
+    - L'ultimo messaggio era duro, vorrei resettare. Questo aiuta a stabilire una norma ripetibile.
+    - L'ultimo messaggio era duro, vorrei resettare. Questo aiuta a far avanzare il lavoro.
+    - L'ultimo messaggio era duro, vorrei resettare. Per favore, tenere le nuove richieste entro l'orario di lavoro.
+    - L'ultimo messaggio era duro, vorrei resettare. Per favore, confermare priorita e scadenza prima di partire.
+    - L'ultimo messaggio era duro, vorrei resettare. Per favore, concordare un unico owner per le decisioni.
+    - L'ultimo messaggio era duro, vorrei resettare. Per favore, segnalare in modo esplicito cosa e urgente.
+    - L'ultimo messaggio era duro, vorrei resettare. Per favore, raggruppare i cambi in un unico aggiornamento.
+    - L'ultimo messaggio era duro, vorrei resettare. Per favore, evitare riscritture senza un rapido avviso.
+    - L'ultimo messaggio era duro, vorrei resettare. Per favore, bloccare lo scope prima dell'esecuzione.
+    - L'ultimo messaggio era duro, vorrei resettare. Per favore, ridurre le interruzioni durante i blocchi di focus.
+    - L'ultimo messaggio era duro, vorrei resettare. Per favore, mettere la richiesta in una frase chiara.
+    - L'ultimo messaggio era duro, vorrei resettare. Per favore, confermare cosa significa davvero completato.
+    - Sono confuso su priorita e scadenza. Questo aiuta a proteggere la relazione.
+    - Sono confuso su priorita e scadenza. Questo aiuta a ottenere accordo sui prossimi passi.
+    - Sono confuso su priorita e scadenza. Questo aiuta a ridurre confusione.
+    - Sono confuso su priorita e scadenza. Questo aiuta a fermare il pattern.
+    - Sono confuso su priorita e scadenza. Questo aiuta a allineare le priorita.
+    - Sono confuso su priorita e scadenza. Questo aiuta a mantenere il confronto costruttivo.
+    - Sono confuso su priorita e scadenza. Questo aiuta a evitare un'altra escalation.
+    - Sono confuso su priorita e scadenza. Questo aiuta a rendere chiara la decisione.
+    - Sono confuso su priorita e scadenza. Questo aiuta a stabilire una norma ripetibile.
+    - Sono confuso su priorita e scadenza. Questo aiuta a far avanzare il lavoro.
+    - Sono confuso su priorita e scadenza. Per favore, tenere le nuove richieste entro l'orario di lavoro.
+    - Sono confuso su priorita e scadenza. Per favore, confermare priorita e scadenza prima di partire.
+    - Sono confuso su priorita e scadenza. Per favore, concordare un unico owner per le decisioni.
+    - Sono confuso su priorita e scadenza. Per favore, segnalare in modo esplicito cosa e urgente.
+    - Sono confuso su priorita e scadenza. Per favore, raggruppare i cambi in un unico aggiornamento.
+    - Sono confuso su priorita e scadenza. Per favore, evitare riscritture senza un rapido avviso.
+    - Sono confuso su priorita e scadenza. Per favore, bloccare lo scope prima dell'esecuzione.
+    - Sono confuso su priorita e scadenza. Per favore, ridurre le interruzioni durante i blocchi di focus.
+    - Sono confuso su priorita e scadenza. Per favore, mettere la richiesta in una frase chiara.
+    - Sono confuso su priorita e scadenza. Per favore, confermare cosa significa davvero completato.
+    - Voglio aiutare, ma la richiesta e troppo vaga. Questo aiuta a proteggere la relazione.
+    - Voglio aiutare, ma la richiesta e troppo vaga. Questo aiuta a ottenere accordo sui prossimi passi.
+    context_line:
+    - 'Contesto: e gia successo tre volte questa settimana.'
+    - 'Contesto: l''avevo gia segnalato una volta.'
+    - 'Contesto: questo sta rallentando il progetto.'
+    - 'Contesto: voglio risolverla senza drama.'
+    - 'Contesto: mi interessa continuare a collaborare bene.'
+    - 'Contesto: mi serve una versione da inviare oggi.'
+    - 'Contesto: temo di sembrare scortese.'
+    - 'Contesto: deve funzionare bene in {medium}.'
+    - '{situation}.'
+    - '{medium}; {constraint}.'
+    - '{audience}; {situation}.'
+    - '{constraint}; {change_request}.'
+    - '{audience}; {situation}; {constraint}.'
+    user_frame:
+    - '{ask_style} Devo {user_goal} con {audience} su {situation} in {medium}. Tienilo {tone_style}.'
+    - '{ask_style} Riguarda {situation} con {audience}. Voglio {user_goal} mantenendo un tono {tone_style}.'
+    - '{ask_style} Sto cercando di {user_goal} rispetto a {situation}. E per {audience} in {medium}, e deve suonare {tone_style}.'
+    - '{ask_style} Tema: {situation}. Mi serve un messaggio per {audience} via {medium} per {user_goal}, in modo {tone_style}.'
+    user_message:
+    - '{user_frame}\n{context_line}\nVincolo: {constraint}. Obiettivo: {desired_outcome}.\nFrase originale: {raw_line}'
+    - '{user_frame}\nFrase originale: {raw_line}\nVincolo: {constraint}. Obiettivo: {desired_outcome}.\n{context_line}'
+    - '{user_frame}\nVincolo: {constraint}.\n{context_line}\nObiettivo: {desired_outcome}.\nFrase originale: {raw_line}'
+    - '{user_frame}\n{context_line}\nObiettivo: {desired_outcome}. Vincolo: {constraint}.\nFrase originale: {raw_line}'
+    - '{user_frame}\nFrase originale: {raw_line}\n{context_line}\nObiettivo: {desired_outcome}. Vincolo: {constraint}.'
+    - '{user_frame}\nVincolo: {constraint}. Obiettivo: {desired_outcome}.\n{context_line}'
+    - '{user_frame}\n{context_line}\nVincolo: {constraint}.\nFrase originale: {raw_line}\nObiettivo: {desired_outcome}.'
+    - '{user_frame}\nObiettivo: {desired_outcome}.\nVincolo: {constraint}.\n{context_line}\nFrase originale: {raw_line}'
+    assistant_open:
+    - '{context_line}'
+    - '{context_line_b}'
+    - 'Contesto: {situation}.'
+    - 'Contesto: {audience}; {medium}.'
+    - 'Contesto: {desired_outcome}; {constraint}.'
+    - 'Contesto: {user_goal}; {change_request}.'
+    - 'Punto chiave: {desired_outcome}.'
+    - 'Punto chiave: {constraint}.'
+    - 'Adattamento: {change_request}.'
+    - 'Adattamento: {user_goal}.'
+    assistant_commit:
+    - Terrò la bozza {tone_style} e {constraint}.
+    - Imposto il messaggio in modo {tone_style}, restando {constraint}.
+    - Lo rendo {tone_style}, comunque azionabile.
+    - Lo adatto in tono {tone_style}, restando concreto.
+    assistant_principle:
+    - Mi concentro su azioni e richieste, non sulle colpe.
+    - Tengo la richiesta specifica e facile da seguire.
+    - Tolgo attrito inutile e mantengo chiaro il punto.
+    - Rendo il confine netto senza sembrare ostile.
+    - Lo ancoriamo a cosa deve succedere dopo.
+    draft_prefix:
+    - 'Bozza:'
+    - 'Prova cosi:'
+    - 'Versione inviabile:'
+    - 'Opzione messaggio:'
+    change_request:
+    - tenere le nuove richieste entro l'orario di lavoro
+    - confermare priorita e scadenza prima di partire
+    - concordare un unico owner per le decisioni
+    - segnalare in modo esplicito cosa e urgente
+    - raggruppare i cambi in un unico aggiornamento
+    - evitare riscritture senza un rapido avviso
+    - bloccare lo scope prima dell'esecuzione
+    - ridurre le interruzioni durante i blocchi di focus
+    - mettere la richiesta in una frase chiara
+    - confermare cosa significa davvero completato
+    draft_line_1:
+    - '{situation}.'
+    - '{audience}; {situation}.'
+    - '{medium}; {situation}.'
+    - '{audience}; {medium}; {situation}.'
+    draft_line_2:
+    - '{change_request}; {desired_outcome}.'
+    - '{change_request}; {constraint}.'
+    tag_a:
+    - scopeAnchor
+    - deadlineGuard
+    - ownerMap
+    - handoffPath
+    - clarityMesh
+    - responseLane
+    - focusWindow
+    - riskBeacon
+    - changeQueue
+    - flowGuard
+    - alignVector
+    - signalTrack
+    - contextLedger
+    - actionFrame
+    - boundaryKey
+    - timingLatch
+    - requestFilter
+    - routeToken
+    - queueIndex
+    - updateNode
+    - reviewClock
+    - deliveryPulse
+    - conflictReducer
+    - scopeFence
+    - intentMarker
+    - qualityLatch
+    - paceGuide
+    - priorityGrid
+    - planRelay
+    - syncPulse
+    tag_b:
+    - outputGate
+    - workflowPin
+    - riskFilter
+    - mergeFence
+    - threadOwner
+    - statusBridge
+    - planSwitch
+    - effortGauge
+    - qualityPulse
+    - routeAnchor
+    - orderMatrix
+    - ownerSignal
+    - scopeVector
+    - deadlineMesh
+    - intentGrid
+    - planKernel
+    - queueGuard
+    - rhythmMatrix
+    - outputVector
+    - detailFilter
+    - riskVector
+    - policyLatch
+    - effortMatrix
+    - changeGuard
+    - actionKernel
+    - reviewSignal
+    - statusMatrix
+    - handoffMatrix
+    - contextVector
+    - responseKernel
+    tag_c:
+    - clarityRoute
+    - timingMatrix
+    - loadVector
+    - commitSignal
+    - traceVector
+    - deliveryMesh
+    - alignKernel
+    - updateMatrix
+    - calmFrame
+    - firmFrame
+    - warmFrame
+    - directFrame
+    - neutralFrame
+    - steadyFrame
+    - clearFrame
+    - resetFrame
+    - scopeFrame
+    - ownerFrame
+    - timingFrame
+    - actionFrameX
+    - resultFrame
+    - boundaryFrame
+    - priorityFrame
+    - responseFrame
+    - reviewFrame
+    - channelFrame
+    - planFrame
+    - focusFrame
+    - qualityFrame
+    - riskFrameX
+    tag_d:
+    - conflictFrame
+    - cadenceFrame
+    - intentFrame
+    - mergeFrame
+    - relayFrame
+    - signalFrame
+    - decisionFrame
+    - deliveryFrame
+    - anchorPoint
+    - workloadLock
+    - handoffGate
+    - timelineGuard
+    - frictionCut
+    - actionLane
+    - contextLock
+    - outputTrack
+    - requestLane
+    - clarityGate
+    - alignmentLock
+    - sequenceGuard
+    - boundaryMesh
+    - cadenceLock
+    - ownerSignalX
+    - riskChannel
+    - responseTrack
+    - priorityLatch
+    - scopeTracker
+    - qualityGrid
+    - deliveryLock
+    - syncAnchor
+    tag_e:
+    - pathMarker
+    - queueLatch
+    - triagePoint
+    - actionIndex
+    - handoffIndex
+    - goalVector
+    - timingGuard
+    - scopeIndex
+    - ownerIndex
+    - deliveryIndex
+    - riskIndex
+    - clarityIndex
+    - orderIndex
+    - outputIndex
+    - focusIndex
+    - responseIndex
+    - signalIndex
+    - updateIndex
+    - planIndex
+    - gateIndex
+    - frameIndex
+    - routeIndex
+    - threadIndex
+    - tokenIndex
+    - mapIndex
+    - filterIndex
+    - pivotIndex
+    - guardIndex
+    - lockIndex
+    - bridgeIndex
+    tag_f:
+    - stableLane
+    - calmRoute
+    - clearRoute
+    - firmRoute
+    - warmRoute
+    - directRoute
+    - neutralRoute
+    - focusRoute
+    - ownerRoute
+    - scopeRoute
+    - timingRoute
+    - actionRoute
+    - resultRoute
+    - requestRoute
+    - deliveryRoute
+    - qualityRoute
+    - riskRoute
+    - planRoute
+    - updateRoute
+    - responseRoute
+    - sequenceRoute
+    - alignmentRoute
+    - handoffRoute
+    - priorityRoute
+    - contextRoute
+    - gateRoute
+    - signalRoute
+    - frameRoute
+    - threadRoute
+    - workflowRoute
+    assistant_followup:
+    - Vuoi una variante piu morbida o piu ferma?
+    - Vuoi una versione ancora piu breve per {medium}?
+    - Se incolli la frase esatta che hai ricevuto, la adatto meglio.
+    - Se vuoi, ti preparo due varianti con fermezza diversa.
+    - Preferisci piu sintesi o piu empatia?
+    - Posso fare anche una versione piu diretta.
+    assistant_response:
+    - '{lead_phrase}: {raw_line}'
+    - '{draft_prefix} {raw_line}'
+    - '{assistant_open} {raw_line}'
+    - '{assistant_commit} {raw_line}'
+    - '{assistant_principle} {raw_line}'
+    - '{raw_line} {change_request}.'
+    - '{raw_line} {change_request}; {constraint}.'
+    - '{raw_line} {detail_line}'
+    - '{lead_phrase}: {raw_line} {assistant_followup}'
+    - '{assistant_open} {raw_line} {assistant_followup}'
+    - '{assistant_commit} {raw_line} {detail_line}'
+    - '{assistant_principle} {raw_line} {extra_clause}'
+    lead_phrase:
+    - Chiaro messaggio
+    - Chiaro bozza
+    - Chiaro versione
+    - Chiaro risposta
+    - Chiaro impostazione
+    - Chiaro formulazione
+    - Chiaro taglio
+    - Chiaro approccio
+    - Calmo messaggio
+    - Calmo bozza
+    - Calmo versione
+    - Calmo risposta
+    - Calmo impostazione
+    - Calmo formulazione
+    - Calmo taglio
+    - Calmo approccio
+    - Diretto messaggio
+    - Diretto bozza
+    - Diretto versione
+    - Diretto risposta
+    - Diretto impostazione
+    - Diretto formulazione
+    - Diretto taglio
+    - Diretto approccio
+    - Rispettoso messaggio
+    - Rispettoso bozza
+    - Rispettoso versione
+    - Rispettoso risposta
+    - Rispettoso impostazione
+    - Rispettoso formulazione
+    - Rispettoso taglio
+    - Rispettoso approccio
+    - Pragmatico messaggio
+    - Pragmatico bozza
+    - Pragmatico versione
+    - Pragmatico risposta
+    - Pragmatico impostazione
+    - Pragmatico formulazione
+    - Pragmatico taglio
+    - Pragmatico approccio
+    - Costruttivo messaggio
+    - Costruttivo bozza
+    - Costruttivo versione
+    - Costruttivo risposta
+    - Costruttivo impostazione
+    - Costruttivo formulazione
+    - Costruttivo taglio
+    - Costruttivo approccio
+    - Nitido messaggio
+    - Nitido bozza
+    - Nitido versione
+    - Nitido risposta
+    - Nitido impostazione
+    - Nitido formulazione
+    - Nitido taglio
+    - Nitido approccio
+    - Bilanciato messaggio
+    - Bilanciato bozza
+    - Bilanciato versione
+    - Bilanciato risposta
+    - Bilanciato impostazione
+    - Bilanciato formulazione
+    - Bilanciato taglio
+    - Bilanciato approccio
+    - Focalizzato messaggio
+    - Focalizzato bozza
+    - Focalizzato versione
+    - Focalizzato risposta
+    - Focalizzato impostazione
+    - Focalizzato formulazione
+    - Focalizzato taglio
+    - Focalizzato approccio
+    - Solido messaggio
+    - Solido bozza
+    - Solido versione
+    - Solido risposta
+    - Solido impostazione
+    - Solido formulazione
+    - Solido taglio
+    - Solido approccio
+    - Concreto messaggio
+    - Concreto bozza
+    - Concreto versione
+    - Concreto risposta
+    - Concreto impostazione
+    - Concreto formulazione
+    - Concreto taglio
+    - Concreto approccio
+    - Collaborativo messaggio
+    - Collaborativo bozza
+    - Collaborativo versione
+    - Collaborativo risposta
+    - Collaborativo impostazione
+    - Collaborativo formulazione
+    - Collaborativo taglio
+    - Collaborativo approccio
+    detail_line:
+    - Mantiene la richiesta ancorata a {desired_outcome}.
+    - La formulazione resta {constraint}.
+    - Questa versione funziona in {medium} e resta su {situation}.
+    - Il limite e chiaro senza rovinare la relazione.
+    - Resta {tone_style} e comunque operativa.
+    - Il prossimo passo resta concreto.
+    - Evita colpe e mantiene slancio.
+    - Se serve, puoi ridurla a una sola frase.
+    - Se vuoi, adatto una clausola al canale {medium}.
+    - Il messaggio resta fermo ma collaborativo.
+    - La richiesta e specifica e facile da eseguire.
+    - Rimane chiaro anche sotto pressione.
+    raw_line_b:
+    - Puoi smettere di mandare nuove task dopo le 22?
+    - Ho bisogno che confermi la scadenza prima che inizi.
+    - Non posso prendere questa cosa senza mollarne un'altra.
+    - Per favore non riscrivere il mio lavoro senza avvisare.
+    - Ci serve un unico owner per questa decisione.
+    - L'ultimo messaggio era duro, vorrei resettare.
+    - Sono confuso su priorita e scadenza.
+    - Voglio aiutare, ma la richiesta e troppo vaga.
+    - Mi servono meno interruzioni per chiudere.
+    - Puoi smettere di mandare nuove task dopo le 22 cosi manteniamo priorita chiare.
+    - Puoi smettere di mandare nuove task dopo le 22 cosi evitiamo altro rework.
+    - Puoi smettere di mandare nuove task dopo le 22 cosi il ritmo resta stabile.
+    - Puoi smettere di mandare nuove task dopo le 22 cosi riduciamo i fraintendimenti.
+    - Puoi smettere di mandare nuove task dopo le 22 cosi posso consegnare con affidabilita.
+    - Ho bisogno che confermi la scadenza prima che inizi cosi manteniamo priorita chiare.
+    - Ho bisogno che confermi la scadenza prima che inizi cosi evitiamo altro rework.
+    - Ho bisogno che confermi la scadenza prima che inizi cosi il ritmo resta stabile.
+    - Ho bisogno che confermi la scadenza prima che inizi cosi riduciamo i fraintendimenti.
+    - Ho bisogno che confermi la scadenza prima che inizi cosi posso consegnare con affidabilita.
+    - Non posso prendere questa cosa senza mollarne un'altra cosi manteniamo priorita chiare.
+    - Non posso prendere questa cosa senza mollarne un'altra cosi evitiamo altro rework.
+    - Non posso prendere questa cosa senza mollarne un'altra cosi il ritmo resta stabile.
+    - Non posso prendere questa cosa senza mollarne un'altra cosi riduciamo i fraintendimenti.
+    - Non posso prendere questa cosa senza mollarne un'altra cosi posso consegnare con affidabilita.
+    - Per favore non riscrivere il mio lavoro senza avvisare cosi manteniamo priorita chiare.
+    - Per favore non riscrivere il mio lavoro senza avvisare cosi evitiamo altro rework.
+    - Per favore non riscrivere il mio lavoro senza avvisare cosi il ritmo resta stabile.
+    - Per favore non riscrivere il mio lavoro senza avvisare cosi riduciamo i fraintendimenti.
+    - Per favore non riscrivere il mio lavoro senza avvisare cosi posso consegnare con affidabilita.
+    - Ci serve un unico owner per questa decisione cosi manteniamo priorita chiare.
+    - Ci serve un unico owner per questa decisione cosi evitiamo altro rework.
+    - Ci serve un unico owner per questa decisione cosi il ritmo resta stabile.
+    - Ci serve un unico owner per questa decisione cosi riduciamo i fraintendimenti.
+    - Ci serve un unico owner per questa decisione cosi posso consegnare con affidabilita.
+    - L'ultimo messaggio era duro, vorrei resettare cosi manteniamo priorita chiare.
+    - L'ultimo messaggio era duro, vorrei resettare cosi evitiamo altro rework.
+    - L'ultimo messaggio era duro, vorrei resettare cosi il ritmo resta stabile.
+    - L'ultimo messaggio era duro, vorrei resettare cosi riduciamo i fraintendimenti.
+    - L'ultimo messaggio era duro, vorrei resettare cosi posso consegnare con affidabilita.
+    - Sono confuso su priorita e scadenza cosi manteniamo priorita chiare.
+    - Sono confuso su priorita e scadenza cosi evitiamo altro rework.
+    - Sono confuso su priorita e scadenza cosi il ritmo resta stabile.
+    - Sono confuso su priorita e scadenza cosi riduciamo i fraintendimenti.
+    - Sono confuso su priorita e scadenza cosi posso consegnare con affidabilita.
+    - Voglio aiutare, ma la richiesta e troppo vaga cosi manteniamo priorita chiare.
+    - Voglio aiutare, ma la richiesta e troppo vaga cosi evitiamo altro rework.
+    - Voglio aiutare, ma la richiesta e troppo vaga cosi il ritmo resta stabile.
+    - Voglio aiutare, ma la richiesta e troppo vaga cosi riduciamo i fraintendimenti.
+    - Voglio aiutare, ma la richiesta e troppo vaga cosi posso consegnare con affidabilita.
+    - Mi servono meno interruzioni per chiudere cosi manteniamo priorita chiare.
+    - Mi servono meno interruzioni per chiudere cosi evitiamo altro rework.
+    - Mi servono meno interruzioni per chiudere cosi il ritmo resta stabile.
+    - Mi servono meno interruzioni per chiudere cosi riduciamo i fraintendimenti.
+    - Mi servono meno interruzioni per chiudere cosi posso consegnare con affidabilita.
+    - Per favore Puoi smettere di mandare nuove task dopo le 22?
+    - 'Per chiarezza: Puoi smettere di mandare nuove task dopo le 22?'
+    - 'In breve: Puoi smettere di mandare nuove task dopo le 22?'
+    - 'Punto importante: Puoi smettere di mandare nuove task dopo le 22?'
+    - 'Per andare avanti: Puoi smettere di mandare nuove task dopo le 22?'
+    - Per favore Ho bisogno che confermi la scadenza prima che inizi.
+    - 'Per chiarezza: Ho bisogno che confermi la scadenza prima che inizi.'
+    - 'In breve: Ho bisogno che confermi la scadenza prima che inizi.'
+    - 'Punto importante: Ho bisogno che confermi la scadenza prima che inizi.'
+    - 'Per andare avanti: Ho bisogno che confermi la scadenza prima che inizi.'
+    - Per favore Non posso prendere questa cosa senza mollarne un'altra.
+    - 'Per chiarezza: Non posso prendere questa cosa senza mollarne un''altra.'
+    - 'In breve: Non posso prendere questa cosa senza mollarne un''altra.'
+    - 'Punto importante: Non posso prendere questa cosa senza mollarne un''altra.'
+    - 'Per andare avanti: Non posso prendere questa cosa senza mollarne un''altra.'
+    - 'Per chiarezza: Per favore non riscrivere il mio lavoro senza avvisare.'
+    - 'In breve: Per favore non riscrivere il mio lavoro senza avvisare.'
+    - 'Punto importante: Per favore non riscrivere il mio lavoro senza avvisare.'
+    - 'Per andare avanti: Per favore non riscrivere il mio lavoro senza avvisare.'
+    - Per favore Ci serve un unico owner per questa decisione.
+    - 'Per chiarezza: Ci serve un unico owner per questa decisione.'
+    - 'In breve: Ci serve un unico owner per questa decisione.'
+    - 'Punto importante: Ci serve un unico owner per questa decisione.'
+    - 'Per andare avanti: Ci serve un unico owner per questa decisione.'
+    - Per favore L'ultimo messaggio era duro, vorrei resettare.
+    context_line_b:
+    - 'Contesto: e gia successo tre volte questa settimana.'
+    - 'Contesto: l''avevo gia segnalato una volta.'
+    - 'Contesto: questo sta rallentando il progetto.'
+    - 'Contesto: voglio risolverla senza drama.'
+    - 'Contesto: mi interessa continuare a collaborare bene.'
+    - 'Contesto: mi serve una versione da inviare oggi.'
+    - 'Contesto: temo di sembrare scortese.'
+    - 'Contesto: deve funzionare bene in {medium}.'
+    - '{situation}.'
+    - '{medium}; {constraint}.'
+    - '{audience}; {situation}.'
+    - '{constraint}; {change_request}.'
+    - '{audience}; {situation}; {constraint}.'
+    draft_line_1b:
+    - '{situation}.'
+    - '{audience}; {situation}.'
+    - '{medium}; {situation}.'
+    - '{audience}; {medium}; {situation}.'
+    draft_line_2b:
+    - '{change_request}; {desired_outcome}.'
+    - '{change_request}; {constraint}.'
+    detail_line_b:
+    - Mantiene la richiesta ancorata a {desired_outcome}.
+    - La formulazione resta {constraint}.
+    - Questa versione funziona in {medium} e resta su {situation}.
+    - Il limite e chiaro senza rovinare la relazione.
+    - Resta {tone_style} e comunque operativa.
+    - Il prossimo passo resta concreto.
+    - Evita colpe e mantiene slancio.
+    - Se serve, puoi ridurla a una sola frase.
+    - Se vuoi, adatto una clausola al canale {medium}.
+    - Il messaggio resta fermo ma collaborativo.
+    - La richiesta e specifica e facile da eseguire.
+    - Rimane chiaro anche sotto pressione.
+    assistant_followup_b:
+    - Vuoi una variante piu morbida o piu ferma?
+    - Vuoi una versione ancora piu breve per {medium}?
+    - Se incolli la frase esatta che hai ricevuto, la adatto meglio.
+    - Se vuoi, ti preparo due varianti con fermezza diversa.
+    - Preferisci piu sintesi o piu empatia?
+    - Posso fare anche una versione piu diretta.
+    context_extra:
+    - 'Contesto: {audience}; {situation}; {medium}.'
+    - 'Contesto: {situation}; {desired_outcome}.'
+    - 'Contesto: {change_request}; {desired_outcome}.'
+    - 'Contesto: {user_goal}; {constraint}.'
+    - 'Contesto: {audience}; {constraint}; {desired_outcome}.'
+    - 'Contesto: {medium}; {constraint}; {situation}.'
+    - 'Contesto: {change_request}; {constraint}.'
+    - 'Contesto: {user_goal}; {desired_outcome}.'
+    - 'Contesto: {situation}; {change_request}; {desired_outcome}.'
+    - 'Contesto: {audience}; {situation}; {constraint}.'
+    - 'Contesto: {medium}; {change_request}; {desired_outcome}.'
+    - 'Contesto: {audience}; {medium}; {desired_outcome}.'
+    - 'Contesto: {focus_a}; {focus_b}.'
+    - 'Contesto: {focus_c}; {focus_d}.'
+    - 'Contesto: {desired_outcome}; {focus_a}.'
+    - 'Contesto: {constraint}; {focus_b}.'
+    - 'Contesto: {user_goal}; {focus_c}.'
+    - 'Contesto: {situation}; {focus_d}.'
+    - 'Contesto: {audience}; {focus_a}; {focus_b}.'
+    - 'Contesto: {medium}; {focus_c}; {focus_d}.'
+    - 'Contesto: {change_request}; {focus_a}; {focus_c}.'
+    - 'Contesto: {desired_outcome}; {focus_b}; {focus_d}.'
+    - 'Contesto: {user_goal}; {focus_a}; {focus_d}.'
+    - 'Contesto: {constraint}; {focus_b}; {focus_c}.'
+    unique_detail:
+    - 'Punto chiave: {user_goal}; {change_request}; {desired_outcome}.'
+    - 'Punto chiave: {desired_outcome}; {constraint}; {situation}.'
+    - 'Punto chiave: {audience}; {medium}; {situation}.'
+    - 'Punto chiave: {change_request}; {desired_outcome}; {constraint}.'
+    - 'Punto chiave: {situation}; {user_goal}; {desired_outcome}.'
+    - 'Punto chiave: {audience}; {desired_outcome}; {constraint}.'
+    - 'Punto chiave: {medium}; {change_request}; {constraint}.'
+    - 'Punto chiave: {focus_a}; {focus_b}; {focus_c}.'
+    - 'Punto chiave: {focus_b}; {focus_c}; {focus_d}.'
+    - 'Punto chiave: {focus_a}; {focus_c}; {focus_d}.'
+    - 'Punto chiave: {change_request}; {focus_a}; {focus_b}.'
+    - 'Punto chiave: {desired_outcome}; {focus_b}; {focus_c}.'
+    - 'Punto chiave: {constraint}; {focus_c}; {focus_d}.'
+    - 'Punto chiave: {user_goal}; {focus_a}; {focus_d}.'
+    - 'Punto chiave: {audience}; {focus_a}; {focus_b}.'
+    - 'Punto chiave: {medium}; {focus_c}; {focus_d}.'
+    - 'Punto chiave: {situation}; {focus_a}; {focus_c}.'
+    - 'Punto chiave: {desired_outcome}; {focus_b}; {focus_d}.'
+    - 'Punto chiave: {change_request}; {desired_outcome}; {focus_c}.'
+    - 'Punto chiave: {constraint}; {user_goal}; {focus_d}.'
+    - 'Punto chiave: {audience}; {change_request}; {focus_a}.'
+    - 'Punto chiave: {medium}; {desired_outcome}; {focus_b}.'
+    - 'Punto chiave: {situation}; {constraint}; {focus_c}.'
+    - 'Punto chiave: {user_goal}; {change_request}; {focus_d}.'
+    diversity_clause:
+    - 'Adattamento: {change_request}; {desired_outcome}; {constraint}.'
+    - 'Adattamento: {audience}; {medium}; {situation}.'
+    - 'Adattamento: {user_goal}; {change_request}; {desired_outcome}.'
+    - 'Adattamento: {situation}; {constraint}; {desired_outcome}.'
+    - 'Adattamento: {focus_a}; {focus_b}; {focus_c}.'
+    - 'Adattamento: {focus_b}; {focus_c}; {focus_d}.'
+    - 'Adattamento: {focus_a}; {focus_c}; {focus_d}.'
+    - 'Adattamento: {focus_a}; {focus_b}; {focus_d}.'
+    - 'Adattamento: {audience}; {change_request}; {focus_a}.'
+    - 'Adattamento: {medium}; {desired_outcome}; {focus_b}.'
+    - 'Adattamento: {situation}; {constraint}; {focus_c}.'
+    - 'Adattamento: {user_goal}; {change_request}; {focus_d}.'
+    - 'Adattamento: {desired_outcome}; {constraint}; {focus_a}.'
+    - 'Adattamento: {change_request}; {focus_b}; {focus_c}.'
+    - 'Adattamento: {audience}; {focus_c}; {focus_d}.'
+    - 'Adattamento: {medium}; {focus_a}; {focus_b}.'
+    - 'Adattamento: {situation}; {focus_a}; {focus_d}.'
+    - 'Adattamento: {user_goal}; {focus_b}; {focus_c}.'
+    - 'Adattamento: {constraint}; {focus_c}; {focus_d}.'
+    - 'Adattamento: {change_request}; {desired_outcome}; {focus_a}.'
+    - 'Adattamento: {audience}; {desired_outcome}; {focus_b}.'
+    - 'Adattamento: {medium}; {constraint}; {focus_c}.'
+    - 'Adattamento: {situation}; {user_goal}; {focus_d}.'
+    - 'Adattamento: {change_request}; {constraint}; {focus_a}.'
+    focus_a:
+    - proteggere la relazione
+    - ottenere accordo sui prossimi passi
+    - ridurre confusione
+    - fermare il pattern
+    - allineare le priorita
+    - mantenere il confronto costruttivo
+    - evitare un'altra escalation
+    - rendere chiara la decisione
+    - stabilire una norma ripetibile
+    - far avanzare il lavoro
+    focus_b:
+    - tenerlo breve
+    - essere fermo ma rispettoso
+    - essere gentile ma chiaro
+    - evitare accuse
+    - evitare un tono passivo-aggressivo
+    - restare sui fatti
+    - suonare sicuro
+    - suonare calmo
+    - usare linguaggio semplice
+    - restare in una o due frasi
+    focus_c:
+    - tenere le nuove richieste entro l'orario di lavoro
+    - confermare priorita e scadenza prima di partire
+    - concordare un unico owner per le decisioni
+    - segnalare in modo esplicito cosa e urgente
+    - raggruppare i cambi in un unico aggiornamento
+    - evitare riscritture senza un rapido avviso
+    - bloccare lo scope prima dell'esecuzione
+    - ridurre le interruzioni durante i blocchi di focus
+    - mettere la richiesta in una frase chiara
+    - confermare cosa significa davvero completato
+    focus_d:
+    - messaggi a tarda notte
+    - responsabilita poco chiara
+    - richieste all'ultimo minuto
+    - scadenze mancate
+    - scope che continua ad allargarsi
+    - istruzioni confuse
+    - thread teso
+    - troppe riunioni
+    - risposte lente
+    - rework ripetuto
+    - messaggio duro
+    - fraintendimento
+    - feedback recepito male
+    - richiesta che non posso accettare
+    - piano che cambia continuamente
+    - conflitto di calendario
+    latin_a:
+    - il mio collega
+    - la mia manager
+    - un compagno di team
+    - un cliente
+    - la mia amica
+    - mio fratello
+    - la mia partner
+    - il mio coinquilino
+    - un professore
+    - la chat di gruppo
+    latin_b:
+    - email
+    - chat
+    - messaggio
+    - follow-up di riunione
+    - aggiornamento progetto
+    - nota veloce
+    - messaggio di stato
+    - commento di review
+    latin_c:
+    - mettere un limite chiaro
+    - scusarmi senza esagerare
+    - dare feedback diretto
+    - rifiutare con educazione
+    - chiedere chiarezza
+    - abbassare la tensione del tono
+    - fare follow-up senza sembrare pressante
+    - correggere un fraintendimento
+    - riallineare le aspettative
+    - chiedere un cambio di comportamento
+    latin_d:
+    - proteggere la relazione
+    - ottenere accordo sui prossimi passi
+    - ridurre confusione
+    - fermare il pattern
+    - allineare le priorita
+    - mantenere il confronto costruttivo
+    - evitare un'altra escalation
+    - rendere chiara la decisione
+    - stabilire una norma ripetibile
+    - far avanzare il lavoro
+    extra_clause:
+    - Il limite e chiaro senza rovinare la relazione.
+    - Il prossimo passo resta concreto.
+    - Evita colpe e mantiene slancio.
+    - Se serve, puoi ridurla a una sola frase.
+    - Il messaggio resta fermo ma collaborativo.
+    - La richiesta e specifica e facile da eseguire.
+    - Rimane chiaro anche sotto pressione.
+  row_template:
+    language: '{language}'
+    mode: '{mode}'
+    tone: '{tone}'
+    emote6: '{emote6}'
+    continuity_choice: '{continuity_choice}'
+    intent_family: '{intent_family}'
+    intent_subtype: '{intent_subtype}'
+    user_message: '{user_message}'
+    assistant_response: '{assistant_response}'
