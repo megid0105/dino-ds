@@ -168,3 +168,65 @@ A lane is “done” only when:
 - `lane_en.yaml` (en) passes gate
 - all 12 `lane_<lang>.yaml` pass gate
 - the lane’s outputs match the v16 golden constraints (no drift)
+
+## Language mix
+Every language yaml should only contain single lang respectively to the language setting for that particular yaml except translation lane. Do not mix language in a single yaml. 
+The only acceptable combine language file is using ./scripts/qc_lane_sweep.sh lanes/<lane_xx_xxx> to generate QC package which will automatically contain all 14 individual  language generate run and then combine into a single jsonl.
+
+## Output format:
+
+Example only:
+• Files changed
+
+  - lanes/lane_05_conversation_mode/lane_en.yaml
+  - lanes/lane_05_conversation_mode/lane_zh-hk.yaml
+  - lanes/lane_05_conversation_mode/lane_th.yaml
+  - lanes/lane_05_conversation_mode/lane_zh-hant.yaml
+  - lanes/lane_05_conversation_mode/lane_zh-hans.yaml
+  - lanes/lane_05_conversation_mode/lane_pt-br.yaml
+  - lanes/lane_05_conversation_mode/lane_es.yaml
+  - lanes/lane_05_conversation_mode/lane_de.yaml
+  - lanes/lane_05_conversation_mode/lane_fr.yaml
+  - lanes/lane_05_conversation_mode/lane_it.yaml
+  - lanes/lane_05_conversation_mode/lane_ja.yaml
+  - lanes/lane_05_conversation_mode/lane_ko.yaml
+  - lanes/lane_05_conversation_mode/lane_hi.yaml
+  - lanes/lane_05_conversation_mode/lane_vi.yaml
+
+  Final RUN_UUID
+
+  - 09070efd56dd4e76847ffa479c0695cb
+
+  Combined ALL/train.jsonl path
+
+  - /Users/chanpakho/desktop/download/project/dino_ds/lanes/
+    lane_05_conversation_mode/out_runs/colleague_test/ALL/dino-tef-all-
+    230-09070efd56dd4e76847ffa479c0695cb/train.jsonl
+
+  Per-language attempt stats + projected prod safety factor
+
+  - en: 140/60 attempts, projected safety 131.14x
+  - zh-hk: 33/30 attempts, projected safety 927.29x
+  - th: 35/30 attempts, projected safety 874.30x
+  - zh-hant: 10/10 attempts, projected safety 2550.21x
+  - zh-hans: 10/10 attempts, projected safety 2550.21x
+  - pt-br: 12/10 attempts, projected safety 1700.25x
+  - es: 12/10 attempts, projected safety 1700.25x
+  - de: 19/10 attempts, projected safety 2685.28x
+  - fr: 13/10 attempts, projected safety 3922.15x
+  - it: 17/10 attempts, projected safety 2999.29x
+  - ja: 10/10 attempts, projected safety 5098.79x
+  - ko: 13/10 attempts, projected safety 3922.15x
+  - hi: 17/10 attempts, projected safety 2999.29x
+  - vi: 14/10 attempts, projected safety 3641.99x
+
+  Remaining risk (if any)
+
+  - multi-turn: TEF export still normalizes to 3-message messages;
+    external multi-turn QC can fail on TEF despite lane YAML multi-turn
+    row templates.
+  - leakage: fixed in current build (label-like Context:/Constraint:
+    markers removed in slot content and outputs).
+    
+    ---
+End of Example. 

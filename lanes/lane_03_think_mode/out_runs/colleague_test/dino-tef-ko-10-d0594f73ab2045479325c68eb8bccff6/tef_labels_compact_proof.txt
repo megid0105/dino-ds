@@ -1,2 +1,0 @@
-OK
-checked_rows=50_or_less

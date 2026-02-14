@@ -1,8 +1,0 @@
-TEACHER_MODE_PROOF v1
-config=/Users/chanpakho/Desktop/Download/project/dino_ds/lanes/lane_03_think_mode/lane_pt-br.yaml
-generation_mode=template_expand
-teacher_runtime.enabled=false
-teacher_runtime.provider=ollama
-teacher_runtime.model=dino-pro-7b
-teacher_runtime.policy=structure_only
-teacher_runtime.on_missing_evidence=abstain
