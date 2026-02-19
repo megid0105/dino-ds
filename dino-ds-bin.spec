@@ -1,7 +1,7 @@
 # -*- mode: python ; coding: utf-8 -*-
 from PyInstaller.utils.hooks import collect_all
 
-datas = [('src/dino_ds/schemas', 'dino_ds/schemas'), ('src/dino_ds/system_prompt_registry.json', 'dino_ds'), ('system_prompt_registry.json', 'dino_ds'), ('system_prompt_registry.json', '.'), ('prompts/system', 'prompts/system')]
+datas = [('src/dino_ds/schemas', 'dino_ds/schemas'), ('src/dino_ds/system_prompt_registry.json', 'dino_ds'), ('system_prompt_registry.json', 'dino_ds'), ('system_prompt_registry.json', '.'), ('prompts/system', 'prompts/system'), ('MASTER_GLOBAL_SCHEMA_LABELS_SUPERSEDED_v2.md', '.'), ('DinoDS_full_validator_config_2026-02-19.md', '.')]
 binaries = []
 hiddenimports = []
 tmp_ret = collect_all('dino_ds')

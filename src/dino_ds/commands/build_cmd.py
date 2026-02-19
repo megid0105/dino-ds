@@ -14,6 +14,10 @@ import subprocess
 from .. import exit_codes as ec
 from ..utils import load_yaml, atomic_write_text
 from ..validators.row_validator_v16 import validate_row_v16
+from ..validators.generation_validator import (
+    resolve_rule_profile,
+    validate_generated_rows,
+)
 from . import validate_cmd
 
 
@@ -604,6 +608,11 @@ _EN_STOPWORDS: set[str] = {
     "i","me","my","mine","you","your","yours","we","our","ours","they","their","theirs",
     "it","its","this","that","these","those","as","not","no","yes","so","very","can","could","will","would",
 }
+_LATIN_RUN_RE = re.compile(r"[A-Za-z0-9]+(?:['-][A-Za-z0-9]+)*")
+_CJK_CHAR_RE = re.compile(r"[\u3400-\u4DBF\u4E00-\u9FFF\u3040-\u30FF\u31F0-\u31FF\uAC00-\uD7AF]")
+_THAI_CHAR_RE = re.compile(r"[\u0E00-\u0E7F]")
+_CJK_LANGS = {"zh-hk", "zh_hk", "zh-hant", "zh_hant", "zh-hans", "zh_hans", "ja", "ko"}
+_THAI_LANGS = {"th"}
 
 def _build_similarity_ignore(sim: Any) -> set[str]:
     ignore: set[str] = set()
@@ -626,7 +635,42 @@ def _build_similarity_ngram(sim: Any) -> int:
     return n
 
 
-def _tokenize(text: str, ignore: set[str] | None = None, ngram: int = 1) -> list[str]:
+def _norm_lang_for_overlap(lang: Any) -> str:
+    if not isinstance(lang, str):
+        return ""
+    return lang.strip().lower()
+
+
+def _char_ngrams(chars: list[str], n: int) -> list[str]:
+    if n <= 1:
+        return chars
+    if len(chars) < n:
+        return []
+    out: list[str] = []
+    for i in range(0, len(chars) - n + 1):
+        out.append("".join(chars[i : i + n]))
+    return out
+
+
+def _tokenize(text: str, ignore: set[str] | None = None, ngram: int = 1, lang: str | None = None) -> list[str]:
+    ltag = _norm_lang_for_overlap(lang)
+
+    # Equator v4.1 script-aware overlap view:
+    # - CJK: char bigram/trigram + Latin runs
+    # - Thai: fallback char bigram/trigram when dictionary segmenter is unavailable
+    if ltag in _CJK_LANGS or ltag in _THAI_LANGS:
+        n_char = 2 if ngram <= 2 else 3
+        chars: list[str] = []
+        if ltag in _CJK_LANGS:
+            chars = _CJK_CHAR_RE.findall(text or "")
+        else:
+            chars = _THAI_CHAR_RE.findall(text or "")
+        toks = _char_ngrams(chars, n_char)
+        latin = _LATIN_RUN_RE.findall((text or "").lower())
+        if ignore:
+            latin = [t for t in latin if t not in ignore]
+        return toks + latin
+
     t = _WS_RE.sub(" ", text.strip().lower())
     toks = [x for x in t.split(" ") if x]
     if ignore:
@@ -641,9 +685,15 @@ def _tokenize(text: str, ignore: set[str] | None = None, ngram: int = 1) -> list
     return out
 
 
-def _token_overlap_ratio(a: str, b: str, ignore: set[str] | None = None, ngram: int = 1) -> float:
-    ta = set(_tokenize(a, ignore, ngram))
-    tb = set(_tokenize(b, ignore, ngram))
+def _token_overlap_ratio(
+    a: str,
+    b: str,
+    ignore: set[str] | None = None,
+    ngram: int = 1,
+    lang: str | None = None,
+) -> float:
+    ta = set(_tokenize(a, ignore, ngram, lang=lang))
+    tb = set(_tokenize(b, ignore, ngram, lang=lang))
     if not ta or not tb:
         return 0.0
     inter = len(ta.intersection(tb))
@@ -875,19 +925,6 @@ def _build_template_expand(lane: dict[str, Any], cfg_path: Path, seed: int | Non
 
     rnd = random.Random(seed if seed is not None else (te.get("seed") if isinstance(te.get("seed"), int) else 0))
 
-    # Similarity gate (optional)
-    sim = lane.get("similarity")
-    sim_ignore = _build_similarity_ignore(sim)
-    sim_ngram = _build_similarity_ngram(sim)
-    sim_scope = None
-    if isinstance(sim, dict):
-        v = sim.get("text_field")
-        if isinstance(v, str) and v.strip():
-            sim_scope = v.strip()
-    max_ratio = None
-    if isinstance(sim, dict) and isinstance(sim.get("max_token_overlap_ratio"), (int, float)):
-        max_ratio = float(sim.get("max_token_overlap_ratio"))
-
     # Operators are kept lane-agnostic; for now we support simple sampling from slot banks.
     # Future lanes can add operator config without breaking because we ignore unknown operators.
     operators = te.get("operators")
@@ -936,12 +973,7 @@ def _build_template_expand(lane: dict[str, Any], cfg_path: Path, seed: int | Non
             + ". Define them in template_expand.slot_banks or operators (name: set)."
         )
 
-    # Keep a sliding window for similarity to avoid O(n^2)
-    window_max = 300
-    window_texts: list[str] = []
-    if preexisting_texts:
-        # Seed the sliding window with prior examples (hybrid backfill uses this)
-        window_texts = list(preexisting_texts)[-window_max:]
+    del preexisting_texts
 
     rows: list[dict[str, Any]] = []
     attempts = 0
@@ -975,19 +1007,6 @@ def _build_template_expand(lane: dict[str, Any], cfg_path: Path, seed: int | Non
         progress_every_attempts = 1
     last_print_attempts = 0
 
-    # V16 row validation gates
-    reject_reasons: Counter[str] = Counter()
-    reject_total = 0
-    lane_id = lane.get("lane_id") if isinstance(lane.get("lane_id"), str) else ""
-
-    max_reject_ratio = te.get("max_reject_ratio")
-    if not isinstance(max_reject_ratio, (int, float)):
-        max_reject_ratio = None
-    else:
-        max_reject_ratio = float(max_reject_ratio)
-        if max_reject_ratio <= 0.0 or max_reject_ratio >= 1.0:
-            max_reject_ratio = None
-
     fail_if_underfilled = te.get("fail_if_underfilled")
     if fail_if_underfilled is None:
         fail_if_underfilled = True
@@ -996,7 +1015,7 @@ def _build_template_expand(lane: dict[str, Any], cfg_path: Path, seed: int | Non
 
     while len(rows) < n and attempts < max_attempts:
         attempts += 1
-        # Heartbeat progress so users can tell it's still running even if similarity is rejecting rows.
+        # Heartbeat progress so users can tell generation is still running during retries.
         if progress and (attempts - last_print_attempts) >= progress_every_attempts:
             print(
                 f"[template_expand] generated {len(rows)}/{n} (attempt {attempts}/{max_attempts})",
@@ -1068,21 +1087,6 @@ def _build_template_expand(lane: dict[str, Any], cfg_path: Path, seed: int | Non
         if _has_unresolved_placeholders(rr) or _has_unresolved_placeholders(rr.get("assistant_response")):
             continue
 
-        ok, reason = validate_row_v16(rr, lane_id)
-        if not ok:
-            reject_reasons[reason] += 1
-            reject_total += 1
-            if max_reject_ratio is not None and attempts >= 1000:
-                ratio = reject_total / attempts if attempts else 0.0
-                if ratio >= max_reject_ratio:
-                    summary = _format_validator_rejects(reject_reasons)
-                    raise ValueError(
-                        "v16 row validator rejection ratio exceeded "
-                        f"({ratio:.2%} at attempt {attempts}/{max_attempts}); "
-                        f"top reasons: {summary}"
-                    )
-            continue
-
         # Optional validator: mode richness must match the shuffled mode label.
         validators = lane.get("validators")
         if isinstance(validators, list):
@@ -1097,20 +1101,6 @@ def _build_template_expand(lane: dict[str, Any], cfg_path: Path, seed: int | Non
             if rr == {}:
                 continue
 
-        # Similarity check on concatenated user/assistant if present
-        if max_ratio is not None:
-            text = _row_text_for_similarity(rr, sim_scope)
-            ok = True
-            for prev in window_texts:
-                if _token_overlap_ratio(text, prev, sim_ignore, sim_ngram) > max_ratio:
-                    ok = False
-                    break
-            if not ok:
-                continue
-            window_texts.append(text)
-            if len(window_texts) > window_max:
-                window_texts.pop(0)
-
         rows.append(rr)
 
         # Row-based progress preview
@@ -1123,12 +1113,10 @@ def _build_template_expand(lane: dict[str, Any], cfg_path: Path, seed: int | Non
             last_print_attempts = attempts
 
     if len(rows) < n:
-        summary = _format_validator_rejects(reject_reasons)
         msg = (
             f"template_expand underfilled: generated {len(rows)}/{n} within max_attempts={max_attempts}. "
-            f"v16 validator rejects: {reject_total}/{attempts} (top reasons: {summary}). "
-            "Increase slot_banks variety, relax similarity.max_token_overlap_ratio, "
-            "or adjust template_expand.max_attempts / template_expand.attempts_per_row."
+            f"attempts={attempts}. Increase slot_banks variety or adjust "
+            "template_expand.max_attempts / template_expand.attempts_per_row."
         )
         if fail_if_underfilled:
             raise ValueError(msg)
@@ -1256,7 +1244,14 @@ def _build_hybrid(lane: dict[str, Any], cfg_path: Path, seed: int | None, limit:
     return rows
 
 
-def run_lane(config: str, out: str, seed: int | None = None, limit: int | None = None) -> int:
+def run_lane(
+    config: str,
+    out: str,
+    seed: int | None = None,
+    limit: int | None = None,
+    rule_profile: str | None = None,
+    teacher_force: bool = False,
+) -> int:
     try:
         cfg_path = Path(config).expanduser().resolve()
         out_path = Path(out).expanduser().resolve()
@@ -1269,10 +1264,33 @@ def run_lane(config: str, out: str, seed: int | None = None, limit: int | None =
         lane = load_yaml(cfg_path)
         if not isinstance(lane, dict):
             return ec.CONFIG_INVALID
+        rp = resolve_rule_profile(rule_profile)
 
         mode = lane.get("generation_mode")
         if not isinstance(mode, str) or not mode:
             mode = "shuffle_cap"
+        apply_teacher_runtime = False
+        if mode == "teacher_runtime":
+            apply_teacher_runtime = True
+        if teacher_force:
+            apply_teacher_runtime = True
+            tr = lane.get("teacher_runtime")
+            if not isinstance(tr, dict):
+                tr = {}
+                lane["teacher_runtime"] = tr
+            tr["enabled"] = True
+            # Explicit CLI override should actually engage rewriting even when
+            # lane YAML keeps teacher sampling at 0 during generation-only phases.
+            sr = tr.get("sample_ratio")
+            sp = tr.get("sample_percent")
+            if isinstance(sr, (int, float)):
+                if float(sr) <= 0.0:
+                    tr["sample_ratio"] = 1.0
+            elif isinstance(sp, (int, float)):
+                if float(sp) <= 0.0:
+                    tr["sample_percent"] = 100
+            else:
+                tr["sample_percent"] = 100
 
         if mode == "shuffle_cap":
             rows = _build_shuffle_cap(lane, cfg_path, seed, limit)
@@ -1283,11 +1301,12 @@ def run_lane(config: str, out: str, seed: int | None = None, limit: int | None =
         elif mode == "teacher_runtime":
             # Generate first (template_expand), then rewrite via teacher runtime.
             rows = _build_template_expand(lane, cfg_path, seed, limit)
-            _apply_teacher_runtime(lane, rows, cfg_path)
         elif mode == "hybrid":
             rows = _build_hybrid(lane, cfg_path, seed, limit)
         else:
             return ec.CONFIG_INVALID
+        if apply_teacher_runtime:
+            _apply_teacher_runtime(lane, rows, cfg_path)
 
         # Apply lane-level base defaults to every row for ALL modes.
         # This keeps the lane config as the single human-facing source of truth for required training fields.
@@ -1324,8 +1343,24 @@ def run_lane(config: str, out: str, seed: int | None = None, limit: int | None =
         lang_tag = _normalize_lang_tag(_lane_language_tag(lane))
         _ensure_sample_id(rows, salt=f"{lane_id}_{lang_tag}")
 
+        # QC report output should follow operator working directory by default
+        # (works consistently for repo runs and wrapped-package runs).
+        repo_root = str(Path.cwd())
+        run_id = str(os.environ.get("DINO_DS_RUN_UUID", "")).strip() or None
+        ok_rules, report = validate_generated_rows(
+            rows=rows,
+            lane_id=lane_id,
+            lane=lane,
+            rule_profile=rp,
+            repo_root=repo_root,
+            run_id=run_id,
+        )
+        if not ok_rules:
+            raise ValueError(report)
+
         text = "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows)
         atomic_write_text(out_path, text)
+        print(f"[build] validation pass ({len(rows)} rows): {report}", file=sys.stderr)
         return ec.SUCCESS
     except FileNotFoundError:
         return ec.IO_ERROR

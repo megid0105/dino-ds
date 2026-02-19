@@ -1,0 +1,64 @@
+{
+  "en": {
+    "status": "ok",
+    "limit": 120,
+    "rows": 120
+  },
+  "zh-hk": {
+    "status": "ok",
+    "limit": 80,
+    "rows": 80
+  },
+  "th": {
+    "status": "ok",
+    "limit": 80,
+    "rows": 80
+  },
+  "zh-hant": {
+    "status": "ok",
+    "limit": 40,
+    "rows": 40
+  },
+  "zh-hans": {
+    "status": "ok",
+    "limit": 40,
+    "rows": 40
+  },
+  "pt-br": {
+    "status": "timeout",
+    "limit": 50
+  },
+  "es": {
+    "status": "timeout",
+    "limit": 50
+  },
+  "de": {
+    "status": "timeout",
+    "limit": 50
+  },
+  "fr": {
+    "status": "timeout",
+    "limit": 50
+  },
+  "it": {
+    "status": "timeout",
+    "limit": 50
+  },
+  "ja": {
+    "status": "ok",
+    "limit": 50,
+    "rows": 50
+  },
+  "ko": {
+    "status": "timeout",
+    "limit": 50
+  },
+  "hi": {
+    "status": "timeout",
+    "limit": 50
+  },
+  "vi": {
+    "status": "timeout",
+    "limit": 50
+  }
+}

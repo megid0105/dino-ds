@@ -58,9 +58,9 @@ cfg_for_lang() {
 
 limit_for_lang() {
   case "$1" in
-    en) echo 60 ;;
-    zh-hk|th) echo 30 ;;
-    *) echo 10 ;;
+    en) echo 200 ;;
+    zh-hk|th) echo 150 ;;
+    *) echo 100 ;;
   esac
 }
 

@@ -1,0 +1,43 @@
+Lane 05 Turn Report
+
+Scope handled this turn:
+- Rebuilt all 14 lane_05 YAMLs under lanes/lane_05_conversation_mode/
+- Preserved hard boundaries (no tool/schema code edits; no commit/push)
+
+What was done:
+1) Re-read required specs and lane-05 contracts.
+2) Reconstructed lane_05 files with atom-oriented structure (case/q_template/a_skeleton/label_pack).
+3) Added callback-heavy banks and context-aware user templates.
+4) Enforced zhhk normalization targets (removed "？。", removed "前前", normalized timebox no trailing 前 in slot_banks.timebox).
+5) Ran repeated QC sweeps and iteration patches.
+
+RUN_UUIDs executed this turn:
+- 11e80981e2244aeb90e79436e2b45f80
+- 6292f35ae38545e283e67a044a46bc19
+- f1d0cb0ab41147d5b0bc596597aee61d
+- cb952fadbef54669921229182be986cd
+
+Files changed this turn:
+- lanes/lane_05_conversation_mode/lane_en.yaml
+- lanes/lane_05_conversation_mode/lane_zh-hk.yaml
+- lanes/lane_05_conversation_mode/lane_th.yaml
+- lanes/lane_05_conversation_mode/lane_zh-hant.yaml
+- lanes/lane_05_conversation_mode/lane_zh-hans.yaml
+- lanes/lane_05_conversation_mode/lane_pt-br.yaml
+- lanes/lane_05_conversation_mode/lane_es.yaml
+- lanes/lane_05_conversation_mode/lane_de.yaml
+- lanes/lane_05_conversation_mode/lane_fr.yaml
+- lanes/lane_05_conversation_mode/lane_it.yaml
+- lanes/lane_05_conversation_mode/lane_ja.yaml
+- lanes/lane_05_conversation_mode/lane_ko.yaml
+- lanes/lane_05_conversation_mode/lane_hi.yaml
+- lanes/lane_05_conversation_mode/lane_vi.yaml
+
+Successes:
+- Sweep/gate execution stable for all 14 languages.
+- Schema and build passes across all 14 files.
+
+Still wrong / risk:
+- Strict external duplication risk remains high in multiple languages (local proxy worst O_min remains >0.35).
+- Context ratio is not uniformly >=60% in every low-sample language slice after filtering.
+- Some generated outputs remain stilted due atom composition tradeoff.

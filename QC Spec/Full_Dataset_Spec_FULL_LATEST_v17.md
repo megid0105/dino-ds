@@ -1732,7 +1732,7 @@ Sample rows (JSONL, single-line):
 **Data realism note (mandatory):** Do not create any `user_message` that literally asks the assistant to “use a tool”, “use deep link”, “use connector”, or names internal mechanisms. Real users ask for outcomes; tool/deeplink/connector selection is internal and must never appear in user text.
 
 ===============================================================
-25. HISTORY SEARCH INTEGRATION
+#25. HISTORY SEARCH INTEGRATION
 ===============================================================
 Type: classifier-LoRA  
 Model: Dino 4B, Dino Pro 7B  

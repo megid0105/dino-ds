@@ -1,0 +1,72 @@
+{
+  "en": {
+    "status": "ok",
+    "limit": 120,
+    "rows": 120
+  },
+  "zh-hk": {
+    "status": "ok",
+    "limit": 80,
+    "rows": 80
+  },
+  "th": {
+    "status": "ok",
+    "limit": 80,
+    "rows": 80
+  },
+  "zh-hant": {
+    "status": "ok",
+    "limit": 40,
+    "rows": 40
+  },
+  "zh-hans": {
+    "status": "ok",
+    "limit": 40,
+    "rows": 40
+  },
+  "pt-br": {
+    "status": "ok_retry",
+    "limit": 20,
+    "rows": 20
+  },
+  "es": {
+    "status": "ok_retry",
+    "limit": 20,
+    "rows": 20
+  },
+  "de": {
+    "status": "ok_retry",
+    "limit": 20,
+    "rows": 20
+  },
+  "fr": {
+    "status": "ok_retry",
+    "limit": 20,
+    "rows": 20
+  },
+  "it": {
+    "status": "ok_retry",
+    "limit": 20,
+    "rows": 20
+  },
+  "ja": {
+    "status": "ok",
+    "limit": 50,
+    "rows": 50
+  },
+  "ko": {
+    "status": "ok_retry",
+    "limit": 20,
+    "rows": 20
+  },
+  "hi": {
+    "status": "ok_retry",
+    "limit": 20,
+    "rows": 20
+  },
+  "vi": {
+    "status": "ok_retry",
+    "limit": 20,
+    "rows": 20
+  }
+}

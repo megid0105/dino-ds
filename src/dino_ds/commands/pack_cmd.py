@@ -12,6 +12,21 @@ from ..utils import sha256_file, atomic_write_text
 
 
 _CONTEXT_RE = re.compile(r"\bcontext\b|conversation so far|conversation:", re.IGNORECASE)
+_MULTI_TURN_PREFIX = ("user", "assistant", "user", "assistant")
+_SECOND_USER_KEYS = (
+    "u2",
+    "u2_followup",
+    "user_message_2",
+    "second_user_message",
+    "followup_user_message",
+)
+_SECOND_ASSISTANT_KEYS = (
+    "a2",
+    "a2_followup",
+    "assistant_response_2",
+    "second_assistant_response",
+    "followup_assistant_response",
+)
 _BOOL_FIELDS = {
     "adult_gate",
     "profanity_allowed",
@@ -21,6 +36,43 @@ _BOOL_FIELDS = {
     "deeplink_needed",
 }
 _MAPPING_TOOLCALLS = {"connector_action", "deeplink_action", "image_tool_action"}
+
+
+def _is_lane05_record(rec: Dict[str, Any]) -> bool:
+    lane_id = rec.get("lane_id")
+    if isinstance(lane_id, str) and lane_id.strip():
+        return lane_id.strip() == "lane_05_conversation_mode"
+    for key in ("sample_id", "id"):
+        v = rec.get(key)
+        if isinstance(v, str) and v.strip().startswith("lane_05_conversation_mode_"):
+            return True
+    return False
+
+
+def _pick_second_turn_text(rec: Dict[str, Any], keys: tuple[str, ...]) -> str:
+    for k in keys:
+        v = rec.get(k)
+        if isinstance(v, str) and v.strip():
+            return v.strip()
+    return ""
+
+
+def _normalize_messages(messages: object) -> list[Dict[str, str]] | None:
+    if not isinstance(messages, list):
+        return None
+    out: list[Dict[str, str]] = []
+    for item in messages:
+        if not isinstance(item, dict):
+            return None
+        role = item.get("role")
+        content = item.get("content")
+        if not isinstance(role, str) or not isinstance(content, str):
+            return None
+        role = role.strip()
+        if role not in {"system", "user", "assistant"}:
+            return None
+        out.append({"role": role, "content": content.strip()})
+    return out
 
 
 def _count_lines(path: Path) -> int:
@@ -219,30 +271,46 @@ def export_qwen(
 
                     rec_messages = rec.get("messages")
                     system_extra = ""
+                    multi_turn_messages: list[Dict[str, str]] | None = None
                     if isinstance(rec_messages, list) and rec_messages:
-                        if len(rec_messages) < 3:
+                        norm_messages = _normalize_messages(rec_messages)
+                        if norm_messages is None:
                             return ec.LINT_FAILED
-                        m0, m1, m2 = rec_messages[0], rec_messages[1], rec_messages[2]
-                        if not (
-                            isinstance(m0, dict)
-                            and isinstance(m1, dict)
-                            and isinstance(m2, dict)
-                            and m0.get("role") == "system"
-                            and m1.get("role") == "user"
-                            and m2.get("role") == "assistant"
-                        ):
-                            return ec.LINT_FAILED
-                        sys_content = m0.get("content")
-                        if isinstance(sys_content, str) and sys_content.strip():
-                            system_extra = sys_content.strip()
-                        if not (isinstance(user_msg, str) and user_msg.strip()):
-                            ucontent = m1.get("content")
-                            if isinstance(ucontent, str) and ucontent.strip():
-                                user_msg = ucontent
-                        if not (isinstance(asst_msg, str) and (asst_msg.strip() or asst_msg == "")):
-                            acontent = m2.get("content")
-                            if isinstance(acontent, str) and (acontent.strip() or acontent == ""):
-                                asst_msg = acontent
+                        non_system_roles = [m["role"] for m in norm_messages if m["role"] != "system"]
+                        if len(non_system_roles) >= 4:
+                            if tuple(non_system_roles[:4]) != _MULTI_TURN_PREFIX:
+                                return ec.LINT_FAILED
+                            non_system_msgs = [m for m in norm_messages if m["role"] != "system"]
+                            user_msg = non_system_msgs[0]["content"]
+                            asst_msg = non_system_msgs[1]["content"]
+                            multi_turn_messages = non_system_msgs
+                        else:
+                            if len(norm_messages) < 3:
+                                return ec.LINT_FAILED
+                            m0, m1, m2 = norm_messages[0], norm_messages[1], norm_messages[2]
+                            if not (m0.get("role") == "system" and m1.get("role") == "user" and m2.get("role") == "assistant"):
+                                return ec.LINT_FAILED
+                            if m0.get("content"):
+                                system_extra = m0["content"]
+                            if not (isinstance(user_msg, str) and user_msg.strip()):
+                                user_msg = m1.get("content")
+                            if not (isinstance(asst_msg, str) and (asst_msg.strip() or asst_msg == "")):
+                                asst_msg = m2.get("content")
+
+                    if multi_turn_messages is None and _is_lane05_record(rec):
+                        u2_text = _pick_second_turn_text(rec, _SECOND_USER_KEYS)
+                        a2_text = _pick_second_turn_text(rec, _SECOND_ASSISTANT_KEYS)
+                        if u2_text and a2_text:
+                            if not (isinstance(user_msg, str) and user_msg.strip()):
+                                return ec.LINT_FAILED
+                            if not (isinstance(asst_msg, str) and (asst_msg.strip() or asst_msg == "")):
+                                return ec.LINT_FAILED
+                            multi_turn_messages = [
+                                {"role": "user", "content": user_msg.strip()},
+                                {"role": "assistant", "content": asst_msg.strip()},
+                                {"role": "user", "content": u2_text},
+                                {"role": "assistant", "content": a2_text},
+                            ]
 
                     if not isinstance(user_msg, str) or not (user_msg.strip()):
                         return ec.LINT_FAILED
@@ -278,14 +346,28 @@ def export_qwen(
                         return ec.LINT_FAILED
 
                     user_content = user_msg.strip()
-                    if system_extra and _CONTEXT_RE.search(system_extra):
-                        user_content = system_extra + "\n\n" + user_content
+                    assistant_content = asst_msg.strip()
 
-                    messages = [
-                        {"role": "system", "content": sys_text},
-                        {"role": "user", "content": user_content},
-                        {"role": "assistant", "content": asst_msg.strip()},
-                    ]
+                    if multi_turn_messages is not None:
+                        non_system_roles = [m["role"] for m in multi_turn_messages if m["role"] != "system"]
+                        if len(non_system_roles) < 4 or tuple(non_system_roles[:4]) != _MULTI_TURN_PREFIX:
+                            return ec.LINT_FAILED
+                        non_system_msgs = [m for m in multi_turn_messages if m["role"] != "system"]
+                        user_content = non_system_msgs[0]["content"].strip()
+                        assistant_content = non_system_msgs[1]["content"].strip()
+                        if not user_content:
+                            return ec.LINT_FAILED
+                        messages = [{"role": "system", "content": sys_text}]
+                        for m in non_system_msgs:
+                            messages.append({"role": m["role"], "content": m["content"].strip()})
+                    else:
+                        if system_extra and _CONTEXT_RE.search(system_extra):
+                            user_content = system_extra + "\n\n" + user_content
+                        messages = [
+                            {"role": "system", "content": sys_text},
+                            {"role": "user", "content": user_content},
+                            {"role": "assistant", "content": assistant_content},
+                        ]
 
                     labels: Dict[str, Any] = {}
                     for k, v in rec.items():
@@ -315,7 +397,7 @@ def export_qwen(
                         "target_base": target_base_val,
                         "messages": messages,
                         "user_message": user_content,
-                        "assistant_response": asst_msg.strip(),
+                        "assistant_response": assistant_content,
                     }
 
                     if include_id:

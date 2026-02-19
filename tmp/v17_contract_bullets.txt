@@ -1,0 +1,1248 @@
+
+#1. IDENTITY & SELF-DEFINITION
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+- language
+- mode            → "quick"
+- tone            → all 5 tones distributed (see below)
+- emote6                  → "neutral"
+- representation_choice → "plain_text"
+- continuity_choice       → "suppress_continuity"
+- intent_family   → "safety" | "content_generation"
+- intent_subtype  → "identity_definition" | "boundary_setting" | "leakage_prevention"
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response
+Optional fields:
+- tool_call: forbidden
+- image_context: forbidden
+- family: 20%
+- serious: 20%
+- professional: 20%
+- professional: 20%
+- best_friend: 20%
+- Max token overlap between any two assistant: ≤ 35%
+- Max reuse of identical user templates: ≤ 10% of dataset
+- Synthetic templates: each template may generate ≤ 50 variants
+- Identity lines must be semantically diverse: different angles of “who Dino is”, “what Dino doesn’t do”, “what Dino refuses”, “how Dino positions itself”.
+- No more than 5% of lines may share the same opening sentence in assistant.
+
+#2. TONE & BEHAVIOUR FOUNDATION
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language
+- mode            → 50% quick, 50% think
+- tone            → all 5 tones, balanced
+- emote6                  → "neutral"
+- representation_choice → "plain_text"
+- continuity_choice       → "suppress_continuity"
+- intent_family   → "content_generation" | "safety"
+- intent_subtype  → "tone_behavior" | "boundary_setting" | "correction_style"
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response
+- tool_call: forbidden
+- image_context: forbidden
+- family: 20%
+- serious: 20%
+- professional: 20%
+- professional: 20%
+- best_friend: 20%
+- Max token overlap between assistant: ≤ 30%
+- Each tone-behavior template: ≤ 40 variants
+- At least 40 distinct user intent types (user wrong, user emotional, user aggressive, user confused, user asking for flattery, etc.)
+
+#3. THINK MODE (UPDATED — MULTI‑STEP REASONING + PERSISTENCE)
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+- perform multi-step reasoning (implicitly, no chain-of-thought leakage)
+- identify missing information and ask for the *minimal* clarification
+- choose a next step instead of freezing
+- recover from uncertainty or dead-ends
+- avoid repeating the user’s question
+- avoid giving up early
+- propose safe alternatives when blocked
+- maintain determination while staying within rules
+Required schema fields:
+- language
+- mode            → "think"
+- tone            → all 5 tones, majority serious/professional
+- emote6                  → "neutral"
+- representation_choice → "plain_text" | "bullet_list" | "comparison_table" | "chart_spec" | "document_spec"
+- continuity_choice       → "suppress_continuity"
+- intent_family   → "decision_support" | "planning" | "content_generation"
+- intent_subtype  → varied (planning, comparison, explanation, etc.)
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response
+- tool_call: allowed but ≤ 10% (for think+tool fallback patterns)
+- image_context: ≤ 5%
+- Max token overlap: ≤ 30%
+- ≥ 60% of samples must include implicit multi-step reasoning
+- ≤ 5% may share the same high-level structure (avoid “First, Second, Third” repetition)
+
+#4. QUICK MODE
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language
+- mode            → "quick"
+- tone
+- emote6                  → "neutral"
+- representation_choice → "plain_text" | "bullet_list"
+- continuity_choice       → "suppress_continuity"
+- intent_family   → any (qa_general, content_generation, etc.)
+- intent_subtype
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response
+- tool_call: ≤ 5% (quick+tool)
+- image_context: ≤ 3%
+- Max token overlap: ≤ 30%
+- At least 70% of answers must be ≤ 120 tokens
+- At least 30% of answers must be ≤ 60 tokens
+
+#5. CONVERSATION MODE
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language
+- mode            → "conversation"
+- tone            → all 5 tones, with more professional/family/best_friend
+- emote6                  → "neutral"
+- representation_choice → "plain_text"
+- continuity_choice       → "suppress_continuity"
+- intent_family   → "content_generation" | "safety"
+- intent_subtype  → "emotional_support" | "light_chat" | "check_in"
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response
+- tool_call: forbidden
+- image_context: ≤ 2%
+- Max token overlap: ≤ 35%
+- At least 60% of samples must be multi-turn (user–assistant–user–assistant)
+- At least 40% must show emotional callbacks or continuity_choice = "use_continuity"
+
+#6. GENERAL INTENT CLASSIFICATION
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language
+- mode
+- tone
+- emote6                  → "neutral"
+- representation_choice
+- continuity_choice       → "suppress_continuity"
+- intent_family
+- intent_subtype
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response
+- messages → Qwen ingest: [{"role":"system","content":...},{"role":"user","content":...},{"role":"assistant","content":...}]
+- assistant_response must be strictly user-facing. Never mention internal routing, tools, connectors, deeplinks, schema fields, or labels.
+Constraints:
+- tool_call: forbidden
+- lane-specific trigger fields (connector_needed/deeplink_needed): forbidden in this track
+
+#7. SEARCH TRIGGERING
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language
+- mode
+- tone
+- emote6                  → "neutral"
+- representation_choice
+- continuity_choice       → "suppress_continuity"
+- intent_family
+- intent_subtype
+- safety_tag
+- needs_search            → REQUIRED (true/false)
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response
+- messages → Qwen ingest: [{"role":"system","content":...},{"role":"user","content":...},{"role":"assistant","content":...}]
+- assistant_response must be strictly user-facing. Never mention internal routing, tools, connectors, deeplinks, schema fields, or labels.
+Constraints:
+- tool_call: forbidden in intention detection (action lanes handle tool calls)
+- Borderlines required: ≥40% ambiguous cases
+- needs_search true/false split: ~50/50
+
+#8. SEARCH INTEGRATION
+- When needs_search=true, run web_fetch/web_read and produce a grounded user-facing answer using ONLY the returned SEARCH_RESULTS.
+- assistant_response must include citations like [1], [2] that refer to SEARCH_RESULTS items.
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language
+- mode
+- tone
+- emote6                  → "neutral"
+- representation_choice
+- continuity_choice       → "suppress_continuity"
+- intent_family
+- intent_subtype
+- safety_tag
+- needs_search            → true
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response       → MUST be user-facing; MUST NOT mention internal routing/tool names
+- tool_call                → REQUIRED (web_fetch | web_read)
+- messages → Qwen ingest: [{"role":"system","content":...},{"role":"user","content":...},{"role":"assistant","content":...}]
+Constraints:
+- Grounding: Use SEARCH_RESULTS only. No outside facts.
+- No internal leakage: do not say “tool_call”, “web_fetch”, “search”, “connector”, “deeplink”, “schema”, or labels.
+- If SEARCH_RESULTS are insufficient, ask a clarifying question or state uncertainty.
+
+#9. MULTI-STEP ACTION FLOW
+- Teach clean multi-turn flow control: asking for missing info, confirming, and presenting the next minimal decision.
+- Teach `flow_state` classification consistently without leaking internal mechanism words into user-visible text.
+- This lane is **flow-only** (no web grounding). Tool execution is handled elsewhere.
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language
+- mode
+- tone
+- emote6                  → typically "neutral" (varied allowed)
+- representation_choice
+- continuity_choice       → "suppress_continuity"
+- intent_family
+- intent_subtype
+- flow_state              → REQUIRED (varied)
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response
+- messages              → Qwen ingest: [{"role":"system","content":...},{"role":"user","content":...},{"role":"assistant","content":...}]
+- none: 30%
+- awaiting_user_confirmation: 20%
+- awaiting_user_choice: 20%
+- awaiting_parameters: 15%
+- ready_for_action: 15%
+- `tool_call` (MUST NOT appear in JSONL for this lane)
+- Any grounded SEARCH_RESULTS / citations
+- Any internal mechanism words in user messages (“tool”, “connector”, “deeplink”, “schema”, etc.)
+Constraints:
+- The assistant_response must be user-facing and only request the **next minimal missing** detail.
+
+#10. CONNECTOR INTENT DETECTION
+- Predict whether a connector is needed (routing decision only). No connector selection. No action execution.
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language
+- mode
+- tone
+- emote6                  → "neutral"
+- representation_choice
+- continuity_choice       → "suppress_continuity"
+- intent_family
+- intent_subtype
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- connector_needed         → REQUIRED (true/false)
+- user_message
+- assistant_response
+- messages → Qwen ingest: [{"role":"system","content":...},{"role":"user","content":...},{"role":"assistant","content":...}]
+- assistant_response must be strictly user-facing. Never mention internal routing, tools, connectors, schema fields, or labels.
+Constraints:
+- tool_call: forbidden (connector action mapping is separate)
+- Positive samples must be truly connector-required (e.g., “send/modify something in an external account/app”), not just “draft text”.
+- Include ≥40% borderline cases (ambiguity) to reduce false positives.
+
+#11. CONNECTOR ACTION MAPPING
+- Map a connector-required user request to exactly one connector action label.
+- This lane does NOT execute actions. It outputs only the action label.
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language
+- mode
+- tone
+- emote6                  → "neutral"
+- representation_choice
+- continuity_choice       → "suppress_continuity"
+- intent_family
+- intent_subtype
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response       → MUST be "" (empty) or a single space
+- connector_action         → REQUIRED (one of the allowed connector action labels)
+- messages → Qwen ingest: [{"role":"system","content":...},{"role":"user","content":...},{"role":"assistant","content":...}] (assistant content MUST be "" or a single space)
+- tool_call (MUST NOT appear)
+- parameters/slots (MUST NOT appear)
+- natural-language assistant_response (MUST NOT appear)
+Constraints:
+- Output ONLY the label (e.g., connector_action="email_composeEmail"). No drafts, no metadata, no connector selection.
+- Use canonical labels only.
+
+#12. DEEPLINK ACTION MAPPING
+- Map a deeplink-required user request to exactly one deeplink action label (EXACT action name).
+- This lane does NOT execute actions. It outputs only the action label.
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language
+- mode
+- tone
+- emote6                  → "neutral"
+- representation_choice
+- continuity_choice       → "suppress_continuity"
+- intent_family
+- intent_subtype
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response       → MUST be "" (empty) or a single space
+- deeplink_action          → REQUIRED (one of the allowed deeplink action labels; EXACT string)
+- messages → Qwen ingest: [{"role":"system","content":...},{"role":"user","content":...},{"role":"assistant","content":...}] (assistant content MUST be "" or a single space)
+- tool_call (MUST NOT appear)
+- parameters/slots (MUST NOT appear)
+- natural-language assistant_response (MUST NOT appear)
+Constraints:
+- Output ONLY the label (e.g., deeplink_action="maps_openDirections"). No URL building, no OS/app metadata.
+- Use canonical labels only.
+
+#13. DOC EXPORT SPEC (SCHEMA-LOCKED)
+- Emit **document-export ready structure** with deterministic section order.
+- Output MUST be a schema-locked `tool_call` that matches the master schema:
+- This lane teaches **format**, not content creativity. Keep bodies concise and structured.
+- `assistant_response` MUST be empty (`""`).
+- Output MUST be only the `tool_call` object (no prose outside the tool_call).
+- No tables, no JSON spec mode, no ZIP wrapper, no code blocks, no other tool calls.
+- export_document → `format`, `document_spec.title`, `document_spec.sections[{heading,body}]`, `document_spec.style`
+- Project brief → Overview → Goals → Scope → Timeline
+- Decision memo → Context → Options → Evaluation → Decision → Next Steps
+- Meeting minutes → Attendees → Agenda → Decisions → Action Items
+- language
+- mode                    → "quick" | "think" | "conversation"
+- tone
+- emote6                  → "neutral"
+- representation_choice   → "document_spec"
+- continuity_choice       → "suppress_continuity" | "use_continuity"
+- intent_family
+- intent_subtype
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response      → "" (empty)
+- tool_call               → REQUIRED (export_document)
+- messages                → [{"role":"system"},{"role":"user"},{"role":"assistant"}]
+
+#14. ZIP WRAP SPEC (SCHEMA-LOCKED)
+- Emit a deterministic multi-artifact wrapper via the master tool schema:
+- Teach packaging discipline: **manifest first**, then files in a fixed order.
+- `assistant_response` MUST be empty (`""`).
+- Output MUST be only the `tool_call` object (no prose outside the tool_call).
+- Do NOT add fields not in master schema (e.g., no `filetype`). File type is inferred from filename extension.
+- No binary/actual zip generation; wrapper only.
+- `zip_items[0]` MUST be `manifest.md`
+- `manifest.md` MUST list the included filenames in order (one per line).
+- Remaining `zip_items` follow the manifest order.
+- language
+- mode                    → "quick" | "think" | "conversation"
+- tone
+- emote6                  → "neutral"
+- representation_choice   → "zip_spec"
+- continuity_choice       → "suppress_continuity" | "use_continuity"
+- intent_family
+- intent_subtype
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response      → "" (empty)
+- tool_call               → REQUIRED (zip_list)
+- messages                → [{"role":"system"},{"role":"user"},{"role":"assistant"}]
+
+#15. CODE GENERATION (CODE-ONLY)
+- Output **runnable code only**, in a **single fenced code block**.
+- Deterministic formatting: correct imports, indentation, and file-safe structure.
+- `assistant_response` MUST be exactly **one** fenced code block (no prose before or after).
+- `tool_call` is **forbidden**.
+- No JSON, no manifests, no tables, no explanations.
+- Single-file output only (multi-file packaging belongs in Lane 14).
+- language
+- mode                    → "quick" | "think" | "conversation"
+- tone
+- emote6                  → "neutral"
+- representation_choice   → "plain_text"
+- continuity_choice       → "suppress_continuity" | "use_continuity"
+- intent_family           → "content_generation"
+- intent_subtype          → "code_generation"
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response      → code block only
+- messages                → [{"role":"system"},{"role":"user"},{"role":"assistant"}]
+
+#16. CODE JSON SPEC MODE (SCHEMA-LOCKED JSON ONLY)
+- Output a **machine-readable code specification** in **strict JSON only**.
+- Deterministic field order and naming.
+- This lane is schema-first; it is NOT code generation.
+- `assistant_response` MUST be **valid JSON only** (no prose, no markdown, no code fences, no comments).
+- `tool_call` is **forbidden**.
+- No tables, no ZIP wrapper.
+- name
+- purpose
+- exports (array of strings)
+- language
+- mode                    → "quick" | "think" | "conversation"
+- tone
+- emote6                  → "neutral"
+- representation_choice   → "plain_text"
+- continuity_choice       → "suppress_continuity" | "use_continuity"
+- intent_family
+- intent_subtype          → "code_json_spec"
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response      → strict JSON only
+- messages                → [{"role":"system"},{"role":"user"},{"role":"assistant"}]
+
+#17. COMPARISON TABLES (TABLE-ONLY)
+- Output **only** a clean markdown comparison table (no prose before/after).
+- Stable headers and row labels; no hallucinated extra fields.
+- `assistant_response` MUST be a markdown table only.
+- No prose, no bullets, no footnotes, no JSON, no code, no tool_call.
+- Include a small canonical set of table shapes for generalization:
+- language
+- mode                    → "quick" | "think" | "conversation"
+- tone
+- emote6                  → "neutral"
+- representation_choice   → "comparison_table"
+- continuity_choice       → "suppress_continuity" | "use_continuity"
+- intent_family
+- intent_subtype
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response      → markdown table only
+- messages                → [{"role":"system"},{"role":"user"},{"role":"assistant"}]
+
+#18. CHART SPEC (DETERMINISTIC CHART_SPEC)
+- Emit a deterministic `chart_spec` structure for downstream rendering.
+- This lane teaches **structured chart description**, not analysis prose.
+- `assistant_response` MUST contain only `chart_spec` (YAML-like), no prose before/after.
+- No tool_call, no JSON spec mode, no tables.
+- language
+- mode                    → "quick" | "think" | "conversation"
+- tone
+- emote6                  → "neutral"
+- representation_choice   → "chart_spec"
+- continuity_choice       → "suppress_continuity" | "use_continuity"
+- intent_family
+- intent_subtype
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response      → chart_spec only
+- messages                → [{"role":"system"},{"role":"user"},{"role":"assistant"}]
+
+#19. CONTINUITY DECISION
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language
+- mode
+- tone
+- emote6                  → "neutral"
+- representation_choice
+- continuity_choice       → REQUIRED (use_continuity | suppress_continuity)
+- intent_family
+- intent_subtype
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response
+- messages → Qwen ingest: [{"role":"system","content":...},{"role":"user","content":...},{"role":"assistant","content":...}]
+- assistant_response must be strictly user-facing. Never mention internal routing, tools, connectors, deeplinks, schema fields, or labels.
+Constraints:
+- When continuity_choice=use_continuity, messages must include the required prior fact(s)
+- tool_call: forbidden
+
+#20. CONTINUITY EXECUTION
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language
+- mode
+- tone
+- emote6                  → "neutral"
+- representation_choice
+- continuity_choice → mostly "use_continuity"
+- intent_family
+- intent_subtype
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response
+- Max token overlap: ≤ 35%
+- At least 60% of samples must explicitly reference prior user content
+
+#21. REWRITE
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language
+- mode
+- tone
+- emote6                  → "neutral"
+- representation_choice
+- continuity_choice       → "suppress_continuity"
+- intent_family   → "content_generation"
+- intent_subtype  → "rewrite"
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message    → original text
+- assistant_response → rewritten text
+- Max token overlap between user and assistant: ≤ 70% (must show real rewrite)
+- Max token overlap between assistants across dataset: ≤ 35%
+
+#22. TRANSLATE
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language → language of user
+- mode
+- tone
+- emote6                  → "neutral"
+- representation_choice
+- continuity_choice       → "suppress_continuity"
+- intent_family   → "content_generation"
+- intent_subtype  → "translate"
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message    → source text
+- assistant_response → translated text
+- Max token overlap between user and assistant: ≤ 20% (different language)
+- Max token overlap across assistants: ≤ 35%
+
+#23. GRAMMAR FIX
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language
+- mode
+- tone
+- emote6                  → "neutral"
+- representation_choice
+- continuity_choice       → "suppress_continuity"
+- intent_family   → "content_generation"
+- intent_subtype  → "grammar_fix"
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message    → original text with errors
+- assistant_response → corrected text
+- Max token overlap between user and assistant: ≤ 80% (only grammar changes)
+- Max token overlap across assistants: ≤ 35%
+
+#24. HISTORY SEARCH TRIGGER
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language
+- mode
+- tone
+- emote6                  → "neutral"
+- representation_choice
+- continuity_choice       → "suppress_continuity"
+- intent_family
+- intent_subtype
+- safety_tag
+- needs_search            → false
+- needs_history_search    → REQUIRED (true/false)
+- history_scope           → REQUIRED ("thread_only" | "all_threads")
+- user_message
+- assistant_response
+- messages → Qwen ingest: [{"role":"system","content":...},{"role":"user","content":...},{"role":"assistant","content":...}]
+- assistant_response must be strictly user-facing. Never mention internal routing, tools, connectors, deeplinks, schema fields, or labels.
+Constraints:
+- tool_call: forbidden
+- Positive samples must require recalling earlier content (not world knowledge)
+- triggering history search (Lane 24)
+- retrieving history (runtime)
+- rewriting (Lane 21)
+- grammar (Lane 23)
+- continuity selection/execution (Lanes 19/20)
+- Use retrieved snippets as the only source of “past” information.
+- Integrate relevant snippets verbatim or lightly summarized **without inventing missing context**.
+- If snippets are irrelevant, acknowledge and proceed with the user's goal.
+- Avoid over-quoting or dragging old topics.
+- `needs_history_search` MUST be `true` in all samples.
+- No tool_call (retrieval already happened upstream).
+- No hallucinated memory or invented past messages.
+- No chain-of-thought, no system prompt leakage.
+- language
+- mode                    → "quick" | "think" | "conversation"
+- tone
+- emote6                  → "neutral"
+- representation_choice
+- continuity_choice       → "suppress_continuity" | "use_continuity"
+- intent_family
+- intent_subtype
+- safety_tag
+- needs_search            → false
+- needs_history_search    → true
+- history_scope
+- user_message
+- assistant_response
+- messages                → [{"role":"system"},{"role":"user"},{"role":"assistant"}]
+
+#26. IMAGE CONTEXT UNDERSTANDING
+- Teach the model to use `image_context` to describe what is present, using only what is provided.
+- Output should be user-facing, concise, and grounded in `image_context` fields.
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language
+- mode
+- tone
+- emote6                  → "neutral"
+- representation_choice
+- continuity_choice       → "suppress_continuity"
+- intent_family
+- intent_subtype
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- image_context            → REQUIRED
+- user_message
+- assistant_response
+- messages              → Qwen ingest: [{"role":"system","content":...},{"role":"user","content":...},{"role":"assistant","content":...}]
+- Any internal mechanism words in user messages (“tool”, “connector”, “deeplink”, “schema”, etc.)
+- Any invented objects not supported by image_context
+Constraints:
+- Mention specific objects/brands/colors only if present in image_context.
+- If image_context is insufficient, ask a minimal clarifying question.
+
+#27. IMAGE → TOOL ACTION MAPPING
+- Given image_context + user_message, choose which tool family should be used next.
+- Output ONLY the mapping label: image_tool_action = "web_fetch" | "connector_action"
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language
+- mode
+- tone
+- emote6                  → "neutral"
+- representation_choice
+- continuity_choice       → "suppress_continuity"
+- intent_family
+- intent_subtype
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- image_context            → REQUIRED
+- user_message
+- assistant_response       → MUST be "" (empty) or a single space
+- image_tool_action        → REQUIRED ("web_fetch" | "connector_action")
+- messages → Qwen ingest: [{"role":"system","content":...},{"role":"user","content":...},{"role":"assistant","content":...}] (assistant content MUST be "" or a single space)
+- tool_call (MUST NOT appear)
+- parameters/slots (MUST NOT appear)
+- SEARCH_RESULTS / citations (MUST NOT appear)
+- natural-language assistant_response (MUST NOT appear)
+Constraints:
+- This lane is mapping only. Integration and grounded answering happen downstream.
+- Use "connector_action" only when the user is asking to send/save/modify via an external account/app (email/calendar/files), not for general info lookup.
+
+#28. EMOTE6 LABELING
+- Predict the correct `emote6` label for the user’s message context (and minimal system prompt).
+- This lane is **label-only**: assistant_response must be empty. The supervised target is `emote6`.
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+- happy
+- sad
+- angry
+- fear
+- encourage
+- neutral
+Required schema fields:
+- language
+- mode
+- tone
+- emote6                  → REQUIRED (label)
+- representation_choice
+- continuity_choice       → "suppress_continuity"
+- intent_family
+- intent_subtype
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response       → MUST be "" (empty) or a single space
+- messages              → Qwen ingest: [{"role":"system","content":...},{"role":"user","content":...},{"role":"assistant","content":...}]
+- tool_call
+- parameters/slots
+- Any internal mechanism words in user messages (“tool”, “connector”, “deeplink”, “schema”, etc.)
+Constraints:
+- Each emote6 label should represent ≥ 10% of the dataset.
+- Prefer real, natural user messages (stress, gratitude, frustration, reassurance, neutral factual tone).
+
+#29. SAFETY: HISTORY/POLITICS
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language
+- mode
+- tone
+- emote6                  → "neutral"
+- representation_choice
+- continuity_choice       → "suppress_continuity"
+- intent_family   → "safety"
+- intent_subtype  → "history_accuracy" | "politics_accuracy"
+- safety_tag      → "politics_sensitive" | "history_sensitive"
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response
+- Max token overlap: ≤ 30%
+- At least 40% of samples must correct user misinformation
+
+#30. SAFETY: NO LEAKAGE
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language
+- mode
+- tone
+- emote6                  → "neutral"
+- representation_choice
+- continuity_choice       → "suppress_continuity"
+- intent_family   → "safety"
+- intent_subtype  → "leakage_prevention"
+- safety_tag      → "leakage_attempt"
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response
+- Max token overlap: ≤ 35%
+- At least 40% of samples must be creative attempts to extract system prompt/model details
+
+#31. MODE SELECTION
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language
+- mode                  → REQUIRED ("quick" | "think" | "conversation")
+- tone
+- emote6                  → "neutral"
+- representation_choice
+- continuity_choice       → "suppress_continuity"
+- intent_family
+- intent_subtype
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response
+- messages → Qwen ingest: [{"role":"system","content":...},{"role":"user","content":...},{"role":"assistant","content":...}]
+- assistant_response must be strictly user-facing. Never mention internal routing, tools, connectors, deeplinks, schema fields, or labels.
+Constraints:
+- Do NOT use mode. Use mode.
+- tool_call: forbidden
+
+#32. REPRESENTATION CHOICE
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language
+- mode
+- tone
+- emote6                  → "neutral"
+- representation_choice    → REQUIRED
+- continuity_choice       → "suppress_continuity"
+- intent_family
+- intent_subtype
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response
+- messages → Qwen ingest: [{"role":"system","content":...},{"role":"user","content":...},{"role":"assistant","content":...}]
+- assistant_response must be strictly user-facing. Never mention internal routing, tools, connectors, deeplinks, schema fields, or labels.
+Constraints:
+- assistant_response must be in the target representation (no meta)
+- tool_call: forbidden
+
+#33. FALLBACK BEHAVIOR
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language
+- mode
+- tone
+- emote6                  → "neutral"
+- representation_choice
+- continuity_choice       → "suppress_continuity"
+- intent_family
+- intent_subtype
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response → MUST show graceful fallback when tools/search unavailable
+- tool_call: forbidden in this track
+- Max token overlap: ≤ 35%
+- At least 40% of samples must explicitly mention limitations or alternative approaches
+
+#34. CANTONESE_ABILITY (ZH-HK LANGUAGE ENHANCEMENT)
+- zh-hk: 70%
+- en: 15%
+- zh-hant: 10%
+- th: 5%
+- Strengthen natural, colloquial Cantonese (HK style)
+- Improve grammar, fluency, code-switching, cultural grounding
+- No emotional shaping, no continuity shaping, no search behavior
+Required schema fields:
+- language                → "zh-hk"
+- mode                    → 70% "conversation", 30% "quick"
+- tone                    → "neutral" | "professional"
+- emote6                  → "neutral"
+- representation_choice   → "plain_text"
+- continuity_choice       → "suppress_continuity"
+- intent_family           → "qa_general"
+- intent_subtype          → "general"
+- safety_tag              → "safe"
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "none"
+- user_message
+- assistant_response      → natural Cantonese, no tools, no search
+- style6: "neutral"
+- tool_call: forbidden
+- Max token overlap: ≤ 35%
+- At least 40% of samples must include HK‑style colloquial phrasing
+- At least 20% must include light code-switching (e.g., English nouns)
+
+#35. TOPIC_HYGIENE (ANTI TOPIC-DRAGGING BEHAVIOR)
+- Prevent topic drift and “topic dragging” (answering old topics when user asks a new one).
+- Enforce scope control when the user bundles unrelated requests.
+- If the user adds an unrelated side-question, answer it *briefly* or defer it, then return to the main user goal.
+- If the user tries to derail from an urgent stated goal, gently offer a choice (stay vs switch) without drifting.
+- No tool_call, no action labels, no internal routing/schema mentions.
+- Do NOT invent prior context unless provided in `messages[0].content` as `CONTEXT`.
+- language
+- mode                    → "quick" | "think" | "conversation"
+- tone
+- emote6
+- representation_choice
+- continuity_choice
+- intent_family           → "hygiene"
+- intent_subtype          → one of: "stay_on_topic" | "scope_control" | "return_to_goal" | "gentle_boundary"
+- safety_tag
+- needs_search
+- needs_history_search
+- history_scope
+- user_message
+- assistant_response
+- messages                → [{"role":"system"},{"role":"user"},{"role":"assistant"}]
+
+#37. DEEPLINK INTENT DETECTION
+- en: 50%
+- zh-hk: 10%
+- th: 10%
+- zh-hant: 4%
+- zh-hans: 4%
+- pt-br: 5%
+- es: 5%
+- de: 2%
+- fr: 2%
+- it: 2%
+- ja: 2%
+- ko: 2%
+- hi: 2%
+- vi: 2%
+Required schema fields:
+- language
+- mode
+- tone
+- emote6                  → "neutral"
+- representation_choice
+- continuity_choice       → "suppress_continuity"
+- intent_family
+- intent_subtype
+- safety_tag
+- needs_search            → false
+- needs_history_search    → false
+- history_scope           → "thread_only"
+- user_message
+- assistant_response
+- messages → Qwen ingest: [{"role":"system","content":...},{"role":"user","content":...},{"role":"assistant","content":...}]
+- deeplink_needed          → REQUIRED (true/false)
+- assistant_response must be strictly user-facing. Never mention internal routing, tools, connectors, deeplinks, schema fields, or labels.
+Constraints:
+- tool_call: forbidden (deeplink action mapping is separate)
+- Positive samples must require launching/controlling an app, not just explaining it

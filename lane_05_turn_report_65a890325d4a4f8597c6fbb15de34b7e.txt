@@ -1,0 +1,65 @@
+Lane 05 Turn Report
+Turn UUID: 65a890325d4a4f8597c6fbb15de34b7e
+Date: 2026-02-17
+
+1) Work completed this turn
+- Re-read locked spec set and lane-05 constraints (v17 + strictdup addendum + Equator v4.1) before edits.
+- Rebuilt lane_05 YAML generation structure in all 14 language files with atom-first wiring retained (`expand_dict_slots`: case/q_template/a_skeleton/label_pack).
+- Replaced repetitive `q_template` bank with a larger mixed set (multi-turn dominant + single-turn minority) to preserve >=60% multi-turn in gate slices.
+- Replaced `a_skeleton` multiple times to reduce fixed framing and increase anchor density.
+- Applied sanitation pass for malformed artifacts:
+  - removed `？。`
+  - removed `前前`
+  - normalized zh-hk `timebox` trailing `前`
+- Tightened similarity settings to increase rejection of near-colliding candidates (`max_token_overlap_ratio` set to 0.08).
+- Ran repeated lane sweep loops and captured latest run artifacts.
+
+2) Files changed this turn
+- lanes/lane_05_conversation_mode/lane_en.yaml
+- lanes/lane_05_conversation_mode/lane_zh-hk.yaml
+- lanes/lane_05_conversation_mode/lane_th.yaml
+- lanes/lane_05_conversation_mode/lane_zh-hant.yaml
+- lanes/lane_05_conversation_mode/lane_zh-hans.yaml
+- lanes/lane_05_conversation_mode/lane_pt-br.yaml
+- lanes/lane_05_conversation_mode/lane_es.yaml
+- lanes/lane_05_conversation_mode/lane_de.yaml
+- lanes/lane_05_conversation_mode/lane_fr.yaml
+- lanes/lane_05_conversation_mode/lane_it.yaml
+- lanes/lane_05_conversation_mode/lane_ja.yaml
+- lanes/lane_05_conversation_mode/lane_ko.yaml
+- lanes/lane_05_conversation_mode/lane_hi.yaml
+- lanes/lane_05_conversation_mode/lane_vi.yaml
+
+3) Latest sweep run
+- RUN_UUID: 65a890325d4a4f8597c6fbb15de34b7e
+- Combined train.jsonl:
+  /Users/chanpakho/Desktop/Download/project/dino_ds/lanes/lane_05_conversation_mode/out_runs/colleague_test/ALL/dino-tef-all-230-65a890325d4a4f8597c6fbb15de34b7e/train.jsonl
+
+4) What succeeded
+- YAML parse/integrity: PASS for all 14 files after edits.
+- Gate sweep execution: PASS end-to-end across all 14 files (validate/build/export/pack).
+- Multi-turn ratio in sampled train slices: generally >=60% for all languages.
+- Leakage markers (`cue-stream`, `cx##v###t##`, unresolved placeholders in assistant_response): not detected in sampled train slices.
+
+5) What is still wrong (blocking)
+- External-style duplication risk remains high in multiple languages based on local O_min proxy.
+- Worst languages still above 0.35 threshold (not production-safe yet):
+  - hi ~0.825
+  - th ~0.582
+  - en ~0.550
+  - zh-hk ~0.400
+  - zh-hans ~0.400
+  - zh-hant ~0.400
+  - several EU languages ~0.39–0.44
+- Emotional callback share dropped in some small-slice languages to ~37.5% in proxy checks (de/es/pt-br), which is below required >=40% if replicated in external QC.
+
+6) Root-cause observed in this turn
+- Case-bank lexical space remains highly clustered per language; many rows still share the same high-frequency token cores.
+- Even with stricter internal similarity rejection, short-slice exports can still produce high containment pairs when case atoms are semantically near each other.
+- Some languages (especially hi/th/zh-hk) require deeper case-bank lexical rewrite, not only skeleton permutation.
+
+7) Next required fix direction (not executed in this report)
+- Full case-bank lexical expansion and de-clustering per language (not just skeleton edits).
+- Add disjoint style buckets with language-native phrase islands and controlled sampling weights.
+- Re-balance callback-bearing skeleton share to guarantee >=40% after strict filtering.
+- Re-run sweep and external duplication check until worst O_min is safely below 0.35 with margin.

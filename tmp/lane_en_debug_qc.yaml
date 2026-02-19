@@ -1,0 +1,1426 @@
+lane_id: lane_03_think_mode
+wave: wave0
+target_base: dino_qwen4b
+source_type: local
+sources: []
+count_target: 60
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: suppress_continuity
+  flow_state: none
+  history_scope: thread_only
+  representation_choice: bullet_list
+  safety_tag: safe
+  system_prompt_id: dino.system.v1
+  language: en
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators:
+- name: mode_richness
+mode_richness:
+  think_min_chars: 280
+  think_min_steps: 0
+transform_pipeline: []
+generation_mode: template_expand
+system_prompt_path: prompts/system/dino_system_prompt.txt
+output_dir: out_runs/colleague_test
+teacher_runtime:
+  enabled: false
+  sample_percent: 0
+  provider: ollama
+  policy: structure_only
+similarity:
+  text_field: assistant_response
+  max_token_overlap_ratio: 0.22
+  ignore_stopwords: true
+  ignore_tokens:
+  - dino
+  ngram: 2
+template_expand:
+  seed: 101
+  count_target: 60
+  max_attempts: 4000
+  attempts_per_row: 200
+  fail_if_underfilled: true
+  expand_dict_slots:
+  - case
+  - q_template
+  - a_skeleton
+  - label_pack
+  slot_banks:
+    language:
+    - en
+    q_opening:
+    - I need a grounded answer for
+    - Help me reason through
+    - I want a practical direction for
+    - I need a stable plan for
+    - I am trying to make a durable choice on
+    - Give me a clear path for
+    - I want a defensible recommendation for
+    - I need a realistic approach for
+    - Help me tighten my strategy for
+    - I want a low risk plan for
+    - I need clarity before I commit on
+    - I want to stop drifting and decide on
+    - Help me structure the decision on
+    - I need a practical reset for
+    - I want to reduce rework on
+    - I need a resilient approach for
+    - Help me break down
+    - I want a plan I can execute for
+    - I need a clear next move on
+    - Help me choose a direction for
+    - I need a workable model for
+    - I want a sustainable workflow for
+    - I need to sort out
+    - Help me prioritize
+    - I need a safer rollout for
+    - I want a concise strategy for
+    q_followup:
+    - What should I lock in first
+    - What should I change right away
+    - Which path carries less regret
+    - What should I protect from scope drift
+    - Where should I start so this stays practical
+    - What move keeps quality steady
+    - How should I sequence the work
+    - What should I avoid while I execute
+    - What gives me the fastest stable progress
+    - How do I keep this from becoming noisy
+    - What should be non negotiable
+    - Which tradeoff is worth accepting
+    - What should I review before expanding
+    - What keeps this coherent for my team
+    - What should I test before scaling
+    - How can I reduce risk without stalling
+    - What gives me confidence that this is working
+    - What should I focus on this week
+    - What should I simplify first
+    - How can I keep this consistent under pressure
+    - What is the smartest next move
+    - What should I deprioritize now
+    - How do I keep momentum without overreaching
+    - What should I communicate early
+    - What should I validate before committing
+    - What would you do in my position
+    q_context_wrap:
+    - I want this to be executable and calm.
+    - I want this to stay practical and not theoretical.
+    - I need a response that survives real constraints.
+    - I want to avoid avoidable churn.
+    - I want a recommendation that stays coherent under pressure.
+    - I need a direction that my team can follow without confusion.
+    - I want to reduce rework and keep momentum.
+    - I need a choice that remains stable after review.
+    - I want a path that balances speed and quality.
+    - I need this to remain clear for stakeholders.
+    - I want to move with confidence, not guesswork.
+    - I need this plan to remain workable during execution.
+    - I want to make a decision I can defend later.
+    - I need a way to move forward without hidden risks.
+    - I want to keep quality steady while we deliver.
+    - I need practical reasoning, not slogans.
+    - I want the next move to be small but meaningful.
+    - I need structure that still feels human.
+    - I want this to remain manageable for my current capacity.
+    - I need a clear direction with minimal confusion.
+    a_opening:
+    - A durable answer is possible when the scope and risk are framed together.
+    - This can move forward cleanly when you tie decisions to explicit constraints.
+    - A stable path appears once you connect your goal with the real operating limits.
+    - The safest progress comes from sequencing decisions instead of widening scope.
+    - You can keep momentum if each move protects both quality and execution focus.
+    - This becomes clearer when tradeoffs are named early and reviewed deliberately.
+    - A practical direction is to align immediate work with the most fragile constraint.
+    - You can reduce noise by choosing one anchor outcome and defending it each cycle.
+    - This is manageable when the next move is specific and the review signal is clear.
+    - You can avoid churn by pairing scope decisions with explicit risk checks.
+    - A coherent plan starts by narrowing attention to what must hold under pressure.
+    - You can keep this grounded by linking each action to observable evidence.
+    - A resilient decision path relies on small commitments that are easy to validate.
+    - This can stay human and practical when clarity comes before expansion.
+    - A strong approach is to protect core outcomes while trimming optional complexity.
+    - You can move confidently when each choice has a clear reason and a clear check.
+    - This becomes easier when the plan is paced to match real capacity.
+    - You can protect delivery quality by making tradeoffs explicit up front.
+    a_close:
+    - If you want, I can tailor this to your exact context and team rhythm.
+    - If helpful, I can adapt this to the exact blockers you are seeing.
+    - If you share one more detail, I can tighten this into a sharper plan.
+    - If needed, I can reshape this for your current execution window.
+    - If you want, I can tune this for your stakeholder expectations.
+    - If helpful, I can simplify this even further for immediate execution.
+    - If you share your biggest constraint, I can refine the tradeoff call.
+    - If you want, I can map this to your current workflow language.
+    - If helpful, I can convert this into a concise team handoff style.
+    - If you share your deadline pressure, I can tighten the sequence.
+    - If you want, I can adapt this for a solo path or a team path.
+    - If helpful, I can reshape this around the risk you fear most.
+    expert_concept_a:
+    - scope control
+    - risk framing
+    - decision clarity
+    - execution discipline
+    - review cadence
+    - quality baseline
+    - stakeholder alignment
+    - dependency awareness
+    - constraint mapping
+    - feedback loop
+    - escalation boundary
+    - ownership clarity
+    - delivery hygiene
+    - change control
+    - assumption testing
+    expert_concept_b:
+    - reversible decisions
+    - practical sequencing
+    - signal over noise
+    - evidence based adjustment
+    - predictable handoff
+    - workload pacing
+    - explicit tradeoffs
+    - intention to outcome mapping
+    - ambiguity reduction
+    - learning by iteration
+    - consistency over heroics
+    - focus protection
+    - reliability mindset
+    - coherent communication
+    - risk containment
+    expert_concept_c:
+    - context fidelity
+    - realistic constraints
+    - measurable progress
+    - outcome ownership
+    - stakeholder trust
+    - quality safeguards
+    - execution resilience
+    - stable prioritization
+    - practical boundaries
+    - scoped experimentation
+    - disciplined follow through
+    - informed adjustment
+    - balanced workload
+    - transparent rationale
+    - decision accountability
+    expert_move_a:
+    - define the immediate outcome in plain language
+    - narrow the active scope to what is truly necessary
+    - align work with the strongest current constraint
+    - choose one path and freeze optional branches
+    - set a review checkpoint before expanding scope
+    - separate urgent work from important stabilizing work
+    - identify where confusion is likely and preempt it
+    - capture assumptions that can break execution
+    - reduce competing priorities before committing
+    - clarify ownership before touching execution
+    - make the next move small enough to verify quickly
+    - align expectations with practical capacity
+    - state what success should look like in context
+    - define the risk boundary that should not be crossed
+    - start with a controlled slice of the plan
+    expert_move_b:
+    - map dependencies that can block progress later
+    - establish a lightweight decision cadence
+    - collect early feedback from the right audience
+    - anchor communication to concrete outcomes
+    - remove ambiguous wording from the plan
+    - keep execution notes concise and observable
+    - prioritize stabilizing moves before optimization
+    - align stakeholders on the same success signal
+    - keep one source of truth for active decisions
+    - separate strategic intent from tactical noise
+    - reduce handoff friction with explicit expectations
+    - limit parallel work that dilutes attention
+    - review assumptions against current evidence
+    - adapt pacing to available energy and focus
+    - establish a clear escalation trigger
+    expert_move_c:
+    - run a small validation loop before scaling effort
+    - compare progress against the intended outcome
+    - remove low value tasks that create churn
+    - protect focus with clear stop criteria
+    - use concise summaries to keep everyone aligned
+    - keep quality checks close to execution
+    - turn vague risks into concrete watch items
+    - preserve decision history for clean follow through
+    - align each action with a practical reason
+    - document what changed and why it changed
+    - track drift early before it becomes expensive
+    - tighten scope when signals become noisy
+    - confirm assumptions with direct observation
+    - pace commitments to avoid hidden overload
+    - revisit priorities when constraints shift
+    expert_move_d:
+    - consolidate overlapping tasks into one coherent stream
+    - clarify where flexibility is allowed and where it is not
+    - ask for missing context before expanding the plan
+    - surface tradeoffs before making irreversible moves
+    - simplify communication so the next action is obvious
+    - keep momentum with short deliberate feedback cycles
+    - align support resources to the current critical path
+    - maintain a calm cadence during constraint changes
+    - preserve quality by reducing unnecessary variance
+    - align language across teams to reduce confusion
+    - focus effort where risk reduction is highest
+    - frame progress as evidence rather than opinion
+    - keep adaptation intentional rather than reactive
+    - maintain practical boundaries around workload
+    - update stakeholders with clear and grounded rationale
+    expert_move_e:
+    - close loops quickly on open decisions
+    - capture lessons that improve the next cycle
+    - reinforce what is working before adding complexity
+    - refine the plan using observed outcomes
+    - keep scope honest when new ideas appear
+    - convert ambiguity into concrete choices
+    - stabilize rhythm before pushing for speed
+    - protect execution quality during transitions
+    - clarify unresolved dependencies before escalation
+    - communicate tradeoffs with plain language
+    - focus attention on the highest leverage adjustment
+    - revisit priorities when evidence changes
+    - keep delivery intent visible in every update
+    - lock in improvements that reduce future rework
+    - maintain consistent standards across contributors
+    expert_pitfall_a:
+    - broadening scope before the baseline is stable
+    - treating assumptions as confirmed facts
+    - moving forward without shared definitions
+    - chasing speed while quality signals are unclear
+    - letting urgency erase prioritization discipline
+    - skipping alignment on ownership
+    - changing direction without explicit rationale
+    - reacting to noise as if it were signal
+    - overloading the plan with parallel work
+    - ignoring constraint shifts until late
+    expert_pitfall_b:
+    - adding complexity before core flow is proven
+    - confusing activity with real progress
+    - relying on memory instead of explicit records
+    - delaying risk checks until after expansion
+    - using vague language that hides responsibility
+    - overpromising before capacity is validated
+    - introducing changes without impact review
+    - treating stakeholder silence as agreement
+    - skipping review cadence during pressure
+    - neglecting communication clarity at handoff points
+    expert_pitfall_c:
+    - optimizing details while core issues remain open
+    - making irreversible calls without enough signal
+    - pushing execution while context is still ambiguous
+    - underestimating dependency friction
+    - letting local fixes break system coherence
+    - assuming alignment without confirming it
+    - deferring unresolved blockers too long
+    - accepting drift because it feels manageable
+    - replacing structure with ad hoc decisions
+    - treating feedback as optional
+    expert_check_a:
+    - the next move is obvious to all owners
+    - scope stays aligned with the stated outcome
+    - risks are visible before they become urgent
+    - execution rhythm remains calm and predictable
+    - decisions are easy to explain and defend
+    - handoffs happen without confusion
+    - stakeholders can repeat the same priorities
+    - quality signals remain stable during delivery
+    - constraints are acknowledged in every update
+    - the plan can absorb minor surprises cleanly
+    expert_check_b:
+    - progress is measurable without overreporting
+    - tradeoffs are named before commitments are made
+    - changes are documented with clear reasons
+    - team attention stays on high leverage work
+    - dependency risk is reviewed continuously
+    - communication remains concise and specific
+    - workload remains realistic for current capacity
+    - priorities remain coherent under pressure
+    - feedback leads to visible adjustments
+    - uncertainty decreases after each review
+    expert_check_c:
+    - the plan still makes sense after context shifts
+    - optional work stays outside the active scope
+    - unresolved issues are surfaced early
+    - delivery quality does not degrade during speed changes
+    - owners can explain both intent and method
+    - the team can continue without waiting for rescue
+    - confidence is based on evidence, not optimism
+    - outcomes improve while noise decreases
+    - momentum continues without sacrificing clarity
+    - risk reduction is visible in daily execution
+    expert_tool_a:
+    - concise decision log
+    - risk review board
+    - scoped pilot checklist
+    - stakeholder alignment brief
+    - dependency map
+    - change review note
+    - quality signal tracker
+    - outcome focused status note
+    - priority map
+    - execution checkpoint brief
+    expert_tool_b:
+    - assumption review sheet
+    - handoff checklist
+    - escalation rubric
+    - clarity checklist
+    - workload pacing board
+    - feedback summary log
+    - scope guardrail note
+    - context snapshot
+    - risk watch list
+    - coherence review checklist
+    case:
+    - topic_domain: product
+      topic_term: release readiness
+      goal_inf: align release work without quality drift
+      scenario_hint: the team is carrying open feedback while launch pressure rises
+      constraint_hint: approval windows are narrow and review capacity is limited
+      desired_outcome: launch with a stable user experience and fewer surprises
+      risk_hint: unresolved edge cases can trigger emergency rework
+      skill_level: intermediate
+      timebox: this week
+      budget: tight budget
+      device_hint: laptop workflow
+      audience_hint: cross functional team
+    - topic_domain: operations
+      topic_term: support queue balancing
+      goal_inf: reduce backlog while protecting response quality
+      scenario_hint: intake volume fluctuates and escalation requests keep appearing
+      constraint_hint: staffing is fixed and context switching is high
+      desired_outcome: faster resolution with consistent communication quality
+      risk_hint: rushed triage can misclassify urgent requests
+      skill_level: intermediate
+      timebox: this sprint
+      budget: constrained budget
+      device_hint: shared dashboard
+      audience_hint: support leads
+    - topic_domain: research
+      topic_term: synthesis workflow
+      goal_inf: turn scattered findings into a coherent recommendation
+      scenario_hint: multiple notes exist but conclusions are not aligned
+      constraint_hint: review time is short and stakeholders need clarity
+      desired_outcome: produce a clear direction that can be acted on quickly
+      risk_hint: selective interpretation may bias the final recommendation
+      skill_level: advanced
+      timebox: before the next review
+      budget: moderate budget
+      device_hint: document workspace
+      audience_hint: decision makers
+    - topic_domain: education
+      topic_term: curriculum redesign
+      goal_inf: refresh learning flow without overwhelming instructors
+      scenario_hint: feedback indicates confusion around sequence and pacing
+      constraint_hint: delivery time is fixed and instructor bandwidth is limited
+      desired_outcome: smoother learning progression with clearer outcomes
+      risk_hint: too many simultaneous changes can increase learner confusion
+      skill_level: intermediate
+      timebox: over this month
+      budget: limited budget
+      device_hint: blended teaching tools
+      audience_hint: instructional team
+    - topic_domain: community
+      topic_term: program rollout
+      goal_inf: launch the program with consistent facilitation quality
+      scenario_hint: facilitators vary in confidence and local context differs
+      constraint_hint: training time is short and materials must stay lightweight
+      desired_outcome: predictable participant experience across locations
+      risk_hint: inconsistent facilitation can erode trust quickly
+      skill_level: intermediate
+      timebox: before launch week
+      budget: modest budget
+      device_hint: mobile and laptop mix
+      audience_hint: community coordinators
+    - topic_domain: security
+      topic_term: review cycle
+      goal_inf: improve risk visibility without slowing delivery
+      scenario_hint: teams are shipping quickly while controls are uneven
+      constraint_hint: audit support is limited and dependencies are changing
+      desired_outcome: clear risk posture with practical mitigation ownership
+      risk_hint: late findings can block release commitments
+      skill_level: advanced
+      timebox: this quarter
+      budget: fixed budget
+      device_hint: ticketing platform
+      audience_hint: engineering leads
+    - topic_domain: finance
+      topic_term: budget recovery plan
+      goal_inf: restore margin while preserving service reliability
+      scenario_hint: costs rose unexpectedly and commitments are already public
+      constraint_hint: reductions must avoid customer visible degradation
+      desired_outcome: reduce spend with minimal operational disruption
+      risk_hint: broad cuts can create hidden quality failures
+      skill_level: advanced
+      timebox: over the next review cycle
+      budget: strict budget
+      device_hint: planning sheet
+      audience_hint: finance partners
+    - topic_domain: people
+      topic_term: mentoring framework
+      goal_inf: build consistent coaching without overloading managers
+      scenario_hint: mentors use different styles and outcomes vary widely
+      constraint_hint: manager time is fragmented and follow through is inconsistent
+      desired_outcome: repeatable growth conversations with clear accountability
+      risk_hint: vague guidance can reduce trust in the process
+      skill_level: intermediate
+      timebox: across this month
+      budget: lean budget
+      device_hint: meeting notes tool
+      audience_hint: people managers
+    - topic_domain: quality
+      topic_term: defect prevention workflow
+      goal_inf: lower recurring defects while maintaining delivery pace
+      scenario_hint: similar issues keep returning across releases
+      constraint_hint: root cause analysis time is limited
+      desired_outcome: fewer repeats and faster confidence in changes
+      risk_hint: superficial fixes can mask systemic problems
+      skill_level: advanced
+      timebox: this week
+      budget: constrained budget
+      device_hint: issue tracker
+      audience_hint: product and engineering
+    - topic_domain: partnerships
+      topic_term: onboarding sequence
+      goal_inf: onboard partners with fewer handoff failures
+      scenario_hint: partner readiness varies and documentation is inconsistent
+      constraint_hint: enablement team capacity is stretched
+      desired_outcome: predictable activation flow with clear expectations
+      risk_hint: missed prerequisites can delay downstream milestones
+      skill_level: intermediate
+      timebox: before the next onboarding window
+      budget: moderate budget
+      device_hint: shared workspace
+      audience_hint: partner operations
+    - topic_domain: data
+      topic_term: quality remediation
+      goal_inf: restore trust in core reporting outputs
+      scenario_hint: stakeholders doubt numbers due to recurring mismatches
+      constraint_hint: source systems are fragmented and ownership is split
+      desired_outcome: stable definitions and reliable downstream reporting
+      risk_hint: silent schema drift can reintroduce errors
+      skill_level: advanced
+      timebox: this sprint
+      budget: fixed budget
+      device_hint: analytics workspace
+      audience_hint: analytics and operations
+    - topic_domain: communication
+      topic_term: stakeholder update cadence
+      goal_inf: improve clarity while reducing update fatigue
+      scenario_hint: updates are frequent but still create confusion
+      constraint_hint: messages need to be concise and consistent
+      desired_outcome: shared understanding with fewer follow up escalations
+      risk_hint: mixed narratives can trigger unnecessary rework
+      skill_level: intermediate
+      timebox: before the next leadership sync
+      budget: lean budget
+      device_hint: communication channel mix
+      audience_hint: leadership group
+    - topic_domain: service
+      topic_term: escalation handling
+      goal_inf: resolve critical requests without derailing normal delivery
+      scenario_hint: urgent escalations repeatedly interrupt planned work
+      constraint_hint: the same specialists handle routine and urgent tasks
+      desired_outcome: faster critical resolution with less collateral churn
+      risk_hint: repeated context switching can increase error rates
+      skill_level: advanced
+      timebox: this week
+      budget: constrained budget
+      device_hint: incident workspace
+      audience_hint: operations and support
+    - topic_domain: content
+      topic_term: editorial workflow
+      goal_inf: improve consistency across contributors
+      scenario_hint: output quality varies by contributor and review timing
+      constraint_hint: publication cadence is fixed
+      desired_outcome: predictable voice and cleaner handoff between stages
+      risk_hint: inconsistent review criteria can block throughput
+      skill_level: intermediate
+      timebox: over this month
+      budget: modest budget
+      device_hint: content management system
+      audience_hint: editorial team
+    - topic_domain: reliability
+      topic_term: incident follow through
+      goal_inf: turn incident lessons into durable prevention actions
+      scenario_hint: post incident actions are captured but rarely completed
+      constraint_hint: ownership diffuses after urgency declines
+      desired_outcome: visible closure on high value prevention work
+      risk_hint: repeated incidents can erode internal confidence
+      skill_level: advanced
+      timebox: before the next operations review
+      budget: fixed budget
+      device_hint: incident tracker
+      audience_hint: reliability team
+    - topic_domain: planning
+      topic_term: roadmap synchronization
+      goal_inf: align cross team priorities without overcommitment
+      scenario_hint: teams plan independently and dependencies surface late
+      constraint_hint: planning windows are short and assumptions diverge
+      desired_outcome: coherent roadmap with realistic sequencing
+      risk_hint: hidden dependencies can break delivery promises
+      skill_level: advanced
+      timebox: this quarter
+      budget: constrained budget
+      device_hint: roadmap board
+      audience_hint: cross team leads
+    - topic_domain: nonprofit
+      topic_term: grant proposal workflow
+      goal_inf: improve proposal quality under tight deadlines
+      scenario_hint: evidence gathering and narrative drafting are poorly linked
+      constraint_hint: contributor availability is unpredictable
+      desired_outcome: stronger proposals with fewer last minute rewrites
+      risk_hint: weak alignment can reduce funding success
+      skill_level: intermediate
+      timebox: before submission window
+      budget: lean budget
+      device_hint: collaborative document tool
+      audience_hint: program and grants team
+    - topic_domain: customer
+      topic_term: retention outreach planning
+      goal_inf: improve retention messaging without overwhelming customers
+      scenario_hint: outreach is active but response quality is inconsistent
+      constraint_hint: personalization capacity is limited
+      desired_outcome: clearer outreach that feels relevant and timely
+      risk_hint: generic messaging can reduce trust and engagement
+      skill_level: intermediate
+      timebox: over this cycle
+      budget: moderate budget
+      device_hint: outreach platform
+      audience_hint: customer success team
+    - topic_domain: product
+      topic_term: discovery rhythm
+      goal_inf: improve decision quality before committing to build
+      scenario_hint: ideas are plentiful but evidence is uneven
+      constraint_hint: discovery time competes with delivery pressure
+      desired_outcome: stronger evidence and cleaner prioritization calls
+      risk_hint: premature commitment can lock in weak assumptions
+      skill_level: advanced
+      timebox: this sprint
+      budget: fixed budget
+      device_hint: research notes stack
+      audience_hint: product team
+    - topic_domain: operations
+      topic_term: handoff reliability
+      goal_inf: reduce handoff losses across shifts
+      scenario_hint: key context often disappears between owners
+      constraint_hint: shift overlap is short and notes are inconsistent
+      desired_outcome: predictable handoffs with fewer reopen loops
+      risk_hint: missing context can trigger repeat mistakes
+      skill_level: intermediate
+      timebox: during this week
+      budget: constrained budget
+      device_hint: shared handoff log
+      audience_hint: operations staff
+    - topic_domain: hiring
+      topic_term: rubric refinement
+      goal_inf: improve candidate evaluation consistency
+      scenario_hint: interview feedback is uneven and hard to compare
+      constraint_hint: interviewers have different levels of calibration
+      desired_outcome: fairer and clearer hiring decisions
+      risk_hint: unclear criteria can amplify bias
+      skill_level: advanced
+      timebox: before next hiring round
+      budget: lean budget
+      device_hint: interview kit
+      audience_hint: hiring panel
+    - topic_domain: program
+      topic_term: event planning workflow
+      goal_inf: coordinate delivery without last minute confusion
+      scenario_hint: many contributors depend on shared timing assumptions
+      constraint_hint: schedule flexibility is minimal
+      desired_outcome: smoother event delivery and clearer ownership
+      risk_hint: untracked dependencies can create visible failures
+      skill_level: intermediate
+      timebox: before event week
+      budget: strict budget
+      device_hint: planning board
+      audience_hint: event team
+    - topic_domain: enablement
+      topic_term: knowledge base refresh
+      goal_inf: improve findability and reduce repeated questions
+      scenario_hint: articles exist but users struggle to locate reliable guidance
+      constraint_hint: writing capacity is limited and support load is high
+      desired_outcome: clearer content paths and lower repeat requests
+      risk_hint: stale guidance can spread incorrect practices
+      skill_level: intermediate
+      timebox: this month
+      budget: modest budget
+      device_hint: documentation portal
+      audience_hint: internal users
+    - topic_domain: governance
+      topic_term: policy rollout
+      goal_inf: introduce policy changes with consistent adoption
+      scenario_hint: teams interpret policy language differently
+      constraint_hint: training time is limited
+      desired_outcome: shared interpretation and practical compliance behavior
+      risk_hint: inconsistent adoption can create avoidable risk exposure
+      skill_level: advanced
+      timebox: over this quarter
+      budget: fixed budget
+      device_hint: policy workspace
+      audience_hint: policy owners and team leads
+    - topic_domain: strategy
+      topic_term: prioritization reset
+      goal_inf: realign focus with current strategic constraints
+      scenario_hint: legacy priorities no longer match current context
+      constraint_hint: stakeholders still expect prior commitments
+      desired_outcome: realistic priority set with credible rationale
+      risk_hint: unclear reset logic can trigger trust loss
+      skill_level: advanced
+      timebox: before next planning cycle
+      budget: constrained budget
+      device_hint: strategy brief
+      audience_hint: leadership and delivery leads
+    - topic_domain: service
+      topic_term: onboarding response quality
+      goal_inf: improve new user support consistency
+      scenario_hint: new users receive mixed guidance from different channels
+      constraint_hint: response ownership is distributed
+      desired_outcome: consistent onboarding support and clearer first outcomes
+      risk_hint: mixed guidance can slow activation and increase drop off
+      skill_level: intermediate
+      timebox: this week
+      budget: lean budget
+      device_hint: support channels
+      audience_hint: onboarding team
+    - topic_domain: analytics
+      topic_term: insight communication
+      goal_inf: present findings clearly for decision use
+      scenario_hint: analysis is solid but decisions stall on interpretation
+      constraint_hint: stakeholders have limited attention during reviews
+      desired_outcome: concise insight framing that enables action
+      risk_hint: overloaded narratives can hide the main signal
+      skill_level: advanced
+      timebox: before review session
+      budget: fixed budget
+      device_hint: reporting deck
+      audience_hint: business stakeholders
+    - topic_domain: platform
+      topic_term: dependency coordination
+      goal_inf: reduce delays caused by cross team dependency drift
+      scenario_hint: platform changes affect multiple downstream plans
+      constraint_hint: coordination windows are narrow
+      desired_outcome: clearer dependency agreements and fewer blockers
+      risk_hint: hidden assumptions can break delivery timing
+      skill_level: advanced
+      timebox: this sprint
+      budget: constrained budget
+      device_hint: dependency board
+      audience_hint: platform and product leads
+    - topic_domain: training
+      topic_term: facilitator preparation
+      goal_inf: improve session quality across facilitators
+      scenario_hint: facilitator confidence varies with topic complexity
+      constraint_hint: preparation time is limited
+      desired_outcome: consistent session quality and clearer participant outcomes
+      risk_hint: uneven preparation can create learner confusion
+      skill_level: intermediate
+      timebox: before next training block
+      budget: modest budget
+      device_hint: facilitation guide
+      audience_hint: training facilitators
+    - topic_domain: legal
+      topic_term: contract review workflow
+      goal_inf: speed review while preserving risk coverage
+      scenario_hint: incoming agreements are diverse and review context is fragmented
+      constraint_hint: legal bandwidth is constrained
+      desired_outcome: faster turnaround with controlled risk posture
+      risk_hint: skipped review details can create long term exposure
+      skill_level: advanced
+      timebox: over this cycle
+      budget: fixed budget
+      device_hint: contract tracker
+      audience_hint: legal and procurement
+    - topic_domain: operations
+      topic_term: capacity planning
+      goal_inf: balance workload without burning out key owners
+      scenario_hint: demand rises unevenly across teams
+      constraint_hint: hiring is paused and commitments continue
+      desired_outcome: stable throughput with realistic workload pacing
+      risk_hint: hidden overload can degrade quality and morale
+      skill_level: advanced
+      timebox: this month
+      budget: tight budget
+      device_hint: capacity board
+      audience_hint: team managers
+    q_template:
+    - user_message: '{q_opening} {topic_term}. {q_context_wrap} {scenario_hint}. {constraint_hint}.
+        {q_followup}?'
+    - user_message: '{q_opening} {topic_term} for {audience_hint}. {scenario_hint}.
+        {q_followup}?'
+    - user_message: '{q_opening} {topic_term} with {constraint_hint}. {q_context_wrap}
+        {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. I need to reach {desired_outcome} while
+        handling {risk_hint}. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. In {scenario_hint}, how should I balance
+        {constraint_hint} and {desired_outcome}?'
+    - user_message: '{q_opening} {topic_term}. {constraint_hint}. I am at {skill_level}
+        level and need this to hold. {q_followup}?'
+    - user_message: '{q_opening} {topic_term} and keep it workable for {audience_hint}.
+        {scenario_hint}. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. I have {timebox} and I need {desired_outcome}.
+        {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. {q_context_wrap} I am worried about
+        {risk_hint}. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. With {device_hint} and {constraint_hint},
+        what direction is practical?'
+    - user_message: '{q_opening} {topic_term}. We need {desired_outcome}, but {risk_hint}
+        is getting louder. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. {scenario_hint}. I want a plan that
+        fits {timebox}. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. How do I keep this stable for {audience_hint}
+        under {constraint_hint}?'
+    - user_message: '{q_opening} {topic_term}. I can only commit {timebox}, and I
+        need a decision I can defend. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. {q_context_wrap} The current risk is
+        {risk_hint}. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. We are in {scenario_hint} and I need
+        clarity that fits {constraint_hint}.'
+    - user_message: '{q_opening} {topic_term}. I want an approach matched to {skill_level}
+        experience. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. Keep it practical for {device_hint}
+        usage and {audience_hint}. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. I am trying to avoid {risk_hint} while
+        reaching {desired_outcome}. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. {scenario_hint}. What is the cleanest
+        move within {timebox}?'
+    - user_message: '{q_opening} {topic_term}. {constraint_hint}. We need this to
+        remain coherent for {audience_hint}.'
+    - user_message: '{q_opening} {topic_term}. I need a calm plan that survives {scenario_hint}.
+        {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. The goal is {desired_outcome}, but
+        capacity is tight. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. What sequence fits {timebox} without
+        triggering {risk_hint}?'
+    - user_message: '{q_opening} {topic_term}. I need to choose quickly, but {constraint_hint}.
+        {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. Please keep this grounded in {scenario_hint}
+        and {desired_outcome}.'
+    - user_message: '{q_opening} {topic_term}. I need this to be understandable to
+        {audience_hint}. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. I can work with {device_hint} only
+        and need realistic execution.'
+    - user_message: '{q_opening} {topic_term}. The risk I want to reduce is {risk_hint}.
+        {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. I need a recommendation shaped by {constraint_hint}
+        and {timebox}.'
+    - user_message: '{q_opening} {topic_term}. In my context, {scenario_hint}. What
+        should I lock first?'
+    - user_message: '{q_opening} {topic_term}. We need {desired_outcome} without losing
+        consistency. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. I want a practical call for {skill_level}
+        level execution.'
+    - user_message: '{q_opening} {topic_term}. Keep this aligned with {audience_hint}
+        needs and {timebox}.'
+    - user_message: '{q_opening} {topic_term}. {q_context_wrap} Which path avoids
+        {risk_hint} and confusion?'
+    - user_message: '{q_opening} {topic_term}. I need a response that balances {constraint_hint}
+        and delivery quality.'
+    - user_message: '{q_opening} {topic_term}. What move gives clear progress in {timebox}
+        and keeps risk low?'
+    - user_message: '{q_opening} {topic_term}. We are under {constraint_hint} and
+        I need a coherent sequence.'
+    - user_message: '{q_opening} {topic_term}. I want this to fit {scenario_hint}
+        and still reach {desired_outcome}.'
+    - user_message: '{q_opening} {topic_term}. Can you shape a stable approach for
+        {audience_hint} given {risk_hint}?'
+    - user_message: '{q_opening} {topic_term}. I need a decision path that works on
+        {device_hint}. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. Keep the recommendation grounded in
+        {constraint_hint} and {scenario_hint}.'
+    - user_message: '{q_opening} {topic_term}. I want a practical approach that respects
+        {timebox} and current capacity.'
+    - user_message: '{q_opening} {topic_term}. I need clear tradeoffs around {desired_outcome}
+        and {risk_hint}.'
+    a_skeleton:
+    - assistant_response: '{a_opening} For {topic_term}, with {constraint_hint} and
+        {timebox}, pursue {desired_outcome} while reducing {risk_hint}. In {scenario_hint},
+        match execution to {skill_level} and ground decisions in {expert_concept_a}
+        together with {expert_concept_b}. Because {device_hint} and {audience_hint}
+        shape real delivery, pair {expert_concept_c} with {expert_tool_a} so progress
+        stays practical.
+
+
+        - For {topic_term}, begin by {expert_move_a} so {constraint_hint} does not
+        derail momentum.
+
+        - In {scenario_hint}, use {expert_move_b} to turn {desired_outcome} into visible
+        progress.
+
+        - Keep {topic_term} steady by {expert_move_c} and monitor {expert_check_a}.
+
+        - Protect quality by {expert_move_d}, especially when {risk_hint} starts to
+        grow.
+
+        - Strengthen confidence by {expert_move_e} and verify {expert_check_b}.
+
+        - Avoid {expert_pitfall_a} by anchoring each pass to {expert_concept_a}.
+
+        - Avoid {expert_pitfall_b} by applying {expert_tool_b} before scope expands.
+
+        - Avoid {expert_pitfall_c} and confirm {expert_check_c} before broader rollout.
+
+
+        Next action: Reserve {timebox} for {expert_move_a}, then review {expert_check_a}.'
+    - assistant_response: '{a_opening} Your work on {topic_term} can stay coherent
+        when {constraint_hint} and {risk_hint} are handled as one decision frame across
+        {timebox}. In {scenario_hint}, keep the pace matched to {skill_level} and
+        connect {expert_concept_a} with {expert_concept_c} so tradeoffs remain explicit.
+        Since {audience_hint} relies on clarity and {device_hint} shapes execution
+        friction, use {expert_tool_a} to keep alignment grounded.
+
+
+        - Keep {topic_term} focused by {expert_move_a} before adding optional scope.
+
+        - Translate {desired_outcome} into action through {expert_move_b}.
+
+        - Use {expert_move_c} to keep direction stable and check {expert_check_a}.
+
+        - Apply {expert_move_d} when {risk_hint} threatens consistency.
+
+        - Reinforce progress through {expert_move_e} and track {expert_check_b}.
+
+        - Counter {expert_pitfall_a} with explicit emphasis on {expert_concept_b}.
+
+        - Counter {expert_pitfall_b} with a lightweight pass in {expert_tool_b}.
+
+        - Counter {expert_pitfall_c} and validate with {expert_check_c}.
+
+
+        Next action: Use {timebox} to run {expert_move_b}, then confirm {expert_check_b}.'
+    - assistant_response: '{a_opening} For {topic_term}, the key is to keep {desired_outcome}
+        tied directly to {constraint_hint} while you guard against {risk_hint} during
+        {timebox}. In {scenario_hint}, shape effort around {skill_level} and combine
+        {expert_concept_b} with {expert_concept_c} so choices stay disciplined. Because
+        {audience_hint} needs predictable delivery through {device_hint}, reinforce
+        decisions with {expert_tool_a} and clear rationale.
+
+
+        - Start {topic_term} with {expert_move_a} to create a stable baseline.
+
+        - Use {expert_move_b} so the team can see progress toward {desired_outcome}.
+
+        - Anchor consistency through {expert_move_c} and monitor {expert_check_a}.
+
+        - Apply {expert_move_d} when signals point toward {risk_hint}.
+
+        - Keep momentum by {expert_move_e} and review {expert_check_b}.
+
+        - Prevent {expert_pitfall_a} by revisiting {expert_concept_a} during review.
+
+        - Prevent {expert_pitfall_b} by logging decisions in {expert_tool_b}.
+
+        - Prevent {expert_pitfall_c} and verify readiness with {expert_check_c}.
+
+
+        Next action: Dedicate {timebox} to {expert_move_c}, then validate {expert_check_c}.'
+    - assistant_response: '{a_opening} You will get better outcomes on {topic_term}
+        when {constraint_hint} and {desired_outcome} are evaluated together under
+        the same {timebox}. In {scenario_hint}, keep the approach aligned with {skill_level}
+        and rely on {expert_concept_a} plus {expert_concept_b} to avoid reactive choices.
+        Given {device_hint} constraints and {audience_hint} expectations, use {expert_tool_a}
+        to keep decisions transparent and practical.
+
+
+        - Move {topic_term} forward by {expert_move_a} before broadening scope.
+
+        - Convert intent into action by {expert_move_b} in the current context.
+
+        - Hold consistency through {expert_move_c} and check {expert_check_a}.
+
+        - Reduce instability via {expert_move_d} when {risk_hint} appears.
+
+        - Maintain cadence with {expert_move_e} and inspect {expert_check_b}.
+
+        - Minimize {expert_pitfall_a} with reminders tied to {expert_concept_c}.
+
+        - Minimize {expert_pitfall_b} by using {expert_tool_b} as a guardrail.
+
+        - Minimize {expert_pitfall_c} and verify with {expert_check_c}.
+
+
+        Next action: Block {timebox} for {expert_move_d}, then review {expert_check_a}.'
+    - assistant_response: '{a_opening} A dependable plan for {topic_term} comes from
+        pairing {constraint_hint} with {risk_hint} while keeping attention on {desired_outcome}
+        over {timebox}. In {scenario_hint}, align depth with {skill_level} and center
+        decisions on {expert_concept_b} with {expert_concept_c}. Because {audience_hint}
+        relies on clear expectations and {device_hint} limits throughput, apply {expert_tool_a}
+        to preserve coherence.
+
+
+        - Ground {topic_term} by {expert_move_a} so priorities stay explicit.
+
+        - Keep motion practical by {expert_move_b} toward {desired_outcome}.
+
+        - Stabilize execution through {expert_move_c} and verify {expert_check_a}.
+
+        - Limit exposure to {risk_hint} by using {expert_move_d} promptly.
+
+        - Improve resilience with {expert_move_e} and confirm {expert_check_b}.
+
+        - Guard against {expert_pitfall_a} by rechecking {expert_concept_a}.
+
+        - Guard against {expert_pitfall_b} through disciplined use of {expert_tool_b}.
+
+        - Guard against {expert_pitfall_c} and close with {expert_check_c}.
+
+
+        Next action: Use {timebox} to execute {expert_move_e}, then evaluate {expert_check_b}.'
+    - assistant_response: '{a_opening} For {topic_term}, practical reasoning means
+        linking {desired_outcome} to {constraint_hint} and handling {risk_hint} before
+        expansion within {timebox}. In {scenario_hint}, keep strategy proportional
+        to {skill_level} and combine {expert_concept_a} with {expert_concept_c} for
+        steady choices. Since {audience_hint} and {device_hint} both influence clarity,
+        reinforce decisions through {expert_tool_a}.
+
+
+        - Advance {topic_term} by {expert_move_a} to establish a controlled starting
+        point.
+
+        - Use {expert_move_b} to connect effort directly with {desired_outcome}.
+
+        - Maintain signal quality by {expert_move_c} and track {expert_check_a}.
+
+        - Address early risk through {expert_move_d} when {risk_hint} appears.
+
+        - Keep adaptation disciplined via {expert_move_e} and inspect {expert_check_b}.
+
+        - Reduce {expert_pitfall_a} by grounding choices in {expert_concept_b}.
+
+        - Reduce {expert_pitfall_b} by documenting tradeoffs with {expert_tool_b}.
+
+        - Reduce {expert_pitfall_c} and confirm with {expert_check_c}.
+
+
+        Next action: Spend {timebox} on {expert_move_a}, then confirm {expert_check_c}.'
+    - assistant_response: '{a_opening} The cleanest route for {topic_term} is to align
+        {constraint_hint} with {desired_outcome} while actively reducing {risk_hint}
+        across {timebox}. In {scenario_hint}, keep execution at a {skill_level} pace
+        and connect {expert_concept_b} with {expert_concept_a} so decisions remain
+        grounded. With {device_hint} realities and {audience_hint} expectations, rely
+        on {expert_tool_a} to preserve context fidelity.
+
+
+        - Start with {expert_move_a} so {topic_term} has a clear direction.
+
+        - Use {expert_move_b} to make {desired_outcome} concrete.
+
+        - Keep continuity through {expert_move_c} and watch {expert_check_a}.
+
+        - Apply {expert_move_d} to contain {risk_hint} early.
+
+        - Strengthen execution with {expert_move_e} and validate {expert_check_b}.
+
+        - Avoid {expert_pitfall_a} by reinforcing {expert_concept_c} in reviews.
+
+        - Avoid {expert_pitfall_b} by checking assumptions with {expert_tool_b}.
+
+        - Avoid {expert_pitfall_c} and close the loop through {expert_check_c}.
+
+
+        Next action: Commit {timebox} to {expert_move_b}, then review {expert_check_a}.'
+    - assistant_response: '{a_opening} You can keep {topic_term} stable when {constraint_hint}
+        is treated as a design boundary and {desired_outcome} remains visible through
+        {timebox}. In {scenario_hint}, adapt to {skill_level} and anchor choices in
+        {expert_concept_a} plus {expert_concept_b} rather than reactive urgency. Because
+        {audience_hint} needs consistency and {device_hint} introduces friction, apply
+        {expert_tool_a} to keep decisions transparent.
+
+
+        - For {topic_term}, begin with {expert_move_a} to set practical intent.
+
+        - Continue with {expert_move_b} so progress points toward {desired_outcome}.
+
+        - Use {expert_move_c} to preserve coherence and verify {expert_check_a}.
+
+        - Deploy {expert_move_d} whenever {risk_hint} starts to rise.
+
+        - Sustain confidence through {expert_move_e} and check {expert_check_b}.
+
+        - Offset {expert_pitfall_a} by revisiting {expert_concept_c} often.
+
+        - Offset {expert_pitfall_b} with disciplined use of {expert_tool_b}.
+
+        - Offset {expert_pitfall_c} and confirm with {expert_check_c}.
+
+
+        Next action: Allocate {timebox} to {expert_move_d}, then validate {expert_check_b}.'
+    - assistant_response: '{a_opening} Practical progress on {topic_term} requires
+        keeping {constraint_hint}, {desired_outcome}, and {risk_hint} in one frame
+        over {timebox}. In {scenario_hint}, shape decisions to {skill_level} and rely
+        on {expert_concept_b} with {expert_concept_c} so adjustments stay disciplined.
+        Since {audience_hint} depends on clear signals from {device_hint} workflows,
+        strengthen execution with {expert_tool_a}.
+
+
+        - Drive {topic_term} by {expert_move_a} to clarify intent.
+
+        - Follow with {expert_move_b} to make the outcome tangible.
+
+        - Hold quality through {expert_move_c} and track {expert_check_a}.
+
+        - Contain uncertainty by {expert_move_d} when {risk_hint} shifts.
+
+        - Reinforce direction through {expert_move_e} and confirm {expert_check_b}.
+
+        - Mitigate {expert_pitfall_a} by using {expert_concept_a} as a guardrail.
+
+        - Mitigate {expert_pitfall_b} with structured notes in {expert_tool_b}.
+
+        - Mitigate {expert_pitfall_c} and verify readiness via {expert_check_c}.
+
+
+        Next action: Use {timebox} for {expert_move_c}, then assess {expert_check_a}.'
+    - assistant_response: '{a_opening} A strong response for {topic_term} links {desired_outcome}
+        to {constraint_hint} and keeps {risk_hint} visible throughout {timebox}. In
+        {scenario_hint}, fit the depth to {skill_level} and connect {expert_concept_c}
+        with {expert_concept_a} to avoid drift. Given {device_hint} constraints and
+        {audience_hint} expectations, guide execution through {expert_tool_a}.
+
+
+        - Launch {topic_term} work by {expert_move_a} for a clear baseline.
+
+        - Shape visible progress through {expert_move_b} toward {desired_outcome}.
+
+        - Maintain continuity with {expert_move_c} and observe {expert_check_a}.
+
+        - Address pressure points via {expert_move_d} when {risk_hint} appears.
+
+        - Keep adaptation disciplined with {expert_move_e} and review {expert_check_b}.
+
+        - Lower {expert_pitfall_a} by grounding choices in {expert_concept_b}.
+
+        - Lower {expert_pitfall_b} by applying {expert_tool_b} before expansion.
+
+        - Lower {expert_pitfall_c} and finish by checking {expert_check_c}.
+
+
+        Next action: Reserve {timebox} for {expert_move_e}, then verify {expert_check_c}.'
+    - assistant_response: '{a_opening} To keep {topic_term} human and effective, combine
+        {constraint_hint} with {desired_outcome} while proactively reducing {risk_hint}
+        during {timebox}. In {scenario_hint}, tune scope to {skill_level} and maintain
+        discipline through {expert_concept_a} and {expert_concept_c}. Because {audience_hint}
+        and {device_hint} create real world boundaries, use {expert_tool_a} to keep
+        decisions coherent.
+
+
+        - Anchor {topic_term} with {expert_move_a} so priorities remain clear.
+
+        - Convert the goal into motion through {expert_move_b}.
+
+        - Preserve execution quality via {expert_move_c} and track {expert_check_a}.
+
+        - Minimize exposure by {expert_move_d} when {risk_hint} grows.
+
+        - Sustain progress with {expert_move_e} and inspect {expert_check_b}.
+
+        - Prevent {expert_pitfall_a} by reviewing {expert_concept_b} at each checkpoint.
+
+        - Prevent {expert_pitfall_b} using a quick pass in {expert_tool_b}.
+
+        - Prevent {expert_pitfall_c} and close with {expert_check_c}.
+
+
+        Next action: Use {timebox} to complete {expert_move_a}, then test {expert_check_b}.'
+    - assistant_response: '{a_opening} For {topic_term}, stay practical by combining
+        {desired_outcome} and {constraint_hint} in every decision while watching {risk_hint}
+        over {timebox}. In {scenario_hint}, let {skill_level} set pacing and use {expert_concept_b}
+        with {expert_concept_a} to keep quality grounded. Since {device_hint} and
+        {audience_hint} influence execution detail, reinforce alignment through {expert_tool_a}.
+
+
+        - Begin with {expert_move_a} so {topic_term} starts from a clear intention.
+
+        - Advance through {expert_move_b} to make progress observable.
+
+        - Stabilize through {expert_move_c} and verify {expert_check_a}.
+
+        - Contain disruption with {expert_move_d} when {risk_hint} appears.
+
+        - Reinforce control by {expert_move_e} and monitor {expert_check_b}.
+
+        - Resist {expert_pitfall_a} by centering {expert_concept_c} in reviews.
+
+        - Resist {expert_pitfall_b} with disciplined updates in {expert_tool_b}.
+
+        - Resist {expert_pitfall_c} and confirm {expert_check_c} before expansion.
+
+
+        Next action: Carve out {timebox} for {expert_move_b}, then review {expert_check_c}.'
+    - assistant_response: '{a_opening} A reliable path on {topic_term} comes from
+        tying {constraint_hint} to {desired_outcome} and planning around {risk_hint}
+        during {timebox}. In {scenario_hint}, keep execution matched to {skill_level}
+        and build choices on {expert_concept_c} with {expert_concept_b}. Because {audience_hint}
+        needs trust and {device_hint} affects speed, support decisions through {expert_tool_a}.
+
+
+        - Start by {expert_move_a} so {topic_term} has a stable frame.
+
+        - Continue with {expert_move_b} to move toward {desired_outcome}.
+
+        - Keep direction coherent using {expert_move_c} and {expert_check_a}.
+
+        - Reduce fragility through {expert_move_d} when {risk_hint} changes.
+
+        - Maintain momentum by {expert_move_e} and validate {expert_check_b}.
+
+        - Avoid {expert_pitfall_a} by revisiting {expert_concept_a} frequently.
+
+        - Avoid {expert_pitfall_b} with quick checks in {expert_tool_b}.
+
+        - Avoid {expert_pitfall_c} and confirm with {expert_check_c}.
+
+
+        Next action: Reserve {timebox} for {expert_move_d}, then confirm {expert_check_a}.'
+    - assistant_response: '{a_opening} You can make {topic_term} durable when {desired_outcome},
+        {constraint_hint}, and {risk_hint} are handled as connected signals over {timebox}.
+        In {scenario_hint}, keep scope aligned with {skill_level} and lean on {expert_concept_a}
+        plus {expert_concept_b} for disciplined execution. Since {audience_hint} and
+        {device_hint} shape practical decisions, use {expert_tool_a} to maintain shared
+        clarity.
+
+
+        - Move forward on {topic_term} by {expert_move_a} for a clear start.
+
+        - Translate planning into action via {expert_move_b}.
+
+        - Keep consistency through {expert_move_c} and inspect {expert_check_a}.
+
+        - Address emerging {risk_hint} using {expert_move_d}.
+
+        - Sustain confidence with {expert_move_e} and review {expert_check_b}.
+
+        - Counter {expert_pitfall_a} by emphasizing {expert_concept_c}.
+
+        - Counter {expert_pitfall_b} by maintaining notes in {expert_tool_b}.
+
+        - Counter {expert_pitfall_c} and verify with {expert_check_c}.
+
+
+        Next action: Dedicate {timebox} to {expert_move_c}, then verify {expert_check_b}.'
+    - assistant_response: '{a_opening} For {topic_term}, quality improves when {constraint_hint}
+        and {desired_outcome} are balanced while {risk_hint} is addressed early in
+        {timebox}. In {scenario_hint}, calibrate depth to {skill_level} and guide
+        choices through {expert_concept_b} with {expert_concept_c}. Because {device_hint}
+        limits and {audience_hint} expectations are real constraints, apply {expert_tool_a}
+        to keep execution focused.
+
+
+        - Use {expert_move_a} to set immediate direction for {topic_term}.
+
+        - Apply {expert_move_b} to convert intent into practical progress.
+
+        - Execute {expert_move_c} and monitor {expert_check_a} for stability.
+
+        - Bring in {expert_move_d} when {risk_hint} becomes visible.
+
+        - Continue with {expert_move_e} and evaluate {expert_check_b}.
+
+        - Limit {expert_pitfall_a} by keeping {expert_concept_a} explicit.
+
+        - Limit {expert_pitfall_b} using concise updates in {expert_tool_b}.
+
+        - Limit {expert_pitfall_c} and validate with {expert_check_c}.
+
+
+        Next action: Focus {timebox} on {expert_move_e}, then check {expert_check_c}.'
+    - assistant_response: '{a_opening} Stable decisions on {topic_term} require clear
+        links between {desired_outcome}, {constraint_hint}, and {risk_hint} throughout
+        {timebox}. In {scenario_hint}, keep the approach proportionate to {skill_level}
+        and structure it with {expert_concept_a} and {expert_concept_c}. Since {audience_hint}
+        needs dependable communication through {device_hint} workflows, reinforce
+        discipline using {expert_tool_a}.
+
+
+        - Open with {expert_move_a} to protect clarity in {topic_term}.
+
+        - Extend momentum through {expert_move_b} toward {desired_outcome}.
+
+        - Preserve coherence using {expert_move_c} and review {expert_check_a}.
+
+        - Manage volatility with {expert_move_d} when {risk_hint} appears.
+
+        - Keep adaptation calm via {expert_move_e} and validate {expert_check_b}.
+
+        - Minimize {expert_pitfall_a} by grounding each decision in {expert_concept_b}.
+
+        - Minimize {expert_pitfall_b} with lightweight checks through {expert_tool_b}.
+
+        - Minimize {expert_pitfall_c} and confirm {expert_check_c} before scaling.
+
+
+        Next action: Spend {timebox} on {expert_move_b}, then confirm {expert_check_a}.'
+    - assistant_response: '{a_opening} A practical strategy for {topic_term} starts
+        by holding {desired_outcome} and {constraint_hint} together while reducing
+        {risk_hint} over {timebox}. In {scenario_hint}, pace execution for {skill_level}
+        and anchor decisions in {expert_concept_c} with {expert_concept_a}. Because
+        {audience_hint} must trust the process and {device_hint} affects throughput,
+        keep alignment through {expert_tool_a}.
+
+
+        - Start with {expert_move_a} so {topic_term} has explicit direction.
+
+        - Use {expert_move_b} to make progress visible and concrete.
+
+        - Keep flow stable by {expert_move_c} and check {expert_check_a}.
+
+        - Address instability using {expert_move_d} when {risk_hint} rises.
+
+        - Maintain resilience through {expert_move_e} and inspect {expert_check_b}.
+
+        - Avoid {expert_pitfall_a} by regularly reinforcing {expert_concept_b}.
+
+        - Avoid {expert_pitfall_b} via concise records in {expert_tool_b}.
+
+        - Avoid {expert_pitfall_c} and validate with {expert_check_c}.
+
+
+        Next action: Reserve {timebox} for {expert_move_a}, then assess {expert_check_b}.'
+    - assistant_response: '{a_opening} The most reliable way to handle {topic_term}
+        is to integrate {constraint_hint}, {desired_outcome}, and {risk_hint} into
+        one clear frame across {timebox}. In {scenario_hint}, align depth to {skill_level}
+        and keep choices grounded through {expert_concept_a} alongside {expert_concept_b}.
+        Because {device_hint} and {audience_hint} both affect execution quality, reinforce
+        communication with {expert_tool_a}.
+
+
+        - Begin by {expert_move_a} to establish direction in {topic_term}.
+
+        - Continue via {expert_move_b} so progress aligns with {desired_outcome}.
+
+        - Hold stability through {expert_move_c} and monitor {expert_check_a}.
+
+        - Use {expert_move_d} when {risk_hint} threatens consistency.
+
+        - Reinforce execution with {expert_move_e} and review {expert_check_b}.
+
+        - Prevent {expert_pitfall_a} by emphasizing {expert_concept_c} in reviews.
+
+        - Prevent {expert_pitfall_b} by using {expert_tool_b} before widening scope.
+
+        - Prevent {expert_pitfall_c} and verify readiness with {expert_check_c}.
+
+
+        Next action: Block {timebox} for {expert_move_d}, then verify {expert_check_c}.'
+    - assistant_response: '{a_opening} Your path for {topic_term} strengthens when
+        {desired_outcome} is pursued under {constraint_hint} with active attention
+        to {risk_hint} through {timebox}. In {scenario_hint}, keep effort proportional
+        to {skill_level} and rely on {expert_concept_b} with {expert_concept_c} for
+        disciplined adaptation. Since {audience_hint} relies on understandable updates
+        and {device_hint} can slow execution, keep decisions structured with {expert_tool_a}.
+
+
+        - Move {topic_term} forward through {expert_move_a} for clear intent.
+
+        - Link effort to outcomes using {expert_move_b}.
+
+        - Maintain coherence by {expert_move_c} and check {expert_check_a}.
+
+        - Limit disruption with {expert_move_d} when {risk_hint} appears.
+
+        - Keep confidence steady by {expert_move_e} and inspect {expert_check_b}.
+
+        - Reduce {expert_pitfall_a} by grounding decisions in {expert_concept_a}.
+
+        - Reduce {expert_pitfall_b} with structured use of {expert_tool_b}.
+
+        - Reduce {expert_pitfall_c} and confirm through {expert_check_c}.
+
+
+        Next action: Use {timebox} to execute {expert_move_c}, then review {expert_check_a}.'
+    - assistant_response: '{a_opening} Clear progress on {topic_term} comes from balancing
+        {constraint_hint} and {desired_outcome} while treating {risk_hint} as a live
+        signal over {timebox}. In {scenario_hint}, let {skill_level} shape pace and
+        connect {expert_concept_a} with {expert_concept_c} to avoid unnecessary churn.
+        Because {audience_hint} and {device_hint} influence execution detail, keep
+        the process grounded through {expert_tool_a}.
+
+
+        - Anchor the work by {expert_move_a} so {topic_term} stays focused.
+
+        - Advance with {expert_move_b} to keep {desired_outcome} tangible.
+
+        - Keep rhythm through {expert_move_c} and track {expert_check_a}.
+
+        - Contain uncertainty through {expert_move_d} when {risk_hint} shifts.
+
+        - Sustain learning through {expert_move_e} and verify {expert_check_b}.
+
+        - Counter {expert_pitfall_a} by reinforcing {expert_concept_b} regularly.
+
+        - Counter {expert_pitfall_b} by applying {expert_tool_b} before scaling.
+
+        - Counter {expert_pitfall_c} and validate with {expert_check_c}.
+
+
+        Next action: Spend {timebox} on {expert_move_b}, then validate {expert_check_b}.'
+    label_pack:
+    - mode: think
+      tone: professional
+      intent_family: decision_support
+      intent_subtype: option_comparison
+      representation_choice: bullet_list
+      safety_tag: safe
+    - mode: think
+      tone: serious
+      intent_family: planning
+      intent_subtype: tradeoff_analysis
+      representation_choice: bullet_list
+      safety_tag: safe
+    - mode: think
+      tone: professional
+      intent_family: content_generation
+      intent_subtype: task_breakdown
+      representation_choice: bullet_list
+      safety_tag: safe
+    - mode: think
+      tone: serious
+      intent_family: decision_support
+      intent_subtype: project_plan
+      representation_choice: bullet_list
+      safety_tag: safe
+    - mode: think
+      tone: professional
+      intent_family: planning
+      intent_subtype: recommendation
+      representation_choice: bullet_list
+      safety_tag: safe
+    - mode: think
+      tone: serious
+      intent_family: planning
+      intent_subtype: clarification_request
+      representation_choice: bullet_list
+      safety_tag: safe
+  row_template:
+    language: '{language}'
+    mode: '{mode}'
+    tone: '{tone}'
+    emote6: neutral
+    representation_choice: '{representation_choice}'
+    continuity_choice: suppress_continuity
+    intent_family: '{intent_family}'
+    intent_subtype: '{intent_subtype}'
+    safety_tag: '{safety_tag}'
+    user_message: '{user_message}'
+    assistant_response: '{assistant_response}'
+  max_reject_ratio: 0.8
+row_template:
+  language: '{language}'
+  mode: '{mode}'
+  tone: '{tone}'
+  emote6: neutral
+  representation_choice: '{representation_choice}'
+  continuity_choice: suppress_continuity
+  intent_family: '{intent_family}'
+  intent_subtype: '{intent_subtype}'
+  safety_tag: '{safety_tag}'
+  user_message: '{user_message}'
+  assistant_response: '{assistant_response}'

@@ -1,0 +1,67 @@
+{
+  "lane_id": "lane_03_think_mode",
+  "wave": "wave0",
+  "target_base": "dino_qwen4b",
+  "source_type": "local",
+  "sources": [],
+  "count_target": 30,
+  "base_row": {
+    "adult_gate": false,
+    "profanity_allowed": false,
+    "needs_search": false,
+    "needs_history_search": false,
+    "emote6": "neutral",
+    "continuity_choice": "suppress_continuity",
+    "flow_state": "none",
+    "history_scope": "thread_only",
+    "representation_choice": "plain_text",
+    "safety_tag": "safe",
+    "language": "en",
+    "mode": "think",
+    "tone": "professional",
+    "intent_family": "content_generation",
+    "intent_subtype": "thoughtful_advice"
+  },
+  "language_mix": {},
+  "synthetic_policy": {},
+  "required_tools": [],
+  "validators": [],
+  "transform_pipeline": [],
+  "generation_mode": "template_expand",
+  "similarity": {
+    "text_field": "assistant_response",
+    "max_token_overlap_ratio": 0.3,
+    "ignore_tokens": [],
+    "ngram": 1
+  },
+  "template_expand": {
+    "seed": 21,
+    "count_target": 30,
+    "max_attempts": 200,
+    "attempts_per_row": 20,
+    "fail_if_underfilled": true,
+    "expand_dict_slots": [
+      "case"
+    ],
+    "slot_banks": {
+      "case": [
+        {
+          "user_message": "Rewrite this with improved clarity and directness.",
+          "assistant_response": "a01 c01 a02 c02 a03 c03 a04 c04 a05 c05 a06 c06 a07 c07 a08 c08 a09 c09 a10 c10 a11 c11 a12 c12 a13 c13 a14 c14 a15 c15 a16 c16 a17 c17 a18 c18 a19 c19 a20 c20 a21 c21 a22 c22 a23 c23 a24 c24 a25 c25 a26 c26 a27 c27 a28 c28 a29 c29 a30 c30 a31 c31 a32 c32 a33 c33 a34 c34 a35 c35 a36 a37 a38 a39 a40 a41 a42 a43 a44 a45 a46 a47 a48 a49 a50 a51 a52 a53 a54 a55 a56 a57 a58 a59 a60 a61 a62 a63 a64 a65 a66 a67 a68 a69 a70"
+        },
+        {
+          "user_message": "Rewrite this with a different structure and tone.",
+          "assistant_response": "b01 c35 b02 c34 b03 c33 b04 c32 b05 c31 b06 c30 b07 c29 b08 c28 b09 c27 b10 c26 b11 c25 b12 c24 b13 c23 b14 c22 b15 c21 b16 c20 b17 c19 b18 c18 b19 c17 b20 c16 b21 c15 b22 c14 b23 c13 b24 c12 b25 c11 b26 c10 b27 c09 b28 c08 b29 c07 b30 c06 b31 c05 b32 c04 b33 c03 b34 c02 b35 c01 b36 b37 b38 b39 b40 b41 b42 b43 b44 b45 b46 b47 b48 b49 b50 b51 b52 b53 b54 b55 b56 b57 b58 b59 b60 b61 b62 b63 b64 b65 b66 b67 b68 b69 b70"
+        },
+        {
+          "user_message": "Rewrite this concise sentence please.",
+          "assistant_response": "This response has by by adjacent repetition."
+        }
+      ]
+    },
+    "row_template": {
+      "user_message": "{user_message}",
+      "assistant_response": "{assistant_response}"
+    }
+  }
+}

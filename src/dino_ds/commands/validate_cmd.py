@@ -17,6 +17,16 @@ from ..schema_store import (
 from ..utils import load_json, load_yaml
 
 
+_LAST_ERROR_DETAILS: dict[str, Any] | None = None
+
+
+def get_last_error_details() -> dict[str, Any] | None:
+    blob = _LAST_ERROR_DETAILS
+    if not isinstance(blob, dict):
+        return None
+    return dict(blob)
+
+
 def _pick_schema(schema_name: str) -> Path:
     name = schema_name.strip().lower()
     if name in ("lane", "lane_v1", "lane_schema"):
@@ -135,6 +145,8 @@ def _validate_lane_semantics(doc: Any) -> str | None:
 
 
 def run(config: str, schema: str) -> int:
+    global _LAST_ERROR_DETAILS
+    _LAST_ERROR_DETAILS = None
     try:
         config_path = Path(config).expanduser().resolve()
         schema_path = _pick_schema(schema)
@@ -144,10 +156,25 @@ def run(config: str, schema: str) -> int:
         if schema_path == LANE_SCHEMA_V1:
             sem_err = _validate_lane_semantics(doc)
             if sem_err:
+                _LAST_ERROR_DETAILS = {
+                    "kind": "config_invalid",
+                    "stage": "lane_semantics",
+                    "message": str(sem_err),
+                    "config_path": str(config_path),
+                    "schema_name": str(schema),
+                    "schema_path": str(schema_path),
+                }
                 print(f"CONFIG_INVALID: {sem_err}", file=sys.stderr)
                 return ec.CONFIG_INVALID
         return ec.SUCCESS
     except FileNotFoundError as e:
+        _LAST_ERROR_DETAILS = {
+            "kind": "io_error",
+            "stage": "file_read",
+            "message": str(e),
+            "config_path": str(config),
+            "schema_name": str(schema),
+        }
         print(f"IO_ERROR: {e}", file=sys.stderr)
         return ec.IO_ERROR
     except jsonschema.ValidationError as e:
@@ -157,6 +184,16 @@ def run(config: str, schema: str) -> int:
         sch = "/".join([str(p) for p in list(getattr(e, "absolute_schema_path", []))])
         msg = getattr(e, "message", str(e))
         validator = getattr(e, "validator", "")
+        _LAST_ERROR_DETAILS = {
+            "kind": "schema_validation_failed",
+            "stage": "schema",
+            "message": str(msg),
+            "instance_path": loc or "<root>",
+            "schema_path": sch or "<unknown>",
+            "validator": str(validator),
+            "config_path": str(config),
+            "schema_name": str(schema),
+        }
         print(
             "SCHEMA_VALIDATION_FAILED:\n"
             f"  message: {msg}\n"
@@ -167,8 +204,22 @@ def run(config: str, schema: str) -> int:
         )
         return ec.SCHEMA_VALIDATION_FAILED
     except ValueError as e:
+        _LAST_ERROR_DETAILS = {
+            "kind": "config_invalid",
+            "stage": "config",
+            "message": str(e),
+            "config_path": str(config),
+            "schema_name": str(schema),
+        }
         print(f"CONFIG_INVALID: {e}", file=sys.stderr)
         return ec.CONFIG_INVALID
     except Exception as e:
+        _LAST_ERROR_DETAILS = {
+            "kind": "internal_error",
+            "stage": "validator",
+            "message": str(e),
+            "config_path": str(config),
+            "schema_name": str(schema),
+        }
         print(f"INTERNAL_ERROR: {e}", file=sys.stderr)
         return ec.INTERNAL_ERROR

@@ -38,13 +38,16 @@ if [ "${DINO_DS_SKIP_OLLAMA:-}" != "1" ]; then
   # Only preflight for commands that take a lane config
   if [ "${1:-}" = "gate" ] && [ "${2:-}" = "lane" ]; then
     CFG_PATH=""
+    FORCE_TEACHER="0"
     # Parse --config <path>
     for ((i=1; i<=$#; i++)); do
       arg="${!i}"
       if [ "$arg" = "--config" ]; then
         j=$((i+1))
         CFG_PATH="${!j:-}"
-        break
+      fi
+      if [ "$arg" = "--teacher" ]; then
+        FORCE_TEACHER="1"
       fi
     done
 
@@ -77,6 +80,9 @@ PY
       REST="${TEACHER_INFO#*|}"
       TEACHER_MODEL="${REST%%|*}"
       TEACHER_PROVIDER="${REST#*|}"
+      if [ "$FORCE_TEACHER" = "1" ]; then
+        TEACHER_ENABLED="true"
+      fi
 
       if [ "$TEACHER_ENABLED" = "true" ]; then
         if [ "$TEACHER_PROVIDER" != "ollama" ]; then
