@@ -1,4 +1,0 @@
-GATE_SUMMARY v1
-lane_id=lane_05_conversation_mode
-first_row_keys=['sample_id', 'id', 'target_base', 'messages', 'user_message', 'assistant_response', 'adult_gate', 'continuity_choice', 'emote6', 'flow_state', 'history_scope', 'intent_family', 'intent_subtype', 'language', 'mode', 'needs_history_search', 'needs_search', 'profanity_allowed', 'representation_choice', 'safety_tag', 'tone']
-first_row_roles=['system', 'user', 'assistant', 'user', 'assistant']

@@ -90,6 +90,125 @@ print(out_root.resolve())
 PY
 }
 
+sanitize_qc_token() {
+  raw="${1:-}"
+  fallback="${2:-unknown}"
+  raw="${raw//-/_}"
+  raw="$(printf "%s" "$raw" | sed -E 's/[^A-Za-z0-9_]+/_/g; s/_+/_/g; s/^_+//; s/_+$//')"
+  if [ -z "$raw" ]; then
+    raw="$fallback"
+  fi
+  printf "%s\n" "$raw"
+}
+
+resolve_qc_report_dir() {
+  qd="${DINO_DS_QC_REPORT_DIR:-}"
+  if [ -z "$qd" ]; then
+    printf "%s\n" "$ROOT/output QC report"
+    return
+  fi
+  case "$qd" in
+    /*) printf "%s\n" "$qd" ;;
+    *) printf "%s\n" "$PWD/$qd" ;;
+  esac
+}
+
+latest_qc_report_for_lang() {
+  lane_safe="$1"
+  lang="$2"
+  run_uuid="$3"
+  qc_dir="$4"
+  lang_safe="$(sanitize_qc_token "$lang" "unknown")"
+  pattern="QC_${lane_safe}_${lang_safe}_${run_uuid}_*.md"
+  if [ -d "$qc_dir" ]; then
+    report_path="$(find "$qc_dir" -maxdepth 1 -type f -name "$pattern" | sort | tail -n 1)"
+  else
+    report_path=""
+  fi
+  if [ -z "$report_path" ] && [ "$qc_dir" != "$ROOT" ]; then
+    report_path="$(find "$ROOT" -maxdepth 1 -type f -name "$pattern" | sort | tail -n 1)"
+  fi
+  printf "%s\n" "$report_path"
+}
+
+qc_report_status_for_file() {
+  p="$1"
+  if [ -z "$p" ] || [ ! -f "$p" ]; then
+    printf "%s\n" "MISSING"
+    return
+  fi
+  if grep -Eq '^\|[[:space:]]*[^|]+[[:space:]]*\|[[:space:]]*FAIL[[:space:]]*\|' "$p"; then
+    printf "%s\n" "FAIL"
+    return
+  fi
+  if grep -Eq '^\|[[:space:]]*[^|]+[[:space:]]*\|[[:space:]]*WARN[[:space:]]*\|' "$p"; then
+    printf "%s\n" "WARN"
+    return
+  fi
+  printf "%s\n" "PASS"
+}
+
+write_combined_qc_report() {
+  mode="$1"
+  lane_dir="$2"
+  run_uuid="$3"
+  all_dir="$4"
+  lane_id="$(basename "$lane_dir")"
+  lane_safe="$(sanitize_qc_token "$lane_id" "lane")"
+  qc_dir="$(resolve_qc_report_dir)"
+  mkdir -p "$qc_dir"
+  date_ymd="$(date +%F)"
+  report_path="$qc_dir/QC_${lane_safe}_all_${run_uuid}_${date_ymd}.md"
+
+  pass_n=0
+  warn_n=0
+  fail_n=0
+  missing_n=0
+
+  {
+    echo "# QC Report — ${lane_id} — all"
+    echo ""
+    echo "## Sweep Metadata"
+    echo "- lane_id: \`${lane_id}\`"
+    echo "- language slice: \`all\`"
+    echo "- run_id: \`${run_uuid}\`"
+    echo "- sweep_mode: \`${mode}\`"
+    echo "- date: \`${date_ymd}\`"
+    echo "- combined_train_jsonl: \`${all_dir}/train.jsonl\`"
+    echo ""
+    echo "## Language Reports"
+    echo "| Language | Status | Report |"
+    echo "| --- | --- | --- |"
+    for lang in "${langs[@]}"; do
+      rp="$(latest_qc_report_for_lang "$lane_safe" "$lang" "$run_uuid" "$qc_dir")"
+      st="$(qc_report_status_for_file "$rp")"
+      case "$st" in
+        PASS) pass_n=$((pass_n + 1)) ;;
+        WARN) warn_n=$((warn_n + 1)) ;;
+        FAIL) fail_n=$((fail_n + 1)) ;;
+        *) missing_n=$((missing_n + 1)) ;;
+      esac
+      if [ -n "$rp" ]; then
+        rp_cell="\`${rp}\`"
+      else
+        rp_cell="-"
+      fi
+      echo "| \`${lang}\` | ${st} | ${rp_cell} |"
+    done
+    echo ""
+    echo "## Totals"
+    echo "- pass_languages: \`${pass_n}\`"
+    echo "- warn_languages: \`${warn_n}\`"
+    echo "- fail_languages: \`${fail_n}\`"
+    echo "- missing_languages: \`${missing_n}\`"
+    echo ""
+    echo "## Notes"
+    echo "- This report aggregates per-language QC markdown outputs for the same run_id."
+  } > "$report_path"
+
+  printf "%s\n" "$report_path"
+}
+
 train_paths=()
 val_paths=()
 test_paths=()
@@ -139,6 +258,9 @@ if [ "${#test_paths[@]}" -gt 0 ]; then
   shasum -a 256 "$all_dir/test.jsonl" | awk '{print $1}' > "$all_dir/test.jsonl.sha256"
 fi
 
+combined_qc_report="$(write_combined_qc_report "prod" "$LANE_DIR" "$RUN_UUID" "$all_dir")"
+
 echo "PROD sweep complete."
 echo "RUN_UUID=$RUN_UUID"
 echo "Combined train.jsonl: $all_dir/train.jsonl"
+echo "Combined QC report: $combined_qc_report"

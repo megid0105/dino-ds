@@ -10,11 +10,13 @@ import copy
 import re
 import sys
 import subprocess
+import uuid
 
 from .. import exit_codes as ec
 from ..utils import load_yaml, atomic_write_text
 from ..validators.row_validator_v16 import validate_row_v16
 from ..validators.generation_validator import (
+    get_last_validation_diagnostics,
     resolve_rule_profile,
     validate_generated_rows,
 )
@@ -109,6 +111,29 @@ def _ensure_sample_id(rows: list[dict[str, Any]], salt: str) -> None:
             j += 1
             r["sample_id"] = sid
         seen.add(sid)
+
+
+def _synthesize_messages_if_missing(rows: list[dict[str, Any]]) -> None:
+    """Backfill messages from user/assistant when legacy lane templates omit it.
+
+    This keeps strict row validators compatible with existing lane YAML files
+    that only emit user_message/assistant_response.
+    """
+    for rr in rows:
+        if not isinstance(rr, dict):
+            continue
+        msgs = rr.get("messages")
+        if isinstance(msgs, list) and msgs:
+            continue
+        user_msg = rr.get("user_message")
+        asst_msg = rr.get("assistant_response")
+        if not isinstance(user_msg, str) or not isinstance(asst_msg, str):
+            continue
+        rr["messages"] = [
+            {"role": "system", "content": "You are Dino."},
+            {"role": "user", "content": user_msg},
+            {"role": "assistant", "content": asst_msg},
+        ]
 
 
 _WS_RE = re.compile(r"\s+")
@@ -1244,6 +1269,101 @@ def _build_hybrid(lane: dict[str, Any], cfg_path: Path, seed: int | None, limit:
     return rows
 
 
+def _row_runtime_id(rr: dict[str, Any], idx: int) -> str:
+    sid = rr.get("sample_id")
+    if isinstance(sid, str) and sid.strip():
+        return sid.strip()
+    rid = rr.get("row_id")
+    if isinstance(rid, str) and rid.strip():
+        return rid.strip()
+    return f"row#{idx}"
+
+
+def _safe_run_id(run_id: str | None) -> str:
+    raw = str(run_id or "").strip() or str(os.environ.get("DINO_DS_RUN_UUID", "")).strip()
+    if not raw:
+        raw = uuid.uuid4().hex
+    cleaned = re.sub(r"[^A-Za-z0-9_-]+", "", raw)
+    return cleaned or uuid.uuid4().hex
+
+
+def _write_rejected_artifacts(
+    *,
+    rejected_root: Path,
+    lane_id: str,
+    run_id: str | None,
+    rows: list[dict[str, Any]],
+    report: str,
+    diagnostics: dict[str, Any] | None,
+) -> list[Path]:
+    rejected_root.mkdir(parents=True, exist_ok=True)
+    out_paths: list[Path] = []
+    safe_run = _safe_run_id(run_id)
+
+    candidate_path = rejected_root / "built_candidate.jsonl"
+    candidate_text = "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows if isinstance(r, dict))
+    atomic_write_text(candidate_path, candidate_text)
+    out_paths.append(candidate_path)
+
+    row_fatals = diagnostics.get("row_fatals") if isinstance(diagnostics, dict) else None
+    if not isinstance(row_fatals, dict):
+        row_fatals = {}
+
+    rejected_rows: list[dict[str, Any]] = []
+    for idx, rr in enumerate(rows, start=1):
+        if not isinstance(rr, dict):
+            continue
+        rid = _row_runtime_id(rr, idx)
+        issues = row_fatals.get(rid)
+        if not isinstance(issues, list) or not issues:
+            continue
+        row_copy = copy.deepcopy(rr)
+        row_copy["__reject__"] = issues
+        rejected_rows.append(row_copy)
+
+    # Failed-run training view (single file, no duplicate alias):
+    # operators inspect this directly as the failed train payload.
+    rejected_path = rejected_root / f"train_{safe_run}.jsonl"
+    rejected_text = "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rejected_rows)
+    atomic_write_text(rejected_path, rejected_text)
+    out_paths.append(rejected_path)
+
+    details_path = rejected_root / "rejection_details.json"
+    detail_payload = {
+        "lane_id": lane_id,
+        "run_id": safe_run,
+        "rows_total": len([r for r in rows if isinstance(r, dict)]),
+        "rows_rejected": len(rejected_rows),
+        "report": report,
+        "diagnostics": diagnostics if isinstance(diagnostics, dict) else {},
+    }
+    atomic_write_text(details_path, json.dumps(detail_payload, ensure_ascii=False, indent=2))
+    out_paths.append(details_path)
+
+    summary_path = rejected_root / "rejection_report.md"
+    lines = [
+        f"# Validation Rejection Report — {lane_id}",
+        "",
+        f"- run_id: `{safe_run}`",
+        f"- rows_total: `{detail_payload['rows_total']}`",
+        f"- rows_rejected: `{detail_payload['rows_rejected']}`",
+        "",
+        "## Files",
+        f"- `{candidate_path}`",
+        f"- `{rejected_path}`",
+        f"- `{details_path}`",
+        "",
+        "## Validator Summary",
+        "```text",
+        report or "(empty report)",
+        "```",
+    ]
+    atomic_write_text(summary_path, "\n".join(lines) + "\n")
+    out_paths.append(summary_path)
+
+    return out_paths
+
+
 def run_lane(
     config: str,
     out: str,
@@ -1251,6 +1371,8 @@ def run_lane(
     limit: int | None = None,
     rule_profile: str | None = None,
     teacher_force: bool = False,
+    rejected_root: str | None = None,
+    run_id: str | None = None,
 ) -> int:
     try:
         cfg_path = Path(config).expanduser().resolve()
@@ -1305,6 +1427,11 @@ def run_lane(
             rows = _build_hybrid(lane, cfg_path, seed, limit)
         else:
             return ec.CONFIG_INVALID
+
+        # Compatibility bridge: synthesize messages for legacy lane templates
+        # that still output only user_message / assistant_response.
+        _synthesize_messages_if_missing(rows)
+
         if apply_teacher_runtime:
             _apply_teacher_runtime(lane, rows, cfg_path)
 
@@ -1356,6 +1483,24 @@ def run_lane(
             run_id=run_id,
         )
         if not ok_rules:
+            diag = get_last_validation_diagnostics()
+            safe_run = _safe_run_id(run_id)
+            rej_root = (
+                Path(rejected_root).expanduser().resolve()
+                if isinstance(rejected_root, str) and rejected_root.strip()
+                else (out_path.parent / "rejected" / safe_run).resolve()
+            )
+            paths = _write_rejected_artifacts(
+                rejected_root=rej_root,
+                lane_id=lane_id,
+                run_id=safe_run,
+                rows=rows,
+                report=report,
+                diagnostics=diag,
+            )
+            print("[build] validation failed; rejected artifacts written:", file=sys.stderr)
+            for p in paths:
+                print(f"- {p}", file=sys.stderr)
             raise ValueError(report)
 
         text = "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows)

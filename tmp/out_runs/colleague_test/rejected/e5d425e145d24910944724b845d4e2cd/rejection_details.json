@@ -1,0 +1,1035 @@
+{
+  "lane_id": "lane_03_think_mode",
+  "run_id": "e5d425e145d24910944724b845d4e2cd",
+  "rows_total": 100,
+  "rows_rejected": 96,
+  "report": "rule_profile=03 FAIL: violations=97, unique=5\ntop_reasons:\n- near_duplicate_overlap: 86 (gates=duplication:86)\n- mechanism_leakage: 6 (gates=leakage:6)\n- trip_bigram_content: 3 (gates=repetition:3)\n- adjacent_dup_token: 1 (gates=repetition:1)\n- trip_token_content: 1 (gates=repetition:1)\nfatal_gate_breakdown:\n- repetition: trip_bigram_content:3, adjacent_dup_token:1, trip_token_content:1\n- leakage: mechanism_leakage:6\n- duplication: near_duplicate_overlap:86\nexamples:\n- mechanism_leakage: lane_03_think_mode_en_00000002: assistant_response -> 'A practical frame for quality remediation in stakeholders doubt numbers due to recurring mismatches is to treat source systems are fragmented and ownership is split, stable defini…'\n- mechanism_leakage: lane_03_think_mode_en_00000003: assistant_response -> 'In high pressure moments of stakeholders doubt numbers due to recurring mismatches, quality remediation remains coherent when source systems are fragmented and ownership is split…'\n- mechanism_leakage: lane_03_think_mode_en_00000008: assistant_response -> 'quality remediation can stay durable in stakeholders doubt numbers due to recurring mismatches if every tradeoff keeps source systems are fragmented and ownership is split, stable…'\n- mechanism_leakage: lane_03_think_mode_en_00000011: assistant_response -> 'quality remediation holds up in stakeholders doubt numbers due to recurring mismatches when decisions stop oscillating between source systems are fragmented and ownership is split…'\n- adjacent_dup_token: lane_03_think_mode_en_00000042: assistant_response has adjacent duplicate token 'document'\n- trip_bigram_content: lane_03_think_mode_en_00000042: assistant_response has content bigram 'before adding' repeated 3x in 30-token window\n- trip_bigram_content: lane_03_think_mode_en_00000043: assistant_response has content bigram 'before adding' repeated 3x in 30-token window\n- trip_token_content: lane_03_think_mode_en_00000050: assistant_response has content token 'plan' repeated 3x in 12-token window\n- mechanism_leakage: lane_03_think_mode_en_00000062: assistant_response -> 'quality remediation usually drifts in stakeholders doubt numbers due to recurring mismatches when teams optimize for stable definitions and reliable downstream reporting before va…'\n- trip_bigram_content: lane_03_think_mode_en_00000076: assistant_response has content bigram 'before adding' repeated 3x in 30-token window\n- mechanism_leakage: lane_03_think_mode_en_00000094: assistant_response -> 'quality remediation holds up in stakeholders doubt numbers due to recurring mismatches when decisions stop oscillating between source systems are fragmented and ownership is split…'\n- near_duplicate_overlap: lane_03_think_mode_en_00000001 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.475 Ojac=0.439 C3=0.032 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000005 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.513 Ojac=0.428 C3=0.066 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000009 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.476 Ojac=0.437 C3=0.037 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000010 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.498 Ojac=0.497 C3=0.041 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000012 vs lane_03_think_mode_en_00000006 dup_rule=rule2_multisignal Omin=0.434 Ojac=0.399 C3=0.035 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000013 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.443 Ojac=0.406 C3=0.051 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000014 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.469 Ojac=0.428 C3=0.037 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000015 vs lane_03_think_mode_en_00000010 dup_rule=rule2_multisignal Omin=0.476 Ojac=0.416 C3=0.026 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000016 vs lane_03_think_mode_en_00000013 dup_rule=rule2_multisignal Omin=0.537 Ojac=0.417 C3=0.057 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000017 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.488 Ojac=0.440 C3=0.039 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000018 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.491 Ojac=0.404 C3=0.030 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000019 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.480 Ojac=0.405 C3=0.070 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000020 vs lane_03_think_mode_en_00000012 dup_rule=rule2_multisignal Omin=0.457 Ojac=0.417 C3=0.023 signals=2/3 token_mode=word (candidate=0.100)\ndetailed_failures:\n- near_duplicate_overlap: count=86\n  - lane_03_think_mode_en_00000001 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.475 Ojac=0.439 C3=0.032 signals=2/3 token_mode=word (candidate=0.100)\n  - lane_03_think_mode_en_00000005 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.513 Ojac=0.428 C3=0.066 signals=2/3 token_mode=word (candidate=0.100)\n  - lane_03_think_mode_en_00000009 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.476 Ojac=0.437 C3=0.037 signals=2/3 token_mode=word (candidate=0.100)\n  - lane_03_think_mode_en_00000010 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.498 Ojac=0.497 C3=0.041 signals=2/3 token_mode=word (candidate=0.100)\n  - lane_03_think_mode_en_00000012 vs lane_03_think_mode_en_00000006 dup_rule=rule2_multisignal Omin=0.434 Ojac=0.399 C3=0.035 signals=2/3 token_mode=word (candidate=0.100)\n- mechanism_leakage: count=6\n  - lane_03_think_mode_en_00000002: assistant_response -> 'A practical frame for quality remediation in stakeholders doubt numbers due to recurring mismatches is to treat source systems are fragmented and ownership is split, stable defini…'\n  - lane_03_think_mode_en_00000003: assistant_response -> 'In high pressure moments of stakeholders doubt numbers due to recurring mismatches, quality remediation remains coherent when source systems are fragmented and ownership is split…'\n  - lane_03_think_mode_en_00000008: assistant_response -> 'quality remediation can stay durable in stakeholders doubt numbers due to recurring mismatches if every tradeoff keeps source systems are fragmented and ownership is split, stable…'\n  - lane_03_think_mode_en_00000011: assistant_response -> 'quality remediation holds up in stakeholders doubt numbers due to recurring mismatches when decisions stop oscillating between source systems are fragmented and ownership is split…'\n  - lane_03_think_mode_en_00000062: assistant_response -> 'quality remediation usually drifts in stakeholders doubt numbers due to recurring mismatches when teams optimize for stable definitions and reliable downstream reporting before va…'\n- trip_bigram_content: count=3\n  - lane_03_think_mode_en_00000042: assistant_response has content bigram 'before adding' repeated 3x in 30-token window\n  - lane_03_think_mode_en_00000043: assistant_response has content bigram 'before adding' repeated 3x in 30-token window\n  - lane_03_think_mode_en_00000076: assistant_response has content bigram 'before adding' repeated 3x in 30-token window\n- adjacent_dup_token: count=1\n  - lane_03_think_mode_en_00000042: assistant_response has adjacent duplicate token 'document'\n- trip_token_content: count=1\n  - lane_03_think_mode_en_00000050: assistant_response has content token 'plan' repeated 3x in 12-token window\nwarn_gate_breakdown:\n- repetition: trip_token_function_only:26\n- duplication: dup_candidate_unconfirmed:3\nwarnings_non_blocking:\n- trip_token_function_only: 26 (gates=repetition:26)\n  - lane_03_think_mode_en_00000000: assistant_response has function token 'and' repeated 3x in 12-token window\n  - lane_03_think_mode_en_00000002: assistant_response has function token 'and' repeated 3x in 12-token window\n  - lane_03_think_mode_en_00000004: assistant_response has function token 'the' repeated 3x in 12-token window\n- dup_candidate_unconfirmed: 3 (gates=duplication:3)\n  - lane_03_think_mode_en_00000004 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.330 Ojac=0.267 C3=0.062 signals=1/3 token_mode=word (candidate=0.100)\n  - lane_03_think_mode_en_00000006 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.317 Ojac=0.250 C3=0.038 signals=1/3 token_mode=word (candidate=0.100)\n  - lane_03_think_mode_en_00000007 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.452 Ojac=0.379 C3=0.033 signals=1/3 token_mode=word (candidate=0.100)\nwarning_examples:\n- trip_token_function_only: lane_03_think_mode_en_00000000: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000002: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000004: assistant_response has function token 'the' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000005: assistant_response has function token 'the' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000008: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000011: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000015: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000017: assistant_response has function token 'the' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000035: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000036: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000040: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000043: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000045: assistant_response has function token 'the' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000048: assistant_response has function token 'is' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000049: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000055: assistant_response has function token 'is' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000057: assistant_response has function token 'is' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000064: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000065: assistant_response has function token 'is' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000078: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000080: assistant_response has function token 'the' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000086: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000091: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000092: assistant_response has function token 'is' repeated 3x in 12-token window\nqc_reports:\n- /Users/chanpakho/Desktop/Download/project/dino_ds/output QC report/QC_lane_03_think_mode_en_e5d425e145d24910944724b845d4e2cd_2026-02-21.md",
+  "diagnostics": {
+    "ok": false,
+    "report": "rule_profile=03 FAIL: violations=97, unique=5\ntop_reasons:\n- near_duplicate_overlap: 86 (gates=duplication:86)\n- mechanism_leakage: 6 (gates=leakage:6)\n- trip_bigram_content: 3 (gates=repetition:3)\n- adjacent_dup_token: 1 (gates=repetition:1)\n- trip_token_content: 1 (gates=repetition:1)\nfatal_gate_breakdown:\n- repetition: trip_bigram_content:3, adjacent_dup_token:1, trip_token_content:1\n- leakage: mechanism_leakage:6\n- duplication: near_duplicate_overlap:86\nexamples:\n- mechanism_leakage: lane_03_think_mode_en_00000002: assistant_response -> 'A practical frame for quality remediation in stakeholders doubt numbers due to recurring mismatches is to treat source systems are fragmented and ownership is split, stable defini…'\n- mechanism_leakage: lane_03_think_mode_en_00000003: assistant_response -> 'In high pressure moments of stakeholders doubt numbers due to recurring mismatches, quality remediation remains coherent when source systems are fragmented and ownership is split…'\n- mechanism_leakage: lane_03_think_mode_en_00000008: assistant_response -> 'quality remediation can stay durable in stakeholders doubt numbers due to recurring mismatches if every tradeoff keeps source systems are fragmented and ownership is split, stable…'\n- mechanism_leakage: lane_03_think_mode_en_00000011: assistant_response -> 'quality remediation holds up in stakeholders doubt numbers due to recurring mismatches when decisions stop oscillating between source systems are fragmented and ownership is split…'\n- adjacent_dup_token: lane_03_think_mode_en_00000042: assistant_response has adjacent duplicate token 'document'\n- trip_bigram_content: lane_03_think_mode_en_00000042: assistant_response has content bigram 'before adding' repeated 3x in 30-token window\n- trip_bigram_content: lane_03_think_mode_en_00000043: assistant_response has content bigram 'before adding' repeated 3x in 30-token window\n- trip_token_content: lane_03_think_mode_en_00000050: assistant_response has content token 'plan' repeated 3x in 12-token window\n- mechanism_leakage: lane_03_think_mode_en_00000062: assistant_response -> 'quality remediation usually drifts in stakeholders doubt numbers due to recurring mismatches when teams optimize for stable definitions and reliable downstream reporting before va…'\n- trip_bigram_content: lane_03_think_mode_en_00000076: assistant_response has content bigram 'before adding' repeated 3x in 30-token window\n- mechanism_leakage: lane_03_think_mode_en_00000094: assistant_response -> 'quality remediation holds up in stakeholders doubt numbers due to recurring mismatches when decisions stop oscillating between source systems are fragmented and ownership is split…'\n- near_duplicate_overlap: lane_03_think_mode_en_00000001 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.475 Ojac=0.439 C3=0.032 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000005 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.513 Ojac=0.428 C3=0.066 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000009 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.476 Ojac=0.437 C3=0.037 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000010 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.498 Ojac=0.497 C3=0.041 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000012 vs lane_03_think_mode_en_00000006 dup_rule=rule2_multisignal Omin=0.434 Ojac=0.399 C3=0.035 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000013 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.443 Ojac=0.406 C3=0.051 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000014 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.469 Ojac=0.428 C3=0.037 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000015 vs lane_03_think_mode_en_00000010 dup_rule=rule2_multisignal Omin=0.476 Ojac=0.416 C3=0.026 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000016 vs lane_03_think_mode_en_00000013 dup_rule=rule2_multisignal Omin=0.537 Ojac=0.417 C3=0.057 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000017 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.488 Ojac=0.440 C3=0.039 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000018 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.491 Ojac=0.404 C3=0.030 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000019 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.480 Ojac=0.405 C3=0.070 signals=2/3 token_mode=word (candidate=0.100)\n- near_duplicate_overlap: lane_03_think_mode_en_00000020 vs lane_03_think_mode_en_00000012 dup_rule=rule2_multisignal Omin=0.457 Ojac=0.417 C3=0.023 signals=2/3 token_mode=word (candidate=0.100)\ndetailed_failures:\n- near_duplicate_overlap: count=86\n  - lane_03_think_mode_en_00000001 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.475 Ojac=0.439 C3=0.032 signals=2/3 token_mode=word (candidate=0.100)\n  - lane_03_think_mode_en_00000005 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.513 Ojac=0.428 C3=0.066 signals=2/3 token_mode=word (candidate=0.100)\n  - lane_03_think_mode_en_00000009 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.476 Ojac=0.437 C3=0.037 signals=2/3 token_mode=word (candidate=0.100)\n  - lane_03_think_mode_en_00000010 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.498 Ojac=0.497 C3=0.041 signals=2/3 token_mode=word (candidate=0.100)\n  - lane_03_think_mode_en_00000012 vs lane_03_think_mode_en_00000006 dup_rule=rule2_multisignal Omin=0.434 Ojac=0.399 C3=0.035 signals=2/3 token_mode=word (candidate=0.100)\n- mechanism_leakage: count=6\n  - lane_03_think_mode_en_00000002: assistant_response -> 'A practical frame for quality remediation in stakeholders doubt numbers due to recurring mismatches is to treat source systems are fragmented and ownership is split, stable defini…'\n  - lane_03_think_mode_en_00000003: assistant_response -> 'In high pressure moments of stakeholders doubt numbers due to recurring mismatches, quality remediation remains coherent when source systems are fragmented and ownership is split…'\n  - lane_03_think_mode_en_00000008: assistant_response -> 'quality remediation can stay durable in stakeholders doubt numbers due to recurring mismatches if every tradeoff keeps source systems are fragmented and ownership is split, stable…'\n  - lane_03_think_mode_en_00000011: assistant_response -> 'quality remediation holds up in stakeholders doubt numbers due to recurring mismatches when decisions stop oscillating between source systems are fragmented and ownership is split…'\n  - lane_03_think_mode_en_00000062: assistant_response -> 'quality remediation usually drifts in stakeholders doubt numbers due to recurring mismatches when teams optimize for stable definitions and reliable downstream reporting before va…'\n- trip_bigram_content: count=3\n  - lane_03_think_mode_en_00000042: assistant_response has content bigram 'before adding' repeated 3x in 30-token window\n  - lane_03_think_mode_en_00000043: assistant_response has content bigram 'before adding' repeated 3x in 30-token window\n  - lane_03_think_mode_en_00000076: assistant_response has content bigram 'before adding' repeated 3x in 30-token window\n- adjacent_dup_token: count=1\n  - lane_03_think_mode_en_00000042: assistant_response has adjacent duplicate token 'document'\n- trip_token_content: count=1\n  - lane_03_think_mode_en_00000050: assistant_response has content token 'plan' repeated 3x in 12-token window\nwarn_gate_breakdown:\n- repetition: trip_token_function_only:26\n- duplication: dup_candidate_unconfirmed:3\nwarnings_non_blocking:\n- trip_token_function_only: 26 (gates=repetition:26)\n  - lane_03_think_mode_en_00000000: assistant_response has function token 'and' repeated 3x in 12-token window\n  - lane_03_think_mode_en_00000002: assistant_response has function token 'and' repeated 3x in 12-token window\n  - lane_03_think_mode_en_00000004: assistant_response has function token 'the' repeated 3x in 12-token window\n- dup_candidate_unconfirmed: 3 (gates=duplication:3)\n  - lane_03_think_mode_en_00000004 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.330 Ojac=0.267 C3=0.062 signals=1/3 token_mode=word (candidate=0.100)\n  - lane_03_think_mode_en_00000006 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.317 Ojac=0.250 C3=0.038 signals=1/3 token_mode=word (candidate=0.100)\n  - lane_03_think_mode_en_00000007 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.452 Ojac=0.379 C3=0.033 signals=1/3 token_mode=word (candidate=0.100)\nwarning_examples:\n- trip_token_function_only: lane_03_think_mode_en_00000000: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000002: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000004: assistant_response has function token 'the' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000005: assistant_response has function token 'the' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000008: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000011: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000015: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000017: assistant_response has function token 'the' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000035: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000036: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000040: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000043: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000045: assistant_response has function token 'the' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000048: assistant_response has function token 'is' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000049: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000055: assistant_response has function token 'is' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000057: assistant_response has function token 'is' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000064: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000065: assistant_response has function token 'is' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000078: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000080: assistant_response has function token 'the' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000086: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000091: assistant_response has function token 'and' repeated 3x in 12-token window\n- trip_token_function_only: lane_03_think_mode_en_00000092: assistant_response has function token 'is' repeated 3x in 12-token window\nqc_reports:\n- /Users/chanpakho/Desktop/Download/project/dino_ds/output QC report/QC_lane_03_think_mode_en_e5d425e145d24910944724b845d4e2cd_2026-02-21.md",
+    "row_fatals": {
+      "lane_03_think_mode_en_00000002": [
+        {
+          "code": "mechanism_leakage",
+          "gate": "leakage",
+          "detail": "lane_03_think_mode_en_00000002: assistant_response -> 'A practical frame for quality remediation in stakeholders doubt numbers due to recurring mismatches is to treat source systems are fragmented and ownership is split, stable defini…'",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000003": [
+        {
+          "code": "mechanism_leakage",
+          "gate": "leakage",
+          "detail": "lane_03_think_mode_en_00000003: assistant_response -> 'In high pressure moments of stakeholders doubt numbers due to recurring mismatches, quality remediation remains coherent when source systems are fragmented and ownership is split…'",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000008": [
+        {
+          "code": "mechanism_leakage",
+          "gate": "leakage",
+          "detail": "lane_03_think_mode_en_00000008: assistant_response -> 'quality remediation can stay durable in stakeholders doubt numbers due to recurring mismatches if every tradeoff keeps source systems are fragmented and ownership is split, stable…'",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000011": [
+        {
+          "code": "mechanism_leakage",
+          "gate": "leakage",
+          "detail": "lane_03_think_mode_en_00000011: assistant_response -> 'quality remediation holds up in stakeholders doubt numbers due to recurring mismatches when decisions stop oscillating between source systems are fragmented and ownership is split…'",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000042": [
+        {
+          "code": "adjacent_dup_token",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000042: assistant_response has adjacent duplicate token 'document'",
+          "lang": "en"
+        },
+        {
+          "code": "trip_bigram_content",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000042: assistant_response has content bigram 'before adding' repeated 3x in 30-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000043": [
+        {
+          "code": "trip_bigram_content",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000043: assistant_response has content bigram 'before adding' repeated 3x in 30-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000050": [
+        {
+          "code": "trip_token_content",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000050: assistant_response has content token 'plan' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000062": [
+        {
+          "code": "mechanism_leakage",
+          "gate": "leakage",
+          "detail": "lane_03_think_mode_en_00000062: assistant_response -> 'quality remediation usually drifts in stakeholders doubt numbers due to recurring mismatches when teams optimize for stable definitions and reliable downstream reporting before va…'",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000076": [
+        {
+          "code": "trip_bigram_content",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000076: assistant_response has content bigram 'before adding' repeated 3x in 30-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000094": [
+        {
+          "code": "mechanism_leakage",
+          "gate": "leakage",
+          "detail": "lane_03_think_mode_en_00000094: assistant_response -> 'quality remediation holds up in stakeholders doubt numbers due to recurring mismatches when decisions stop oscillating between source systems are fragmented and ownership is split…'",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000001": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000001 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.475 Ojac=0.439 C3=0.032 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000005": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000005 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.513 Ojac=0.428 C3=0.066 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000009": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000009 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.476 Ojac=0.437 C3=0.037 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000010": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000010 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.498 Ojac=0.497 C3=0.041 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000012": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000012 vs lane_03_think_mode_en_00000006 dup_rule=rule2_multisignal Omin=0.434 Ojac=0.399 C3=0.035 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000013": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000013 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.443 Ojac=0.406 C3=0.051 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000014": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000014 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.469 Ojac=0.428 C3=0.037 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000015": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000015 vs lane_03_think_mode_en_00000010 dup_rule=rule2_multisignal Omin=0.476 Ojac=0.416 C3=0.026 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000016": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000016 vs lane_03_think_mode_en_00000013 dup_rule=rule2_multisignal Omin=0.537 Ojac=0.417 C3=0.057 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000017": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000017 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.488 Ojac=0.440 C3=0.039 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000018": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000018 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.491 Ojac=0.404 C3=0.030 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000019": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000019 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.480 Ojac=0.405 C3=0.070 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000020": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000020 vs lane_03_think_mode_en_00000012 dup_rule=rule2_multisignal Omin=0.457 Ojac=0.417 C3=0.023 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000021": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000021 vs lane_03_think_mode_en_00000007 dup_rule=rule2_multisignal Omin=0.538 Ojac=0.486 C3=0.083 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000022": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000022 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.440 Ojac=0.408 C3=0.040 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000023": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000023 vs lane_03_think_mode_en_00000017 dup_rule=rule2_multisignal Omin=0.453 Ojac=0.390 C3=0.066 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000024": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000024 vs lane_03_think_mode_en_00000001 dup_rule=rule2_multisignal Omin=0.531 Ojac=0.392 C3=0.058 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000025": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000025 vs lane_03_think_mode_en_00000006 dup_rule=rule2_multisignal Omin=0.543 Ojac=0.385 C3=0.045 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000026": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000026 vs lane_03_think_mode_en_00000007 dup_rule=rule2_multisignal Omin=0.450 Ojac=0.418 C3=0.052 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000027": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000027 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.449 Ojac=0.383 C3=0.026 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000028": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000028 vs lane_03_think_mode_en_00000005 dup_rule=rule1_or_rule2 Omin=0.572 Ojac=0.453 C3=0.151 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000029": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000029 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.463 Ojac=0.439 C3=0.082 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000030": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000030 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.486 Ojac=0.462 C3=0.059 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000031": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000031 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.451 Ojac=0.383 C3=0.038 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000032": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000032 vs lane_03_think_mode_en_00000007 dup_rule=rule2_multisignal Omin=0.466 Ojac=0.463 C3=0.083 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000033": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000033 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.458 Ojac=0.411 C3=0.062 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000034": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000034 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.428 Ojac=0.386 C3=0.037 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000035": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000035 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.487 Ojac=0.415 C3=0.051 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000036": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000036 vs lane_03_think_mode_en_00000005 dup_rule=rule2_multisignal Omin=0.470 Ojac=0.389 C3=0.060 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000037": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000037 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.469 Ojac=0.424 C3=0.037 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000038": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000038 vs lane_03_think_mode_en_00000012 dup_rule=rule2_multisignal Omin=0.453 Ojac=0.430 C3=0.047 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000039": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000039 vs lane_03_think_mode_en_00000013 dup_rule=rule2_multisignal Omin=0.527 Ojac=0.466 C3=0.036 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000040": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000040 vs lane_03_think_mode_en_00000007 dup_rule=rule2_multisignal Omin=0.465 Ojac=0.424 C3=0.052 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000041": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000041 vs lane_03_think_mode_en_00000012 dup_rule=rule1_or_rule2 Omin=0.550 Ojac=0.472 C3=0.058 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000044": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000044 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.454 Ojac=0.398 C3=0.033 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000045": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000045 vs lane_03_think_mode_en_00000004 dup_rule=rule1_or_rule2 Omin=0.747 Ojac=0.623 C3=0.095 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000046": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000046 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.519 Ojac=0.483 C3=0.068 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000047": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000047 vs lane_03_think_mode_en_00000006 dup_rule=rule2_multisignal Omin=0.418 Ojac=0.384 C3=0.024 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000048": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000048 vs lane_03_think_mode_en_00000001 dup_rule=rule1_or_rule2 Omin=0.629 Ojac=0.421 C3=0.097 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000049": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000049 vs lane_03_think_mode_en_00000001 dup_rule=rule2_multisignal Omin=0.491 Ojac=0.423 C3=0.041 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000051": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000051 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.454 Ojac=0.407 C3=0.037 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000052": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000052 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.406 Ojac=0.393 C3=0.038 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000053": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000053 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.466 Ojac=0.446 C3=0.034 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000054": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000054 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.460 Ojac=0.420 C3=0.026 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000055": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000055 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.462 Ojac=0.421 C3=0.026 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000056": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000056 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.488 Ojac=0.405 C3=0.031 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000057": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000057 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.458 Ojac=0.455 C3=0.066 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000058": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000058 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.465 Ojac=0.455 C3=0.052 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000059": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000059 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.521 Ojac=0.388 C3=0.046 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000060": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000060 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.531 Ojac=0.500 C3=0.033 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000061": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000061 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.523 Ojac=0.415 C3=0.056 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000063": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000063 vs lane_03_think_mode_en_00000012 dup_rule=rule2_multisignal Omin=0.496 Ojac=0.429 C3=0.035 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000064": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000064 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.449 Ojac=0.410 C3=0.034 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000065": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000065 vs lane_03_think_mode_en_00000005 dup_rule=rule2_multisignal Omin=0.469 Ojac=0.408 C3=0.037 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000066": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000066 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.544 Ojac=0.523 C3=0.033 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000067": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000067 vs lane_03_think_mode_en_00000004 dup_rule=rule1_or_rule2 Omin=0.670 Ojac=0.557 C3=0.055 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000068": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000068 vs lane_03_think_mode_en_00000000 dup_rule=rule1_or_rule2 Omin=0.561 Ojac=0.420 C3=0.039 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000069": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000069 vs lane_03_think_mode_en_00000006 dup_rule=rule2_multisignal Omin=0.438 Ojac=0.401 C3=0.057 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000070": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000070 vs lane_03_think_mode_en_00000005 dup_rule=rule1_or_rule2 Omin=0.613 Ojac=0.446 C3=0.059 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000071": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000071 vs lane_03_think_mode_en_00000012 dup_rule=rule2_multisignal Omin=0.434 Ojac=0.400 C3=0.035 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000072": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000072 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.469 Ojac=0.395 C3=0.037 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000073": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000073 vs lane_03_think_mode_en_00000001 dup_rule=rule2_multisignal Omin=0.533 Ojac=0.391 C3=0.062 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000074": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000074 vs lane_03_think_mode_en_00000001 dup_rule=rule2_multisignal Omin=0.461 Ojac=0.385 C3=0.033 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000075": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000075 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.458 Ojac=0.404 C3=0.051 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000077": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000077 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.479 Ojac=0.422 C3=0.060 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000078": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000078 vs lane_03_think_mode_en_00000007 dup_rule=rule2_multisignal Omin=0.476 Ojac=0.426 C3=0.036 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000079": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000079 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.443 Ojac=0.400 C3=0.037 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000080": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000080 vs lane_03_think_mode_en_00000006 dup_rule=rule2_multisignal Omin=0.513 Ojac=0.466 C3=0.075 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000081": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000081 vs lane_03_think_mode_en_00000014 dup_rule=rule2_multisignal Omin=0.457 Ojac=0.394 C3=0.035 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000082": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000082 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.480 Ojac=0.446 C3=0.037 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000083": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000083 vs lane_03_think_mode_en_00000001 dup_rule=rule2_multisignal Omin=0.509 Ojac=0.454 C3=0.072 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000084": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000084 vs lane_03_think_mode_en_00000000 dup_rule=rule1_or_rule2 Omin=0.658 Ojac=0.612 C3=0.103 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000085": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000085 vs lane_03_think_mode_en_00000010 dup_rule=rule2_multisignal Omin=0.524 Ojac=0.403 C3=0.037 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000086": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000086 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.436 Ojac=0.406 C3=0.040 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000087": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000087 vs lane_03_think_mode_en_00000006 dup_rule=rule2_multisignal Omin=0.438 Ojac=0.392 C3=0.023 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000088": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000088 vs lane_03_think_mode_en_00000004 dup_rule=rule2_multisignal Omin=0.487 Ojac=0.446 C3=0.084 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000089": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000089 vs lane_03_think_mode_en_00000007 dup_rule=rule2_multisignal Omin=0.422 Ojac=0.384 C3=0.074 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000090": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000090 vs lane_03_think_mode_en_00000001 dup_rule=rule2_multisignal Omin=0.464 Ojac=0.401 C3=0.036 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000091": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000091 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.502 Ojac=0.461 C3=0.026 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000092": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000092 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.462 Ojac=0.405 C3=0.034 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000093": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000093 vs lane_03_think_mode_en_00000012 dup_rule=rule2_multisignal Omin=0.481 Ojac=0.452 C3=0.023 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000095": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000095 vs lane_03_think_mode_en_00000010 dup_rule=rule2_multisignal Omin=0.487 Ojac=0.407 C3=0.064 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000096": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000096 vs lane_03_think_mode_en_00000012 dup_rule=rule2_multisignal Omin=0.430 Ojac=0.390 C3=0.035 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000097": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000097 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.523 Ojac=0.473 C3=0.068 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000098": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000098 vs lane_03_think_mode_en_00000012 dup_rule=rule1_or_rule2 Omin=0.709 Ojac=0.578 C3=0.101 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000099": [
+        {
+          "code": "near_duplicate_overlap",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000099 vs lane_03_think_mode_en_00000000 dup_rule=rule2_multisignal Omin=0.399 Ojac=0.382 C3=0.037 signals=2/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ]
+    },
+    "row_warns": {
+      "lane_03_think_mode_en_00000000": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000000: assistant_response has function token 'and' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000002": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000002: assistant_response has function token 'and' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000004": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000004: assistant_response has function token 'the' repeated 3x in 12-token window",
+          "lang": "en"
+        },
+        {
+          "code": "dup_candidate_unconfirmed",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000004 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.330 Ojac=0.267 C3=0.062 signals=1/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000005": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000005: assistant_response has function token 'the' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000008": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000008: assistant_response has function token 'and' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000011": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000011: assistant_response has function token 'and' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000015": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000015: assistant_response has function token 'and' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000017": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000017: assistant_response has function token 'the' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000035": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000035: assistant_response has function token 'and' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000036": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000036: assistant_response has function token 'and' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000040": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000040: assistant_response has function token 'and' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000043": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000043: assistant_response has function token 'and' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000045": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000045: assistant_response has function token 'the' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000048": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000048: assistant_response has function token 'is' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000049": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000049: assistant_response has function token 'and' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000055": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000055: assistant_response has function token 'is' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000057": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000057: assistant_response has function token 'is' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000064": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000064: assistant_response has function token 'and' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000065": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000065: assistant_response has function token 'is' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000078": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000078: assistant_response has function token 'and' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000080": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000080: assistant_response has function token 'the' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000086": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000086: assistant_response has function token 'and' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000091": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000091: assistant_response has function token 'and' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000092": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000092: assistant_response has function token 'is' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000094": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000094: assistant_response has function token 'and' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000095": [
+        {
+          "code": "trip_token_function_only",
+          "gate": "repetition",
+          "detail": "lane_03_think_mode_en_00000095: assistant_response has function token 'and' repeated 3x in 12-token window",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000006": [
+        {
+          "code": "dup_candidate_unconfirmed",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000006 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.317 Ojac=0.250 C3=0.038 signals=1/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000007": [
+        {
+          "code": "dup_candidate_unconfirmed",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000007 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.452 Ojac=0.379 C3=0.033 signals=1/3 token_mode=word (candidate=0.100)",
+          "lang": "en"
+        }
+      ]
+    },
+    "global_fatals": [],
+    "global_warns": [],
+    "reason_counts": {
+      "mechanism_leakage": 6,
+      "adjacent_dup_token": 1,
+      "trip_bigram_content": 3,
+      "trip_token_content": 1,
+      "near_duplicate_overlap": 86
+    },
+    "warning_counts": {
+      "trip_token_function_only": 26,
+      "dup_candidate_unconfirmed": 3
+    },
+    "qc_report_paths": [
+      "/Users/chanpakho/Desktop/Download/project/dino_ds/output QC report/QC_lane_03_think_mode_en_e5d425e145d24910944724b845d4e2cd_2026-02-21.md"
+    ]
+  }
+}

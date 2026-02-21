@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from datetime import date
 from pathlib import Path
+import copy
 import os
 import re
 import subprocess
@@ -229,6 +230,13 @@ _GATE_ORDER = (
     "viability",
     "warn_only",
 )
+
+_LAST_VALIDATION_DIAGNOSTICS: dict[str, Any] = {}
+
+
+def get_last_validation_diagnostics() -> dict[str, Any]:
+    """Return latest structured diagnostics from validate_generated_rows()."""
+    return copy.deepcopy(_LAST_VALIDATION_DIAGNOSTICS)
 
 _RULE_ALIASES: dict[str, int] = {
     "01": 1,
@@ -771,15 +779,12 @@ def _resolve_run_id(run_id: str | None) -> str:
     raw = str(run_id or "").strip()
     if not raw:
         raw = str(os.environ.get("DINO_DS_RUN_UUID", "")).strip()
-    cleaned = re.sub(r"[^A-Za-z0-9]+", "", raw)
+    # Keep run_id aligned with dataset output run UUIDs (no truncation/prefixing),
+    # while still sanitizing for QC filename safety.
+    cleaned = re.sub(r"[^A-Za-z0-9_-]+", "", raw)
     if not cleaned:
-        cleaned = uuid.uuid4().hex[:8]
-    if cleaned.upper().startswith("RUN"):
-        tail = cleaned[3:]
-        if not tail:
-            tail = uuid.uuid4().hex[:8]
-        return f"RUN_{tail[:8]}"
-    return f"RUN_{cleaned[:8]}"
+        cleaned = uuid.uuid4().hex
+    return cleaned
 
 
 def _default_repo_root() -> str:
@@ -845,6 +850,7 @@ def _slice_thresholds(lane_id: str, lane: dict[str, Any]) -> dict[str, Any]:
     base_candidate = _cfg_float(sim, "max_token_overlap_ratio", 0.30)
     out["dup_candidate_threshold"] = _safe_ratio(_cfg_float(vcfg, "dup_candidate_threshold", base_candidate))
     out["dup_contain_threshold"] = _safe_ratio(_cfg_float(vcfg, "dup_contain_threshold", 0.55))
+    out["dup_candidate_warn_max_share"] = _safe_ratio(_cfg_float(vcfg, "dup_candidate_warn_max_share", 0.35))
 
     mt_cfg = vcfg.get("mode_tone_proportion")
     mt_cfg = mt_cfg if isinstance(mt_cfg, dict) else {}
@@ -2537,6 +2543,7 @@ def validate_generated_rows(
     repo_root: str | None = None,
     run_id: str | None = None,
 ) -> tuple[bool, str]:
+    global _LAST_VALIDATION_DIAGNOSTICS
     reasons: Counter[str] = Counter()
     examples: list[str] = []
     warnings: Counter[str] = Counter()
@@ -2556,6 +2563,10 @@ def validate_generated_rows(
     viability_configured = False
     expected_language = _expected_lane_language(lane)
     lane_policy = get_lane_policy(lane_id)
+    row_fatals: dict[str, list[dict[str, str]]] = {}
+    row_warns: dict[str, list[dict[str, str]]] = {}
+    global_fatals: list[dict[str, str]] = []
+    global_warns: list[dict[str, str]] = []
 
     def _ensure_slice(lang: str) -> tuple[str, dict[str, Any]]:
         ltag = _norm_lang(lang) or "unknown"
@@ -2647,6 +2658,12 @@ def validate_generated_rows(
         if len(bucket) < 5 and detail not in bucket:
             bucket.append(detail)
         reason_gates.setdefault(reason, Counter())[gate] += 1
+        ltag = _norm_lang(lang) or "unknown"
+        issue = {"code": reason, "gate": gate, "detail": str(detail), "lang": ltag}
+        if isinstance(row_id, str) and row_id.strip():
+            row_fatals.setdefault(row_id, []).append(issue)
+        else:
+            global_fatals.append(issue)
         _record_issue(severity="fatal", reason=reason, detail=detail, lang=lang, gate=gate, row_id=row_id)
 
     def _warn(
@@ -2664,6 +2681,12 @@ def validate_generated_rows(
         if len(bucket) < 5 and detail not in bucket:
             bucket.append(detail)
         warning_gates.setdefault(reason, Counter())[gate] += 1
+        ltag = _norm_lang(lang) or "unknown"
+        issue = {"code": reason, "gate": gate, "detail": str(detail), "lang": ltag}
+        if isinstance(row_id, str) and row_id.strip():
+            row_warns.setdefault(row_id, []).append(issue)
+        else:
+            global_warns.append(issue)
         _record_issue(severity="warn", reason=reason, detail=detail, lang=lang, gate=gate, row_id=row_id)
 
     def _apply_stage_results(
@@ -2866,6 +2889,36 @@ def validate_generated_rows(
 
         vcfg = lane.get("validation")
         vcfg = vcfg if isinstance(vcfg, dict) else {}
+        dup_warn_cap_raw = vcfg.get("dup_candidate_warn_max_share", 0.35)
+        if isinstance(dup_warn_cap_raw, (int, float)) and not isinstance(dup_warn_cap_raw, bool):
+            dup_warn_cap = float(dup_warn_cap_raw)
+            if 0.0 < dup_warn_cap < 1.0:
+                dup_warn_counts_by_lang: Counter[str] = Counter()
+                for issue in dup_warns:
+                    if issue.code != "dup_candidate_unconfirmed":
+                        continue
+                    rid = _pair_row_id(issue.detail)
+                    lang = row_lang_by_id.get(rid, "unknown") if isinstance(rid, str) else "unknown"
+                    dup_warn_counts_by_lang[lang] += 1
+
+                for lang, lang_rows in rows_for_later_by_lang.items():
+                    denom = len(lang_rows)
+                    if denom <= 0:
+                        continue
+                    warn_n = int(dup_warn_counts_by_lang.get(lang, 0))
+                    warn_share = warn_n / float(denom)
+                    if warn_share > dup_warn_cap:
+                        _hit(
+                            "dup_candidate_warn_share_too_high",
+                            (
+                                f"language={lang} dup_candidate_unconfirmed_share={warn_share:.3f} "
+                                f"> cap={dup_warn_cap:.3f} (warn_rows={warn_n}, n={denom})"
+                            ),
+                            lang=lang,
+                            gate="duplication",
+                            row_id=None,
+                        )
+
         # Equator v4.1 §7 default cap is 8% when lane-specific value is absent.
         opening_cap_raw = vcfg.get("opening_family_max_share", 0.08)
         if isinstance(opening_cap_raw, (int, float)) and not isinstance(opening_cap_raw, bool):
@@ -3145,7 +3198,19 @@ def validate_generated_rows(
             lines.append("qc_reports:")
             for p in qc_report_paths:
                 lines.append(f"- {p}")
-        return True, "\n".join(lines)
+        text_report = "\n".join(lines)
+        _LAST_VALIDATION_DIAGNOSTICS = {
+            "ok": True,
+            "report": text_report,
+            "row_fatals": copy.deepcopy(row_fatals),
+            "row_warns": copy.deepcopy(row_warns),
+            "global_fatals": copy.deepcopy(global_fatals),
+            "global_warns": copy.deepcopy(global_warns),
+            "reason_counts": dict(reasons),
+            "warning_counts": dict(warnings),
+            "qc_report_paths": list(qc_report_paths),
+        }
+        return True, text_report
 
     lines = [
         f"rule_profile=0{rule_profile} FAIL: violations={sum(reasons.values())}, unique={len(reasons)}",
@@ -3211,4 +3276,16 @@ def validate_generated_rows(
         lines.append("qc_reports:")
         for p in qc_report_paths:
             lines.append(f"- {p}")
-    return False, "\n".join(lines)
+    text_report = "\n".join(lines)
+    _LAST_VALIDATION_DIAGNOSTICS = {
+        "ok": False,
+        "report": text_report,
+        "row_fatals": copy.deepcopy(row_fatals),
+        "row_warns": copy.deepcopy(row_warns),
+        "global_fatals": copy.deepcopy(global_fatals),
+        "global_warns": copy.deepcopy(global_warns),
+        "reason_counts": dict(reasons),
+        "warning_counts": dict(warnings),
+        "qc_report_paths": list(qc_report_paths),
+    }
+    return False, text_report

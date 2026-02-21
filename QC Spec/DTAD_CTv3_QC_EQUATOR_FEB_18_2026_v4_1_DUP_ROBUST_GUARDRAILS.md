@@ -159,6 +159,18 @@ These tools exist to reduce *false duplication FAILs* caused by shared skeletons
 If Hindi O_min > candidate_threshold but C3 < 0.20 → downgrade duplication to WARN.  
 (Does not override malformed/repetition/leakage gates.)
 
+## 6F) Candidate-WARN saturation escalation (duplication-only, slice-level)
+`dup_candidate_unconfirmed` remains a row-level WARN, but excessive slice share indicates heavy duplicate pressure.
+
+Per language slice, on duplication-stage input rows:
+- compute `dup_candidate_unconfirmed_share = warn_rows / n`
+- if `dup_candidate_unconfirmed_share > dup_candidate_warn_max_share` → FAIL
+- default `dup_candidate_warn_max_share = 0.35`
+- lane override allowed via `validation.dup_candidate_warn_max_share`
+
+Fatal code for this escalation:
+- `dup_candidate_warn_share_too_high`
+
 ---
 
 # 7) Opening diversity gate (WARN → conditional FATAL)
@@ -196,6 +208,9 @@ Invariants → malformed → repetition/naturalness → leakage → duplication 
 
 # 12) Decision rule
 Any fatal hit = FAIL. WARNs never fail unless explicitly promoted in this document.
+
+Explicit WARN promotion in this spec:
+- `dup_candidate_unconfirmed` slice share above `dup_candidate_warn_max_share` (default 0.35) is promoted to fatal `dup_candidate_warn_share_too_high` (§6F).
 
 ---
 

@@ -1,0 +1,5 @@
+Goal: Decide whether history search is needed; keep the label explicit and brief.
+Target: 15000 lines; maximize variety and avoid repeated openings.
+Keep: preserve the draft's structure (labels/JSON/code/tables/tool_call) and meaning.
+Language/Tone: match the user language and requested tone; do not add new facts.
+Format: keep the needs_history_search label format exactly.

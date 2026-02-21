@@ -13,6 +13,7 @@ from datetime import datetime, timezone
 import hashlib
 import subprocess
 import zipfile
+import shutil
 
 import yaml
 
@@ -591,6 +592,14 @@ def help_validator() -> int:
     print("- Behavior:")
     print("  - If `--rule` is provided on `build lane`/`gate lane`, it overrides saved default.")
     print("  - If no saved level exists, default is `03`.")
+    print("- Fatal vs warn (duplication, rule `03`):")
+    print("  - `near_duplicate_overlap`: fatal row-level duplicate hit.")
+    print("  - `dup_candidate_unconfirmed`: warn row-level candidate-only hit.")
+    print(
+        "  - Escalation: per-language `dup_candidate_unconfirmed` warn share over "
+        "`validation.dup_candidate_warn_max_share` (default `0.35`) becomes fatal "
+        "as `dup_candidate_warn_share_too_high`."
+    )
     print("- Config file:")
     print(f"  - Default path: `{_TOOL_CONFIG_DEFAULT}`")
     print(f"  - Override with env: `{_TOOL_CONFIG_ENV}`")
@@ -1855,284 +1864,302 @@ def gate_lane(
     # Lane config is lanes/<lane_id>/lane_en.yaml (legacy fallback: lane_en.yaml)
     lane_dir = cfg_path.parent
     lane_id = lane_dir.name
-
-    # Default output root:
-    # - wrapped package mode -> <package_root>/out_runs/<lane_id>
-    # - repo mode -> lanes/<lane_id>/out
-    out_root = lane_dir / "out"
-    if _is_wrapped_package_mode(Path.cwd()):
-        out_root = (Path.cwd() / "out_runs" / lane_id).resolve()
-    lane_out_override_active = False
-    effective_lane_out, effective_lane_out_src = _effective_lane_output_dir(lane_id)
-    if effective_lane_out:
-        out_root = Path(effective_lane_out)
-        lane_out_override_active = True
-
-    # Validate first (schema)
-    print("[1/6] validate lane config (schema)")
-    rc = validate_cmd.run(config=str(cfg_path), schema="lane")
-    if rc == 0:
-        print("[1/6] OK")
-    if rc != 0:
-        details = validate_cmd.get_last_error_details()
-        if isinstance(details, dict):
-            kind = str(details.get("kind") or "schema_failure")
-            msg = str(details.get("message") or "").strip()
-            instance_path = str(details.get("instance_path") or "").strip()
-            schema_path = str(details.get("schema_path") or "").strip()
-            validator = str(details.get("validator") or "").strip()
-            print(f"[1/6] detail kind: {kind}", file=sys.stderr)
-            if msg:
-                print(f"[1/6] detail message: {msg}", file=sys.stderr)
-            if instance_path:
-                print(f"[1/6] detail instance_path: {instance_path}", file=sys.stderr)
-            if schema_path:
-                print(f"[1/6] detail schema_path: {schema_path}", file=sys.stderr)
-            if validator:
-                print(f"[1/6] detail validator: {validator}", file=sys.stderr)
-        report_path = _write_schema_failure_qc_report(cfg_path=cfg_path, lane_id=lane_id, exit_code=rc)
-        if isinstance(report_path, str) and report_path.strip():
-            print(f"[1/6] schema failure report: {report_path}", file=sys.stderr)
-        print(f"[1/6] FAIL (schema/config validation, exit={rc})", file=sys.stderr)
-        return rc
-
-    # Read lane config for target_base + teacher proof
-    try:
-        lane_obj = yaml.safe_load(cfg_path.read_text(encoding="utf-8")) or {}
-        if not isinstance(lane_obj, dict):
-            print("ERROR: lane config is not a mapping", file=sys.stderr)
-            return ec.CONFIG_INVALID
-    except Exception as e:
-        print(f"ERROR: failed to read lane config: {e}", file=sys.stderr)
-        return ec.CONFIG_INVALID
-
-    if teacher_force:
-        tr = lane_obj.get("teacher_runtime")
-        if not isinstance(tr, dict):
-            tr = {}
-            lane_obj["teacher_runtime"] = tr
-        tr["enabled"] = True
-        sr = tr.get("sample_ratio")
-        sp = tr.get("sample_percent")
-        if isinstance(sr, (int, float)):
-            if float(sr) <= 0.0:
-                tr["sample_ratio"] = 1.0
-        elif isinstance(sp, (int, float)):
-            if float(sp) <= 0.0:
-                tr["sample_percent"] = 100
-        else:
-            tr["sample_percent"] = 100
-
-    # Apply lane-config output_dir only when global lane-output override is not active.
-    if not lane_out_override_active:
-        od = lane_obj.get("output_dir")
-        if isinstance(od, str) and od.strip():
-            od_path = Path(od.strip())
-            out_root = od_path if od_path.is_absolute() else (lane_dir / od_path)
-
-    out_root.mkdir(parents=True, exist_ok=True)
-    if lane_out_override_active:
-        print(f"[2/6] output_dir override ({effective_lane_out_src}): {out_root}")
-
-    raw_tb = str(lane_obj.get("target_base") or "").strip()
-    tb = _canonicalize_target_base(raw_tb)
-    ok, msg = _require_allowed_target_base(tb)
-    if not ok:
-        print(f"ERROR: {msg}", file=sys.stderr)
-        return ec.CONFIG_INVALID
-
-    # Resolve system prompt via registry + system_prompt_id (no hard-coded text)
-    registry = pack_cmd._load_system_prompt_registry()
-    if not registry:
-        print("ERROR: system prompt registry not found or empty", file=sys.stderr)
-        return ec.CONFIG_INVALID
-
-    base_row = lane_obj.get("base_row") if isinstance(lane_obj.get("base_row"), dict) else {}
-    te = lane_obj.get("template_expand") if isinstance(lane_obj.get("template_expand"), dict) else {}
-    te_base = te.get("base_row") if isinstance(te.get("base_row"), dict) else {}
-
-    default_spid = str(
-        lane_obj.get("system_prompt_id")
-        or te_base.get("system_prompt_id")
-        or base_row.get("system_prompt_id")
-        or lane_obj.get("system_id")
-        or ""
-    ).strip()
-
-    # Build
-    rule_tag = (
-        str(rule_profile).strip()
-        if isinstance(rule_profile, str) and str(rule_profile).strip()
-        else "auto(saved/default=03)"
-    )
-    print(f"[2/6] build lane -> built_N.jsonl (rule={rule_tag})")
-    # Name outputs using limit if provided, else use lane count_target (or 'full')
-    count_target = None
-    te = lane_obj.get("template_expand")
-    if isinstance(te, dict):
-        te_ct = te.get("count_target")
-        if isinstance(te_ct, int) and te_ct > 0:
-            count_target = te_ct
-    if count_target is None:
-        ct = lane_obj.get("count_target")
-        if isinstance(ct, int) and ct > 0:
-            count_target = ct
-    limit_tag = None
-    if isinstance(limit, int) and limit > 0:
-        limit_tag = str(limit)
-    elif isinstance(count_target, int) and count_target > 0:
-        limit_tag = str(count_target)
-    else:
-        limit_tag = "full"
-
-    built_path = out_root / f"built_{limit_tag}.jsonl"
-    rc = build_cmd.run_lane(
-        config=str(cfg_path),
-        out=str(built_path),
-        seed=seed,
-        limit=limit,
-        rule_profile=rule_profile,
-        teacher_force=teacher_force,
-    )
-    if rc != 0:
-        _emit_qc_failure_indicator(lane_id)
-        print(f"[2/6] FAIL (build/row-validation, exit={rc})", file=sys.stderr)
-        return rc
-
-    # Split
-    print("[3/6] split built -> train/val/test")
-    split_dir = out_root / f"split_{limit_tag}"
-    split_dir.mkdir(parents=True, exist_ok=True)
-    rc = split_cmd.run(
-        in_path=str(built_path),
-        outdir=str(split_dir),
-        seed=seed,
-        train=0.9,
-        val=0.05,
-        test=0.05,
-        min_per_nonzero_split=1,
-    )
-    if rc != 0:
-        print(f"[3/6] FAIL (split, exit={rc})", file=sys.stderr)
-        return rc
-
-    print("[4/6] export -> dino-tef-v1")
-    # Export strict dino-tef-v1
-    lang_tag = _lane_language_tag(lane_obj, te_base, base_row)
     run_uuid = _run_uuid()
-    tef_dir = out_root / f"dino-tef-{lang_tag}-{limit_tag}-{run_uuid}"
-    tef_dir.mkdir(parents=True, exist_ok=True)
+    prev_run_uuid = os.environ.get("DINO_DS_RUN_UUID")
+    os.environ["DINO_DS_RUN_UUID"] = run_uuid
 
-    labels_allow = _labels_allowlist_v16()
+    try:
 
-    for split_name in ("train", "val", "test"):
-        rc = _export_qwen_tef_v1(
-            indir=split_dir,
-            outdir=tef_dir,
-            system_prompt_id=default_spid,
-            registry=registry,
-            split_name=split_name,
-            target_base=tb,
-            labels_allowlist=labels_allow,
-        )
+        # Default output root:
+        # - wrapped package mode -> <package_root>/out_runs/<lane_id>
+        # - repo mode -> lanes/<lane_id>/out
+        out_root = lane_dir / "out"
+        if _is_wrapped_package_mode(Path.cwd()):
+            out_root = (Path.cwd() / "out_runs" / lane_id).resolve()
+        lane_out_override_active = False
+        effective_lane_out, effective_lane_out_src = _effective_lane_output_dir(lane_id)
+        if effective_lane_out:
+            out_root = Path(effective_lane_out)
+            lane_out_override_active = True
+
+        # Validate first (schema)
+        print("[1/6] validate lane config (schema)")
+        rc = validate_cmd.run(config=str(cfg_path), schema="lane")
+        if rc == 0:
+            print("[1/6] OK")
         if rc != 0:
-            print(f"[4/6] FAIL (export split={split_name}, exit={rc})", file=sys.stderr)
+            details = validate_cmd.get_last_error_details()
+            if isinstance(details, dict):
+                kind = str(details.get("kind") or "schema_failure")
+                msg = str(details.get("message") or "").strip()
+                instance_path = str(details.get("instance_path") or "").strip()
+                schema_path = str(details.get("schema_path") or "").strip()
+                validator = str(details.get("validator") or "").strip()
+                print(f"[1/6] detail kind: {kind}", file=sys.stderr)
+                if msg:
+                    print(f"[1/6] detail message: {msg}", file=sys.stderr)
+                if instance_path:
+                    print(f"[1/6] detail instance_path: {instance_path}", file=sys.stderr)
+                if schema_path:
+                    print(f"[1/6] detail schema_path: {schema_path}", file=sys.stderr)
+                if validator:
+                    print(f"[1/6] detail validator: {validator}", file=sys.stderr)
+            report_path = _write_schema_failure_qc_report(cfg_path=cfg_path, lane_id=lane_id, exit_code=rc)
+            if isinstance(report_path, str) and report_path.strip():
+                print(f"[1/6] schema failure report: {report_path}", file=sys.stderr)
+            print(f"[1/6] FAIL (schema/config validation, exit={rc})", file=sys.stderr)
             return rc
 
-    print("[5/6] pack + proofs")
-    # Pack manifest (tool-owned)
-    manifest_path = tef_dir / "dataset_manifest.v1.json"
-    rc = pack_cmd.run(indir=str(tef_dir), out=str(manifest_path))
-    if rc != 0:
-        print(f"[5/6] FAIL (pack manifest, exit={rc})", file=sys.stderr)
-        return rc
+        # Read lane config for target_base + teacher proof
+        try:
+            lane_obj = yaml.safe_load(cfg_path.read_text(encoding="utf-8")) or {}
+            if not isinstance(lane_obj, dict):
+                print("ERROR: lane config is not a mapping", file=sys.stderr)
+                return ec.CONFIG_INVALID
+        except Exception as e:
+            print(f"ERROR: failed to read lane config: {e}", file=sys.stderr)
+            return ec.CONFIG_INVALID
 
-    # Proofs (tool-only)
-    tool_sha = _git_sha()
-    tool_sha_path = tef_dir / "tool_git_sha.txt"
-    tool_sha_path.write_text(tool_sha + "\n", encoding="utf-8")
+        if teacher_force:
+            tr = lane_obj.get("teacher_runtime")
+            if not isinstance(tr, dict):
+                tr = {}
+                lane_obj["teacher_runtime"] = tr
+            tr["enabled"] = True
+            sr = tr.get("sample_ratio")
+            sp = tr.get("sample_percent")
+            if isinstance(sr, (int, float)):
+                if float(sr) <= 0.0:
+                    tr["sample_ratio"] = 1.0
+            elif isinstance(sp, (int, float)):
+                if float(sp) <= 0.0:
+                    tr["sample_percent"] = 100
+            else:
+                tr["sample_percent"] = 100
 
-    proof_teacher = _write_teacher_mode_proof(tef_dir, cfg_path, lane_obj)
-    proof_summary = _write_gate_summary(tef_dir, lane_id)
-    proof_labels = _write_tef_labels_compact_proof(tef_dir, labels_allow)
-    proof_lint = _write_tef_strict_lint_report(tef_dir)
+        # Apply lane-config output_dir only when global lane-output override is not active.
+        if not lane_out_override_active:
+            od = lane_obj.get("output_dir")
+            if isinstance(od, str) and od.strip():
+                od_path = Path(od.strip())
+                out_root = od_path if od_path.is_absolute() else (lane_dir / od_path)
 
-    ok_labels, detail_labels = _read_report_status(proof_labels)
-    if not ok_labels:
-        print("[5/6] FAIL (labels proof)", file=sys.stderr)
-        print(detail_labels, file=sys.stderr)
-        return ec.LINT_FAILED
-    if detail_labels:
-        print(f"[5/6] WARN: {detail_labels}", file=sys.stderr)
+        out_root.mkdir(parents=True, exist_ok=True)
+        if lane_out_override_active:
+            print(f"[2/6] output_dir override ({effective_lane_out_src}): {out_root}")
 
-    ok_lint, detail_lint = _read_report_status(proof_lint)
-    if not ok_lint:
-        print("[5/6] FAIL (TEF strict lint)", file=sys.stderr)
-        print(detail_lint, file=sys.stderr)
-        return ec.LINT_FAILED
-    if detail_lint:
-        print(f"[5/6] WARN: {detail_lint}", file=sys.stderr)
+        raw_tb = str(lane_obj.get("target_base") or "").strip()
+        tb = _canonicalize_target_base(raw_tb)
+        ok, msg = _require_allowed_target_base(tb)
+        if not ok:
+            print(f"ERROR: {msg}", file=sys.stderr)
+            return ec.CONFIG_INVALID
 
-    # Sha256 sidecars
-    sidecars: list[Path] = []
-    for p in [
-        built_path,
-        tef_dir / "train.jsonl",
-        tef_dir / "val.jsonl",
-        tef_dir / "test.jsonl",
-        manifest_path,
-        tool_sha_path,
-        proof_teacher,
-        proof_summary,
-        proof_labels,
-        proof_lint,
-    ]:
-        sidecars.append(_write_sha256_sidecar(p))
+        # Resolve system prompt via registry + system_prompt_id (no hard-coded text)
+        registry = pack_cmd._load_system_prompt_registry()
+        if not registry:
+            print("ERROR: system prompt registry not found or empty", file=sys.stderr)
+            return ec.CONFIG_INVALID
 
-    print("[6/6] zip flat-root gate bundle + sha256")
-    # Flat-root gate zip
-    zip_tmp = out_root / f"lane_gate_zip_{lane_id}.zip"
-    files_to_zip: list[Path] = [
-        built_path,
-        Path(str(built_path) + ".sha256"),
-        tef_dir / "train.jsonl",
-        tef_dir / "train.jsonl.sha256",
-        tef_dir / "val.jsonl",
-        tef_dir / "val.jsonl.sha256",
-        tef_dir / "test.jsonl",
-        tef_dir / "test.jsonl.sha256",
-        manifest_path,
-        Path(str(manifest_path) + ".sha256"),
-        tool_sha_path,
-        Path(str(tool_sha_path) + ".sha256"),
-        proof_labels,
-        Path(str(proof_labels) + ".sha256"),
-        proof_summary,
-        Path(str(proof_summary) + ".sha256"),
-        proof_teacher,
-        Path(str(proof_teacher) + ".sha256"),
-        proof_lint,
-        Path(str(proof_lint) + ".sha256"),
-    ]
+        base_row = lane_obj.get("base_row") if isinstance(lane_obj.get("base_row"), dict) else {}
+        te = lane_obj.get("template_expand") if isinstance(lane_obj.get("template_expand"), dict) else {}
+        te_base = te.get("base_row") if isinstance(te.get("base_row"), dict) else {}
 
-    with zipfile.ZipFile(zip_tmp, "w", compression=zipfile.ZIP_DEFLATED) as z:
-        for p in files_to_zip:
-            if p.exists():
-                z.write(p, arcname=p.name)
+        default_spid = str(
+            lane_obj.get("system_prompt_id")
+            or te_base.get("system_prompt_id")
+            or base_row.get("system_prompt_id")
+            or lane_obj.get("system_id")
+            or ""
+        ).strip()
 
-    zip_sha = _sha256_file(zip_tmp)
-    zip_hash8 = zip_sha[:8]
-    zip_final = out_root / f"lane_gate_zip_{zip_hash8}.zip"
-    try:
-        if zip_final.exists():
-            zip_final.unlink()
-    except Exception:
-        pass
-    zip_tmp.replace(zip_final)
+        # Build
+        rule_tag = (
+            str(rule_profile).strip()
+            if isinstance(rule_profile, str) and str(rule_profile).strip()
+            else "auto(saved/default=03)"
+        )
+        print(f"[2/6] build lane -> built_N.jsonl (rule={rule_tag})")
+        # Name outputs using limit if provided, else use lane count_target (or 'full')
+        count_target = None
+        te = lane_obj.get("template_expand")
+        if isinstance(te, dict):
+            te_ct = te.get("count_target")
+            if isinstance(te_ct, int) and te_ct > 0:
+                count_target = te_ct
+        if count_target is None:
+            ct = lane_obj.get("count_target")
+            if isinstance(ct, int) and ct > 0:
+                count_target = ct
+        limit_tag = None
+        if isinstance(limit, int) and limit > 0:
+            limit_tag = str(limit)
+        elif isinstance(count_target, int) and count_target > 0:
+            limit_tag = str(count_target)
+        else:
+            limit_tag = "full"
 
-    print(f"UPLOAD_THIS: {zip_final}")
-    print(f"ZIP_SHA256={zip_sha}")
-    return 0
+        built_path = out_root / f"built_{limit_tag}.jsonl"
+        rc = build_cmd.run_lane(
+            config=str(cfg_path),
+            out=str(built_path),
+            seed=seed,
+            limit=limit,
+            rule_profile=rule_profile,
+            teacher_force=teacher_force,
+            rejected_root=str((out_root / "rejected" / run_uuid).resolve()),
+            run_id=run_uuid,
+        )
+        if rc != 0:
+            _emit_qc_failure_indicator(lane_id)
+            print(f"[2/6] FAIL (build/row-validation, exit={rc})", file=sys.stderr)
+            return rc
+
+        # Split
+        print("[3/6] split built -> train/val/test")
+        split_dir = out_root / f"split_{limit_tag}"
+        split_dir.mkdir(parents=True, exist_ok=True)
+        rc = split_cmd.run(
+            in_path=str(built_path),
+            outdir=str(split_dir),
+            seed=seed,
+            train=0.9,
+            val=0.05,
+            test=0.05,
+            min_per_nonzero_split=1,
+        )
+        if rc != 0:
+            print(f"[3/6] FAIL (split, exit={rc})", file=sys.stderr)
+            return rc
+
+        print("[4/6] export -> dino-tef-v1")
+        # Export strict dino-tef-v1
+        lang_tag = _lane_language_tag(lane_obj, te_base, base_row)
+        tef_dir = out_root / f"dino-tef-{lang_tag}-{limit_tag}-{run_uuid}"
+        tef_dir.mkdir(parents=True, exist_ok=True)
+
+        labels_allow = _labels_allowlist_v16()
+
+        for split_name in ("train", "val", "test"):
+            rc = _export_qwen_tef_v1(
+                indir=split_dir,
+                outdir=tef_dir,
+                system_prompt_id=default_spid,
+                registry=registry,
+                split_name=split_name,
+                target_base=tb,
+                labels_allowlist=labels_allow,
+            )
+            if rc != 0:
+                print(f"[4/6] FAIL (export split={split_name}, exit={rc})", file=sys.stderr)
+                return rc
+
+        print("[5/6] pack + proofs")
+        # Pack manifest (tool-owned)
+        manifest_path = tef_dir / "dataset_manifest.v1.json"
+        rc = pack_cmd.run(indir=str(tef_dir), out=str(manifest_path))
+        if rc != 0:
+            print(f"[5/6] FAIL (pack manifest, exit={rc})", file=sys.stderr)
+            return rc
+
+        # Proofs (tool-only)
+        tool_sha = _git_sha()
+        tool_sha_path = tef_dir / "tool_git_sha.txt"
+        tool_sha_path.write_text(tool_sha + "\n", encoding="utf-8")
+
+        proof_teacher = _write_teacher_mode_proof(tef_dir, cfg_path, lane_obj)
+        proof_summary = _write_gate_summary(tef_dir, lane_id)
+        proof_labels = _write_tef_labels_compact_proof(tef_dir, labels_allow)
+        proof_lint = _write_tef_strict_lint_report(tef_dir)
+
+        ok_labels, detail_labels = _read_report_status(proof_labels)
+        if not ok_labels:
+            print("[5/6] FAIL (labels proof)", file=sys.stderr)
+            print(detail_labels, file=sys.stderr)
+            return ec.LINT_FAILED
+        if detail_labels:
+            print(f"[5/6] WARN: {detail_labels}", file=sys.stderr)
+
+        ok_lint, detail_lint = _read_report_status(proof_lint)
+        if not ok_lint:
+            print("[5/6] FAIL (TEF strict lint)", file=sys.stderr)
+            print(detail_lint, file=sys.stderr)
+            return ec.LINT_FAILED
+        if detail_lint:
+            print(f"[5/6] WARN: {detail_lint}", file=sys.stderr)
+
+        # Success output alias: keep canonical train.jsonl and add run-id copy.
+        train_run_path = tef_dir / f"train_{run_uuid}.jsonl"
+        shutil.copyfile(tef_dir / "train.jsonl", train_run_path)
+
+        # Sha256 sidecars
+        sidecars: list[Path] = []
+        for p in [
+            built_path,
+            tef_dir / "train.jsonl",
+            train_run_path,
+            tef_dir / "val.jsonl",
+            tef_dir / "test.jsonl",
+            manifest_path,
+            tool_sha_path,
+            proof_teacher,
+            proof_summary,
+            proof_labels,
+            proof_lint,
+        ]:
+            sidecars.append(_write_sha256_sidecar(p))
+
+        print("[6/6] zip flat-root gate bundle + sha256")
+        # Flat-root gate zip
+        zip_tmp = out_root / f"lane_gate_zip_{lane_id}.zip"
+        files_to_zip: list[Path] = [
+            built_path,
+            Path(str(built_path) + ".sha256"),
+            tef_dir / "train.jsonl",
+            tef_dir / "train.jsonl.sha256",
+            train_run_path,
+            Path(str(train_run_path) + ".sha256"),
+            tef_dir / "val.jsonl",
+            tef_dir / "val.jsonl.sha256",
+            tef_dir / "test.jsonl",
+            tef_dir / "test.jsonl.sha256",
+            manifest_path,
+            Path(str(manifest_path) + ".sha256"),
+            tool_sha_path,
+            Path(str(tool_sha_path) + ".sha256"),
+            proof_labels,
+            Path(str(proof_labels) + ".sha256"),
+            proof_summary,
+            Path(str(proof_summary) + ".sha256"),
+            proof_teacher,
+            Path(str(proof_teacher) + ".sha256"),
+            proof_lint,
+            Path(str(proof_lint) + ".sha256"),
+        ]
+
+        with zipfile.ZipFile(zip_tmp, "w", compression=zipfile.ZIP_DEFLATED) as z:
+            for p in files_to_zip:
+                if p.exists():
+                    z.write(p, arcname=p.name)
+
+        zip_sha = _sha256_file(zip_tmp)
+        zip_hash8 = zip_sha[:8]
+        zip_final = out_root / f"lane_gate_zip_{zip_hash8}.zip"
+        try:
+            if zip_final.exists():
+                zip_final.unlink()
+        except Exception:
+            pass
+        zip_tmp.replace(zip_final)
+
+        print(f"UPLOAD_THIS: {zip_final}")
+        print(f"ZIP_SHA256={zip_sha}")
+        return 0
+    finally:
+        if prev_run_uuid is None:
+            os.environ.pop("DINO_DS_RUN_UUID", None)
+        else:
+            os.environ["DINO_DS_RUN_UUID"] = prev_run_uuid
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -2219,6 +2246,7 @@ def main(argv: list[str] | None = None) -> int:
                 limit=lim,
                 rule_profile=eff_rule,
                 teacher_force=bool(getattr(args, "teacher", False)),
+                run_id=os.environ.get("DINO_DS_RUN_UUID", "").strip() or None,
             )
 
         if args.cmd == "build" and args.build_cmd == "qa":

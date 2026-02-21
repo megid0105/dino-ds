@@ -1,0 +1,4039 @@
+lane_id: lane_03_think_mode
+wave: wave0
+target_base: dino_qwen4b
+source_type: local
+sources: []
+count_target: 58823
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: suppress_continuity
+  flow_state: none
+  history_scope: thread_only
+  representation_choice: bullet_list
+  safety_tag: safe
+  language: en
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators:
+- name: mode_richness
+mode_richness:
+  think_min_chars: 280
+  think_min_steps: 0
+transform_pipeline: []
+generation_mode: template_expand
+system_prompt_path: prompts/system/dino_system_prompt.txt
+output_dir: out_runs/colleague_test
+teacher_runtime:
+  enabled: false
+  sample_percent: 0
+  provider: ollama
+  policy: structure_only
+similarity:
+  text_field: assistant_response
+  max_token_overlap_ratio: 0.3
+  ignore_stopwords: true
+  ignore_tokens:
+  - dino
+  ngram: 2
+template_expand:
+  seed: 101
+  count_target: 58823
+  max_attempts: 4000000
+  attempts_per_row: 2600
+  fail_if_underfilled: true
+  expand_dict_slots:
+  - guard_alpha
+  - check_beta
+  - move_alpha
+  - constraint_slot
+  - action_slot
+  - signal_slot
+  - artifact_slot
+  - verb_slot
+  - case
+  - context_pack
+  - bullet_pack
+  - q_template
+  - a_skeleton
+  - label_pack
+  slot_banks:
+    language:
+    - en
+    q_opening:
+    - I need a grounded answer for
+    - Help me reason through
+    - I want a practical direction for
+    - I need a stable plan for
+    - I am trying to make a durable choice on
+    - Give me a clear path for
+    - I want a defensible recommendation for
+    - I need a realistic approach for
+    - Help me tighten my strategy for
+    - I want a low risk plan for
+    - I need clarity before I commit on
+    - I want to stop drifting and decide on
+    - Help me structure the decision on
+    - I need a practical reset for
+    - I want to reduce rework on
+    - I need a resilient approach for
+    - Help me break down
+    - I want a plan I can execute for
+    - I need a clear next move on
+    - Help me choose a direction for
+    - I need a workable model for
+    - I want a sustainable workflow for
+    - I need to sort out
+    - Help me prioritize
+    - I need a safer rollout for
+    - I want a concise strategy for
+    q_followup:
+    - What should I lock in first
+    - What should I change right away
+    - Which path carries less regret
+    - What should I protect from scope drift
+    - Where should I start so this stays practical
+    - What move keeps quality steady
+    - How should I sequence the work
+    - What should I avoid while I execute
+    - What gives me the fastest stable progress
+    - How do I keep this from becoming noisy
+    - What should be non negotiable
+    - Which tradeoff is worth accepting
+    - What should I review before expanding
+    - What keeps this coherent for my team
+    - What should I test before scaling
+    - How can I reduce risk without stalling
+    - What gives me confidence that this is working
+    - What should I focus on this week
+    - What should I simplify first
+    - How can I keep this consistent under pressure
+    - What is the smartest next move
+    - What should I deprioritize now
+    - How do I keep momentum without overreaching
+    - What should I communicate early
+    - What should I validate before committing
+    - What would you do in my position
+    q_context_wrap:
+    - I want this to be executable and calm.
+    - I want this to stay practical and not theoretical.
+    - I need a response that survives real constraints.
+    - I want to avoid avoidable churn.
+    - I want a recommendation that stays coherent under pressure.
+    - I need a direction that my team can follow without confusion.
+    - I want to reduce rework and keep momentum.
+    - I need a choice that remains stable after review.
+    - I want a path that balances speed and quality.
+    - I need this to remain clear for stakeholders.
+    - I want to move with confidence, not guesswork.
+    - I need this plan to remain workable during execution.
+    - I want to make a decision I can defend later.
+    - I need a way to move forward without hidden risks.
+    - I want to keep quality steady while we deliver.
+    - I need practical reasoning, not slogans.
+    - I want the next move to be small but meaningful.
+    - I need structure that still feels human.
+    - I want this to remain manageable for my current capacity.
+    - I need a clear direction with minimal confusion.
+    a_opening:
+    - A durable answer is possible when the scope and risk are framed together.
+    - This can move forward cleanly when you tie decisions to explicit constraints.
+    - A stable path appears once you connect your goal with the real operating limits.
+    - The safest progress comes from sequencing decisions instead of widening scope.
+    - You can keep momentum if each move protects both quality and execution focus.
+    - This becomes clearer when tradeoffs are named early and reviewed deliberately.
+    - A practical direction is to align immediate work with the most fragile constraint.
+    - You can reduce noise by choosing one anchor outcome and defending it each cycle.
+    - This is manageable when the next move is specific and the review signal is clear.
+    - You can avoid churn by pairing scope decisions with explicit risk checks.
+    - A coherent plan starts by narrowing attention to what must hold under pressure.
+    - You can keep this grounded by linking each action to observable evidence.
+    - A resilient decision path relies on small commitments that are easy to validate.
+    - This can stay human and practical when clarity comes before expansion.
+    - A strong approach is to protect core outcomes while trimming optional complexity.
+    - You can move confidently when each choice has a clear reason and a clear check.
+    - This becomes easier when the plan is paced to match real capacity.
+    - You can protect delivery quality by making tradeoffs explicit up front.
+    a_close:
+    - If you want, I can tailor this to your exact context and team rhythm.
+    - If helpful, I can adapt this to the exact blockers you are seeing.
+    - If you share one more detail, I can tighten this into a sharper plan.
+    - If needed, I can reshape this for your current execution window.
+    - If you want, I can tune this for your stakeholder expectations.
+    - If helpful, I can simplify this even further for immediate execution.
+    - If you share your biggest constraint, I can refine the tradeoff call.
+    - If you want, I can map this to your current workflow language.
+    - If helpful, I can convert this into a concise team handoff style.
+    - If you share your deadline pressure, I can tighten the sequence.
+    - If you want, I can adapt this for a solo path or a team path.
+    - If helpful, I can reshape this around the risk you fear most.
+    expert_concept_a:
+    - scope control
+    - risk framing
+    - decision clarity
+    - execution discipline
+    - review cadence
+    - quality baseline
+    - stakeholder alignment
+    - dependency awareness
+    - constraint mapping
+    - feedback loop
+    - escalation boundary
+    - ownership clarity
+    - delivery hygiene
+    - change control
+    - assumption testing
+    expert_concept_b:
+    - reversible decisions
+    - practical sequencing
+    - signal over noise
+    - evidence based adjustment
+    - predictable handoff
+    - workload pacing
+    - explicit tradeoffs
+    - intention to outcome mapping
+    - ambiguity reduction
+    - learning by iteration
+    - consistency over heroics
+    - focus protection
+    - reliability mindset
+    - coherent communication
+    - risk containment
+    expert_concept_c:
+    - context fidelity
+    - realistic constraints
+    - measurable progress
+    - outcome ownership
+    - stakeholder trust
+    - quality safeguards
+    - execution resilience
+    - stable prioritization
+    - practical boundaries
+    - scoped experimentation
+    - disciplined follow through
+    - informed adjustment
+    - balanced workload
+    - transparent rationale
+    - decision accountability
+    expert_move_a:
+    - define the immediate outcome in plain language
+    - narrow the active scope to what is truly necessary
+    - align work with the strongest current constraint
+    - choose one path and freeze optional branches
+    - set a review checkpoint before expanding scope
+    - separate urgent work from important stabilizing work
+    - identify where confusion is likely and preempt it
+    - capture assumptions that can break execution
+    - reduce competing priorities before committing
+    - clarify ownership before touching execution
+    - make the next move small enough to verify quickly
+    - align expectations with practical capacity
+    - state what success should look like in context
+    - define the risk boundary that should not be crossed
+    - start with a controlled slice of the plan
+    expert_move_b:
+    - map dependencies that can block progress later
+    - establish a lightweight decision cadence
+    - collect early feedback from the right audience
+    - anchor communication to concrete outcomes
+    - remove ambiguous wording from the plan
+    - keep execution notes concise and observable
+    - prioritize stabilizing moves before optimization
+    - align stakeholders on the same success signal
+    - keep one source of truth for active decisions
+    - separate strategic intent from tactical noise
+    - reduce handoff friction with explicit expectations
+    - limit parallel work that dilutes attention
+    - review assumptions against current evidence
+    - adapt pacing to available energy and focus
+    - establish a clear escalation trigger
+    expert_move_c:
+    - run a small validation loop before scaling effort
+    - compare progress against the intended outcome
+    - remove low value tasks that create churn
+    - protect focus with clear stop criteria
+    - use concise summaries to keep everyone aligned
+    - keep quality checks close to execution
+    - turn vague risks into concrete watch items
+    - preserve decision history for clean follow through
+    - align each action with a practical reason
+    - document what changed and why it changed
+    - track drift early before it becomes expensive
+    - tighten scope when signals become noisy
+    - confirm assumptions with direct observation
+    - pace commitments to avoid hidden overload
+    - revisit priorities when constraints shift
+    expert_move_d:
+    - consolidate overlapping tasks into one coherent stream
+    - clarify where flexibility is allowed and where it is not
+    - ask for missing context before expanding the plan
+    - surface tradeoffs before making irreversible moves
+    - simplify communication so the next action is obvious
+    - keep momentum with short deliberate feedback cycles
+    - align support resources to the current critical path
+    - maintain a calm cadence during constraint changes
+    - preserve quality by reducing unnecessary variance
+    - align language across teams to reduce confusion
+    - focus effort where risk reduction is highest
+    - frame progress as evidence rather than opinion
+    - keep adaptation intentional rather than reactive
+    - maintain practical boundaries around workload
+    - update stakeholders with clear and grounded rationale
+    expert_move_e:
+    - close loops quickly on open decisions
+    - capture lessons that improve the next cycle
+    - reinforce what is working before adding complexity
+    - refine the plan using observed outcomes
+    - keep scope honest when new ideas appear
+    - convert ambiguity into concrete choices
+    - stabilize rhythm before pushing for speed
+    - protect execution quality during transitions
+    - clarify unresolved dependencies before escalation
+    - communicate tradeoffs with plain language
+    - focus attention on the highest leverage adjustment
+    - revisit priorities when evidence changes
+    - keep delivery intent visible in every update
+    - lock in improvements that reduce future rework
+    - maintain consistent standards across contributors
+    expert_pitfall_a:
+    - broadening scope before the baseline is stable
+    - treating assumptions as confirmed facts
+    - moving forward without shared definitions
+    - chasing speed while quality signals are unclear
+    - letting urgency erase prioritization discipline
+    - skipping alignment on ownership
+    - changing direction without explicit rationale
+    - reacting to noise as if it were signal
+    - overloading the plan with parallel work
+    - ignoring constraint shifts until late
+    expert_pitfall_b:
+    - adding complexity before core flow is proven
+    - confusing activity with real progress
+    - relying on memory instead of explicit records
+    - delaying risk checks until after expansion
+    - using vague language that hides responsibility
+    - overpromising before capacity is validated
+    - introducing changes without impact review
+    - treating stakeholder silence as agreement
+    - skipping review cadence during pressure
+    - neglecting communication clarity at handoff points
+    expert_pitfall_c:
+    - optimizing details while core issues remain open
+    - making irreversible calls without enough signal
+    - pushing execution while context is still ambiguous
+    - underestimating dependency friction
+    - letting local fixes break system coherence
+    - assuming alignment without confirming it
+    - deferring unresolved blockers too long
+    - accepting drift because it feels manageable
+    - replacing structure with ad hoc decisions
+    - treating feedback as optional
+    expert_check_a:
+    - the next move is obvious to all owners
+    - scope stays aligned with the stated outcome
+    - risks are visible before they become urgent
+    - execution rhythm remains calm and predictable
+    - decisions are easy to explain and defend
+    - handoffs happen without confusion
+    - stakeholders can repeat the same priorities
+    - quality signals remain stable during delivery
+    - constraints are acknowledged in every update
+    - the plan can absorb minor surprises cleanly
+    expert_check_b:
+    - progress is measurable without overreporting
+    - tradeoffs are named before commitments are made
+    - changes are documented with clear reasons
+    - team attention stays on high leverage work
+    - dependency risk is reviewed continuously
+    - communication remains concise and specific
+    - workload remains realistic for current capacity
+    - priorities remain coherent under pressure
+    - feedback leads to visible adjustments
+    - uncertainty decreases after each review
+    expert_check_c:
+    - the plan still makes sense after context shifts
+    - optional work stays outside the active scope
+    - unresolved issues are surfaced early
+    - delivery quality does not degrade during speed changes
+    - owners can explain both intent and method
+    - the team can continue without waiting for rescue
+    - confidence is based on evidence, not optimism
+    - outcomes improve while noise decreases
+    - momentum continues without sacrificing clarity
+    - risk reduction is visible in daily execution
+    expert_tool_a:
+    - concise decision log
+    - risk review board
+    - scoped pilot checklist
+    - stakeholder alignment brief
+    - dependency map
+    - change review note
+    - quality signal tracker
+    - outcome focused status note
+    - priority map
+    - execution checkpoint brief
+    expert_tool_b:
+    - assumption review sheet
+    - handoff checklist
+    - escalation rubric
+    - clarity checklist
+    - workload pacing board
+    - feedback summary log
+    - scope guardrail note
+    - context snapshot
+    - risk watch list
+    - coherence review checklist
+    case:
+    - topic_domain: product
+      topic_term: release readiness
+      goal_inf: align release work without quality drift
+      scenario_hint: the team is carrying open feedback while launch pressure rises
+      constraint_hint: approval windows are narrow and review capacity is limited
+      desired_outcome: launch with a stable user experience and fewer surprises
+      risk_hint: unresolved edge cases can trigger emergency rework
+      skill_level: intermediate
+      timebox: this week
+      budget: tight budget
+      device_hint: laptop workflow
+      audience_hint: cross functional team
+      topic_std: release readiness
+      scenario_std: the team is carrying open feedback while launch pressure rises
+      constraint_std: approval windows are narrow and review capacity is limited
+      desired_std: launch with a stable user experience and fewer surprises
+      risk_std: unresolved edge cases can trigger emergency rework
+      first_action: release readiness
+      check_signal: the team is carrying open feedback while launch pressure rises
+    - topic_domain: operations
+      topic_term: support queue balancing
+      goal_inf: reduce backlog while protecting response quality
+      scenario_hint: intake volume fluctuates and escalation requests keep appearing
+      constraint_hint: staffing is fixed and context switching is high
+      desired_outcome: faster resolution with consistent communication quality
+      risk_hint: rushed triage can misclassify urgent requests
+      skill_level: intermediate
+      timebox: this sprint
+      budget: constrained budget
+      device_hint: shared dashboard
+      audience_hint: support leads
+      topic_std: support queue balancing
+      scenario_std: intake volume fluctuates and escalation requests keep appearing
+      constraint_std: staffing is fixed and context switching is high
+      desired_std: faster resolution with consistent communication quality
+      risk_std: rushed triage can misclassify urgent requests
+      first_action: support queue balancing
+      check_signal: intake volume fluctuates and escalation requests keep appearing
+    - topic_domain: research
+      topic_term: synthesis workflow
+      goal_inf: turn scattered findings into a coherent recommendation
+      scenario_hint: multiple notes exist but conclusions are not aligned
+      constraint_hint: review time is short and stakeholders need clarity
+      desired_outcome: produce a clear direction that can be acted on quickly
+      risk_hint: selective interpretation may bias the final recommendation
+      skill_level: advanced
+      timebox: before the next review
+      budget: moderate budget
+      device_hint: document workspace
+      audience_hint: decision makers
+      topic_std: synthesis workflow
+      scenario_std: multiple notes exist but conclusions are not aligned
+      constraint_std: review time is short and stakeholders need clarity
+      desired_std: produce a clear direction that can be acted on quickly
+      risk_std: selective interpretation may bias the final recommendation
+      first_action: synthesis workflow
+      check_signal: multiple notes exist but conclusions are not aligned
+    - topic_domain: education
+      topic_term: curriculum redesign
+      goal_inf: refresh learning flow without overwhelming instructors
+      scenario_hint: feedback indicates confusion around sequence and pacing
+      constraint_hint: delivery time is fixed and instructor bandwidth is limited
+      desired_outcome: smoother learning progression with clearer outcomes
+      risk_hint: too many simultaneous changes can increase learner confusion
+      skill_level: intermediate
+      timebox: over this month
+      budget: limited budget
+      device_hint: blended teaching tools
+      audience_hint: instructional team
+      topic_std: curriculum redesign
+      scenario_std: feedback indicates confusion around sequence and pacing
+      constraint_std: delivery time is fixed and instructor bandwidth is limited
+      desired_std: smoother learning progression with clearer outcomes
+      risk_std: too many simultaneous changes can increase learner confusion
+      first_action: curriculum redesign
+      check_signal: feedback indicates confusion around sequence and pacing
+    - topic_domain: community
+      topic_term: program rollout
+      goal_inf: launch the program with consistent facilitation quality
+      scenario_hint: facilitators vary in confidence and local context differs
+      constraint_hint: training time is short and materials must stay lightweight
+      desired_outcome: predictable participant experience across locations
+      risk_hint: inconsistent facilitation can erode trust quickly
+      skill_level: intermediate
+      timebox: before launch week
+      budget: modest budget
+      device_hint: mobile and laptop mix
+      audience_hint: community coordinators
+      topic_std: program rollout
+      scenario_std: facilitators vary in confidence and local context differs
+      constraint_std: training time is short and materials must stay lightweight
+      desired_std: predictable participant experience across locations
+      risk_std: inconsistent facilitation can erode trust quickly
+      first_action: program rollout
+      check_signal: facilitators vary in confidence and local context differs
+    - topic_domain: security
+      topic_term: review cycle
+      goal_inf: improve risk visibility without slowing delivery
+      scenario_hint: teams are shipping quickly while controls are uneven
+      constraint_hint: audit support is limited and dependencies are changing
+      desired_outcome: clear risk posture with practical mitigation ownership
+      risk_hint: late findings can block release commitments
+      skill_level: advanced
+      timebox: this quarter
+      budget: fixed budget
+      device_hint: ticketing platform
+      audience_hint: engineering leads
+      topic_std: review cycle
+      scenario_std: teams are shipping quickly while controls are uneven
+      constraint_std: audit support is limited and dependencies are changing
+      desired_std: clear risk posture with practical mitigation ownership
+      risk_std: late findings can block release commitments
+      first_action: review cycle
+      check_signal: teams are shipping quickly while controls are uneven
+    - topic_domain: finance
+      topic_term: budget recovery plan
+      goal_inf: restore margin while preserving service reliability
+      scenario_hint: costs rose unexpectedly and commitments are already public
+      constraint_hint: reductions must avoid customer visible degradation
+      desired_outcome: reduce spend with minimal operational disruption
+      risk_hint: broad cuts can create hidden quality failures
+      skill_level: advanced
+      timebox: over the next review cycle
+      budget: strict budget
+      device_hint: planning sheet
+      audience_hint: finance partners
+      topic_std: budget recovery plan
+      scenario_std: costs rose unexpectedly and commitments are already public
+      constraint_std: reductions must avoid customer visible degradation
+      desired_std: reduce spend with minimal operational disruption
+      risk_std: broad cuts can create hidden quality failures
+      first_action: budget recovery plan
+      check_signal: costs rose unexpectedly and commitments are already public
+    - topic_domain: people
+      topic_term: mentoring framework
+      goal_inf: build consistent coaching without overloading managers
+      scenario_hint: mentors use different styles and outcomes vary widely
+      constraint_hint: manager time is fragmented and follow through is inconsistent
+      desired_outcome: repeatable growth conversations with clear accountability
+      risk_hint: vague guidance can reduce trust in the process
+      skill_level: intermediate
+      timebox: across this month
+      budget: lean budget
+      device_hint: meeting notes tool
+      audience_hint: people managers
+      topic_std: mentoring framework
+      scenario_std: mentors use different styles and outcomes vary widely
+      constraint_std: manager time is fragmented and follow through is inconsistent
+      desired_std: repeatable growth conversations with clear accountability
+      risk_std: vague guidance can reduce trust in the process
+      first_action: mentoring framework
+      check_signal: mentors use different styles and outcomes vary widely
+    - topic_domain: quality
+      topic_term: defect prevention workflow
+      goal_inf: lower recurring defects while maintaining delivery pace
+      scenario_hint: similar issues keep returning across releases
+      constraint_hint: root cause analysis time is limited
+      desired_outcome: fewer repeats and faster confidence in changes
+      risk_hint: superficial fixes can mask systemic problems
+      skill_level: advanced
+      timebox: this week
+      budget: constrained budget
+      device_hint: issue tracker
+      audience_hint: product and engineering
+      topic_std: defect prevention workflow
+      scenario_std: similar issues keep returning across releases
+      constraint_std: root cause analysis time is limited
+      desired_std: fewer repeats and faster confidence in changes
+      risk_std: superficial fixes can mask systemic problems
+      first_action: defect prevention workflow
+      check_signal: similar issues keep returning across releases
+    - topic_domain: partnerships
+      topic_term: onboarding sequence
+      goal_inf: onboard partners with fewer handoff failures
+      scenario_hint: partner readiness varies and documentation is inconsistent
+      constraint_hint: enablement team capacity is stretched
+      desired_outcome: predictable activation flow with clear expectations
+      risk_hint: missed prerequisites can delay downstream milestones
+      skill_level: intermediate
+      timebox: before the next onboarding window
+      budget: moderate budget
+      device_hint: shared workspace
+      audience_hint: partner operations
+      topic_std: onboarding sequence
+      scenario_std: partner readiness varies and documentation is inconsistent
+      constraint_std: enablement team capacity is stretched
+      desired_std: predictable activation flow with clear expectations
+      risk_std: missed prerequisites can delay downstream milestones
+      first_action: onboarding sequence
+      check_signal: partner readiness varies and documentation is inconsistent
+    - topic_domain: data
+      topic_term: quality remediation
+      goal_inf: restore trust in core reporting outputs
+      scenario_hint: stakeholders doubt numbers due to recurring mismatches
+      constraint_hint: source systems are fragmented and ownership is split
+      desired_outcome: stable definitions and reliable downstream reporting
+      risk_hint: silent schema drift can reintroduce errors
+      skill_level: advanced
+      timebox: this sprint
+      budget: fixed budget
+      device_hint: analytics workspace
+      audience_hint: analytics and operations
+      topic_std: quality remediation
+      scenario_std: stakeholders doubt numbers due to recurring mismatches
+      constraint_std: source systems are fragmented and ownership is split
+      desired_std: stable definitions and reliable downstream reporting
+      risk_std: silent schema drift can reintroduce errors
+      first_action: quality remediation
+      check_signal: stakeholders doubt numbers due to recurring mismatches
+    - topic_domain: communication
+      topic_term: stakeholder update cadence
+      goal_inf: improve clarity while reducing update fatigue
+      scenario_hint: updates are frequent but still create confusion
+      constraint_hint: messages need to be concise and consistent
+      desired_outcome: shared understanding with fewer follow up escalations
+      risk_hint: mixed narratives can trigger unnecessary rework
+      skill_level: intermediate
+      timebox: before the next leadership sync
+      budget: lean budget
+      device_hint: communication channel mix
+      audience_hint: leadership group
+      topic_std: stakeholder update cadence
+      scenario_std: updates are frequent but still create confusion
+      constraint_std: messages need to be concise and consistent
+      desired_std: shared understanding with fewer follow up escalations
+      risk_std: mixed narratives can trigger unnecessary rework
+      first_action: stakeholder update cadence
+      check_signal: updates are frequent but still create confusion
+    - topic_domain: service
+      topic_term: escalation handling
+      goal_inf: resolve critical requests without derailing normal delivery
+      scenario_hint: urgent escalations repeatedly interrupt planned work
+      constraint_hint: the same specialists handle routine and urgent tasks
+      desired_outcome: faster critical resolution with less collateral churn
+      risk_hint: repeated context switching can increase error rates
+      skill_level: advanced
+      timebox: this week
+      budget: constrained budget
+      device_hint: incident workspace
+      audience_hint: operations and support
+      topic_std: escalation handling
+      scenario_std: urgent escalations repeatedly interrupt planned work
+      constraint_std: the same specialists handle routine and urgent tasks
+      desired_std: faster critical resolution with less collateral churn
+      risk_std: repeated context switching can increase error rates
+      first_action: escalation handling
+      check_signal: urgent escalations repeatedly interrupt planned work
+    - topic_domain: content
+      topic_term: editorial workflow
+      goal_inf: improve consistency across contributors
+      scenario_hint: output quality varies by contributor and review timing
+      constraint_hint: publication cadence is fixed
+      desired_outcome: predictable voice and cleaner handoff between stages
+      risk_hint: inconsistent review criteria can block throughput
+      skill_level: intermediate
+      timebox: over this month
+      budget: modest budget
+      device_hint: content management system
+      audience_hint: editorial team
+      topic_std: editorial workflow
+      scenario_std: output quality varies by contributor and review timing
+      constraint_std: publication cadence is fixed
+      desired_std: predictable voice and cleaner handoff between stages
+      risk_std: inconsistent review criteria can block throughput
+      first_action: editorial workflow
+      check_signal: output quality varies by contributor and review timing
+    - topic_domain: reliability
+      topic_term: incident follow through
+      goal_inf: turn incident lessons into durable prevention actions
+      scenario_hint: post incident actions are captured but rarely completed
+      constraint_hint: ownership diffuses after urgency declines
+      desired_outcome: visible closure on high value prevention work
+      risk_hint: repeated incidents can erode internal confidence
+      skill_level: advanced
+      timebox: before the next operations review
+      budget: fixed budget
+      device_hint: incident tracker
+      audience_hint: reliability team
+      topic_std: incident follow through
+      scenario_std: post incident actions are captured but rarely completed
+      constraint_std: ownership diffuses after urgency declines
+      desired_std: visible closure on high value prevention work
+      risk_std: repeated incidents can erode internal confidence
+      first_action: incident follow through
+      check_signal: post incident actions are captured but rarely completed
+    - topic_domain: planning
+      topic_term: roadmap synchronization
+      goal_inf: align cross team priorities without overcommitment
+      scenario_hint: teams plan independently and dependencies surface late
+      constraint_hint: planning windows are short and assumptions diverge
+      desired_outcome: coherent roadmap with realistic sequencing
+      risk_hint: hidden dependencies can break delivery promises
+      skill_level: advanced
+      timebox: this quarter
+      budget: constrained budget
+      device_hint: roadmap board
+      audience_hint: cross team leads
+      topic_std: roadmap synchronization
+      scenario_std: teams plan independently and dependencies surface late
+      constraint_std: planning windows are short and assumptions diverge
+      desired_std: coherent roadmap with realistic sequencing
+      risk_std: hidden dependencies can break delivery promises
+      first_action: roadmap synchronization
+      check_signal: teams plan independently and dependencies surface late
+    - topic_domain: nonprofit
+      topic_term: grant proposal workflow
+      goal_inf: improve proposal quality under tight deadlines
+      scenario_hint: evidence gathering and narrative drafting are poorly linked
+      constraint_hint: contributor availability is unpredictable
+      desired_outcome: stronger proposals with fewer last minute rewrites
+      risk_hint: weak alignment can reduce funding success
+      skill_level: intermediate
+      timebox: before submission window
+      budget: lean budget
+      device_hint: collaborative document tool
+      audience_hint: program and grants team
+      topic_std: grant proposal workflow
+      scenario_std: evidence gathering and narrative drafting are poorly linked
+      constraint_std: contributor availability is unpredictable
+      desired_std: stronger proposals with fewer last minute rewrites
+      risk_std: weak alignment can reduce funding success
+      first_action: grant proposal workflow
+      check_signal: evidence gathering and narrative drafting are poorly linked
+    - topic_domain: customer
+      topic_term: retention outreach planning
+      goal_inf: improve retention messaging without overwhelming customers
+      scenario_hint: outreach is active but response quality is inconsistent
+      constraint_hint: personalization capacity is limited
+      desired_outcome: clearer outreach that feels relevant and timely
+      risk_hint: generic messaging can reduce trust and engagement
+      skill_level: intermediate
+      timebox: over this cycle
+      budget: moderate budget
+      device_hint: outreach platform
+      audience_hint: customer success team
+      topic_std: retention outreach planning
+      scenario_std: outreach is active but response quality is inconsistent
+      constraint_std: personalization capacity is limited
+      desired_std: clearer outreach that feels relevant and timely
+      risk_std: generic messaging can reduce trust and engagement
+      first_action: retention outreach planning
+      check_signal: outreach is active but response quality is inconsistent
+    - topic_domain: product
+      topic_term: discovery rhythm
+      goal_inf: improve decision quality before committing to build
+      scenario_hint: ideas are plentiful but evidence is uneven
+      constraint_hint: discovery time competes with delivery pressure
+      desired_outcome: stronger evidence and cleaner prioritization calls
+      risk_hint: premature commitment can lock in weak assumptions
+      skill_level: advanced
+      timebox: this sprint
+      budget: fixed budget
+      device_hint: research notes stack
+      audience_hint: product team
+      topic_std: discovery rhythm
+      scenario_std: ideas are plentiful but evidence is uneven
+      constraint_std: discovery time competes with delivery pressure
+      desired_std: stronger evidence and cleaner prioritization calls
+      risk_std: premature commitment can lock in weak assumptions
+      first_action: discovery rhythm
+      check_signal: ideas are plentiful but evidence is uneven
+    - topic_domain: operations
+      topic_term: handoff reliability
+      goal_inf: reduce handoff losses across shifts
+      scenario_hint: key context often disappears between owners
+      constraint_hint: shift overlap is short and notes are inconsistent
+      desired_outcome: predictable handoffs with fewer reopen loops
+      risk_hint: missing context can trigger repeat mistakes
+      skill_level: intermediate
+      timebox: during this week
+      budget: constrained budget
+      device_hint: shared handoff log
+      audience_hint: operations staff
+      topic_std: handoff reliability
+      scenario_std: key context often disappears between owners
+      constraint_std: shift overlap is short and notes are inconsistent
+      desired_std: predictable handoffs with fewer reopen loops
+      risk_std: missing context can trigger repeat mistakes
+      first_action: handoff reliability
+      check_signal: key context often disappears between owners
+    - topic_domain: hiring
+      topic_term: rubric refinement
+      goal_inf: improve candidate evaluation consistency
+      scenario_hint: interview feedback is uneven and hard to compare
+      constraint_hint: interviewers have different levels of calibration
+      desired_outcome: fairer and clearer hiring decisions
+      risk_hint: unclear criteria can amplify bias
+      skill_level: advanced
+      timebox: before next hiring round
+      budget: lean budget
+      device_hint: interview kit
+      audience_hint: hiring panel
+      topic_std: rubric refinement
+      scenario_std: interview feedback is uneven and hard to compare
+      constraint_std: interviewers have different levels of calibration
+      desired_std: fairer and clearer hiring decisions
+      risk_std: unclear criteria can amplify bias
+      first_action: rubric refinement
+      check_signal: interview feedback is uneven and hard to compare
+    - topic_domain: program
+      topic_term: event planning workflow
+      goal_inf: coordinate delivery without last minute confusion
+      scenario_hint: many contributors depend on shared timing assumptions
+      constraint_hint: schedule flexibility is minimal
+      desired_outcome: smoother event delivery and clearer ownership
+      risk_hint: untracked dependencies can create visible failures
+      skill_level: intermediate
+      timebox: before event week
+      budget: strict budget
+      device_hint: planning board
+      audience_hint: event team
+      topic_std: event planning workflow
+      scenario_std: many contributors depend on shared timing assumptions
+      constraint_std: schedule flexibility is minimal
+      desired_std: smoother event delivery and clearer ownership
+      risk_std: untracked dependencies can create visible failures
+      first_action: event planning workflow
+      check_signal: many contributors depend on shared timing assumptions
+    - topic_domain: enablement
+      topic_term: knowledge base refresh
+      goal_inf: improve findability and reduce repeated questions
+      scenario_hint: articles exist but users struggle to locate reliable guidance
+      constraint_hint: writing capacity is limited and support load is high
+      desired_outcome: clearer content paths and lower repeat requests
+      risk_hint: stale guidance can spread incorrect practices
+      skill_level: intermediate
+      timebox: this month
+      budget: modest budget
+      device_hint: documentation portal
+      audience_hint: internal users
+      topic_std: knowledge base refresh
+      scenario_std: articles exist but users struggle to locate reliable guidance
+      constraint_std: writing capacity is limited and support load is high
+      desired_std: clearer content paths and lower repeat requests
+      risk_std: stale guidance can spread incorrect practices
+      first_action: knowledge base refresh
+      check_signal: articles exist but users struggle to locate reliable guidance
+    - topic_domain: governance
+      topic_term: policy rollout
+      goal_inf: introduce policy changes with consistent adoption
+      scenario_hint: teams interpret policy language differently
+      constraint_hint: training time is limited
+      desired_outcome: shared interpretation and practical compliance behavior
+      risk_hint: inconsistent adoption can create avoidable risk exposure
+      skill_level: advanced
+      timebox: over this quarter
+      budget: fixed budget
+      device_hint: policy workspace
+      audience_hint: policy owners and team leads
+      topic_std: policy rollout
+      scenario_std: teams interpret policy language differently
+      constraint_std: training time is limited
+      desired_std: shared interpretation and practical compliance behavior
+      risk_std: inconsistent adoption can create avoidable risk exposure
+      first_action: policy rollout
+      check_signal: teams interpret policy language differently
+    - topic_domain: strategy
+      topic_term: prioritization reset
+      goal_inf: realign focus with current strategic constraints
+      scenario_hint: legacy priorities no longer match current context
+      constraint_hint: stakeholders still expect prior commitments
+      desired_outcome: realistic priority set with credible rationale
+      risk_hint: unclear reset logic can trigger trust loss
+      skill_level: advanced
+      timebox: before next planning cycle
+      budget: constrained budget
+      device_hint: strategy brief
+      audience_hint: leadership and delivery leads
+      topic_std: prioritization reset
+      scenario_std: legacy priorities no longer match current context
+      constraint_std: stakeholders still expect prior commitments
+      desired_std: realistic priority set with credible rationale
+      risk_std: unclear reset logic can trigger trust loss
+      first_action: prioritization reset
+      check_signal: legacy priorities no longer match current context
+    - topic_domain: service
+      topic_term: onboarding response quality
+      goal_inf: improve new user support consistency
+      scenario_hint: new users receive mixed guidance from different channels
+      constraint_hint: response ownership is distributed
+      desired_outcome: consistent onboarding support and clearer first outcomes
+      risk_hint: inconsistent onboarding cues can slow activation and increase drop
+        off
+      skill_level: intermediate
+      timebox: this week
+      budget: lean budget
+      device_hint: support channels
+      audience_hint: onboarding team
+      topic_std: onboarding response quality
+      scenario_std: new users receive mixed guidance from different channels
+      constraint_std: response ownership is distributed
+      desired_std: consistent onboarding support and clearer first outcomes
+      risk_std: inconsistent onboarding cues can slow activation and increase drop
+        off
+      first_action: onboarding response quality
+      check_signal: new users receive mixed guidance from different channels
+    - topic_domain: analytics
+      topic_term: insight communication
+      goal_inf: present findings clearly for decision use
+      scenario_hint: analysis is solid but decisions stall on interpretation
+      constraint_hint: stakeholders have limited attention during reviews
+      desired_outcome: concise insight framing that enables action
+      risk_hint: overloaded narratives can hide the main signal
+      skill_level: advanced
+      timebox: before review session
+      budget: fixed budget
+      device_hint: reporting deck
+      audience_hint: business stakeholders
+      topic_std: insight communication
+      scenario_std: analysis is solid but decisions stall on interpretation
+      constraint_std: stakeholders have limited attention during reviews
+      desired_std: concise insight framing that enables action
+      risk_std: overloaded narratives can hide the main signal
+      first_action: insight communication
+      check_signal: analysis is solid but decisions stall on interpretation
+    - topic_domain: platform
+      topic_term: dependency coordination
+      goal_inf: reduce delays caused by cross team dependency drift
+      scenario_hint: platform changes affect multiple downstream plans
+      constraint_hint: coordination windows are narrow
+      desired_outcome: clearer dependency agreements and fewer blockers
+      risk_hint: hidden assumptions can break delivery timing
+      skill_level: advanced
+      timebox: this sprint
+      budget: constrained budget
+      device_hint: dependency board
+      audience_hint: platform and product leads
+      topic_std: dependency coordination
+      scenario_std: platform changes affect multiple downstream plans
+      constraint_std: coordination windows are narrow
+      desired_std: clearer dependency agreements and fewer blockers
+      risk_std: hidden assumptions can break delivery timing
+      first_action: dependency coordination
+      check_signal: platform changes affect multiple downstream plans
+    - topic_domain: training
+      topic_term: facilitator preparation
+      goal_inf: improve session quality across facilitators
+      scenario_hint: facilitator confidence varies with topic complexity
+      constraint_hint: preparation time is limited
+      desired_outcome: consistent session quality and clearer participant outcomes
+      risk_hint: uneven preparation can create learner confusion
+      skill_level: intermediate
+      timebox: before next training block
+      budget: modest budget
+      device_hint: facilitation guide
+      audience_hint: training facilitators
+      topic_std: facilitator preparation
+      scenario_std: facilitator confidence varies with topic complexity
+      constraint_std: preparation time is limited
+      desired_std: consistent session quality and clearer participant outcomes
+      risk_std: uneven preparation can create learner confusion
+      first_action: facilitator preparation
+      check_signal: facilitator confidence varies with topic complexity
+    - topic_domain: legal
+      topic_term: contract review workflow
+      goal_inf: speed review while preserving risk coverage
+      scenario_hint: incoming agreements are diverse and review context is fragmented
+      constraint_hint: legal bandwidth is constrained
+      desired_outcome: faster turnaround with controlled risk posture
+      risk_hint: skipped review details can create long term exposure
+      skill_level: advanced
+      timebox: over this cycle
+      budget: fixed budget
+      device_hint: contract tracker
+      audience_hint: legal and procurement
+      topic_std: contract review workflow
+      scenario_std: incoming agreements are diverse and review context is fragmented
+      constraint_std: legal bandwidth is constrained
+      desired_std: faster turnaround with controlled risk posture
+      risk_std: skipped review details can create long term exposure
+      first_action: contract review workflow
+      check_signal: incoming agreements are diverse and review context is fragmented
+    - topic_domain: operations
+      topic_term: capacity planning
+      goal_inf: balance workload without burning out key owners
+      scenario_hint: demand rises unevenly across teams
+      constraint_hint: hiring is paused and commitments continue
+      desired_outcome: stable throughput with realistic workload pacing
+      risk_hint: hidden overload can degrade quality and morale
+      skill_level: advanced
+      timebox: this month
+      budget: tight budget
+      device_hint: capacity board
+      audience_hint: team managers
+      topic_std: capacity planning
+      scenario_std: demand rises unevenly across teams
+      constraint_std: hiring is paused and commitments continue
+      desired_std: stable throughput with realistic workload pacing
+      risk_std: hidden overload can degrade quality and morale
+      first_action: capacity planning
+      check_signal: demand rises unevenly across teams
+    q_template:
+    - user_message: '{q_opening} {topic_term}. {q_context_wrap} {scenario_hint}. {constraint_hint}.
+        {q_followup}?'
+    - user_message: '{q_opening} {topic_term} for {audience_hint}. {scenario_hint}.
+        {q_followup}?'
+    - user_message: '{q_opening} {topic_term} with {constraint_hint}. {q_context_wrap}
+        {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. I need to reach {desired_outcome} while
+        handling {risk_hint}. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. In {scenario_hint}, how should I balance
+        {constraint_hint} and {desired_outcome}?'
+    - user_message: '{q_opening} {topic_term}. {constraint_hint}. I am at {skill_level}
+        level and need this to hold. {q_followup}?'
+    - user_message: '{q_opening} {topic_term} and keep it workable for {audience_hint}.
+        {scenario_hint}. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. I have {timebox} and I need {desired_outcome}.
+        {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. {q_context_wrap} I am worried about
+        {risk_hint}. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. With {device_hint} and {constraint_hint},
+        what direction is practical?'
+    - user_message: '{q_opening} {topic_term}. We need {desired_outcome}, but {risk_hint}
+        is getting louder. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. {scenario_hint}. I want a plan that
+        fits {timebox}. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. How do I keep this stable for {audience_hint}
+        under {constraint_hint}?'
+    - user_message: '{q_opening} {topic_term}. I can only commit {timebox}, and I
+        need a decision I can defend. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. {q_context_wrap} The current risk is
+        {risk_hint}. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. We are in {scenario_hint} and I need
+        clarity that fits {constraint_hint}.'
+    - user_message: '{q_opening} {topic_term}. I want an approach matched to {skill_level}
+        experience. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. Keep it practical for {device_hint}
+        usage and {audience_hint}. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. I am trying to avoid {risk_hint} while
+        reaching {desired_outcome}. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. {scenario_hint}. What is the cleanest
+        move within {timebox}?'
+    - user_message: '{q_opening} {topic_term}. {constraint_hint}. We need this to
+        remain coherent for {audience_hint}.'
+    - user_message: '{q_opening} {topic_term}. I need a calm plan that survives {scenario_hint}.
+        {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. The goal is {desired_outcome}, but
+        capacity is tight. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. What sequence fits {timebox} without
+        triggering {risk_hint}?'
+    - user_message: '{q_opening} {topic_term}. I need to choose quickly, but {constraint_hint}.
+        {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. Please keep this grounded in {scenario_hint}
+        and {desired_outcome}.'
+    - user_message: '{q_opening} {topic_term}. I need this to be understandable to
+        {audience_hint}. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. I can work with {device_hint} only
+        and need realistic execution.'
+    - user_message: '{q_opening} {topic_term}. The risk I want to reduce is {risk_hint}.
+        {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. I need a recommendation shaped by {constraint_hint}
+        and {timebox}.'
+    - user_message: '{q_opening} {topic_term}. In my context, {scenario_hint}. What
+        should I lock first?'
+    - user_message: '{q_opening} {topic_term}. We need {desired_outcome} without losing
+        consistency. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. I want a practical call for {skill_level}
+        level execution.'
+    - user_message: '{q_opening} {topic_term}. Keep this aligned with {audience_hint}
+        needs and {timebox}.'
+    - user_message: '{q_opening} {topic_term}. {q_context_wrap} Which path avoids
+        {risk_hint} and confusion?'
+    - user_message: '{q_opening} {topic_term}. I need a response that balances {constraint_hint}
+        and delivery quality.'
+    - user_message: '{q_opening} {topic_term}. What move gives clear progress in {timebox}
+        and keeps risk low?'
+    - user_message: '{q_opening} {topic_term}. We are under {constraint_hint} and
+        I need a coherent sequence.'
+    - user_message: '{q_opening} {topic_term}. I want this to fit {scenario_hint}
+        and still reach {desired_outcome}.'
+    - user_message: '{q_opening} {topic_term}. Can you shape a stable approach for
+        {audience_hint} given {risk_hint}?'
+    - user_message: '{q_opening} {topic_term}. I need a decision path that works on
+        {device_hint}. {q_followup}?'
+    - user_message: '{q_opening} {topic_term}. Keep the recommendation grounded in
+        {constraint_hint} and {scenario_hint}.'
+    - user_message: '{q_opening} {topic_term}. I want a practical approach that respects
+        {timebox} and current capacity.'
+    - user_message: '{q_opening} {topic_term}. I need clear tradeoffs around {desired_outcome}
+        and {risk_hint}.'
+    a_skeleton:
+    - assistant_response: '{topic_term} becomes unstable in {scenario_hint} when {constraint_hint}
+        and {desired_outcome} are managed on separate tracks and {risk_hint} is left
+        unchecked. Run the cycle inside {timebox}, keep change cost inside {budget},
+        and start from {move_alpha} before branching. If {check_beta} weakens or {guard_alpha}
+        rises, realign {audience_hint} through {device_hint} and protect {constraint_hint_ctx}
+        while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Use {timebox} to run {move_alpha}, then verify whether {check_beta}
+        is improving.'
+    - assistant_response: 'In {scenario_hint}, {topic_term} stays reliable only when
+        {constraint_hint}, {desired_outcome}, and {risk_hint} are reviewed as one
+        package. Run the cycle inside {timebox}, keep change cost inside {budget},
+        and start from {move_alpha} before branching. If {check_beta} weakens or {guard_alpha}
+        rises, realign {audience_hint} through {device_hint} and protect {constraint_hint_ctx}
+        while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Reserve {timebox} for one controlled cycle and review {check_beta}
+        before expanding.'
+    - assistant_response: 'For {topic_term}, the common failure mode in {scenario_hint}
+        is chasing {desired_outcome} while underweighting {constraint_hint} and {risk_hint}.
+        Run the cycle inside {timebox}, keep change cost inside {budget}, and start
+        from {move_alpha} before branching. If {check_beta} weakens or {guard_alpha}
+        rises, realign {audience_hint} through {device_hint} and protect {constraint_hint_ctx}
+        while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: In {timebox}, complete the baseline pass and re-check {guard_alpha}
+        before opening scope.'
+    - assistant_response: '{topic_term} can stay durable in {scenario_hint} if every
+        tradeoff keeps {constraint_hint}, {desired_outcome}, and {risk_hint} tightly
+        coupled. Run the cycle inside {timebox}, keep change cost inside {budget},
+        and start from {move_alpha} before branching. If {check_beta} weakens or {guard_alpha}
+        rises, realign {audience_hint} through {device_hint} and protect {constraint_hint_ctx}
+        while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Commit one {timebox} loop, then confirm {check_beta} and {guard_alpha}
+        with the team.'
+    - assistant_response: 'When {scenario_hint} gets noisy, {topic_term} improves
+        only if {constraint_hint} and {desired_outcome} are co-owned and {risk_hint}
+        is monitored continuously. Run the cycle inside {timebox}, keep change cost
+        inside {budget}, and start from {move_alpha} before branching. If {check_beta}
+        weakens or {guard_alpha} rises, realign {audience_hint} through {device_hint}
+        and protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Block {timebox} for the smallest viable run and validate {check_beta}
+        before adding parallel work.'
+    - assistant_response: 'A practical frame for {topic_term} in {scenario_hint} is
+        to treat {constraint_hint}, {desired_outcome}, and {risk_hint} as one decision
+        loop. Run the cycle inside {timebox}, keep change cost inside {budget}, and
+        start from {move_alpha} before branching. If {check_beta} weakens or {guard_alpha}
+        rises, realign {audience_hint} through {device_hint} and protect {constraint_hint_ctx}
+        while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Execute the first pass inside {timebox}, then decide expansion
+        only if {check_beta} stays stable.'
+    - assistant_response: '{topic_term} usually drifts in {scenario_hint} when teams
+        optimize for {desired_outcome} before validating {constraint_hint} and {risk_hint}.
+        Run the cycle inside {timebox}, keep change cost inside {budget}, and start
+        from {move_alpha} before branching. If {check_beta} weakens or {guard_alpha}
+        rises, realign {audience_hint} through {device_hint} and protect {constraint_hint_ctx}
+        while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Keep the next cycle to {timebox}, close it cleanly, and compare
+        {check_beta} against the prior read.'
+    - assistant_response: 'In high pressure moments of {scenario_hint}, {topic_term}
+        remains coherent when {constraint_hint} leads, {desired_outcome} stays visible,
+        and {risk_hint} is explicit. Run the cycle inside {timebox}, keep change cost
+        inside {budget}, and start from {move_alpha} before branching. If {check_beta}
+        weakens or {guard_alpha} rises, realign {audience_hint} through {device_hint}
+        and protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Use {timebox} to finish one bounded pass and review signal quality
+        before any scope increase.'
+    - assistant_response: 'The safest path for {topic_term} in {scenario_hint} is
+        to lock {constraint_hint} and {desired_outcome} together so {risk_hint} cannot
+        spread silently. Run the cycle inside {timebox}, keep change cost inside {budget},
+        and start from {move_alpha} before branching. If {check_beta} weakens or {guard_alpha}
+        rises, realign {audience_hint} through {device_hint} and protect {constraint_hint_ctx}
+        while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Use {timebox} to run {move_alpha}, then verify whether {check_beta}
+        is improving.'
+    - assistant_response: '{topic_term} holds up in {scenario_hint} when decisions
+        stop oscillating between {constraint_hint} and {desired_outcome} and start
+        managing {risk_hint} directly. Run the cycle inside {timebox}, keep change
+        cost inside {budget}, and start from {move_alpha} before branching. If {check_beta}
+        weakens or {guard_alpha} rises, realign {audience_hint} through {device_hint}
+        and protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Reserve {timebox} for one controlled cycle and review {check_beta}
+        before expanding.'
+    - assistant_response: '{topic_term} becomes unstable in {scenario_hint} when {constraint_hint}
+        and {desired_outcome} are managed on separate tracks and {risk_hint} is left
+        unchecked. Use {timebox} as the cadence boundary, treat {budget} as a hard
+        guardrail, and launch with {move_alpha} first. If {check_beta} weakens or
+        {guard_alpha} rises, realign {audience_hint} through {device_hint} and protect
+        {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: In {timebox}, complete the baseline pass and re-check {guard_alpha}
+        before opening scope.'
+    - assistant_response: 'In {scenario_hint}, {topic_term} stays reliable only when
+        {constraint_hint}, {desired_outcome}, and {risk_hint} are reviewed as one
+        package. Use {timebox} as the cadence boundary, treat {budget} as a hard guardrail,
+        and launch with {move_alpha} first. If {check_beta} weakens or {guard_alpha}
+        rises, realign {audience_hint} through {device_hint} and protect {constraint_hint_ctx}
+        while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Commit one {timebox} loop, then confirm {check_beta} and {guard_alpha}
+        with the team.'
+    - assistant_response: 'For {topic_term}, the common failure mode in {scenario_hint}
+        is chasing {desired_outcome} while underweighting {constraint_hint} and {risk_hint}.
+        Use {timebox} as the cadence boundary, treat {budget} as a hard guardrail,
+        and launch with {move_alpha} first. If {check_beta} weakens or {guard_alpha}
+        rises, realign {audience_hint} through {device_hint} and protect {constraint_hint_ctx}
+        while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Block {timebox} for the smallest viable run and validate {check_beta}
+        before adding parallel work.'
+    - assistant_response: '{topic_term} can stay durable in {scenario_hint} if every
+        tradeoff keeps {constraint_hint}, {desired_outcome}, and {risk_hint} tightly
+        coupled. Use {timebox} as the cadence boundary, treat {budget} as a hard guardrail,
+        and launch with {move_alpha} first. If {check_beta} weakens or {guard_alpha}
+        rises, realign {audience_hint} through {device_hint} and protect {constraint_hint_ctx}
+        while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Execute the first pass inside {timebox}, then decide expansion
+        only if {check_beta} stays stable.'
+    - assistant_response: 'When {scenario_hint} gets noisy, {topic_term} improves
+        only if {constraint_hint} and {desired_outcome} are co-owned and {risk_hint}
+        is monitored continuously. Use {timebox} as the cadence boundary, treat {budget}
+        as a hard guardrail, and launch with {move_alpha} first. If {check_beta} weakens
+        or {guard_alpha} rises, realign {audience_hint} through {device_hint} and
+        protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Keep the next cycle to {timebox}, close it cleanly, and compare
+        {check_beta} against the prior read.'
+    - assistant_response: 'A practical frame for {topic_term} in {scenario_hint} is
+        to treat {constraint_hint}, {desired_outcome}, and {risk_hint} as one decision
+        loop. Use {timebox} as the cadence boundary, treat {budget} as a hard guardrail,
+        and launch with {move_alpha} first. If {check_beta} weakens or {guard_alpha}
+        rises, realign {audience_hint} through {device_hint} and protect {constraint_hint_ctx}
+        while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Use {timebox} to finish one bounded pass and review signal quality
+        before any scope increase.'
+    - assistant_response: '{topic_term} usually drifts in {scenario_hint} when teams
+        optimize for {desired_outcome} before validating {constraint_hint} and {risk_hint}.
+        Use {timebox} as the cadence boundary, treat {budget} as a hard guardrail,
+        and launch with {move_alpha} first. If {check_beta} weakens or {guard_alpha}
+        rises, realign {audience_hint} through {device_hint} and protect {constraint_hint_ctx}
+        while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Use {timebox} to run {move_alpha}, then verify whether {check_beta}
+        is improving.'
+    - assistant_response: 'In high pressure moments of {scenario_hint}, {topic_term}
+        remains coherent when {constraint_hint} leads, {desired_outcome} stays visible,
+        and {risk_hint} is explicit. Use {timebox} as the cadence boundary, treat
+        {budget} as a hard guardrail, and launch with {move_alpha} first. If {check_beta}
+        weakens or {guard_alpha} rises, realign {audience_hint} through {device_hint}
+        and protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Reserve {timebox} for one controlled cycle and review {check_beta}
+        before expanding.'
+    - assistant_response: 'The safest path for {topic_term} in {scenario_hint} is
+        to lock {constraint_hint} and {desired_outcome} together so {risk_hint} cannot
+        spread silently. Use {timebox} as the cadence boundary, treat {budget} as
+        a hard guardrail, and launch with {move_alpha} first. If {check_beta} weakens
+        or {guard_alpha} rises, realign {audience_hint} through {device_hint} and
+        protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: In {timebox}, complete the baseline pass and re-check {guard_alpha}
+        before opening scope.'
+    - assistant_response: '{topic_term} holds up in {scenario_hint} when decisions
+        stop oscillating between {constraint_hint} and {desired_outcome} and start
+        managing {risk_hint} directly. Use {timebox} as the cadence boundary, treat
+        {budget} as a hard guardrail, and launch with {move_alpha} first. If {check_beta}
+        weakens or {guard_alpha} rises, realign {audience_hint} through {device_hint}
+        and protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Commit one {timebox} loop, then confirm {check_beta} and {guard_alpha}
+        with the team.'
+    - assistant_response: '{topic_term} becomes unstable in {scenario_hint} when {constraint_hint}
+        and {desired_outcome} are managed on separate tracks and {risk_hint} is left
+        unchecked. Keep one controlled loop in {timebox}, enforce {budget} discipline,
+        and begin from {move_alpha} so adjustments stay observable. If {check_beta}
+        weakens or {guard_alpha} rises, realign {audience_hint} through {device_hint}
+        and protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Block {timebox} for the smallest viable run and validate {check_beta}
+        before adding parallel work.'
+    - assistant_response: 'In {scenario_hint}, {topic_term} stays reliable only when
+        {constraint_hint}, {desired_outcome}, and {risk_hint} are reviewed as one
+        package. Keep one controlled loop in {timebox}, enforce {budget} discipline,
+        and begin from {move_alpha} so adjustments stay observable. If {check_beta}
+        weakens or {guard_alpha} rises, realign {audience_hint} through {device_hint}
+        and protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Execute the first pass inside {timebox}, then decide expansion
+        only if {check_beta} stays stable.'
+    - assistant_response: 'For {topic_term}, the common failure mode in {scenario_hint}
+        is chasing {desired_outcome} while underweighting {constraint_hint} and {risk_hint}.
+        Keep one controlled loop in {timebox}, enforce {budget} discipline, and begin
+        from {move_alpha} so adjustments stay observable. If {check_beta} weakens
+        or {guard_alpha} rises, realign {audience_hint} through {device_hint} and
+        protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Keep the next cycle to {timebox}, close it cleanly, and compare
+        {check_beta} against the prior read.'
+    - assistant_response: '{topic_term} can stay durable in {scenario_hint} if every
+        tradeoff keeps {constraint_hint}, {desired_outcome}, and {risk_hint} tightly
+        coupled. Keep one controlled loop in {timebox}, enforce {budget} discipline,
+        and begin from {move_alpha} so adjustments stay observable. If {check_beta}
+        weakens or {guard_alpha} rises, realign {audience_hint} through {device_hint}
+        and protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Use {timebox} to finish one bounded pass and review signal quality
+        before any scope increase.'
+    - assistant_response: 'When {scenario_hint} gets noisy, {topic_term} improves
+        only if {constraint_hint} and {desired_outcome} are co-owned and {risk_hint}
+        is monitored continuously. Keep one controlled loop in {timebox}, enforce
+        {budget} discipline, and begin from {move_alpha} so adjustments stay observable.
+        If {check_beta} weakens or {guard_alpha} rises, realign {audience_hint} through
+        {device_hint} and protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Use {timebox} to run {move_alpha}, then verify whether {check_beta}
+        is improving.'
+    - assistant_response: 'A practical frame for {topic_term} in {scenario_hint} is
+        to treat {constraint_hint}, {desired_outcome}, and {risk_hint} as one decision
+        loop. Keep one controlled loop in {timebox}, enforce {budget} discipline,
+        and begin from {move_alpha} so adjustments stay observable. If {check_beta}
+        weakens or {guard_alpha} rises, realign {audience_hint} through {device_hint}
+        and protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Reserve {timebox} for one controlled cycle and review {check_beta}
+        before expanding.'
+    - assistant_response: '{topic_term} usually drifts in {scenario_hint} when teams
+        optimize for {desired_outcome} before validating {constraint_hint} and {risk_hint}.
+        Keep one controlled loop in {timebox}, enforce {budget} discipline, and begin
+        from {move_alpha} so adjustments stay observable. If {check_beta} weakens
+        or {guard_alpha} rises, realign {audience_hint} through {device_hint} and
+        protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: In {timebox}, complete the baseline pass and re-check {guard_alpha}
+        before opening scope.'
+    - assistant_response: 'In high pressure moments of {scenario_hint}, {topic_term}
+        remains coherent when {constraint_hint} leads, {desired_outcome} stays visible,
+        and {risk_hint} is explicit. Keep one controlled loop in {timebox}, enforce
+        {budget} discipline, and begin from {move_alpha} so adjustments stay observable.
+        If {check_beta} weakens or {guard_alpha} rises, realign {audience_hint} through
+        {device_hint} and protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Commit one {timebox} loop, then confirm {check_beta} and {guard_alpha}
+        with the team.'
+    - assistant_response: 'The safest path for {topic_term} in {scenario_hint} is
+        to lock {constraint_hint} and {desired_outcome} together so {risk_hint} cannot
+        spread silently. Keep one controlled loop in {timebox}, enforce {budget} discipline,
+        and begin from {move_alpha} so adjustments stay observable. If {check_beta}
+        weakens or {guard_alpha} rises, realign {audience_hint} through {device_hint}
+        and protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Block {timebox} for the smallest viable run and validate {check_beta}
+        before adding parallel work.'
+    - assistant_response: '{topic_term} holds up in {scenario_hint} when decisions
+        stop oscillating between {constraint_hint} and {desired_outcome} and start
+        managing {risk_hint} directly. Keep one controlled loop in {timebox}, enforce
+        {budget} discipline, and begin from {move_alpha} so adjustments stay observable.
+        If {check_beta} weakens or {guard_alpha} rises, realign {audience_hint} through
+        {device_hint} and protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Execute the first pass inside {timebox}, then decide expansion
+        only if {check_beta} stays stable.'
+    - assistant_response: '{topic_term} becomes unstable in {scenario_hint} when {constraint_hint}
+        and {desired_outcome} are managed on separate tracks and {risk_hint} is left
+        unchecked. Anchor execution to {timebox} and {budget}, then use {move_alpha}
+        as the baseline pass before adding optional work. If {check_beta} weakens
+        or {guard_alpha} rises, realign {audience_hint} through {device_hint} and
+        protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Keep the next cycle to {timebox}, close it cleanly, and compare
+        {check_beta} against the prior read.'
+    - assistant_response: 'In {scenario_hint}, {topic_term} stays reliable only when
+        {constraint_hint}, {desired_outcome}, and {risk_hint} are reviewed as one
+        package. Anchor execution to {timebox} and {budget}, then use {move_alpha}
+        as the baseline pass before adding optional work. If {check_beta} weakens
+        or {guard_alpha} rises, realign {audience_hint} through {device_hint} and
+        protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Use {timebox} to finish one bounded pass and review signal quality
+        before any scope increase.'
+    - assistant_response: 'For {topic_term}, the common failure mode in {scenario_hint}
+        is chasing {desired_outcome} while underweighting {constraint_hint} and {risk_hint}.
+        Anchor execution to {timebox} and {budget}, then use {move_alpha} as the baseline
+        pass before adding optional work. If {check_beta} weakens or {guard_alpha}
+        rises, realign {audience_hint} through {device_hint} and protect {constraint_hint_ctx}
+        while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Use {timebox} to run {move_alpha}, then verify whether {check_beta}
+        is improving.'
+    - assistant_response: '{topic_term} can stay durable in {scenario_hint} if every
+        tradeoff keeps {constraint_hint}, {desired_outcome}, and {risk_hint} tightly
+        coupled. Anchor execution to {timebox} and {budget}, then use {move_alpha}
+        as the baseline pass before adding optional work. If {check_beta} weakens
+        or {guard_alpha} rises, realign {audience_hint} through {device_hint} and
+        protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Reserve {timebox} for one controlled cycle and review {check_beta}
+        before expanding.'
+    - assistant_response: 'When {scenario_hint} gets noisy, {topic_term} improves
+        only if {constraint_hint} and {desired_outcome} are co-owned and {risk_hint}
+        is monitored continuously. Anchor execution to {timebox} and {budget}, then
+        use {move_alpha} as the baseline pass before adding optional work. If {check_beta}
+        weakens or {guard_alpha} rises, realign {audience_hint} through {device_hint}
+        and protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: In {timebox}, complete the baseline pass and re-check {guard_alpha}
+        before opening scope.'
+    - assistant_response: 'A practical frame for {topic_term} in {scenario_hint} is
+        to treat {constraint_hint}, {desired_outcome}, and {risk_hint} as one decision
+        loop. Anchor execution to {timebox} and {budget}, then use {move_alpha} as
+        the baseline pass before adding optional work. If {check_beta} weakens or
+        {guard_alpha} rises, realign {audience_hint} through {device_hint} and protect
+        {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Commit one {timebox} loop, then confirm {check_beta} and {guard_alpha}
+        with the team.'
+    - assistant_response: '{topic_term} usually drifts in {scenario_hint} when teams
+        optimize for {desired_outcome} before validating {constraint_hint} and {risk_hint}.
+        Anchor execution to {timebox} and {budget}, then use {move_alpha} as the baseline
+        pass before adding optional work. If {check_beta} weakens or {guard_alpha}
+        rises, realign {audience_hint} through {device_hint} and protect {constraint_hint_ctx}
+        while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Block {timebox} for the smallest viable run and validate {check_beta}
+        before adding parallel work.'
+    - assistant_response: 'In high pressure moments of {scenario_hint}, {topic_term}
+        remains coherent when {constraint_hint} leads, {desired_outcome} stays visible,
+        and {risk_hint} is explicit. Anchor execution to {timebox} and {budget}, then
+        use {move_alpha} as the baseline pass before adding optional work. If {check_beta}
+        weakens or {guard_alpha} rises, realign {audience_hint} through {device_hint}
+        and protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Execute the first pass inside {timebox}, then decide expansion
+        only if {check_beta} stays stable.'
+    - assistant_response: 'The safest path for {topic_term} in {scenario_hint} is
+        to lock {constraint_hint} and {desired_outcome} together so {risk_hint} cannot
+        spread silently. Anchor execution to {timebox} and {budget}, then use {move_alpha}
+        as the baseline pass before adding optional work. If {check_beta} weakens
+        or {guard_alpha} rises, realign {audience_hint} through {device_hint} and
+        protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Keep the next cycle to {timebox}, close it cleanly, and compare
+        {check_beta} against the prior read.'
+    - assistant_response: '{topic_term} holds up in {scenario_hint} when decisions
+        stop oscillating between {constraint_hint} and {desired_outcome} and start
+        managing {risk_hint} directly. Anchor execution to {timebox} and {budget},
+        then use {move_alpha} as the baseline pass before adding optional work. If
+        {check_beta} weakens or {guard_alpha} rises, realign {audience_hint} through
+        {device_hint} and protect {constraint_hint_ctx} while preserving {outcome_hint_ctx}.
+
+
+        - {b1}
+
+        - {b2}
+
+        - {b3}
+
+        - {b4}
+
+        - {b5}
+
+        - {b6}
+
+        - {b7}
+
+        - {b8}
+
+
+        Next action: Use {timebox} to finish one bounded pass and review signal quality
+        before any scope increase.'
+    label_pack:
+    - mode: think
+      tone: professional
+      intent_family: decision_support
+      intent_subtype: option_comparison
+      representation_choice: bullet_list
+      safety_tag: safe
+    - mode: think
+      tone: serious
+      intent_family: planning
+      intent_subtype: tradeoff_analysis
+      representation_choice: bullet_list
+      safety_tag: safe
+    - mode: think
+      tone: professional
+      intent_family: content_generation
+      intent_subtype: task_breakdown
+      representation_choice: bullet_list
+      safety_tag: safe
+    - mode: think
+      tone: serious
+      intent_family: decision_support
+      intent_subtype: project_plan
+      representation_choice: bullet_list
+      safety_tag: safe
+    - mode: think
+      tone: professional
+      intent_family: planning
+      intent_subtype: recommendation
+      representation_choice: bullet_list
+      safety_tag: safe
+    - mode: think
+      tone: serious
+      intent_family: planning
+      intent_subtype: clarification_request
+      representation_choice: bullet_list
+      safety_tag: safe
+    context_pack:
+    - timebox: this morning window
+      budget: tight budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this morning window
+      budget: tight budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this morning window
+      budget: tight budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this morning window
+      budget: tight budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this morning window
+      budget: tight budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this morning window
+      budget: tight budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this morning window
+      budget: tight budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this morning window
+      budget: tight budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this morning window
+      budget: modest budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this morning window
+      budget: modest budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this morning window
+      budget: modest budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this morning window
+      budget: modest budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this morning window
+      budget: modest budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this morning window
+      budget: modest budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this morning window
+      budget: modest budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this morning window
+      budget: modest budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this morning window
+      budget: careful budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this morning window
+      budget: careful budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this morning window
+      budget: careful budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this morning window
+      budget: careful budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this morning window
+      budget: careful budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this morning window
+      budget: careful budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this morning window
+      budget: careful budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this morning window
+      budget: careful budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this morning window
+      budget: fixed budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this morning window
+      budget: fixed budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this morning window
+      budget: fixed budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this morning window
+      budget: fixed budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this morning window
+      budget: fixed budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this morning window
+      budget: fixed budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this morning window
+      budget: fixed budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this morning window
+      budget: fixed budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this morning window
+      budget: lean budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this morning window
+      budget: lean budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this morning window
+      budget: lean budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this morning window
+      budget: lean budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this morning window
+      budget: lean budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this morning window
+      budget: lean budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this morning window
+      budget: lean budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this morning window
+      budget: lean budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this morning window
+      budget: guarded budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this morning window
+      budget: guarded budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this morning window
+      budget: guarded budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this morning window
+      budget: guarded budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this morning window
+      budget: guarded budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this morning window
+      budget: guarded budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this morning window
+      budget: guarded budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this morning window
+      budget: guarded budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this morning window
+      budget: limited budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this morning window
+      budget: limited budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this morning window
+      budget: limited budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this morning window
+      budget: limited budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this morning window
+      budget: limited budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this morning window
+      budget: limited budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this morning window
+      budget: limited budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this morning window
+      budget: limited budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this morning window
+      budget: controlled budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this morning window
+      budget: controlled budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this morning window
+      budget: controlled budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this morning window
+      budget: controlled budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this morning window
+      budget: controlled budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this morning window
+      budget: controlled budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this morning window
+      budget: controlled budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this morning window
+      budget: controlled budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this morning window
+      budget: prudent budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this morning window
+      budget: prudent budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this morning window
+      budget: prudent budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this morning window
+      budget: prudent budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this morning window
+      budget: prudent budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this morning window
+      budget: prudent budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this morning window
+      budget: prudent budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this morning window
+      budget: prudent budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this morning window
+      budget: measured budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this morning window
+      budget: measured budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this morning window
+      budget: measured budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this morning window
+      budget: measured budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this morning window
+      budget: measured budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this morning window
+      budget: measured budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this morning window
+      budget: measured budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this morning window
+      budget: measured budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this afternoon window
+      budget: tight budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this afternoon window
+      budget: tight budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this afternoon window
+      budget: tight budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this afternoon window
+      budget: tight budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this afternoon window
+      budget: tight budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this afternoon window
+      budget: tight budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this afternoon window
+      budget: tight budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this afternoon window
+      budget: tight budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this afternoon window
+      budget: modest budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this afternoon window
+      budget: modest budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this afternoon window
+      budget: modest budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this afternoon window
+      budget: modest budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this afternoon window
+      budget: modest budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this afternoon window
+      budget: modest budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this afternoon window
+      budget: modest budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this afternoon window
+      budget: modest budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this afternoon window
+      budget: careful budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this afternoon window
+      budget: careful budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this afternoon window
+      budget: careful budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this afternoon window
+      budget: careful budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this afternoon window
+      budget: careful budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this afternoon window
+      budget: careful budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this afternoon window
+      budget: careful budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this afternoon window
+      budget: careful budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this afternoon window
+      budget: fixed budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this afternoon window
+      budget: fixed budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this afternoon window
+      budget: fixed budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this afternoon window
+      budget: fixed budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this afternoon window
+      budget: fixed budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this afternoon window
+      budget: fixed budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this afternoon window
+      budget: fixed budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this afternoon window
+      budget: fixed budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this afternoon window
+      budget: lean budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this afternoon window
+      budget: lean budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this afternoon window
+      budget: lean budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this afternoon window
+      budget: lean budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this afternoon window
+      budget: lean budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this afternoon window
+      budget: lean budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this afternoon window
+      budget: lean budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this afternoon window
+      budget: lean budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this afternoon window
+      budget: guarded budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this afternoon window
+      budget: guarded budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this afternoon window
+      budget: guarded budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this afternoon window
+      budget: guarded budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this afternoon window
+      budget: guarded budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this afternoon window
+      budget: guarded budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this afternoon window
+      budget: guarded budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this afternoon window
+      budget: guarded budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this afternoon window
+      budget: limited budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this afternoon window
+      budget: limited budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this afternoon window
+      budget: limited budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this afternoon window
+      budget: limited budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this afternoon window
+      budget: limited budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this afternoon window
+      budget: limited budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this afternoon window
+      budget: limited budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this afternoon window
+      budget: limited budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this afternoon window
+      budget: controlled budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this afternoon window
+      budget: controlled budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this afternoon window
+      budget: controlled budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this afternoon window
+      budget: controlled budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this afternoon window
+      budget: controlled budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this afternoon window
+      budget: controlled budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this afternoon window
+      budget: controlled budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this afternoon window
+      budget: controlled budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this afternoon window
+      budget: prudent budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this afternoon window
+      budget: prudent budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this afternoon window
+      budget: prudent budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this afternoon window
+      budget: prudent budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this afternoon window
+      budget: prudent budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this afternoon window
+      budget: prudent budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this afternoon window
+      budget: prudent budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this afternoon window
+      budget: prudent budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this afternoon window
+      budget: measured budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this afternoon window
+      budget: measured budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this afternoon window
+      budget: measured budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this afternoon window
+      budget: measured budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this afternoon window
+      budget: measured budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this afternoon window
+      budget: measured budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this afternoon window
+      budget: measured budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this afternoon window
+      budget: measured budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this evening window
+      budget: tight budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this evening window
+      budget: tight budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this evening window
+      budget: tight budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this evening window
+      budget: tight budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this evening window
+      budget: tight budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this evening window
+      budget: tight budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this evening window
+      budget: tight budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this evening window
+      budget: tight budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this evening window
+      budget: modest budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this evening window
+      budget: modest budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this evening window
+      budget: modest budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this evening window
+      budget: modest budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this evening window
+      budget: modest budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this evening window
+      budget: modest budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this evening window
+      budget: modest budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this evening window
+      budget: modest budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this evening window
+      budget: careful budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this evening window
+      budget: careful budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this evening window
+      budget: careful budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this evening window
+      budget: careful budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this evening window
+      budget: careful budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this evening window
+      budget: careful budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this evening window
+      budget: careful budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this evening window
+      budget: careful budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this evening window
+      budget: fixed budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this evening window
+      budget: fixed budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this evening window
+      budget: fixed budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this evening window
+      budget: fixed budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this evening window
+      budget: fixed budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this evening window
+      budget: fixed budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this evening window
+      budget: fixed budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this evening window
+      budget: fixed budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this evening window
+      budget: lean budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this evening window
+      budget: lean budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this evening window
+      budget: lean budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this evening window
+      budget: lean budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this evening window
+      budget: lean budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this evening window
+      budget: lean budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this evening window
+      budget: lean budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this evening window
+      budget: lean budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this evening window
+      budget: guarded budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this evening window
+      budget: guarded budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this evening window
+      budget: guarded budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this evening window
+      budget: guarded budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this evening window
+      budget: guarded budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this evening window
+      budget: guarded budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this evening window
+      budget: guarded budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this evening window
+      budget: guarded budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this evening window
+      budget: limited budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this evening window
+      budget: limited budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this evening window
+      budget: limited budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this evening window
+      budget: limited budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this evening window
+      budget: limited budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this evening window
+      budget: limited budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this evening window
+      budget: limited budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this evening window
+      budget: limited budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this evening window
+      budget: controlled budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this evening window
+      budget: controlled budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this evening window
+      budget: controlled budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this evening window
+      budget: controlled budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this evening window
+      budget: controlled budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this evening window
+      budget: controlled budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this evening window
+      budget: controlled budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this evening window
+      budget: controlled budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this evening window
+      budget: prudent budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this evening window
+      budget: prudent budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this evening window
+      budget: prudent budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this evening window
+      budget: prudent budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this evening window
+      budget: prudent budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this evening window
+      budget: prudent budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this evening window
+      budget: prudent budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this evening window
+      budget: prudent budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this evening window
+      budget: measured budget
+      device_hint: shared dashboard
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this evening window
+      budget: measured budget
+      device_hint: planning board
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this evening window
+      budget: measured budget
+      device_hint: status thread
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this evening window
+      budget: measured budget
+      device_hint: decision memo
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    - timebox: this evening window
+      budget: measured budget
+      device_hint: ops notebook
+      audience_hint: team leads
+      constraint_hint_ctx: limited capacity
+      outcome_hint_ctx: stable delivery rhythm
+    - timebox: this evening window
+      budget: measured budget
+      device_hint: review document
+      audience_hint: cross functional partners
+      constraint_hint_ctx: fragmented inputs
+      outcome_hint_ctx: clear ownership handoff
+    - timebox: this evening window
+      budget: measured budget
+      device_hint: team channel
+      audience_hint: product stakeholders
+      constraint_hint_ctx: handoff friction
+      outcome_hint_ctx: predictable execution
+    - timebox: this evening window
+      budget: measured budget
+      device_hint: project tracker
+      audience_hint: implementation team
+      constraint_hint_ctx: fixed date pressure
+      outcome_hint_ctx: stronger decision confidence
+    bullet_pack:
+    - b1: 'Anchor in {timebox}: {verb_slot} {topic_std} so {constraint_slot} stays
+        explicit.'
+      b2: If {signal_slot} drifts, {action_slot} while keeping {constraint_slot} intact
+        for {topic_std}.
+      b3: Tie {constraint_std} to {desired_std}; {verb_slot} only moves that improve
+        {signal_slot}.
+      b4: Document one call on {topic_std} in {artifact_slot}; {action_slot} when
+        {signal_slot} softens.
+      b5: Route handoffs so {audience_hint} can keep {risk_std} under {constraint_slot}
+        and {action_slot}.
+      b6: Surface blockers from {scenario_std} and {verb_slot} the first fix before
+        expansion under {constraint_slot}.
+      b7: Keep {budget} visible in the plan notes; {action_slot} if {signal_slot}
+        breaks the {constraint_slot}.
+      b8: Compare {signal_slot} against {desired_std} at each {timebox} closeout and
+        {action_slot} when it slips.
+      b9: Flag dependency changes, then {verb_slot} {topic_std} back to {constraint_std}
+        with {constraint_slot} in view.
+      b10: Close each loop by writing what changed in {artifact_slot} and why {constraint_slot}
+        still holds after {action_slot}.
+    - b1: Reconcile {risk_std} with {desired_std}; {action_slot} before adding parallel
+        work if {signal_slot} remains noisy.
+      b2: Frame the next slice around {topic_std} in {timebox}, and {verb_slot} only
+        what protects {constraint_slot}.
+      b3: Prioritize one reversible move, then {action_slot} if {signal_slot} turns
+        noisy and {constraint_slot} tightens.
+      b4: Validate ownership with {audience_hint} through {device_hint}; {verb_slot}
+        follow-up checks when {signal_slot} shifts.
+      b5: Isolate optional work; {action_slot} until {signal_slot} returns inside
+        {constraint_slot}.
+      b6: Stabilize review rhythm at {timebox} by pairing {constraint_std} with {desired_std},
+        then {action_slot} if {signal_slot} drifts.
+      b7: 'Anchor in {timebox}: {verb_slot} {topic_std} so {constraint_slot} stays
+        explicit.'
+      b8: If {signal_slot} drifts, {action_slot} while keeping {constraint_slot} intact
+        for {topic_std}.
+      b9: Tie {constraint_std} to {desired_std}; {verb_slot} only moves that improve
+        {signal_slot}.
+      b10: Document one call on {topic_std} in {artifact_slot}; {action_slot} when
+        {signal_slot} softens.
+    - b1: Route handoffs so {audience_hint} can keep {risk_std} under {constraint_slot}
+        and {action_slot}.
+      b2: Surface blockers from {scenario_std} and {verb_slot} the first fix before
+        expansion under {constraint_slot}.
+      b3: Keep {budget} visible in the plan notes; {action_slot} if {signal_slot}
+        breaks the {constraint_slot}.
+      b4: Compare {signal_slot} against {desired_std} at each {timebox} closeout and
+        {action_slot} when it slips.
+      b5: Flag dependency changes, then {verb_slot} {topic_std} back to {constraint_std}
+        with {constraint_slot} in view.
+      b6: Close each loop by writing what changed in {artifact_slot} and why {constraint_slot}
+        still holds after {action_slot}.
+      b7: Reconcile {risk_std} with {desired_std}; {action_slot} before adding parallel
+        work if {signal_slot} remains noisy.
+      b8: Frame the next slice around {topic_std} in {timebox}, and {verb_slot} only
+        what protects {constraint_slot}.
+      b9: Prioritize one reversible move, then {action_slot} if {signal_slot} turns
+        noisy and {constraint_slot} tightens.
+      b10: Validate ownership with {audience_hint} through {device_hint}; {verb_slot}
+        follow-up checks when {signal_slot} shifts.
+    - b1: Isolate optional work; {action_slot} until {signal_slot} returns inside
+        {constraint_slot}.
+      b2: Stabilize review rhythm at {timebox} by pairing {constraint_std} with {desired_std},
+        then {action_slot} if {signal_slot} drifts.
+      b3: 'Anchor in {timebox}: {verb_slot} {topic_std} so {constraint_slot} stays
+        explicit.'
+      b4: If {signal_slot} drifts, {action_slot} while keeping {constraint_slot} intact
+        for {topic_std}.
+      b5: Tie {constraint_std} to {desired_std}; {verb_slot} only moves that improve
+        {signal_slot}.
+      b6: Document one call on {topic_std} in {artifact_slot}; {action_slot} when
+        {signal_slot} softens.
+      b7: Route handoffs so {audience_hint} can keep {risk_std} under {constraint_slot}
+        and {action_slot}.
+      b8: Surface blockers from {scenario_std} and {verb_slot} the first fix before
+        expansion under {constraint_slot}.
+      b9: Keep {budget} visible in the plan notes; {action_slot} if {signal_slot}
+        breaks the {constraint_slot}.
+      b10: Compare {signal_slot} against {desired_std} at each {timebox} closeout
+        and {action_slot} when it slips.
+    - b1: Flag dependency changes, then {verb_slot} {topic_std} back to {constraint_std}
+        with {constraint_slot} in view.
+      b2: Close each loop by writing what changed in {artifact_slot} and why {constraint_slot}
+        still holds after {action_slot}.
+      b3: Reconcile {risk_std} with {desired_std}; {action_slot} before adding parallel
+        work if {signal_slot} remains noisy.
+      b4: Frame the next slice around {topic_std} in {timebox}, and {verb_slot} only
+        what protects {constraint_slot}.
+      b5: Prioritize one reversible move, then {action_slot} if {signal_slot} turns
+        noisy and {constraint_slot} tightens.
+      b6: Validate ownership with {audience_hint} through {device_hint}; {verb_slot}
+        follow-up checks when {signal_slot} shifts.
+      b7: Isolate optional work; {action_slot} until {signal_slot} returns inside
+        {constraint_slot}.
+      b8: Stabilize review rhythm at {timebox} by pairing {constraint_std} with {desired_std},
+        then {action_slot} if {signal_slot} drifts.
+      b9: 'Anchor in {timebox}: {verb_slot} {topic_std} so {constraint_slot} stays
+        explicit.'
+      b10: If {signal_slot} drifts, {action_slot} while keeping {constraint_slot}
+        intact for {topic_std}.
+    - b1: Tie {constraint_std} to {desired_std}; {verb_slot} only moves that improve
+        {signal_slot}.
+      b2: Document one call on {topic_std} in {artifact_slot}; {action_slot} when
+        {signal_slot} softens.
+      b3: Route handoffs so {audience_hint} can keep {risk_std} under {constraint_slot}
+        and {action_slot}.
+      b4: Surface blockers from {scenario_std} and {verb_slot} the first fix before
+        expansion under {constraint_slot}.
+      b5: Keep {budget} visible in the plan notes; {action_slot} if {signal_slot}
+        breaks the {constraint_slot}.
+      b6: Compare {signal_slot} against {desired_std} at each {timebox} closeout and
+        {action_slot} when it slips.
+      b7: Flag dependency changes, then {verb_slot} {topic_std} back to {constraint_std}
+        with {constraint_slot} in view.
+      b8: Close each loop by writing what changed in {artifact_slot} and why {constraint_slot}
+        still holds after {action_slot}.
+      b9: Reconcile {risk_std} with {desired_std}; {action_slot} before adding parallel
+        work if {signal_slot} remains noisy.
+      b10: Frame the next slice around {topic_std} in {timebox}, and {verb_slot} only
+        what protects {constraint_slot}.
+    - b1: Prioritize one reversible move, then {action_slot} if {signal_slot} turns
+        noisy and {constraint_slot} tightens.
+      b2: Validate ownership with {audience_hint} through {device_hint}; {verb_slot}
+        follow-up checks when {signal_slot} shifts.
+      b3: Isolate optional work; {action_slot} until {signal_slot} returns inside
+        {constraint_slot}.
+      b4: Stabilize review rhythm at {timebox} by pairing {constraint_std} with {desired_std},
+        then {action_slot} if {signal_slot} drifts.
+      b5: 'Anchor in {timebox}: {verb_slot} {topic_std} so {constraint_slot} stays
+        explicit.'
+      b6: If {signal_slot} drifts, {action_slot} while keeping {constraint_slot} intact
+        for {topic_std}.
+      b7: Tie {constraint_std} to {desired_std}; {verb_slot} only moves that improve
+        {signal_slot}.
+      b8: Document one call on {topic_std} in {artifact_slot}; {action_slot} when
+        {signal_slot} softens.
+      b9: Route handoffs so {audience_hint} can keep {risk_std} under {constraint_slot}
+        and {action_slot}.
+      b10: Surface blockers from {scenario_std} and {verb_slot} the first fix before
+        expansion under {constraint_slot}.
+    - b1: Keep {budget} visible in the plan notes; {action_slot} if {signal_slot}
+        breaks the {constraint_slot}.
+      b2: Compare {signal_slot} against {desired_std} at each {timebox} closeout and
+        {action_slot} when it slips.
+      b3: Flag dependency changes, then {verb_slot} {topic_std} back to {constraint_std}
+        with {constraint_slot} in view.
+      b4: Close each loop by writing what changed in {artifact_slot} and why {constraint_slot}
+        still holds after {action_slot}.
+      b5: Reconcile {risk_std} with {desired_std}; {action_slot} before adding parallel
+        work if {signal_slot} remains noisy.
+      b6: Frame the next slice around {topic_std} in {timebox}, and {verb_slot} only
+        what protects {constraint_slot}.
+      b7: Prioritize one reversible move, then {action_slot} if {signal_slot} turns
+        noisy and {constraint_slot} tightens.
+      b8: Validate ownership with {audience_hint} through {device_hint}; {verb_slot}
+        follow-up checks when {signal_slot} shifts.
+      b9: Isolate optional work; {action_slot} until {signal_slot} returns inside
+        {constraint_slot}.
+      b10: Stabilize review rhythm at {timebox} by pairing {constraint_std} with {desired_std},
+        then {action_slot} if {signal_slot} drifts.
+    - b1: 'Anchor in {timebox}: {verb_slot} {topic_std} so {constraint_slot} stays
+        explicit.'
+      b2: If {signal_slot} drifts, {action_slot} while keeping {constraint_slot} intact
+        for {topic_std}.
+      b3: Tie {constraint_std} to {desired_std}; {verb_slot} only moves that improve
+        {signal_slot}.
+      b4: Document one call on {topic_std} in {artifact_slot}; {action_slot} when
+        {signal_slot} softens.
+      b5: Route handoffs so {audience_hint} can keep {risk_std} under {constraint_slot}
+        and {action_slot}.
+      b6: Surface blockers from {scenario_std} and {verb_slot} the first fix before
+        expansion under {constraint_slot}.
+      b7: Keep {budget} visible in the plan notes; {action_slot} if {signal_slot}
+        breaks the {constraint_slot}.
+      b8: Compare {signal_slot} against {desired_std} at each {timebox} closeout and
+        {action_slot} when it slips.
+      b9: Flag dependency changes, then {verb_slot} {topic_std} back to {constraint_std}
+        with {constraint_slot} in view.
+      b10: Close each loop by writing what changed in {artifact_slot} and why {constraint_slot}
+        still holds after {action_slot}.
+    - b1: Reconcile {risk_std} with {desired_std}; {action_slot} before adding parallel
+        work if {signal_slot} remains noisy.
+      b2: Frame the next slice around {topic_std} in {timebox}, and {verb_slot} only
+        what protects {constraint_slot}.
+      b3: Prioritize one reversible move, then {action_slot} if {signal_slot} turns
+        noisy and {constraint_slot} tightens.
+      b4: Validate ownership with {audience_hint} through {device_hint}; {verb_slot}
+        follow-up checks when {signal_slot} shifts.
+      b5: Isolate optional work; {action_slot} until {signal_slot} returns inside
+        {constraint_slot}.
+      b6: Stabilize review rhythm at {timebox} by pairing {constraint_std} with {desired_std},
+        then {action_slot} if {signal_slot} drifts.
+      b7: 'Anchor in {timebox}: {verb_slot} {topic_std} so {constraint_slot} stays
+        explicit.'
+      b8: If {signal_slot} drifts, {action_slot} while keeping {constraint_slot} intact
+        for {topic_std}.
+      b9: Tie {constraint_std} to {desired_std}; {verb_slot} only moves that improve
+        {signal_slot}.
+      b10: Document one call on {topic_std} in {artifact_slot}; {action_slot} when
+        {signal_slot} softens.
+    - b1: Route handoffs so {audience_hint} can keep {risk_std} under {constraint_slot}
+        and {action_slot}.
+      b2: Surface blockers from {scenario_std} and {verb_slot} the first fix before
+        expansion under {constraint_slot}.
+      b3: Keep {budget} visible in the plan notes; {action_slot} if {signal_slot}
+        breaks the {constraint_slot}.
+      b4: Compare {signal_slot} against {desired_std} at each {timebox} closeout and
+        {action_slot} when it slips.
+      b5: Flag dependency changes, then {verb_slot} {topic_std} back to {constraint_std}
+        with {constraint_slot} in view.
+      b6: Close each loop by writing what changed in {artifact_slot} and why {constraint_slot}
+        still holds after {action_slot}.
+      b7: Reconcile {risk_std} with {desired_std}; {action_slot} before adding parallel
+        work if {signal_slot} remains noisy.
+      b8: Frame the next slice around {topic_std} in {timebox}, and {verb_slot} only
+        what protects {constraint_slot}.
+      b9: Prioritize one reversible move, then {action_slot} if {signal_slot} turns
+        noisy and {constraint_slot} tightens.
+      b10: Validate ownership with {audience_hint} through {device_hint}; {verb_slot}
+        follow-up checks when {signal_slot} shifts.
+    - b1: Isolate optional work; {action_slot} until {signal_slot} returns inside
+        {constraint_slot}.
+      b2: Stabilize review rhythm at {timebox} by pairing {constraint_std} with {desired_std},
+        then {action_slot} if {signal_slot} drifts.
+      b3: 'Anchor in {timebox}: {verb_slot} {topic_std} so {constraint_slot} stays
+        explicit.'
+      b4: If {signal_slot} drifts, {action_slot} while keeping {constraint_slot} intact
+        for {topic_std}.
+      b5: Tie {constraint_std} to {desired_std}; {verb_slot} only moves that improve
+        {signal_slot}.
+      b6: Document one call on {topic_std} in {artifact_slot}; {action_slot} when
+        {signal_slot} softens.
+      b7: Route handoffs so {audience_hint} can keep {risk_std} under {constraint_slot}
+        and {action_slot}.
+      b8: Surface blockers from {scenario_std} and {verb_slot} the first fix before
+        expansion under {constraint_slot}.
+      b9: Keep {budget} visible in the plan notes; {action_slot} if {signal_slot}
+        breaks the {constraint_slot}.
+      b10: Compare {signal_slot} against {desired_std} at each {timebox} closeout
+        and {action_slot} when it slips.
+    verb_slot:
+    - Align
+    - Anchor
+    - Calibrate
+    - Frame
+    - Prioritize
+    - Validate
+    - Isolate
+    - Reconcile
+    - Stabilize
+    - Gate
+    - Document
+    - Adapt
+    - Sequence
+    - Focus
+    - Normalize
+    - Clarify
+    - Safeguard
+    - Streamline
+    artifact_slot:
+    - issue log
+    - PR note
+    - decision memo
+    - status thread
+    - weekly update
+    - review note
+    - sprint recap
+    - handoff brief
+    - operations journal
+    - risk register
+    - release note
+    - planning board
+    - checkpoint summary
+    - incident digest
+    - implementation brief
+    - decision ledger
+    - dependency map
+    - delivery log
+    signal_slot:
+    - rework rate
+    - cycle time
+    - error trend
+    - SLA hit rate
+    - queue age
+    - handoff latency
+    - approval delay
+    - plan volatility
+    - rollback count
+    - incident volume
+    - quality variance
+    - dependency stall
+    - throughput drift
+    - support backlog
+    - review lag
+    - defect bounceback
+    - ownership clarity score
+    - change failure rate
+    constraint_slot:
+    - timebox boundary
+    - budget ceiling
+    - approval path
+    - dependency chain
+    - capacity limit
+    - compliance rule
+    - service window
+    - rollback guardrail
+    - data quality bar
+    - owner bandwidth
+    - scope boundary
+    - risk tolerance
+    - delivery cutoff
+    - audit boundary
+    - operational threshold
+    - escalation boundary
+    - release freeze
+    - evidence requirement
+    action_slot:
+    - pause noncritical branches
+    - tighten the active plan
+    - shift to a reversible path
+    - cut optional work earlier
+    - escalate the blocking dependency
+    - retime the next checkpoint
+    - lock one owner for follow-through
+    - split the change into smaller slices
+    - rollback to the previous stable slice
+    - rebalance work to protected capacity
+    - hold release breadth until signals recover
+    - remove low-value tasks from the queue
+    - re-sequence handoffs to reduce delay
+    - freeze new requests until baseline stabilizes
+    - convert open questions into explicit decisions
+    - route riskier items to review first
+    - align approvals before adding new work
+    - convert noisy feedback into concrete checks
+    move_alpha:
+    - a contained baseline pass
+    - a narrow pilot round
+    - the smallest safe execution slice
+    - one controlled delivery loop
+    - a low-risk rollout pass
+    - a bounded first cycle
+    - a minimal viable execution path
+    - a guarded first release cut
+    - a scoped stabilization pass
+    - an owner-led containment pass
+    - a high-signal pilot lane
+    - a reversible first move
+    check_beta:
+    - reopen pressure
+    - handoff latency
+    - cycle-time drift
+    - approval delay
+    - error trend
+    - queue-age growth
+    - dependency stall
+    - SLA slippage
+    - plan volatility
+    - rollback count
+    - incident volume
+    - quality variance
+    guard_alpha:
+    - scope noise
+    - dependency churn
+    - approval bottlenecks
+    - handoff friction
+    - review backlog
+    - owner overload
+    - context switching
+    - queue congestion
+    - rollback risk
+    - signal mismatch
+    - release pressure
+    - execution drift
+  row_template:
+    language: '{language}'
+    mode: '{mode}'
+    tone: '{tone}'
+    emote6: neutral
+    representation_choice: '{representation_choice}'
+    continuity_choice: suppress_continuity
+    intent_family: '{intent_family}'
+    intent_subtype: '{intent_subtype}'
+    safety_tag: '{safety_tag}'
+    user_message: '{user_message}'
+    assistant_response: '{assistant_response}'
+row_template:
+  language: '{language}'
+  mode: '{mode}'
+  tone: '{tone}'
+  emote6: neutral
+  representation_choice: '{representation_choice}'
+  continuity_choice: suppress_continuity
+  intent_family: '{intent_family}'
+  intent_subtype: '{intent_subtype}'
+  safety_tag: '{safety_tag}'
+  user_message: '{user_message}'
+  assistant_response: '{assistant_response}'
+  messages:
+  - role: system
+    content: You are Dino. Think mode. Give practical reasoning with clear trade-offs
+      and next action.
+  - role: user
+    content: '{user_message}'
+  - role: assistant
+    content: '{assistant_response}'
+validation:
+  dup_candidate_threshold: 0.2
+  dup_candidate_warn_max_share: 0.35

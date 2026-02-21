@@ -209,6 +209,144 @@ qc_limit_for_lang() {
   esac
 }
 
+sanitize_qc_token() {
+  local raw="${1:-}"
+  local fallback="${2:-unknown}"
+  raw="${raw//-/_}"
+  raw="$(printf "%s" "$raw" | sed -E 's/[^A-Za-z0-9_]+/_/g; s/_+/_/g; s/^_+//; s/_+$//')"
+  if [[ -z "$raw" ]]; then
+    raw="$fallback"
+  fi
+  printf "%s\n" "$raw"
+}
+
+resolve_qc_report_dir() {
+  local qd="${DINO_DS_QC_REPORT_DIR:-}"
+  if [[ -z "$qd" ]]; then
+    printf "%s\n" "$ROOT/output QC report"
+    return
+  fi
+  if [[ "$qd" = /* ]]; then
+    printf "%s\n" "$qd"
+    return
+  fi
+  printf "%s\n" "$PWD/$qd"
+}
+
+latest_qc_report_for_lang() {
+  local lane_safe="$1"
+  local lang="$2"
+  local run_uuid="$3"
+  local qc_dir="$4"
+  local lang_safe
+  lang_safe="$(sanitize_qc_token "$lang" "unknown")"
+  local pattern="QC_${lane_safe}_${lang_safe}_${run_uuid}_*.md"
+  local cands=()
+  if [[ -d "$qc_dir" ]]; then
+    while IFS= read -r p; do
+      cands+=("$p")
+    done < <(find "$qc_dir" -maxdepth 1 -type f -name "$pattern" | sort)
+  fi
+  if [[ ${#cands[@]} -eq 0 && "$qc_dir" != "$ROOT" ]]; then
+    while IFS= read -r p; do
+      cands+=("$p")
+    done < <(find "$ROOT" -maxdepth 1 -type f -name "$pattern" | sort)
+  fi
+  if [[ ${#cands[@]} -eq 0 ]]; then
+    printf "%s\n" ""
+    return
+  fi
+  printf "%s\n" "${cands[$(( ${#cands[@]} - 1 ))]}"
+}
+
+qc_report_status_for_file() {
+  local p="${1:-}"
+  if [[ -z "$p" || ! -f "$p" ]]; then
+    printf "%s\n" "MISSING"
+    return
+  fi
+  if grep -Eq '^\|[[:space:]]*[^|]+[[:space:]]*\|[[:space:]]*FAIL[[:space:]]*\|' "$p"; then
+    printf "%s\n" "FAIL"
+    return
+  fi
+  if grep -Eq '^\|[[:space:]]*[^|]+[[:space:]]*\|[[:space:]]*WARN[[:space:]]*\|' "$p"; then
+    printf "%s\n" "WARN"
+    return
+  fi
+  printf "%s\n" "PASS"
+}
+
+write_combined_qc_report() {
+  local mode="$1"
+  local lane_dir="$2"
+  local run_uuid="$3"
+  local all_dir="$4"
+
+  local lane_id
+  lane_id="$(basename "$lane_dir")"
+  local lane_safe
+  lane_safe="$(sanitize_qc_token "$lane_id" "lane")"
+  local qc_dir
+  qc_dir="$(resolve_qc_report_dir)"
+  mkdir -p "$qc_dir"
+
+  local date_ymd
+  date_ymd="$(date +%F)"
+  local report_path="$qc_dir/QC_${lane_safe}_all_${run_uuid}_${date_ymd}.md"
+
+  local pass_n=0
+  local warn_n=0
+  local fail_n=0
+  local missing_n=0
+
+  {
+    echo "# QC Report — ${lane_id} — all"
+    echo ""
+    echo "## Sweep Metadata"
+    echo "- lane_id: \`${lane_id}\`"
+    echo "- language slice: \`all\`"
+    echo "- run_id: \`${run_uuid}\`"
+    echo "- sweep_mode: \`${mode}\`"
+    echo "- date: \`${date_ymd}\`"
+    echo "- combined_train_jsonl: \`${all_dir}/train.jsonl\`"
+    echo ""
+    echo "## Language Reports"
+    echo "| Language | Status | Report |"
+    echo "| --- | --- | --- |"
+    local lang rp st rp_cell
+    for lang in "${LANGS[@]}"; do
+      rp="$(latest_qc_report_for_lang "$lane_safe" "$lang" "$run_uuid" "$qc_dir")"
+      st="$(qc_report_status_for_file "$rp")"
+      case "$st" in
+        PASS) pass_n=$((pass_n + 1)) ;;
+        WARN) warn_n=$((warn_n + 1)) ;;
+        FAIL) fail_n=$((fail_n + 1)) ;;
+        *) missing_n=$((missing_n + 1)) ;;
+      esac
+      if [[ -n "$rp" ]]; then
+        rp_cell="\`${rp}\`"
+      else
+        rp_cell="-"
+      fi
+      echo "| \`${lang}\` | ${st} | ${rp_cell} |"
+    done
+    echo ""
+    echo "## Totals"
+    echo "- pass_languages: \`${pass_n}\`"
+    echo "- warn_languages: \`${warn_n}\`"
+    echo "- fail_languages: \`${fail_n}\`"
+    echo "- missing_languages: \`${missing_n}\`"
+    if [[ ${#failed_langs[@]} -gt 0 ]]; then
+      echo "- sweep_gate_failed_langs: \`${failed_langs[*]}\`"
+    fi
+    echo ""
+    echo "## Notes"
+    echo "- This report aggregates per-language QC markdown outputs for the same run_id."
+  } > "$report_path"
+
+  printf "%s\n" "$report_path"
+}
+
 run_sweep() {
   local mode="$1"   # prod|qc
   local lane_token="$2"
@@ -314,6 +452,9 @@ run_sweep() {
     sha256_sidecar "$all_dir/test.jsonl"
   fi
 
+  local combined_qc_report
+  combined_qc_report="$(write_combined_qc_report "$mode" "$lane_dir" "$run_uuid" "$all_dir")"
+
   if [[ "$mode" == "qc" ]]; then
     echo "QC sweep complete."
   else
@@ -321,6 +462,7 @@ run_sweep() {
   fi
   echo "RUN_UUID=$run_uuid"
   echo "Combined train.jsonl: $all_dir/train.jsonl"
+  echo "Combined QC report: $combined_qc_report"
 
   if [[ ${#failed_langs[@]} -gt 0 ]]; then
     echo "FAILED_LANGS=${failed_langs[*]}" >&2

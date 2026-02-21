@@ -244,6 +244,10 @@ Fails: `adjacent_dup_token`
   - Hindi override: if candidate but `C3<0.20`, downgrade to warn candidate-only
 - Fatal code: `near_duplicate_overlap`
 - Warn code: `dup_candidate_unconfirmed`
+- Warn-to-fatal slice escalation (per language, duplication stage input rows):
+  - compute `dup_candidate_unconfirmed_share = warn_rows / n`
+  - if share > `dup_candidate_warn_max_share` (default `0.35`) => fatal `dup_candidate_warn_share_too_high`
+  - threshold can be overridden by lane config `validation.dup_candidate_warn_max_share`
 - Opening-family diversity fatal:
   - if n>=100 and top opening share > cap (default `0.08`): `opening_diversity`
 

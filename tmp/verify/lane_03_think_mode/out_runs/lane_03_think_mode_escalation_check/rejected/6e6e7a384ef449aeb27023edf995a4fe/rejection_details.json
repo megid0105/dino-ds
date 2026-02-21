@@ -1,0 +1,279 @@
+{
+  "lane_id": "lane_03_think_mode",
+  "run_id": "6e6e7a384ef449aeb27023edf995a4fe",
+  "rows_total": 20,
+  "rows_rejected": 5,
+  "report": "rule_profile=03 FAIL: violations=11, unique=3\ntop_reasons:\n- duplicate_user_message: 5 (gates=duplication:5)\n- duplicate_assistant_response: 5 (gates=duplication:5)\n- dup_candidate_warn_share_too_high: 1 (gates=duplication:1)\nfatal_gate_breakdown:\n- duplication: duplicate_user_message:5, duplicate_assistant_response:5, dup_candidate_warn_share_too_high:1\nexamples:\n- duplicate_user_message: lane_03_think_mode_en_00000009 duplicates lane_03_think_mode_en_00000006\n- duplicate_assistant_response: lane_03_think_mode_en_00000009 duplicates lane_03_think_mode_en_00000006\n- duplicate_user_message: lane_03_think_mode_en_00000010 duplicates lane_03_think_mode_en_00000000\n- duplicate_assistant_response: lane_03_think_mode_en_00000010 duplicates lane_03_think_mode_en_00000000\n- duplicate_user_message: lane_03_think_mode_en_00000013 duplicates lane_03_think_mode_en_00000001\n- duplicate_assistant_response: lane_03_think_mode_en_00000013 duplicates lane_03_think_mode_en_00000001\n- duplicate_user_message: lane_03_think_mode_en_00000014 duplicates lane_03_think_mode_en_00000005\n- duplicate_assistant_response: lane_03_think_mode_en_00000014 duplicates lane_03_think_mode_en_00000005\n- duplicate_user_message: lane_03_think_mode_en_00000019 duplicates lane_03_think_mode_en_00000005\n- duplicate_assistant_response: lane_03_think_mode_en_00000019 duplicates lane_03_think_mode_en_00000005\n- dup_candidate_warn_share_too_high: language=en dup_candidate_unconfirmed_share=0.950 > cap=0.350 (warn_rows=19, n=20)\ndetailed_failures:\n- duplicate_user_message: count=5\n  - lane_03_think_mode_en_00000009 duplicates lane_03_think_mode_en_00000006\n  - lane_03_think_mode_en_00000010 duplicates lane_03_think_mode_en_00000000\n  - lane_03_think_mode_en_00000013 duplicates lane_03_think_mode_en_00000001\n  - lane_03_think_mode_en_00000014 duplicates lane_03_think_mode_en_00000005\n  - lane_03_think_mode_en_00000019 duplicates lane_03_think_mode_en_00000005\n- duplicate_assistant_response: count=5\n  - lane_03_think_mode_en_00000009 duplicates lane_03_think_mode_en_00000006\n  - lane_03_think_mode_en_00000010 duplicates lane_03_think_mode_en_00000000\n  - lane_03_think_mode_en_00000013 duplicates lane_03_think_mode_en_00000001\n  - lane_03_think_mode_en_00000014 duplicates lane_03_think_mode_en_00000005\n  - lane_03_think_mode_en_00000019 duplicates lane_03_think_mode_en_00000005\n- dup_candidate_warn_share_too_high: count=1\n  - language=en dup_candidate_unconfirmed_share=0.950 > cap=0.350 (warn_rows=19, n=20)\nwarn_gate_breakdown:\n- duplication: dup_candidate_unconfirmed:19\n- proportions: not_reliable_small_n:1, lane03_optional_share_not_reliable_small_n:1, lane03_not_reliable_small_n:1\nwarnings_non_blocking:\n- dup_candidate_unconfirmed: 19 (gates=duplication:19)\n  - lane_03_think_mode_en_00000001 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n  - lane_03_think_mode_en_00000002 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n  - lane_03_think_mode_en_00000003 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- not_reliable_small_n: 1 (gates=proportions:1)\n  - language=en n=15 < min_n=30; skipped mode/tone proportion gate\n- lane03_optional_share_not_reliable_small_n: 1 (gates=proportions:1)\n  - language=en n=15 < min_n=30; skipped lane 03 optional share gate\n- lane03_not_reliable_small_n: 1 (gates=proportions:1)\n  - language=en n=15 < min_n=30; skipped lane 03 reasoning/structure distribution gate\nwarning_examples:\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000001 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000002 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000003 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000004 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000005 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000006 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000007 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000008 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000009 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000010 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=1.000 Ojac=1.000 C3=1.000 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000011 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000012 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000013 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000014 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000015 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000016 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000017 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000018 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000019 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- not_reliable_small_n: language=en n=15 < min_n=30; skipped mode/tone proportion gate\n- lane03_optional_share_not_reliable_small_n: language=en n=15 < min_n=30; skipped lane 03 optional share gate\n- lane03_not_reliable_small_n: language=en n=15 < min_n=30; skipped lane 03 reasoning/structure distribution gate\nqc_reports:\n- /Users/chanpakho/Desktop/Download/project/dino_ds/output QC report/QC_lane_03_think_mode_en_6e6e7a384ef449aeb27023edf995a4fe_2026-02-21.md",
+  "diagnostics": {
+    "ok": false,
+    "report": "rule_profile=03 FAIL: violations=11, unique=3\ntop_reasons:\n- duplicate_user_message: 5 (gates=duplication:5)\n- duplicate_assistant_response: 5 (gates=duplication:5)\n- dup_candidate_warn_share_too_high: 1 (gates=duplication:1)\nfatal_gate_breakdown:\n- duplication: duplicate_user_message:5, duplicate_assistant_response:5, dup_candidate_warn_share_too_high:1\nexamples:\n- duplicate_user_message: lane_03_think_mode_en_00000009 duplicates lane_03_think_mode_en_00000006\n- duplicate_assistant_response: lane_03_think_mode_en_00000009 duplicates lane_03_think_mode_en_00000006\n- duplicate_user_message: lane_03_think_mode_en_00000010 duplicates lane_03_think_mode_en_00000000\n- duplicate_assistant_response: lane_03_think_mode_en_00000010 duplicates lane_03_think_mode_en_00000000\n- duplicate_user_message: lane_03_think_mode_en_00000013 duplicates lane_03_think_mode_en_00000001\n- duplicate_assistant_response: lane_03_think_mode_en_00000013 duplicates lane_03_think_mode_en_00000001\n- duplicate_user_message: lane_03_think_mode_en_00000014 duplicates lane_03_think_mode_en_00000005\n- duplicate_assistant_response: lane_03_think_mode_en_00000014 duplicates lane_03_think_mode_en_00000005\n- duplicate_user_message: lane_03_think_mode_en_00000019 duplicates lane_03_think_mode_en_00000005\n- duplicate_assistant_response: lane_03_think_mode_en_00000019 duplicates lane_03_think_mode_en_00000005\n- dup_candidate_warn_share_too_high: language=en dup_candidate_unconfirmed_share=0.950 > cap=0.350 (warn_rows=19, n=20)\ndetailed_failures:\n- duplicate_user_message: count=5\n  - lane_03_think_mode_en_00000009 duplicates lane_03_think_mode_en_00000006\n  - lane_03_think_mode_en_00000010 duplicates lane_03_think_mode_en_00000000\n  - lane_03_think_mode_en_00000013 duplicates lane_03_think_mode_en_00000001\n  - lane_03_think_mode_en_00000014 duplicates lane_03_think_mode_en_00000005\n  - lane_03_think_mode_en_00000019 duplicates lane_03_think_mode_en_00000005\n- duplicate_assistant_response: count=5\n  - lane_03_think_mode_en_00000009 duplicates lane_03_think_mode_en_00000006\n  - lane_03_think_mode_en_00000010 duplicates lane_03_think_mode_en_00000000\n  - lane_03_think_mode_en_00000013 duplicates lane_03_think_mode_en_00000001\n  - lane_03_think_mode_en_00000014 duplicates lane_03_think_mode_en_00000005\n  - lane_03_think_mode_en_00000019 duplicates lane_03_think_mode_en_00000005\n- dup_candidate_warn_share_too_high: count=1\n  - language=en dup_candidate_unconfirmed_share=0.950 > cap=0.350 (warn_rows=19, n=20)\nwarn_gate_breakdown:\n- duplication: dup_candidate_unconfirmed:19\n- proportions: not_reliable_small_n:1, lane03_optional_share_not_reliable_small_n:1, lane03_not_reliable_small_n:1\nwarnings_non_blocking:\n- dup_candidate_unconfirmed: 19 (gates=duplication:19)\n  - lane_03_think_mode_en_00000001 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n  - lane_03_think_mode_en_00000002 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n  - lane_03_think_mode_en_00000003 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- not_reliable_small_n: 1 (gates=proportions:1)\n  - language=en n=15 < min_n=30; skipped mode/tone proportion gate\n- lane03_optional_share_not_reliable_small_n: 1 (gates=proportions:1)\n  - language=en n=15 < min_n=30; skipped lane 03 optional share gate\n- lane03_not_reliable_small_n: 1 (gates=proportions:1)\n  - language=en n=15 < min_n=30; skipped lane 03 reasoning/structure distribution gate\nwarning_examples:\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000001 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000002 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000003 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000004 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000005 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000006 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000007 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000008 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000009 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000010 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=1.000 Ojac=1.000 C3=1.000 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000011 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000012 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000013 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000014 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000015 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000016 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000017 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000018 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- dup_candidate_unconfirmed: lane_03_think_mode_en_00000019 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)\n- not_reliable_small_n: language=en n=15 < min_n=30; skipped mode/tone proportion gate\n- lane03_optional_share_not_reliable_small_n: language=en n=15 < min_n=30; skipped lane 03 optional share gate\n- lane03_not_reliable_small_n: language=en n=15 < min_n=30; skipped lane 03 reasoning/structure distribution gate\nqc_reports:\n- /Users/chanpakho/Desktop/Download/project/dino_ds/output QC report/QC_lane_03_think_mode_en_6e6e7a384ef449aeb27023edf995a4fe_2026-02-21.md",
+    "row_fatals": {
+      "lane_03_think_mode_en_00000009": [
+        {
+          "code": "duplicate_user_message",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000009 duplicates lane_03_think_mode_en_00000006",
+          "lang": "en"
+        },
+        {
+          "code": "duplicate_assistant_response",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000009 duplicates lane_03_think_mode_en_00000006",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000010": [
+        {
+          "code": "duplicate_user_message",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000010 duplicates lane_03_think_mode_en_00000000",
+          "lang": "en"
+        },
+        {
+          "code": "duplicate_assistant_response",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000010 duplicates lane_03_think_mode_en_00000000",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000013": [
+        {
+          "code": "duplicate_user_message",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000013 duplicates lane_03_think_mode_en_00000001",
+          "lang": "en"
+        },
+        {
+          "code": "duplicate_assistant_response",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000013 duplicates lane_03_think_mode_en_00000001",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000014": [
+        {
+          "code": "duplicate_user_message",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000014 duplicates lane_03_think_mode_en_00000005",
+          "lang": "en"
+        },
+        {
+          "code": "duplicate_assistant_response",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000014 duplicates lane_03_think_mode_en_00000005",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000019": [
+        {
+          "code": "duplicate_user_message",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000019 duplicates lane_03_think_mode_en_00000005",
+          "lang": "en"
+        },
+        {
+          "code": "duplicate_assistant_response",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000019 duplicates lane_03_think_mode_en_00000005",
+          "lang": "en"
+        }
+      ]
+    },
+    "row_warns": {
+      "lane_03_think_mode_en_00000001": [
+        {
+          "code": "dup_candidate_unconfirmed",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000001 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000002": [
+        {
+          "code": "dup_candidate_unconfirmed",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000002 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000003": [
+        {
+          "code": "dup_candidate_unconfirmed",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000003 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000004": [
+        {
+          "code": "dup_candidate_unconfirmed",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000004 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000005": [
+        {
+          "code": "dup_candidate_unconfirmed",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000005 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000006": [
+        {
+          "code": "dup_candidate_unconfirmed",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000006 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000007": [
+        {
+          "code": "dup_candidate_unconfirmed",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000007 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000008": [
+        {
+          "code": "dup_candidate_unconfirmed",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000008 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000009": [
+        {
+          "code": "dup_candidate_unconfirmed",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000009 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000010": [
+        {
+          "code": "dup_candidate_unconfirmed",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000010 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=1.000 Ojac=1.000 C3=1.000 signals=1/3 token_mode=word (candidate=0.010)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000011": [
+        {
+          "code": "dup_candidate_unconfirmed",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000011 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000012": [
+        {
+          "code": "dup_candidate_unconfirmed",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000012 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000013": [
+        {
+          "code": "dup_candidate_unconfirmed",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000013 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000014": [
+        {
+          "code": "dup_candidate_unconfirmed",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000014 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000015": [
+        {
+          "code": "dup_candidate_unconfirmed",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000015 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000016": [
+        {
+          "code": "dup_candidate_unconfirmed",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000016 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000017": [
+        {
+          "code": "dup_candidate_unconfirmed",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000017 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000018": [
+        {
+          "code": "dup_candidate_unconfirmed",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000018 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)",
+          "lang": "en"
+        }
+      ],
+      "lane_03_think_mode_en_00000019": [
+        {
+          "code": "dup_candidate_unconfirmed",
+          "gate": "duplication",
+          "detail": "lane_03_think_mode_en_00000019 vs lane_03_think_mode_en_00000000 dup_rule=candidate_only Omin=0.933 Ojac=0.875 C3=0.933 signals=1/3 token_mode=word (candidate=0.010)",
+          "lang": "en"
+        }
+      ]
+    },
+    "global_fatals": [
+      {
+        "code": "dup_candidate_warn_share_too_high",
+        "gate": "duplication",
+        "detail": "language=en dup_candidate_unconfirmed_share=0.950 > cap=0.350 (warn_rows=19, n=20)",
+        "lang": "en"
+      }
+    ],
+    "global_warns": [
+      {
+        "code": "not_reliable_small_n",
+        "gate": "proportions",
+        "detail": "language=en n=15 < min_n=30; skipped mode/tone proportion gate",
+        "lang": "en"
+      },
+      {
+        "code": "lane03_optional_share_not_reliable_small_n",
+        "gate": "proportions",
+        "detail": "language=en n=15 < min_n=30; skipped lane 03 optional share gate",
+        "lang": "en"
+      },
+      {
+        "code": "lane03_not_reliable_small_n",
+        "gate": "proportions",
+        "detail": "language=en n=15 < min_n=30; skipped lane 03 reasoning/structure distribution gate",
+        "lang": "en"
+      }
+    ],
+    "reason_counts": {
+      "duplicate_user_message": 5,
+      "duplicate_assistant_response": 5,
+      "dup_candidate_warn_share_too_high": 1
+    },
+    "warning_counts": {
+      "dup_candidate_unconfirmed": 19,
+      "not_reliable_small_n": 1,
+      "lane03_optional_share_not_reliable_small_n": 1,
+      "lane03_not_reliable_small_n": 1
+    },
+    "qc_report_paths": [
+      "/Users/chanpakho/Desktop/Download/project/dino_ds/output QC report/QC_lane_03_think_mode_en_6e6e7a384ef449aeb27023edf995a4fe_2026-02-21.md"
+    ]
+  }
+}

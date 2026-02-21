@@ -1,0 +1,108 @@
+lane_id: lane_03_think_mode
+wave: wave0
+target_base: dino_qwen4b
+source_type: local
+sources: []
+count_target: 20
+base_row:
+  adult_gate: false
+  profanity_allowed: false
+  needs_search: false
+  needs_history_search: false
+  emote6: neutral
+  continuity_choice: suppress_continuity
+  flow_state: none
+  history_scope: thread_only
+  representation_choice: plain_text
+  safety_tag: safe
+  system_prompt_id: dino.system.v1
+  language: en
+  mode: think
+  tone: professional
+  intent_family: planning
+  intent_subtype: general
+language_mix: {}
+synthetic_policy: {}
+required_tools: []
+validators: []
+transform_pipeline: []
+generation_mode: template_expand
+system_prompt_path: prompts/system/dino_system_prompt.txt
+output_dir: out_runs/lane_03_think_mode_escalation_check
+teacher_runtime:
+  enabled: false
+  sample_percent: 0
+  provider: ollama
+  policy: structure_only
+similarity:
+  text_field: assistant_response
+  max_token_overlap_ratio: 1.0
+  ignore_stopwords: true
+  ignore_tokens: [dino]
+  ngram: 2
+validation:
+  dup_candidate_threshold: 0.01
+  dup_contain_threshold: 1.0
+  dup_jaccard_threshold: 1.0
+  dup_chain_threshold_latin: 1.0
+  dup_candidate_warn_max_share: 0.35
+  opening_family_max_share: 1.0
+template_expand:
+  seed: 101
+  count_target: 20
+  max_attempts: 2000
+  attempts_per_row: 200
+  fail_if_underfilled: true
+  expand_dict_slots:
+    - q_template
+    - a_skeleton
+    - label_pack
+    - entity_pack
+  slot_banks:
+    q_template:
+      - user_message: "I need a practical plan for project {item_id}."
+    a_skeleton:
+      - assistant_response: "Use this practical plan to start quickly, reduce risk, and keep momentum for project {item_id}."
+    label_pack:
+      - mode: think
+        tone: professional
+        emote6: neutral
+        representation_choice: plain_text
+        continuity_choice: suppress_continuity
+        intent_family: planning
+        intent_subtype: general
+        safety_tag: safe
+        needs_search: false
+        needs_history_search: false
+        history_scope: thread_only
+    entity_pack:
+      - item_id: alpha_01
+      - item_id: alpha_02
+      - item_id: alpha_03
+      - item_id: alpha_04
+      - item_id: alpha_05
+      - item_id: alpha_06
+      - item_id: alpha_07
+      - item_id: alpha_08
+      - item_id: alpha_09
+      - item_id: alpha_10
+      - item_id: alpha_11
+      - item_id: alpha_12
+      - item_id: alpha_13
+      - item_id: alpha_14
+      - item_id: alpha_15
+      - item_id: alpha_16
+      - item_id: alpha_17
+      - item_id: alpha_18
+      - item_id: alpha_19
+      - item_id: alpha_20
+    case: []
+    q_opening: []
+    q_followup: []
+    q_context_wrap: []
+    a_opening: []
+    a_close: []
+    a_suggestion: []
+  row_template:
+    user_message: "{user_message}"
+    assistant_response: "{assistant_response}"

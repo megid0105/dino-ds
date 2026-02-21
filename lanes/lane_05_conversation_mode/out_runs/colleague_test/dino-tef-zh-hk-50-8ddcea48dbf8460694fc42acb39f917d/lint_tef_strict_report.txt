@@ -1,5 +1,0 @@
-OK
-TEF_STRICT_LINT v1
-train: rows=45
-val: rows=2
-test: rows=3

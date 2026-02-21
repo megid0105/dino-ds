@@ -1,0 +1,33 @@
+Turn UUID: 698EB8B0-C537-4C94-9B19-01A61BBCEE2F
+Timestamp: 2026-02-20
+Scope: lane_05 EN only
+
+What I did this turn:
+1) Audited latest EN QC failure report and isolated remaining blockers to repetition only:
+   - adjacent_dup_token
+   - trip_token_content
+2) Edited lanes/lane_05_conversation_mode/lane_en.yaml:
+   - Rewrote template_expand.slot_banks.a_skeleton lines to remove high-risk repeated stems (especially repeated keep/use phrasing in assistant_response frames).
+   - Normalized lead-in framing phrases to avoid repetitive "Use this line" and "This keeps ..." patterns.
+   - Normalized callback marker framing phrases to avoid repeated "we can keep ..." / "keeping respect" forms.
+3) Re-ran EN gate:
+   - DINO_DS_SKIP_OLLAMA=1 ./scripts/run.sh gate lane --config lanes/lane_05_conversation_mode/lane_en.yaml --limit 200
+4) Verified QC output report:
+   - output QC report/QC_lane_05_conversation_mode_en_RUN_c2a5ea45_2026-02-20.md
+
+Files changed:
+- lanes/lane_05_conversation_mode/lane_en.yaml
+- lane_05_turn_report_698EB8B0-C537-4C94-9B19-01A61BBCEE2F.txt
+
+What was successful:
+- EN now passes hard validation (fatal_violations=0).
+- Repetition gate is no longer FAIL; only warn_only function-token repeats remain.
+- Duplication gate PASS.
+- Lane 05 distribution gates PASS with margin:
+  - multiturn_share=1.000
+  - emotional_callback_share=0.810
+
+What is still wrong / remaining risk:
+- Non-blocking warnings remain:
+  - trip_token_function_only: 15
+- No blocking issue remains for EN in this run.

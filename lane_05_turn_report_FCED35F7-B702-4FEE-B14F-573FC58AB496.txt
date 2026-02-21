@@ -1,0 +1,24 @@
+Turn Report UUID: FCED35F7-B702-4FEE-B14F-573FC58AB496
+Date: 2026-02-19
+Objective: Verify whether all Lane 05 language YAMLs are fully expert-atom compliant.
+
+Checks performed:
+1) Confirmed structural wiring in all files:
+   - expand_dict_slots includes case/q_template/a_skeleton/label_pack.
+2) Checked for rendered leakage inside case blocks:
+   - Searched within case->q_template ranges for user_message/assistant_response.
+   - Result: none found (case blocks are atom-only regarding rendered row text).
+3) Checked expert-atom depth fields across all lane_05 language files:
+   - expert_concepts / expert_moves / expert_pitfalls / expert_checks / expert_tools
+   - Result: all 0 occurrences across lane_05 YAMLs.
+4) Checked q_template first lines per language:
+   - All files still use English scaffold text in user_message templates:
+     "CONTEXT (previous turns): User: ... Assistant: ..."
+
+Conclusion:
+- Lane 05 is NOT fully expert-atom compliant across all languages.
+- While case does not contain rendered user_message/assistant_response, the required expert-depth atom groups are missing globally.
+- Non-EN language purity is also broken in q_template scaffolding due shared English wrapper text.
+
+Files changed this turn:
+- Added lane_05_turn_report_FCED35F7-B702-4FEE-B14F-573FC58AB496.txt
